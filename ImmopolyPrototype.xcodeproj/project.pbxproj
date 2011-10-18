@@ -1,0 +1,361 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D2BF99951443626C001AB9E8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2BF99941443626C001AB9E8 /* UIKit.framework */; };
+		D2BF99971443626C001AB9E8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2BF99961443626C001AB9E8 /* Foundation.framework */; };
+		D2BF99991443626C001AB9E8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2BF99981443626C001AB9E8 /* CoreGraphics.framework */; };
+		D2BF999F1443626C001AB9E8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D2BF999D1443626C001AB9E8 /* InfoPlist.strings */; };
+		D2BF99A11443626C001AB9E8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D2BF99A01443626C001AB9E8 /* main.m */; };
+		D2BF99A51443626C001AB9E8 /* ImmopolyPrototypeAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D2BF99A41443626C001AB9E8 /* ImmopolyPrototypeAppDelegate.m */; };
+		D2BF99A81443626C001AB9E8 /* MainWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2BF99A61443626C001AB9E8 /* MainWindow.xib */; };
+		D2BF99AB1443626C001AB9E8 /* ImmopolyPrototypeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2BF99AA1443626C001AB9E8 /* ImmopolyPrototypeViewController.m */; };
+		D2BF99AE1443626C001AB9E8 /* ImmopolyPrototypeViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2BF99AC1443626C001AB9E8 /* ImmopolyPrototypeViewController.xib */; };
+		D2ECF89F144435180084D24F /* HTTPTestViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2ECF89D144435180084D24F /* HTTPTestViewController.m */; };
+		D2ECF8A0144435180084D24F /* HTTPTestViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2ECF89E144435180084D24F /* HTTPTestViewController.xib */; };
+		D2F92F081443634E00EFFDA5 /* ShowDataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F92F061443634E00EFFDA5 /* ShowDataViewController.m */; };
+		D2F92F091443634E00EFFDA5 /* ShowDataViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2F92F071443634E00EFFDA5 /* ShowDataViewController.xib */; };
+		D2F92F1D14436D4800EFFDA5 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F92F1214436D4800EFFDA5 /* NSObject+SBJSON.m */; };
+		D2F92F1E14436D4800EFFDA5 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F92F1414436D4800EFFDA5 /* NSString+SBJSON.m */; };
+		D2F92F1F14436D4800EFFDA5 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F92F1614436D4800EFFDA5 /* SBJSON.m */; };
+		D2F92F2014436D4800EFFDA5 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F92F1814436D4800EFFDA5 /* SBJsonBase.m */; };
+		D2F92F2114436D4800EFFDA5 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F92F1A14436D4800EFFDA5 /* SBJsonParser.m */; };
+		D2F92F2214436D4800EFFDA5 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F92F1C14436D4800EFFDA5 /* SBJsonWriter.m */; };
+		D2F92F251443734600EFFDA5 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F92F241443734600EFFDA5 /* User.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D2BF99901443626C001AB9E8 /* ImmopolyPrototype.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImmopolyPrototype.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2BF99941443626C001AB9E8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D2BF99961443626C001AB9E8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D2BF99981443626C001AB9E8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D2BF999C1443626C001AB9E8 /* ImmopolyPrototype-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ImmopolyPrototype-Info.plist"; sourceTree = "<group>"; };
+		D2BF999E1443626C001AB9E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D2BF99A01443626C001AB9E8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D2BF99A21443626C001AB9E8 /* ImmopolyPrototype-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ImmopolyPrototype-Prefix.pch"; sourceTree = "<group>"; };
+		D2BF99A31443626C001AB9E8 /* ImmopolyPrototypeAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImmopolyPrototypeAppDelegate.h; sourceTree = "<group>"; };
+		D2BF99A41443626C001AB9E8 /* ImmopolyPrototypeAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImmopolyPrototypeAppDelegate.m; sourceTree = "<group>"; };
+		D2BF99A71443626C001AB9E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainWindow.xib; sourceTree = "<group>"; };
+		D2BF99A91443626C001AB9E8 /* ImmopolyPrototypeViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImmopolyPrototypeViewController.h; sourceTree = "<group>"; };
+		D2BF99AA1443626C001AB9E8 /* ImmopolyPrototypeViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImmopolyPrototypeViewController.m; sourceTree = "<group>"; };
+		D2BF99AD1443626C001AB9E8 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ImmopolyPrototypeViewController.xib; sourceTree = "<group>"; };
+		D2ECF89C144435180084D24F /* HTTPTestViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPTestViewController.h; sourceTree = "<group>"; };
+		D2ECF89D144435180084D24F /* HTTPTestViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPTestViewController.m; sourceTree = "<group>"; };
+		D2ECF89E144435180084D24F /* HTTPTestViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HTTPTestViewController.xib; sourceTree = "<group>"; };
+		D2F92F051443634E00EFFDA5 /* ShowDataViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShowDataViewController.h; sourceTree = "<group>"; };
+		D2F92F061443634E00EFFDA5 /* ShowDataViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShowDataViewController.m; sourceTree = "<group>"; };
+		D2F92F071443634E00EFFDA5 /* ShowDataViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ShowDataViewController.xib; sourceTree = "<group>"; };
+		D2F92F1014436D4800EFFDA5 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		D2F92F1114436D4800EFFDA5 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		D2F92F1214436D4800EFFDA5 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		D2F92F1314436D4800EFFDA5 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		D2F92F1414436D4800EFFDA5 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		D2F92F1514436D4800EFFDA5 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		D2F92F1614436D4800EFFDA5 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		D2F92F1714436D4800EFFDA5 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		D2F92F1814436D4800EFFDA5 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		D2F92F1914436D4800EFFDA5 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		D2F92F1A14436D4800EFFDA5 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		D2F92F1B14436D4800EFFDA5 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		D2F92F1C14436D4800EFFDA5 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		D2F92F231443734600EFFDA5 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
+		D2F92F241443734600EFFDA5 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2BF998D1443626C001AB9E8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2BF99951443626C001AB9E8 /* UIKit.framework in Frameworks */,
+				D2BF99971443626C001AB9E8 /* Foundation.framework in Frameworks */,
+				D2BF99991443626C001AB9E8 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D2BF99851443626C001AB9E8 = {
+			isa = PBXGroup;
+			children = (
+				D2BF999A1443626C001AB9E8 /* ImmopolyPrototype */,
+				D2BF99931443626C001AB9E8 /* Frameworks */,
+				D2BF99911443626C001AB9E8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D2BF99911443626C001AB9E8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2BF99901443626C001AB9E8 /* ImmopolyPrototype.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2BF99931443626C001AB9E8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D2BF99941443626C001AB9E8 /* UIKit.framework */,
+				D2BF99961443626C001AB9E8 /* Foundation.framework */,
+				D2BF99981443626C001AB9E8 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D2BF999A1443626C001AB9E8 /* ImmopolyPrototype */ = {
+			isa = PBXGroup;
+			children = (
+				D2F92F0F14436D4800EFFDA5 /* JSON */,
+				D2BF99A31443626C001AB9E8 /* ImmopolyPrototypeAppDelegate.h */,
+				D2BF99A41443626C001AB9E8 /* ImmopolyPrototypeAppDelegate.m */,
+				D2BF99A61443626C001AB9E8 /* MainWindow.xib */,
+				D2BF99A91443626C001AB9E8 /* ImmopolyPrototypeViewController.h */,
+				D2BF99AA1443626C001AB9E8 /* ImmopolyPrototypeViewController.m */,
+				D2ECF89C144435180084D24F /* HTTPTestViewController.h */,
+				D2ECF89D144435180084D24F /* HTTPTestViewController.m */,
+				D2ECF89E144435180084D24F /* HTTPTestViewController.xib */,
+				D2BF99AC1443626C001AB9E8 /* ImmopolyPrototypeViewController.xib */,
+				D2BF999B1443626C001AB9E8 /* Supporting Files */,
+				D2F92F051443634E00EFFDA5 /* ShowDataViewController.h */,
+				D2F92F061443634E00EFFDA5 /* ShowDataViewController.m */,
+				D2F92F071443634E00EFFDA5 /* ShowDataViewController.xib */,
+				D2F92F231443734600EFFDA5 /* User.h */,
+				D2F92F241443734600EFFDA5 /* User.m */,
+			);
+			path = ImmopolyPrototype;
+			sourceTree = "<group>";
+		};
+		D2BF999B1443626C001AB9E8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D2BF999C1443626C001AB9E8 /* ImmopolyPrototype-Info.plist */,
+				D2BF999D1443626C001AB9E8 /* InfoPlist.strings */,
+				D2BF99A01443626C001AB9E8 /* main.m */,
+				D2BF99A21443626C001AB9E8 /* ImmopolyPrototype-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D2F92F0F14436D4800EFFDA5 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				D2F92F1014436D4800EFFDA5 /* JSON.h */,
+				D2F92F1114436D4800EFFDA5 /* NSObject+SBJSON.h */,
+				D2F92F1214436D4800EFFDA5 /* NSObject+SBJSON.m */,
+				D2F92F1314436D4800EFFDA5 /* NSString+SBJSON.h */,
+				D2F92F1414436D4800EFFDA5 /* NSString+SBJSON.m */,
+				D2F92F1514436D4800EFFDA5 /* SBJSON.h */,
+				D2F92F1614436D4800EFFDA5 /* SBJSON.m */,
+				D2F92F1714436D4800EFFDA5 /* SBJsonBase.h */,
+				D2F92F1814436D4800EFFDA5 /* SBJsonBase.m */,
+				D2F92F1914436D4800EFFDA5 /* SBJsonParser.h */,
+				D2F92F1A14436D4800EFFDA5 /* SBJsonParser.m */,
+				D2F92F1B14436D4800EFFDA5 /* SBJsonWriter.h */,
+				D2F92F1C14436D4800EFFDA5 /* SBJsonWriter.m */,
+			);
+			path = JSON;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D2BF998F1443626C001AB9E8 /* ImmopolyPrototype */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2BF99B11443626C001AB9E8 /* Build configuration list for PBXNativeTarget "ImmopolyPrototype" */;
+			buildPhases = (
+				D2BF998C1443626C001AB9E8 /* Sources */,
+				D2BF998D1443626C001AB9E8 /* Frameworks */,
+				D2BF998E1443626C001AB9E8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ImmopolyPrototype;
+			productName = ImmopolyPrototype;
+			productReference = D2BF99901443626C001AB9E8 /* ImmopolyPrototype.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D2BF99871443626C001AB9E8 /* Project object */ = {
+			isa = PBXProject;
+			buildConfigurationList = D2BF998A1443626C001AB9E8 /* Build configuration list for PBXProject "ImmopolyPrototype" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D2BF99851443626C001AB9E8;
+			productRefGroup = D2BF99911443626C001AB9E8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2BF998F1443626C001AB9E8 /* ImmopolyPrototype */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D2BF998E1443626C001AB9E8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2BF999F1443626C001AB9E8 /* InfoPlist.strings in Resources */,
+				D2BF99A81443626C001AB9E8 /* MainWindow.xib in Resources */,
+				D2BF99AE1443626C001AB9E8 /* ImmopolyPrototypeViewController.xib in Resources */,
+				D2F92F091443634E00EFFDA5 /* ShowDataViewController.xib in Resources */,
+				D2ECF8A0144435180084D24F /* HTTPTestViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2BF998C1443626C001AB9E8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2BF99A11443626C001AB9E8 /* main.m in Sources */,
+				D2BF99A51443626C001AB9E8 /* ImmopolyPrototypeAppDelegate.m in Sources */,
+				D2BF99AB1443626C001AB9E8 /* ImmopolyPrototypeViewController.m in Sources */,
+				D2F92F081443634E00EFFDA5 /* ShowDataViewController.m in Sources */,
+				D2F92F1D14436D4800EFFDA5 /* NSObject+SBJSON.m in Sources */,
+				D2F92F1E14436D4800EFFDA5 /* NSString+SBJSON.m in Sources */,
+				D2F92F1F14436D4800EFFDA5 /* SBJSON.m in Sources */,
+				D2F92F2014436D4800EFFDA5 /* SBJsonBase.m in Sources */,
+				D2F92F2114436D4800EFFDA5 /* SBJsonParser.m in Sources */,
+				D2F92F2214436D4800EFFDA5 /* SBJsonWriter.m in Sources */,
+				D2F92F251443734600EFFDA5 /* User.m in Sources */,
+				D2ECF89F144435180084D24F /* HTTPTestViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D2BF999D1443626C001AB9E8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2BF999E1443626C001AB9E8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		D2BF99A61443626C001AB9E8 /* MainWindow.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2BF99A71443626C001AB9E8 /* en */,
+			);
+			name = MainWindow.xib;
+			sourceTree = "<group>";
+		};
+		D2BF99AC1443626C001AB9E8 /* ImmopolyPrototypeViewController.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2BF99AD1443626C001AB9E8 /* en */,
+			);
+			name = ImmopolyPrototypeViewController.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D2BF99AF1443626C001AB9E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D2BF99B01443626C001AB9E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvmgcc42;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D2BF99B21443626C001AB9E8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ImmopolyPrototype/ImmopolyPrototype-Prefix.pch";
+				INFOPLIST_FILE = "ImmopolyPrototype/ImmopolyPrototype-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D2BF99B31443626C001AB9E8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ImmopolyPrototype/ImmopolyPrototype-Prefix.pch";
+				INFOPLIST_FILE = "ImmopolyPrototype/ImmopolyPrototype-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D2BF998A1443626C001AB9E8 /* Build configuration list for PBXProject "ImmopolyPrototype" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2BF99AF1443626C001AB9E8 /* Debug */,
+				D2BF99B01443626C001AB9E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2BF99B11443626C001AB9E8 /* Build configuration list for PBXNativeTarget "ImmopolyPrototype" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2BF99B21443626C001AB9E8 /* Debug */,
+				D2BF99B31443626C001AB9E8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D2BF99871443626C001AB9E8 /* Project object */;
+}
