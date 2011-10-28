@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface Flat : NSObject {
+    //exposee id
     int uid;
     NSString *name;
     NSString *description;

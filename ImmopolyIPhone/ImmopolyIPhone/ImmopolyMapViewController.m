@@ -15,6 +15,11 @@
 
 @synthesize mapView,adressLabel;
 
+-(void)dealloc{
+    [super dealloc];
+    [exposeWebViewController release];
+}
+
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -78,7 +83,7 @@
     MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];                
     [mapView setRegion:adjustedRegion animated:YES]; 
     
-    FlatLocation *annotation = [[[FlatLocation alloc] initWithName:@"My Location" address:@"" coordinate:zoomLocation] autorelease];
+    FlatLocation *annotation = [[[FlatLocation alloc] initWithName:@"My Location" address:@"" coordinate:zoomLocation exposeId:-1] autorelease];
     [mapView addAnnotation: annotation];
 }
 
@@ -108,7 +113,8 @@
         CLLocationCoordinate2D coordinate;
         coordinate.latitude = latitude.doubleValue;
         coordinate.longitude = longitude.doubleValue;            
-        FlatLocation *annotation = [[[FlatLocation alloc] initWithName:title address:@"" coordinate:coordinate] autorelease];
+        FlatLocation *annotation = [[[FlatLocation alloc] initWithName:title address:@"" coordinate:coordinate exposeId:flat.uid] autorelease];
+
         [mapView addAnnotation: annotation];
     
         //place another one
@@ -122,6 +128,21 @@
         annotation = [[[FlatLocation alloc] initWithName:title address:address coordinate:coordinate] autorelease];
         [mapView addAnnotation: annotation];
         */
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
+    
+    if([view.annotation isKindOfClass:[FlatLocation class]]) {
+        FlatLocation *location = (FlatLocation *) view.annotation;
+        
+        if (![location.title compare:@"My Location"] == NSOrderedSame) {
+            [[ImmopolyManager instance]setSelectedExposeId:location.exposeId];
+            
+            exposeWebViewController = [[WebViewController alloc]init];
+            [self.view addSubview:exposeWebViewController.view];
+        }
+        
     }
 }
 

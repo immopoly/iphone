@@ -10,7 +10,7 @@
 
 @implementation ImmopolyManager
 
-@synthesize user, loginSuccessful,flats,actLocation,delegate;
+@synthesize user, loginSuccessful,flats,actLocation,delegate,selectedExposeId;
 
 +(ImmopolyManager *) instance{
     static ImmopolyManager *instance;
