@@ -9,9 +9,9 @@
 #import "OAuthManager.h"
 #import "OAMutableURLRequest.h"
 
-
-#define REST_AUTHENTICATION_KEY @"mr-schtiefKey"
-#define REST_AUTHENTICATION_SECRET @"Phbbgdrrvalihzazzkp2"
+#error insert key/value
+#define REST_AUTHENTICATION_KEY @""
+#define REST_AUTHENTICATION_SECRET @""
 
 @implementation OAuthManager
 
