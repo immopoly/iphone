@@ -1,0 +1,30 @@
+//
+//  CoreLocationController.h
+//  CoreLocationDemo
+//
+//  Created by Tobias Buchholz on 26.10.11.
+//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+#import <CoreLocation/CoreLocation.h>
+
+@protocol CoreLocationControllerDelegate 
+@required
+
+// Our location updates are sent here
+- (void)locationUpdate:(CLLocation *)location; 
+
+// Any errors are sent here
+- (void)locationError:(NSError *)error; 
+
+@end
+
+@interface CoreLocationController : NSObject <CoreLocationControllerDelegate> {
+    CLLocationManager *locMgr;
+    id delegate;
+}
+
+@property (nonatomic, retain) CLLocationManager *locMgr;
+@property (nonatomic, assign) id delegate;
+@end
