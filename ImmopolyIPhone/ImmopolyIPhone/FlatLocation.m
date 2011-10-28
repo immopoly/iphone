@@ -10,13 +10,14 @@
 
 @implementation FlatLocation
 
-@synthesize name, address, coordinate;
+@synthesize name, address, coordinate,exposeId;
 
-- (id)initWithName:(NSString*)lName address:(NSString*) lAddress coordinate:(CLLocationCoordinate2D)lCoordinate {
+- (id)initWithName:(NSString*)lName address:(NSString*) lAddress coordinate:(CLLocationCoordinate2D)lCoordinate exposeId:(int) lexposeId {
     if ((self = [super init])) {
         name = [lName copy];
         address = [lAddress copy];
         coordinate = lCoordinate;
+        exposeId = lexposeId;
     }
     return self;
 }

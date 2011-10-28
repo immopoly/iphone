@@ -19,6 +19,7 @@
     NSMutableArray *flats;
     CLLocation *actLocation;
     id<LocationDelegate, FlatsDelegate>delegate;
+    int selectedExposeId;
 }
 
 -(void)callLocationDelegate;
@@ -30,5 +31,5 @@
 @property(nonatomic, assign) BOOL loginSuccessful;
 @property(nonatomic, assign) NSMutableArray *flats;
 @property(nonatomic, assign) CLLocation *actLocation;
-
+@property(nonatomic, assign) int selectedExposeId;
 @end
