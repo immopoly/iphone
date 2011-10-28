@@ -1,0 +1,592 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D24E7641145834DA003C91A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24E7640145834DA003C91A8 /* UIKit.framework */; };
+		D24E7643145834DA003C91A8 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24E7642145834DA003C91A8 /* Foundation.framework */; };
+		D24E7645145834DA003C91A8 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24E7644145834DA003C91A8 /* CoreGraphics.framework */; };
+		D24E764B145834DA003C91A8 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = D24E7649145834DA003C91A8 /* InfoPlist.strings */; };
+		D24E764D145834DA003C91A8 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D24E764C145834DA003C91A8 /* main.m */; };
+		D24E7651145834DA003C91A8 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D24E7650145834DA003C91A8 /* AppDelegate.m */; };
+		D24E766714583589003C91A8 /* OAuthManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D24E766614583589003C91A8 /* OAuthManager.m */; };
+		D24E7669145835BB003C91A8 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24E7668145835BB003C91A8 /* SystemConfiguration.framework */; };
+		D24E766B145835C5003C91A8 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24E766A145835C5003C91A8 /* MobileCoreServices.framework */; };
+		D24E766D145835CD003C91A8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24E766C145835CD003C91A8 /* CFNetwork.framework */; };
+		D24E766F1458362E003C91A8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D24E766E1458362E003C91A8 /* libz.dylib */; };
+		D24E767014583E66003C91A8 /* libasi-http-request.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D24E766114583515003C91A8 /* libasi-http-request.a */; };
+		D29D4BE314597BAA004839F6 /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = D29D4BCE14597BAA004839F6 /* NSData+Base64.m */; };
+		D29D4BE414597BAA004839F6 /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = D29D4BD014597BAA004839F6 /* NSMutableURLRequest+Parameters.m */; };
+		D29D4BE514597BAA004839F6 /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = D29D4BD214597BAA004839F6 /* NSString+URLEncoding.m */; };
+		D29D4BE614597BAA004839F6 /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = D29D4BD414597BAA004839F6 /* NSURL+Base.m */; };
+		D29D4BE714597BAA004839F6 /* OAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = D29D4BD614597BAA004839F6 /* OAConsumer.m */; };
+		D29D4BE814597BAA004839F6 /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D29D4BD814597BAA004839F6 /* OAHMAC_SHA1SignatureProvider.m */; };
+		D29D4BE914597BAA004839F6 /* OAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D29D4BDA14597BAA004839F6 /* OAMutableURLRequest.m */; };
+		D29D4BEA14597BAA004839F6 /* OAPlaintextSignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D29D4BDC14597BAA004839F6 /* OAPlaintextSignatureProvider.m */; };
+		D29D4BEB14597BAA004839F6 /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = D29D4BDE14597BAA004839F6 /* OARequestParameter.m */; };
+		D29D4BEC14597BAA004839F6 /* OATestServer.rb in Resources */ = {isa = PBXBuildFile; fileRef = D29D4BE014597BAA004839F6 /* OATestServer.rb */; };
+		D29D4BED14597BAA004839F6 /* XOAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = D29D4BE214597BAA004839F6 /* XOAConsumer.m */; };
+		D2C67D1A145AA4D5008C3295 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2C67D19145AA4D5008C3295 /* CoreLocation.framework */; };
+		D2C67D1D145AA4DF008C3295 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D2C67D1C145AA4DF008C3295 /* libz.1.2.5.dylib */; };
+		D2C67D1F145AA4EA008C3295 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2C67D1E145AA4EA008C3295 /* MapKit.framework */; };
+		D2C67D33145AA559008C3295 /* NSObject+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D28145AA559008C3295 /* NSObject+SBJSON.m */; };
+		D2C67D34145AA559008C3295 /* NSString+SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D2A145AA559008C3295 /* NSString+SBJSON.m */; };
+		D2C67D35145AA559008C3295 /* SBJSON.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D2C145AA559008C3295 /* SBJSON.m */; };
+		D2C67D36145AA559008C3295 /* SBJsonBase.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D2E145AA559008C3295 /* SBJsonBase.m */; };
+		D2C67D37145AA559008C3295 /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D30145AA559008C3295 /* SBJsonParser.m */; };
+		D2C67D38145AA559008C3295 /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D32145AA559008C3295 /* SBJsonWriter.m */; };
+		D2C67D43145AA565008C3295 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D3A145AA565008C3295 /* CoreLocationController.m */; };
+		D2C67D44145AA565008C3295 /* JSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D3C145AA565008C3295 /* JSONParser.m */; };
+		D2C67D45145AA565008C3295 /* DataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D3E145AA565008C3295 /* DataLoader.m */; };
+		D2C67D46145AA565008C3295 /* ImmopolyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D40145AA565008C3295 /* ImmopolyManager.m */; };
+		D2C67D47145AA565008C3295 /* FlatProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D42145AA565008C3295 /* FlatProvider.m */; };
+		D2C67D4E145AA57A008C3295 /* Flat.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D49145AA57A008C3295 /* Flat.m */; };
+		D2C67D4F145AA57A008C3295 /* ImmopolyUser.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D4B145AA57A008C3295 /* ImmopolyUser.m */; };
+		D2C67D50145AA57A008C3295 /* ImmopolyHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D4D145AA57A008C3295 /* ImmopolyHistory.m */; };
+		D2C67D54145AA596008C3295 /* ImmopolyMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D52145AA596008C3295 /* ImmopolyMapViewController.m */; };
+		D2C67D55145AA596008C3295 /* ImmopolyMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C67D53145AA596008C3295 /* ImmopolyMapViewController.xib */; };
+		D2C67D58145AA7F3008C3295 /* FlatLocation.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D57145AA7F3008C3295 /* FlatLocation.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		D24E763C145834DA003C91A8 /* ImmopolyIPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImmopolyIPhone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D24E7640145834DA003C91A8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		D24E7642145834DA003C91A8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		D24E7644145834DA003C91A8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D24E7648145834DA003C91A8 /* ImmopolyIPhone-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ImmopolyIPhone-Info.plist"; sourceTree = "<group>"; };
+		D24E764A145834DA003C91A8 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		D24E764C145834DA003C91A8 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		D24E764E145834DA003C91A8 /* ImmopolyIPhone-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ImmopolyIPhone-Prefix.pch"; sourceTree = "<group>"; };
+		D24E764F145834DA003C91A8 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		D24E7650145834DA003C91A8 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		D24E766114583515003C91A8 /* libasi-http-request.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = "libasi-http-request.a"; path = "../libasi-http-request/libasi-http-request.a"; sourceTree = "<group>"; };
+		D24E766514583589003C91A8 /* OAuthManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAuthManager.h; sourceTree = "<group>"; };
+		D24E766614583589003C91A8 /* OAuthManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAuthManager.m; sourceTree = "<group>"; };
+		D24E7668145835BB003C91A8 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D24E766A145835C5003C91A8 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		D24E766C145835CD003C91A8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		D24E766E1458362E003C91A8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D29D4BBC14597BA3004839F6 /* Base64Transcoder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Base64Transcoder.h; sourceTree = "<group>"; };
+		D29D4BBD14597BA3004839F6 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
+		D29D4BBE14597BA3004839F6 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
+		D29D4BBF14597BA3004839F6 /* NSURL+Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Base.h"; sourceTree = "<group>"; };
+		D29D4BC014597BA3004839F6 /* OAAsynchronousDataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAAsynchronousDataFetcher.h; sourceTree = "<group>"; };
+		D29D4BC114597BA3004839F6 /* OAConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAConsumer.h; sourceTree = "<group>"; };
+		D29D4BC214597BA3004839F6 /* OADataFetcher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OADataFetcher.h; sourceTree = "<group>"; };
+		D29D4BC314597BA3004839F6 /* OAHMAC_SHA1SignatureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAHMAC_SHA1SignatureProvider.h; sourceTree = "<group>"; };
+		D29D4BC414597BA3004839F6 /* OAMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAMutableURLRequest.h; sourceTree = "<group>"; };
+		D29D4BC514597BA3004839F6 /* OAPlaintextSignatureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAPlaintextSignatureProvider.h; sourceTree = "<group>"; };
+		D29D4BC614597BA3004839F6 /* OARequestParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OARequestParameter.h; sourceTree = "<group>"; };
+		D29D4BC714597BA3004839F6 /* OAServiceTicket.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAServiceTicket.h; sourceTree = "<group>"; };
+		D29D4BC814597BA3004839F6 /* OASignatureProviding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OASignatureProviding.h; sourceTree = "<group>"; };
+		D29D4BC914597BA3004839F6 /* OAToken.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAToken.h; sourceTree = "<group>"; };
+		D29D4BCA14597BA3004839F6 /* XOAConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XOAConsumer.h; sourceTree = "<group>"; };
+		D29D4BCC14597BAA004839F6 /* libOAuth-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "libOAuth-Prefix.pch"; sourceTree = "<group>"; };
+		D29D4BCD14597BAA004839F6 /* NSData+Base64.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+Base64.h"; sourceTree = "<group>"; };
+		D29D4BCE14597BAA004839F6 /* NSData+Base64.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+Base64.m"; sourceTree = "<group>"; };
+		D29D4BCF14597BAA004839F6 /* NSMutableURLRequest+Parameters.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableURLRequest+Parameters.h"; sourceTree = "<group>"; };
+		D29D4BD014597BAA004839F6 /* NSMutableURLRequest+Parameters.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableURLRequest+Parameters.m"; sourceTree = "<group>"; };
+		D29D4BD114597BAA004839F6 /* NSString+URLEncoding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+URLEncoding.h"; sourceTree = "<group>"; };
+		D29D4BD214597BAA004839F6 /* NSString+URLEncoding.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+URLEncoding.m"; sourceTree = "<group>"; };
+		D29D4BD314597BAA004839F6 /* NSURL+Base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSURL+Base.h"; sourceTree = "<group>"; };
+		D29D4BD414597BAA004839F6 /* NSURL+Base.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSURL+Base.m"; sourceTree = "<group>"; };
+		D29D4BD514597BAA004839F6 /* OAConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAConsumer.h; sourceTree = "<group>"; };
+		D29D4BD614597BAA004839F6 /* OAConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAConsumer.m; sourceTree = "<group>"; };
+		D29D4BD714597BAA004839F6 /* OAHMAC_SHA1SignatureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAHMAC_SHA1SignatureProvider.h; sourceTree = "<group>"; };
+		D29D4BD814597BAA004839F6 /* OAHMAC_SHA1SignatureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAHMAC_SHA1SignatureProvider.m; sourceTree = "<group>"; };
+		D29D4BD914597BAA004839F6 /* OAMutableURLRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAMutableURLRequest.h; sourceTree = "<group>"; };
+		D29D4BDA14597BAA004839F6 /* OAMutableURLRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAMutableURLRequest.m; sourceTree = "<group>"; };
+		D29D4BDB14597BAA004839F6 /* OAPlaintextSignatureProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OAPlaintextSignatureProvider.h; sourceTree = "<group>"; };
+		D29D4BDC14597BAA004839F6 /* OAPlaintextSignatureProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OAPlaintextSignatureProvider.m; sourceTree = "<group>"; };
+		D29D4BDD14597BAA004839F6 /* OARequestParameter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OARequestParameter.h; sourceTree = "<group>"; };
+		D29D4BDE14597BAA004839F6 /* OARequestParameter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OARequestParameter.m; sourceTree = "<group>"; };
+		D29D4BDF14597BAA004839F6 /* OASignatureProviding.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OASignatureProviding.h; sourceTree = "<group>"; };
+		D29D4BE014597BAA004839F6 /* OATestServer.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = OATestServer.rb; sourceTree = "<group>"; };
+		D29D4BE114597BAA004839F6 /* XOAConsumer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XOAConsumer.h; sourceTree = "<group>"; };
+		D29D4BE214597BAA004839F6 /* XOAConsumer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XOAConsumer.m; sourceTree = "<group>"; };
+		D2C67D19145AA4D5008C3295 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D2C67D1C145AA4DF008C3295 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
+		D2C67D1E145AA4EA008C3295 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		D2C67D24145AA53C008C3295 /* LoginDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginDelegate.h; sourceTree = "<group>"; };
+		D2C67D26145AA559008C3295 /* JSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSON.h; sourceTree = "<group>"; };
+		D2C67D27145AA559008C3295 /* NSObject+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+SBJSON.h"; sourceTree = "<group>"; };
+		D2C67D28145AA559008C3295 /* NSObject+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+SBJSON.m"; sourceTree = "<group>"; };
+		D2C67D29145AA559008C3295 /* NSString+SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+SBJSON.h"; sourceTree = "<group>"; };
+		D2C67D2A145AA559008C3295 /* NSString+SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+SBJSON.m"; sourceTree = "<group>"; };
+		D2C67D2B145AA559008C3295 /* SBJSON.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJSON.h; sourceTree = "<group>"; };
+		D2C67D2C145AA559008C3295 /* SBJSON.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJSON.m; sourceTree = "<group>"; };
+		D2C67D2D145AA559008C3295 /* SBJsonBase.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonBase.h; sourceTree = "<group>"; };
+		D2C67D2E145AA559008C3295 /* SBJsonBase.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonBase.m; sourceTree = "<group>"; };
+		D2C67D2F145AA559008C3295 /* SBJsonParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonParser.h; sourceTree = "<group>"; };
+		D2C67D30145AA559008C3295 /* SBJsonParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonParser.m; sourceTree = "<group>"; };
+		D2C67D31145AA559008C3295 /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
+		D2C67D32145AA559008C3295 /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
+		D2C67D39145AA565008C3295 /* CoreLocationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CoreLocationController.h; sourceTree = "<group>"; };
+		D2C67D3A145AA565008C3295 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
+		D2C67D3B145AA565008C3295 /* JSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONParser.h; sourceTree = "<group>"; };
+		D2C67D3C145AA565008C3295 /* JSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONParser.m; sourceTree = "<group>"; };
+		D2C67D3D145AA565008C3295 /* DataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataLoader.h; sourceTree = "<group>"; };
+		D2C67D3E145AA565008C3295 /* DataLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataLoader.m; sourceTree = "<group>"; };
+		D2C67D3F145AA565008C3295 /* ImmopolyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImmopolyManager.h; sourceTree = "<group>"; };
+		D2C67D40145AA565008C3295 /* ImmopolyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImmopolyManager.m; sourceTree = "<group>"; };
+		D2C67D41145AA565008C3295 /* FlatProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatProvider.h; sourceTree = "<group>"; };
+		D2C67D42145AA565008C3295 /* FlatProvider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatProvider.m; sourceTree = "<group>"; };
+		D2C67D48145AA57A008C3295 /* Flat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Flat.h; sourceTree = "<group>"; };
+		D2C67D49145AA57A008C3295 /* Flat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Flat.m; sourceTree = "<group>"; };
+		D2C67D4A145AA57A008C3295 /* ImmopolyUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImmopolyUser.h; sourceTree = "<group>"; };
+		D2C67D4B145AA57A008C3295 /* ImmopolyUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImmopolyUser.m; sourceTree = "<group>"; };
+		D2C67D4C145AA57A008C3295 /* ImmopolyHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImmopolyHistory.h; sourceTree = "<group>"; };
+		D2C67D4D145AA57A008C3295 /* ImmopolyHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImmopolyHistory.m; sourceTree = "<group>"; };
+		D2C67D51145AA596008C3295 /* ImmopolyMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImmopolyMapViewController.h; sourceTree = "<group>"; };
+		D2C67D52145AA596008C3295 /* ImmopolyMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImmopolyMapViewController.m; sourceTree = "<group>"; };
+		D2C67D53145AA596008C3295 /* ImmopolyMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImmopolyMapViewController.xib; sourceTree = "<group>"; };
+		D2C67D56145AA7F3008C3295 /* FlatLocation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatLocation.h; sourceTree = "<group>"; };
+		D2C67D57145AA7F3008C3295 /* FlatLocation.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatLocation.m; sourceTree = "<group>"; };
+		D2C67D59145AAA15008C3295 /* LocationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationDelegate.h; sourceTree = "<group>"; };
+		D2C67D5A145AAF33008C3295 /* FlatsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatsDelegate.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D24E7639145834DA003C91A8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2C67D1F145AA4EA008C3295 /* MapKit.framework in Frameworks */,
+				D2C67D1D145AA4DF008C3295 /* libz.1.2.5.dylib in Frameworks */,
+				D2C67D1A145AA4D5008C3295 /* CoreLocation.framework in Frameworks */,
+				D24E766D145835CD003C91A8 /* CFNetwork.framework in Frameworks */,
+				D24E766B145835C5003C91A8 /* MobileCoreServices.framework in Frameworks */,
+				D24E7669145835BB003C91A8 /* SystemConfiguration.framework in Frameworks */,
+				D24E7641145834DA003C91A8 /* UIKit.framework in Frameworks */,
+				D24E7643145834DA003C91A8 /* Foundation.framework in Frameworks */,
+				D24E7645145834DA003C91A8 /* CoreGraphics.framework in Frameworks */,
+				D24E767014583E66003C91A8 /* libasi-http-request.a in Frameworks */,
+				D24E766F1458362E003C91A8 /* libz.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D24E7631145834DA003C91A8 = {
+			isa = PBXGroup;
+			children = (
+				D2C67D1E145AA4EA008C3295 /* MapKit.framework */,
+				D2C67D1C145AA4DF008C3295 /* libz.1.2.5.dylib */,
+				D2C67D19145AA4D5008C3295 /* CoreLocation.framework */,
+				D29D4BBA14597B95004839F6 /* libOAuth */,
+				D24E7646145834DA003C91A8 /* ImmopolyIPhone */,
+				D24E763F145834DA003C91A8 /* Frameworks */,
+				D24E763D145834DA003C91A8 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D24E763D145834DA003C91A8 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D24E763C145834DA003C91A8 /* ImmopolyIPhone.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D24E763F145834DA003C91A8 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D24E766114583515003C91A8 /* libasi-http-request.a */,
+				D24E766E1458362E003C91A8 /* libz.dylib */,
+				D24E7668145835BB003C91A8 /* SystemConfiguration.framework */,
+				D24E766A145835C5003C91A8 /* MobileCoreServices.framework */,
+				D24E766C145835CD003C91A8 /* CFNetwork.framework */,
+				D24E7640145834DA003C91A8 /* UIKit.framework */,
+				D24E7642145834DA003C91A8 /* Foundation.framework */,
+				D24E7644145834DA003C91A8 /* CoreGraphics.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		D24E7646145834DA003C91A8 /* ImmopolyIPhone */ = {
+			isa = PBXGroup;
+			children = (
+				D2C67D51145AA596008C3295 /* ImmopolyMapViewController.h */,
+				D2C67D52145AA596008C3295 /* ImmopolyMapViewController.m */,
+				D2C67D53145AA596008C3295 /* ImmopolyMapViewController.xib */,
+				D2C67D25145AA54C008C3295 /* JSON */,
+				D2C67D23145AA524008C3295 /* Utilities */,
+				D2C67D22145AA516008C3295 /* ModelClasses */,
+				D2C67D21145AA50F008C3295 /* JSON */,
+				D2C67D20145AA504008C3295 /* Protocols */,
+				D24E766514583589003C91A8 /* OAuthManager.h */,
+				D24E766614583589003C91A8 /* OAuthManager.m */,
+				D24E764F145834DA003C91A8 /* AppDelegate.h */,
+				D24E7650145834DA003C91A8 /* AppDelegate.m */,
+				D24E7647145834DA003C91A8 /* Supporting Files */,
+			);
+			path = ImmopolyIPhone;
+			sourceTree = "<group>";
+		};
+		D24E7647145834DA003C91A8 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				D24E7648145834DA003C91A8 /* ImmopolyIPhone-Info.plist */,
+				D24E7649145834DA003C91A8 /* InfoPlist.strings */,
+				D24E764C145834DA003C91A8 /* main.m */,
+				D24E764E145834DA003C91A8 /* ImmopolyIPhone-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D29D4BBA14597B95004839F6 /* libOAuth */ = {
+			isa = PBXGroup;
+			children = (
+				D29D4BCB14597BAA004839F6 /* libOAuth */,
+				D29D4BBB14597BA3004839F6 /* include */,
+			);
+			name = libOAuth;
+			sourceTree = "<group>";
+		};
+		D29D4BBB14597BA3004839F6 /* include */ = {
+			isa = PBXGroup;
+			children = (
+				D29D4BBC14597BA3004839F6 /* Base64Transcoder.h */,
+				D29D4BBD14597BA3004839F6 /* NSMutableURLRequest+Parameters.h */,
+				D29D4BBE14597BA3004839F6 /* NSString+URLEncoding.h */,
+				D29D4BBF14597BA3004839F6 /* NSURL+Base.h */,
+				D29D4BC014597BA3004839F6 /* OAAsynchronousDataFetcher.h */,
+				D29D4BC114597BA3004839F6 /* OAConsumer.h */,
+				D29D4BC214597BA3004839F6 /* OADataFetcher.h */,
+				D29D4BC314597BA3004839F6 /* OAHMAC_SHA1SignatureProvider.h */,
+				D29D4BC414597BA3004839F6 /* OAMutableURLRequest.h */,
+				D29D4BC514597BA3004839F6 /* OAPlaintextSignatureProvider.h */,
+				D29D4BC614597BA3004839F6 /* OARequestParameter.h */,
+				D29D4BC714597BA3004839F6 /* OAServiceTicket.h */,
+				D29D4BC814597BA3004839F6 /* OASignatureProviding.h */,
+				D29D4BC914597BA3004839F6 /* OAToken.h */,
+				D29D4BCA14597BA3004839F6 /* XOAConsumer.h */,
+			);
+			name = include;
+			path = "../../../../Downloads/libOAuth-iOS/libOAuth/include";
+			sourceTree = "<group>";
+		};
+		D29D4BCB14597BAA004839F6 /* libOAuth */ = {
+			isa = PBXGroup;
+			children = (
+				D29D4BCC14597BAA004839F6 /* libOAuth-Prefix.pch */,
+				D29D4BCD14597BAA004839F6 /* NSData+Base64.h */,
+				D29D4BCE14597BAA004839F6 /* NSData+Base64.m */,
+				D29D4BCF14597BAA004839F6 /* NSMutableURLRequest+Parameters.h */,
+				D29D4BD014597BAA004839F6 /* NSMutableURLRequest+Parameters.m */,
+				D29D4BD114597BAA004839F6 /* NSString+URLEncoding.h */,
+				D29D4BD214597BAA004839F6 /* NSString+URLEncoding.m */,
+				D29D4BD314597BAA004839F6 /* NSURL+Base.h */,
+				D29D4BD414597BAA004839F6 /* NSURL+Base.m */,
+				D29D4BD514597BAA004839F6 /* OAConsumer.h */,
+				D29D4BD614597BAA004839F6 /* OAConsumer.m */,
+				D29D4BD714597BAA004839F6 /* OAHMAC_SHA1SignatureProvider.h */,
+				D29D4BD814597BAA004839F6 /* OAHMAC_SHA1SignatureProvider.m */,
+				D29D4BD914597BAA004839F6 /* OAMutableURLRequest.h */,
+				D29D4BDA14597BAA004839F6 /* OAMutableURLRequest.m */,
+				D29D4BDB14597BAA004839F6 /* OAPlaintextSignatureProvider.h */,
+				D29D4BDC14597BAA004839F6 /* OAPlaintextSignatureProvider.m */,
+				D29D4BDD14597BAA004839F6 /* OARequestParameter.h */,
+				D29D4BDE14597BAA004839F6 /* OARequestParameter.m */,
+				D29D4BDF14597BAA004839F6 /* OASignatureProviding.h */,
+				D29D4BE014597BAA004839F6 /* OATestServer.rb */,
+				D29D4BE114597BAA004839F6 /* XOAConsumer.h */,
+				D29D4BE214597BAA004839F6 /* XOAConsumer.m */,
+			);
+			name = libOAuth;
+			path = "../../../../Downloads/libOAuth-iOS/libOAuth/libOAuth";
+			sourceTree = "<group>";
+		};
+		D2C67D20145AA504008C3295 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				D2C67D24145AA53C008C3295 /* LoginDelegate.h */,
+				D2C67D59145AAA15008C3295 /* LocationDelegate.h */,
+				D2C67D5A145AAF33008C3295 /* FlatsDelegate.h */,
+			);
+			name = Protocols;
+			sourceTree = "<group>";
+		};
+		D2C67D21145AA50F008C3295 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+		D2C67D22145AA516008C3295 /* ModelClasses */ = {
+			isa = PBXGroup;
+			children = (
+				D2C67D56145AA7F3008C3295 /* FlatLocation.h */,
+				D2C67D57145AA7F3008C3295 /* FlatLocation.m */,
+				D2C67D48145AA57A008C3295 /* Flat.h */,
+				D2C67D49145AA57A008C3295 /* Flat.m */,
+				D2C67D4A145AA57A008C3295 /* ImmopolyUser.h */,
+				D2C67D4B145AA57A008C3295 /* ImmopolyUser.m */,
+				D2C67D4C145AA57A008C3295 /* ImmopolyHistory.h */,
+				D2C67D4D145AA57A008C3295 /* ImmopolyHistory.m */,
+			);
+			name = ModelClasses;
+			sourceTree = "<group>";
+		};
+		D2C67D23145AA524008C3295 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				D2C67D39145AA565008C3295 /* CoreLocationController.h */,
+				D2C67D3A145AA565008C3295 /* CoreLocationController.m */,
+				D2C67D3B145AA565008C3295 /* JSONParser.h */,
+				D2C67D3C145AA565008C3295 /* JSONParser.m */,
+				D2C67D3D145AA565008C3295 /* DataLoader.h */,
+				D2C67D3E145AA565008C3295 /* DataLoader.m */,
+				D2C67D3F145AA565008C3295 /* ImmopolyManager.h */,
+				D2C67D40145AA565008C3295 /* ImmopolyManager.m */,
+				D2C67D41145AA565008C3295 /* FlatProvider.h */,
+				D2C67D42145AA565008C3295 /* FlatProvider.m */,
+			);
+			name = Utilities;
+			sourceTree = "<group>";
+		};
+		D2C67D25145AA54C008C3295 /* JSON */ = {
+			isa = PBXGroup;
+			children = (
+				D2C67D26145AA559008C3295 /* JSON.h */,
+				D2C67D27145AA559008C3295 /* NSObject+SBJSON.h */,
+				D2C67D28145AA559008C3295 /* NSObject+SBJSON.m */,
+				D2C67D29145AA559008C3295 /* NSString+SBJSON.h */,
+				D2C67D2A145AA559008C3295 /* NSString+SBJSON.m */,
+				D2C67D2B145AA559008C3295 /* SBJSON.h */,
+				D2C67D2C145AA559008C3295 /* SBJSON.m */,
+				D2C67D2D145AA559008C3295 /* SBJsonBase.h */,
+				D2C67D2E145AA559008C3295 /* SBJsonBase.m */,
+				D2C67D2F145AA559008C3295 /* SBJsonParser.h */,
+				D2C67D30145AA559008C3295 /* SBJsonParser.m */,
+				D2C67D31145AA559008C3295 /* SBJsonWriter.h */,
+				D2C67D32145AA559008C3295 /* SBJsonWriter.m */,
+			);
+			name = JSON;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D24E763B145834DA003C91A8 /* ImmopolyIPhone */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D24E765A145834DA003C91A8 /* Build configuration list for PBXNativeTarget "ImmopolyIPhone" */;
+			buildPhases = (
+				D24E7638145834DA003C91A8 /* Sources */,
+				D24E7639145834DA003C91A8 /* Frameworks */,
+				D24E763A145834DA003C91A8 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ImmopolyIPhone;
+			productName = ImmopolyIPhone;
+			productReference = D24E763C145834DA003C91A8 /* ImmopolyIPhone.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D24E7633145834DA003C91A8 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0420;
+			};
+			buildConfigurationList = D24E7636145834DA003C91A8 /* Build configuration list for PBXProject "ImmopolyIPhone" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = D24E7631145834DA003C91A8;
+			productRefGroup = D24E763D145834DA003C91A8 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D24E763B145834DA003C91A8 /* ImmopolyIPhone */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D24E763A145834DA003C91A8 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D24E764B145834DA003C91A8 /* InfoPlist.strings in Resources */,
+				D29D4BEC14597BAA004839F6 /* OATestServer.rb in Resources */,
+				D2C67D55145AA596008C3295 /* ImmopolyMapViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D24E7638145834DA003C91A8 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D24E764D145834DA003C91A8 /* main.m in Sources */,
+				D24E7651145834DA003C91A8 /* AppDelegate.m in Sources */,
+				D24E766714583589003C91A8 /* OAuthManager.m in Sources */,
+				D29D4BE314597BAA004839F6 /* NSData+Base64.m in Sources */,
+				D29D4BE414597BAA004839F6 /* NSMutableURLRequest+Parameters.m in Sources */,
+				D29D4BE514597BAA004839F6 /* NSString+URLEncoding.m in Sources */,
+				D29D4BE614597BAA004839F6 /* NSURL+Base.m in Sources */,
+				D29D4BE714597BAA004839F6 /* OAConsumer.m in Sources */,
+				D29D4BE814597BAA004839F6 /* OAHMAC_SHA1SignatureProvider.m in Sources */,
+				D29D4BE914597BAA004839F6 /* OAMutableURLRequest.m in Sources */,
+				D29D4BEA14597BAA004839F6 /* OAPlaintextSignatureProvider.m in Sources */,
+				D29D4BEB14597BAA004839F6 /* OARequestParameter.m in Sources */,
+				D29D4BED14597BAA004839F6 /* XOAConsumer.m in Sources */,
+				D2C67D33145AA559008C3295 /* NSObject+SBJSON.m in Sources */,
+				D2C67D34145AA559008C3295 /* NSString+SBJSON.m in Sources */,
+				D2C67D35145AA559008C3295 /* SBJSON.m in Sources */,
+				D2C67D36145AA559008C3295 /* SBJsonBase.m in Sources */,
+				D2C67D37145AA559008C3295 /* SBJsonParser.m in Sources */,
+				D2C67D38145AA559008C3295 /* SBJsonWriter.m in Sources */,
+				D2C67D43145AA565008C3295 /* CoreLocationController.m in Sources */,
+				D2C67D44145AA565008C3295 /* JSONParser.m in Sources */,
+				D2C67D45145AA565008C3295 /* DataLoader.m in Sources */,
+				D2C67D46145AA565008C3295 /* ImmopolyManager.m in Sources */,
+				D2C67D47145AA565008C3295 /* FlatProvider.m in Sources */,
+				D2C67D4E145AA57A008C3295 /* Flat.m in Sources */,
+				D2C67D4F145AA57A008C3295 /* ImmopolyUser.m in Sources */,
+				D2C67D50145AA57A008C3295 /* ImmopolyHistory.m in Sources */,
+				D2C67D54145AA596008C3295 /* ImmopolyMapViewController.m in Sources */,
+				D2C67D58145AA7F3008C3295 /* FlatLocation.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		D24E7649145834DA003C91A8 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D24E764A145834DA003C91A8 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D24E7658145834DA003C91A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		D24E7659145834DA003C91A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D24E765B145834DA003C91A8 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ImmopolyIPhone/ImmopolyIPhone-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../libasi-http-request/include/**",
+					"../libOAuth/include__OFF/**",
+				);
+				INFOPLIST_FILE = "ImmopolyIPhone/ImmopolyIPhone-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libasi-http-request\"",
+					"\"$(SRCROOT)/../libOAuth__OFF\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		D24E765C145834DA003C91A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "ImmopolyIPhone/ImmopolyIPhone-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"../libasi-http-request/include/**",
+					"../libOAuth/include__OFF/**",
+				);
+				INFOPLIST_FILE = "ImmopolyIPhone/ImmopolyIPhone-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/../libasi-http-request\"",
+					"\"$(SRCROOT)/../libOAuth__OFF\"",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D24E7636145834DA003C91A8 /* Build configuration list for PBXProject "ImmopolyIPhone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D24E7658145834DA003C91A8 /* Debug */,
+				D24E7659145834DA003C91A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D24E765A145834DA003C91A8 /* Build configuration list for PBXNativeTarget "ImmopolyIPhone" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D24E765B145834DA003C91A8 /* Debug */,
+				D24E765C145834DA003C91A8 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D24E7633145834DA003C91A8 /* Project object */;
+}
