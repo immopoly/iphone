@@ -9,12 +9,14 @@
 #import <UIKit/UIKit.h>
 
 
-@interface WebViewController : UIViewController {
+@interface WebViewController : UIViewController <UIWebViewDelegate>{
 	
 	IBOutlet UIWebView *webView;
+    IBOutlet UIActivityIndicatorView *activityIndicator;
 }
 
 @property (nonatomic, retain) UIWebView *webView;
+@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 -(IBAction)goBack;
 @end

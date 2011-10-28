@@ -11,7 +11,7 @@
 
 @implementation WebViewController
 
-@synthesize webView;
+@synthesize webView,activityIndicator;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -59,11 +59,22 @@
 
 - (void)dealloc {
 	[webView release];
+    [activityIndicator release];
 	[super dealloc];
 }
 
 -(IBAction)goBack{
     [self.view removeFromSuperview];
+}
+
+- (void)webViewDidStartLoad:(UIWebView *)webView {
+    [activityIndicator startAnimating];
+    
+}
+
+- (void)webViewDidFinishLoad:(UIWebView *)webView {
+    [activityIndicator stopAnimating];
+    activityIndicator.hidden=YES;
 }
 
 
