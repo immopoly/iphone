@@ -90,12 +90,13 @@
 
 - (void) displayFlatsOnMap {
     
-    
-    /*
+    // removing all existing annotations
     for (id<MKAnnotation> annotation in mapView.annotations) {
-        [mapView removeAnnotation:annotation];
-    }
-     */
+        // check that the my location annotion does not get removed
+        if([annotation isKindOfClass:[FlatLocation class]] && ![((FlatLocation *)annotation).title isEqualToString:@"My Location"]){
+            [mapView removeAnnotation:annotation];
+        }
+    }     
     
     for(Flat *flat in [ImmopolyManager instance].flats) {
         
