@@ -1,0 +1,6 @@
+[submodule "submodules/asi-http"]
+	path = submodules/asi-http
+	url = https://github.com/pokeb/asi-http-request.git
+[submodule "submodules/json-framework"]
+	path = submodules/json-framework
+	url = https://github.com/stig/json-framework.git
