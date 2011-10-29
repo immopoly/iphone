@@ -8,6 +8,12 @@
 
 
 
-@interface PortfolioViewController : UIViewController
+@interface PortfolioViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+    IBOutlet UITableViewCell *tvCell;
+    IBOutlet UITableView *table;
+}
+
+@property (nonatomic, retain) UITableViewCell *tvCell;
+@property (nonatomic, retain) UITableView *table;
 
 @end
