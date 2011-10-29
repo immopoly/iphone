@@ -10,37 +10,43 @@
 #import "OAuthManager.h"
 #import "FlatProvider.h"
 #import "ImmopolyManager.h"
-
+#import "ImmopolyMapViewController.h"
+#import "PortfolioViewController.h"
 @implementation AppDelegate
 
 @synthesize window = _window;
-@synthesize viewController = _viewController;
+@synthesize tabBarController = _tabBarController;
+//@synthesize viewController = _viewController;
 
 @synthesize CLController, isLocationUpdated;
 
 - (void)dealloc
 {
     [_window release];
-    [_viewController release];
+    [_tabBarController release];
     [CLController release];
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    //OAuthManager *manager = [[OAuthManager alloc] init];
-    //NSString *url = @"http://rest.immobilienscout24.de/restapi/api/search/v1.0/region?q=Ber";
+
     
-    //[manager grabURLInBackground:url withFormat:@"application/json" withDelegate:self];
-//    [manager release];
-    
-    // for getting the phone coordinates
     [self startLocationUpdate];
      
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
-    self.viewController = [[ImmopolyMapViewController alloc] init];
-    self.window.rootViewController = self.viewController;
+    ImmopolyMapViewController *mapVC;
+    PortfolioViewController *portfolioVC;
+    
+    mapVC = [[[ImmopolyMapViewController alloc]init]autorelease];
+    portfolioVC = [[[PortfolioViewController alloc]init]autorelease];
+        
+    self.tabBarController = [[[UITabBarController alloc]init]autorelease];
+    
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:mapVC,portfolioVC, nil];
+    self.window.rootViewController = self.tabBarController;
+
     [self.window makeKeyAndVisible];
     
     return YES;
