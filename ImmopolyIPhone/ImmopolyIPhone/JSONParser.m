@@ -104,7 +104,7 @@
             [myFlat setLng:[[coordinate objectForKey:@"longitude"] doubleValue]];
         }
         
-        [[[ImmopolyManager instance]flats]addObject:myFlat];
+        [[[ImmopolyManager instance]ImmoScoutFlats]addObject:myFlat];
         [myFlat release];
         //add flat to flats or Flat initWithJSON at the beginning
     }
