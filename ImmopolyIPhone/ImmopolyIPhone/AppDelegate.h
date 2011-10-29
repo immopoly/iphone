@@ -8,12 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "ASIHTTPRequest.h"
-#import "ImmopolyMapViewController.h"
 #import "CoreLocationController.h"
 
-@class ViewController;
+//@class ViewController;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate, CoreLocationControllerDelegate> {
+@interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate, CoreLocationControllerDelegate> {
     
     // for getting phone coordinates
     CoreLocationController *CLController;
@@ -21,8 +20,9 @@
 }
 
 @property (retain, nonatomic) UIWindow *window;
+@property (retain, nonatomic) UITabBarController *tabBarController;
 
-@property (retain, nonatomic) ImmopolyMapViewController *viewController;
+//@property (retain, nonatomic) ImmopolyMapViewController *viewController;
 @property(nonatomic, retain) CoreLocationController *CLController;
 @property(nonatomic, assign) BOOL isLocationUpdated;
 

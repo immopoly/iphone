@@ -50,6 +50,8 @@
 		D24E766B145835C5003C91A8 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24E766A145835C5003C91A8 /* MobileCoreServices.framework */; };
 		D24E766D145835CD003C91A8 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24E766C145835CD003C91A8 /* CFNetwork.framework */; };
 		D24E766F1458362E003C91A8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D24E766E1458362E003C91A8 /* libz.dylib */; };
+		D2527509145C424200627725 /* PortfolioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2527507145C424200627725 /* PortfolioViewController.m */; };
+		D252750A145C424200627725 /* PortfolioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2527508145C424200627725 /* PortfolioViewController.xib */; };
 		D28E075E145B195D003D83D8 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28E075D145B195D003D83D8 /* WebViewController.m */; };
 		D28E0761145B1968003D83D8 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28E0760145B1968003D83D8 /* WebView.xib */; };
 		D2C67D1A145AA4D5008C3295 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2C67D19145AA4D5008C3295 /* CoreLocation.framework */; };
@@ -170,6 +172,9 @@
 		D24E766A145835C5003C91A8 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		D24E766C145835CD003C91A8 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D24E766E1458362E003C91A8 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D2527506145C424200627725 /* PortfolioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortfolioViewController.h; sourceTree = "<group>"; };
+		D2527507145C424200627725 /* PortfolioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortfolioViewController.m; sourceTree = "<group>"; };
+		D2527508145C424200627725 /* PortfolioViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortfolioViewController.xib; sourceTree = "<group>"; };
 		D28E075C145B195D003D83D8 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		D28E075D145B195D003D83D8 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		D28E0760145B1968003D83D8 /* WebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebView.xib; sourceTree = "<group>"; };
@@ -412,6 +417,9 @@
 				D24E764F145834DA003C91A8 /* AppDelegate.h */,
 				D24E7650145834DA003C91A8 /* AppDelegate.m */,
 				D24E7647145834DA003C91A8 /* Supporting Files */,
+				D2527506145C424200627725 /* PortfolioViewController.h */,
+				D2527507145C424200627725 /* PortfolioViewController.m */,
+				D2527508145C424200627725 /* PortfolioViewController.xib */,
 			);
 			path = ImmopolyIPhone;
 			sourceTree = "<group>";
@@ -523,6 +531,7 @@
 				D2C67D55145AA596008C3295 /* ImmopolyMapViewController.xib in Resources */,
 				D28E0761145B1968003D83D8 /* WebView.xib in Resources */,
 				6DA75D09145C12EC0079B32C /* OATestServer.rb in Resources */,
+				D252750A145C424200627725 /* PortfolioViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,6 +587,7 @@
 				6DA75D32145C15BF0079B32C /* SBJsonTokeniser.m in Sources */,
 				6DA75D33145C15BF0079B32C /* SBJsonUTF8Stream.m in Sources */,
 				6DA75D34145C15BF0079B32C /* SBJsonWriter.m in Sources */,
+				D2527509145C424200627725 /* PortfolioViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
