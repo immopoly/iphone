@@ -12,6 +12,7 @@
 #import "ImmopolyManager.h"
 #import "ImmopolyMapViewController.h"
 #import "PortfolioViewController.h"
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -30,10 +31,8 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-    
     [self startLocationUpdate];
-     
+    
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     ImmopolyMapViewController *mapVC;

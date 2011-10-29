@@ -16,7 +16,7 @@
 @interface ImmopolyManager : NSObject {
     ImmopolyUser *user;
     BOOL loginSuccessful;
-    NSMutableArray *flats;
+    NSMutableArray *ImmoScoutFlats;
     CLLocation *actLocation;
     id<LocationDelegate, FlatsDelegate>delegate;
     int selectedExposeId;
@@ -29,7 +29,7 @@
 @property(nonatomic, assign) id<LocationDelegate>delegate;
 @property(nonatomic, retain) ImmopolyUser *user;
 @property(nonatomic, assign) BOOL loginSuccessful;
-@property(nonatomic, assign) NSMutableArray *flats;
+@property(nonatomic, assign) NSMutableArray *ImmoScoutFlats;
 @property(nonatomic, assign) CLLocation *actLocation;
 @property(nonatomic, assign) int selectedExposeId;
 @end

@@ -10,7 +10,7 @@
 
 @implementation ImmopolyManager
 
-@synthesize user, loginSuccessful,flats,actLocation,delegate,selectedExposeId;
+@synthesize user, loginSuccessful,ImmoScoutFlats,actLocation,delegate,selectedExposeId;
 
 +(ImmopolyManager *) instance{
     static ImmopolyManager *instance;
@@ -20,7 +20,7 @@
         if(!instance){
             instance = [[ImmopolyManager alloc] init]; // all initialisations are here
             instance.loginSuccessful = NO;
-            instance.flats = [[NSMutableArray alloc]init];
+            instance.ImmoScoutFlats = [[NSMutableArray alloc]init];
             
         }
         return instance;

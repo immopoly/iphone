@@ -98,7 +98,7 @@
         }
     }     
     
-    for(Flat *flat in [ImmopolyManager instance].flats) {
+    for(Flat *flat in [ImmopolyManager instance].ImmoScoutFlats) {
         
         
         NSNumber * latitude = [[NSNumber alloc] initWithDouble: flat.lat];
