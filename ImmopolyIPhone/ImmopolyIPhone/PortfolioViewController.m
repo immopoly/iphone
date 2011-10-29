@@ -57,7 +57,7 @@
     return 1;
 }
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[[ImmopolyManager instance] flats] count];
+    return [[[ImmopolyManager instance] ImmoScoutFlats] count];
 }
 
 
@@ -73,7 +73,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     // should be the flats from portfolio
-    Flat *actFlat = [[[ImmopolyManager instance] flats] objectAtIndex:indexPath.row];
+    Flat *actFlat = [[[ImmopolyManager instance] ImmoScoutFlats] objectAtIndex:indexPath.row];
     
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PortfolioCell" owner:self options:nil];
     
