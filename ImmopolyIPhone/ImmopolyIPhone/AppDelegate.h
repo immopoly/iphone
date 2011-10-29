@@ -26,5 +26,7 @@
 @property(nonatomic, retain) CoreLocationController *CLController;
 @property(nonatomic, assign) BOOL isLocationUpdated;
 
+-(void)startLocationUpdate;
+
 
 @end

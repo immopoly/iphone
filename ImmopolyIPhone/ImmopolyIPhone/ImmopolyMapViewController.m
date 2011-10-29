@@ -10,6 +10,7 @@
 #import "FlatLocation.h"
 #import "ImmopolyManager.h"
 #import "Flat.h"
+#import "AppDelegate.h"
 
 @implementation ImmopolyMapViewController
 
@@ -171,6 +172,11 @@
     }
      
     return nil;
+}
+
+- (IBAction)refreshLocation {
+    AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+    [delegate startLocationUpdate];
 }
 
 
