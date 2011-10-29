@@ -34,13 +34,9 @@
     //[manager grabURLInBackground:url withFormat:@"application/json" withDelegate:self];
 //    [manager release];
     
-    
     // for getting the phone coordinates
-    CLController = [[CoreLocationController alloc] init];
-    CLController.delegate = self;
-    [CLController.locMgr startUpdatingLocation];
-    isLocationUpdated = NO;
-    
+    [self startLocationUpdate];
+     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
     // Override point for customization after application launch.
     self.viewController = [[ImmopolyMapViewController alloc] init];
@@ -48,6 +44,13 @@
     [self.window makeKeyAndVisible];
     
     return YES;
+}
+
+// for getting the phone coordinates
+- (void)startLocationUpdate {
+    CLController = [[CoreLocationController alloc] init];
+    CLController.delegate = self;
+    [CLController.locMgr startUpdatingLocation];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -103,8 +106,8 @@
         [[ImmopolyManager instance].delegate displayCurrentLocation];
         
     }
-    isLocationUpdated = YES;
-    
+//    isLocationUpdated = YES;
+    [CLController.locMgr stopUpdatingLocation];
     
 }
 
