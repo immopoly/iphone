@@ -7,7 +7,7 @@
 //
 
 #import "JSONParser.h"
-#import "JSON.h"
+#import "SBJSON.h"
 #import "ImmopolyUser.h"
 #import "Flat.h"
 #import "ImmopolyManager.h"
