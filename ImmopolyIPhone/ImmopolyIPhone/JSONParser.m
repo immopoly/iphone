@@ -110,7 +110,7 @@
     }
     
     NSLog(@"done");
-    [[ImmopolyManager instance]callFlatsDelegate];
+    [[ImmopolyManager instance] callFlatsDelegate];
     
 }
 
