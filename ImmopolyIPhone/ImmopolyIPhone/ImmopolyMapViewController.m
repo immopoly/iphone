@@ -14,7 +14,7 @@
 
 @implementation ImmopolyMapViewController
 
-@synthesize mapView,adressLabel;
+@synthesize mapView, adressLabel;
 
 -(void)dealloc{
     [super dealloc];
@@ -175,9 +175,11 @@
     return nil;
 }
 
+// action for the compass button
 - (IBAction)refreshLocation {
     AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
     [delegate startLocationUpdate];
+    
 }
 
 
