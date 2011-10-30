@@ -17,9 +17,8 @@
 
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
-//@synthesize viewController = _viewController;
 
-@synthesize CLController, isLocationUpdated;
+@synthesize CLController, geocoder;
 
 - (void)dealloc
 {
@@ -51,11 +50,33 @@
     return YES;
 }
 
-// for getting the phone coordinates
+// method for getting the phone coordinates
 - (void)startLocationUpdate {
     CLController = [[CoreLocationController alloc] init];
     CLController.delegate = self;
     [CLController.locMgr startUpdatingLocation];
+}
+
+// method for converting lat and long from location to user friendly address
+- (void)geocodeLocation:(CLLocation *)location{
+    
+    if (!geocoder){    
+        geocoder = [[CLGeocoder alloc] init];
+    }
+    
+    [geocoder reverseGeocodeLocation:location completionHandler:
+     //block object
+     ^(NSArray* placemarks, NSError* error){
+         
+         // TODO: check for error
+         
+         if ([placemarks count] > 0){
+             CLPlacemark *placemark = [placemarks lastObject];
+             NSLog(@"Your current location is %@",[placemark name]);
+             
+             // TODO: change label in mapviewcontroller
+         }
+     }];
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application
@@ -99,21 +120,16 @@
 
 // methods for getting phone coordinates
 - (void)locationUpdate:(CLLocation *)location {
-    NSLog(@"Your location is: %@", [location description]);
     
+    [self geocodeLocation:location];
     
-    if (!isLocationUpdated) {
-        FlatProvider *provider = [[FlatProvider alloc]init];
-        [provider getFlatsFromLocation:[location coordinate]];
+    FlatProvider *provider = [[FlatProvider alloc]init];
+    [provider getFlatsFromLocation:[location coordinate]];
         
-        [[ImmopolyManager instance]setActLocation:location];
-        
-        [[ImmopolyManager instance].delegate displayCurrentLocation];
-        
-    }
-//    isLocationUpdated = YES;
-    [CLController.locMgr stopUpdatingLocation];
-    
+    [[ImmopolyManager instance]setActLocation:location];
+    [[ImmopolyManager instance].delegate displayCurrentLocation];
+            
+    [CLController.locMgr stopUpdatingLocation];    
 }
 
 - (void)locationError:(NSError *)error {
