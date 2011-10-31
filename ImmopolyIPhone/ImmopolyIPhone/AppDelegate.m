@@ -78,8 +78,13 @@
              NSLog(@"Your current location is %@",[placemark name]);
              
              // TODO: change label in mapviewcontroller
+             [[ImmopolyManager instance].delegate setAdressLabelText:[placemark name]];
          }
      }];
+}
+
+- (void) setAdressLabel:(UILabel *)adressLabel{
+    
 }
 
 - (void)applicationWillResignActive:(UIApplication *)application

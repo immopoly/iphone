@@ -11,5 +11,6 @@
 @protocol LocationDelegate <NSObject>
 
 -(void) displayCurrentLocation;
+-(void) setAdressLabelText:(NSString *)locationName;
 
 @end

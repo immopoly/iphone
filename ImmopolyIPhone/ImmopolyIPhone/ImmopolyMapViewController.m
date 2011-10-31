@@ -79,6 +79,10 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(void) setAdressLabelText:(NSString *)locationName {
+    [adressLabel setText:locationName];
+}
+
 -(void) displayCurrentLocation {
     CLLocationCoordinate2D zoomLocation = [[[ImmopolyManager instance]actLocation]coordinate];
     
@@ -213,6 +217,10 @@
 -(IBAction) displayUserPortfolio {
     portfolioViewController = [[PortfolioViewController alloc] init];
     [self.view addSubview: portfolioViewController.view];
+}
+
+-(void) setAdressLabelText {
+    
 }
 
 
