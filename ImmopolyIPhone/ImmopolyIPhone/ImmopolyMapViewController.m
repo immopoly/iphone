@@ -79,6 +79,10 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(void) setAdressLabelText:(NSString *)locationName {
+    [adressLabel setText:locationName];
+}
+
 -(void) displayCurrentLocation {
     CLLocationCoordinate2D zoomLocation = [[[ImmopolyManager instance]actLocation]coordinate];
     
