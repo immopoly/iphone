@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C014A00145DAD0200293E72 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0149FE145DAD0200293E72 /* LoginViewController.m */; };
+		4C014A01145DAD0200293E72 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0149FF145DAD0200293E72 /* LoginViewController.xib */; };
+		4C014A06145DBE4C00293E72 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C014A04145DBE4B00293E72 /* UserProfileViewController.m */; };
+		4C014A07145DBE4C00293E72 /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C014A05145DBE4B00293E72 /* UserProfileViewController.xib */; };
 		6DA75CB3145C12580079B32C /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C62145C12580079B32C /* ASIAuthenticationDialog.m */; };
 		6DA75CB4145C12580079B32C /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C65145C12580079B32C /* ASIDataCompressor.m */; };
 		6DA75CB5145C12580079B32C /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C67145C12580079B32C /* ASIDataDecompressor.m */; };
@@ -72,6 +76,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C0149FD145DAD0200293E72 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		4C0149FE145DAD0200293E72 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		4C0149FF145DAD0200293E72 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		4C014A03145DBE4A00293E72 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		4C014A04145DBE4B00293E72 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		4C014A05145DBE4B00293E72 /* UserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
 		6DA75C61145C12580079B32C /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		6DA75C62145C12580079B32C /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		6DA75C63145C12580079B32C /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -423,6 +433,12 @@
 				D2527507145C424200627725 /* PortfolioViewController.m */,
 				D2527508145C424200627725 /* PortfolioViewController.xib */,
 				6DA75D97145C4B170079B32C /* PortfolioCell.xib */,
+				4C0149FD145DAD0200293E72 /* LoginViewController.h */,
+				4C0149FE145DAD0200293E72 /* LoginViewController.m */,
+				4C0149FF145DAD0200293E72 /* LoginViewController.xib */,
+				4C014A03145DBE4A00293E72 /* UserProfileViewController.h */,
+				4C014A04145DBE4B00293E72 /* UserProfileViewController.m */,
+				4C014A05145DBE4B00293E72 /* UserProfileViewController.xib */,
 			);
 			path = ImmopolyIPhone;
 			sourceTree = "<group>";
@@ -536,6 +552,8 @@
 				6DA75D09145C12EC0079B32C /* OATestServer.rb in Resources */,
 				D252750A145C424200627725 /* PortfolioViewController.xib in Resources */,
 				6DA75D99145C4B180079B32C /* PortfolioCell.xib in Resources */,
+				4C014A01145DAD0200293E72 /* LoginViewController.xib in Resources */,
+				4C014A07145DBE4C00293E72 /* UserProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,6 +610,8 @@
 				6DA75D33145C15BF0079B32C /* SBJsonUTF8Stream.m in Sources */,
 				6DA75D34145C15BF0079B32C /* SBJsonWriter.m in Sources */,
 				D2527509145C424200627725 /* PortfolioViewController.m in Sources */,
+				4C014A00145DAD0200293E72 /* LoginViewController.m in Sources */,
+				4C014A06145DBE4C00293E72 /* UserProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
