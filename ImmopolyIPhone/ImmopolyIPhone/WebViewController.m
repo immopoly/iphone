@@ -11,7 +11,7 @@
 
 @implementation WebViewController
 
-@synthesize webView,activityIndicator;
+@synthesize webView,activityIndicator,selectedExposeId;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -77,5 +77,22 @@
     activityIndicator.hidden=YES;
 }
 
-
+-(IBAction)takeOver{
+    //http://immopoly.appspot.com/portfolio/add?token=TOKEN&expose=EXPOSEID
+    
+    
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:@"userToken"] != nil) {
+        //get user token
+        NSString *userToken = [defaults objectForKey:@"userToken"];
+        
+    }
+    
+    
+    [[self view]removeFromSuperview];
+    
+    
+}
 @end

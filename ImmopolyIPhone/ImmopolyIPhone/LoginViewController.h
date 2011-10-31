@@ -7,7 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "DataLoader.h"
+#import "UserLoginTask.h"
 #import "UserProfileViewController.h"
 
 @interface LoginViewController : UIViewController <LoginDelegate>{
