@@ -185,6 +185,7 @@
     
 }
 
+/*
 -(IBAction) displayUserProfile {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -215,6 +216,6 @@
     portfolioViewController = [[PortfolioViewController alloc] init];
     [self.view addSubview: portfolioViewController.view];
 }
-
+*/
 
 @end
