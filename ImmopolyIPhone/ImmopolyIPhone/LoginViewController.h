@@ -14,6 +14,8 @@
     
     IBOutlet UITextField *userName;
     IBOutlet UITextField *password;
+    IBOutlet UIActivityIndicatorView *spinner;
+    IBOutlet UILabel *loginLabel;
     UserProfileViewController *userProfileViewController;
 }
 
@@ -21,5 +23,6 @@
 
 @property(nonatomic, retain)IBOutlet UITextField *userName;
 @property(nonatomic, retain)IBOutlet UITextField *password;
-
+@property(nonatomic, retain)IBOutlet UIActivityIndicatorView *spinner;
+@property(nonatomic, retain)IBOutlet IBOutlet UILabel *loginLabel;
 @end

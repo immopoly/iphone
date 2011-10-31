@@ -12,7 +12,7 @@
 
 @implementation LoginViewController
 
-@synthesize userName, password;
+@synthesize userName, password,spinner,loginLabel;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,7 +39,7 @@
     
     [password setSecureTextEntry:YES];
     
-    [[self view]setHidden:YES];
+    [spinner startAnimating];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -70,6 +70,10 @@
 }
 
 -(IBAction)performLogin {
+    [loginLabel setHidden:NO];
+    [spinner setHidden:NO];
+    [spinner startAnimating];
+    
     if([[userName text] length]> 0 && [[password text] length] > 0) {
         
         DataLoader *loader = [[DataLoader alloc] init];
@@ -101,11 +105,16 @@
 }
 
 -(void) loginWithResult: (BOOL) result{
-    [[self view]setHidden:NO];
+    [spinner stopAnimating];
+    [spinner setHidden:YES];
+    [loginLabel setHidden:YES];
     if(result) {
         //show user profile view
         userProfileViewController = [[UserProfileViewController alloc] init];
         [self.view addSubview: userProfileViewController.view];
+    }else{
+        [userName setEnabled:YES];
+        [password setEnabled:YES];
     }
 }
 
