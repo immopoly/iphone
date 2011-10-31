@@ -24,7 +24,7 @@
 @property(nonatomic, retain) CLGeocoder *geocoder;
 @property(nonatomic, retain) IBOutlet UILabel *adressLabel;
 
-- (void)startLocationUpdate;
-- (void)geocodeLocation:(CLLocation *)location;
+- (void) startLocationUpdate;
+- (void) geocodeLocation:(CLLocation *)location;
 
 @end
