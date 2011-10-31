@@ -34,10 +34,5 @@
 // linked to compass button 
 -(IBAction)refreshLocation;
 
-//linked to user profile button
--(IBAction) displayUserProfile;
-
-//linked to portfolio button
--(IBAction) displayUserPortfolio;
 
 @end
