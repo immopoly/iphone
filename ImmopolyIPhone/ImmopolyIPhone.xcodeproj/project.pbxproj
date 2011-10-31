@@ -64,7 +64,7 @@
 		D2C67D1F145AA4EA008C3295 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2C67D1E145AA4EA008C3295 /* MapKit.framework */; };
 		D2C67D43145AA565008C3295 /* CoreLocationController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D3A145AA565008C3295 /* CoreLocationController.m */; };
 		D2C67D44145AA565008C3295 /* JSONParser.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D3C145AA565008C3295 /* JSONParser.m */; };
-		D2C67D45145AA565008C3295 /* DataLoader.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D3E145AA565008C3295 /* DataLoader.m */; };
+		D2C67D45145AA565008C3295 /* UserLoginTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D3E145AA565008C3295 /* UserLoginTask.m */; };
 		D2C67D46145AA565008C3295 /* ImmopolyManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D40145AA565008C3295 /* ImmopolyManager.m */; };
 		D2C67D47145AA565008C3295 /* FlatProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D42145AA565008C3295 /* FlatProvider.m */; };
 		D2C67D4E145AA57A008C3295 /* Flat.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D49145AA57A008C3295 /* Flat.m */; };
@@ -198,8 +198,8 @@
 		D2C67D3A145AA565008C3295 /* CoreLocationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CoreLocationController.m; sourceTree = "<group>"; };
 		D2C67D3B145AA565008C3295 /* JSONParser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JSONParser.h; sourceTree = "<group>"; };
 		D2C67D3C145AA565008C3295 /* JSONParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JSONParser.m; sourceTree = "<group>"; };
-		D2C67D3D145AA565008C3295 /* DataLoader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataLoader.h; sourceTree = "<group>"; };
-		D2C67D3E145AA565008C3295 /* DataLoader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataLoader.m; sourceTree = "<group>"; };
+		D2C67D3D145AA565008C3295 /* UserLoginTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserLoginTask.h; sourceTree = "<group>"; };
+		D2C67D3E145AA565008C3295 /* UserLoginTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserLoginTask.m; sourceTree = "<group>"; };
 		D2C67D3F145AA565008C3295 /* ImmopolyManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImmopolyManager.h; sourceTree = "<group>"; };
 		D2C67D40145AA565008C3295 /* ImmopolyManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImmopolyManager.m; sourceTree = "<group>"; };
 		D2C67D41145AA565008C3295 /* FlatProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatProvider.h; sourceTree = "<group>"; };
@@ -415,6 +415,7 @@
 		D24E7646145834DA003C91A8 /* ImmopolyIPhone */ = {
 			isa = PBXGroup;
 			children = (
+				D26633C4145ECD820082875F /* Tasks */,
 				D2B12BA0145E98B000AFB625 /* Widges */,
 				D2B12B9F145E988200AFB625 /* View Controllers */,
 				D2C67D23145AA524008C3295 /* Utilities */,
@@ -436,6 +437,15 @@
 				D24E764E145834DA003C91A8 /* ImmopolyIPhone-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D26633C4145ECD820082875F /* Tasks */ = {
+			isa = PBXGroup;
+			children = (
+				D2C67D3D145AA565008C3295 /* UserLoginTask.h */,
+				D2C67D3E145AA565008C3295 /* UserLoginTask.m */,
+			);
+			name = Tasks;
 			sourceTree = "<group>";
 		};
 		D2B12B9F145E988200AFB625 /* View Controllers */ = {
@@ -502,8 +512,6 @@
 				D2C67D3A145AA565008C3295 /* CoreLocationController.m */,
 				D2C67D3B145AA565008C3295 /* JSONParser.h */,
 				D2C67D3C145AA565008C3295 /* JSONParser.m */,
-				D2C67D3D145AA565008C3295 /* DataLoader.h */,
-				D2C67D3E145AA565008C3295 /* DataLoader.m */,
 				D2C67D3F145AA565008C3295 /* ImmopolyManager.h */,
 				D2C67D40145AA565008C3295 /* ImmopolyManager.m */,
 				D2C67D41145AA565008C3295 /* FlatProvider.h */,
@@ -585,7 +593,7 @@
 				D24E766714583589003C91A8 /* OAuthManager.m in Sources */,
 				D2C67D43145AA565008C3295 /* CoreLocationController.m in Sources */,
 				D2C67D44145AA565008C3295 /* JSONParser.m in Sources */,
-				D2C67D45145AA565008C3295 /* DataLoader.m in Sources */,
+				D2C67D45145AA565008C3295 /* UserLoginTask.m in Sources */,
 				D2C67D46145AA565008C3295 /* ImmopolyManager.m in Sources */,
 				D2C67D47145AA565008C3295 /* FlatProvider.m in Sources */,
 				D2C67D4E145AA57A008C3295 /* Flat.m in Sources */,

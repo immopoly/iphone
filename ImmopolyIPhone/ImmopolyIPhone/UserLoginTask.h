@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "LoginDelegate.h"
 
-@interface DataLoader : NSObject {
+@interface UserLoginTask : NSObject {
     NSURLConnection *connection;
     NSMutableData *data;
     id<LoginDelegate>delegate;

@@ -11,7 +11,7 @@
 #import "ImmopolyManager.h"
 #import "Flat.h"
 #import "AppDelegate.h"
-#import "DataLoader.h"
+#import "UserLoginTask.h"
 
 @implementation ImmopolyMapViewController
 
@@ -79,10 +79,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(void) setAdressLabelText:(NSString *)locationName {
-    [adressLabel setText:locationName];
-}
-
 -(void) displayCurrentLocation {
     CLLocationCoordinate2D zoomLocation = [[[ImmopolyManager instance]actLocation]coordinate];
     
@@ -145,9 +141,10 @@
         FlatLocation *location = (FlatLocation *) view.annotation;
         
         if (![location.title compare:@"My Location"] == NSOrderedSame) {
-            [[ImmopolyManager instance]setSelectedExposeId:location.exposeId];
+            //[[ImmopolyManager instance]setSelectedExposeId:location.exposeId];
             
             exposeWebViewController = [[WebViewController alloc]init];
+            [exposeWebViewController setSelectedExposeId:[location exposeId]];
             [self.view addSubview:exposeWebViewController.view];
         }
         
@@ -188,6 +185,7 @@
     
 }
 
+/*
 -(IBAction) displayUserProfile {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -195,7 +193,7 @@
         //get user token
         NSString *userToken = [defaults objectForKey:@"userToken"];
         //login with token
-        DataLoader *loader = [[DataLoader alloc] init];
+        UserLoginTask *loader = [[UserLoginTask alloc] init];
         [loader performLoginWithToken: userToken];
         
         //wrong place to check
@@ -218,10 +216,6 @@
     portfolioViewController = [[PortfolioViewController alloc] init];
     [self.view addSubview: portfolioViewController.view];
 }
-
--(void) setAdressLabelText {
-    
-}
-
+*/
 
 @end
