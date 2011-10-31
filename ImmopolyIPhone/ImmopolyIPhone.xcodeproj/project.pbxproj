@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4C014A00145DAD0200293E72 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C0149FE145DAD0200293E72 /* LoginViewController.m */; };
+		4C014A01145DAD0200293E72 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0149FF145DAD0200293E72 /* LoginViewController.xib */; };
+		4C014A06145DBE4C00293E72 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C014A04145DBE4B00293E72 /* UserProfileViewController.m */; };
+		4C014A07145DBE4C00293E72 /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C014A05145DBE4B00293E72 /* UserProfileViewController.xib */; };
 		6DA75CB3145C12580079B32C /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C62145C12580079B32C /* ASIAuthenticationDialog.m */; };
 		6DA75CB4145C12580079B32C /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C65145C12580079B32C /* ASIDataCompressor.m */; };
 		6DA75CB5145C12580079B32C /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C67145C12580079B32C /* ASIDataDecompressor.m */; };
@@ -72,6 +76,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4C0149FD145DAD0200293E72 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
+		4C0149FE145DAD0200293E72 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		4C0149FF145DAD0200293E72 /* LoginViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
+		4C014A03145DBE4A00293E72 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
+		4C014A04145DBE4B00293E72 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
+		4C014A05145DBE4B00293E72 /* UserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
 		6DA75C61145C12580079B32C /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		6DA75C62145C12580079B32C /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		6DA75C63145C12580079B32C /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -405,24 +415,14 @@
 		D24E7646145834DA003C91A8 /* ImmopolyIPhone */ = {
 			isa = PBXGroup;
 			children = (
-				D28E075C145B195D003D83D8 /* WebViewController.h */,
-				D28E075D145B195D003D83D8 /* WebViewController.m */,
-				D28E0760145B1968003D83D8 /* WebView.xib */,
-				D2C67D51145AA596008C3295 /* ImmopolyMapViewController.h */,
-				D2C67D52145AA596008C3295 /* ImmopolyMapViewController.m */,
-				D2C67D53145AA596008C3295 /* ImmopolyMapViewController.xib */,
+				D2B12BA0145E98B000AFB625 /* Widges */,
+				D2B12B9F145E988200AFB625 /* View Controllers */,
 				D2C67D23145AA524008C3295 /* Utilities */,
 				D2C67D22145AA516008C3295 /* ModelClasses */,
 				D2C67D20145AA504008C3295 /* Protocols */,
-				D24E766514583589003C91A8 /* OAuthManager.h */,
-				D24E766614583589003C91A8 /* OAuthManager.m */,
 				D24E764F145834DA003C91A8 /* AppDelegate.h */,
 				D24E7650145834DA003C91A8 /* AppDelegate.m */,
 				D24E7647145834DA003C91A8 /* Supporting Files */,
-				D2527506145C424200627725 /* PortfolioViewController.h */,
-				D2527507145C424200627725 /* PortfolioViewController.m */,
-				D2527508145C424200627725 /* PortfolioViewController.xib */,
-				6DA75D97145C4B170079B32C /* PortfolioCell.xib */,
 			);
 			path = ImmopolyIPhone;
 			sourceTree = "<group>";
@@ -436,6 +436,36 @@
 				D24E764E145834DA003C91A8 /* ImmopolyIPhone-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D2B12B9F145E988200AFB625 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D2527506145C424200627725 /* PortfolioViewController.h */,
+				D2527507145C424200627725 /* PortfolioViewController.m */,
+				D2527508145C424200627725 /* PortfolioViewController.xib */,
+				4C0149FD145DAD0200293E72 /* LoginViewController.h */,
+				4C0149FE145DAD0200293E72 /* LoginViewController.m */,
+				4C0149FF145DAD0200293E72 /* LoginViewController.xib */,
+				4C014A03145DBE4A00293E72 /* UserProfileViewController.h */,
+				4C014A04145DBE4B00293E72 /* UserProfileViewController.m */,
+				4C014A05145DBE4B00293E72 /* UserProfileViewController.xib */,
+				D2C67D51145AA596008C3295 /* ImmopolyMapViewController.h */,
+				D2C67D52145AA596008C3295 /* ImmopolyMapViewController.m */,
+				D2C67D53145AA596008C3295 /* ImmopolyMapViewController.xib */,
+				D28E075C145B195D003D83D8 /* WebViewController.h */,
+				D28E075D145B195D003D83D8 /* WebViewController.m */,
+				D28E0760145B1968003D83D8 /* WebView.xib */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		D2B12BA0145E98B000AFB625 /* Widges */ = {
+			isa = PBXGroup;
+			children = (
+				6DA75D97145C4B170079B32C /* PortfolioCell.xib */,
+			);
+			name = Widges;
 			sourceTree = "<group>";
 		};
 		D2C67D20145AA504008C3295 /* Protocols */ = {
@@ -466,6 +496,8 @@
 		D2C67D23145AA524008C3295 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D24E766514583589003C91A8 /* OAuthManager.h */,
+				D24E766614583589003C91A8 /* OAuthManager.m */,
 				D2C67D39145AA565008C3295 /* CoreLocationController.h */,
 				D2C67D3A145AA565008C3295 /* CoreLocationController.m */,
 				D2C67D3B145AA565008C3295 /* JSONParser.h */,
@@ -536,6 +568,8 @@
 				6DA75D09145C12EC0079B32C /* OATestServer.rb in Resources */,
 				D252750A145C424200627725 /* PortfolioViewController.xib in Resources */,
 				6DA75D99145C4B180079B32C /* PortfolioCell.xib in Resources */,
+				4C014A01145DAD0200293E72 /* LoginViewController.xib in Resources */,
+				4C014A07145DBE4C00293E72 /* UserProfileViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -592,6 +626,8 @@
 				6DA75D33145C15BF0079B32C /* SBJsonUTF8Stream.m in Sources */,
 				6DA75D34145C15BF0079B32C /* SBJsonWriter.m in Sources */,
 				D2527509145C424200627725 /* PortfolioViewController.m in Sources */,
+				4C014A00145DAD0200293E72 /* LoginViewController.m in Sources */,
+				4C014A06145DBE4C00293E72 /* UserProfileViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
