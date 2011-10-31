@@ -7,7 +7,7 @@
 //
 
 #import "LoginViewController.h"
-#import "DataLoader.h"
+#import "UserLoginTask.h"
 #import "ImmopolyManager.h"
 
 @implementation LoginViewController
@@ -47,7 +47,7 @@
         //get user token
         NSString *userToken = [defaults objectForKey:@"userToken"];
         //login with token
-        DataLoader *loader = [[DataLoader alloc] init];
+        UserLoginTask *loader = [[UserLoginTask alloc] init];
         loader.delegate = self;
         
         [loader performLoginWithToken: userToken];
@@ -76,7 +76,7 @@
     
     if([[userName text] length]> 0 && [[password text] length] > 0) {
         
-        DataLoader *loader = [[DataLoader alloc] init];
+        UserLoginTask *loader = [[UserLoginTask alloc] init];
         [loader setDelegate:self];
         
         [loader performLogin: [userName text] password: [password text]];

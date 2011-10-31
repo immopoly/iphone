@@ -6,11 +6,11 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#import "DataLoader.h"
+#import "UserLoginTask.h"
 #import "JSONParser.h"
 #import "ImmopolyManager.h"
 
-@implementation DataLoader
+@implementation UserLoginTask
 
 @synthesize connection, data, delegate; 
 
