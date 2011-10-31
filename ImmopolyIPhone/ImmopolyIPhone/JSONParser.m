@@ -11,6 +11,7 @@
 #import "ImmopolyUser.h"
 #import "Flat.h"
 #import "ImmopolyManager.h"
+#import "HistoryEntry.h"
 
 @implementation JSONParser
 
@@ -53,7 +54,7 @@
         NSDictionary *realEstate = [flat objectForKey:@"realEstate"];
         NSLog(@"%@",[realEstate objectForKey:@"title"]);
         
-        //TODO: parse realEstate
+        //TODO: parse realEstate and save to user
         
         NSDictionary *address = [realEstate objectForKey:@"address"];
         
@@ -112,6 +113,22 @@
     NSLog(@"done");
     [[ImmopolyManager instance] callFlatsDelegate];
     
+}
+
++ (void)parseHistoryEntry:(NSString *)jsonString{
+    NSDictionary *results = [jsonString JSONValue];
+    NSDictionary *histDic = [results objectForKey:@"org.immopoly.common.History"];
+    
+    HistoryEntry *histEntry = [[HistoryEntry alloc]init];
+    [histEntry setHistText:[histDic objectForKey:@"text"]];
+    [histEntry setTime:[[histDic objectForKey:@"time"]doubleValue]];
+    [histEntry setType:[[histDic objectForKey:@"type"]intValue]];
+    [histEntry setType2:[[histDic objectForKey:@"type2"]intValue]];
+    
+    [[[[ImmopolyManager instance]user]history]addObject:histEntry];
+    [histEntry release];
+    
+    //ToDo tell UI whats on and handle different HistEntries
 }
 
 @end

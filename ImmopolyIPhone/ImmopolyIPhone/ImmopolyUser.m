@@ -9,14 +9,15 @@
 #import "ImmopolyUser.h"
 
 @implementation ImmopolyUser
-@synthesize  userName,userToken,email,twitter,balance,lastProvision,lastRent,portfolio;
+@synthesize  userName,userToken,email,twitter,balance,lastProvision,lastRent,portfolio,history;
 
 
 - (id)init
 {
     self = [super init];
     if (self) {
-        // Initialization code here.
+        portfolio = [[NSMutableArray alloc]init];
+        history = [[NSMutableArray alloc]init];
     }
     
     return self;

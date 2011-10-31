@@ -59,6 +59,8 @@
 		D252750A145C424200627725 /* PortfolioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2527508145C424200627725 /* PortfolioViewController.xib */; };
 		D28E075E145B195D003D83D8 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28E075D145B195D003D83D8 /* WebViewController.m */; };
 		D28E0761145B1968003D83D8 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28E0760145B1968003D83D8 /* WebView.xib */; };
+		D2A09C7B145EF936002646A1 /* FlatTakeOverTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A09C7A145EF936002646A1 /* FlatTakeOverTask.m */; };
+		D2A09C7F145EFC5D002646A1 /* HistoryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A09C7E145EFC5D002646A1 /* HistoryEntry.m */; };
 		D2C67D1A145AA4D5008C3295 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2C67D19145AA4D5008C3295 /* CoreLocation.framework */; };
 		D2C67D1D145AA4DF008C3295 /* libz.1.2.5.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D2C67D1C145AA4DF008C3295 /* libz.1.2.5.dylib */; };
 		D2C67D1F145AA4EA008C3295 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2C67D1E145AA4EA008C3295 /* MapKit.framework */; };
@@ -190,6 +192,10 @@
 		D28E075C145B195D003D83D8 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		D28E075D145B195D003D83D8 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		D28E0760145B1968003D83D8 /* WebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebView.xib; sourceTree = "<group>"; };
+		D2A09C79145EF935002646A1 /* FlatTakeOverTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatTakeOverTask.h; sourceTree = "<group>"; };
+		D2A09C7A145EF936002646A1 /* FlatTakeOverTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatTakeOverTask.m; sourceTree = "<group>"; };
+		D2A09C7D145EFC5D002646A1 /* HistoryEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryEntry.h; sourceTree = "<group>"; };
+		D2A09C7E145EFC5D002646A1 /* HistoryEntry.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryEntry.m; sourceTree = "<group>"; };
 		D2C67D19145AA4D5008C3295 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D2C67D1C145AA4DF008C3295 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		D2C67D1E145AA4EA008C3295 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -444,6 +450,8 @@
 			children = (
 				D2C67D3D145AA565008C3295 /* UserLoginTask.h */,
 				D2C67D3E145AA565008C3295 /* UserLoginTask.m */,
+				D2A09C79145EF935002646A1 /* FlatTakeOverTask.h */,
+				D2A09C7A145EF936002646A1 /* FlatTakeOverTask.m */,
 			);
 			name = Tasks;
 			sourceTree = "<group>";
@@ -499,6 +507,8 @@
 				D2C67D4B145AA57A008C3295 /* ImmopolyUser.m */,
 				D2C67D4C145AA57A008C3295 /* ImmopolyHistory.h */,
 				D2C67D4D145AA57A008C3295 /* ImmopolyHistory.m */,
+				D2A09C7D145EFC5D002646A1 /* HistoryEntry.h */,
+				D2A09C7E145EFC5D002646A1 /* HistoryEntry.m */,
 			);
 			name = ModelClasses;
 			sourceTree = "<group>";
@@ -636,6 +646,8 @@
 				D2527509145C424200627725 /* PortfolioViewController.m in Sources */,
 				4C014A00145DAD0200293E72 /* LoginViewController.m in Sources */,
 				4C014A06145DBE4C00293E72 /* UserProfileViewController.m in Sources */,
+				D2A09C7B145EF936002646A1 /* FlatTakeOverTask.m in Sources */,
+				D2A09C7F145EFC5D002646A1 /* HistoryEntry.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

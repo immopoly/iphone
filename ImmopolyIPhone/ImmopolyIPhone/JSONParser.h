@@ -17,5 +17,6 @@
 
 + (void)parseUserData:(NSString *)jsonString;
 + (void)parseFlatData:(NSString *)jsonString;
++ (void)parseHistoryEntry:(NSString *)jsonString;
 
 @end

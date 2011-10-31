@@ -22,6 +22,7 @@
     double lastRent;
     
     NSMutableArray *portfolio;
+    NSMutableArray *history;
 }
 
 @property(nonatomic, retain) NSString *userName;
@@ -33,6 +34,7 @@
 @property(nonatomic, assign) double lastRent;
 
 @property(nonatomic,retain) NSMutableArray *portfolio;
+@property(nonatomic,retain) NSMutableArray *history;
 
 
 @end
