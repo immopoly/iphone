@@ -11,7 +11,7 @@
 #import "ImmopolyManager.h"
 #import "Flat.h"
 #import "AppDelegate.h"
-#import "DataLoader.h"
+#import "UserLoginTask.h"
 
 @implementation ImmopolyMapViewController
 
@@ -141,9 +141,10 @@
         FlatLocation *location = (FlatLocation *) view.annotation;
         
         if (![location.title compare:@"My Location"] == NSOrderedSame) {
-            [[ImmopolyManager instance]setSelectedExposeId:location.exposeId];
+            //[[ImmopolyManager instance]setSelectedExposeId:location.exposeId];
             
             exposeWebViewController = [[WebViewController alloc]init];
+            [exposeWebViewController setSelectedExposeId:[location exposeId]];
             [self.view addSubview:exposeWebViewController.view];
         }
         
@@ -191,7 +192,7 @@
         //get user token
         NSString *userToken = [defaults objectForKey:@"userToken"];
         //login with token
-        DataLoader *loader = [[DataLoader alloc] init];
+        UserLoginTask *loader = [[UserLoginTask alloc] init];
         [loader performLoginWithToken: userToken];
         
         //wrong place to check
