@@ -36,8 +36,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
     [password setSecureTextEntry:YES];
-    // Do any additional setup after loading the view from its nib.
+    
+    [[self view]setHidden:YES];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:@"userToken"] != nil) {
+        //get user token
+        NSString *userToken = [defaults objectForKey:@"userToken"];
+        //login with token
+        DataLoader *loader = [[DataLoader alloc] init];
+        loader.delegate = self;
+        
+        [loader performLoginWithToken: userToken];
+        
+        [loader autorelease];
+    }    
 }
 
 - (void)viewDidUnload
@@ -57,15 +73,25 @@
     if([[userName text] length]> 0 && [[password text] length] > 0) {
         
         DataLoader *loader = [[DataLoader alloc] init];
+        [loader setDelegate:self];
+        
         [loader performLogin: [userName text] password: [password text]];
         
+        //wrong place to check
+        //to login process is done in an asynchrounous thread next to the main thread
+        //in ur case this check is done immediately after the method call
+        //therefore we implemented the LoginDelegate
+        
+        /*
         if([ImmopolyManager instance].loginSuccessful == YES) {
             //show user profile view
             userProfileViewController = [[UserProfileViewController alloc] init];
             [self.view addSubview: userProfileViewController.view];
-        }
+        }*/
         
         [loader release];
+        [userName resignFirstResponder];
+        [password resignFirstResponder];
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Wrong input" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -73,5 +99,15 @@
         [alert release];
     }
 }
+
+-(void) loginWithResult: (BOOL) result{
+    [[self view]setHidden:NO];
+    if(result) {
+        //show user profile view
+        userProfileViewController = [[UserProfileViewController alloc] init];
+        [self.view addSubview: userProfileViewController.view];
+    }
+}
+
 
 @end

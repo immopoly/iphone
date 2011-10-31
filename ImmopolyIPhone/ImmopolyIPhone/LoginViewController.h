@@ -10,7 +10,7 @@
 #import "DataLoader.h"
 #import "UserProfileViewController.h"
 
-@interface LoginViewController : UIViewController {
+@interface LoginViewController : UIViewController <LoginDelegate>{
     
     IBOutlet UITextField *userName;
     IBOutlet UITextField *password;

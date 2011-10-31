@@ -61,10 +61,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(IBAction) goBack {
-    [self.view removeFromSuperview];
-}
-
 -(void) dealloc {
     [hello release];
     [bank release];

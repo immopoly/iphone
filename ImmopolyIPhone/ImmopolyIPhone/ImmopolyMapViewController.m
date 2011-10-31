@@ -192,6 +192,7 @@
         DataLoader *loader = [[DataLoader alloc] init];
         [loader performLoginWithToken: userToken];
         
+        //wrong place to check
         if([ImmopolyManager instance].loginSuccessful == YES) {
             //show user profile view
             userProfileViewController = [[UserProfileViewController alloc] init];

@@ -48,6 +48,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError");
+    [delegate loginWithResult: NO];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
