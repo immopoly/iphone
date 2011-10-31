@@ -11,7 +11,7 @@
 #define sPREF_USER "user"
 #define sPREF_TOKEN "user_token"
 
-@interface ImmopolyUser : NSObject{
+@interface ImmopolyUser : NSObject {
     NSString *userName;
     NSString *userToken;
     NSString *email;
