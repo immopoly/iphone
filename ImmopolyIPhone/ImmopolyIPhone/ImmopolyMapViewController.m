@@ -11,14 +11,16 @@
 #import "ImmopolyManager.h"
 #import "Flat.h"
 #import "AppDelegate.h"
+#import "DataLoader.h"
 
 @implementation ImmopolyMapViewController
 
-@synthesize mapView,adressLabel;
+@synthesize mapView, adressLabel;
 
 -(void)dealloc{
     [super dealloc];
     [exposeWebViewController release];
+    [loginViewController release];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -178,6 +180,36 @@
 - (IBAction)refreshLocation {
     AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
     [delegate startLocationUpdate];
+}
+
+-(IBAction) displayUserProfile {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    if ([defaults objectForKey:@"userToken"] != nil) {
+        //get user token
+        NSString *userToken = [defaults objectForKey:@"userToken"];
+        //login with token
+        DataLoader *loader = [[DataLoader alloc] init];
+        [loader performLoginWithToken: userToken];
+        
+        if([ImmopolyManager instance].loginSuccessful == YES) {
+            //show user profile view
+            userProfileViewController = [[UserProfileViewController alloc] init];
+            [self.view addSubview: userProfileViewController.view];
+        }
+        
+        [loader release];
+    }
+    else {
+        //show login view
+        loginViewController = [[LoginViewController alloc] init];
+        [self.view addSubview: loginViewController.view];
+    }
+}
+
+-(IBAction) displayUserPortfolio {
+    portfolioViewController = [[PortfolioViewController alloc] init];
+    [self.view addSubview: portfolioViewController.view];
 }
 
 

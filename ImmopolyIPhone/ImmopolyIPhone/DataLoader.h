@@ -13,7 +13,6 @@
     NSURLConnection *connection;
     NSMutableData *data;
     id<LoginDelegate>delegate;
-    
 }
 
 @property(nonatomic, retain) NSURLConnection *connection;
@@ -21,6 +20,6 @@
 @property(nonatomic, assign) id<LoginDelegate>delegate;
 
 - (void)performLogin:(NSString *)userName password:(NSString *)password;
-
+- (void)performLoginWithToken:(NSString *) userToken;
 
 @end
