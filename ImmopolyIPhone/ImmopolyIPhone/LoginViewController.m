@@ -54,6 +54,13 @@
         
         [loader autorelease];
     }    
+    else {
+        [spinner stopAnimating];
+        [spinner setHidden:YES];
+        [loginLabel setHidden:YES];
+        [userName setEnabled:YES];
+        [password setEnabled:YES];
+    }
 }
 
 - (void)viewDidUnload
