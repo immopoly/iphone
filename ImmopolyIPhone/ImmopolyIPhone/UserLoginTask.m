@@ -14,6 +14,11 @@
 
 @synthesize connection, data, delegate; 
 
+-(void)dealloc{
+    [connection release];
+    [data release];
+}
+
 - (void)performLogin:(NSString *)userName password:(NSString *)password {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/login?username=%@&password=%@",userName, password]];
    

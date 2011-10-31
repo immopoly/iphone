@@ -8,6 +8,7 @@
 
 #import "WebViewController.h"
 #import "ImmopolyManager.h"
+#import "FlatTakeOverTask.h"
 
 @implementation WebViewController
 
@@ -30,7 +31,7 @@
  If you need to do additional setup after loading the view, override viewDidLoad. */
 - (void)viewDidLoad {
 	
-    NSString *urlAddress = [[NSString alloc]initWithFormat:@"http://mobil.immobilienscout24.de/expose/%i",[[ImmopolyManager instance]selectedExposeId]];
+    NSString *urlAddress = [[NSString alloc]initWithFormat:@"http://mobil.immobilienscout24.de/expose/%i",selectedExposeId];
 	//NSString *urlAddress = @"http://mobil.immobilienscout24.de/expose/";
 	
 	//Create a URL object.
@@ -78,21 +79,9 @@
 }
 
 -(IBAction)takeOver{
-    //http://immopoly.appspot.com/portfolio/add?token=TOKEN&expose=EXPOSEID
-    
-    
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    if ([defaults objectForKey:@"userToken"] != nil) {
-        //get user token
-        NSString *userToken = [defaults objectForKey:@"userToken"];
-        
-    }
-    
-    
-    [[self view]removeFromSuperview];
-    
+     
+    FlatTakeOverTask *flatTask = [[FlatTakeOverTask alloc]init];
+    [flatTask takeOverFlat:[self selectedExposeId]];
     
 }
 @end
