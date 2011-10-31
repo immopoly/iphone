@@ -415,30 +415,14 @@
 		D24E7646145834DA003C91A8 /* ImmopolyIPhone */ = {
 			isa = PBXGroup;
 			children = (
-				D28E075C145B195D003D83D8 /* WebViewController.h */,
-				D28E075D145B195D003D83D8 /* WebViewController.m */,
-				D28E0760145B1968003D83D8 /* WebView.xib */,
-				D2C67D51145AA596008C3295 /* ImmopolyMapViewController.h */,
-				D2C67D52145AA596008C3295 /* ImmopolyMapViewController.m */,
-				D2C67D53145AA596008C3295 /* ImmopolyMapViewController.xib */,
+				D2B12BA0145E98B000AFB625 /* Widges */,
+				D2B12B9F145E988200AFB625 /* View Controllers */,
 				D2C67D23145AA524008C3295 /* Utilities */,
 				D2C67D22145AA516008C3295 /* ModelClasses */,
 				D2C67D20145AA504008C3295 /* Protocols */,
-				D24E766514583589003C91A8 /* OAuthManager.h */,
-				D24E766614583589003C91A8 /* OAuthManager.m */,
 				D24E764F145834DA003C91A8 /* AppDelegate.h */,
 				D24E7650145834DA003C91A8 /* AppDelegate.m */,
 				D24E7647145834DA003C91A8 /* Supporting Files */,
-				D2527506145C424200627725 /* PortfolioViewController.h */,
-				D2527507145C424200627725 /* PortfolioViewController.m */,
-				D2527508145C424200627725 /* PortfolioViewController.xib */,
-				6DA75D97145C4B170079B32C /* PortfolioCell.xib */,
-				4C0149FD145DAD0200293E72 /* LoginViewController.h */,
-				4C0149FE145DAD0200293E72 /* LoginViewController.m */,
-				4C0149FF145DAD0200293E72 /* LoginViewController.xib */,
-				4C014A03145DBE4A00293E72 /* UserProfileViewController.h */,
-				4C014A04145DBE4B00293E72 /* UserProfileViewController.m */,
-				4C014A05145DBE4B00293E72 /* UserProfileViewController.xib */,
 			);
 			path = ImmopolyIPhone;
 			sourceTree = "<group>";
@@ -452,6 +436,36 @@
 				D24E764E145834DA003C91A8 /* ImmopolyIPhone-Prefix.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D2B12B9F145E988200AFB625 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				D2527506145C424200627725 /* PortfolioViewController.h */,
+				D2527507145C424200627725 /* PortfolioViewController.m */,
+				D2527508145C424200627725 /* PortfolioViewController.xib */,
+				4C0149FD145DAD0200293E72 /* LoginViewController.h */,
+				4C0149FE145DAD0200293E72 /* LoginViewController.m */,
+				4C0149FF145DAD0200293E72 /* LoginViewController.xib */,
+				4C014A03145DBE4A00293E72 /* UserProfileViewController.h */,
+				4C014A04145DBE4B00293E72 /* UserProfileViewController.m */,
+				4C014A05145DBE4B00293E72 /* UserProfileViewController.xib */,
+				D2C67D51145AA596008C3295 /* ImmopolyMapViewController.h */,
+				D2C67D52145AA596008C3295 /* ImmopolyMapViewController.m */,
+				D2C67D53145AA596008C3295 /* ImmopolyMapViewController.xib */,
+				D28E075C145B195D003D83D8 /* WebViewController.h */,
+				D28E075D145B195D003D83D8 /* WebViewController.m */,
+				D28E0760145B1968003D83D8 /* WebView.xib */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		D2B12BA0145E98B000AFB625 /* Widges */ = {
+			isa = PBXGroup;
+			children = (
+				6DA75D97145C4B170079B32C /* PortfolioCell.xib */,
+			);
+			name = Widges;
 			sourceTree = "<group>";
 		};
 		D2C67D20145AA504008C3295 /* Protocols */ = {
@@ -482,6 +496,8 @@
 		D2C67D23145AA524008C3295 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D24E766514583589003C91A8 /* OAuthManager.h */,
+				D24E766614583589003C91A8 /* OAuthManager.m */,
 				D2C67D39145AA565008C3295 /* CoreLocationController.h */,
 				D2C67D3A145AA565008C3295 /* CoreLocationController.m */,
 				D2C67D3B145AA565008C3295 /* JSONParser.h */,

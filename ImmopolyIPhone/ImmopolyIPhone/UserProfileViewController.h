@@ -21,6 +21,4 @@
 @property(nonatomic, retain) IBOutlet UILabel *miete;
 @property(nonatomic, retain) IBOutlet UILabel *provision;
 
--(IBAction) goBack;
-
 @end
