@@ -23,16 +23,22 @@
     UserProfileViewController *userProfileViewController;
     PortfolioViewController *portfolioViewController;
     IBOutlet UILabel *adressLabel;
+    IBOutlet UIView *calloutBubble;
 }
 
 @property(nonatomic, retain) IBOutlet MKMapView *mapView;
 @property(nonatomic, retain) IBOutlet UILabel *adressLabel;
+@property (nonatomic, retain) UIView *calloutBubble;
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation;
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view;
 
 // linked to compass button 
 -(IBAction)refreshLocation;
+
+-(IBAction)calloutBubbleIn;
+-(IBAction)calloutBubbleOut;
+-(IBAction)showFlatsWebView;
 
 
 
