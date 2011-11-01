@@ -15,7 +15,7 @@
 
 @implementation ImmopolyMapViewController
 
-@synthesize mapView, adressLabel;
+@synthesize mapView, adressLabel, calloutBubble;
 
 -(void)dealloc{
     [super dealloc];
@@ -147,9 +147,7 @@
         if (![location.title compare:@"My Location"] == NSOrderedSame) {
             //[[ImmopolyManager instance]setSelectedExposeId:location.exposeId];
             
-            exposeWebViewController = [[WebViewController alloc]init];
-            [exposeWebViewController setSelectedExposeId:[location exposeId]];
-            [self.view addSubview:exposeWebViewController.view];
+            [self calloutBubbleIn];
         }
         
     }
@@ -165,7 +163,9 @@
         MKPinAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
              
         annotationView.enabled = YES;
-        annotationView.canShowCallout = YES;
+        
+        // NO, because our own bubble is coming in
+        annotationView.canShowCallout = NO;
      
         //Color
         
@@ -187,6 +187,36 @@
     AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
     [delegate startLocationUpdate];
     
+}
+
+- (IBAction)calloutBubbleIn {
+    [UIView beginAnimations:nil context:NULL];
+	
+	[UIView setAnimationDuration:0.4];
+	
+	CGPoint pos = calloutBubble.center;
+	pos.x = 160.0f;
+	calloutBubble.center = pos;
+	
+    [UIView commitAnimations]; 
+}
+
+- (IBAction)calloutBubbleOut {
+    [UIView beginAnimations:nil context:NULL];
+	
+	[UIView setAnimationDuration:0.4];
+	
+	CGPoint pos = calloutBubble.center;
+	pos.x = 445.0f;
+	calloutBubble.center = pos;
+	
+    [UIView commitAnimations]; 
+}
+
+-(IBAction)showFlatsWebView {
+    //exposeWebViewController = [[WebViewController alloc]init];
+    //[exposeWebViewController setSelectedExposeId:[location exposeId]];
+    //[self.view addSubview:exposeWebViewController.view];
 }
 
 /*
