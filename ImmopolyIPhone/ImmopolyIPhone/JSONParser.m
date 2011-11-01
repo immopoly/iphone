@@ -35,35 +35,71 @@
     [myUser setEmail:[user objectForKey:@"email"]];
     
     NSDictionary *info = [user objectForKey:@"info"];
-    NSDictionary *historyList = [info objectForKey:@"historyList"];
-    //TODO: parse history
     
+    //parse history
+    NSArray *historyList = [info objectForKey:@"historyList"];
+    for (NSDictionary *listElement in historyList) {
+        NSDictionary *listEntry = [listElement objectForKey:@"org.immopoly.common.History"];
+        
+        HistoryEntry *userHistoryEntry = [[HistoryEntry alloc] init];
+        
+        [userHistoryEntry setHistText: [listEntry objectForKey: @"text"]];
+        [userHistoryEntry setTime: [[listEntry objectForKey: @"time"] doubleValue]];
+        [userHistoryEntry setType: [[listEntry objectForKey: @"type"] intValue]];
+        [userHistoryEntry setType2: [[listEntry objectForKey:@"type2"] intValue]];
+        
+        [myUser.history addObject: userHistoryEntry];
+        
+        [userHistoryEntry release];
+    }    
+    
+    //parse user balance, lastRent and lastProvision
     [myUser setLastRent:[[info objectForKey:@"lastRent"] doubleValue]];
-    [myUser setBalance:[[info objectForKey:@"balance"] doubleValue]]; 
+    [myUser setBalance:[[info objectForKey:@"balance"] doubleValue]];
+    [myUser setLastProvision: [[info objectForKey:@"lastProvision"] doubleValue]];
 
-   
-    //
+    //parse data for user portfolio
     NSDictionary *locationDict = [info objectForKey:@"resultlist.resultlist"];
     
     NSMutableArray *locations = [locationDict objectForKey:@"resultlistEntries"];
     NSMutableArray *entries = [locations objectAtIndex:0];
     
-    
     for (NSDictionary *location in entries) {
         NSDictionary *flat = [location objectForKey:@"expose.expose"];
         NSDictionary *realEstate = [flat objectForKey:@"realEstate"];
-        NSLog(@"%@",[realEstate objectForKey:@"title"]);
         
-        //TODO: parse realEstate and save to user
+        Flat *myFlat = [[Flat alloc] init];
+        //parse realEstate
+        [myFlat setName: [realEstate objectForKey:@"title"]];
+        [myFlat setPriceValue: [realEstate objectForKey:@"baseRent"]];
+        [myFlat setUid: [[realEstate objectForKey:@"@id"] intValue]];
         
         NSDictionary *address = [realEstate objectForKey:@"address"];
+        NSDictionary *coordinate = [address objectForKey: @"wgs84Coordinate"];
+        [myFlat setLat: [[coordinate objectForKey:@"latitude"] doubleValue]];
+        [myFlat setLng: [[coordinate objectForKey:@"longitude"] doubleValue]];
         
-        NSLog(@"%@",[address objectForKey:@"latitude"]);
-        NSLog(@"%@",[address objectForKey:@"longitude"]);
+        //save flats to user portfolio
+        [myUser.portfolio addObject: myFlat];
         
+        [myFlat release];
     }
 
+    
     [[ImmopolyManager instance] setUser:myUser];
+    
+    
+    //test portfolio and history parser
+    /*
+    NSLog(@"Portfolioeinträge: %i", [[ImmopolyManager instance].user.portfolio count]);
+    for (Flat *flat in [ImmopolyManager instance].user.portfolio) {
+        NSLog(@"%i - %@ - %f - %f - %@", flat.uid, flat.name, flat.lat, flat.lng, flat.priceValue);
+    }
+    NSLog(@"History Einträge: %i", [[ImmopolyManager instance].user.history count]);
+    for (HistoryEntry *h in [ImmopolyManager instance].user.history) {
+        NSLog(@"%@ - %f - %i - %i", h.histText, h.time, h.type, h.type2);
+    }
+    */
 }
 
 + (void)parseFlatData:(NSString *)jsonString{
@@ -111,6 +147,7 @@
     }
     
     NSLog(@"done");
+    
     [[ImmopolyManager instance] callFlatsDelegate];
     
 }

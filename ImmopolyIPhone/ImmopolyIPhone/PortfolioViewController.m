@@ -56,8 +56,15 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
+
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return [[[ImmopolyManager instance] ImmoScoutFlats] count];
+    if ([[ImmopolyManager instance].user.portfolio count] > 0) {
+        return [[ImmopolyManager instance].user.portfolio count];
+    }
+    else {
+        return [[[ImmopolyManager instance] ImmoScoutFlats] count];
+    }
 }
 
 
@@ -72,8 +79,15 @@
                 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    // should be the flats from portfolio
-    Flat *actFlat = [[[ImmopolyManager instance] ImmoScoutFlats] objectAtIndex:indexPath.row];
+    //flats from portfolio
+    Flat *actFlat;
+    if ([[ImmopolyManager instance].user.portfolio count] > 0) {
+        actFlat = [[ImmopolyManager instance].user.portfolio objectAtIndex: indexPath.row];
+    }
+    else {
+        //To be changed......
+        actFlat = [[[ImmopolyManager instance] ImmoScoutFlats] objectAtIndex:indexPath.row];
+    }
     
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PortfolioCell" owner:self options:nil];
     
@@ -88,7 +102,7 @@
 
     UIImageView *imgView = (UIImageView *)[cell viewWithTag:1];
     UILabel *label = (UILabel *)[cell viewWithTag:2];
-    [label setText:[actFlat name]]; 
+    [label setText: actFlat.name]; 
     
     return cell;
 }

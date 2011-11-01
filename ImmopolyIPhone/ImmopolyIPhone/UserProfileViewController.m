@@ -45,7 +45,6 @@
     miete.text = [NSString stringWithFormat: @"%.2f", myUser.lastRent];
     provision.text = [NSString stringWithFormat: @"%.2f", myUser.lastProvision];
     
-    
 }
 
 - (void)viewDidUnload

@@ -11,7 +11,6 @@
 @implementation ImmopolyUser
 @synthesize  userName,userToken,email,twitter,balance,lastProvision,lastRent,portfolio,history;
 
-
 - (id)init
 {
     self = [super init];
