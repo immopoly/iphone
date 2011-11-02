@@ -62,6 +62,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    calloutBubble.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
+
    
     [ImmopolyManager instance].delegate = self;
 }
