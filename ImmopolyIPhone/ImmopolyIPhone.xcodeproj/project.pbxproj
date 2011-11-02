@@ -448,6 +448,8 @@
 		D26633C4145ECD820082875F /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
+				D2C67D41145AA565008C3295 /* FlatProvider.h */,
+				D2C67D42145AA565008C3295 /* FlatProvider.m */,
 				D2C67D3D145AA565008C3295 /* UserLoginTask.h */,
 				D2C67D3E145AA565008C3295 /* UserLoginTask.m */,
 				D2A09C79145EF935002646A1 /* FlatTakeOverTask.h */,
@@ -524,8 +526,6 @@
 				D2C67D3C145AA565008C3295 /* JSONParser.m */,
 				D2C67D3F145AA565008C3295 /* ImmopolyManager.h */,
 				D2C67D40145AA565008C3295 /* ImmopolyManager.m */,
-				D2C67D41145AA565008C3295 /* FlatProvider.h */,
-				D2C67D42145AA565008C3295 /* FlatProvider.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
