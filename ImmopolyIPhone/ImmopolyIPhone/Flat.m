@@ -9,8 +9,38 @@
 #import "Flat.h"
 
 @implementation Flat
-@synthesize uid, name, description, locationNode; 
+@synthesize exposeId, name, description, locationNode; 
 @synthesize city, postcode, street, houseNumber, quater; 
-@synthesize titlePictureSmall, priceValue, currency, priceIntervaleType, lat, lng, creationDate;
+@synthesize titlePictureSmall, priceValue, currency, priceIntervaleType, creationDate;
+@synthesize coordinate;
+
+- (id)initWithName:(NSString*)lName description:(NSString*)ldescription coordinate:(CLLocationCoordinate2D)lCoordinate exposeId:(int) lexposeId {
+    if ((self = [super init])) {
+        name = [lName copy];
+        coordinate = lCoordinate;
+        description = ldescription;
+        exposeId = lexposeId;
+    }
+    return self;
+}
+
+- (NSString *)title {
+    return name;
+}
+
+
+- (NSString *)subtitle {
+    return description;
+}
+
+
+- (void)dealloc
+{
+    [name release];
+    name = nil;
+    [description release];
+    description = nil;    
+    [super dealloc];
+}
 
 @end
