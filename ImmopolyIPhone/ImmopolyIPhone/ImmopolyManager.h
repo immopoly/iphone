@@ -23,6 +23,7 @@
 }
 
 -(void)callLocationDelegate;
+-(void)callFlatsDelegate;
 
 + (ImmopolyManager *) instance;
 
