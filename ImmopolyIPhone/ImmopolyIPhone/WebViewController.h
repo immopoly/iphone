@@ -1,10 +1,7 @@
 //
 //  WebViewController.h
-//  WebViewTutorial
 //
-//  Created by iPhone SDK Articles on 8/19/08.
-//  Copyright 2008 www.iPhoneSDKArticles.com. All rights reserved.
-//
+//  Created by Tobias Heine.
 
 #import <UIKit/UIKit.h>
 
@@ -12,6 +9,7 @@
 @interface WebViewController : UIViewController <UIWebViewDelegate>{
 	
 	IBOutlet UIWebView *webView;
+    //Spinner
     IBOutlet UIActivityIndicatorView *activityIndicator;
     int selectedExposeId;
 }

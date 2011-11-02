@@ -8,7 +8,7 @@
 
 
 
-@interface FlatTakeOverTask : NSObject{
+@interface FlatTakeOverTask : NSObject<NSURLConnectionDelegate>{
     NSURLConnection *connection;
     NSMutableData *data;
 }
