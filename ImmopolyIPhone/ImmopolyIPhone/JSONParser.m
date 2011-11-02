@@ -152,20 +152,35 @@
     
 }
 
-+ (void)parseHistoryEntry:(NSString *)jsonString{
++ (void)parseHistoryEntry:(NSString *)jsonString:(NSError **) err{
     NSDictionary *results = [jsonString JSONValue];
-    NSDictionary *histDic = [results objectForKey:@"org.immopoly.common.History"];
     
-    HistoryEntry *histEntry = [[HistoryEntry alloc]init];
-    [histEntry setHistText:[histDic objectForKey:@"text"]];
-    [histEntry setTime:[[histDic objectForKey:@"time"]doubleValue]];
-    [histEntry setType:[[histDic objectForKey:@"type"]intValue]];
-    [histEntry setType2:[[histDic objectForKey:@"type2"]intValue]];
+    if ([jsonString rangeOfString:@"ImmopolyException"].location != NSNotFound) {
+        NSLog(@"Exception");
+        
+        NSDictionary *exceptionDic = [results objectForKey:@"org.immopoly.common.ImmopolyException"];
+        NSString *exceptionMessage = [exceptionDic objectForKey:@"message"];
+        int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
+        
+        *err = [NSError errorWithDomain:@"parseHistory" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:exceptionMessage],@"ErrorMessage",nil]];
+      
+        
+    } else {
+        NSDictionary *histDic = [results objectForKey:@"org.immopoly.common.History"];
+        
+        HistoryEntry *histEntry = [[HistoryEntry alloc]init];
+        [histEntry setHistText:[histDic objectForKey:@"text"]];
+        [histEntry setTime:[[histDic objectForKey:@"time"]doubleValue]];
+        [histEntry setType:[[histDic objectForKey:@"type"]intValue]];
+        [histEntry setType2:[[histDic objectForKey:@"type2"]intValue]];
+        
+        [[[[ImmopolyManager instance]user]history]addObject:histEntry];
+        [histEntry release];
+    }
     
-    [[[[ImmopolyManager instance]user]history]addObject:histEntry];
-    [histEntry release];
     
-    //ToDo tell UI whats on and handle different HistEntries
+    //Test
+    *err = [NSError errorWithDomain:@"parseHistory" code:201 userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:@"Gehört dir schon"],@"ErrorMessage",nil]];
 }
 
 @end

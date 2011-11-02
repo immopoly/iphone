@@ -48,8 +48,14 @@
     if ([jsonString isEqualToString:@""]) {
         NSLog(@"jsonString is empty");
     }
+    NSError *err=nil;
+    [JSONParser parseHistoryEntry:jsonString :&err];
     
-    [JSONParser parseHistoryEntry:jsonString];
+    if (err) {
+        //Handle Error here
+        NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:err forKey:@"error"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"portfolio/add fail" object:nil userInfo:errorInfo];
+    }
 }
 
 @end
