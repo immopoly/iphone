@@ -4,9 +4,9 @@
 //  Created by Tobias Heine.
 
 #import <UIKit/UIKit.h>
+#import "ImmopolyViewController.h"
 
-
-@interface WebViewController : UIViewController <UIWebViewDelegate>{
+@interface WebViewController : ImmopolyViewController <UIWebViewDelegate>{
 	
 	IBOutlet UIWebView *webView;
     //Spinner
