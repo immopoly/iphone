@@ -24,11 +24,13 @@
     PortfolioViewController *portfolioViewController;
     IBOutlet UILabel *adressLabel;
     IBOutlet UIView *calloutBubble;
+    int selectedExposeId;
 }
 
 @property(nonatomic, retain) IBOutlet MKMapView *mapView;
 @property(nonatomic, retain) IBOutlet UILabel *adressLabel;
 @property (nonatomic, retain) UIView *calloutBubble;
+@property (nonatomic, assign) int selectedExposeId;
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation;
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view;

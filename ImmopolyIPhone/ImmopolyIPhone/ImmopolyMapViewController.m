@@ -15,7 +15,7 @@
 
 @implementation ImmopolyMapViewController
 
-@synthesize mapView, adressLabel, calloutBubble;
+@synthesize mapView, adressLabel, calloutBubble,selectedExposeId;
 
 -(void)dealloc{
     [super dealloc];
@@ -143,6 +143,7 @@
     
     if([view.annotation isKindOfClass:[FlatLocation class]]) {
         FlatLocation *location = (FlatLocation *) view.annotation;
+        [self setSelectedExposeId:[location exposeId]]; 
         
         if (![location.title compare:@"My Location"] == NSOrderedSame) {
             //[[ImmopolyManager instance]setSelectedExposeId:location.exposeId];
@@ -214,9 +215,9 @@
 }
 
 -(IBAction)showFlatsWebView {
-    //exposeWebViewController = [[WebViewController alloc]init];
-    //[exposeWebViewController setSelectedExposeId:[location exposeId]];
-    //[self.view addSubview:exposeWebViewController.view];
+    exposeWebViewController = [[WebViewController alloc]init];
+    [exposeWebViewController setSelectedExposeId:[self selectedExposeId]];
+    [self.view addSubview:exposeWebViewController.view];
 }
 
 /*
