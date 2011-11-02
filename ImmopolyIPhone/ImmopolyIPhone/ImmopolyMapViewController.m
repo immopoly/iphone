@@ -7,7 +7,6 @@
 //
 
 #import "ImmopolyMapViewController.h"
-#import "FlatLocation.h"
 #import "ImmopolyManager.h"
 #import "Flat.h"
 #import "AppDelegate.h"
@@ -62,8 +61,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    
+    // that only the background is transparent and not the whole view
     calloutBubble.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
-
    
     [ImmopolyManager instance].delegate = self;
 }
@@ -92,8 +92,9 @@
     MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];                
     [mapView setRegion:adjustedRegion animated:YES]; 
     
-    FlatLocation *annotation = [[[FlatLocation alloc] initWithName:@"My Location" address:@"" coordinate:zoomLocation exposeId:-1] autorelease];
-    [mapView addAnnotation: annotation];
+    Flat *myLocation = [[[Flat alloc] initWithName:@"My Location" description:@"" coordinate:zoomLocation exposeId:-1] autorelease];
+
+    [mapView addAnnotation: myLocation];
 }
 
 - (void) displayFlatsOnMap {
@@ -101,50 +102,20 @@
     // removing all existing annotations
     for (id<MKAnnotation> annotation in mapView.annotations) {
         // check that the my location annotion does not get removed
-        if([annotation isKindOfClass:[FlatLocation class]] && ![((FlatLocation *)annotation).title isEqualToString:@"My Location"]){
+        if([annotation isKindOfClass:[Flat class]] && ![((Flat *)annotation).title isEqualToString:@"My Location"]){    
             [mapView removeAnnotation:annotation];
         }
     }     
     
     for(Flat *flat in [ImmopolyManager instance].ImmoScoutFlats) {
-        
-        
-        NSNumber * latitude = [[NSNumber alloc] initWithDouble: flat.lat];
-        NSNumber * longitude = [[NSNumber alloc] initWithDouble: flat.lng];
-        NSString * title = flat.name;
-        //NSString * address = flat.address;
-        
-        
-        /*NSNumber * latitude = [NSNumber numberWithFloat: 52.521389];
-        NSNumber * longitude = [NSNumber numberWithFloat: 13.411944];
-        NSString * title = [NSString stringWithFormat: @"Zentrale Lage mit allem pipapo"];
-        NSString * address = [NSString stringWithFormat: @"Alexanderplatz 13"];*/
-    
-        CLLocationCoordinate2D coordinate;
-        coordinate.latitude = latitude.doubleValue;
-        coordinate.longitude = longitude.doubleValue;            
-        FlatLocation *annotation = [[[FlatLocation alloc] initWithName:title address:@"" coordinate:coordinate exposeId:flat.uid] autorelease];
-
-        [mapView addAnnotation: annotation];
-    
-        //place another one
-        /*latitude = [NSNumber numberWithFloat: 52.521111];
-        longitude = [NSNumber numberWithFloat: 13.41];
-        title = [NSString stringWithFormat: @"Mitten in der Stadt"];
-        address = [NSString stringWithFormat: @"Panoramastraße 1"];
-    
-        coordinate.latitude = latitude.doubleValue;
-        coordinate.longitude = longitude.doubleValue;            
-        annotation = [[[FlatLocation alloc] initWithName:title address:address coordinate:coordinate] autorelease];
-        [mapView addAnnotation: annotation];
-        */
+        [mapView addAnnotation: flat];
     }
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
     
-    if([view.annotation isKindOfClass:[FlatLocation class]]) {
-        FlatLocation *location = (FlatLocation *) view.annotation;
+      if([view.annotation isKindOfClass:[Flat class]]) {
+        Flat *location = (Flat *) view.annotation;
         [self setSelectedExposeId:[location exposeId]]; 
         
         if (![location.title compare:@"My Location"] == NSOrderedSame) {
@@ -158,11 +129,11 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     
-    static NSString *identifier = @"FlatLocation";
+    static NSString *identifier = @"Flat";  
     
-    if([annotation isKindOfClass:[FlatLocation class]]) {
-        FlatLocation *location = (FlatLocation *) annotation;
-     
+    if([annotation isKindOfClass:[Flat class]]) {
+        Flat *location = (Flat *) annotation;
+        
         MKPinAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
              
         annotationView.enabled = YES;

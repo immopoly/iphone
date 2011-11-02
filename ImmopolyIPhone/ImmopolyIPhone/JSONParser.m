@@ -1,9 +1,9 @@
 //
-//  JSONParser.m
-//  ImmopolyPrototype
+// JSONParser.m
+// ImmopolyPrototype
 //
-//  Created by Tobias Buchholz on 26.10.11.
-//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+// Created by Tobias Buchholz on 26.10.11.
+// Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
 #import "JSONParser.h"
@@ -51,13 +51,13 @@
         [myUser.history addObject: userHistoryEntry];
         
         [userHistoryEntry release];
-    }    
+    }
     
     //parse user balance, lastRent and lastProvision
     [myUser setLastRent:[[info objectForKey:@"lastRent"] doubleValue]];
     [myUser setBalance:[[info objectForKey:@"balance"] doubleValue]];
     [myUser setLastProvision: [[info objectForKey:@"lastProvision"] doubleValue]];
-
+    
     //parse data for user portfolio
     NSDictionary *locationDict = [info objectForKey:@"resultlist.resultlist"];
     
@@ -67,83 +67,80 @@
     for (NSDictionary *location in entries) {
         NSDictionary *flat = [location objectForKey:@"expose.expose"];
         NSDictionary *realEstate = [flat objectForKey:@"realEstate"];
-        
-        Flat *myFlat = [[Flat alloc] init];
-        //parse realEstate
-        [myFlat setName: [realEstate objectForKey:@"title"]];
-        [myFlat setPriceValue: [realEstate objectForKey:@"baseRent"]];
-        [myFlat setUid: [[realEstate objectForKey:@"@id"] intValue]];
-        
         NSDictionary *address = [realEstate objectForKey:@"address"];
         NSDictionary *coordinate = [address objectForKey: @"wgs84Coordinate"];
-        [myFlat setLat: [[coordinate objectForKey:@"latitude"] doubleValue]];
-        [myFlat setLng: [[coordinate objectForKey:@"longitude"] doubleValue]];
+        
+        CLLocationCoordinate2D tempCoord = CLLocationCoordinate2DMake([[coordinate objectForKey:@"latitude"] doubleValue],[[coordinate objectForKey:@"longitude"] doubleValue]);
+        
+        Flat *myFlat = [[Flat alloc] initWithName:[realEstate objectForKey:@"title"] description:[realEstate objectForKey:@"descriptionNote"] coordinate:tempCoord exposeId:[[location objectForKey:@"realEstateId"] intValue]];
+        
+        //parse realEstate
+        [myFlat setPriceValue: [realEstate objectForKey:@"baseRent"]];
         
         //save flats to user portfolio
         [myUser.portfolio addObject: myFlat];
         
         [myFlat release];
     }
-
+    
     
     [[ImmopolyManager instance] setUser:myUser];
     
     
     //test portfolio and history parser
     /*
-    NSLog(@"Portfolioeinträge: %i", [[ImmopolyManager instance].user.portfolio count]);
-    for (Flat *flat in [ImmopolyManager instance].user.portfolio) {
-        NSLog(@"%i - %@ - %f - %f - %@", flat.uid, flat.name, flat.lat, flat.lng, flat.priceValue);
-    }
-    NSLog(@"History Einträge: %i", [[ImmopolyManager instance].user.history count]);
-    for (HistoryEntry *h in [ImmopolyManager instance].user.history) {
-        NSLog(@"%@ - %f - %i - %i", h.histText, h.time, h.type, h.type2);
-    }
-    */
+     NSLog(@"Portfolioeinträge: %i", [[ImmopolyManager instance].user.portfolio count]);
+     for (Flat *flat in [ImmopolyManager instance].user.portfolio) {
+     NSLog(@"%i - %@ - %f - %f - %@", flat.uid, flat.name, flat.lat, flat.lng, flat.priceValue);
+     }
+     NSLog(@"History Einträge: %i", [[ImmopolyManager instance].user.history count]);
+     for (HistoryEntry *h in [ImmopolyManager instance].user.history) {
+     NSLog(@"%@ - %f - %i - %i", h.histText, h.time, h.type, h.type2);
+     }
+     */
 }
 
 + (void)parseFlatData:(NSString *)jsonString{
+    NSLog(@"parseFlatData");
     NSDictionary *results = [jsonString JSONValue];
     
     NSDictionary *resultList = [results objectForKey:@"resultlist.resultlist"];
     
-    //TODO: check 
+    //TODO: check
     NSDictionary *resultlistEntries = [resultList objectForKey:@"resultlistEntries"];
     
-    //TODO: check 
+    //TODO: check
     NSMutableArray *resultEntry = [[resultlistEntries objectAtIndex:0] objectForKey:@"resultlistEntry"];
     
     
-    //TODO: check 
+    //TODO: check
     for (NSDictionary *entry in resultEntry){
         
-        Flat *myFlat = [[Flat alloc] init];
-        
-        // general
-        [myFlat setUid:[[entry objectForKey:@"realEstateId"] intValue]];
         NSDictionary *realEstate = [entry objectForKey:@"resultlist.realEstate"];
-        [myFlat setName:[realEstate objectForKey:@"title"]];
-        [myFlat setDescription:[realEstate objectForKey:@"descriptionNote"]];
-        [myFlat setLocationNode:[realEstate objectForKey:@"locationNote"]];
-        
-        // adress fields
         NSDictionary *address = [realEstate objectForKey:@"address"];
-        [myFlat setCity:[address objectForKey:@"city"]];
-        [myFlat setPostcode:[address objectForKey:@"postcode"]];
-        [myFlat setStreet:[address objectForKey:@"street"]];
-        [myFlat setHouseNumber:[[address objectForKey:@"houseNumber"] intValue]];
-        [myFlat setQuater:[address objectForKey:@"quater"]];
         
         // coordinates
         if([address objectForKey:@"wgs84Coordinate"] != nil){
             NSDictionary *coordinate = [address objectForKey:@"wgs84Coordinate"];
-            [myFlat setLat:[[coordinate objectForKey:@"latitude"] doubleValue]];
-            [myFlat setLng:[[coordinate objectForKey:@"longitude"] doubleValue]];
-        }
         
-        [[[ImmopolyManager instance]ImmoScoutFlats]addObject:myFlat];
-        [myFlat release];
-        //add flat to flats or Flat initWithJSON at the beginning
+            CLLocationCoordinate2D tempCoord = CLLocationCoordinate2DMake([[coordinate objectForKey:@"latitude"] doubleValue],[[coordinate objectForKey:@"longitude"] doubleValue]);
+        
+            Flat *myFlat = [[Flat alloc] initWithName:[realEstate objectForKey:@"title"] description:[realEstate objectForKey:@"descriptionNote"] coordinate:tempCoord exposeId:[[entry objectForKey:@"realEstateId"] intValue]];
+            
+            // add other information to flat 
+            [myFlat setLocationNode:[realEstate objectForKey:@"locationNote"]];
+            
+            // adress fields        
+            [myFlat setCity:[address objectForKey:@"city"]];
+            [myFlat setPostcode:[address objectForKey:@"postcode"]];
+            [myFlat setStreet:[address objectForKey:@"street"]];
+            [myFlat setHouseNumber:[[address objectForKey:@"houseNumber"] intValue]];
+            [myFlat setQuater:[address objectForKey:@"quater"]];
+            
+            //add flat to flats or Flat initWithJSON at the beginning
+            [[[ImmopolyManager instance]ImmoScoutFlats]addObject:myFlat];
+            [myFlat release];
+        }
     }
     
     NSLog(@"done");
@@ -169,3 +166,4 @@
 }
 
 @end
+

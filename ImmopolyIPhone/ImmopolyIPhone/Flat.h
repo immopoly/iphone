@@ -7,10 +7,11 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <MapKit/MapKit.h>
 
-@interface Flat : NSObject {
-    //exposee id
-    int uid;
+@interface Flat : NSObject <MKAnnotation> {
+
+    int exposeId;
     NSString *name;
     NSString *description;
     NSString *locationNode;
@@ -25,12 +26,12 @@
     NSString *priceValue;
     NSString *currency;
     NSString *priceIntervaleType;
-    double lat;
-    double lng;
+    
+    CLLocationCoordinate2D coordinate;
     long creationDate;
 }
 
-@property(nonatomic, assign) int uid;
+@property(nonatomic, readonly) int exposeId;
 @property(nonatomic, retain) NSString *name;
 @property(nonatomic, retain) NSString *description;
 @property(nonatomic, retain) NSString *locationNode;
@@ -45,8 +46,10 @@
 @property(nonatomic, retain) NSString *priceValue;
 @property(nonatomic, retain) NSString *currency;
 @property(nonatomic, retain) NSString *priceIntervaleType;
-@property(nonatomic, assign) double lat;
-@property(nonatomic, assign) double lng;
+@property(nonatomic, readonly) CLLocationCoordinate2D coordinate;
 @property(nonatomic, assign) long creationDate;
+
+- (id)initWithName:(NSString*)lName description:(NSString*)ldescription coordinate:(CLLocationCoordinate2D)lCoordinate exposeId:(int) lexposeId;
+
 
 @end
