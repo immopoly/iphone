@@ -14,7 +14,7 @@
 
 @implementation ImmopolyMapViewController
 
-@synthesize mapView, adressLabel, calloutBubble,selectedExposeId;
+@synthesize mapView, adressLabel, calloutBubble,selectedExposeId, lbFlatName, lbFlatDescription, lbFlatPrice, lbNumberOfRooms, lbLivingSpace;
 
 -(void)dealloc{
     [super dealloc];
@@ -119,8 +119,21 @@
         [self setSelectedExposeId:[location exposeId]]; 
         
         if (![location.title compare:@"My Location"] == NSOrderedSame) {
-            //[[ImmopolyManager instance]setSelectedExposeId:location.exposeId];
             
+            // setting text of labels in calloutBubble
+            [lbFlatName setText:[location name]];
+            NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[location numberOfRooms]];
+            NSString *space = [NSString stringWithFormat:@"Fläche: %f qm",[location livingSpace]];
+            NSString *price = [NSString stringWithFormat:@"Preis: %f €",[location price]];
+            [lbFlatPrice setText:price];
+            [lbNumberOfRooms setText:rooms];
+            [lbLivingSpace setText:space];
+            // TODO: title should not be like description
+            [lbFlatDescription setText:[location title]];
+            
+           // [price release];
+           // [rooms release];
+           // [space release];
             [self calloutBubbleIn];
         }
         

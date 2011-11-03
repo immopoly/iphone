@@ -23,12 +23,23 @@
     UserProfileViewController *userProfileViewController;
     PortfolioViewController *portfolioViewController;
     IBOutlet UILabel *adressLabel;
+    IBOutlet UILabel *lbFlatName;
+    IBOutlet UILabel *lbFlatDescription;
+    IBOutlet UILabel *lbFlatPrice;
+    IBOutlet UILabel *lbNumberOfRooms;
+    IBOutlet UILabel *lbLivingSpace;
+    
     IBOutlet UIView *calloutBubble;
     int selectedExposeId;
 }
 
 @property(nonatomic, retain) IBOutlet MKMapView *mapView;
 @property(nonatomic, retain) IBOutlet UILabel *adressLabel;
+@property(nonatomic, retain) IBOutlet UILabel *lbFlatName;
+@property(nonatomic, retain) IBOutlet UILabel *lbFlatDescription;
+@property(nonatomic, retain) IBOutlet UILabel *lbFlatPrice;
+@property(nonatomic, retain) IBOutlet UILabel *lbNumberOfRooms;
+@property(nonatomic, retain) IBOutlet UILabel *lbLivingSpace;
 @property (nonatomic, retain) UIView *calloutBubble;
 @property (nonatomic, assign) int selectedExposeId;
 

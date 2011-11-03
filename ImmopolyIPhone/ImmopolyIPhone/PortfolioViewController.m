@@ -101,9 +101,16 @@
     }
 
     UIImageView *imgView = (UIImageView *)[cell viewWithTag:1];
-    UILabel *label = (UILabel *)[cell viewWithTag:2];
-    [label setText: actFlat.name]; 
+    UILabel *lbStreet = (UILabel *)[cell viewWithTag:2];
+    UILabel *lbRooms = (UILabel *)[cell viewWithTag:3];
+    UILabel *lbSpace = (UILabel *)[cell viewWithTag:4];
     
+    NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[actFlat numberOfRooms]];
+    NSString *space = [NSString stringWithFormat:@"qm: %f",[actFlat livingSpace]];
+    
+    [lbStreet setText: actFlat.street]; 
+    [lbRooms setText: rooms]; 
+    [lbSpace setText: space]; 
     return cell;
 }
 
