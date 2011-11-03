@@ -107,7 +107,7 @@
         }
     }     
     
-    for(Flat *flat in [ImmopolyManager instance].ImmoScoutFlats) {
+    for(Flat *flat in [[ImmopolyManager instance] ImmoScoutFlats]) {
         [mapView addAnnotation: flat];
     }
 }

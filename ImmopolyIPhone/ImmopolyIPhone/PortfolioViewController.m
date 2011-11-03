@@ -59,8 +59,8 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    if ([[ImmopolyManager instance].user.portfolio count] > 0) {
-        return [[ImmopolyManager instance].user.portfolio count];
+    if ([[[[ImmopolyManager instance] user] portfolio] count] > 0) {
+        return [[[[ImmopolyManager instance] user] portfolio] count];
     }
     else {
         return [[[ImmopolyManager instance] ImmoScoutFlats] count];
@@ -81,12 +81,12 @@
     
     //flats from portfolio
     Flat *actFlat;
-    if ([[ImmopolyManager instance].user.portfolio count] > 0) {
-        actFlat = [[ImmopolyManager instance].user.portfolio objectAtIndex: indexPath.row];
+    if ([[[[ImmopolyManager instance] user] portfolio] count] > 0) {
+        actFlat = [[[[ImmopolyManager instance] user] portfolio] objectAtIndex: indexPath.row];
     }
     else {
         //To be changed......
-        actFlat = [[[ImmopolyManager instance] ImmoScoutFlats] objectAtIndex:indexPath.row];
+        actFlat = [[[ImmopolyManager instance] ImmoScoutFlats] objectAtIndex: indexPath.row];
     }
     
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PortfolioCell" owner:self options:nil];
