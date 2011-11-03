@@ -48,7 +48,7 @@
         [userHistoryEntry setType: [[listEntry objectForKey: @"type"] intValue]];
         [userHistoryEntry setType2: [[listEntry objectForKey:@"type2"] intValue]];
         
-        [myUser.history addObject: userHistoryEntry];
+        [[myUser history] addObject: userHistoryEntry];
         
         [userHistoryEntry release];
     }
@@ -78,26 +78,26 @@
         [myFlat setPriceValue: [realEstate objectForKey:@"baseRent"]];
         
         //save flats to user portfolio
-        [myUser.portfolio addObject: myFlat];
+        [[myUser portfolio] addObject: myFlat];
         
         [myFlat release];
     }
     
     
-    [[ImmopolyManager instance] setUser:myUser];
+    [[ImmopolyManager instance] setUser: myUser];
     
     
     //test portfolio and history parser
     /*
-     NSLog(@"Portfolioeinträge: %i", [[ImmopolyManager instance].user.portfolio count]);
-     for (Flat *flat in [ImmopolyManager instance].user.portfolio) {
-     NSLog(@"%i - %@ - %f - %f - %@", flat.uid, flat.name, flat.lat, flat.lng, flat.priceValue);
+     NSLog(@"Portfolioeinträge: %i", [[[[ImmopolyManager instance] user] portfolio] count]);
+     for (Flat *flat in [[[ImmopolyManager instance] user] portfolio]) {
+         NSLog(@"%i - %@ - %@", [flat exposeId], [flat name], [flat priceValue]);
      }
-     NSLog(@"History Einträge: %i", [[ImmopolyManager instance].user.history count]);
-     for (HistoryEntry *h in [ImmopolyManager instance].user.history) {
-     NSLog(@"%@ - %f - %i - %i", h.histText, h.time, h.type, h.type2);
+     NSLog(@"History Einträge: %i", [[[[ImmopolyManager instance] user] history] count]);
+        for (HistoryEntry *h in [[[ImmopolyManager instance] user] history]) {
+     NSLog(@"%@ - %f - %i - %i", [h histText], [h time], [h type], [h type2]);
      }
-     */
+    */
 }
 
 + (void)parseFlatData:(NSString *)jsonString{

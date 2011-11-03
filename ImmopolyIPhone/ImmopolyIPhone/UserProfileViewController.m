@@ -38,12 +38,12 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    ImmopolyUser *myUser = [ImmopolyManager instance].user;
+    ImmopolyUser *myUser = [[ImmopolyManager instance] user];
     
-    hello.text = [NSString stringWithFormat: @"Hello, %@!", myUser.userName];
-    bank.text = [NSString stringWithFormat: @"%.2f", myUser.balance];
-    miete.text = [NSString stringWithFormat: @"%.2f", myUser.lastRent];
-    provision.text = [NSString stringWithFormat: @"%.2f", myUser.lastProvision];
+    [hello setText: [NSString stringWithFormat: @"Hello, %@!", [myUser userName]]];
+    [bank setText: [NSString stringWithFormat: @"%.2f", [myUser balance]]];
+    [miete setText: [NSString stringWithFormat: @"%.2f", [myUser lastRent]]];
+    [provision setText: [NSString stringWithFormat: @"%.2f", [myUser lastProvision]]];
     
 }
 
