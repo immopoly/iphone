@@ -26,7 +26,9 @@
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
-        // Custom initialization
+        // Custom initialization        
+        self.title = NSLocalizedString(@"Map", @"First");
+        self.tabBarItem.image = [UIImage imageNamed:@"tab_map"];
     }
     return self;
 }
