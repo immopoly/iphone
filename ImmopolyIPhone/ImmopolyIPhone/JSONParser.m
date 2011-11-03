@@ -118,6 +118,7 @@
         
         NSDictionary *realEstate = [entry objectForKey:@"resultlist.realEstate"];
         NSDictionary *address = [realEstate objectForKey:@"address"];
+        NSDictionary *price = [realEstate objectForKey:@"price"];
         
         // coordinates
         if([address objectForKey:@"wgs84Coordinate"] != nil){
@@ -135,7 +136,10 @@
             [myFlat setPostcode:[address objectForKey:@"postcode"]];
             [myFlat setStreet:[address objectForKey:@"street"]];
             [myFlat setHouseNumber:[[address objectForKey:@"houseNumber"] intValue]];
-            [myFlat setQuater:[address objectForKey:@"quater"]];
+            [myFlat setQuarter:[address objectForKey:@"quarter"]];
+            [myFlat setPrice:[[price objectForKey:@"value"] doubleValue]];
+            [myFlat setNumberOfRooms:[[realEstate objectForKey:@"numberOfRooms"] intValue]];
+            [myFlat setLivingSpace:[[realEstate objectForKey:@"livingSpace"] doubleValue]];
             
             //add flat to flats or Flat initWithJSON at the beginning
             [[[ImmopolyManager instance]ImmoScoutFlats]addObject:myFlat];

@@ -10,9 +10,9 @@
 
 @implementation Flat
 @synthesize exposeId, name, description, locationNode; 
-@synthesize city, postcode, street, houseNumber, quater; 
-@synthesize titlePictureSmall, priceValue, currency, priceIntervaleType, creationDate;
-@synthesize coordinate;
+@synthesize city, postcode, street, houseNumber, quarter; 
+@synthesize titlePictureSmall, price, currency, priceValue, priceIntervaleType, creationDate;
+@synthesize numberOfRooms, livingSpace, coordinate;
 
 - (id)initWithName:(NSString*)lName description:(NSString*)ldescription coordinate:(CLLocationCoordinate2D)lCoordinate exposeId:(int) lexposeId {
     if ((self = [super init])) {
