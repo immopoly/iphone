@@ -15,11 +15,13 @@
     
     switch (errorCode) {
         case 61:
-            errorMsg = [[NSString alloc]initWithString:@"missing token"];
+            //missing token
+            errorMsg = [[NSString alloc]initWithString:@"Ups, da ging etwas schief. Probiere es später noch einmal!"];
             break;
 
         case 62:
-            errorMsg = [[NSString alloc]initWithString:@"token not found"];
+            //token not found
+            errorMsg = [[NSString alloc]initWithString:@"Ups, da ging etwas schief. Probiere es später noch einmal!"];
             break;
         
         case 201:
@@ -27,7 +29,7 @@
             break;
 
         case 302:
-            errorMsg = [[NSString alloc]initWithString:@"Expose hat keinen Wert für Kaltmiete, sie kann nicht übernommen werden."];
+            errorMsg = [[NSString alloc]initWithString:@"Das Expose hat keinen Wert für Kaltmiete, sie kann nicht übernommen werden."];
             break;
 
         case 301:
@@ -35,7 +37,7 @@
             break;
             
         case 101:
-            errorMsg = [[NSString alloc]initWithString:@"Expose konnte nicht hinzugefügt werden!"];
+            errorMsg = [[NSString alloc]initWithString:@"Das Expose konnte nicht hinzugefügt werden!"];
             break;
             
             
