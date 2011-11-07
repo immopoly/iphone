@@ -127,6 +127,11 @@
             NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[location numberOfRooms]];
             NSString *space = [NSString stringWithFormat:@"Fläche: %f qm",[location livingSpace]];
             NSString *price = [NSString stringWithFormat:@"Preis: %f €",[location price]];
+            
+            // cutting the 0
+            space = [space substringToIndex:[space length]-7];
+            price = [price substringToIndex:[price length]-6];
+            
             [lbFlatPrice setText:price];
             [lbNumberOfRooms setText:rooms];
             [lbLivingSpace setText:space];
