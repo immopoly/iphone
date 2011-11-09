@@ -153,7 +153,7 @@
     
 }
 
-+ (void)parseHistoryEntry:(NSString *)jsonString:(NSError **) err{
++ (HistoryEntry *)parseHistoryEntry:(NSString *)jsonString:(NSError **) err{
     NSDictionary *results = [jsonString JSONValue];
     
     if ([jsonString rangeOfString:@"ImmopolyException"].location != NSNotFound) {
@@ -164,19 +164,20 @@
         int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
         
         *err = [NSError errorWithDomain:@"parseHistory" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:exceptionMessage],@"ErrorMessage",nil]];
-      
+        
+        return nil;
         
     } else {
         NSDictionary *histDic = [results objectForKey:@"org.immopoly.common.History"];
         
-        HistoryEntry *histEntry = [[HistoryEntry alloc]init];
+        HistoryEntry *histEntry = [[[HistoryEntry alloc]init]autorelease];
         [histEntry setHistText:[histDic objectForKey:@"text"]];
         [histEntry setTime:[[histDic objectForKey:@"time"]doubleValue]];
         [histEntry setType:[[histDic objectForKey:@"type"]intValue]];
         [histEntry setType2:[[histDic objectForKey:@"type2"]intValue]];
         
-        [[[[ImmopolyManager instance]user]history]addObject:histEntry];
-        [histEntry release];
+        return  histEntry;
+        //[histEntry release];
     }
     
     

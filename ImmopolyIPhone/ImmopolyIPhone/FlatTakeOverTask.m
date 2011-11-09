@@ -8,6 +8,7 @@
 
 #import "FlatTakeOverTask.h"
 #import "JSONParser.h"
+#import "ImmopolyManager.h"
 
 @implementation FlatTakeOverTask
 @synthesize connection,data;
@@ -49,12 +50,19 @@
         NSLog(@"jsonString is empty");
     }
     NSError *err=nil;
-    [JSONParser parseHistoryEntry:jsonString :&err];
+    HistoryEntry *resultHistEntry = [JSONParser parseHistoryEntry:jsonString :&err];
     
     if (err) {
         //Handle Error here
         NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:err forKey:@"error"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"portfolio/add fail" object:nil userInfo:errorInfo];
+    }else{
+        if (resultHistEntry) {
+            [[[[ImmopolyManager instance]user]history]addObject:resultHistEntry];
+            //TODO: send Notification with history entry
+            NSDictionary *userInfo = [NSDictionary dictionaryWithObject:resultHistEntry forKey:@"histEntry"];
+            [[NSNotificationCenter defaultCenter] postNotificationName:@"portfolio/add" object:nil userInfo:userInfo];    
+        }
     }
 }
 

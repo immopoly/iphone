@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "LocationDelegate.h"
+#import "HistoryEntry.h"
 
 @interface JSONParser : NSObject {
     id<LocationDelegate>delegate;
@@ -17,6 +18,6 @@
 
 + (void)parseUserData:(NSString *)jsonString;
 + (void)parseFlatData:(NSString *)jsonString;
-+ (void)parseHistoryEntry:(NSString *)jsonString:(NSError **) err;
++ (HistoryEntry *)parseHistoryEntry:(NSString *)jsonString:(NSError **) err;
 
 @end
