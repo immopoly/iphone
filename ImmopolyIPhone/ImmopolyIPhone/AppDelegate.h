@@ -26,5 +26,6 @@
 
 - (void) startLocationUpdate;
 - (void) geocodeLocation:(CLLocation *)location;
+-(void)handleHistoryResponse:(NSNotification *)notification;
 
 @end

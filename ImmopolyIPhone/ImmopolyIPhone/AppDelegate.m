@@ -14,6 +14,7 @@
 #import "PortfolioViewController.h"
 #import "LoginViewController.h"
 #import "HistoryViewController.h"
+#import "HistoryEntry.h"
 
 @implementation AppDelegate
 
@@ -28,6 +29,14 @@
     [_tabBarController release];
     [CLController release];
     [super dealloc];
+}
+
+-(void)handleHistoryResponse:(NSNotification *)notification {
+    HistoryEntry *histEntry= [[notification userInfo] valueForKey:@"histEntry"];
+    
+    UIAlertView *infoAlert = [[UIAlertView alloc]initWithTitle:@"Info" message:[histEntry histText] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [infoAlert show];
+    [infoAlert release];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -52,6 +61,9 @@
     self.window.rootViewController = self.tabBarController;
 
     [self.window makeKeyAndVisible];
+    
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleHistoryResponse:) name:@"portfolio/add" object:nil];
+
     
     return YES;
 }
