@@ -13,6 +13,7 @@
 #import "ImmopolyMapViewController.h"
 #import "PortfolioViewController.h"
 #import "LoginViewController.h"
+#import "HistoryViewController.h"
 
 @implementation AppDelegate
 
@@ -38,14 +39,16 @@
     ImmopolyMapViewController *mapVC;
     PortfolioViewController *portfolioVC;
     LoginViewController *loginVC;
+    HistoryViewController *historyVC;
     
     mapVC = [[[ImmopolyMapViewController alloc]init]autorelease];
     portfolioVC = [[[PortfolioViewController alloc]init]autorelease];
     loginVC = [[[LoginViewController alloc]init]autorelease];    
+    historyVC = [[[HistoryViewController alloc]init]autorelease];    
     
     self.tabBarController = [[[UITabBarController alloc]init]autorelease];
     
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:mapVC,portfolioVC,loginVC, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:mapVC,portfolioVC,loginVC,historyVC, nil];
     self.window.rootViewController = self.tabBarController;
 
     [self.window makeKeyAndVisible];
