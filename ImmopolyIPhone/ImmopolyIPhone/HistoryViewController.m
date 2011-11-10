@@ -9,6 +9,7 @@
 #import "HistoryViewController.h"
 #import "ImmopolyManager.h"
 #import "HistoryEntry.h"
+#import "ImmopolyHistory.h"
 
 @implementation HistoryViewController
 
@@ -109,6 +110,30 @@
     UILabel *lbText = (UILabel *)[cell viewWithTag:2];
     
     NSString *time = [NSString stringWithFormat:@"%d",[historyEntry time]];
+    UIColor *color = [UIColor blackColor];
+    
+    switch ([historyEntry type]) {
+        case TYPE_EXPOSE_SOLD:
+            color = [UIColor greenColor];
+            break;
+        case TYPE_EXPOSE_MONOPOLY_POSITIVE:
+            color = [UIColor greenColor];
+            break;
+        case TYPE_DAILY_PROVISION:
+            color = [UIColor greenColor];
+            break;
+        case TYPE_EXPOSE_MONOPOLY_NEGATIVE:
+            color = [UIColor redColor]; 
+            break;
+        case TYPE_DAILY_RENT:
+            color = [UIColor redColor];
+            break;
+        default:
+            break;
+    }
+    
+    lbTime.textColor = color;
+    lbText.textColor = color;
      
     [lbTime setText: time]; 
     [lbText setText: [historyEntry histText]]; 

@@ -152,7 +152,6 @@
     static NSString *identifier = @"Flat";  
     
     if([annotation isKindOfClass:[Flat class]]) {
-        Flat *location = (Flat *) annotation;
         
         MKPinAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
              
@@ -161,13 +160,10 @@
         // NO, because our own bubble is coming in
         annotationView.canShowCallout = NO;
      
-        //Color
-        
-        if([location.title compare:@"My Location"] == NSOrderedSame) {
-            annotationView.pinColor = MKPinAnnotationColorGreen;
-        }
-        else {
-            annotationView.pinColor = MKPinAnnotationColorRed;
+     
+        // checks that annotation is not the current position    
+        if([annotation.title compare:@"My Location"] != NSOrderedSame) {
+            annotationView.image = [UIImage imageNamed:@"house_green.png"];
         }
         
         return annotationView;
