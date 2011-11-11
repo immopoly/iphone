@@ -58,7 +58,8 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"portfolio/add fail" object:nil userInfo:errorInfo];
     }else{
         if (resultHistEntry) {
-            [[[[ImmopolyManager instance]user]history]addObject:resultHistEntry];
+            [[[[ImmopolyManager instance]user]history]insertObject:resultHistEntry atIndex:0];
+
             //TODO: send Notification with history entry
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:resultHistEntry forKey:@"histEntry"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"portfolio/add" object:nil userInfo:userInfo];    
