@@ -40,8 +40,6 @@
 	
 	//Load the request in the UIWebView.
 	[webView loadRequest:requestObj];
-    
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleErrorMsg:) name:@"portfolio/add fail" object:nil];
 }
 
 
