@@ -38,9 +38,10 @@
 
 - (void)viewDidLoad
 {
+    [super viewDidLoad];
     // TODO: check if user is already logged in
     if([[ImmopolyManager instance] loginSuccessful]){
-        [super viewDidLoad];
+        
     } 
     else {
         NSLog(@"ERROR: user has to be logged in.");
@@ -48,6 +49,12 @@
     
 
     // Do any additional setup after loading the view from its nib.
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [[self table]reloadData];
+    
 }
 
 - (void)viewDidUnload
