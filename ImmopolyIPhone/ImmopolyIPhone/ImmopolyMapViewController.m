@@ -65,7 +65,7 @@
     [super viewDidLoad];
     
     // that only the background is transparent and not the whole view
-    calloutBubble.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0.8];
+    calloutBubble.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
    
     [ImmopolyManager instance].delegate = self;
 }
@@ -118,7 +118,15 @@
     
       if([view.annotation isKindOfClass:[Flat class]]) {
         Flat *location = (Flat *) view.annotation;
-        [self setSelectedExposeId:[location exposeId]]; 
+        [self setSelectedExposeId:[location exposeId]];
+          
+          CLLocationCoordinate2D zoomLocation = location.coordinate;
+          zoomLocation.latitude = zoomLocation.latitude + 0.003;
+          zoomLocation.longitude = zoomLocation.longitude + 0.0006;
+          
+          MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.3*METERS_PER_MILE, 0.3*METERS_PER_MILE);
+          MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];                
+          [mapView setRegion:adjustedRegion animated:YES];   
         
         if (![location.title compare:@"My Location"] == NSOrderedSame) {
             
@@ -185,7 +193,7 @@
 	[UIView setAnimationDuration:0.4];
 	
 	CGPoint pos = calloutBubble.center;
-	pos.x = 160.0f;
+	pos.y = 230.0f;
 	calloutBubble.center = pos;
 	
     [UIView commitAnimations]; 
@@ -197,7 +205,7 @@
 	[UIView setAnimationDuration:0.4];
 	
 	CGPoint pos = calloutBubble.center;
-	pos.x = 445.0f;
+	pos.y = -292.0f;
 	calloutBubble.center = pos;
 	
     [UIView commitAnimations]; 

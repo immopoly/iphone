@@ -108,8 +108,16 @@
     
     UILabel *lbTime = (UILabel *)[cell viewWithTag:1];
     UILabel *lbText = (UILabel *)[cell viewWithTag:2];
+ 
+    // Convert string to date object
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+    [dateFormatter setDateFormat:@"dd.MM.yyyy 'at' HH:mm"];
+    NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:[historyEntry time]];//328000000]; //1321003717350  
+
+    NSString *formattedDateString = [dateFormatter stringFromDate:date];
+    NSLog(@"formattedDateString: %@", formattedDateString);
     
-    NSString *time = [NSString stringWithFormat:@"%d",[historyEntry time]];
     UIColor *color = [UIColor blackColor];
     
     switch ([historyEntry type]) {
@@ -135,7 +143,9 @@
     lbTime.textColor = color;
     lbText.textColor = color;
      
+    NSString *time = [NSString stringWithFormat:@"%d", [historyEntry time]];
     [lbTime setText: time]; 
+//    [lbTime setText: formattedDateString]; 
     [lbText setText: [historyEntry histText]]; 
     return cell;
 }
