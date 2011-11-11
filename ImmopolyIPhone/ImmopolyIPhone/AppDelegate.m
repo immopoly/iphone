@@ -15,6 +15,7 @@
 #import "LoginViewController.h"
 #import "HistoryViewController.h"
 #import "HistoryEntry.h"
+#import "MessageHandler.h"
 
 @implementation AppDelegate
 
@@ -37,6 +38,14 @@
     UIAlertView *infoAlert = [[UIAlertView alloc]initWithTitle:@"Info" message:[histEntry histText] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
     [infoAlert show];
     [infoAlert release];
+}
+
+-(void)handleErrorMsg:(NSNotification *)notification {
+    NSError *err= [[notification userInfo] valueForKey:@"error"];
+    
+    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:[MessageHandler giveErrorMsg:[err code]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    [errorAlert show];
+    [errorAlert release];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -63,6 +72,7 @@
     [self.window makeKeyAndVisible];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleHistoryResponse:) name:@"portfolio/add" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleErrorMsg:) name:@"portfolio/add fail" object:nil];
 
     
     return YES;
