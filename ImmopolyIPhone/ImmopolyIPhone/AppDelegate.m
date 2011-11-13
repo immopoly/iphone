@@ -71,10 +71,16 @@
 
     [self.window makeKeyAndVisible];
     
+    // observer for login of user error
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleErrorMsg:) name:@"user/login fail" object:nil];
+    
+    // observer for parsing flat data error
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleErrorMsg:) name:@"flatProvider/parse fail" object:nil];
+    
+    // observer for taking over a flat error
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleHistoryResponse:) name:@"portfolio/add" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleErrorMsg:) name:@"portfolio/add fail" object:nil];
 
-    
     return YES;
 }
 

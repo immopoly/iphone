@@ -29,10 +29,16 @@
 {
     NSString *responseString = [request responseString];
     NSError *err=nil;
-    [[ImmopolyManager instance] setImmoScoutFlats:[JSONParser parseFlatData:responseString :&err]];   
-    [[ImmopolyManager instance] callFlatsDelegate];
+    [[ImmopolyManager instance] setImmoScoutFlats:[JSONParser parseFlatData:responseString :&err]]; 
     
-    NSLog(@"Response: %@",responseString);
+    if (err) {
+        //Handle Error here
+        NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:err forKey:@"error"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"flatProvider/parse fail" object:nil userInfo:errorInfo];
+    }else{
+        [[ImmopolyManager instance] callFlatsDelegate];
+        NSLog(@"Response: %@",responseString);
+    }
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request

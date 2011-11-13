@@ -14,6 +14,18 @@
     NSString *errorMsg;
     
     switch (errorCode) {
+        case 43:
+            //missing username
+            errorMsg = [[NSString alloc]initWithString:@"Sorry, der Username fehlt."];
+            break;
+        case 44:
+            //missing password
+            errorMsg = [[NSString alloc]initWithString:@"Sorry, das Passwort fehlt."];
+            break;
+        case 51:    
+            //username or password not found
+            errorMsg = [[NSString alloc]initWithString:@"Sorry, der Username oder das Passwort ist falsch."];
+            break;
         case 61:
             //missing token
             errorMsg = [[NSString alloc]initWithString:@"Ups, da ging etwas schief. Probiere es später noch einmal!"];
@@ -23,7 +35,10 @@
             //token not found
             errorMsg = [[NSString alloc]initWithString:@"Ups, da ging etwas schief. Probiere es später noch einmal!"];
             break;
-        
+        case 101:    
+            //could not login user or add expose
+            errorMsg = [[NSString alloc]initWithString:@"Ups, da ging etwas schief. Probiere es später noch einmal!"];
+            break;
         case 201:
             errorMsg = [[NSString alloc]initWithString:@"Dieses Expose gehört dir schon!"];
             break;
@@ -34,13 +49,7 @@
 
         case 301:
             errorMsg = [[NSString alloc]initWithString:@"Das Expose gibt es nicht"];
-            break;
-            
-        case 101:
-            errorMsg = [[NSString alloc]initWithString:@"Das Expose konnte nicht hinzugefügt werden!"];
-            break;
-            
-            
+            break;            
         default:
             break;
     }

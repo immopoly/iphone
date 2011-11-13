@@ -64,11 +64,15 @@
     
     NSError *err=nil;
     [[ImmopolyManager instance] setUser:[JSONParser parseUserData:jsonString :&err]];
-    [[ImmopolyManager instance] setLoginSuccessful:YES];
     
-    [delegate loginWithResult: YES];
-    
-
+    if (err) {
+        //Handle Error here
+        NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:err forKey:@"error"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"user/login fail" object:nil userInfo:errorInfo];
+    }else{
+        [[ImmopolyManager instance] setLoginSuccessful:YES];
+        [delegate loginWithResult: YES];
+    }
 }
 
 @end
