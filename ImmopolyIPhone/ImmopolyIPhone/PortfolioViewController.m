@@ -71,7 +71,7 @@
         return [[[[ImmopolyManager instance] user] portfolio] count];
     }
     else {
-        return [[[ImmopolyManager instance] ImmoScoutFlats] count];
+        return [[[ImmopolyManager instance] immoScoutFlats] count];
     }
 }
 
@@ -94,7 +94,7 @@
     }
     else {
         //To be changed......
-        actFlat = [[[ImmopolyManager instance] ImmoScoutFlats] objectAtIndex: indexPath.row];
+        actFlat = [[[ImmopolyManager instance] immoScoutFlats] objectAtIndex: indexPath.row];
     }
     
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PortfolioCell" owner:self options:nil];
@@ -108,7 +108,7 @@
         cell = (UITableViewCell *)[nib objectAtIndex:0];
     }
 
-    UIImageView *imgView = (UIImageView *)[cell viewWithTag:1];
+//    UIImageView *imgView = (UIImageView *)[cell viewWithTag:1];
     UILabel *lbStreet = (UILabel *)[cell viewWithTag:2];
     UILabel *lbRooms = (UILabel *)[cell viewWithTag:3];
     UILabel *lbSpace = (UILabel *)[cell viewWithTag:4];

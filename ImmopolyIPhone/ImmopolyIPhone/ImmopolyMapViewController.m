@@ -44,20 +44,7 @@
 #pragma mark - View lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {  
-    // 1
-    
-    CLLocationCoordinate2D zoomLocation = [[[ImmopolyManager instance]actLocation]coordinate];
-    
-    //zoomLocation.latitude = 52.521389; //39.281516;
-    //zoomLocation.longitude = 13.411944; //-76.580806;
-    // 2
-    //MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.3*METERS_PER_MILE, 0.3*METERS_PER_MILE);
-    // 3
-    //MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];                
-    // 4
-    //[mapView setRegion:adjustedRegion animated:YES]; 
-    
-   // [self displayFlatsOnMap];
+
 }
 
 - (void)viewDidLoad
@@ -109,12 +96,12 @@
         }
     }     
     
-    for(Flat *flat in [[ImmopolyManager instance] ImmoScoutFlats]) {
+    for(Flat *flat in [[ImmopolyManager instance] immoScoutFlats]) {
         [mapView addAnnotation: flat];
     }
 }
 
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view{
+- (void)mapView:(MKMapView *)mpView didSelectAnnotationView:(MKAnnotationView *)view{
     
       if([view.annotation isKindOfClass:[Flat class]]) {
         Flat *location = (Flat *) view.annotation;
@@ -125,8 +112,8 @@
           zoomLocation.longitude = zoomLocation.longitude + 0.0006;
           
           MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.3*METERS_PER_MILE, 0.3*METERS_PER_MILE);
-          MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];                
-          [mapView setRegion:adjustedRegion animated:YES];   
+          MKCoordinateRegion adjustedRegion = [mpView regionThatFits:viewRegion];                
+          [mpView setRegion:adjustedRegion animated:YES];   
         
         if (![location.title compare:@"My Location"] == NSOrderedSame) {
             

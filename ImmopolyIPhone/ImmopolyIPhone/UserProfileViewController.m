@@ -12,7 +12,7 @@
 
 @implementation UserProfileViewController
 
-@synthesize bank, miete, provision;
+@synthesize hello, bank, miete, provision;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {

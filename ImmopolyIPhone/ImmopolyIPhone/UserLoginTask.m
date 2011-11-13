@@ -62,7 +62,8 @@
         NSLog(@"jsonString is empty");
     }
     
-    [JSONParser parseUserData:jsonString];
+    NSError *err=nil;
+    [[ImmopolyManager instance] setUser:[JSONParser parseUserData:jsonString :&err]];
     [[ImmopolyManager instance] setLoginSuccessful:YES];
     
     [delegate loginWithResult: YES];

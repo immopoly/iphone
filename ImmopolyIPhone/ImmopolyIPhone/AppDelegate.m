@@ -22,7 +22,7 @@
 @synthesize window = _window;
 @synthesize tabBarController = _tabBarController;
 
-@synthesize CLController, geocoder;
+@synthesize CLController, geocoder, adressLabel;
 
 - (void)dealloc
 {

@@ -78,9 +78,7 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     int numRows = [[[[ImmopolyManager instance] user] history] count]; 
-    if(numRows > 0){
-        return numRows;
-    }
+    return numRows;
 }
 
 

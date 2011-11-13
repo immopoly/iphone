@@ -9,6 +9,7 @@
 #import "FlatProvider.h"
 #import "OAuthManager.h"
 #import "JSONParser.h"
+#import "ImmopolyManager.h"
 
 @implementation FlatProvider
 
@@ -27,7 +28,9 @@
 - (void)requestFinished:(ASIHTTPRequest *)request
 {
     NSString *responseString = [request responseString];
-    [JSONParser parseFlatData:responseString];    
+    NSError *err=nil;
+    [[ImmopolyManager instance] setImmoScoutFlats:[JSONParser parseFlatData:responseString :&err]];   
+    [[ImmopolyManager instance] callFlatsDelegate];
     
     NSLog(@"Response: %@",responseString);
 }
