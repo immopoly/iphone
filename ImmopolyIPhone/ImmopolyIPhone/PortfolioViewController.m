@@ -12,7 +12,7 @@
 
 @implementation PortfolioViewController
 
-@synthesize tvCell, table;
+@synthesize tvCell, table, segmentedControl, portfolioMapView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 { 
@@ -23,6 +23,11 @@
         self.tabBarItem.image = [UIImage imageNamed:@"tab_portfolio"];
     }
     return self;
+}
+
+- (void)dealloc {
+    [segmentedControl release];
+    [super dealloc];
 }
 
 - (void)didReceiveMemoryWarning
@@ -120,6 +125,39 @@
     [lbRooms setText: rooms]; 
     [lbSpace setText: space]; 
     return cell;
+}
+
+-(IBAction) segmentedControlIndexChanged{
+    CGPoint posMap;
+    CGPoint posTable;
+    NSLog(@"selIndex: %d", segmentedControl.selectedSegmentIndex);
+    switch (self.segmentedControl.selectedSegmentIndex) {
+        case 0:
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:0.4];
+            posMap = portfolioMapView.center;
+            posTable = table.center;
+            posMap.x = 480.0f;
+            posTable.x = 160.0f;
+            portfolioMapView.center = posMap;
+            table.center = posTable;
+            [UIView commitAnimations]; 
+            break;
+        case 1:
+            [UIView beginAnimations:nil context:NULL];
+            [UIView setAnimationDuration:0.4];
+            posMap = portfolioMapView.center;
+            posTable = table.center;
+            posMap.x = 160.0f;
+            posTable.x = -160.0f;
+            portfolioMapView.center = posMap;
+            table.center = posTable;
+            [UIView commitAnimations];
+            break;
+        default:
+            break;
+    }
+
 }
 
 @end
