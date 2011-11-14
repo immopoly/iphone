@@ -16,6 +16,7 @@
 #import "HistoryViewController.h"
 #import "HistoryEntry.h"
 #import "MessageHandler.h"
+#import "UserProfileViewController.h"
 
 @implementation AppDelegate
 
@@ -56,17 +57,19 @@
     // Override point for customization after application launch.
     ImmopolyMapViewController *mapVC;
     PortfolioViewController *portfolioVC;
-    LoginViewController *loginVC;
+    //LoginViewController *loginVC;
+    UserProfileViewController *userVC;
     HistoryViewController *historyVC;
     
     mapVC = [[[ImmopolyMapViewController alloc]init]autorelease];
     portfolioVC = [[[PortfolioViewController alloc]init]autorelease];
-    loginVC = [[[LoginViewController alloc]init]autorelease];    
+    //loginVC = [[[LoginViewController alloc]init]autorelease]; 
+    userVC = [[[UserProfileViewController alloc] init] autorelease];
     historyVC = [[[HistoryViewController alloc]init]autorelease];    
     
     self.tabBarController = [[[UITabBarController alloc]init]autorelease];
     
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:mapVC,portfolioVC,loginVC,historyVC, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:mapVC,portfolioVC,userVC,historyVC, nil];
     self.window.rootViewController = self.tabBarController;
 
     [self.window makeKeyAndVisible];
@@ -82,6 +85,10 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleErrorMsg:) name:@"portfolio/add fail" object:nil];
 
     return YES;
+}
+
+-(void) tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
+    [viewController viewWillAppear:YES];
 }
 
 // method for getting the phone coordinates

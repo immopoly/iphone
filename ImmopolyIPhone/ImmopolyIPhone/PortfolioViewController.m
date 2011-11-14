@@ -9,10 +9,11 @@
 #import "PortfolioViewController.h"
 #import "ImmopolyManager.h"
 #import "Flat.h"
+#import "UserLoginTask.h"
 
 @implementation PortfolioViewController
 
-@synthesize tvCell, table, segmentedControl, portfolioMapView;
+@synthesize tvCell, table, segmentedControl, portfolioMapView, loginCheck;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 { 
@@ -21,12 +22,14 @@
         // Custom initialization
         self.title = NSLocalizedString(@"Portfolio", @"Second");
         self.tabBarItem.image = [UIImage imageNamed:@"tab_portfolio"];
+        self.loginCheck = [[LoginCheck alloc] init];
     }
     return self;
 }
 
 - (void)dealloc {
     [segmentedControl release];
+    [loginCheck release];
     [super dealloc];
 }
 
@@ -54,10 +57,18 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    loginCheck.delegate = self;
+    [loginCheck checkUserLogin];
+    
     [super viewDidAppear:animated];
     [[self table]reloadData];
     
 }
+
+-(void) displayUserData {
+    [table reloadData];
+}
+
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
@@ -72,12 +83,15 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    /*
     if ([[[[ImmopolyManager instance] user] portfolio] count] > 0) {
         return [[[[ImmopolyManager instance] user] portfolio] count];
     }
     else {
         return [[[ImmopolyManager instance] immoScoutFlats] count];
     }
+     */
+    return [[[[ImmopolyManager instance] user] portfolio] count];
 }
 
 
@@ -93,14 +107,7 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     //flats from portfolio
-    Flat *actFlat;
-    if ([[[[ImmopolyManager instance] user] portfolio] count] > 0) {
-        actFlat = [[[[ImmopolyManager instance] user] portfolio] objectAtIndex: indexPath.row];
-    }
-    else {
-        //To be changed......
-        actFlat = [[[ImmopolyManager instance] immoScoutFlats] objectAtIndex: indexPath.row];
-    }
+    Flat *actFlat = [[[[ImmopolyManager instance] user] portfolio] objectAtIndex: indexPath.row];
     
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PortfolioCell" owner:self options:nil];
     
@@ -121,9 +128,10 @@
     NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[actFlat numberOfRooms]];
     NSString *space = [NSString stringWithFormat:@"qm: %f",[actFlat livingSpace]];
     
-    [lbStreet setText: actFlat.street]; 
-    [lbRooms setText: rooms]; 
-    [lbSpace setText: space]; 
+    [lbStreet setText: [actFlat title]];
+    //[lbStreet setText: actFlat.street]; 
+    //[lbRooms setText: rooms]; 
+    //[lbSpace setText: space]; 
     return cell;
 }
 

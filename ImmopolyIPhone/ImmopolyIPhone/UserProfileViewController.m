@@ -9,16 +9,20 @@
 #import "UserProfileViewController.h"
 #import "ImmopolyManager.h"
 #import "ImmopolyUser.h"
+#import "LoginViewController.h"
 
 @implementation UserProfileViewController
 
-@synthesize hello, bank, miete, provision;
+@synthesize hello, bank, miete, provision, loginCheck;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = NSLocalizedString(@"User", @"Third");
+        self.tabBarItem.image = [UIImage imageNamed:@"tab_user"];
+        self.loginCheck = [[LoginCheck alloc] init];
     }
     return self;
 }
@@ -36,7 +40,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+    
+    loginCheck.delegate = self;
+    [loginCheck checkUserLogin];
+}
+
+-(void) displayUserData {
     
     ImmopolyUser *myUser = [[ImmopolyManager instance] user];
     
@@ -44,7 +53,6 @@
     [bank setText: [NSString stringWithFormat: @"%.2f", [myUser balance]]];
     [miete setText: [NSString stringWithFormat: @"%.2f", [myUser lastRent]]];
     [provision setText: [NSString stringWithFormat: @"%.2f", [myUser lastProvision]]];
-    
 }
 
 - (void)viewDidUnload
@@ -65,6 +73,7 @@
     [bank release];
     [miete release];
     [provision release];
+    [loginCheck release];
     [super dealloc];
 }
 

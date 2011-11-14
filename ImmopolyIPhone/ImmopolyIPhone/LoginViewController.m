@@ -12,7 +12,7 @@
 
 @implementation LoginViewController
 
-@synthesize userName, password,spinner,loginLabel;
+@synthesize userName, password,spinner,loginLabel, delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +37,7 @@
 
 - (void)viewDidLoad
 {
+    /*
     [super viewDidLoad];
     
     [password setSecureTextEntry:YES];
@@ -63,6 +64,15 @@
         [userName setEnabled:YES];
         [password setEnabled:YES];
     }
+     */
+    [super viewDidLoad];
+    
+    [password setSecureTextEntry:YES];
+    
+    [spinner setHidden:YES];
+    [loginLabel setHidden:YES];
+    [userName setEnabled:YES];
+    [password setEnabled:YES];
 }
 
 - (void)viewDidUnload
@@ -118,9 +128,10 @@
     [spinner setHidden:YES];
     [loginLabel setHidden:YES];
     if(result) {
-        //show user profile view
-        userProfileViewController = [[UserProfileViewController alloc] init];
-        [self.view addSubview: userProfileViewController.view];
+        //notify delegate
+        [delegate notifyMyDelegateView];
+        //dismiss modal view
+        [self dismissModalViewControllerAnimated:YES];
     }else{
         [userName setEnabled:YES];
         [password setEnabled:YES];
