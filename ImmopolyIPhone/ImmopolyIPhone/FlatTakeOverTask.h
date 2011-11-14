@@ -6,17 +6,19 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-#include "HistoryEntry.h"
-
+#import "HistoryEntry.h"
+#import "Flat.h"
 
 @interface FlatTakeOverTask : NSObject<NSURLConnectionDelegate>{
     NSURLConnection *connection;
     NSMutableData *data;
+    Flat *selectedImmoscoutFlat;
 }
 
 @property(nonatomic, retain) NSURLConnection *connection;
 @property(nonatomic, retain) NSMutableData *data;
+@property(nonatomic, retain) Flat *selectedImmoscoutFlat;
 
--(void)takeOverFlat:(int)exposeId;
+-(void)takeOverFlat:(Flat *)selectedImmoscoutFlat;
 
 @end

@@ -13,6 +13,7 @@
 #import "LoginViewController.h"
 #import "UserProfileViewController.h"
 #import "PortfolioViewController.h"
+#import "Flat.h"
 
 #define METERS_PER_MILE 1609.344
 
@@ -31,6 +32,7 @@
     
     IBOutlet UIView *calloutBubble;
     int selectedExposeId;
+    Flat *selectedImmoScoutFlat;
 }
 
 @property(nonatomic, retain) IBOutlet MKMapView *mapView;
@@ -42,6 +44,7 @@
 @property(nonatomic, retain) IBOutlet UILabel *lbLivingSpace;
 @property (nonatomic, retain) UIView *calloutBubble;
 @property (nonatomic, assign) int selectedExposeId;
+@property(nonatomic, retain) Flat *selectedImmoScoutFlat;
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation;
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view;
