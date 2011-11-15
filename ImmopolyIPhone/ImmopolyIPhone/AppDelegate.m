@@ -108,7 +108,7 @@
              CLPlacemark *placemark = [placemarks lastObject];
              NSLog(@"Your current location is %@",[placemark name]);
              
-             // TODO: change label in mapviewcontroller
+             // change label in mapviewcontroller
              [[ImmopolyManager instance].delegate setAdressLabelText:[placemark name]];
          }
      }];

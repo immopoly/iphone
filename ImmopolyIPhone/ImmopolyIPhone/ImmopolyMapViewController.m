@@ -107,6 +107,7 @@
         Flat *location = (Flat *) view.annotation;
         [self setSelectedExposeId:[location exposeId]];
           
+          // moving the coordinates, that it doesn't zoom to the center, but a bit under it 
           CLLocationCoordinate2D zoomLocation = location.coordinate;
           zoomLocation.latitude = zoomLocation.latitude + 0.003;
           zoomLocation.longitude = zoomLocation.longitude + 0.0006;
