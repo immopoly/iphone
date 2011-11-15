@@ -7,10 +7,13 @@
 //
 
 #import <MapKit/MapKit.h>
+#import "UserDataDelegate.h"
+#import "LoginCheck.h"
 
-@interface PortfolioViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface PortfolioViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UserDataDelegate> {
     IBOutlet UITableViewCell *tvCell;
     IBOutlet UITableView *table;
+    LoginCheck *loginCheck;
     
     // for switching between list and map 
     UISegmentedControl *segmentedControl;
@@ -21,6 +24,7 @@
 @property (nonatomic, retain) UITableView *table;
 @property (nonatomic,retain) IBOutlet UISegmentedControl *segmentedControl;
 @property (nonatomic,retain) IBOutlet MKMapView *portfolioMapView;
+@property(nonatomic, retain) LoginCheck *loginCheck;
 
 -(IBAction) segmentedControlIndexChanged;
 

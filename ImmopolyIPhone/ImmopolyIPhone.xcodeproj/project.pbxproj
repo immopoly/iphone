@@ -11,6 +11,7 @@
 		4C014A01145DAD0200293E72 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0149FF145DAD0200293E72 /* LoginViewController.xib */; };
 		4C014A06145DBE4C00293E72 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C014A04145DBE4B00293E72 /* UserProfileViewController.m */; };
 		4C014A07145DBE4C00293E72 /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C014A05145DBE4B00293E72 /* UserProfileViewController.xib */; };
+		4C9C4ED91471B4E500719E0E /* LoginCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C4ED81471B4E500719E0E /* LoginCheck.m */; };
 		6D129CA6146D47EF00CE52F5 /* plate.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D129CA5146D47EF00CE52F5 /* plate.png */; };
 		6D368F64146314C3003113C5 /* portfolio_house.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D368F63146314C3003113C5 /* portfolio_house.png */; };
 		6D368F7714632E15003113C5 /* tab_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D368F7414632E15003113C5 /* tab_user.png */; };
@@ -95,6 +96,10 @@
 		4C014A03145DBE4A00293E72 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		4C014A04145DBE4B00293E72 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		4C014A05145DBE4B00293E72 /* UserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
+		4C9C4ED71471B4E500719E0E /* LoginCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCheck.h; sourceTree = "<group>"; };
+		4C9C4ED81471B4E500719E0E /* LoginCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCheck.m; sourceTree = "<group>"; };
+		4C9C4EDB1471B51A00719E0E /* UserDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDataDelegate.h; sourceTree = "<group>"; };
+		4C9C4EDC1471B51A00719E0E /* NotifyViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotifyViewDelegate.h; sourceTree = "<group>"; };
 		6D129CA5146D47EF00CE52F5 /* plate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plate.png; sourceTree = "<group>"; };
 		6D368F63146314C3003113C5 /* portfolio_house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = portfolio_house.png; sourceTree = "<group>"; };
 		6D368F7414632E15003113C5 /* tab_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_user.png; sourceTree = "<group>"; };
@@ -534,6 +539,8 @@
 		D2C67D20145AA504008C3295 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				4C9C4EDB1471B51A00719E0E /* UserDataDelegate.h */,
+				4C9C4EDC1471B51A00719E0E /* NotifyViewDelegate.h */,
 				D2C67D24145AA53C008C3295 /* LoginDelegate.h */,
 				D2C67D59145AAA15008C3295 /* LocationDelegate.h */,
 				D2C67D5A145AAF33008C3295 /* FlatsDelegate.h */,
@@ -559,6 +566,8 @@
 		D2C67D23145AA524008C3295 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				4C9C4ED71471B4E500719E0E /* LoginCheck.h */,
+				4C9C4ED81471B4E500719E0E /* LoginCheck.m */,
 				D24E766514583589003C91A8 /* OAuthManager.h */,
 				D24E766614583589003C91A8 /* OAuthManager.m */,
 				D2C67D39145AA565008C3295 /* CoreLocationController.h */,
@@ -702,6 +711,7 @@
 				D2A09C7F145EFC5D002646A1 /* HistoryEntry.m in Sources */,
 				D2B0A6FC1461DC9A004CB870 /* MessageHandler.m in Sources */,
 				6DBCBDC8146B214300545897 /* HistoryViewController.m in Sources */,
+				4C9C4ED91471B4E500719E0E /* LoginCheck.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

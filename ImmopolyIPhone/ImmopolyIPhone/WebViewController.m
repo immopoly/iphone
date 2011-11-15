@@ -9,7 +9,7 @@
 
 @implementation WebViewController
 
-@synthesize webView,activityIndicator,selectedExposeId;
+@synthesize webView,activityIndicator,selectedExposeId,selectedImmoscoutFlat;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -28,7 +28,7 @@
  If you need to do additional setup after loading the view, override viewDidLoad. */
 - (void)viewDidLoad {
 	
-    NSString *urlAddress = [[NSString alloc]initWithFormat:@"http://mobil.immobilienscout24.de/expose/%i",selectedExposeId];
+    NSString *urlAddress = [[NSString alloc]initWithFormat:@"http://mobil.immobilienscout24.de/expose/%i",[selectedImmoscoutFlat exposeId]];
 	//NSString *urlAddress = @"http://mobil.immobilienscout24.de/expose/";
 	
 	//Create a URL object.
@@ -79,7 +79,7 @@
 -(IBAction)takeOver{
      
     FlatTakeOverTask *flatTask = [[FlatTakeOverTask alloc]init];
-    [flatTask takeOverFlat:[self selectedExposeId]];
+    [flatTask takeOverFlat:[self selectedImmoscoutFlat]];
     
 }
 @end

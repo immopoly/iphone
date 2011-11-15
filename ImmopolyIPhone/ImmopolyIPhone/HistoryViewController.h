@@ -7,13 +7,17 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "UserDataDelegate.h"
+#import "LoginCheck.h"
 
-@interface HistoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate> {
+@interface HistoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UserDataDelegate> {
     IBOutlet UITableViewCell *tvCell;
     IBOutlet UITableView *table;
+    LoginCheck *loginCheck;
 }
 
 @property (nonatomic, retain) UITableViewCell *tvCell;
 @property (nonatomic, retain) UITableView *table;
+@property(nonatomic, retain) LoginCheck *loginCheck;
 
 @end

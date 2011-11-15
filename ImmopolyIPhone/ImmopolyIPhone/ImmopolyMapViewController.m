@@ -14,7 +14,7 @@
 
 @implementation ImmopolyMapViewController
 
-@synthesize mapView, adressLabel, calloutBubble,selectedExposeId, lbFlatName, lbFlatDescription, lbFlatPrice, lbNumberOfRooms, lbLivingSpace;
+@synthesize mapView, adressLabel, calloutBubble,selectedExposeId, lbFlatName, lbFlatDescription, lbFlatPrice, lbNumberOfRooms, lbLivingSpace,selectedImmoScoutFlat;
 
 -(void)dealloc{
     [super dealloc];
@@ -106,6 +106,7 @@
       if([view.annotation isKindOfClass:[Flat class]]) {
         Flat *location = (Flat *) view.annotation;
         [self setSelectedExposeId:[location exposeId]];
+        [self setSelectedImmoScoutFlat:location]; 
           
           // moving the coordinates, that it doesn't zoom to the center, but a bit under it 
           CLLocationCoordinate2D zoomLocation = location.coordinate;
@@ -202,6 +203,7 @@
 -(IBAction)showFlatsWebView {
     exposeWebViewController = [[WebViewController alloc]init];
     [exposeWebViewController setSelectedExposeId:[self selectedExposeId]];
+    [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
     [self.view addSubview:exposeWebViewController.view];
 }
 

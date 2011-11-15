@@ -9,11 +9,13 @@
 #import "FlatTakeOverTask.h"
 #import "JSONParser.h"
 #import "ImmopolyManager.h"
+#import "Flat.h"
 
 @implementation FlatTakeOverTask
-@synthesize connection,data;
+@synthesize connection,data,selectedImmoscoutFlat;
 
--(void)takeOverFlat:(int)exposeId{
+-(void)takeOverFlat:(Flat *)_selectedImmoscoutFlat{
+    [self setSelectedImmoscoutFlat:_selectedImmoscoutFlat];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
@@ -21,7 +23,7 @@
         //get user token
         NSString *userToken = [defaults objectForKey:@"userToken"];
         
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://immopoly.appspot.com/portfolio/add?token=%@&expose=%d",userToken, exposeId]];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://immopoly.appspot.com/portfolio/add?token=%@&expose=%d",userToken, [[self selectedImmoscoutFlat] exposeId]]];
         
         NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
         
@@ -59,7 +61,12 @@
     }else{
         if (resultHistEntry) {
             [[[[ImmopolyManager instance]user]history]insertObject:resultHistEntry atIndex:0];
-
+            
+            //when history has type 1 add expose to portfolio
+            if([resultHistEntry type]==1){
+                    [[[[ImmopolyManager instance]user]portfolio]insertObject:[self selectedImmoscoutFlat] atIndex:0];
+            }
+            
             //TODO: send Notification with history entry
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:resultHistEntry forKey:@"histEntry"];
             [[NSNotificationCenter defaultCenter] postNotificationName:@"portfolio/add" object:nil userInfo:userInfo];    

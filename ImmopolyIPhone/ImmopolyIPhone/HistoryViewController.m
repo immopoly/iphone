@@ -13,7 +13,7 @@
 
 @implementation HistoryViewController
 
-@synthesize tvCell, table;
+@synthesize tvCell, table, loginCheck;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -22,6 +22,7 @@
         // Custom initialization
         self.title = NSLocalizedString(@"History", @"Fourth");
         self.tabBarItem.image = [UIImage imageNamed:@"tab_history"];
+        self.loginCheck = [[LoginCheck alloc] init];
     }
     return self;
 }
@@ -38,23 +39,24 @@
 
 - (void)viewDidLoad
 {
-    [super viewDidLoad];
     // TODO: check if user is already logged in
-    if([[ImmopolyManager instance] loginSuccessful]){
-        
-    } 
-    else {
-        NSLog(@"ERROR: user has to be logged in.");
-    }
-    
-
-    // Do any additional setup after loading the view from its nib.
+    //if([[ImmopolyManager instance] loginSuccessful]){
+    [super viewDidLoad];
+    //} 
+    //else {
+    //    NSLog(@"ERROR: user has to be logged in.");
+    //}
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    loginCheck.delegate = self;
+    [loginCheck checkUserLogin];
     [super viewDidAppear:animated];
     [[self table]reloadData];
-    
+}
+
+-(void) displayUserData {
+    [table reloadData];
 }
 
 - (void)viewDidUnload
@@ -78,7 +80,12 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     int numRows = [[[[ImmopolyManager instance] user] history] count]; 
-    return numRows;
+    if(numRows > 0){
+        return numRows;
+    }
+    else {
+        return 1;
+    }
 }
 
 
@@ -153,6 +160,13 @@
 //    [lbTime setText: formattedDateString]; 
     [lbText setText: [historyEntry histText]]; 
     return cell;
+}
+
+-(void) dealloc {
+    [tvCell release];
+    [table release];
+    [loginCheck release];
+    [super dealloc];
 }
 
 
