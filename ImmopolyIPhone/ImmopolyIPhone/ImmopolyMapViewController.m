@@ -201,7 +201,7 @@
 
 -(IBAction)showFlatsWebView {
     exposeWebViewController = [[WebViewController alloc]init];
-    [exposeWebViewController setSelectedExposeId:[self selectedExposeId]];
+    //[exposeWebViewController setSelectedExposeId:[self selectedExposeId]];
     [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
     [self.view addSubview:exposeWebViewController.view];
 }
