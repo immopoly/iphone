@@ -89,11 +89,13 @@
 }
 
 -(IBAction)performLogin {
-    [loginLabel setHidden:NO];
-    [spinner setHidden:NO];
-    [spinner startAnimating];
+    
     
     if([[userName text] length]> 0 && [[password text] length] > 0) {
+    
+        [loginLabel setHidden:NO];
+        [spinner setHidden:NO];
+        [spinner startAnimating];
         
         UserLoginTask *loader = [[UserLoginTask alloc] init];
         [loader setDelegate:self];
