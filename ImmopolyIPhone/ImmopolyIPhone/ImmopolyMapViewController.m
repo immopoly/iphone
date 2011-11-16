@@ -14,7 +14,7 @@
 
 @implementation ImmopolyMapViewController
 
-@synthesize mapView, adressLabel, calloutBubble,selectedExposeId, lbFlatName, lbFlatDescription, lbFlatPrice, lbNumberOfRooms, lbLivingSpace,selectedImmoScoutFlat;
+@synthesize mapView, adressLabel, calloutBubble,selectedExposeId, lbFlatName, lbFlatDescription, lbFlatPrice, lbNumberOfRooms, lbLivingSpace,selectedImmoScoutFlat, isCalloutBubbleIn;
 
 -(void)dealloc{
     [super dealloc];
@@ -103,19 +103,23 @@
 
 - (void)mapView:(MKMapView *)mpView didSelectAnnotationView:(MKAnnotationView *)view{
     
-      if([view.annotation isKindOfClass:[Flat class]]) {
+    if(isCalloutBubbleIn){
+        [self calloutBubbleOut];
+        [calloutBubble removeFromSuperview];
+    }
+    if([view.annotation isKindOfClass:[Flat class]]) {
         Flat *location = (Flat *) view.annotation;
         [self setSelectedExposeId:[location exposeId]];
         [self setSelectedImmoScoutFlat:location]; 
           
-          // moving the coordinates, that it doesn't zoom to the center, but a bit under it 
-          CLLocationCoordinate2D zoomLocation = location.coordinate;
-          zoomLocation.latitude = zoomLocation.latitude + 0.003;
-          zoomLocation.longitude = zoomLocation.longitude + 0.0006;
+        // moving the coordinates, that it doesn't zoom to the center, but a bit under it 
+        CLLocationCoordinate2D zoomLocation = location.coordinate;
+        zoomLocation.latitude = zoomLocation.latitude + 0.003;
+        zoomLocation.longitude = zoomLocation.longitude + 0.0006;
           
-          MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.3*METERS_PER_MILE, 0.3*METERS_PER_MILE);
-          MKCoordinateRegion adjustedRegion = [mpView regionThatFits:viewRegion];                
-          [mpView setRegion:adjustedRegion animated:YES];   
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.3*METERS_PER_MILE, 0.3*METERS_PER_MILE);
+        MKCoordinateRegion adjustedRegion = [mpView regionThatFits:viewRegion];                
+        [mpView setRegion:adjustedRegion animated:YES];   
         
         if (![location.title compare:@"My Location"] == NSOrderedSame) {
             
@@ -138,6 +142,7 @@
            // [price release];
            // [rooms release];
            // [space release];
+            [mpView addSubview:calloutBubble];
             [self calloutBubbleIn];
         }
         
@@ -182,10 +187,11 @@
 	[UIView setAnimationDuration:0.4];
 	
 	CGPoint pos = calloutBubble.center;
-	pos.y = 230.0f;
+	pos.y = 140.0f;
 	calloutBubble.center = pos;
 	
     [UIView commitAnimations]; 
+    [self setIsCalloutBubbleIn:true];
 }
 
 - (IBAction)calloutBubbleOut {
@@ -197,7 +203,8 @@
 	pos.y = -292.0f;
 	calloutBubble.center = pos;
 	
-    [UIView commitAnimations]; 
+    [UIView commitAnimations];
+    [self setIsCalloutBubbleIn:false];
 }
 
 -(IBAction)showFlatsWebView {

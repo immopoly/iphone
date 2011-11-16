@@ -31,6 +31,7 @@
     IBOutlet UILabel *lbLivingSpace;
     
     IBOutlet UIView *calloutBubble;
+    bool isCalloutBubbleIn;
     int selectedExposeId;
     Flat *selectedImmoScoutFlat;
 }
@@ -45,7 +46,7 @@
 @property (nonatomic, retain) UIView *calloutBubble;
 @property (nonatomic, assign) int selectedExposeId;
 @property(nonatomic, retain) Flat *selectedImmoScoutFlat;
-
+@property(nonatomic, assign) bool isCalloutBubbleIn;
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation;
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view;
 
