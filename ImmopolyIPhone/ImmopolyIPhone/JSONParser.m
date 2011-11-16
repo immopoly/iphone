@@ -23,7 +23,13 @@
     ImmopolyUser *myUser = [[[ImmopolyUser alloc]init] autorelease];
     
     if ([jsonString rangeOfString:@"ImmopolyException"].location != NSNotFound) {
-        [self throwException:err atDomain:@"parseUserData" withJsonResult:results];
+        
+        NSDictionary *exceptionDic = [results objectForKey:@"org.immopoly.common.ImmopolyException"];
+        NSString *exceptionMessage = [exceptionDic objectForKey:@"message"];
+        int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
+        
+        *err = [NSError errorWithDomain:@"parseUserData" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:exceptionMessage],@"ErrorMessage",nil]];
+
         return nil;
     } 
     else {
@@ -98,7 +104,13 @@
     NSMutableArray *immoScoutFlats = [[[NSMutableArray alloc] init] autorelease];
     
     if ([jsonString rangeOfString:@"ImmopolyException"].location != NSNotFound) {
-        [self throwException:err atDomain:@"parseFlatData" withJsonResult:results];
+        
+        NSDictionary *exceptionDic = [results objectForKey:@"org.immopoly.common.ImmopolyException"];
+        NSString *exceptionMessage = [exceptionDic objectForKey:@"message"];
+        int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
+        
+        *err = [NSError errorWithDomain:@"parseFlatData" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:exceptionMessage],@"ErrorMessage",nil]];
+        
         return nil;
     } 
     else {
@@ -152,7 +164,13 @@
     NSDictionary *results = [jsonString JSONValue];
     
     if ([jsonString rangeOfString:@"ImmopolyException"].location != NSNotFound) {
-        [self throwException:err atDomain:@"parseHistory" withJsonResult:results];
+        
+        NSDictionary *exceptionDic = [results objectForKey:@"org.immopoly.common.ImmopolyException"];
+        NSString *exceptionMessage = [exceptionDic objectForKey:@"message"];
+        int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
+        
+        *err = [NSError errorWithDomain:@"parseHistory" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:exceptionMessage],@"ErrorMessage",nil]];
+        
         return nil;
     } 
     else {
@@ -167,16 +185,5 @@
         return  histEntry;
     }
 }
-
-+ (void) throwException:(NSError **)err atDomain:(NSString *) domainName withJSON:(NSDictionary *) results {
-    NSLog(@"Exception");
-    
-    NSDictionary *exceptionDic = [results objectForKey:@"org.immopoly.common.ImmopolyException"];
-    NSString *exceptionMessage = [exceptionDic objectForKey:@"message"];
-    int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
-    
-    *err = [NSError errorWithDomain:domainName code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:exceptionMessage],@"ErrorMessage",nil]];
-}
-
 @end
 

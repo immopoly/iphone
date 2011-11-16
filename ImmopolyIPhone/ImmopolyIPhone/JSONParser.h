@@ -20,6 +20,5 @@
 + (ImmopolyUser *)parseUserData:(NSString *)jsonString:(NSError **) err;
 + (NSMutableArray *)parseFlatData:(NSString *)jsonString:(NSError **) err;
 + (HistoryEntry *)parseHistoryEntry:(NSString *)jsonString:(NSError **) err;
-+ (void) throwException:(NSError **)err atDomain:(NSString *) domainName withJsonResult:(NSDictionary *) results;
 
 @end
