@@ -27,5 +27,6 @@
 @property(nonatomic, retain) LoginCheck *loginCheck;
 
 -(IBAction) segmentedControlIndexChanged;
+- (void)recenterMap;
 
 @end

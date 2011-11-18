@@ -46,7 +46,6 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
 }
 
 - (void)viewDidUnload
@@ -67,6 +66,20 @@
 
 -(void) displayUserData {
     [table reloadData];
+    
+    // removing all existing annotations
+    for (id<MKAnnotation> annotation in portfolioMapView.annotations) {
+        // check that the my location annotion does not get removed
+        if([annotation isKindOfClass:[Flat class]] && ![((Flat *)annotation).title isEqualToString:@"My Location"]){    
+            [portfolioMapView removeAnnotation:annotation];
+        }
+    }     
+    
+    for(Flat *flat in [[[ImmopolyManager instance] user]portfolio]) {
+        [portfolioMapView addAnnotation: flat];
+    }
+    
+    [self recenterMap];
 }
 
 
@@ -161,11 +174,99 @@
             portfolioMapView.center = posMap;
             table.center = posTable;
             [UIView commitAnimations];
+            [self recenterMap];
             break;
         default:
             break;
     }
 
+}
+
+- (void)mapView:(MKMapView *)mpView didSelectAnnotationView:(MKAnnotationView *)view{
+    //TODO: handle click
+    
+}
+
+- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+    
+    static NSString *identifier = @"Flat";  
+    
+    if([annotation isKindOfClass:[Flat class]]) {
+        
+        MKPinAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+        
+        annotationView.enabled = YES;
+        
+        // NO, because our own bubble is coming in
+        annotationView.canShowCallout = NO;
+        
+        
+        // checks that annotation is not the current position    
+        if([annotation.title compare:@"My Location"] != NSOrderedSame) {
+            annotationView.image = [UIImage imageNamed:@"house_green.png"];
+        }
+        
+        return annotationView;
+    }
+    
+    return nil;
+}
+
+- (void)recenterMap {
+    
+    NSArray *coordinates = [self.portfolioMapView valueForKeyPath:@"annotations.coordinate"];
+    
+    
+    CLLocationCoordinate2D maxCoord = {-90.0f, -180.0f};
+    
+    CLLocationCoordinate2D minCoord = {90.0f, 180.0f};
+    
+    
+    
+    for(NSValue *value in coordinates) {
+        
+        CLLocationCoordinate2D coord = {0.0f, 0.0f};
+        
+        [value getValue:&coord];
+        
+        if(coord.longitude > maxCoord.longitude) {
+            
+            maxCoord.longitude = coord.longitude;
+            
+        }
+        
+        if(coord.latitude > maxCoord.latitude) {
+            
+            maxCoord.latitude = coord.latitude;
+            
+        }
+        
+        if(coord.longitude < minCoord.longitude) {
+            
+            minCoord.longitude = coord.longitude;
+            
+        }
+        
+        if(coord.latitude < minCoord.latitude) {
+            
+            minCoord.latitude = coord.latitude;
+            
+        }
+        
+    }
+    
+    MKCoordinateRegion region = {{0.0f, 0.0f}, {0.0f, 0.0f}};
+    
+    region.center.longitude = (minCoord.longitude + maxCoord.longitude) / 2.0;
+    
+    region.center.latitude = (minCoord.latitude + maxCoord.latitude) / 2.0;
+    
+    region.span.longitudeDelta = maxCoord.longitude - minCoord.longitude;
+    
+    region.span.latitudeDelta = maxCoord.latitude - minCoord.latitude;
+    
+    [self.portfolioMapView setRegion:region animated:YES];  
+    
 }
 
 @end
