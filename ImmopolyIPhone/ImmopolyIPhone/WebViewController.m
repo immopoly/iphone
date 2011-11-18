@@ -9,11 +9,12 @@
 
 @implementation WebViewController
 
-@synthesize webView,activityIndicator,selectedExposeId,selectedImmoscoutFlat;
+@synthesize webView,activityIndicator,selectedExposeId,selectedImmoscoutFlat, loginCheck;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
 		// Initialization code
+        self.loginCheck = [[LoginCheck alloc] init];
 	}
 	return self;
 }
@@ -59,6 +60,7 @@
 	[webView release];
     [activityIndicator release];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
+    [loginCheck release];
 	[super dealloc];
 }
 
@@ -78,9 +80,16 @@
 
 -(IBAction)takeOver{
      
+    //FlatTakeOverTask *flatTask = [[FlatTakeOverTask alloc]init];
+    //[flatTask takeOverFlat:[self selectedImmoscoutFlat]];
+    loginCheck.delegate = self;
+    [loginCheck checkUserLogin];
+}
+
+-(void) displayUserData {
     FlatTakeOverTask *flatTask = [[FlatTakeOverTask alloc]init];
     [flatTask takeOverFlat:[self selectedImmoscoutFlat]];
     [self.view removeFromSuperview];
-    
 }
+
 @end

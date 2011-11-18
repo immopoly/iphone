@@ -30,7 +30,7 @@
 @property(nonatomic, assign) id<LocationDelegate>delegate;
 @property(nonatomic, retain) ImmopolyUser *user;
 @property(nonatomic, assign) BOOL loginSuccessful;
-@property(nonatomic, assign) NSMutableArray *immoScoutFlats;
-@property(nonatomic, assign) CLLocation *actLocation;
+@property(nonatomic, retain) NSMutableArray *immoScoutFlats;
+@property(nonatomic, retain) CLLocation *actLocation;
 @property(nonatomic, assign) int selectedExposeId;
 @end

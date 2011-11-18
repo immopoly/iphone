@@ -130,6 +130,10 @@
     }
 }
 
+-(IBAction) dismissView {
+    [delegate closeMyDelegateView];
+    [self dismissModalViewControllerAnimated:YES];
+}
 -(IBAction)showRegistrationView {
 //   [[self view]addSubview:registerView];
     

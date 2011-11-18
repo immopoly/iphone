@@ -39,13 +39,7 @@
 
 - (void)viewDidLoad
 {
-    // TODO: check if user is already logged in
-    //if([[ImmopolyManager instance] loginSuccessful]){
     [super viewDidLoad];
-    //} 
-    //else {
-    //    NSLog(@"ERROR: user has to be logged in.");
-    //}
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -100,15 +94,6 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    // fetching the selected history entry
-    HistoryEntry *historyEntry;
-    if ([[[[ImmopolyManager instance] user] history] count] > 0) {
-        historyEntry = [[[[ImmopolyManager instance] user] history] objectAtIndex: indexPath.row];
-    } 
-    else {
-        NSLog(@"user history object is empty!");
-    }
-    
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"HistoryCell" owner:self options:nil];
     UITableViewCell *cell;
     cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"HistoryCell"];
@@ -120,45 +105,57 @@
     
     UILabel *lbTime = (UILabel *)[cell viewWithTag:1];
     UILabel *lbText = (UILabel *)[cell viewWithTag:2];
- 
-    // Convert string to date object
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
-    [dateFormatter setDateFormat:@"dd.MM.yyyy 'at' HH:mm"];
-    NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:[historyEntry time]];//328000000]; //1321003717350  
-
-    NSString *formattedDateString = [dateFormatter stringFromDate:date];
-    NSLog(@"formattedDateString: %@", formattedDateString);
     
-    UIColor *color = [UIColor blackColor];
-    
-    switch ([historyEntry type]) {
-        case TYPE_EXPOSE_SOLD:
-            color = [UIColor greenColor];
-            break;
-        case TYPE_EXPOSE_MONOPOLY_POSITIVE:
-            color = [UIColor greenColor];
-            break;
-        case TYPE_DAILY_PROVISION:
-            color = [UIColor greenColor];
-            break;
-        case TYPE_EXPOSE_MONOPOLY_NEGATIVE:
-            color = [UIColor redColor]; 
-            break;
-        case TYPE_DAILY_RENT:
-            color = [UIColor redColor];
-            break;
-        default:
-            break;
+    // fetching the selected history entry
+    HistoryEntry *historyEntry;
+    if ([[[[ImmopolyManager instance] user] history] count] > 0) {
+        historyEntry = [[[[ImmopolyManager instance] user] history] objectAtIndex: indexPath.row];
+        
+        // Convert string to date object
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+        [dateFormatter setDateFormat:@"dd.MM.yyyy 'at' HH:mm"];
+        NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:[historyEntry time]];//328000000]; //1321003717350  
+        
+        NSString *formattedDateString = [dateFormatter stringFromDate:date];
+        NSLog(@"formattedDateString: %@", formattedDateString);
+        
+        UIColor *color = [UIColor blackColor];
+        
+        switch ([historyEntry type]) {
+            case TYPE_EXPOSE_SOLD:
+                color = [UIColor greenColor];
+                break;
+            case TYPE_EXPOSE_MONOPOLY_POSITIVE:
+                color = [UIColor greenColor];
+                break;
+            case TYPE_DAILY_PROVISION:
+                color = [UIColor greenColor];
+                break;
+            case TYPE_EXPOSE_MONOPOLY_NEGATIVE:
+                color = [UIColor redColor]; 
+                break;
+            case TYPE_DAILY_RENT:
+                color = [UIColor redColor];
+                break;
+            default:
+                break;
+        }
+        
+        lbTime.textColor = color;
+        lbText.textColor = color;
+        
+        NSString *time = [NSString stringWithFormat:@"%d", [historyEntry time]];
+        [lbTime setText: time]; 
+        //    [lbTime setText: formattedDateString]; 
+        [lbText setText: [historyEntry histText]];
+    } 
+    else {
+        NSLog(@"user history object is empty!");
+        [lbTime setHidden: YES];
+        [lbText setHidden: YES];
     }
     
-    lbTime.textColor = color;
-    lbText.textColor = color;
-     
-    NSString *time = [NSString stringWithFormat:@"%d", [historyEntry time]];
-    [lbTime setText: time]; 
-//    [lbTime setText: formattedDateString]; 
-    [lbText setText: [historyEntry histText]]; 
     return cell;
 }
 

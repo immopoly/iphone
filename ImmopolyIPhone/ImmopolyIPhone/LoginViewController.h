@@ -31,6 +31,8 @@
     IBOutlet UITextField *registerUserTwitter;
 }
 
+-(IBAction) performLogin;
+-(IBAction) dismissView;
 - (IBAction) performLogin;
 - (IBAction) showRegistrationView;
 - (IBAction) performRegistration;
