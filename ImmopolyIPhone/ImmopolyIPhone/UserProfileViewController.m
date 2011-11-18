@@ -37,12 +37,16 @@
 
 #pragma mark - View lifecycle
 
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+}
+
+-(void) viewDidAppear:(BOOL)animated {
     loginCheck.delegate = self;
     [loginCheck checkUserLogin];
+    [super viewDidAppear:animated];
 }
 
 -(void) displayUserData {

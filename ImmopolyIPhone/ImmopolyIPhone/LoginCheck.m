@@ -20,7 +20,7 @@
 -(void) checkUserLogin {
     
     //For tests
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userToken"];
+    //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userToken"];
     
     //if user is logged in show user profile data
     if([[ImmopolyManager instance] loginSuccessful]){
@@ -34,7 +34,7 @@
         UserLoginTask *loader = [[UserLoginTask alloc] init];
         loader.delegate = self;
         [loader performLoginWithToken: userToken];
-        [loader autorelease];
+        //[loader autorelease];
     }
     //otherwise display login view
     else {

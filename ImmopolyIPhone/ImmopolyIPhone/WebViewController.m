@@ -89,6 +89,7 @@
 -(void) displayUserData {
     FlatTakeOverTask *flatTask = [[FlatTakeOverTask alloc]init];
     [flatTask takeOverFlat:[self selectedImmoscoutFlat]];
+    [self.view removeFromSuperview];
 }
 
 @end
