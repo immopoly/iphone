@@ -192,7 +192,7 @@
 						<string key="NSFrame">{{20, 309}, {280, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="486575402"/>
+						<reference key="NSNextKeyView" ref="44141681"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -240,7 +240,7 @@
 						<reference key="IBUIFontDescription" ref="407312913"/>
 						<reference key="IBUIFont" ref="397513058"/>
 					</object>
-					<object class="IBUIButton" id="486575402">
+					<object class="IBUIButton" id="44141681">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{20, 354}, {280, 37}}</string>
@@ -331,7 +331,7 @@
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">dismissView</string>
-						<reference key="source" ref="486575402"/>
+						<reference key="source" ref="44141681"/>
 						<reference key="destination" ref="372490531"/>
 						<int key="IBEventType">7</int>
 					</object>
@@ -358,7 +358,7 @@
 							<reference ref="610098050"/>
 							<reference ref="374152814"/>
 							<reference ref="570224506"/>
-							<reference ref="486575402"/>
+							<reference ref="44141681"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -415,7 +415,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">17</int>
-						<reference key="object" ref="486575402"/>
+						<reference key="object" ref="44141681"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
