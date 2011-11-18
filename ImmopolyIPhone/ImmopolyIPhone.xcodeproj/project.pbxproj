@@ -12,6 +12,7 @@
 		4C014A06145DBE4C00293E72 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C014A04145DBE4B00293E72 /* UserProfileViewController.m */; };
 		4C014A07145DBE4C00293E72 /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C014A05145DBE4B00293E72 /* UserProfileViewController.xib */; };
 		4C9C4ED91471B4E500719E0E /* LoginCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C4ED81471B4E500719E0E /* LoginCheck.m */; };
+		6D0F9A921475849000D0C59F /* UserRegisterTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0F9A911475849000D0C59F /* UserRegisterTask.m */; };
 		6D129CA6146D47EF00CE52F5 /* plate.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D129CA5146D47EF00CE52F5 /* plate.png */; };
 		6D368F64146314C3003113C5 /* portfolio_house.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D368F63146314C3003113C5 /* portfolio_house.png */; };
 		6D368F7714632E15003113C5 /* tab_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D368F7414632E15003113C5 /* tab_user.png */; };
@@ -100,6 +101,9 @@
 		4C9C4ED81471B4E500719E0E /* LoginCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCheck.m; sourceTree = "<group>"; };
 		4C9C4EDB1471B51A00719E0E /* UserDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDataDelegate.h; sourceTree = "<group>"; };
 		4C9C4EDC1471B51A00719E0E /* NotifyViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotifyViewDelegate.h; sourceTree = "<group>"; };
+		6D0F9A901475849000D0C59F /* UserRegisterTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRegisterTask.h; sourceTree = "<group>"; };
+		6D0F9A911475849000D0C59F /* UserRegisterTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRegisterTask.m; sourceTree = "<group>"; };
+		6D0F9A941475896900D0C59F /* RegisterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterDelegate.h; sourceTree = "<group>"; };
 		6D129CA5146D47EF00CE52F5 /* plate.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = plate.png; sourceTree = "<group>"; };
 		6D368F63146314C3003113C5 /* portfolio_house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = portfolio_house.png; sourceTree = "<group>"; };
 		6D368F7414632E15003113C5 /* tab_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tab_user.png; sourceTree = "<group>"; };
@@ -498,6 +502,8 @@
 				D2C67D3E145AA565008C3295 /* UserLoginTask.m */,
 				D2A09C79145EF935002646A1 /* FlatTakeOverTask.h */,
 				D2A09C7A145EF936002646A1 /* FlatTakeOverTask.m */,
+				6D0F9A901475849000D0C59F /* UserRegisterTask.h */,
+				6D0F9A911475849000D0C59F /* UserRegisterTask.m */,
 			);
 			name = Tasks;
 			sourceTree = "<group>";
@@ -544,6 +550,7 @@
 				D2C67D24145AA53C008C3295 /* LoginDelegate.h */,
 				D2C67D59145AAA15008C3295 /* LocationDelegate.h */,
 				D2C67D5A145AAF33008C3295 /* FlatsDelegate.h */,
+				6D0F9A941475896900D0C59F /* RegisterDelegate.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -712,6 +719,7 @@
 				D2B0A6FC1461DC9A004CB870 /* MessageHandler.m in Sources */,
 				6DBCBDC8146B214300545897 /* HistoryViewController.m in Sources */,
 				4C9C4ED91471B4E500719E0E /* LoginCheck.m in Sources */,
+				6D0F9A921475849000D0C59F /* UserRegisterTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

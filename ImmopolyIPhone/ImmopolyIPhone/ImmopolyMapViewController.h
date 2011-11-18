@@ -47,15 +47,17 @@
 @property (nonatomic, assign) int selectedExposeId;
 @property(nonatomic, retain) Flat *selectedImmoScoutFlat;
 @property(nonatomic, assign) bool isCalloutBubbleIn;
+
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation;
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view;
 
 // linked to compass button 
 -(IBAction)refreshLocation;
 
--(IBAction)calloutBubbleIn;
+-(void)calloutBubbleIn;
 -(IBAction)calloutBubbleOut;
 -(IBAction)showFlatsWebView;
+-(void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context;
 
 
 

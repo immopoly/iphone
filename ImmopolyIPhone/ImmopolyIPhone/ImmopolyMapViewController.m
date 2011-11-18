@@ -55,6 +55,8 @@
     calloutBubble.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
    
     [ImmopolyManager instance].delegate = self;
+    
+    
 }
 
 - (void)viewDidUnload
@@ -105,7 +107,6 @@
     
     if(isCalloutBubbleIn){
         [self calloutBubbleOut];
-        [calloutBubble removeFromSuperview];
     }
     if([view.annotation isKindOfClass:[Flat class]]) {
         Flat *location = (Flat *) view.annotation;
@@ -142,10 +143,9 @@
            // [price release];
            // [rooms release];
            // [space release];
-            [mpView addSubview:calloutBubble];
             [self calloutBubbleIn];
+            [mpView deselectAnnotation:location animated:NO];
         }
-        
     }
 }
 
@@ -181,13 +181,16 @@
     
 }
 
-- (IBAction)calloutBubbleIn {
-    [UIView beginAnimations:nil context:NULL];
+- (void)calloutBubbleIn {
+    [UIView beginAnimations:@"inAnimation" context:NULL];
 	
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
+    
 	[UIView setAnimationDuration:0.4];
 	
 	CGPoint pos = calloutBubble.center;
-	pos.y = 140.0f;
+	pos.y = 230.0f;
 	calloutBubble.center = pos;
 	
     [UIView commitAnimations]; 
@@ -195,7 +198,7 @@
 }
 
 - (IBAction)calloutBubbleOut {
-    [UIView beginAnimations:nil context:NULL];
+    [UIView beginAnimations:@"outAnimation" context:NULL];
 	
 	[UIView setAnimationDuration:0.4];
 	
@@ -205,6 +208,12 @@
 	
     [UIView commitAnimations];
     [self setIsCalloutBubbleIn:false];
+}
+
+-(void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
+    if([animationID isEqualToString:@"inAnimation"]){
+        NSLog(@"animation in");
+    }
 }
 
 -(IBAction)showFlatsWebView {

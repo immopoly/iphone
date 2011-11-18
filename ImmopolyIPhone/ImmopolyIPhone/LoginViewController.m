@@ -8,11 +8,13 @@
 
 #import "LoginViewController.h"
 #import "UserLoginTask.h"
+#import "UserRegisterTask.h"
 #import "ImmopolyManager.h"
 
 @implementation LoginViewController
 
 @synthesize userName, password,spinner,loginLabel, delegate;
+@synthesize registerView, registerUserName, registerUserPassword, registerUserEmail, registerUserTwitter;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -68,6 +70,7 @@
     [super viewDidLoad];
     
     [password setSecureTextEntry:YES];
+    [registerUserPassword setSecureTextEntry:YES];
     
     [spinner setHidden:YES];
     [loginLabel setHidden:YES];
@@ -97,26 +100,13 @@
         [spinner setHidden:NO];
         [spinner startAnimating];
         
-        UserLoginTask *loader = [[UserLoginTask alloc] init];
+        UserLoginTask *loader = [[[UserLoginTask alloc] init] autorelease];
         [loader setDelegate:self];
         
         [loader performLogin: [userName text] password: [password text]];
         
-        //wrong place to check
-        //to login process is done in an asynchrounous thread next to the main thread
-        //in ur case this check is done immediately after the method call
-        //therefore we implemented the LoginDelegate
-        
-        /*
-        if([ImmopolyManager instance].loginSuccessful == YES) {
-            //show user profile view
-            userProfileViewController = [[UserProfileViewController alloc] init];
-            [self.view addSubview: userProfileViewController.view];
-        }*/
-        
-        [loader release];
-        [userName resignFirstResponder];
-        [password resignFirstResponder];
+//        [userName resignFirstResponder];
+//        [password resignFirstResponder];
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Wrong input" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -140,5 +130,86 @@
     }
 }
 
+-(IBAction)showRegistrationView {
+//   [[self view]addSubview:registerView];
+    
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.4];
+	CGPoint pos = registerView.center;
+	pos.x = 160.0f;
+    registerView.center = pos;
+    [UIView commitAnimations];
+}
+
+-(IBAction)performRegistration {
+    
+    if([[registerUserName text] length]> 0 && [[registerUserPassword text] length] > 0) {
+        UserRegisterTask *loader = [[[UserRegisterTask alloc] init] autorelease];
+        [loader setDelegate:self];
+    
+        [loader performRegistration:[registerUserName text] withPassword:[registerUserPassword text] withEmail:[registerUserEmail text] withTwitter:[registerUserTwitter text]];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Es wurde eine falsche Eingabe getätigt." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+}
+
+-(IBAction) closeRegistration {
+    // removing text
+    [registerUserName setText:@""];
+    [registerUserPassword setText:@""];
+    [registerUserEmail setText:@""];
+    [registerUserTwitter setText:@""];
+    
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.4];
+	CGPoint pos = registerView.center;
+	pos.x = 480.0f;
+    registerView.center = pos;
+    [UIView commitAnimations];
+    
+//    [registerView removeFromSuperview];
+}
+
+-(void) registerWithResult:(BOOL)result {
+    
+    if(result) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Glückwunsch! Du hast dich erfolgreich registriert und kannst dich nun einlogen." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        [self closeRegistration];
+        [self dismissModalViewControllerAnimated:YES];
+        UserLoginTask *loader = [[[UserLoginTask alloc] init] autorelease];
+        [loader setDelegate:self];
+        [loader performLoginWithToken:[[[ImmopolyManager instance] user] userToken]];
+    }else{
+        [self closeRegistration];
+        [self dismissModalViewControllerAnimated:YES];
+    }
+}
+
+// to let the keyboard go away through the return key
+-(BOOL) textFieldShouldReturn:(UITextField *) textField {
+    [textField resignFirstResponder]; 
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.4];
+	CGPoint pos = registerView.center;
+	pos.y = 225.0f;
+    registerView.center = pos;
+    [UIView commitAnimations];
+    return YES;
+}
+
+// moving the keyboard when a textfield is selected
+- (void)textFieldDidBeginEditing:(UITextField *)textField {   
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.4];
+	CGPoint pos = registerView.center;
+	pos.y = 117.0f;
+    registerView.center = pos;
+    [UIView commitAnimations];
+}
 
 @end

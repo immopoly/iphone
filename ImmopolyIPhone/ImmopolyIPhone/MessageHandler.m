@@ -22,6 +22,10 @@
             //missing password
             errorMsg = [[NSString alloc]initWithString:@"Sorry, das Passwort fehlt."];
             break;
+        case 45:
+            //username already taken
+            errorMsg = [[NSString alloc]initWithString:@"Sorry, dieser Name ist leider schon vergeben."];
+            break;
         case 51:    
             //username or password not found
             errorMsg = [[NSString alloc]initWithString:@"Sorry, der Username oder das Passwort ist falsch."];
