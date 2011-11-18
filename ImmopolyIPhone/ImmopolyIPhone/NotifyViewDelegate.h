@@ -12,4 +12,6 @@
 
 -(void) notifyMyDelegateView;
 
+-(void) closeMyDelegateView;
+
 @end

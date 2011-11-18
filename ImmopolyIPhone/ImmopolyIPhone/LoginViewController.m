@@ -138,5 +138,9 @@
     }
 }
 
+-(IBAction) dismissView {
+    [delegate closeMyDelegateView];
+    [self dismissModalViewControllerAnimated:YES];
+}
 
 @end

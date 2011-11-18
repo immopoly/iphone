@@ -23,7 +23,8 @@
     id<NotifyViewDelegate> delegate;
 }
 
-- (IBAction) performLogin;
+-(IBAction) performLogin;
+-(IBAction) dismissView;
 
 @property(nonatomic, retain)IBOutlet UITextField *userName;
 @property(nonatomic, retain)IBOutlet UITextField *password;

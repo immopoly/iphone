@@ -11,6 +11,7 @@
 #import "UserLoginTask.h"
 #import "AppDelegate.h"
 #import "LoginViewController.h"
+#import "WebViewController.h"
 
 @implementation LoginCheck
 
@@ -56,6 +57,14 @@
 
 -(void) notifyMyDelegateView {
     [delegate displayUserData];
+}
+
+-(void) closeMyDelegateView {
+    AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+    if(![delegate isKindOfClass: [WebViewController class]]) {
+        //show map
+        [[appDelegate tabBarController] setSelectedIndex:0];
+    }
 }
 
 @end
