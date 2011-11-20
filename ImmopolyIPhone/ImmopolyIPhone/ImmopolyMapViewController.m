@@ -14,7 +14,7 @@
 
 @implementation ImmopolyMapViewController
 
-@synthesize mapView, adressLabel, calloutBubble,selectedExposeId, lbFlatName, lbFlatDescription, lbFlatPrice, lbNumberOfRooms, lbLivingSpace,selectedImmoScoutFlat, isCalloutBubbleIn;
+@synthesize mapView, adressLabel, calloutBubble,selectedExposeId, lbFlatName, lbFlatDescription, lbFlatPrice, lbNumberOfRooms, lbLivingSpace,selectedImmoScoutFlat, isCalloutBubbleIn, isOutInCall;
 
 -(void)dealloc{
     [super dealloc];
@@ -82,10 +82,6 @@
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.3*METERS_PER_MILE, 0.3*METERS_PER_MILE);
     MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];                
     [mapView setRegion:adjustedRegion animated:YES]; 
-    
-    Flat *myLocation = [[[Flat alloc] initWithName:@"My Location" description:@"" coordinate:zoomLocation exposeId:-1] autorelease];
-
-    [mapView addAnnotation: myLocation];
 }
 
 - (void) displayFlatsOnMap {
@@ -93,7 +89,7 @@
     // removing all existing annotations
     for (id<MKAnnotation> annotation in mapView.annotations) {
         // check that the my location annotion does not get removed
-        if([annotation isKindOfClass:[Flat class]] && ![((Flat *)annotation).title isEqualToString:@"My Location"]){    
+        if([annotation isKindOfClass:[Flat class]]){    
             [mapView removeAnnotation:annotation];
         }
     }     
@@ -106,6 +102,7 @@
 - (void)mapView:(MKMapView *)mpView didSelectAnnotationView:(MKAnnotationView *)view{
     
     if(isCalloutBubbleIn){
+        [self setIsOutInCall:YES];
         [self calloutBubbleOut];
     }
     if([view.annotation isKindOfClass:[Flat class]]) {
@@ -117,34 +114,13 @@
         CLLocationCoordinate2D zoomLocation = location.coordinate;
         zoomLocation.latitude = zoomLocation.latitude + 0.003;
         zoomLocation.longitude = zoomLocation.longitude + 0.0006;
-          
         MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.3*METERS_PER_MILE, 0.3*METERS_PER_MILE);
         MKCoordinateRegion adjustedRegion = [mpView regionThatFits:viewRegion];                
         [mpView setRegion:adjustedRegion animated:YES];   
         
-        if (![location.title compare:@"My Location"] == NSOrderedSame) {
+        if (![location.title compare:@"My Location"] == NSOrderedSame && !isOutInCall) {
             
-            // setting text of labels in calloutBubble
-            [lbFlatName setText:[location name]];
-            NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[location numberOfRooms]];
-            NSString *space = [NSString stringWithFormat:@"Fläche: %f qm",[location livingSpace]];
-            NSString *price = [NSString stringWithFormat:@"Preis: %f €",[location price]];
-            
-            // cutting the 0
-            space = [space substringToIndex:[space length]-7];
-            price = [price substringToIndex:[price length]-6];
-            
-            [lbFlatPrice setText:price];
-            [lbNumberOfRooms setText:rooms];
-            [lbLivingSpace setText:space];
-            // TODO: title should not be like description
-            [lbFlatDescription setText:[location title]];
-            
-           // [price release];
-           // [rooms release];
-           // [space release];
             [self calloutBubbleIn];
-            [mpView deselectAnnotation:location animated:NO];
         }
     }
 }
@@ -182,11 +158,30 @@
 }
 
 - (void)calloutBubbleIn {
-    [UIView beginAnimations:@"inAnimation" context:NULL];
-	
-    [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
+    // setting text of labels in calloutBubble
+    [lbFlatName setText:[selectedImmoScoutFlat name]];
+    NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[selectedImmoScoutFlat numberOfRooms]];
+    NSString *space = [NSString stringWithFormat:@"Fläche: %f qm",[selectedImmoScoutFlat livingSpace]];
+    NSString *price = [NSString stringWithFormat:@"Preis: %f €",[selectedImmoScoutFlat price]];
     
+    // cutting the 0
+    space = [space substringToIndex:[space length]-7];
+    price = [price substringToIndex:[price length]-6];
+    
+    [lbFlatPrice setText:price];
+    [lbNumberOfRooms setText:rooms];
+    [lbLivingSpace setText:space];
+    // TODO: title should not be like description
+    [lbFlatDescription setText:[selectedImmoScoutFlat title]];
+    
+    // [price release];
+    // [rooms release];
+    // [space release];
+    
+    // Animation
+    [UIView beginAnimations:@"inAnimation" context:NULL];	
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];    
 	[UIView setAnimationDuration:0.4];
 	
 	CGPoint pos = calloutBubble.center;
@@ -195,13 +190,15 @@
 	
     [UIView commitAnimations]; 
     [self setIsCalloutBubbleIn:true];
+    [mapView deselectAnnotation:selectedImmoScoutFlat animated:NO];
 }
 
 - (IBAction)calloutBubbleOut {
-    [UIView beginAnimations:@"outAnimation" context:NULL];
-	
+    [UIView beginAnimations:@"outAnimation" context:NULL];	
 	[UIView setAnimationDuration:0.4];
-	
+	[UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
+    
 	CGPoint pos = calloutBubble.center;
 	pos.y = -292.0f;
 	calloutBubble.center = pos;
@@ -213,6 +210,14 @@
 -(void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
     if([animationID isEqualToString:@"inAnimation"]){
         NSLog(@"animation in");
+    } else if([animationID isEqualToString:@"outAnimation"]) {
+        NSLog(@"animation out");
+        
+        // checks wether it was called due the calloutBubble was inside the view
+        if(isOutInCall){
+            [self calloutBubbleIn];
+            [self setIsOutInCall:NO];
+        }
     }
 }
 
