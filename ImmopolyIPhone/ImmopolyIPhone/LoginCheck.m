@@ -22,11 +22,14 @@
     //For tests
     //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userToken"];
     
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    BOOL automaticLogin = [defaults boolForKey:@"saveToken"];
+    
     //if user is logged in show user profile data
     if([[ImmopolyManager instance] loginSuccessful]){
         [self notifyMyDelegateView];
     }
-    else if([[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"] != nil) {
+    else if([[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"] != nil && automaticLogin) {
         
         //get user token
         NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];

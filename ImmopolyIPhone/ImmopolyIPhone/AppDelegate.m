@@ -86,6 +86,8 @@
     // observer for taking over a flat error
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleHistoryResponse:) name:@"portfolio/add" object:nil];
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleErrorMsg:) name:@"portfolio/add fail" object:nil];
+    
+    [self enableAutomaticLogin];
 
     return YES;
 }
@@ -183,6 +185,13 @@
 
 - (void)locationError:(NSError *)error {
     NSLog(@"Your location not available!");
+}
+
+- (void)enableAutomaticLogin{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSDictionary *appDefaults = [NSDictionary dictionaryWithObject:@"YES" forKey:@"saveToken"];
+    [defaults registerDefaults:appDefaults];
+    [defaults synchronize];
 }
 
 @end
