@@ -166,6 +166,7 @@
 }
 
 - (void)calloutBubbleIn {
+    // that the flats are clickable through the imageview
     [mapView addSubview:calloutBubble];
     
     // setting text of labels in calloutBubble
@@ -195,14 +196,14 @@
 	[UIView setAnimationDuration:0.4];
 	
 	CGPoint pos = calloutBubble.center;
-	pos.y = 138.0f;
+	pos.y = 160.0f;
 	calloutBubble.center = pos;
 	
     [UIView commitAnimations]; 
     [self setIsCalloutBubbleIn:true];
-    [mapView deselectAnnotation:selectedImmoScoutFlat animated:NO];
-    
+    [mapView deselectAnnotation:selectedImmoScoutFlat animated:NO];    
     selViewForHouseImage.image = [UIImage imageNamed:@"house_green_selected.png"];
+    [mapView setZoomEnabled:NO];
 }
 
 - (IBAction)calloutBubbleOut {
@@ -213,13 +214,14 @@
     [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
     
 	CGPoint pos = calloutBubble.center;
-	pos.y = -292.0f;
+	pos.y = -320;
 	calloutBubble.center = pos;
 	
     [UIView commitAnimations];
     [self setIsCalloutBubbleIn:false];
     
     selViewForHouseImage.image = [UIImage imageNamed:@"house_green.png"];
+    [mapView setZoomEnabled:YES];
 }
 
 -(void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
