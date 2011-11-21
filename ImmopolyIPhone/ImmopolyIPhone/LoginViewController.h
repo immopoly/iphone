@@ -31,12 +31,13 @@
     IBOutlet UITextField *registerUserTwitter;
 }
 
--(IBAction) performLogin;
--(IBAction) dismissView;
+- (IBAction) performLogin;
+- (IBAction) dismissView;
 - (IBAction) performLogin;
 - (IBAction) showRegistrationView;
 - (IBAction) performRegistration;
 - (IBAction) closeRegistration;
+- (IBAction) dismissKeyboard;
 
 @property(nonatomic, retain) IBOutlet UITextField *userName;
 @property(nonatomic, retain) IBOutlet UITextField *password;

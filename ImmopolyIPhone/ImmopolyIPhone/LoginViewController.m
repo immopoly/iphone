@@ -208,10 +208,29 @@
 
 // moving the keyboard when a textfield is selected
 - (void)textFieldDidBeginEditing:(UITextField *)textField {   
+    
     [UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.4];
 	CGPoint pos = registerView.center;
 	pos.y = 117.0f;
+    registerView.center = pos;
+    [UIView commitAnimations];
+}
+
+// moving the keyboard when a the display is touched somewhere else
+- (IBAction) dismissKeyboard {
+    NSLog(@"dismiss keyboard");
+    [userName resignFirstResponder];
+    [password resignFirstResponder];
+    [registerUserName resignFirstResponder];
+    [registerUserPassword resignFirstResponder];
+    [registerUserEmail resignFirstResponder];
+    [registerUserTwitter resignFirstResponder];
+    
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.4];
+	CGPoint pos = registerView.center;
+	pos.y = 225.0f;
     registerView.center = pos;
     [UIView commitAnimations];
 }
