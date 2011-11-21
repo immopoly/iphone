@@ -119,9 +119,6 @@
                 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    //flats from portfolio
-    Flat *actFlat = [[[[ImmopolyManager instance] user] portfolio] objectAtIndex: indexPath.row];
-    
     NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PortfolioCell" owner:self options:nil];
     
     UITableViewCell *cell;
@@ -132,19 +129,32 @@
     if(cell==nil){
         cell = (UITableViewCell *)[nib objectAtIndex:0];
     }
-
-//    UIImageView *imgView = (UIImageView *)[cell viewWithTag:1];
+    
+    //    UIImageView *imgView = (UIImageView *)[cell viewWithTag:1];
     UILabel *lbStreet = (UILabel *)[cell viewWithTag:2];
     UILabel *lbRooms = (UILabel *)[cell viewWithTag:3];
     UILabel *lbSpace = (UILabel *)[cell viewWithTag:4];
     
-    NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[actFlat numberOfRooms]];
-    NSString *space = [NSString stringWithFormat:@"qm: %f",[actFlat livingSpace]];
+    //flats from portfolio
+    if([[[[ImmopolyManager instance] user] portfolio] count] > 0){
+        Flat *actFlat = [[[[ImmopolyManager instance] user] portfolio] objectAtIndex: indexPath.row];
     
-    [lbStreet setText: [actFlat title]];
-    //[lbStreet setText: actFlat.street]; 
-    //[lbRooms setText: rooms]; 
-    //[lbSpace setText: space]; 
+        //NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[actFlat numberOfRooms]];
+        //NSString *space = [NSString stringWithFormat:@"qm: %f",[actFlat livingSpace]];
+        //space = [space substringToIndex:[space length]-7];
+        
+        [lbStreet setText: [actFlat title]];
+        //[lbStreet setText: actFlat.street]; 
+        //[lbRooms setText: rooms]; 
+        //[lbSpace setText: space];
+    }
+    else {
+        NSLog(@"user portfolio object is empty!");
+        [lbStreet setHidden: YES];
+        [lbRooms setHidden: YES];
+        [lbSpace setHidden: YES];
+    }
+     
     return cell;
 }
 
@@ -216,56 +226,60 @@
     
     NSArray *coordinates = [self.portfolioMapView valueForKeyPath:@"annotations.coordinate"];
     
-    
-    CLLocationCoordinate2D maxCoord = {-90.0f, -180.0f};
-    
-    CLLocationCoordinate2D minCoord = {90.0f, 180.0f};
-    
-    
-    
-    for(NSValue *value in coordinates) {
+    if([coordinates count] > 0) {
+        CLLocationCoordinate2D maxCoord = {-90.0f, -180.0f};
         
-        CLLocationCoordinate2D coord = {0.0f, 0.0f};
+        CLLocationCoordinate2D minCoord = {90.0f, 180.0f};
         
-        [value getValue:&coord];
         
-        if(coord.longitude > maxCoord.longitude) {
+        
+        for(NSValue *value in coordinates) {
             
-            maxCoord.longitude = coord.longitude;
+            CLLocationCoordinate2D coord = {0.0f, 0.0f};
+            
+            [value getValue:&coord];
+            
+            if(coord.longitude > maxCoord.longitude) {
+                
+                maxCoord.longitude = coord.longitude;
+                
+            }
+            
+            if(coord.latitude > maxCoord.latitude) {
+                
+                maxCoord.latitude = coord.latitude;
+                
+            }
+            
+            if(coord.longitude < minCoord.longitude) {
+                
+                minCoord.longitude = coord.longitude;
+                
+            }
+            
+            if(coord.latitude < minCoord.latitude) {
+                
+                minCoord.latitude = coord.latitude;
+                
+            }
             
         }
         
-        if(coord.latitude > maxCoord.latitude) {
-            
-            maxCoord.latitude = coord.latitude;
-            
-        }
+        MKCoordinateRegion region = {{0.0f, 0.0f}, {0.0f, 0.0f}};
         
-        if(coord.longitude < minCoord.longitude) {
-            
-            minCoord.longitude = coord.longitude;
-            
-        }
+        region.center.longitude = (minCoord.longitude + maxCoord.longitude) / 2.0;
         
-        if(coord.latitude < minCoord.latitude) {
-            
-            minCoord.latitude = coord.latitude;
-            
-        }
+        region.center.latitude = (minCoord.latitude + maxCoord.latitude) / 2.0;
         
+        region.span.longitudeDelta = maxCoord.longitude - minCoord.longitude;
+        
+        region.span.latitudeDelta = maxCoord.latitude - minCoord.latitude;
+        
+        [self.portfolioMapView setRegion:region animated:YES]; 
+    } else {
+        // zoom to germany? ^^
     }
-    
-    MKCoordinateRegion region = {{0.0f, 0.0f}, {0.0f, 0.0f}};
-    
-    region.center.longitude = (minCoord.longitude + maxCoord.longitude) / 2.0;
-    
-    region.center.latitude = (minCoord.latitude + maxCoord.latitude) / 2.0;
-    
-    region.span.longitudeDelta = maxCoord.longitude - minCoord.longitude;
-    
-    region.span.latitudeDelta = maxCoord.latitude - minCoord.latitude;
-    
-    [self.portfolioMapView setRegion:region animated:YES];  
+     
     
 }
 

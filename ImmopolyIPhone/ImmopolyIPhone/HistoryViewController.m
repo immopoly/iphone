@@ -73,13 +73,15 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    int numRows = [[[[ImmopolyManager instance] user] history] count]; 
+    /*int numRows = [[[[ImmopolyManager instance] user] history] count]; 
     if(numRows > 0){
         return numRows;
     }
     else {
         return 1;
     }
+     */
+    return [[[[ImmopolyManager instance] user] history] count]; 
 }
 
 
