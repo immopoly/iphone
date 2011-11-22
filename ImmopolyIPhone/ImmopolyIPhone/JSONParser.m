@@ -85,6 +85,10 @@
             
             Flat *myFlat = [[Flat alloc] initWithName:[realEstate objectForKey:@"title"] description:[realEstate objectForKey:@"descriptionNote"] coordinate:tempCoord exposeId:[[location objectForKey:@"realEstateId"] intValue]];
             
+            [myFlat setExposeId:[[realEstate objectForKey:@"@id"]intValue]];
+            
+            
+            
             //parse realEstate
             [myFlat setPriceValue: [realEstate objectForKey:@"baseRent"]];
             

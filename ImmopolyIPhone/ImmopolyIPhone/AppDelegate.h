@@ -27,6 +27,7 @@
 - (void) startLocationUpdate;
 - (void) geocodeLocation:(CLLocation *)location;
 -(void)handleHistoryResponse:(NSNotification *)notification;
+-(void)handleErrorMsg:(NSNotification *)notification;
 - (void)enableAutomaticLogin;
 
 @end

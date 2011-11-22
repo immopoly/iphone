@@ -13,7 +13,7 @@
 
 @implementation PortfolioViewController
 
-@synthesize tvCell, table, segmentedControl, portfolioMapView, loginCheck;
+@synthesize tvCell, table, segmentedControl, portfolioMapView, loginCheck,calloutBubble,isOutInCall,isCalloutBubbleIn,selectedExposeId,selViewForHouseImage,selectedImmoScoutFlat,lbFlatDescription,lbFlatName,lbFlatPrice,lbLivingSpace,adressLabel,lbNumberOfRooms,exposeWebViewController;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 { 
@@ -46,6 +46,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    // that only the background is transparent and not the whole view
+    calloutBubble.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
 }
 
 - (void)viewDidUnload
@@ -61,6 +63,10 @@
     
     [super viewDidAppear:animated];
     [[self table]reloadData];
+    
+    CGPoint pos = calloutBubble.center;
+	pos.y = -320.0f;
+	calloutBubble.center = pos;
     
 }
 
@@ -159,6 +165,10 @@
 }
 
 -(IBAction) segmentedControlIndexChanged{
+    CGPoint pos = calloutBubble.center;
+	pos.y = -320.0f;
+	calloutBubble.center = pos;
+    
     CGPoint posMap;
     CGPoint posTable;
     NSLog(@"selIndex: %d", segmentedControl.selectedSegmentIndex);
@@ -193,7 +203,28 @@
 }
 
 - (void)mapView:(MKMapView *)mpView didSelectAnnotationView:(MKAnnotationView *)view{
-    //TODO: handle click
+    if(isCalloutBubbleIn){
+        [self setIsOutInCall:YES];
+        [self calloutBubbleOut];
+    }
+    if([view.annotation isKindOfClass:[Flat class]]) {
+        [self setSelViewForHouseImage:view];
+        Flat *location = (Flat *) view.annotation;
+        [self setSelectedImmoScoutFlat:location]; 
+        
+        // moving the coordinates, that it doesn't zoom to the center, but a bit under it 
+        CLLocationCoordinate2D zoomLocation = location.coordinate;
+        zoomLocation.latitude = zoomLocation.latitude + 0.003;
+        zoomLocation.longitude = zoomLocation.longitude + 0.0006;
+        
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.3*METERS_PER_MILE, 0.3*METERS_PER_MILE);
+        MKCoordinateRegion adjustedRegion = [mpView regionThatFits:viewRegion];                
+        [mpView setRegion:adjustedRegion animated:YES];   
+        
+        if (![location.title compare:@"My Location"] == NSOrderedSame && !isOutInCall) {
+            [self calloutBubbleIn];
+        }
+    }
     
 }
 
@@ -282,5 +313,82 @@
      
     
 }
+
+- (void)calloutBubbleIn {
+    // that the flats are clickable through the imageview
+    [portfolioMapView addSubview:calloutBubble];
+    
+    // setting text of labels in calloutBubble
+    [lbFlatName setText:[selectedImmoScoutFlat name]];
+    NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[selectedImmoScoutFlat numberOfRooms]];
+    NSString *space = [NSString stringWithFormat:@"Fläche: %f qm",[selectedImmoScoutFlat livingSpace]];
+    NSString *price = [NSString stringWithFormat:@"Preis: %f €",[selectedImmoScoutFlat price]];
+    
+    // TODO: cutting the 0 in a better way
+    space = [space substringToIndex:[space length]-7];
+    price = [price substringToIndex:[price length]-6];
+    
+    [lbFlatPrice setText:price];
+    [lbNumberOfRooms setText:rooms];
+    [lbLivingSpace setText:space];
+    // TODO: title should not be like description
+    [lbFlatDescription setText:[selectedImmoScoutFlat title]];
+    
+    // Animation
+    [UIView beginAnimations:@"inAnimation" context:NULL];	
+    [UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];    
+	[UIView setAnimationDuration:0.4];
+	
+	CGPoint pos = calloutBubble.center;
+	pos.y = 180.0f;
+	calloutBubble.center = pos;
+	
+    [UIView commitAnimations]; 
+    [self setIsCalloutBubbleIn:true];
+    [portfolioMapView deselectAnnotation:selectedImmoScoutFlat animated:NO];    
+    selViewForHouseImage.image = [UIImage imageNamed:@"house_green_selected.png"];
+    [portfolioMapView setZoomEnabled:NO];
+}
+
+- (IBAction)calloutBubbleOut {
+    
+    [UIView beginAnimations:@"outAnimation" context:NULL];	
+	[UIView setAnimationDuration:0.4];
+	[UIView setAnimationDelegate:self];
+    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
+    
+	CGPoint pos = calloutBubble.center;
+	pos.y = -320;
+	calloutBubble.center = pos;
+	
+    [UIView commitAnimations];
+    [self setIsCalloutBubbleIn:false];
+    
+    selViewForHouseImage.image = [UIImage imageNamed:@"house_green.png"];
+    [portfolioMapView setZoomEnabled:YES];
+}
+
+-(void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
+    if([animationID isEqualToString:@"inAnimation"]){
+        NSLog(@"animation in");
+    } else if([animationID isEqualToString:@"outAnimation"]) {
+        NSLog(@"animation out");
+        [calloutBubble removeFromSuperview];
+        // checks wether it was called due the calloutBubble was inside the view
+        if(isOutInCall){
+            [self calloutBubbleIn];
+            [self setIsOutInCall:NO];
+        }
+    }
+}
+
+-(IBAction)showFlatsWebView {
+    exposeWebViewController = [[WebViewController alloc]init];
+    //[exposeWebViewController setSelectedExposeId:[self selectedExposeId]];
+    [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
+    [self.view addSubview:exposeWebViewController.view];
+}
+
 
 @end
