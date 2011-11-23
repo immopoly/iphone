@@ -104,9 +104,6 @@
         [loader setDelegate:self];
         
         [loader performLogin: [userName text] password: [password text]];
-        
-//        [userName resignFirstResponder];
-//        [password resignFirstResponder];
     }
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Wrong input" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -134,9 +131,9 @@
     [delegate closeMyDelegateView];
     [self dismissModalViewControllerAnimated:YES];
 }
+
+// methods for user registration
 -(IBAction)showRegistrationView {
-//   [[self view]addSubview:registerView];
-    
     [UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.4];
 	CGPoint pos = registerView.center;
@@ -173,8 +170,6 @@
 	pos.x = 480.0f;
     registerView.center = pos;
     [UIView commitAnimations];
-    
-//    [registerView removeFromSuperview];
 }
 
 -(void) registerWithResult:(BOOL)result {
@@ -206,7 +201,7 @@
     return YES;
 }
 
-// moving the keyboard when a textfield is selected
+// moving the registration view when a textfield is selected
 - (void)textFieldDidBeginEditing:(UITextField *)textField {   
     
     [UIView beginAnimations:nil context:NULL];
@@ -217,7 +212,7 @@
     [UIView commitAnimations];
 }
 
-// moving the keyboard when a the display is touched somewhere else
+// dismissing the keyboard when the display is touched somewhere else
 - (IBAction) dismissKeyboard {
     NSLog(@"dismiss keyboard");
     [userName resignFirstResponder];

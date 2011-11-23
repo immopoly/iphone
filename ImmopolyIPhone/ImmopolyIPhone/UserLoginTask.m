@@ -19,6 +19,7 @@
     [data release];
 }
 
+// TODO: releasing url and request (not possible?)
 - (void)performLogin:(NSString *)userName password:(NSString *)password {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/login?username=%@&password=%@",userName, password]];
    
@@ -30,9 +31,9 @@
     if ([self connection]) {
         [self setData: [[NSMutableData data] retain]];
     }
-    
 }
 
+// TODO: releasing url and request (not possible?)
 - (void)performLoginWithToken:(NSString *) userToken {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/info?token=%@", userToken]];
     
@@ -44,7 +45,6 @@
     if ([self connection]) {
         [self setData: [[NSMutableData data] retain]];
     }
-    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)d {
