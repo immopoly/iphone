@@ -35,5 +35,6 @@
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 
 -(void) displayUserData;
+-(void) hideLabels: (BOOL) hidden;
 
 @end
