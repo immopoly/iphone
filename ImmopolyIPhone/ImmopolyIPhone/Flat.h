@@ -36,7 +36,7 @@
 
 }
 
-@property(nonatomic, readonly) int exposeId;
+@property(nonatomic, assign) int exposeId;
 @property(nonatomic, assign) int houseNumber;
 @property(nonatomic, assign) int numberOfRooms;
 

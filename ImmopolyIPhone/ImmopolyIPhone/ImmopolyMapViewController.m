@@ -68,7 +68,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     CGPoint pos = calloutBubble.center;
-	pos.y = -292.0f;
+	pos.y = -320.0f;
 	calloutBubble.center = pos;
 	
 }
