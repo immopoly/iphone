@@ -37,6 +37,7 @@
     IBOutlet UILabel *lbFlatPrice;
     IBOutlet UILabel *lbNumberOfRooms;
     IBOutlet UILabel *lbLivingSpace;
+    IBOutlet UIActivityIndicatorView *spinner;
 }
 
 @property (nonatomic, retain) UITableViewCell *tvCell;
@@ -57,6 +58,8 @@
 @property(nonatomic, retain) IBOutlet UILabel *lbNumberOfRooms;
 @property(nonatomic, retain) IBOutlet UILabel *lbLivingSpace;
 @property(nonatomic, retain) WebViewController *exposeWebViewController;
+
+@property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 
 -(IBAction) segmentedControlIndexChanged;
 - (IBAction)calloutBubbleOut;

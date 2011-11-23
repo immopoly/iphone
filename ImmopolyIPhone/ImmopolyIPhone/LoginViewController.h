@@ -32,7 +32,7 @@
 }
 
 - (IBAction) performLogin;
-- (IBAction) dismissView;
+- (IBAction) closeMyself;
 - (IBAction) performLogin;
 - (IBAction) showRegistrationView;
 - (IBAction) performRegistration;

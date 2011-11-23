@@ -13,7 +13,7 @@
 
 @implementation HistoryViewController
 
-@synthesize tvCell, table, loginCheck;
+@synthesize tvCell, table, loginCheck, spinner;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,6 +40,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[self table] setHidden: YES];
+    [spinner startAnimating];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -51,6 +53,9 @@
 
 -(void) displayUserData {
     [table reloadData];
+    [spinner stopAnimating];
+    [spinner setHidden:YES];
+    [[self table] setHidden: NO];
 }
 
 - (void)viewDidUnload
@@ -165,6 +170,7 @@
     [tvCell release];
     [table release];
     [loginCheck release];
+    [spinner release];
     [super dealloc];
 }
 
