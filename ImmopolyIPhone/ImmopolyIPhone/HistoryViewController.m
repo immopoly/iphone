@@ -116,8 +116,10 @@
         // Convert string to date object
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
-        [dateFormatter setDateFormat:@"dd.MM.yyyy 'at' HH:mm"];
-        NSDate *date = [NSDate dateWithTimeIntervalSinceReferenceDate:[historyEntry time]];//328000000]; //1321003717350  
+        [dateFormatter setDateFormat:@"'am' dd.MM.yyyy 'um' HH:mm 'Uhr'"];
+        
+        double timeInterval = [historyEntry time]/1000; //1321922162430
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
         
         NSString *formattedDateString = [dateFormatter stringFromDate:date];
         NSLog(@"formattedDateString: %@", formattedDateString);
@@ -147,9 +149,9 @@
         lbTime.textColor = color;
         lbText.textColor = color;
         
-        NSString *time = [NSString stringWithFormat:@"%d", [historyEntry time]];
-        [lbTime setText: time]; 
-        //    [lbTime setText: formattedDateString]; 
+//        NSString *time = [NSString stringWithFormat:@"%d", [historyEntry time]];
+//        [lbTime setText: time]; 
+        [lbTime setText: formattedDateString]; 
         [lbText setText: [historyEntry histText]];
     } 
     else {

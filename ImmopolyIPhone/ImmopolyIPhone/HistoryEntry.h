@@ -10,13 +10,13 @@
 
 @interface HistoryEntry : NSObject{
     NSString *histText;
-    double time;
+    long long time;
     int type;
     int type2;
 }
 
 @property(nonatomic, retain) NSString *histText;
-@property(nonatomic, assign) double time;
+@property(nonatomic, assign) long long time;
 @property(nonatomic, assign) int type;
 @property(nonatomic, assign) int type2;
 @end
