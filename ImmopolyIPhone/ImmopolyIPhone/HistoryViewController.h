@@ -14,10 +14,12 @@
     IBOutlet UITableViewCell *tvCell;
     IBOutlet UITableView *table;
     LoginCheck *loginCheck;
+    IBOutlet UIActivityIndicatorView *spinner;
 }
 
 @property (nonatomic, retain) UITableViewCell *tvCell;
 @property (nonatomic, retain) UITableView *table;
 @property(nonatomic, retain) LoginCheck *loginCheck;
+@property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 
 @end

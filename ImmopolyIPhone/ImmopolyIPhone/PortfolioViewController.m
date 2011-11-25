@@ -13,7 +13,7 @@
 
 @implementation PortfolioViewController
 
-@synthesize tvCell, table, segmentedControl, portfolioMapView, loginCheck,calloutBubble,isOutInCall,isCalloutBubbleIn,selectedExposeId,selViewForHouseImage,selectedImmoScoutFlat,lbFlatDescription,lbFlatName,lbFlatPrice,lbLivingSpace,adressLabel,lbNumberOfRooms,exposeWebViewController;
+@synthesize tvCell, table, segmentedControl, portfolioMapView, loginCheck,calloutBubble,isOutInCall,isCalloutBubbleIn,selectedExposeId,selViewForHouseImage,selectedImmoScoutFlat,lbFlatDescription,lbFlatName,lbFlatPrice,lbLivingSpace,adressLabel,lbNumberOfRooms,exposeWebViewController, spinner;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 { 
@@ -30,6 +30,7 @@
 - (void)dealloc {
     [segmentedControl release];
     [loginCheck release];
+    [spinner release];
     [super dealloc];
 }
 
@@ -48,6 +49,9 @@
     [super viewDidLoad];
     // that only the background is transparent and not the whole view
     calloutBubble.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    
+    [[self table] setHidden: YES];
+    [spinner startAnimating];
 }
 
 - (void)viewDidUnload
@@ -86,6 +90,10 @@
     }
     
     [self recenterMap];
+    
+    [spinner stopAnimating];
+    [spinner setHidden:YES];
+    [[self table] setHidden: NO];
 }
 
 

@@ -121,13 +121,13 @@
         [delegate notifyMyDelegateView];
         //dismiss modal view
         [self dismissModalViewControllerAnimated:YES];
-    }else{
+    } else {
         [userName setEnabled:YES];
         [password setEnabled:YES];
     }
 }
 
--(IBAction) dismissView {
+-(IBAction) closeMyself {
     [delegate closeMyDelegateView];
     [self dismissModalViewControllerAnimated:YES];
 }

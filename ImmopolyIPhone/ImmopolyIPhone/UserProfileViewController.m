@@ -13,7 +13,7 @@
 
 @implementation UserProfileViewController
 
-@synthesize hello, bank, miete, provision, loginCheck;
+@synthesize hello, bank, miete, provision, loginCheck, spinner, labelBank, labelMiete, labelProvision;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -41,12 +41,24 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self hideLabels: YES];
+    [spinner startAnimating];
 }
 
 -(void) viewDidAppear:(BOOL)animated {
     loginCheck.delegate = self;
     [loginCheck checkUserLogin];
     [super viewDidAppear:animated];
+}
+
+-(void) hideLabels: (BOOL) hidden {
+    [hello setHidden: hidden];
+    [bank setHidden: hidden];
+    [miete setHidden: hidden];
+    [provision setHidden: hidden];
+    [labelBank setHidden: hidden];
+    [labelMiete setHidden: hidden];
+    [labelProvision setHidden: hidden];
 }
 
 -(void) displayUserData {
@@ -57,6 +69,11 @@
     [bank setText: [NSString stringWithFormat: @"%.2f", [myUser balance]]];
     [miete setText: [NSString stringWithFormat: @"%.2f", [myUser lastRent]]];
     [provision setText: [NSString stringWithFormat: @"%.2f", [myUser lastProvision]]];
+    
+    [spinner stopAnimating];
+    [spinner setHidden: YES];
+    
+    [self hideLabels: NO];
 }
 
 - (void)viewDidUnload
@@ -77,7 +94,11 @@
     [bank release];
     [miete release];
     [provision release];
+    [labelBank release];
+    [labelMiete release];
+    [labelProvision release];
     [loginCheck release];
+    [spinner release];
     [super dealloc];
 }
 
