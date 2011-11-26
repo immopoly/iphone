@@ -54,7 +54,9 @@
         [self notifyMyDelegateView];
     }
     else {
-        [delegate stopSpinnerAnimation];
+        if(![delegate isKindOfClass: [WebViewController class]]) {
+            [delegate stopSpinnerAnimation];
+        }
     }
 }
 

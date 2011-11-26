@@ -22,4 +22,6 @@
 @property(nonatomic, retain) LoginCheck *loginCheck;
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 
+-(void) stopSpinnerAnimation;
+
 @end

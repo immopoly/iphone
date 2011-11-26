@@ -36,5 +36,6 @@
 
 -(void) displayUserData;
 -(void) hideLabels: (BOOL) hidden;
+-(void) stopSpinnerAnimation;
 
 @end

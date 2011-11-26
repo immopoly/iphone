@@ -74,6 +74,7 @@
 - (void)recenterMap;
 - (void)calloutBubbleIn;
 - (IBAction)showAllFlats;
+- (void)stopSpinnerAnimation;
 
 
 @end

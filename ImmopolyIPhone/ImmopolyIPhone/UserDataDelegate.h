@@ -11,6 +11,5 @@
 @protocol UserDataDelegate <NSObject>
 
 -(void) displayUserData;
--(void) stopSpinnerAnimation;
 
 @end
