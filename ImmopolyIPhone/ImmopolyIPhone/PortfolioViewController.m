@@ -13,7 +13,7 @@
 
 @implementation PortfolioViewController
 
-@synthesize tvCell, table, segmentedControl, portfolioMapView, loginCheck,calloutBubble,isOutInCall,isCalloutBubbleIn,selectedExposeId,selViewForHouseImage,selectedImmoScoutFlat,lbFlatDescription,lbFlatName,lbFlatPrice,lbLivingSpace,adressLabel,lbNumberOfRooms,exposeWebViewController, spinner;
+@synthesize tvCell, table, segmentedControl, portfolioMapView, loginCheck,calloutBubble,isOutInCall,isCalloutBubbleIn,selectedExposeId,selViewForHouseImage,selectedImmoScoutFlat,lbFlatDescription,lbFlatName,lbFlatPrice,lbLivingSpace,adressLabel,lbNumberOfRooms,exposeWebViewController, spinner, asyncImageViewList;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 { 
@@ -74,6 +74,11 @@
     
 }
 
+-(void) stopSpinnerAnimation {
+    [spinner stopAnimating];
+    [spinner setHidden: YES];
+}
+
 -(void) displayUserData {
     [table reloadData];
     
@@ -91,8 +96,7 @@
     
     [self recenterMap];
     
-    [spinner stopAnimating];
-    [spinner setHidden:YES];
+    [self stopSpinnerAnimation];
     [[self table] setHidden: NO];
 }
 
@@ -159,7 +163,7 @@
         cell = (UITableViewCell *)[nib objectAtIndex:0];
     }
     
-    //    UIImageView *imgView = (UIImageView *)[cell viewWithTag:1];
+    asyncImageViewList = (AsynchronousImageView *)[cell viewWithTag:1];
     UILabel *lbStreet = (UILabel *)[cell viewWithTag:2];
     UILabel *lbRooms = (UILabel *)[cell viewWithTag:3];
     UILabel *lbSpace = (UILabel *)[cell viewWithTag:4];
@@ -172,6 +176,7 @@
         //NSString *space = [NSString stringWithFormat:@"qm: %f",[actFlat livingSpace]];
         //space = [space substringToIndex:[space length]-7];
         
+        [asyncImageViewList loadImageFromURLString:@""];
         [lbStreet setText: [actFlat title]];
         //[lbStreet setText: actFlat.street]; 
         //[lbRooms setText: rooms]; 

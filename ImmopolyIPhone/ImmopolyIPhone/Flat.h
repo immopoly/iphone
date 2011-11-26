@@ -31,6 +31,7 @@
     NSString *currency;
     NSString *priceValue;
     NSString *priceIntervaleType;
+    NSString *pictureUrl;
 
     CLLocationCoordinate2D coordinate;
 
@@ -56,6 +57,7 @@
 @property(nonatomic, retain) NSString *currency;
 @property(nonatomic, retain) NSString *priceValue;
 @property(nonatomic, retain) NSString *priceIntervaleType;
+@property(nonatomic, retain) NSString *pictureUrl;
 @property(nonatomic, readonly) CLLocationCoordinate2D coordinate;
 
 

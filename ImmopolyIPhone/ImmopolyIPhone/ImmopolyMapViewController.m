@@ -11,10 +11,11 @@
 #import "Flat.h"
 #import "AppDelegate.h"
 #import "UserLoginTask.h"
+#import "AsynchronousImageView.h"
 
 @implementation ImmopolyMapViewController
 
-@synthesize mapView, adressLabel, calloutBubble,selectedExposeId, lbFlatName, lbFlatDescription, lbFlatPrice, lbNumberOfRooms, lbLivingSpace,selectedImmoScoutFlat, isCalloutBubbleIn, isOutInCall, selViewForHouseImage;
+@synthesize mapView, adressLabel, calloutBubble,selectedExposeId, lbFlatName, lbFlatDescription, lbFlatPrice, lbNumberOfRooms, lbLivingSpace,selectedImmoScoutFlat, isCalloutBubbleIn, isOutInCall, selViewForHouseImage, asyncImageView;
 
 -(void)dealloc{
     [super dealloc];
@@ -174,6 +175,9 @@
     NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[selectedImmoScoutFlat numberOfRooms]];
     NSString *space = [NSString stringWithFormat:@"Fläche: %f qm",[selectedImmoScoutFlat livingSpace]];
     NSString *price = [NSString stringWithFormat:@"Preis: %f €",[selectedImmoScoutFlat price]];
+   
+    // setting the image
+    [asyncImageView loadImageFromURLString:[selectedImmoScoutFlat pictureUrl]];
     
     // TODO: cutting the 0 in a better way
     space = [space substringToIndex:[space length]-7];
@@ -184,10 +188,6 @@
     [lbLivingSpace setText:space];
     // TODO: title should not be like description
     [lbFlatDescription setText:[selectedImmoScoutFlat title]];
-    
-    // [price release];
-    // [rooms release];
-    // [space release];
     
     // Animation
     [UIView beginAnimations:@"inAnimation" context:NULL];	

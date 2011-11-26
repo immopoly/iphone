@@ -10,6 +10,7 @@
 
 @protocol UserDataDelegate <NSObject>
 
-- (void)displayUserData;
+-(void) displayUserData;
+-(void) stopSpinnerAnimation;
 
 @end
