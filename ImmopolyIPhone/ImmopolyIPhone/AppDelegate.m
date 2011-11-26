@@ -90,6 +90,8 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleHistoryResponse:) name:@"portfolio/remove" object:nil];
     
     [self enableAutomaticLogin];
+    
+    sleep(3);
 
     return YES;
 }

@@ -21,7 +21,6 @@
 		6D368F7814632E15003113C5 /* tab_portfolio.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D368F7514632E15003113C5 /* tab_portfolio.png */; };
 		6D368F7914632E15003113C5 /* tab_map.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D368F7614632E15003113C5 /* tab_map.png */; };
 		6D7BC32E146C50160033D3FE /* house_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7BC32D146C50160033D3FE /* house_green.png */; };
-		6D7BC330146C583A0033D3FE /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7BC32F146C583A0033D3FE /* icon.png */; };
 		6DA75CB3145C12580079B32C /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C62145C12580079B32C /* ASIAuthenticationDialog.m */; };
 		6DA75CB4145C12580079B32C /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C65145C12580079B32C /* ASIDataCompressor.m */; };
 		6DA75CB5145C12580079B32C /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C67145C12580079B32C /* ASIDataDecompressor.m */; };
@@ -106,6 +105,8 @@
 		D2E53FC2148133AA0042B205 /* default_house.png in Resources */ = {isa = PBXBuildFile; fileRef = D2E53FC1148133AA0042B205 /* default_house.png */; };
 		D2E53FC5148136AB0042B205 /* AsynchronousImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53FC4148136AB0042B205 /* AsynchronousImageView.m */; };
 		D2E53FCF148148780042B205 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E53FCE148148780042B205 /* MessageUI.framework */; };
+		D2E53FD514818F4C0042B205 /* Metallicrahmen_Icon_forrent_2_114x114 Kopie.png in Resources */ = {isa = PBXBuildFile; fileRef = D2E53FD414818F4B0042B205 /* Metallicrahmen_Icon_forrent_2_114x114 Kopie.png */; };
+		D2E53FD71481909E0042B205 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2E53FD61481909D0042B205 /* Default@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -305,6 +306,8 @@
 		D2E53FC3148136AB0042B205 /* AsynchronousImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousImageView.h; sourceTree = "<group>"; };
 		D2E53FC4148136AB0042B205 /* AsynchronousImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousImageView.m; sourceTree = "<group>"; };
 		D2E53FCE148148780042B205 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
+		D2E53FD414818F4B0042B205 /* Metallicrahmen_Icon_forrent_2_114x114 Kopie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Metallicrahmen_Icon_forrent_2_114x114 Kopie.png"; path = "../Metallicrahmen_Icon_forrent_2_114x114 Kopie.png"; sourceTree = "<group>"; };
+		D2E53FD61481909D0042B205 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +335,8 @@
 		6D368F6114631469003113C5 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D2E53FD61481909D0042B205 /* Default@2x.png */,
+				D2E53FD414818F4B0042B205 /* Metallicrahmen_Icon_forrent_2_114x114 Kopie.png */,
 				D2E53FC1148133AA0042B205 /* default_house.png */,
 				6D0F9AAC14799CE900D0C59F /* house_orange.png */,
 				6D0F9AAD14799CE900D0C59F /* house_red.png */,
@@ -753,7 +758,6 @@
 				6DBCBDCC146B229400545897 /* HistoryCell.xib in Resources */,
 				6DBCBDCE146B326B00545897 /* tab_history.png in Resources */,
 				6D7BC32E146C50160033D3FE /* house_green.png in Resources */,
-				6D7BC330146C583A0033D3FE /* icon.png in Resources */,
 				6D129CA6146D47EF00CE52F5 /* plate.png in Resources */,
 				D22F594C14793BEB008918A9 /* Settings.bundle in Resources */,
 				6D0F9AAF14799CE900D0C59F /* house_orange.png in Resources */,
@@ -761,6 +765,8 @@
 				6D0F9AB31479A15400D0C59F /* house_green_selected.png in Resources */,
 				D2E53FA3148129A20042B205 /* FBConnect.bundle in Resources */,
 				D2E53FC2148133AA0042B205 /* default_house.png in Resources */,
+				D2E53FD514818F4C0042B205 /* Metallicrahmen_Icon_forrent_2_114x114 Kopie.png in Resources */,
+				D2E53FD71481909E0042B205 /* Default@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
