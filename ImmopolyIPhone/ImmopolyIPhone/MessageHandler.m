@@ -10,7 +10,9 @@
 
 @implementation MessageHandler
 
-+ (NSString *)giveErrorMsg:(int)errorCode{
++ (NSString *)giveErrorMsg:(NSError*) error {
+    
+    int errorCode = [error code];
     NSString *errorMsg;
     
     switch (errorCode) {
@@ -45,18 +47,16 @@
         case 201:
             errorMsg = [[NSString alloc]initWithString:@"Dieses Expose gehört dir schon!"];
             break;
-
         case 302:
             errorMsg = [[NSString alloc]initWithString:@"Das Expose hat keinen Wert für Kaltmiete, sie kann nicht übernommen werden."];
             break;
-
         case 301:
-            errorMsg = [[NSString alloc]initWithString:@"Das Expose gibt es nicht"];
-            break;            
+            errorMsg = [[NSString alloc] initWithString:@"Das Expose gibt es nicht"];
+            break;
         default:
+            errorMsg = [[NSString alloc] initWithFormat: @"Error %i: %@", errorCode, [[error userInfo] objectForKey: @"ErrorMessage"] ];
             break;
     }
-    
     return errorMsg;
 }
 

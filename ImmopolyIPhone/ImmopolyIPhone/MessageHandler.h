@@ -10,6 +10,6 @@
 
 @interface MessageHandler : NSObject
 
-+ (NSString *)giveErrorMsg:(int)errorCode;
++ (NSString *)giveErrorMsg:(NSError*) error;
 
 @end

@@ -36,7 +36,7 @@
 -(void)handleHistoryResponse:(NSNotification *)notification {
     HistoryEntry *histEntry= [[notification userInfo] valueForKey:@"histEntry"];
     
-    UIAlertView *infoAlert = [[UIAlertView alloc]initWithTitle:@"Info" message:[histEntry histText] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    UIAlertView *infoAlert = [[UIAlertView alloc]initWithTitle:@"Info" message:[histEntry histText] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [infoAlert show];
     [infoAlert release];
 }
@@ -44,7 +44,7 @@
 -(void)handleErrorMsg:(NSNotification *)notification {
     NSError *err= [[notification userInfo] valueForKey:@"error"];
     
-    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:[MessageHandler giveErrorMsg:[err code]] delegate:nil cancelButtonTitle:@"Ok" otherButtonTitles:nil];
+    UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:[MessageHandler giveErrorMsg:err] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [errorAlert show];
     [errorAlert release];
 }
@@ -88,7 +88,6 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleErrorMsg:) name:@"portfolio/add fail" object:nil];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleHistoryResponse:) name:@"portfolio/remove" object:nil];
-    
     
     [self enableAutomaticLogin];
 
