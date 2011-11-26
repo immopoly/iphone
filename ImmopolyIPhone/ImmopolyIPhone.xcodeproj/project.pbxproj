@@ -92,6 +92,7 @@
 		D2C67D50145AA57A008C3295 /* ImmopolyHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D4D145AA57A008C3295 /* ImmopolyHistory.m */; };
 		D2C67D54145AA596008C3295 /* ImmopolyMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D52145AA596008C3295 /* ImmopolyMapViewController.m */; };
 		D2C67D55145AA596008C3295 /* ImmopolyMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C67D53145AA596008C3295 /* ImmopolyMapViewController.xib */; };
+		D2E53F76148113A20042B205 /* FlatRemoveTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F75148113A20042B205 /* FlatRemoveTask.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -263,6 +264,8 @@
 		D2C67D53145AA596008C3295 /* ImmopolyMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImmopolyMapViewController.xib; sourceTree = "<group>"; };
 		D2C67D59145AAA15008C3295 /* LocationDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationDelegate.h; sourceTree = "<group>"; };
 		D2C67D5A145AAF33008C3295 /* FlatsDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatsDelegate.h; sourceTree = "<group>"; };
+		D2E53F74148113A20042B205 /* FlatRemoveTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatRemoveTask.h; sourceTree = "<group>"; };
+		D2E53F75148113A20042B205 /* FlatRemoveTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatRemoveTask.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -516,6 +519,8 @@
 				D2A09C7A145EF936002646A1 /* FlatTakeOverTask.m */,
 				6D0F9A901475849000D0C59F /* UserRegisterTask.h */,
 				6D0F9A911475849000D0C59F /* UserRegisterTask.m */,
+				D2E53F74148113A20042B205 /* FlatRemoveTask.h */,
+				D2E53F75148113A20042B205 /* FlatRemoveTask.m */,
 			);
 			name = Tasks;
 			sourceTree = "<group>";
@@ -736,6 +741,7 @@
 				6DBCBDC8146B214300545897 /* HistoryViewController.m in Sources */,
 				4C9C4ED91471B4E500719E0E /* LoginCheck.m in Sources */,
 				6D0F9A921475849000D0C59F /* UserRegisterTask.m in Sources */,
+				D2E53F76148113A20042B205 /* FlatRemoveTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

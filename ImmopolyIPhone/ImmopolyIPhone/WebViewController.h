@@ -13,6 +13,7 @@
 	IBOutlet UIWebView *webView;
     //Spinner
     IBOutlet UIActivityIndicatorView *activityIndicator;
+    IBOutlet UIButton *flatActionButton;
     int selectedExposeId;
     Flat *selectedImmoscoutFlat;
     LoginCheck *loginCheck;
@@ -23,8 +24,10 @@
 @property (nonatomic, assign) int selectedExposeId;
 @property (nonatomic, retain) Flat *selectedImmoscoutFlat;
 @property(nonatomic, retain) LoginCheck *loginCheck;
+@property(nonatomic, retain) IBOutlet UIButton *flatActionButton;
 
 -(IBAction)goBack;
--(IBAction)takeOver;
+-(IBAction)flatAction;
+-(void)reloadData;
 
 @end

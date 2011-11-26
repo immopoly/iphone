@@ -6,10 +6,11 @@
 #import "WebViewController.h"
 #import "ImmopolyManager.h"
 #import "FlatTakeOverTask.h"
+#import "FlatRemoveTask.h"
 
 @implementation WebViewController
 
-@synthesize webView,activityIndicator,selectedExposeId,selectedImmoscoutFlat, loginCheck;
+@synthesize webView,activityIndicator,selectedExposeId,selectedImmoscoutFlat, loginCheck,flatActionButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -28,7 +29,10 @@
 /*
  If you need to do additional setup after loading the view, override viewDidLoad. */
 - (void)viewDidLoad {
-	
+	[self reloadData];
+}
+
+-(void)reloadData{
     NSString *urlAddress = [[NSString alloc]initWithFormat:@"http://mobil.immobilienscout24.de/expose/%i",[selectedImmoscoutFlat exposeId]];
 	//NSString *urlAddress = @"http://mobil.immobilienscout24.de/expose/";
 	
@@ -41,6 +45,12 @@
 	
 	//Load the request in the UIWebView.
 	[webView loadRequest:requestObj];
+    
+    if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]) {
+        [flatActionButton setTitle: @"Wohnung abgeben" forState: UIControlStateNormal];
+    }else{
+        [flatActionButton setTitle: @"Wohnung übernehmen" forState: UIControlStateNormal];
+    }
 }
 
 
@@ -78,7 +88,7 @@
     activityIndicator.hidden=YES;
 }
 
--(IBAction)takeOver{
+-(IBAction)flatAction{
      
     //FlatTakeOverTask *flatTask = [[FlatTakeOverTask alloc]init];
     //[flatTask takeOverFlat:[self selectedImmoscoutFlat]];
@@ -87,9 +97,17 @@
 }
 
 -(void) displayUserData {
-    FlatTakeOverTask *flatTask = [[FlatTakeOverTask alloc]init];
-    [flatTask takeOverFlat:[self selectedImmoscoutFlat]];
+    
+    if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]) {
+        FlatRemoveTask *flatRemoveTask = [[FlatRemoveTask alloc]init];
+        [flatRemoveTask removeFlat:[self selectedImmoscoutFlat]];
+    }else{
+        FlatTakeOverTask *flatTask = [[FlatTakeOverTask alloc]init];
+        [flatTask takeOverFlat:[self selectedImmoscoutFlat]];
+    }
+    
     [self.view removeFromSuperview];
+    
 }
 
 @end

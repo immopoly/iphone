@@ -34,7 +34,6 @@
             //missing token
             errorMsg = [[NSString alloc]initWithString:@"Ups, da ging etwas schief. Probiere es später noch einmal!"];
             break;
-
         case 62:
             //token not found
             errorMsg = [[NSString alloc]initWithString:@"Ups, da ging etwas schief. Probiere es später noch einmal!"];
