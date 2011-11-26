@@ -44,22 +44,18 @@
 							<object class="IBUIImageView" id="5679236">
 								<reference key="NSNextResponder" ref="275262557"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 12}, {38, 38}}</string>
+								<string key="NSFrame">{{7, 15}, {60, 60}}</string>
 								<reference key="NSSuperview" ref="275262557"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="618809682"/>
 								<int key="IBUITag">1</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">default_house.png</string>
-								</object>
 							</object>
 							<object class="IBUILabel" id="618809682">
 								<reference key="NSNextResponder" ref="275262557"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{63, 6}, {110, 31}}</string>
+								<string key="NSFrame">{{75, 5}, {110, 31}}</string>
 								<reference key="NSSuperview" ref="275262557"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="89530565"/>
@@ -90,7 +86,7 @@
 							<object class="IBUILabel" id="89530565">
 								<reference key="NSNextResponder" ref="275262557"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{63, 37}, {85, 21}}</string>
+								<string key="NSFrame">{{75, 37}, {85, 21}}</string>
 								<reference key="NSSuperview" ref="275262557"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="20938709"/>
@@ -135,7 +131,6 @@
 								<string key="NSFrame">{{287, 60}, {25, 25}}</string>
 								<reference key="NSSuperview" ref="275262557"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -224,11 +219,11 @@
 						<int key="objectID">8</int>
 						<reference key="object" ref="144803153"/>
 						<array class="NSMutableArray" key="children">
-							<reference ref="618809682"/>
-							<reference ref="5679236"/>
 							<reference ref="20938709"/>
-							<reference ref="89530565"/>
 							<reference ref="290634983"/>
+							<reference ref="5679236"/>
+							<reference ref="618809682"/>
+							<reference ref="89530565"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -385,10 +380,6 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">default_house.png</string>
-			<string key="NS.object.0">{16, 16}</string>
-		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>
 </archive>

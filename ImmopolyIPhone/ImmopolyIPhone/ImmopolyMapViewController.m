@@ -219,7 +219,7 @@
 	
     [UIView commitAnimations];
     [self setIsCalloutBubbleIn:false];
-    
+    [asyncImageView resetImage];
     selViewForHouseImage.image = [UIImage imageNamed:@"house_green.png"];
     [mapView setZoomEnabled:YES];
 }
