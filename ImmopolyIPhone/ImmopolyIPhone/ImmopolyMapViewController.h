@@ -16,6 +16,8 @@
 #import "Flat.h"
 
 #define METERS_PER_MILE 1609.344
+#define ANNO_WIDTH 33
+#define ANNO_HEIGHT 30
 
 @interface ImmopolyMapViewController : UIViewController <LocationDelegate, MKMapViewDelegate> {
     MKMapView *mapView;
@@ -37,6 +39,11 @@
     Flat *selectedImmoScoutFlat;
     MKAnnotationView *selViewForHouseImage;
     IBOutlet AsynchronousImageView *asyncImageView;
+    
+    // variables vor clustering
+    float iphoneScaleFactorLatitude;
+    float iphoneScaleFactorLongitude;
+    CLLocationDegrees zoomLevel;
 }
 
 @property(nonatomic, retain) IBOutlet MKMapView *mapView;
@@ -53,6 +60,8 @@
 @property(nonatomic, assign) bool isOutInCall;
 @property(nonatomic, retain) MKAnnotationView *selViewForHouseImage;
 @property(nonatomic, retain) IBOutlet AsynchronousImageView *asyncImageView;
+@property(nonatomic, assign) float iphoneScaleFactorLatitude;
+@property(nonatomic, assign) float iphoneScaleFactorLongitude;
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation;
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view;
@@ -64,7 +73,7 @@
 -(IBAction)calloutBubbleOut;
 -(IBAction)showFlatsWebView;
 -(void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context;
-
+-(void)filterAnnotations:(NSArray *)flatsToFilter;
 
 
 @end
