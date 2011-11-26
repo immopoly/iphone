@@ -61,6 +61,11 @@
     [labelProvision setHidden: hidden];
 }
 
+-(void) stopSpinnerAnimation {
+    [spinner stopAnimating];
+    [spinner setHidden: YES];
+}
+
 -(void) displayUserData {
     
     ImmopolyUser *myUser = [[ImmopolyManager instance] user];
@@ -70,9 +75,7 @@
     [miete setText: [NSString stringWithFormat: @"%.2f", [myUser lastRent]]];
     [provision setText: [NSString stringWithFormat: @"%.2f", [myUser lastProvision]]];
     
-    [spinner stopAnimating];
-    [spinner setHidden: YES];
-    
+    [self stopSpinnerAnimation];
     [self hideLabels: NO];
 }
 

@@ -54,7 +54,7 @@
         [self notifyMyDelegateView];
     }
     else {
-        //tbd
+        [delegate stopSpinnerAnimation];
     }
 }
 

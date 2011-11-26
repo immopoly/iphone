@@ -69,6 +69,7 @@
         //Handle Error here
         NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:err forKey:@"error"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"user/login fail" object:nil userInfo:errorInfo];
+        [delegate loginWithResult:NO];
     }else{
         [[ImmopolyManager instance] setLoginSuccessful:YES];
         [delegate loginWithResult: YES];
