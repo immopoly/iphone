@@ -15,7 +15,7 @@
 
 @implementation ImmopolyMapViewController
 
-@synthesize mapView, adressLabel, calloutBubble,selectedExposeId, lbFlatName, lbFlatDescription, lbFlatPrice, lbNumberOfRooms, lbLivingSpace,selectedImmoScoutFlat, isCalloutBubbleIn, isOutInCall, selViewForHouseImage, asyncImageView;
+@synthesize mapView, adressLabel, calloutBubble,selectedExposeId, lbFlatName, lbFlatDescription, lbFlatPrice, lbNumberOfRooms, lbLivingSpace,selectedImmoScoutFlat, isCalloutBubbleIn, isOutInCall, selViewForHouseImage, asyncImageView, iphoneScaleFactorLatitude, iphoneScaleFactorLongitude;
 
 -(void)dealloc{
     [super dealloc];
@@ -57,7 +57,11 @@
    
     [ImmopolyManager instance].delegate = self;
     
-    
+    // calculation for clustering
+    CGFloat scrWidth = CGRectGetWidth(self.view.bounds);
+    CGFloat scrHeight = CGRectGetHeight(self.view.bounds);    
+    iphoneScaleFactorLatitude = (float) scrWidth/ANNO_WIDTH;
+    iphoneScaleFactorLongitude = (float) scrHeight/ANNO_HEIGHT;
 }
 
 - (void)viewDidUnload
@@ -243,6 +247,44 @@
     //[exposeWebViewController setSelectedExposeId:[self selectedExposeId]];
     [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
     [self.view addSubview:exposeWebViewController.view];
+}
+
+// method for clustering
+-(void)filterAnnotations:(NSArray *)flatsToFilter {
+    float latDelta = mapView.region.span.latitudeDelta/iphoneScaleFactorLatitude;
+    float longDelta = mapView.region.span.longitudeDelta/iphoneScaleFactorLongitude;
+    
+    NSMutableArray *flatsToShow=[[NSMutableArray alloc] initWithCapacity:0];
+    
+    for (int i=0; i<[flatsToFilter count]; i++) {
+        Flat *checkingLocation=[flatsToFilter objectAtIndex:i];
+        CLLocationDegrees latitude = [checkingLocation coordinate].latitude;
+        CLLocationDegrees longitude = [checkingLocation coordinate].longitude;
+        
+        bool found=FALSE;
+        
+        for (Flat *tempFlat in flatsToShow) {
+            if(fabs([tempFlat coordinate].latitude-latitude) < latDelta &&
+               fabs([tempFlat coordinate].longitude-longitude) <longDelta ) {
+                [mapView removeAnnotation:checkingLocation];
+                found=TRUE;
+                break;
+            }
+        }
+        if (!found) {
+            [flatsToShow addObject:checkingLocation];
+            [mapView addAnnotation:checkingLocation];
+        }
+    }
+    [flatsToShow release];
+
+}
+
+-(void)mapView:(MKMapView *)mpView regionDidChangeAnimated:(BOOL)animated{
+    if (zoomLevel != mpView.region.span.longitudeDelta) {
+        [self filterAnnotations: [[ImmopolyManager instance] immoScoutFlats]];
+        zoomLevel = mpView.region.span.longitudeDelta;
+    }
 }
 
 /*
