@@ -8,6 +8,16 @@
 			<key>Type</key>
 			<string>PSToggleSwitchSpecifier</string>
 			<key>Title</key>
+			<string>Facebook Logout</string>
+			<key>Key</key>
+			<string>facebook_logout</string>
+			<key>DefaultValue</key>
+			<false/>
+		</dict>
+		<dict>
+			<key>Type</key>
+			<string>PSToggleSwitchSpecifier</string>
+			<key>Title</key>
 			<string>Automatischer Login</string>
 			<key>Key</key>
 			<string>saveToken</string>
