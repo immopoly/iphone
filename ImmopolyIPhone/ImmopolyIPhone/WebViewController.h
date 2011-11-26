@@ -35,6 +35,7 @@
 -(void)reloadData;
 -(IBAction)showActionSheet:(id)sender;
 - (void) showEmail;
+-(void)enableFlatButton:(NSTimer *)theTimer;
 
 
 @end

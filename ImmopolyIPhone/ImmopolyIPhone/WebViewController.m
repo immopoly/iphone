@@ -36,6 +36,14 @@
 	[[FacebookManager getInstance] set_SECRET_KEY:@"7dab17bab8145e9d973378ea1582d0ca"];
     
     [FacebookManager getInstance].delegate = self;
+    [[self flatActionButton]setEnabled:NO];
+    
+    NSTimer *rat =[NSTimer scheduledTimerWithTimeInterval:(10) target:self selector:@selector(enableFlatButton:) userInfo:nil repeats:NO]; 
+    
+}
+
+-(void)enableFlatButton:(NSTimer *)theTimer{
+    [[self flatActionButton]setEnabled:YES];
 }
 
 -(void)reloadData {
