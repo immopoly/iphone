@@ -100,7 +100,6 @@
 						<string key="NSFrame">{{320, 67}, {320, 344}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -421,6 +420,14 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">btRecenterMap</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="598429382"/>
+					</object>
+					<int key="connectionID">44</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="283178944"/>
 						<reference key="destination" ref="372490531"/>
@@ -469,6 +476,15 @@
 						<int key="IBEventType">7</int>
 					</object>
 					<int key="connectionID">38</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">showAllFlats</string>
+						<reference key="source" ref="598429382"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">45</int>
 				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
@@ -606,7 +622,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">42</int>
+			<int key="maxID">45</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -624,6 +640,7 @@
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="calloutBubbleOut">id</string>
 						<string key="segmentedControlIndexChanged">id</string>
+						<string key="showAllFlats">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="calloutBubbleOut">
@@ -634,10 +651,15 @@
 							<string key="name">segmentedControlIndexChanged</string>
 							<string key="candidateClassName">id</string>
 						</object>
+						<object class="IBActionInfo" key="showAllFlats">
+							<string key="name">showAllFlats</string>
+							<string key="candidateClassName">id</string>
+						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="adressLabel">UILabel</string>
 						<string key="asyncImageViewList">AsynchronousImageView</string>
+						<string key="btRecenterMap">UIButton</string>
 						<string key="calloutBubble">UIView</string>
 						<string key="lbFlatDescription">UILabel</string>
 						<string key="lbFlatName">UILabel</string>
@@ -658,6 +680,10 @@
 						<object class="IBToOneOutletInfo" key="asyncImageViewList">
 							<string key="name">asyncImageViewList</string>
 							<string key="candidateClassName">AsynchronousImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btRecenterMap">
+							<string key="name">btRecenterMap</string>
+							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="calloutBubble">
 							<string key="name">calloutBubble</string>

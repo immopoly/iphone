@@ -13,7 +13,7 @@
 
 @implementation PortfolioViewController
 
-@synthesize tvCell, table, segmentedControl, portfolioMapView, loginCheck,calloutBubble,isOutInCall,isCalloutBubbleIn,selectedExposeId,selViewForHouseImage,selectedImmoScoutFlat,lbFlatDescription,lbFlatName,lbFlatPrice,lbLivingSpace,adressLabel,lbNumberOfRooms,exposeWebViewController, spinner, asyncImageViewList;
+@synthesize tvCell, table, segmentedControl, portfolioMapView, loginCheck,calloutBubble,isOutInCall,isCalloutBubbleIn,selectedExposeId,selViewForHouseImage,selectedImmoScoutFlat,lbFlatDescription,lbFlatName,lbFlatPrice,lbLivingSpace,adressLabel,lbNumberOfRooms,exposeWebViewController, spinner, asyncImageViewList, btRecenterMap, isBtHidden;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 { 
@@ -52,6 +52,7 @@
     
     [[self table] setHidden: YES];
     [spinner startAnimating];
+    [self setIsBtHidden:YES];
 }
 
 - (void)viewDidUnload
@@ -71,7 +72,7 @@
     CGPoint pos = calloutBubble.center;
 	pos.y = -320.0f;
 	calloutBubble.center = pos;
-    
+    [btRecenterMap setHidden:isBtHidden];
 }
 
 -(void) stopSpinnerAnimation {
@@ -202,6 +203,8 @@
     NSLog(@"selIndex: %d", segmentedControl.selectedSegmentIndex);
     switch (self.segmentedControl.selectedSegmentIndex) {
         case 0:
+            [btRecenterMap setHidden:YES];
+            [self setIsBtHidden:YES];
             [UIView beginAnimations:nil context:NULL];
             [UIView setAnimationDuration:0.4];
             posMap = portfolioMapView.center;
@@ -213,6 +216,8 @@
             [UIView commitAnimations]; 
             break;
         case 1:
+            [btRecenterMap setHidden:NO];
+            [self setIsBtHidden:NO];
             [UIView beginAnimations:nil context:NULL];
             [UIView setAnimationDuration:0.4];
             posMap = portfolioMapView.center;
@@ -416,6 +421,11 @@
     //[exposeWebViewController setSelectedExposeId:[self selectedExposeId]];
     [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
     [self.view addSubview:exposeWebViewController.view];
+}
+
+- (IBAction)showAllFlats {
+    [self calloutBubbleOut];
+    [self recenterMap];
 }
 
 
