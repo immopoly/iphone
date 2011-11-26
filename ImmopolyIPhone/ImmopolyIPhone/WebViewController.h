@@ -7,8 +7,9 @@
 #import "Flat.h"
 #import "UserDataDelegate.h"
 #import "LoginCheck.h"
+#import "FacebookManagerDelegate.h"
 
-@interface WebViewController : UIViewController <UIWebViewDelegate, UserDataDelegate>{
+@interface WebViewController : UIViewController <UIWebViewDelegate, UserDataDelegate, FacebookManagerDelegate>{
 	
 	IBOutlet UIWebView *webView;
     //Spinner
@@ -28,6 +29,7 @@
 
 -(IBAction)goBack;
 -(IBAction)flatAction;
+-(IBAction)performFacebookPost;
 -(void)reloadData;
 
 @end

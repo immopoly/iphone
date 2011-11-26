@@ -7,6 +7,7 @@
 #import "ImmopolyManager.h"
 #import "FlatTakeOverTask.h"
 #import "FlatRemoveTask.h"
+#import "FacebookManager.h"
 
 @implementation WebViewController
 
@@ -30,6 +31,11 @@
  If you need to do additional setup after loading the view, override viewDidLoad. */
 - (void)viewDidLoad {
 	[self reloadData];
+    
+    [[FacebookManager getInstance] set_APP_KEY:@"144949825610311"];
+	[[FacebookManager getInstance] set_SECRET_KEY:@"7dab17bab8145e9d973378ea1582d0ca"];
+    
+    [FacebookManager getInstance].delegate = self;
 }
 
 -(void)reloadData{
@@ -53,12 +59,10 @@
     }
 }
 
-
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
 	// Return YES for supported orientations
 	return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
-
 
 - (void)didReceiveMemoryWarning {
 	[super didReceiveMemoryWarning]; // Releases the view if it doesn't have a superview
@@ -107,6 +111,30 @@
     }
     
     [self.view removeFromSuperview];
+    
+}
+
+-(IBAction)performFacebookPost{
+    [[FacebookManager getInstance] beginShare];
+	
+	[[FacebookManager getInstance] setFacebookText:@"FacebookText"];
+	[[FacebookManager getInstance] setFacebookTitle:@"FacebookTitle"];
+	[[FacebookManager getInstance] setFacebookCaption:@"FacebookCaption"];
+	[[FacebookManager getInstance] setFacebookDescription:@"FacebookDescription"];
+	[[FacebookManager getInstance] setFacebookImage:@"FacebookImageUrl"];
+	[[FacebookManager getInstance] setFacebookLink:@"http://www.google.com"];
+	[[FacebookManager getInstance] setFacebookUserPrompt:@"FacebookPrompt"];
+	[[FacebookManager getInstance] setFacebookActionLabel:@"FacebookActionLabel"];
+	[[FacebookManager getInstance] setFacebookActionText:@"FacebookActionText"];
+	[[FacebookManager getInstance] setFacebookActionLink:@"http://immopoly.appspot.com/"];
+	
+	[[FacebookManager getInstance] commitShare];
+}
+
+- (void) facebookStartedLoading{
+    
+}
+- (void) facebookStopedLoading{
     
 }
 
