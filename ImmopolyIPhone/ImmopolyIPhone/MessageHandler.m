@@ -54,7 +54,7 @@
             errorMsg = [[NSString alloc] initWithString:@"Das Expose gibt es nicht"];
             break;
         default:
-            errorMsg = [[NSString alloc] initWithFormat: @"Error %i: %@", errorCode, [[error userInfo] objectForKey: @"ErrorMessage"] ];
+            errorMsg = [[NSString alloc] initWithFormat: @"%@", [[error userInfo] objectForKey: @"ErrorMessage"] ];
             break;
     }
     return errorMsg;
