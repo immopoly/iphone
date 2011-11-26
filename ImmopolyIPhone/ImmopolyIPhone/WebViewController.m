@@ -36,9 +36,11 @@
 	[[FacebookManager getInstance] set_SECRET_KEY:@"7dab17bab8145e9d973378ea1582d0ca"];
     
     [FacebookManager getInstance].delegate = self;
+    
+    [flatActionButton setTitle: @"Disabled" forState: UIControlStateDisabled];
     [[self flatActionButton]setEnabled:NO];
     
-    NSTimer *rat =[NSTimer scheduledTimerWithTimeInterval:(10) target:self selector:@selector(enableFlatButton:) userInfo:nil repeats:NO]; 
+    NSTimer *rat =[NSTimer scheduledTimerWithTimeInterval:(5) target:self selector:@selector(enableFlatButton:) userInfo:nil repeats:NO]; 
     
 }
 
@@ -61,9 +63,9 @@
 	[webView loadRequest:requestObj];
     
     if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]) {
-        [flatActionButton setTitle: @"Wohnung abgeben" forState: UIControlStateNormal];
+        [flatActionButton setTitle: @"Expose abgeben" forState: UIControlStateNormal];
     }else{
-        [flatActionButton setTitle: @"Wohnung übernehmen" forState: UIControlStateNormal];
+        [flatActionButton setTitle: @"Expose übernehmen" forState: UIControlStateNormal];
     }
 }
 
