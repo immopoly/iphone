@@ -11,6 +11,7 @@
 #import "LoginCheck.h"
 #import "Flat.h"
 #import "WebViewController.h"
+#import "AsynchronousImageView.h"
 
 #define METERS_PER_MILE 1609.344
 
@@ -38,6 +39,8 @@
     IBOutlet UILabel *lbNumberOfRooms;
     IBOutlet UILabel *lbLivingSpace;
     IBOutlet UIActivityIndicatorView *spinner;
+    
+    IBOutlet AsynchronousImageView *asyncImageViewList;
 }
 
 @property (nonatomic, retain) UITableViewCell *tvCell;
@@ -60,6 +63,7 @@
 @property(nonatomic, retain) WebViewController *exposeWebViewController;
 
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
+@property(nonatomic, retain) IBOutlet AsynchronousImageView *asyncImageViewList;
 
 -(IBAction) segmentedControlIndexChanged;
 - (IBAction)calloutBubbleOut;

@@ -154,6 +154,10 @@
                 [myFlat setNumberOfRooms:[[realEstate objectForKey:@"numberOfRooms"] intValue]];
                 [myFlat setLivingSpace:[[realEstate objectForKey:@"livingSpace"] doubleValue]];
                 
+                // picture
+                NSDictionary *pictureInfo = [realEstate objectForKey:@"titlePicture"];
+                [myFlat setPictureUrl:[pictureInfo objectForKey:@"@xlink.href"]];
+                
                 //add flat to flats 
                 [immoScoutFlats addObject:myFlat];
                 [myFlat release];

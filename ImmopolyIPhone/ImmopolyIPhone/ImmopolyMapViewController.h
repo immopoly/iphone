@@ -36,6 +36,7 @@
     int selectedExposeId;
     Flat *selectedImmoScoutFlat;
     MKAnnotationView *selViewForHouseImage;
+    IBOutlet AsynchronousImageView *asyncImageView;
 }
 
 @property(nonatomic, retain) IBOutlet MKMapView *mapView;
@@ -51,6 +52,7 @@
 @property(nonatomic, assign) bool isCalloutBubbleIn;
 @property(nonatomic, assign) bool isOutInCall;
 @property(nonatomic, retain) MKAnnotationView *selViewForHouseImage;
+@property(nonatomic, retain) IBOutlet AsynchronousImageView *asyncImageView;
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation;
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view;
