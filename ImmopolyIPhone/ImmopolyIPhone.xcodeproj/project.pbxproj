@@ -104,6 +104,7 @@
 		D2E53FA3148129A20042B205 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2E53F99148129A20042B205 /* FBConnect.bundle */; };
 		D2E53FA7148129AC0042B205 /* FacebookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53FA5148129AC0042B205 /* FacebookManager.m */; };
 		D2E53FC2148133AA0042B205 /* default_house.png in Resources */ = {isa = PBXBuildFile; fileRef = D2E53FC1148133AA0042B205 /* default_house.png */; };
+		D2E53FC5148136AB0042B205 /* AsynchronousImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53FC4148136AB0042B205 /* AsynchronousImageView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -300,6 +301,8 @@
 		D2E53FA5148129AC0042B205 /* FacebookManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FacebookManager.m; sourceTree = "<group>"; };
 		D2E53FA6148129AC0042B205 /* FacebookManagerDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FacebookManagerDelegate.h; sourceTree = "<group>"; };
 		D2E53FC1148133AA0042B205 /* default_house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_house.png; sourceTree = "<group>"; };
+		D2E53FC3148136AB0042B205 /* AsynchronousImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousImageView.h; sourceTree = "<group>"; };
+		D2E53FC4148136AB0042B205 /* AsynchronousImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousImageView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -625,6 +628,8 @@
 		D2C67D23145AA524008C3295 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				D2E53FC3148136AB0042B205 /* AsynchronousImageView.h */,
+				D2E53FC4148136AB0042B205 /* AsynchronousImageView.m */,
 				4C9C4ED71471B4E500719E0E /* LoginCheck.h */,
 				4C9C4ED81471B4E500719E0E /* LoginCheck.m */,
 				D24E766514583589003C91A8 /* OAuthManager.h */,
@@ -826,6 +831,7 @@
 				D2E53FA1148129A20042B205 /* FBPermissionDialog.m in Sources */,
 				D2E53FA2148129A20042B205 /* FBStreamDialog.m in Sources */,
 				D2E53FA7148129AC0042B205 /* FacebookManager.m in Sources */,
+				D2E53FC5148136AB0042B205 /* AsynchronousImageView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

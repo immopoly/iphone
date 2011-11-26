@@ -117,16 +117,16 @@
 -(IBAction)performFacebookPost{
     [[FacebookManager getInstance] beginShare];
 	
-	[[FacebookManager getInstance] setFacebookText:@"FacebookText"];
-	[[FacebookManager getInstance] setFacebookTitle:@"FacebookTitle"];
-	[[FacebookManager getInstance] setFacebookCaption:@"FacebookCaption"];
-	[[FacebookManager getInstance] setFacebookDescription:@"FacebookDescription"];
-	[[FacebookManager getInstance] setFacebookImage:@"FacebookImageUrl"];
-	[[FacebookManager getInstance] setFacebookLink:@"http://www.google.com"];
-	[[FacebookManager getInstance] setFacebookUserPrompt:@"FacebookPrompt"];
-	[[FacebookManager getInstance] setFacebookActionLabel:@"FacebookActionLabel"];
-	[[FacebookManager getInstance] setFacebookActionText:@"FacebookActionText"];
-	[[FacebookManager getInstance] setFacebookActionLink:@"http://immopoly.appspot.com/"];
+	//[[FacebookManager getInstance] setFacebookText:@"FacebookText"];
+	[[FacebookManager getInstance] setFacebookTitle:@"Immopoly for iPhone"];
+	[[FacebookManager getInstance] setFacebookCaption:@"Werde Immobilienhai und Millionär"];
+	[[FacebookManager getInstance] setFacebookDescription:@"Immopoly ein Spiel für iPhone & Android"];
+	[[FacebookManager getInstance] setFacebookImage:[selectedImmoscoutFlat pictureUrl]];
+	[[FacebookManager getInstance] setFacebookLink:@"http://immopoly.appspot.com/"];
+	//[[FacebookManager getInstance] setFacebookUserPrompt:@"FacebookPrompt"];
+	[[FacebookManager getInstance] setFacebookActionLabel:@"Immobilien Scout 24"];
+	[[FacebookManager getInstance] setFacebookActionText:@"Schau dir doch mal die folgende Wohnung an"];
+	[[FacebookManager getInstance] setFacebookActionLink:[[NSString alloc]initWithFormat:@"http://mobil.immobilienscout24.de/expose/%i",[selectedImmoscoutFlat exposeId]]];
 	
 	[[FacebookManager getInstance] commitShare];
 }
