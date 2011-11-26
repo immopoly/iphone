@@ -2,7 +2,7 @@
 //  FacebookManager.m
 //  FacebookAPI
 //
-//  Created by Roger Sanoli on 7/11/11.
+//  Created by Tobias Heine on 7/11/11.
 //  Copyright 2011 __MyCompanyName__. All rights reserved.
 //
 
