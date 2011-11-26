@@ -8,8 +8,10 @@
 #import "UserDataDelegate.h"
 #import "LoginCheck.h"
 #import "FacebookManagerDelegate.h"
+#import <MessageUI/MessageUI.h>
+#import <MessageUI/MFMailComposeViewController.h>
 
-@interface WebViewController : UIViewController <UIWebViewDelegate, UserDataDelegate, FacebookManagerDelegate>{
+@interface WebViewController : UIViewController <UIWebViewDelegate, UserDataDelegate, FacebookManagerDelegate,UIActionSheetDelegate,MFMailComposeViewControllerDelegate>{
 	
 	IBOutlet UIWebView *webView;
     //Spinner
@@ -31,5 +33,8 @@
 -(IBAction)flatAction;
 -(IBAction)performFacebookPost;
 -(void)reloadData;
+-(IBAction)showActionSheet:(id)sender;
+- (void) showEmail;
+
 
 @end
