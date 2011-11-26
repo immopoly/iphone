@@ -91,7 +91,7 @@ static FacebookManager* gInstance = nil;
 		NSArray* users = result;
 		NSDictionary* user = [users objectAtIndex:0];
 		NSString* name = [user objectForKey:@"name"];
-		self.username = name;
+        self.username = name;
 		
 		if (self.post) {
 			[self postToWall];
