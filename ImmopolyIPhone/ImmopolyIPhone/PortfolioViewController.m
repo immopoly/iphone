@@ -128,7 +128,22 @@
 
             
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"selected row %d",[indexPath row]);
+    
+    [self setSelectedImmoScoutFlat:[[[[ImmopolyManager instance]user]portfolio]objectAtIndex:[indexPath row]]];
+    
+    
+    if (exposeWebViewController) {
+        [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
+        [exposeWebViewController reloadData];
+        [self.view addSubview:exposeWebViewController.view];
+    }else{
+        exposeWebViewController = [[WebViewController alloc]init];
+    }
+    
+    [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
+    [self.view addSubview:exposeWebViewController.view];
+    
+    
 }
                 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
