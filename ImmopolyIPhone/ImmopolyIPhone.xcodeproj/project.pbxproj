@@ -105,6 +105,7 @@
 		D2E53FA7148129AC0042B205 /* FacebookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53FA5148129AC0042B205 /* FacebookManager.m */; };
 		D2E53FC2148133AA0042B205 /* default_house.png in Resources */ = {isa = PBXBuildFile; fileRef = D2E53FC1148133AA0042B205 /* default_house.png */; };
 		D2E53FC5148136AB0042B205 /* AsynchronousImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53FC4148136AB0042B205 /* AsynchronousImageView.m */; };
+		D2E53FCF148148780042B205 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E53FCE148148780042B205 /* MessageUI.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -303,6 +304,7 @@
 		D2E53FC1148133AA0042B205 /* default_house.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = default_house.png; sourceTree = "<group>"; };
 		D2E53FC3148136AB0042B205 /* AsynchronousImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AsynchronousImageView.h; sourceTree = "<group>"; };
 		D2E53FC4148136AB0042B205 /* AsynchronousImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousImageView.m; sourceTree = "<group>"; };
+		D2E53FCE148148780042B205 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -310,6 +312,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2E53FCF148148780042B205 /* MessageUI.framework in Frameworks */,
 				D2C67D1F145AA4EA008C3295 /* MapKit.framework in Frameworks */,
 				D2C67D1D145AA4DF008C3295 /* libz.1.2.5.dylib in Frameworks */,
 				D2C67D1A145AA4D5008C3295 /* CoreLocation.framework in Frameworks */,
@@ -482,6 +485,7 @@
 		D24E7631145834DA003C91A8 = {
 			isa = PBXGroup;
 			children = (
+				D2E53FCE148148780042B205 /* MessageUI.framework */,
 				D2E53F84148129670042B205 /* Sharing */,
 				D22F594B14793BEB008918A9 /* Settings.bundle */,
 				6DA75CD8145C12EB0079B32C /* include */,
