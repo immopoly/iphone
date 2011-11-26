@@ -41,6 +41,8 @@
     IBOutlet UIActivityIndicatorView *spinner;
     
     IBOutlet AsynchronousImageView *asyncImageViewList;
+    IBOutlet UIButton *btRecenterMap;
+    bool isBtHidden;
 }
 
 @property (nonatomic, retain) UITableViewCell *tvCell;
@@ -61,14 +63,17 @@
 @property(nonatomic, retain) IBOutlet UILabel *lbNumberOfRooms;
 @property(nonatomic, retain) IBOutlet UILabel *lbLivingSpace;
 @property(nonatomic, retain) WebViewController *exposeWebViewController;
+@property(nonatomic, retain) IBOutlet UIButton *btRecenterMap;
+@property(nonatomic, assign) bool isBtHidden;
 
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, retain) IBOutlet AsynchronousImageView *asyncImageViewList;
 
--(IBAction) segmentedControlIndexChanged;
+- (IBAction)segmentedControlIndexChanged;
 - (IBAction)calloutBubbleOut;
 - (void)recenterMap;
 - (void)calloutBubbleIn;
+- (IBAction)showAllFlats;
 
 
 @end

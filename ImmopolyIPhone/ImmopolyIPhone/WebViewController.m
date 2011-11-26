@@ -38,7 +38,7 @@
     [FacebookManager getInstance].delegate = self;
 }
 
--(void)reloadData{
+-(void)reloadData {
     NSString *urlAddress = [[NSString alloc]initWithFormat:@"http://mobil.immobilienscout24.de/expose/%i",[selectedImmoscoutFlat exposeId]];
 	//NSString *urlAddress = @"http://mobil.immobilienscout24.de/expose/";
 	

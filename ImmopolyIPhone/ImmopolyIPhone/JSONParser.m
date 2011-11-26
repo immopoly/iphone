@@ -110,6 +110,7 @@
     if ([jsonString rangeOfString:@"ImmopolyException"].location != NSNotFound) {
         
         NSDictionary *exceptionDic = [results objectForKey:@"org.immopoly.common.ImmopolyException"];
+        //NSDictionary *exceptionMsg = [exceptionDic objectForKey:@"message"];
         NSString *exceptionMessage = [exceptionDic objectForKey:@"message"];
         int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
         
