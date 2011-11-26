@@ -20,5 +20,6 @@
 @property(nonatomic, retain) UIActivityIndicatorView *spinner;
 
 - (void)loadImageFromURLString:(NSString *)urlString;
+- (void)resetImage;
 
 @end
