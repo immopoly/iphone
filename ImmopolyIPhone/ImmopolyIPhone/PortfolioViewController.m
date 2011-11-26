@@ -74,6 +74,11 @@
     
 }
 
+-(void) stopSpinnerAnimation {
+    [spinner stopAnimating];
+    [spinner setHidden: YES];
+}
+
 -(void) displayUserData {
     [table reloadData];
     
@@ -91,8 +96,7 @@
     
     [self recenterMap];
     
-    [spinner stopAnimating];
-    [spinner setHidden:YES];
+    [self stopSpinnerAnimation];
     [[self table] setHidden: NO];
 }
 
