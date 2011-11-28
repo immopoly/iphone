@@ -42,6 +42,8 @@
     [super viewDidLoad];
     [[self table] setHidden: YES];
     [spinner startAnimating];
+    [self.table setBackgroundColor:[UIColor clearColor]];
+    [self.table setSeparatorColor:[[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.0]];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -95,7 +97,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 96;
+    return 89;
 }
 
 
@@ -116,6 +118,7 @@
     
     UILabel *lbTime = (UILabel *)[cell viewWithTag:1];
     UILabel *lbText = (UILabel *)[cell viewWithTag:2];
+    UIImageView *lblImage = (UIImageView *)[cell viewWithTag:3];
     
     // fetching the selected history entry
     HistoryEntry *historyEntry;
@@ -137,21 +140,22 @@
         
         switch ([historyEntry type]) {
             case TYPE_EXPOSE_SOLD:
-                color = [UIColor greenColor];
+                [lblImage setImage:[UIImage imageNamed:@"icon_plus"]];
                 break;
             case TYPE_EXPOSE_MONOPOLY_POSITIVE:
-                color = [UIColor greenColor];
+                [lblImage setImage:[UIImage imageNamed:@"icon_plus"]];
                 break;
             case TYPE_DAILY_PROVISION:
-                color = [UIColor greenColor];
+                [lblImage setImage:[UIImage imageNamed:@"icon_plus"]];
                 break;
             case TYPE_EXPOSE_MONOPOLY_NEGATIVE:
-                color = [UIColor redColor]; 
+                [lblImage setImage:[UIImage imageNamed:@"icon_minus"]]; 
                 break;
             case TYPE_DAILY_RENT:
-                color = [UIColor redColor];
+                [lblImage setImage:[UIImage imageNamed:@"icon_minus"]];
                 break;
             default:
+                //TODO: NEUTRALES ICON
                 break;
         }
         
@@ -168,7 +172,7 @@
         [lbTime setHidden: YES];
         [lbText setHidden: YES];
     }
-    
+    cell.selectionStyle = UITableViewCellSelectionStyleNone;
     return cell;
 }
 
