@@ -113,15 +113,40 @@
 -(void) displayUserData {
     
     if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]) {
-        FlatRemoveTask *flatRemoveTask = [[FlatRemoveTask alloc]init];
-        [flatRemoveTask removeFlat:[self selectedImmoscoutFlat]];
+        
+        UIAlertView *removeFlatDialog = [[UIAlertView alloc]initWithTitle:@"Expose abgeben" message:@"Das Abgeben eines Exposes kostet dich eine Strafe. Möchtest du trotzdem fortfahren?" delegate:self cancelButtonTitle:@"Nein" otherButtonTitles:@"Ja", nil];
+        
+        [removeFlatDialog show];
+        [removeFlatDialog release];
+        
     }else{
         FlatTakeOverTask *flatTask = [[FlatTakeOverTask alloc]init];
         [flatTask takeOverFlat:[self selectedImmoscoutFlat]];
+        [self.view removeFromSuperview];
     }
     
-    [self.view removeFromSuperview];
     
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    FlatRemoveTask *flatRemoveTask = [[FlatRemoveTask alloc]init];
+    
+    switch (buttonIndex) {
+        //Nein
+        case 0:
+            [flatRemoveTask release];
+        break;
+        //Ja                
+        case 1:
+            [flatRemoveTask removeFlat:[self selectedImmoscoutFlat]];
+        break;
+            
+        default:
+            break;
+    }   
+    [self.view removeFromSuperview];
 }
 
 -(IBAction)performFacebookPost{

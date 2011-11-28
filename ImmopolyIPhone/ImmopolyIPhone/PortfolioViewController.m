@@ -177,7 +177,7 @@
         //NSString *space = [NSString stringWithFormat:@"qm: %f",[actFlat livingSpace]];
         //space = [space substringToIndex:[space length]-7];
         
-        [asyncImageViewList loadImageFromURLString:@""];
+        //[asyncImageViewList loadImageFromURLString:@""];
         [lbStreet setText: [actFlat title]];
         //[lbStreet setText: actFlat.street]; 
         //[lbRooms setText: rooms]; 
