@@ -14,8 +14,9 @@
 - (void)loadImageFromURLString:(NSString *)theUrlString {
     
     // spinner stuff
-    spinner = [[UIActivityIndicatorView alloc] init];
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleGray)];
     [self addSubview:spinner];
+    [spinner setHidden:NO];
     [spinner setHidesWhenStopped:YES];
     spinner.center = [self center];
     [spinner startAnimating];
@@ -47,6 +48,12 @@
     NSLog(@"didFailWithError");
     self.image = [UIImage imageNamed:@"default_house.png"];
     [spinner stopAnimating];
+}
+
+- (void)reset{
+    [spinner stopAnimating];
+    [spinner setHidden:YES];
+    self.image = nil;
 }
 
 @end

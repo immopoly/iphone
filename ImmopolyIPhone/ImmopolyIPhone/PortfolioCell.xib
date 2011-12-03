@@ -51,10 +51,6 @@
 								<int key="IBUITag">1</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">default_house.png</string>
-								</object>
 							</object>
 							<object class="IBUILabel" id="618809682">
 								<reference key="NSNextResponder" ref="275262557"/>
@@ -312,7 +308,6 @@
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="adressLabel">UILabel</string>
-						<string key="asyncImageViewList">AsynchronousImageView</string>
 						<string key="btRecenterMap">UIButton</string>
 						<string key="calloutBubble">UIView</string>
 						<string key="lbFlatDescription">UILabel</string>
@@ -330,10 +325,6 @@
 						<object class="IBToOneOutletInfo" key="adressLabel">
 							<string key="name">adressLabel</string>
 							<string key="candidateClassName">UILabel</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="asyncImageViewList">
-							<string key="name">asyncImageViewList</string>
-							<string key="candidateClassName">AsynchronousImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="btRecenterMap">
 							<string key="name">btRecenterMap</string>
@@ -395,10 +386,6 @@
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
-		<object class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="NS.key.0">default_house.png</string>
-			<string key="NS.object.0">{43, 43}</string>
-		</object>
 		<string key="IBCocoaTouchPluginVersion">933</string>
 	</data>
 </archive>

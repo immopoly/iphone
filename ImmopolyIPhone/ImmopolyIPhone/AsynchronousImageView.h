@@ -21,5 +21,6 @@
 
 - (void)loadImageFromURLString:(NSString *)urlString;
 - (void)resetImage;
+- (void)reset;
 
 @end
