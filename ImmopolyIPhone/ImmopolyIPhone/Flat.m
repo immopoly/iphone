@@ -12,7 +12,7 @@
 @synthesize exposeId, name, description, locationNode; 
 @synthesize city, postcode, street, houseNumber, quarter; 
 @synthesize titlePictureSmall, price, currency, priceValue, priceIntervaleType, creationDate;
-@synthesize numberOfRooms, livingSpace, coordinate, pictureUrl;
+@synthesize numberOfRooms, livingSpace, coordinate, pictureUrl, flatsAtAnnotation;
 
 - (id)initWithName:(NSString*)lName description:(NSString*)ldescription coordinate:(CLLocationCoordinate2D)lCoordinate exposeId:(int) lexposeId {
     if ((self = [super init])) {
@@ -20,6 +20,7 @@
         coordinate = lCoordinate;
         description = ldescription;
         exposeId = lexposeId;
+        flatsAtAnnotation = [[NSMutableArray alloc]initWithCapacity:0];
     }
     return self;
 }

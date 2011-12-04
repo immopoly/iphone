@@ -13,7 +13,7 @@
 
 @implementation PortfolioViewController
 
-@synthesize tvCell, table, segmentedControl, portfolioMapView, loginCheck,calloutBubble,isOutInCall,isCalloutBubbleIn,selectedExposeId,selViewForHouseImage,selectedImmoScoutFlat,lbFlatDescription,lbFlatName,lbFlatPrice,lbLivingSpace,adressLabel,lbNumberOfRooms,exposeWebViewController, spinner, asyncImageViewList, btRecenterMap, isBtHidden;
+@synthesize tvCell, table, segmentedControl, portfolioMapView, loginCheck,calloutBubble,isOutInCall,isCalloutBubbleIn,selectedExposeId,selViewForHouseImage,selectedImmoScoutFlat,lbFlatDescription,lbFlatName,lbFlatPrice,lbLivingSpace,adressLabel,lbNumberOfRooms,exposeWebViewController, spinner, btRecenterMap, isBtHidden;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 { 
@@ -53,6 +53,9 @@
     [[self table] setHidden: YES];
     [spinner startAnimating];
     [self setIsBtHidden:YES];
+    
+    [self.table setBackgroundColor:[UIColor clearColor]];
+    [self.table setSeparatorColor:[[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.0]];
 }
 
 - (void)viewDidUnload
@@ -128,7 +131,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 96;
+    return 135;
 }
 
             
@@ -164,7 +167,7 @@
         cell = (UITableViewCell *)[nib objectAtIndex:0];
     }
     
-    asyncImageViewList = (AsynchronousImageView *)[cell viewWithTag:1];
+    AsynchronousImageView *asyncImageViewList = (AsynchronousImageView *)[cell viewWithTag:1];
     UILabel *lbStreet = (UILabel *)[cell viewWithTag:2];
     UILabel *lbRooms = (UILabel *)[cell viewWithTag:3];
     UILabel *lbSpace = (UILabel *)[cell viewWithTag:4];
@@ -173,11 +176,11 @@
     if([[[[ImmopolyManager instance] user] portfolio] count] > 0){
         Flat *actFlat = [[[[ImmopolyManager instance] user] portfolio] objectAtIndex: indexPath.row];
     
-        //NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[actFlat numberOfRooms]];
-        //NSString *space = [NSString stringWithFormat:@"qm: %f",[actFlat livingSpace]];
-        //space = [space substringToIndex:[space length]-7];
+        NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[actFlat numberOfRooms]];
+       // NSString *space = [NSString stringWithFormat:@"qm: %f",[actFlat livingSpace]];
+       // space = [space substringToIndex:[space length]-7];
         
-        //[asyncImageViewList loadImageFromURLString:@""];
+        [asyncImageViewList loadImageFromURLString:@""];
         [lbStreet setText: [actFlat title]];
         //[lbStreet setText: actFlat.street]; 
         //[lbRooms setText: rooms]; 
