@@ -40,7 +40,7 @@
     IBOutlet UILabel *lbLivingSpace;
     IBOutlet UIActivityIndicatorView *spinner;
     
-    IBOutlet AsynchronousImageView *asyncImageViewList;
+    //IBOutlet AsynchronousImageView *asyncImageViewList;
     IBOutlet UIButton *btRecenterMap;
     bool isBtHidden;
 }
@@ -67,7 +67,7 @@
 @property(nonatomic, assign) bool isBtHidden;
 
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
-@property(nonatomic, retain) IBOutlet AsynchronousImageView *asyncImageViewList;
+//@property(nonatomic, retain) IBOutlet AsynchronousImageView *asyncImageViewList;
 
 - (IBAction)segmentedControlIndexChanged;
 - (IBAction)calloutBubbleOut;

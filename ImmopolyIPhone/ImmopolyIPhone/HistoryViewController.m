@@ -156,6 +156,7 @@
                 break;
             default:
                 //TODO: NEUTRALES ICON
+                [lblImage setImage:[UIImage imageNamed:@"icon_info"]];
                 break;
         }
         

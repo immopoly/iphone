@@ -156,42 +156,43 @@
                 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PortfolioCell" owner:self options:nil];
+    Flat *actFlat = [[[[ImmopolyManager instance] user] portfolio] objectAtIndex: indexPath.row];
+
+    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"PortfolioCell"];
     
-    UITableViewCell *cell;
-    
-    cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"PortfolioCell"];
+    UILabel *lbStreet;
+    UILabel *lbRooms;
+    UILabel *lbSpace;
+    AsynchronousImageView *asyncImageViewList;
     
     // recycling cells
     if(cell==nil){
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PortfolioCell" owner:self options:nil];
         cell = (UITableViewCell *)[nib objectAtIndex:0];
-    }
-    
-    AsynchronousImageView *asyncImageViewList = (AsynchronousImageView *)[cell viewWithTag:1];
-    UILabel *lbStreet = (UILabel *)[cell viewWithTag:2];
-    UILabel *lbRooms = (UILabel *)[cell viewWithTag:3];
-    UILabel *lbSpace = (UILabel *)[cell viewWithTag:4];
-    
-    //flats from portfolio
-    if([[[[ImmopolyManager instance] user] portfolio] count] > 0){
-        Flat *actFlat = [[[[ImmopolyManager instance] user] portfolio] objectAtIndex: indexPath.row];
-    
-        NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[actFlat numberOfRooms]];
-       // NSString *space = [NSString stringWithFormat:@"qm: %f",[actFlat livingSpace]];
-       // space = [space substringToIndex:[space length]-7];
         
-        [asyncImageViewList loadImageFromURLString:@""];
-        [lbStreet setText: [actFlat title]];
-        //[lbStreet setText: actFlat.street]; 
-        //[lbRooms setText: rooms]; 
-        //[lbSpace setText: space];
+    }else{
+        NSLog(@"Bla");
+        //STOP SPINNER
+        //[asyncImageViewList reset];
     }
-    else {
-        NSLog(@"user portfolio object is empty!");
-        [lbStreet setHidden: YES];
-        [lbRooms setHidden: YES];
-        [lbSpace setHidden: YES];
-    }
+    
+    asyncImageViewList = (AsynchronousImageView *)[cell viewWithTag:1];
+    lbStreet = (UILabel *)[cell viewWithTag:2];
+    lbRooms = (UILabel *)[cell viewWithTag:3];
+    lbSpace = (UILabel *)[cell viewWithTag:4];
+    [asyncImageViewList reset];
+    
+    [asyncImageViewList loadImageFromURLString:[actFlat pictureUrl]];
+    
+    NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[actFlat numberOfRooms]];
+    NSString *space = [NSString stringWithFormat:@"qm: %f",[actFlat livingSpace]];
+    
+    space = [space substringToIndex:[space length]-7];
+    
+    [lbStreet setText: [actFlat title]];
+    [lbStreet setText: actFlat.street]; 
+    [lbRooms setText: rooms]; 
+    [lbSpace setText: space];
      
     return cell;
 }
