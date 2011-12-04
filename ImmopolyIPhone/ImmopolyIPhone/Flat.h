@@ -34,6 +34,8 @@
     NSString *pictureUrl;
 
     CLLocationCoordinate2D coordinate;
+    
+    NSMutableArray *flatsAtAnnotation;
 
 }
 
@@ -59,6 +61,8 @@
 @property(nonatomic, retain) NSString *priceIntervaleType;
 @property(nonatomic, retain) NSString *pictureUrl;
 @property(nonatomic, readonly) CLLocationCoordinate2D coordinate;
+
+@property(nonatomic, retain) NSMutableArray *flatsAtAnnotation;
 
 
 - (id)initWithName:(NSString*)lName description:(NSString*)ldescription coordinate:(CLLocationCoordinate2D)lCoordinate exposeId:(int) lexposeId;

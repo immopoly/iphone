@@ -44,6 +44,7 @@
     float iphoneScaleFactorLatitude;
     float iphoneScaleFactorLongitude;
     CLLocationDegrees zoomLevel;
+    IBOutlet UIScrollView *scrollView;
 }
 
 @property(nonatomic, retain) IBOutlet MKMapView *mapView;
@@ -62,6 +63,7 @@
 @property(nonatomic, retain) IBOutlet AsynchronousImageView *asyncImageView;
 @property(nonatomic, assign) float iphoneScaleFactorLatitude;
 @property(nonatomic, assign) float iphoneScaleFactorLongitude;
+@property(nonatomic, retain) IBOutlet UIScrollView *scrollView;
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation;
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view;
@@ -75,5 +77,7 @@
 -(void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context;
 -(void)filterAnnotations:(NSArray *)flatsToFilter;
 
+-(void)initScrollView;
+-(UIView *)createCalloutBubbleContentFromFlat:(Flat *) flat atPosition:(int) pos;
 
 @end

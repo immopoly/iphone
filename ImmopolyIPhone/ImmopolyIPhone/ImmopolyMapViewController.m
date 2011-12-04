@@ -13,9 +13,9 @@
 #import "UserLoginTask.h"
 #import "AsynchronousImageView.h"
 
-@implementation ImmopolyMapViewController
+@implementation ImmopolyMapViewController 
 
-@synthesize mapView, adressLabel, calloutBubble,selectedExposeId, lbFlatName, lbFlatDescription, lbFlatPrice, lbNumberOfRooms, lbLivingSpace,selectedImmoScoutFlat, isCalloutBubbleIn, isOutInCall, selViewForHouseImage, asyncImageView, iphoneScaleFactorLatitude, iphoneScaleFactorLongitude;
+@synthesize mapView, adressLabel, calloutBubble,selectedExposeId, lbFlatName, lbFlatDescription, lbFlatPrice, lbNumberOfRooms, lbLivingSpace,selectedImmoScoutFlat, isCalloutBubbleIn, isOutInCall, selViewForHouseImage, asyncImageView, iphoneScaleFactorLatitude, iphoneScaleFactorLongitude, scrollView;
 
 -(void)dealloc{
     [super dealloc];
@@ -76,6 +76,7 @@
 	pos.y = -320.0f;
 	calloutBubble.center = pos;
 	
+    [mapView setZoomEnabled:YES];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -106,9 +107,13 @@
         }
     }     
     
+    [self mapView:mapView regionDidChangeAnimated:YES];
+    
+    /*
     for(Flat *flat in [[ImmopolyManager instance] immoScoutFlats]) {
         [mapView addAnnotation: flat];
     }
+    */ 
 }
 
 - (void)mapView:(MKMapView *)mpView didSelectAnnotationView:(MKAnnotationView *)view{
@@ -123,6 +128,7 @@
         [self setSelectedExposeId:[location exposeId]];
         [self setSelectedImmoScoutFlat:location]; 
           
+        // TODO: zoom has to be changed, because for clustering it doesn't make sense 
         // moving the coordinates, that it doesn't zoom to the center, but a bit under it 
         CLLocationCoordinate2D zoomLocation = location.coordinate;
         zoomLocation.latitude = zoomLocation.latitude + 0.003;
@@ -132,7 +138,7 @@
         MKCoordinateRegion adjustedRegion = [mpView regionThatFits:viewRegion];                
         [mpView setRegion:adjustedRegion animated:YES];   
         
-        if (![location.title compare:@"My Location"] == NSOrderedSame && !isOutInCall) {
+        if (!isOutInCall) {
             [self calloutBubbleIn];
         }
     }
@@ -153,7 +159,11 @@
      
      
         // checks that annotation is not the current position    
-        if([annotation.title compare:@"My Location"] != NSOrderedSame) {
+        Flat *location = (Flat *) annotation;
+        if([[location flatsAtAnnotation] count] > 0 ) {
+            annotationView.image = [UIImage imageNamed:@"house_orange.png"];
+        }
+        else {
             annotationView.image = [UIImage imageNamed:@"house_green.png"];
         }
         
@@ -193,6 +203,7 @@
     // TODO: title should not be like description
     [lbFlatDescription setText:[selectedImmoScoutFlat title]];
     
+     
     // Animation
     [UIView beginAnimations:@"inAnimation" context:NULL];	
     [UIView setAnimationDelegate:self];
@@ -224,7 +235,12 @@
     [UIView commitAnimations];
     [self setIsCalloutBubbleIn:false];
     [asyncImageView resetImage];
-    selViewForHouseImage.image = [UIImage imageNamed:@"house_green.png"];
+    
+    if([[selectedImmoScoutFlat flatsAtAnnotation] count] > 0) {
+        selViewForHouseImage.image = [UIImage imageNamed:@"house_orange.png"];
+    } else {
+        selViewForHouseImage.image = [UIImage imageNamed:@"house_green.png"];
+    }
     [mapView setZoomEnabled:YES];
 }
 
@@ -244,7 +260,6 @@
 
 -(IBAction)showFlatsWebView {
     exposeWebViewController = [[WebViewController alloc]init];
-    //[exposeWebViewController setSelectedExposeId:[self selectedExposeId]];
     [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
     [self.view addSubview:exposeWebViewController.view];
 }
@@ -255,25 +270,39 @@
     float longDelta = mapView.region.span.longitudeDelta/iphoneScaleFactorLongitude;
     
     NSMutableArray *flatsToShow=[[NSMutableArray alloc] initWithCapacity:0];
+
+    // resetting the flatsAtAnnotation array
+    for (Flat *tempFlat in flatsToFilter) {
+        [[tempFlat flatsAtAnnotation] removeAllObjects];
+    }
     
     for (int i=0; i<[flatsToFilter count]; i++) {
-        Flat *checkingLocation=[flatsToFilter objectAtIndex:i];
-        CLLocationDegrees latitude = [checkingLocation coordinate].latitude;
-        CLLocationDegrees longitude = [checkingLocation coordinate].longitude;
+        Flat *actFlat = [flatsToFilter objectAtIndex:i];
+        CLLocationDegrees latitude = [actFlat coordinate].latitude;
+        CLLocationDegrees longitude = [actFlat coordinate].longitude;
         
-        bool found=FALSE;
+        bool found = FALSE;
         
         for (Flat *tempFlat in flatsToShow) {
+            // überprüfe ob die akktuelle flat in der Nähe einer der Flats ist, welche
+            // angezeigt werden sollen
             if(fabs([tempFlat coordinate].latitude-latitude) < latDelta &&
                fabs([tempFlat coordinate].longitude-longitude) <longDelta ) {
-                [mapView removeAnnotation:checkingLocation];
-                found=TRUE;
+                
+                // wenn gefunden, dann remove die aktuelle flat von der view
+                [mapView removeAnnotation:actFlat];
+                found = TRUE;
+                
+                // adde aktuelle flat zur annotation der tempflat
+                [[tempFlat flatsAtAnnotation] addObject:actFlat];
                 break;
             }
         }
-        if (!found) {
-            [flatsToShow addObject:checkingLocation];
-            [mapView addAnnotation:checkingLocation];
+        // wenn keine flat in der nähe gefunden wurde, adde diese flat zur Liste aller flats,
+        // die gezeigt werden und zeige die Annotation
+        if(!found) {
+            [flatsToShow addObject:actFlat];
+            [mapView addAnnotation:actFlat];
         }
     }
     [flatsToShow release];
@@ -281,43 +310,38 @@
 }
 
 -(void)mapView:(MKMapView *)mpView regionDidChangeAnimated:(BOOL)animated{
-    if (zoomLevel != mpView.region.span.longitudeDelta) {
+    if (zoomLevel != mpView.region.span.longitudeDelta || animated) {
         [self filterAnnotations: [[ImmopolyManager instance] immoScoutFlats]];
         zoomLevel = mpView.region.span.longitudeDelta;
     }
 }
 
-/*
--(IBAction) displayUserProfile {
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+-(void)initScrollView {
     
-    if ([defaults objectForKey:@"userToken"] != nil) {
-        //get user token
-        NSString *userToken = [defaults objectForKey:@"userToken"];
-        //login with token
-        UserLoginTask *loader = [[UserLoginTask alloc] init];
-        [loader performLoginWithToken: userToken];
+    for (int i=0; i<[[selectedImmoScoutFlat flatsAtAnnotation] count]; i++) {
+        Flat *tempFlat = [[selectedImmoScoutFlat flatsAtAnnotation] objectAtIndex:i];
         
-        //wrong place to check
-        if([ImmopolyManager instance].loginSuccessful == YES) {
-            //show user profile view
-            userProfileViewController = [[UserProfileViewController alloc] init];
-            [self.view addSubview: userProfileViewController.view];
-        }
+        UIView *subview = [self createCalloutBubbleContentFromFlat:tempFlat atPosition:i];
         
-        [loader release];
+        [scrollView addSubview:subview];
+        [subview release];
     }
-    else {
-        //show login view
-        loginViewController = [[LoginViewController alloc] init];
-        [self.view addSubview: loginViewController.view];
-    }
+    
+    // setting the whole size of the scrollView
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [[selectedImmoScoutFlat flatsAtAnnotation] count], self.scrollView.frame.size.height);
 }
 
--(IBAction) displayUserPortfolio {
-    portfolioViewController = [[PortfolioViewController alloc] init];
-    [self.view addSubview: portfolioViewController.view];
+-(UIView *)createCalloutBubbleContentFromFlat:(Flat *) flat atPosition:(int) pos {
+    
+    CGRect frame;
+    frame.origin.x = self.scrollView.frame.size.width * pos;
+    frame.origin.y = 0;
+    frame.size = self.scrollView.frame.size;
+    
+    UIView *subview = [[UIView alloc] initWithFrame:frame];
+    subview.backgroundColor = [UIColor colorWithRed:0.1*pos green:0 blue:0 alpha:1];
+    
+    return subview;
 }
-*/
 
 @end

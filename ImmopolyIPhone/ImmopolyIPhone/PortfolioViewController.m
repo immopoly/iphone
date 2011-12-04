@@ -53,6 +53,9 @@
     [[self table] setHidden: YES];
     [spinner startAnimating];
     [self setIsBtHidden:YES];
+    
+    [self.table setBackgroundColor:[UIColor clearColor]];
+    [self.table setSeparatorColor:[[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.0]];
 }
 
 - (void)viewDidUnload
@@ -128,7 +131,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return 96;
+    return 135;
 }
 
             
