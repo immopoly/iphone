@@ -194,5 +194,37 @@
         return  histEntry;
     }
 }
+
++ (NSArray *)parseHistoryEntries:(NSString *)jsonString:(NSError **) err{
+    NSMutableArray *histEntries = [[[NSMutableArray alloc]init]autorelease];
+    
+    NSDictionary *results = [jsonString JSONValue];
+    
+    if ([jsonString rangeOfString:@"ImmopolyException"].location != NSNotFound) {
+        
+        NSDictionary *exceptionDic = [results objectForKey:@"org.immopoly.common.ImmopolyException"];
+        NSString *exceptionMessage = [exceptionDic objectForKey:@"message"];
+        int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
+        
+        *err = [NSError errorWithDomain:@"parseHistoryEntries" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:exceptionMessage],@"ErrorMessage",nil]];
+        
+        return nil;
+    } 
+    else {
+        for (NSDictionary *dictionary in results) {
+            NSDictionary *histDic = [dictionary objectForKey:@"org.immopoly.common.History"];
+            
+            HistoryEntry *histEntry = [[[HistoryEntry alloc]init]autorelease];
+            [histEntry setHistText:[histDic objectForKey:@"text"]];
+            [histEntry setTime:[[histDic objectForKey:@"time"]longValue]];
+            [histEntry setType:[[histDic objectForKey:@"type"]intValue]];
+            [histEntry setType2:[[histDic objectForKey:@"type2"]intValue]];
+            
+            [histEntries addObject:histEntry];
+        }
+    }
+    
+    return histEntries;
+}
 @end
 
