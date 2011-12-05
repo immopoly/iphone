@@ -15,7 +15,7 @@
 
 @implementation ImmopolyMapViewController 
 
-@synthesize mapView, adressLabel, calloutBubble,selectedExposeId, lbFlatName, lbFlatDescription, lbFlatPrice, lbNumberOfRooms, lbLivingSpace,selectedImmoScoutFlat, isCalloutBubbleIn, isOutInCall, selViewForHouseImage, asyncImageView, iphoneScaleFactorLatitude, iphoneScaleFactorLongitude, scrollView;
+@synthesize mapView, adressLabel, calloutBubble,selectedExposeId, lbFlatName, lbFlatDescription, lbFlatPrice, lbNumberOfRooms, lbLivingSpace,selectedImmoScoutFlat, isCalloutBubbleIn, isOutInCall, selViewForHouseImage, asyncImageView, iphoneScaleFactorLatitude, iphoneScaleFactorLongitude, scrollView, numOfScrollViewSubviews, pageControl;
 
 -(void)dealloc{
     [super dealloc];
@@ -62,6 +62,7 @@
     CGFloat scrHeight = CGRectGetHeight(self.view.bounds);    
     iphoneScaleFactorLatitude = (float) scrWidth/ANNO_WIDTH;
     iphoneScaleFactorLongitude = (float) scrHeight/ANNO_HEIGHT;
+    [self setNumOfScrollViewSubviews:0];
 }
 
 - (void)viewDidUnload
@@ -125,11 +126,11 @@
     if([view.annotation isKindOfClass:[Flat class]]) {
         [self setSelViewForHouseImage:view];
         Flat *location = (Flat *) view.annotation;
-        [self setSelectedExposeId:[location exposeId]];
         [self setSelectedImmoScoutFlat:location]; 
-          
+        
         // TODO: zoom has to be changed, because for clustering it doesn't make sense 
         // moving the coordinates, that it doesn't zoom to the center, but a bit under it 
+        /*
         CLLocationCoordinate2D zoomLocation = location.coordinate;
         zoomLocation.latitude = zoomLocation.latitude + 0.003;
         zoomLocation.longitude = zoomLocation.longitude + 0.0006;
@@ -137,7 +138,7 @@
         MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.3*METERS_PER_MILE, 0.3*METERS_PER_MILE);
         MKCoordinateRegion adjustedRegion = [mpView regionThatFits:viewRegion];                
         [mpView setRegion:adjustedRegion animated:YES];   
-        
+        */
         if (!isOutInCall) {
             [self calloutBubbleIn];
         }
@@ -184,6 +185,9 @@
     // that the flats are clickable through the imageview
     [mapView addSubview:calloutBubble];
     
+    [self initScrollView];
+    
+    /*
     // setting text of labels in calloutBubble
     [lbFlatName setText:[selectedImmoScoutFlat name]];
     NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[selectedImmoScoutFlat numberOfRooms]];
@@ -202,7 +206,7 @@
     [lbLivingSpace setText:space];
     // TODO: title should not be like description
     [lbFlatDescription setText:[selectedImmoScoutFlat title]];
-    
+    */
      
     // Animation
     [UIView beginAnimations:@"inAnimation" context:NULL];	
@@ -215,7 +219,16 @@
 	calloutBubble.center = pos;
 	
     [UIView commitAnimations]; 
-    [self setIsCalloutBubbleIn:true];
+
+    // showing or hiding the pageControl
+    if (numOfScrollViewSubviews == 1) {
+        [pageControl setHidden:YES];
+    }
+    else {
+        [pageControl setHidden:NO];
+    }
+    
+    [self setIsCalloutBubbleIn:true];    
     [mapView deselectAnnotation:selectedImmoScoutFlat animated:NO];    
     selViewForHouseImage.image = [UIImage imageNamed:@"house_green_selected.png"];
     [mapView setZoomEnabled:NO];
@@ -258,10 +271,21 @@
     }
 }
 
--(IBAction)showFlatsWebView {
-    exposeWebViewController = [[WebViewController alloc]init];
-    [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
-    [self.view addSubview:exposeWebViewController.view];
+-(void)showFlatsWebView {
+    // if pageControl is at a page > 0, then the selected flat is one of the flats in flatsAtAnnotation
+    if(self.pageControl.currentPage > 0) {
+        Flat *tempFlat = [[selectedImmoScoutFlat flatsAtAnnotation] objectAtIndex:self.pageControl.currentPage-1];
+        [self setSelectedExposeId:[tempFlat exposeId]];
+        exposeWebViewController = [[WebViewController alloc]init];
+        [exposeWebViewController setSelectedImmoscoutFlat:tempFlat];
+        [self.view addSubview:exposeWebViewController.view];
+    }
+    else {
+        [self setSelectedExposeId:[selectedImmoScoutFlat exposeId]];
+        exposeWebViewController = [[WebViewController alloc]init];
+        [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
+        [self.view addSubview:exposeWebViewController.view];
+    }
 }
 
 // method for clustering
@@ -318,17 +342,33 @@
 
 -(void)initScrollView {
     
-    for (int i=0; i<[[selectedImmoScoutFlat flatsAtAnnotation] count]; i++) {
-        Flat *tempFlat = [[selectedImmoScoutFlat flatsAtAnnotation] objectAtIndex:i];
+    // deleting all existing views (labels, images) 
+    UIView *v;
+    for (NSInteger i=0; i<numOfScrollViewSubviews; i++){
+        v = [[scrollView subviews] objectAtIndex:0];
+        [v removeFromSuperview];
+        v = nil;
+    }
+    // + 1 because of the selected flat, which holds the other flats
+    numOfScrollViewSubviews = [[selectedImmoScoutFlat flatsAtAnnotation] count]+1;
+
+    for (int i=0; i<numOfScrollViewSubviews; i++) {
+        UIView *subview;
         
-        UIView *subview = [self createCalloutBubbleContentFromFlat:tempFlat atPosition:i];
+        if(i == 0) {
+            subview = [self createCalloutBubbleContentFromFlat:selectedImmoScoutFlat atPosition:i];    
+        }
+        else {
+            Flat *tempFlat = [[selectedImmoScoutFlat flatsAtAnnotation] objectAtIndex:i-1];
+            subview = [self createCalloutBubbleContentFromFlat:tempFlat atPosition:i];    
+        }
         
         [scrollView addSubview:subview];
         [subview release];
     }
     
     // setting the whole size of the scrollView
-    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * [[selectedImmoScoutFlat flatsAtAnnotation] count], self.scrollView.frame.size.height);
+    self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * self.numOfScrollViewSubviews, self.scrollView.frame.size.height);
 }
 
 -(UIView *)createCalloutBubbleContentFromFlat:(Flat *) flat atPosition:(int) pos {
@@ -339,9 +379,41 @@
     frame.size = self.scrollView.frame.size;
     
     UIView *subview = [[UIView alloc] initWithFrame:frame];
-    subview.backgroundColor = [UIColor colorWithRed:0.1*pos green:0 blue:0 alpha:1];
+    subview.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    
+    //labels
+    UILabel *lbName = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 100, 30)];
+    lbName.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    [lbName setText:[flat name]];
+    [subview addSubview:lbName];
+    
+    UILabel *lbRooms = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, 100, 30)];
+    lbRooms.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[flat numberOfRooms]];
+    [lbRooms setText:rooms];
+    [subview addSubview:lbRooms];
+    
+    // image
+    AsynchronousImageView *img = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(130, 30, 60, 60)];
+    [img loadImageFromURLString:[flat pictureUrl]];
+    [subview addSubview:img];
+
+    // button
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    [button addTarget:self action:@selector(showFlatsWebView) forControlEvents:UIControlEventTouchUpInside];
+    [button setTitle:@">" forState:UIControlStateNormal];
+    button.frame = CGRectMake(180, 90, 25, 25);
+    [subview addSubview:button];
     
     return subview;
 }
+
+// update the pagecontrol when more than 50% of the previous/next page is visible
+-(void)scrollViewDidScroll:(UIScrollView *)sender {
+    CGFloat pageWidth = self.scrollView.frame.size.width;
+    int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
+    self.pageControl.currentPage = page;
+}
+
 
 @end
