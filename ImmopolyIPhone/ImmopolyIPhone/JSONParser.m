@@ -187,7 +187,7 @@
         
         HistoryEntry *histEntry = [[[HistoryEntry alloc]init]autorelease];
         [histEntry setHistText:[histDic objectForKey:@"text"]];
-        [histEntry setTime:[[histDic objectForKey:@"time"]longValue]];
+        [histEntry setTime:[[histDic objectForKey:@"time"]longLongValue]];
         [histEntry setType:[[histDic objectForKey:@"type"]intValue]];
         [histEntry setType2:[[histDic objectForKey:@"type2"]intValue]];
         
@@ -216,7 +216,7 @@
             
             HistoryEntry *histEntry = [[[HistoryEntry alloc]init]autorelease];
             [histEntry setHistText:[histDic objectForKey:@"text"]];
-            [histEntry setTime:[[histDic objectForKey:@"time"]longValue]];
+            [histEntry setTime:[[histDic objectForKey:@"time"]longLongValue]];
             [histEntry setType:[[histDic objectForKey:@"type"]intValue]];
             [histEntry setType2:[[histDic objectForKey:@"type2"]intValue]];
             
