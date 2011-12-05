@@ -10,10 +10,11 @@
 #import "ImmopolyManager.h"
 #import "HistoryEntry.h"
 #import "ImmopolyHistory.h"
+#import "HistoryTask.h"
 
 @implementation HistoryViewController
 
-@synthesize tvCell, table, loginCheck, spinner;
+@synthesize tvCell, table, loginCheck, spinner,loading,flagForReload,loadingHistoryEntriesLimit,loadingHistoryEntriesStart;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -44,6 +45,9 @@
     [spinner startAnimating];
     [self.table setBackgroundColor:[UIColor clearColor]];
     [self.table setSeparatorColor:[[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.0]];
+    
+    loadingHistoryEntriesStart = 10;
+    loadingHistoryEntriesLimit = 10;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -130,7 +134,7 @@
         [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
         [dateFormatter setDateFormat:@"'am' dd.MM.yyyy 'um' HH:mm 'Uhr'"];
         
-        double timeInterval = [historyEntry time]/1000; //1321922162430
+        long timeInterval = [historyEntry time]/1000; //1321922162430
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
         
         NSString *formattedDateString = [dateFormatter stringFromDate:date];
@@ -174,7 +178,42 @@
         [lbText setHidden: YES];
     }
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
+    
+    
+    if ([indexPath row]>[[[[ImmopolyManager instance]user]history]count]-3) {
+        if (loading) {
+            flagForReload = YES;
+        }else{
+            flagForReload = NO;
+            loading = YES;
+            
+            HistoryTask *task = [[[HistoryTask alloc]init]autorelease];
+            task.delegate = self;
+            [task loadHistoryEintriesFrom:loadingHistoryEntriesStart To:(loadingHistoryEntriesStart+loadingHistoryEntriesLimit)];
+        }
+    }
+    
+    if(flagForReload){
+        if(!loading){
+            flagForReload = NO;
+            loading = YES;
+            
+            HistoryTask *task = [[[HistoryTask alloc]init]autorelease];
+            task.delegate = self;
+            [task loadHistoryEintriesFrom:loadingHistoryEntriesStart To:(loadingHistoryEntriesStart+loadingHistoryEntriesLimit)];
+        }
+      }
+    
     return cell;
+}
+
+-(void)hasMoreData:(bool)result{
+    if (result) {
+        loading = false;
+        loadingHistoryEntriesStart+=10;
+    }
+    
+    [self.table reloadData];
 }
 
 -(void) dealloc {

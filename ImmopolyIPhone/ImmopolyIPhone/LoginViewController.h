@@ -20,6 +20,7 @@
     IBOutlet UITextField *password;
     IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet UILabel *loginLabel;
+    IBOutlet UIButton *loginButton;
     UserProfileViewController *userProfileViewController;
     id<NotifyViewDelegate> delegate;
     
@@ -43,6 +44,7 @@
 @property(nonatomic, retain) IBOutlet UITextField *password;
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, retain) IBOutlet IBOutlet UILabel *loginLabel;
+@property(nonatomic, retain) IBOutlet UIButton *loginButton;
 @property (nonatomic, assign) id<NotifyViewDelegate> delegate;
 
 @property(nonatomic, retain) IBOutlet UIView *registerView;

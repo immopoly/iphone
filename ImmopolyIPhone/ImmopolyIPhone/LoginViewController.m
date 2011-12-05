@@ -13,7 +13,7 @@
 
 @implementation LoginViewController
 
-@synthesize userName, password,spinner,loginLabel, delegate;
+@synthesize userName, password,spinner,loginLabel, loginButton, delegate;
 @synthesize registerView, registerUserName, registerUserPassword, registerUserEmail, registerUserTwitter;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -96,6 +96,8 @@
     
     if([[userName text] length]> 0 && [[password text] length] > 0) {
     
+        [loginButton setEnabled:NO];
+        
         [loginLabel setHidden:NO];
         [spinner setHidden:NO];
         [spinner startAnimating];
@@ -124,6 +126,7 @@
     } else {
         [userName setEnabled:YES];
         [password setEnabled:YES];
+        [loginButton setEnabled:YES];
     }
 }
 
