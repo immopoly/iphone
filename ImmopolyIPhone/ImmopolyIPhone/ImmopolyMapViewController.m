@@ -263,6 +263,10 @@
     } else if([animationID isEqualToString:@"outAnimation"]) {
         NSLog(@"animation out");
         [calloutBubble removeFromSuperview];
+        
+        // sets the scrollview page to the first
+        [scrollView setContentOffset:CGPointMake(0, 0)];
+        
         // checks wether it was called due the calloutBubble was inside the view
         if(isOutInCall){
             [self calloutBubbleIn];
