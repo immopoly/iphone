@@ -56,6 +56,11 @@
     else {
         if(![delegate isKindOfClass: [WebViewController class]]) {
             [delegate stopSpinnerAnimation];
+            
+            AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+            LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
+            loginVC.delegate = self;
+            [[appDelegate tabBarController] presentModalViewController: loginVC animated: YES];
         }
     }
 }

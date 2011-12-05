@@ -83,14 +83,21 @@
             
             CLLocationCoordinate2D tempCoord = CLLocationCoordinate2DMake([[coordinate objectForKey:@"latitude"] doubleValue],[[coordinate objectForKey:@"longitude"] doubleValue]);
             
+            //create a Flat object
             Flat *myFlat = [[Flat alloc] initWithName:[realEstate objectForKey:@"title"] description:[realEstate objectForKey:@"descriptionNote"] coordinate:tempCoord exposeId:[[location objectForKey:@"realEstateId"] intValue]];
             
+            //save Flat info
             [myFlat setExposeId:[[realEstate objectForKey:@"@id"]intValue]];
-            
-            
-            
-            //parse realEstate
+            [myFlat setNumberOfRooms: [[realEstate objectForKey: @"numberOfRooms"] intValue]];
+            [myFlat setLivingSpace: [[realEstate objectForKey: @"livingSpace"] doubleValue]];
             [myFlat setPriceValue: [realEstate objectForKey:@"baseRent"]];
+            
+            //parse and save Flat title picture url
+            NSDictionary *titlePicture = [realEstate objectForKey: @"titlePicture"];
+            NSMutableArray *urls = [titlePicture objectForKey: @"urls"];
+            NSDictionary *urlObject = [urls objectAtIndex: 0];
+            NSDictionary *url = [urlObject objectForKey: @"url"];
+            [myFlat setPictureUrl: [url objectForKey: @"@href"]];
             
             //save flats to user portfolio
             [[myUser portfolio] addObject: myFlat];
