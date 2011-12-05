@@ -46,7 +46,7 @@
     [self.table setBackgroundColor:[UIColor clearColor]];
     [self.table setSeparatorColor:[[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.0]];
     
-    loadingHistoryEntriesStart = 9;
+    loadingHistoryEntriesStart = 10;
     loadingHistoryEntriesLimit = 10;
 }
 
@@ -134,7 +134,7 @@
         [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
         [dateFormatter setDateFormat:@"'am' dd.MM.yyyy 'um' HH:mm 'Uhr'"];
         
-        double timeInterval = [historyEntry time]/1000; //1321922162430
+        long timeInterval = [historyEntry time]/1000; //1321922162430
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
         
         NSString *formattedDateString = [dateFormatter stringFromDate:date];
