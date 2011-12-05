@@ -147,9 +147,9 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     
-    static NSString *identifier = @"Flat";  
-    
     if([annotation isKindOfClass:[Flat class]]) {
+        
+        static NSString *identifier = @"Flat";
         
         MKPinAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
              
@@ -319,9 +319,15 @@
                 
                 // adde aktuelle flat zur annotation der tempflat
                 [[tempFlat flatsAtAnnotation] addObject:actFlat];
+                
+                // annotation bild der tempflat ändern, weil sie jetzt mehrere flats beinhaltet
+                MKAnnotationView *av = [mapView viewForAnnotation:tempFlat];
+                av.image = [UIImage imageNamed: @"house_orange.png"];
+                
+                // break, weil eine in der nähe befindliche flat reicht
                 break;
             }
-        }
+        }   
         // wenn keine flat in der nähe gefunden wurde, adde diese flat zur Liste aller flats,
         // die gezeigt werden und zeige die Annotation
         if(!found) {
