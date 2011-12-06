@@ -13,7 +13,7 @@
 
 @implementation PortfolioViewController
 
-@synthesize tvCell, table, segmentedControl, portfolioMapView, loginCheck,calloutBubble,isOutInCall,isCalloutBubbleIn,selectedExposeId,selViewForHouseImage,selectedImmoScoutFlat,lbFlatDescription,lbFlatName,lbFlatPrice,lbLivingSpace,adressLabel,lbNumberOfRooms,exposeWebViewController, spinner, btRecenterMap, isBtHidden;
+@synthesize tvCell, table, segmentedControl, portfolioMapView, loginCheck,calloutBubble,isOutInCall,isCalloutBubbleIn,selectedExposeId,selViewForHouseImage,selectedImmoScoutFlat,lbFlatDescription,lbFlatName,lbFlatPrice,lbLivingSpace,adressLabel,lbNumberOfRooms,exposeWebViewController, spinner, btRecenterMap, isBtHidden,topBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 { 
@@ -236,6 +236,53 @@
         default:
             break;
     }
+
+}
+
+- (IBAction)showList{
+    [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_list.png"]];
+    
+    CGPoint pos = calloutBubble.center;
+	pos.y = -320.0f;
+	calloutBubble.center = pos;
+    
+    CGPoint posMap;
+    CGPoint posTable;
+    
+    [btRecenterMap setHidden:YES];
+    [self setIsBtHidden:YES];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.4];
+    posMap = portfolioMapView.center;
+    posTable = table.center;
+    posMap.x = 480.0f;
+    posTable.x = 160.0f;
+    portfolioMapView.center = posMap;
+    table.center = posTable;
+    [UIView commitAnimations]; 
+
+}
+- (IBAction)showMap{
+    [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_map.png"]];
+    
+    CGPoint pos = calloutBubble.center;
+	pos.y = -320.0f;
+	calloutBubble.center = pos;
+    
+    CGPoint posMap;
+    CGPoint posTable;
+    [btRecenterMap setHidden:NO];
+    [self setIsBtHidden:NO];
+    [UIView beginAnimations:nil context:NULL];
+    [UIView setAnimationDuration:0.4];
+    posMap = portfolioMapView.center;
+    posTable = table.center;
+    posMap.x = 160.0f;
+    posTable.x = -160.0f;
+    portfolioMapView.center = posMap;
+    table.center = posTable;
+    [UIView commitAnimations];
+    [self recenterMap];
 
 }
 
