@@ -19,7 +19,7 @@
 #define ANNO_WIDTH 33
 #define ANNO_HEIGHT 30
 
-@interface ImmopolyMapViewController : UIViewController <LocationDelegate, MKMapViewDelegate> {
+@interface ImmopolyMapViewController : UIViewController <LocationDelegate, MKMapViewDelegate, UIPageViewControllerDelegate> {
     MKMapView *mapView;
     WebViewController *exposeWebViewController;
     LoginViewController *loginViewController;
@@ -45,6 +45,9 @@
     float iphoneScaleFactorLongitude;
     CLLocationDegrees zoomLevel;
     IBOutlet UIScrollView *scrollView;
+    int numOfScrollViewSubviews;
+    
+    IBOutlet UIPageControl *pageControl;
 }
 
 @property(nonatomic, retain) IBOutlet MKMapView *mapView;
@@ -64,6 +67,8 @@
 @property(nonatomic, assign) float iphoneScaleFactorLatitude;
 @property(nonatomic, assign) float iphoneScaleFactorLongitude;
 @property(nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property(nonatomic, assign) int numOfScrollViewSubviews;
+@property(nonatomic, retain) IBOutlet UIPageControl *pageControl;
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation;
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view;
@@ -73,7 +78,7 @@
 
 -(void)calloutBubbleIn;
 -(IBAction)calloutBubbleOut;
--(IBAction)showFlatsWebView;
+-(void)showFlatsWebView;
 -(void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context;
 -(void)filterAnnotations:(NSArray *)flatsToFilter;
 

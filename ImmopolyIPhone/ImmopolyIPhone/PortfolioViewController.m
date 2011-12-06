@@ -182,15 +182,15 @@
     lbSpace = (UILabel *)[cell viewWithTag:4];
     [asyncImageViewList reset];
     
-    [asyncImageViewList loadImageFromURLString:[actFlat pictureUrl]];
+    [asyncImageViewList loadImageFromURLString: [actFlat pictureUrl]];
     
-    NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[actFlat numberOfRooms]];
-    NSString *space = [NSString stringWithFormat:@"qm: %f",[actFlat livingSpace]];
+    NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d", [actFlat numberOfRooms]];
+    NSString *space = [NSString stringWithFormat:@"qm: %f", [actFlat livingSpace]];
     
     space = [space substringToIndex:[space length]-7];
     
     [lbStreet setText: [actFlat title]];
-    [lbStreet setText: actFlat.street]; 
+    //[lbStreet setText: [actFlat street]]; 
     [lbRooms setText: rooms]; 
     [lbSpace setText: space];
      
