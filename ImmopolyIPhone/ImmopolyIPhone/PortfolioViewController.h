@@ -39,6 +39,7 @@
     IBOutlet UILabel *lbNumberOfRooms;
     IBOutlet UILabel *lbLivingSpace;
     IBOutlet UIActivityIndicatorView *spinner;
+    IBOutlet UIImageView *topBar;
     
     //IBOutlet AsynchronousImageView *asyncImageViewList;
     IBOutlet UIButton *btRecenterMap;
@@ -65,6 +66,7 @@
 @property(nonatomic, retain) WebViewController *exposeWebViewController;
 @property(nonatomic, retain) IBOutlet UIButton *btRecenterMap;
 @property(nonatomic, assign) bool isBtHidden;
+@property(nonatomic, retain) IBOutlet UIImageView *topBar;
 
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 //@property(nonatomic, retain) IBOutlet AsynchronousImageView *asyncImageViewList;
@@ -75,6 +77,7 @@
 - (void)calloutBubbleIn;
 - (IBAction)showAllFlats;
 - (void)stopSpinnerAnimation;
-
+- (IBAction)showList;
+- (IBAction)showMap;
 
 @end
