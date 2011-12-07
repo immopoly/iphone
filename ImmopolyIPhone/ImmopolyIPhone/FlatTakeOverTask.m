@@ -73,6 +73,8 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"portfolio/add" object:nil userInfo:userInfo];    
         }
     }
+    
+    [jsonString release];
 }
 
 @end

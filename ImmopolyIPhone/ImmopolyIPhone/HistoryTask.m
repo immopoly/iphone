@@ -48,7 +48,7 @@
     
     NSError *err=nil;
 
-    NSArray *resultEntries = [[NSArray alloc]init];
+    NSArray *resultEntries = [[[NSArray alloc]init] autorelease];
     
     resultEntries = [JSONParser parseHistoryEntries:jsonString:&err];
     [[[[ImmopolyManager instance]user]history]addObjectsFromArray:resultEntries];
@@ -64,6 +64,8 @@
     }else{
         [delegate hasMoreData:YES];
     }
+    
+    [jsonString release];
 }
 
 @end

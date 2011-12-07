@@ -74,6 +74,8 @@
         [[ImmopolyManager instance] setLoginSuccessful:YES];
         [delegate loginWithResult: YES];
     }
+    
+    [jsonString release];
 }
 
 @end

@@ -51,6 +51,7 @@
     }else{
         [delegate registerWithResult: YES];
     }
+    [jsonString release];
 }
 
 @end

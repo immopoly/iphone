@@ -78,6 +78,7 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"portfolio/remove" object:nil userInfo:userInfo];    
         }
     }
+    [jsonString release];
 }
 
 @end
