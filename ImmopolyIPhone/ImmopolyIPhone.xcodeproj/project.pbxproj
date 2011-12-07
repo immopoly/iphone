@@ -104,7 +104,6 @@
 		D2C67D47145AA565008C3295 /* FlatProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D42145AA565008C3295 /* FlatProvider.m */; };
 		D2C67D4E145AA57A008C3295 /* Flat.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D49145AA57A008C3295 /* Flat.m */; };
 		D2C67D4F145AA57A008C3295 /* ImmopolyUser.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D4B145AA57A008C3295 /* ImmopolyUser.m */; };
-		D2C67D50145AA57A008C3295 /* ImmopolyHistory.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D4D145AA57A008C3295 /* ImmopolyHistory.m */; };
 		D2C67D54145AA596008C3295 /* ImmopolyMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D52145AA596008C3295 /* ImmopolyMapViewController.m */; };
 		D2C67D55145AA596008C3295 /* ImmopolyMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C67D53145AA596008C3295 /* ImmopolyMapViewController.xib */; };
 		D2E53F76148113A20042B205 /* FlatRemoveTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F75148113A20042B205 /* FlatRemoveTask.m */; };
@@ -305,8 +304,6 @@
 		D2C67D49145AA57A008C3295 /* Flat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Flat.m; sourceTree = "<group>"; };
 		D2C67D4A145AA57A008C3295 /* ImmopolyUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImmopolyUser.h; sourceTree = "<group>"; };
 		D2C67D4B145AA57A008C3295 /* ImmopolyUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImmopolyUser.m; sourceTree = "<group>"; };
-		D2C67D4C145AA57A008C3295 /* ImmopolyHistory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImmopolyHistory.h; sourceTree = "<group>"; };
-		D2C67D4D145AA57A008C3295 /* ImmopolyHistory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImmopolyHistory.m; sourceTree = "<group>"; };
 		D2C67D51145AA596008C3295 /* ImmopolyMapViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImmopolyMapViewController.h; sourceTree = "<group>"; };
 		D2C67D52145AA596008C3295 /* ImmopolyMapViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImmopolyMapViewController.m; sourceTree = "<group>"; };
 		D2C67D53145AA596008C3295 /* ImmopolyMapViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ImmopolyMapViewController.xib; sourceTree = "<group>"; };
@@ -710,8 +707,6 @@
 				D2C67D49145AA57A008C3295 /* Flat.m */,
 				D2C67D4A145AA57A008C3295 /* ImmopolyUser.h */,
 				D2C67D4B145AA57A008C3295 /* ImmopolyUser.m */,
-				D2C67D4C145AA57A008C3295 /* ImmopolyHistory.h */,
-				D2C67D4D145AA57A008C3295 /* ImmopolyHistory.m */,
 				D2A09C7D145EFC5D002646A1 /* HistoryEntry.h */,
 				D2A09C7E145EFC5D002646A1 /* HistoryEntry.m */,
 			);
@@ -886,7 +881,6 @@
 				D2C67D47145AA565008C3295 /* FlatProvider.m in Sources */,
 				D2C67D4E145AA57A008C3295 /* Flat.m in Sources */,
 				D2C67D4F145AA57A008C3295 /* ImmopolyUser.m in Sources */,
-				D2C67D50145AA57A008C3295 /* ImmopolyHistory.m in Sources */,
 				D2C67D54145AA596008C3295 /* ImmopolyMapViewController.m in Sources */,
 				D28E075E145B195D003D83D8 /* WebViewController.m in Sources */,
 				6DA75CB3145C12580079B32C /* ASIAuthenticationDialog.m in Sources */,

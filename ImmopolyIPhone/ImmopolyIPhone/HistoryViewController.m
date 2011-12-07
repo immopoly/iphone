@@ -9,7 +9,6 @@
 #import "HistoryViewController.h"
 #import "ImmopolyManager.h"
 #import "HistoryEntry.h"
-#import "ImmopolyHistory.h"
 #import "HistoryTask.h"
 
 @implementation HistoryViewController

@@ -155,7 +155,7 @@
 								<string key="NSFrame">{{256, 9}, {25, 25}}</string>
 								<reference key="NSSuperview" ref="678056138"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="4561168"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -186,7 +186,7 @@
 								<int key="IBUINumberOfPages">3</int>
 							</object>
 						</array>
-						<string key="NSFrame">{{0, 20}, {320, 320}}</string>
+						<string key="NSFrame">{{0, -320}, {320, 320}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="361147415"/>
@@ -638,7 +638,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">55</int>
+			<int key="maxID">64</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -655,16 +655,11 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="calloutBubbleOut">id</string>
-						<string key="changePage">id</string>
 						<string key="refreshLocation">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="calloutBubbleOut">
 							<string key="name">calloutBubbleOut</string>
-							<string key="candidateClassName">id</string>
-						</object>
-						<object class="IBActionInfo" key="changePage">
-							<string key="name">changePage</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="refreshLocation">

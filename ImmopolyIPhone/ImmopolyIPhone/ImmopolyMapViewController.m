@@ -361,6 +361,7 @@
     }
     // + 1 because of the selected flat, which holds the other flats
     numOfScrollViewSubviews = [[selectedImmoScoutFlat flatsAtAnnotation] count]+1;
+    pageControl.numberOfPages = numOfScrollViewSubviews;
 
     for (int i=0; i<numOfScrollViewSubviews; i++) {
         UIView *subview;
@@ -424,6 +425,4 @@
     int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     self.pageControl.currentPage = page;
 }
-
-
 @end

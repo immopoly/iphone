@@ -6,7 +6,12 @@
 //  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
 //
 
-
+#define TYPE_EXPOSE_ADDED 1
+#define TYPE_EXPOSE_SOLD 2
+#define TYPE_EXPOSE_MONOPOLY_POSITIVE 3
+#define TYPE_EXPOSE_MONOPOLY_NEGATIVE 4
+#define TYPE_DAILY_PROVISION 5
+#define TYPE_DAILY_RENT 6
 
 @interface HistoryEntry : NSObject{
     NSString *histText;
