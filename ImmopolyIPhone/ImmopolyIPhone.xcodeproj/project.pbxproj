@@ -11,6 +11,7 @@
 		4C014A01145DAD0200293E72 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0149FF145DAD0200293E72 /* LoginViewController.xib */; };
 		4C014A06145DBE4C00293E72 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C014A04145DBE4B00293E72 /* UserProfileViewController.m */; };
 		4C014A07145DBE4C00293E72 /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C014A05145DBE4B00293E72 /* UserProfileViewController.xib */; };
+		4C111EB5149203A800875AF3 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C111EB4149203A800875AF3 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4C9C4ED91471B4E500719E0E /* LoginCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C4ED81471B4E500719E0E /* LoginCheck.m */; };
 		6D0F9A921475849000D0C59F /* UserRegisterTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0F9A911475849000D0C59F /* UserRegisterTask.m */; };
 		6D0F9AAF14799CE900D0C59F /* house_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0F9AAC14799CE900D0C59F /* house_orange.png */; };
@@ -131,6 +132,7 @@
 		4C014A03145DBE4A00293E72 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		4C014A04145DBE4B00293E72 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		4C014A05145DBE4B00293E72 /* UserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
+		4C111EB4149203A800875AF3 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		4C9C4ED71471B4E500719E0E /* LoginCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCheck.h; sourceTree = "<group>"; };
 		4C9C4ED81471B4E500719E0E /* LoginCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCheck.m; sourceTree = "<group>"; };
 		4C9C4EDB1471B51A00719E0E /* UserDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDataDelegate.h; sourceTree = "<group>"; };
@@ -346,6 +348,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C111EB5149203A800875AF3 /* Twitter.framework in Frameworks */,
 				D2E53FCF148148780042B205 /* MessageUI.framework in Frameworks */,
 				D2C67D1F145AA4EA008C3295 /* MapKit.framework in Frameworks */,
 				D2C67D1D145AA4DF008C3295 /* libz.1.2.5.dylib in Frameworks */,
@@ -553,6 +556,7 @@
 		D24E7631145834DA003C91A8 = {
 			isa = PBXGroup;
 			children = (
+				4C111EB4149203A800875AF3 /* Twitter.framework */,
 				D2E53FCE148148780042B205 /* MessageUI.framework */,
 				D2E53F84148129670042B205 /* Sharing */,
 				D22F594B14793BEB008918A9 /* Settings.bundle */,
