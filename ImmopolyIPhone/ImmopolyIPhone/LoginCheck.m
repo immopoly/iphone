@@ -34,7 +34,7 @@
         //get user token
         NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
         //login with token
-        UserLoginTask *loader = [[UserLoginTask alloc] init];
+        UserLoginTask *loader = [[[UserLoginTask alloc] init] autorelease];
         loader.delegate = self;
         [loader performLoginWithToken: userToken];
         //[loader autorelease];
@@ -46,6 +46,7 @@
         LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
         loginVC.delegate = self;
         [[appDelegate tabBarController] presentModalViewController: loginVC animated: YES];
+        [loginVC release];
     }
 }
 
@@ -61,6 +62,7 @@
             LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
             loginVC.delegate = self;
             [[appDelegate tabBarController] presentModalViewController: loginVC animated: YES];
+            [loginVC release];
         }
     }
 }

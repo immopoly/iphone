@@ -10,17 +10,17 @@
 
 @implementation CoreLocationController
 
-@synthesize locMgr, delegate;
+@synthesize locationManager, delegate;
 
 - (id)init {
     self = [super init];
     
     if(self != nil){
         // Create new instance of locMg
-        self.locMgr = [[[CLLocationManager alloc] init] autorelease];
+        self.locationManager = [[[CLLocationManager alloc] init] autorelease];
         
         // sets the delegate as self
-        self.locMgr.delegate = self;
+        self.locationManager.delegate = self;
     }
     
     return self;
@@ -47,7 +47,7 @@
 }
 
 - (void)dealloc {
-    [self.locMgr release];
+    [self.locationManager release];
     [super dealloc];
 }
 

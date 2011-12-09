@@ -137,7 +137,7 @@
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
         
         NSString *formattedDateString = [dateFormatter stringFromDate:date];
-        NSLog(@"formattedDateString: %@", formattedDateString);
+        [dateFormatter release];      
         
         UIColor *color = [UIColor blackColor];
         
@@ -179,14 +179,14 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
-    if ([indexPath row]>[[[[ImmopolyManager instance]user]history]count]-3) {
+    if ([indexPath row]>[[[[ImmopolyManager instance] user] history] count]-3) {
         if (loading) {
             flagForReload = YES;
         }else{
             flagForReload = NO;
             loading = YES;
             
-            HistoryTask *task = [[[HistoryTask alloc]init]autorelease];
+            HistoryTask *task = [[[HistoryTask alloc] init] autorelease];
             task.delegate = self;
             [task loadHistoryEintriesFrom:loadingHistoryEntriesStart To:(loadingHistoryEntriesStart+loadingHistoryEntriesLimit)];
         }
@@ -197,7 +197,7 @@
             flagForReload = NO;
             loading = YES;
             
-            HistoryTask *task = [[[HistoryTask alloc]init]autorelease];
+            HistoryTask *task = [[[HistoryTask alloc] init] autorelease];
             task.delegate = self;
             [task loadHistoryEintriesFrom:loadingHistoryEntriesStart To:(loadingHistoryEntriesStart+loadingHistoryEntriesLimit)];
         }

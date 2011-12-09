@@ -12,7 +12,7 @@
 @interface FlatProvider : NSObject
 
 
--(void)getFlatsFromLocation:(CLLocationCoordinate2D)location;
+-(void)getFlatsFromLocation:(CLLocationCoordinate2D)_location;
 
 
 @end

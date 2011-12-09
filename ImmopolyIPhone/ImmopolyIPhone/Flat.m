@@ -40,7 +40,7 @@
     [name release];
     name = nil;
     [description release];
-    description = nil;    
+    description = nil;
     [super dealloc];
 }
 

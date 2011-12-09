@@ -120,13 +120,11 @@
         [removeFlatDialog release];
         
     }else{
-        FlatTakeOverTask *flatTask = [[FlatTakeOverTask alloc]init];
-        [flatTask takeOverFlat:[self selectedImmoscoutFlat]];
+        FlatTakeOverTask *flatTakeOverTask = [[FlatTakeOverTask alloc]init];
+        [flatTakeOverTask takeOverFlat:[self selectedImmoscoutFlat]];
         [self.view removeFromSuperview];
+        [flatTakeOverTask release];
     }
-    
-    
-    
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
@@ -147,6 +145,7 @@
             break;
     }   
     [self.view removeFromSuperview];
+    [flatRemoveTask release];
 }
 
 -(IBAction)performFacebookPost{
@@ -342,7 +341,7 @@
 	
     if (controller) [self presentModalViewController:controller animated:YES];
 	[controller release];	
-	
+    [html release];
 }
 
 - (void) mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {

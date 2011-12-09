@@ -151,7 +151,7 @@
         
         static NSString *identifier = @"Flat";
         
-        MKPinAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+        MKPinAnnotationView *annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
              
         annotationView.enabled = YES;
         
@@ -263,7 +263,6 @@
 	
     [UIView commitAnimations];
     [self setIsCalloutBubbleIn:false];
-    [asyncImageView resetImage];
     
     /*
     if([[selectedImmoScoutFlat flatsAtAnnotation] count] > 0) {
@@ -434,6 +433,10 @@
     [button setTitle:@">" forState:UIControlStateNormal];
     button.frame = CGRectMake(180, 90, 25, 25);
     [subview addSubview:button];
+    
+    [lbName release];
+    [lbRooms release];
+    [img release];
     
     return subview;
 }

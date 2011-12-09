@@ -13,19 +13,19 @@
 
 @implementation FlatProvider
 
--(void)getFlatsFromLocation:(CLLocationCoordinate2D)location{
+-(void)getFlatsFromLocation:(CLLocationCoordinate2D)_location{
     OAuthManager *manager = [[OAuthManager alloc] init];
     
-    NSString *url = [[NSString alloc]initWithFormat:@"http://rest.immobilienscout24.de/restapi/api/search/v1.0/search/radius.json?realEstateType=apartmentrent&pagenumber=1&geocoordinates=%f;%f;3.0",location.latitude,location.longitude];
+    NSString *url = [[NSString alloc]initWithFormat:@"http://rest.immobilienscout24.de/restapi/api/search/v1.0/search/radius.json?realEstateType=apartmentrent&pagenumber=1&geocoordinates=%f;%f;3.0",_location.latitude,_location.longitude];
     
     [manager grabURLInBackground:url withFormat:@"application/json" withDelegate:self];
     [manager release];
     [url release];
 }
 
-- (void)requestFinished:(ASIHTTPRequest *)request
+- (void)requestFinished:(ASIHTTPRequest *)_request
 {
-    NSString *responseString = [request responseString];
+    NSString *responseString = [_request responseString];
     NSError *err=nil;
     [[ImmopolyManager instance] setImmoScoutFlats:[JSONParser parseFlatData:responseString :&err]]; 
     
@@ -39,9 +39,9 @@
     }
 }
 
-- (void)requestFailed:(ASIHTTPRequest *)request
+- (void)requestFailed:(ASIHTTPRequest *)_request
 {
-    NSError *error = [request error];
+    NSError *error = [_request error];
 
     NSLog(@"Error: %@",[error localizedDescription]);
 }

@@ -20,7 +20,7 @@
 + (ImmopolyUser *)parseUserData:(NSString *)jsonString:(NSError **) err{
     // Create a dictionary from the JSON string
     NSDictionary *results = [jsonString JSONValue];
-    ImmopolyUser *myUser = [[[ImmopolyUser alloc]init] autorelease];
+    ImmopolyUser *myUser = [[[ImmopolyUser alloc] init] autorelease];
     
     if ([jsonString rangeOfString:@"ImmopolyException"].location != NSNotFound) {
         
@@ -192,7 +192,7 @@
     else {
         NSDictionary *histDic = [results objectForKey:@"org.immopoly.common.History"];
         
-        HistoryEntry *histEntry = [[[HistoryEntry alloc]init]autorelease];
+        HistoryEntry *histEntry = [[[HistoryEntry alloc] init] autorelease];
         [histEntry setHistText:[histDic objectForKey:@"text"]];
         [histEntry setTime:[[histDic objectForKey:@"time"]longLongValue]];
         [histEntry setType:[[histDic objectForKey:@"type"]intValue]];
@@ -203,7 +203,7 @@
 }
 
 + (NSArray *)parseHistoryEntries:(NSString *)jsonString:(NSError **) err{
-    NSMutableArray *histEntries = [[[NSMutableArray alloc]init]autorelease];
+    NSMutableArray *histEntries = [[[NSMutableArray alloc] init] autorelease];
     
     NSDictionary *results = [jsonString JSONValue];
     
@@ -221,7 +221,7 @@
         for (NSDictionary *dictionary in results) {
             NSDictionary *histDic = [dictionary objectForKey:@"org.immopoly.common.History"];
             
-            HistoryEntry *histEntry = [[[HistoryEntry alloc]init]autorelease];
+            HistoryEntry *histEntry = [[[HistoryEntry alloc] init] autorelease];
             [histEntry setHistText:[histDic objectForKey:@"text"]];
             [histEntry setTime:[[histDic objectForKey:@"time"]longLongValue]];
             [histEntry setType:[[histDic objectForKey:@"type"]intValue]];

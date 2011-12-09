@@ -61,13 +61,13 @@
     UserProfileViewController *userVC;
     HistoryViewController *historyVC;
     
-    mapVC = [[[ImmopolyMapViewController alloc]init]autorelease];
-    portfolioVC = [[[PortfolioViewController alloc]init]autorelease];
+    mapVC = [[[ImmopolyMapViewController alloc] init] autorelease];
+    portfolioVC = [[[PortfolioViewController alloc] init] autorelease];
     //loginVC = [[[LoginViewController alloc]init]autorelease]; 
     userVC = [[[UserProfileViewController alloc] init] autorelease];
-    historyVC = [[[HistoryViewController alloc]init]autorelease];    
+    historyVC = [[[HistoryViewController alloc] init] autorelease];    
     
-    self.tabBarController = [[[UITabBarController alloc]init]autorelease];
+    self.tabBarController = [[[UITabBarController alloc] init] autorelease];
     
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:mapVC,portfolioVC,userVC,historyVC, nil];
     self.window.rootViewController = self.tabBarController;
@@ -104,7 +104,7 @@
 - (void)startLocationUpdate {
     CLController = [[CoreLocationController alloc] init];
     CLController.delegate = self;
-    [CLController.locMgr startUpdatingLocation];
+    [CLController.locationManager startUpdatingLocation];
 }
 
 // method for converting lat and long from location to user friendly address
@@ -178,13 +178,13 @@
     
     [self geocodeLocation:location];
     
-    FlatProvider *provider = [[FlatProvider alloc]init];
+    FlatProvider *provider = [[FlatProvider alloc] init];
     [provider getFlatsFromLocation:[location coordinate]];
-        
+    
     [[ImmopolyManager instance]setActLocation:location];
     [[ImmopolyManager instance].delegate displayCurrentLocation];
             
-    [CLController.locMgr stopUpdatingLocation];    
+    [CLController.locationManager stopUpdatingLocation];
 }
 
 - (void)locationError:(NSError *)error {

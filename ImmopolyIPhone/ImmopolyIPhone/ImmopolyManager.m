@@ -18,9 +18,9 @@
     @synchronized(self)
     {
         if(!instance){
-            instance = [[ImmopolyManager alloc] init]; // all initialisations are here
+            instance = [[[ImmopolyManager alloc] init] autorelease]; // all initialisations are here
             instance.loginSuccessful = NO;
-            instance.immoScoutFlats = [[NSMutableArray alloc]init];
+            instance.immoScoutFlats = [[NSMutableArray alloc] init];
             
         }
         return instance;
@@ -33,6 +33,10 @@
 
 -(void)callLocationDelegate {
     [delegate displayCurrentLocation];
+}
+
+-(void)dealloc {
+    [immoScoutFlats release];
 }
 
 @end

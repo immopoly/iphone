@@ -31,6 +31,7 @@
     [segmentedControl release];
     [loginCheck release];
     [spinner release];
+    [exposeWebViewController release];
     [super dealloc];
 }
 
@@ -318,7 +319,7 @@
     
     if([annotation isKindOfClass:[Flat class]]) {
         
-        MKPinAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+        MKPinAnnotationView *annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
         
         annotationView.enabled = YES;
         

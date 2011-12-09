@@ -26,10 +26,6 @@
     connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }
 
-- (void)resetImage {
-    self.image = nil;
-}
-
 - (void)connection:(NSURLConnection *)theConnection didReceiveData:(NSData *)d {
     if (data == nil)
         data = [[NSMutableData alloc] initWithCapacity:2048];
@@ -50,10 +46,16 @@
     [spinner stopAnimating];
 }
 
-- (void)reset{
+- (void)reset {
     [spinner stopAnimating];
     [spinner setHidden:YES];
     self.image = nil;
+}
+
+- (void)dealloc {
+    [spinner release];
+    [data release];
+    [connection release];
 }
 
 @end
