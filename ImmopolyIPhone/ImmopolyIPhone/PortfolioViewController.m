@@ -278,13 +278,10 @@
         
         // NO, because our own bubble is coming in
         annotationView.canShowCallout = NO;
+        annotationView.animatesDrop = YES;
         
-        
-        // checks that annotation is not the current position    
-        if([annotation.title compare:@"My Location"] != NSOrderedSame) {
-            annotationView.image = [UIImage imageNamed:@"house_green.png"];
-        }
-        
+        UIImageView *imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single_small.png.png"]] autorelease];
+        [annotationView addSubview:imageView];
         return annotationView;
     }
     

@@ -176,10 +176,15 @@
     
     [[[annotationView subviews] objectAtIndex:0] removeFromSuperview];
 
+    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 51, 40)];
+    lbNumOfFlats.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    [lbNumOfFlats setText:@"5"];
+    
     UIImageView *imageView;
     imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:_imageName]] autorelease];
     
     [annotationView addSubview:imageView];
+    [annotationView addSubview:lbNumOfFlats];
 }
 
 // action for the compass button

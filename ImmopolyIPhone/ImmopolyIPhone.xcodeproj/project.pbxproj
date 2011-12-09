@@ -24,6 +24,7 @@
 		6D7BC32E146C50160033D3FE /* house_green.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D7BC32D146C50160033D3FE /* house_green.png */; };
 		6D9949CB1492418800AD2307 /* annotation_multi_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D9949C91492418800AD2307 /* annotation_multi_small.png */; };
 		6D9949CC1492418800AD2307 /* annotation_single_small.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D9949CA1492418800AD2307 /* annotation_single_small.png */; };
+		6D9949D514928B1A00AD2307 /* bt_show_all.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D9949D414928B1A00AD2307 /* bt_show_all.png */; };
 		6DA75CB3145C12580079B32C /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C62145C12580079B32C /* ASIAuthenticationDialog.m */; };
 		6DA75CB4145C12580079B32C /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C65145C12580079B32C /* ASIDataCompressor.m */; };
 		6DA75CB5145C12580079B32C /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C67145C12580079B32C /* ASIDataDecompressor.m */; };
@@ -155,6 +156,7 @@
 		6D7BC32F146C583A0033D3FE /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 		6D9949C91492418800AD2307 /* annotation_multi_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = annotation_multi_small.png; sourceTree = "<group>"; };
 		6D9949CA1492418800AD2307 /* annotation_single_small.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = annotation_single_small.png; sourceTree = "<group>"; };
+		6D9949D414928B1A00AD2307 /* bt_show_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_show_all.png; sourceTree = "<group>"; };
 		6DA75C61145C12580079B32C /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		6DA75C62145C12580079B32C /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		6DA75C63145C12580079B32C /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -568,6 +570,7 @@
 		6DE29985148A6F4500FD7CCA /* MapView */ = {
 			isa = PBXGroup;
 			children = (
+				6D9949D414928B1A00AD2307 /* bt_show_all.png */,
 				6DE29992148A6F6200FD7CCA /* topbar_portfolio_map.png */,
 			);
 			name = MapView;
@@ -889,6 +892,7 @@
 				6DC8657214912DE700EB6D8E /* annotation_multi.png in Resources */,
 				6D9949CB1492418800AD2307 /* annotation_multi_small.png in Resources */,
 				6D9949CC1492418800AD2307 /* annotation_single_small.png in Resources */,
+				6D9949D514928B1A00AD2307 /* bt_show_all.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
