@@ -19,6 +19,6 @@
 @property(nonatomic, retain) NSMutableData *data;
 @property(nonatomic, assign) id<RegisterDelegate>delegate;
 
--(void) performRegistration:(NSString *)userName withPassword:(NSString *)password withEmail:(NSString *)email withTwitter:(NSString *)twitter;
+- (void)performRegistration:(NSString *)_userName withPassword:(NSString *)_password withEmail:(NSString *)_email withTwitter:(NSString *)_twitter;
 
 @end

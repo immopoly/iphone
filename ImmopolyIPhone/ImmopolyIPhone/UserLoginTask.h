@@ -19,7 +19,7 @@
 @property(nonatomic, retain) NSMutableData *data;
 @property(nonatomic, assign) id<LoginDelegate>delegate;
 
-- (void)performLogin:(NSString *)userName password:(NSString *)password;
-- (void)performLoginWithToken:(NSString *) userToken;
+- (void)performLogin:(NSString *)_userName password:(NSString *)_password;
+- (void)performLoginWithToken:(NSString *)_userToken;
 
 @end

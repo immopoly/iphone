@@ -19,6 +19,6 @@
 @property(nonatomic, retain) NSMutableData *data;
 @property(nonatomic, retain) Flat *selectedImmoscoutFlat;
 
--(void)takeOverFlat:(Flat *)selectedImmoscoutFlat;
+- (void)takeOverFlat:(Flat *)_selectedImmoscoutFlat;
 
 @end

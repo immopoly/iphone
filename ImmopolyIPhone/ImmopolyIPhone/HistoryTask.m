@@ -13,11 +13,11 @@
 @implementation HistoryTask
 @synthesize data,connection,delegate,limit;
 
-- (void)loadHistoryEintriesFrom:(int)start To :(int)end{
+- (void)loadHistoryEintriesFrom:(int)_start To :(int)_end {
     
-    limit = end - start;
+    limit = _end - _start;
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/history?token=%@&start=%d&end=%d",[[[ImmopolyManager instance]user]userToken],start, end]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/history?token=%@&start=%d&end=%d",[[[ImmopolyManager instance]user]userToken],_start, _end]];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
     
@@ -31,16 +31,16 @@
     
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)d {
-    [[self data] appendData:d];
+- (void)connection:(NSURLConnection *)_connection didReceiveData:(NSData *)_data {
+    [[self data] appendData:_data];
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+- (void)connection:(NSURLConnection *)_connection didFailWithError:(NSError *)_error {
     NSLog(@"didFailWithError");
     //[delegate loginWithResult: NO];
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+- (void)connectionDidFinishLoading:(NSURLConnection *)_connection {
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if ([jsonString isEqualToString:@""]) {
         NSLog(@"jsonString is empty");

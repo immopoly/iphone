@@ -20,8 +20,8 @@
 }
 
 // TODO: releasing url and request (not possible?)
-- (void)performLogin:(NSString *)userName password:(NSString *)password {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/login?username=%@&password=%@",userName, password]];
+- (void)performLogin:(NSString *)_userName password:(NSString *)_password {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/login?username=%@&password=%@",_userName, _password]];
    
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
     
@@ -34,8 +34,8 @@
 }
 
 // TODO: releasing url and request (not possible?)
-- (void)performLoginWithToken:(NSString *) userToken {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/info?token=%@", userToken]];
+- (void)performLoginWithToken:(NSString *)_userToken {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/info?token=%@", _userToken]];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
     
@@ -47,16 +47,16 @@
     }
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)d {
-    [[self data] appendData:d];
+- (void)connection:(NSURLConnection *)_connection didReceiveData:(NSData *)_data {
+    [[self data] appendData:_data];
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+- (void)connection:(NSURLConnection *)_connection didFailWithError:(NSError *)_error {
     NSLog(@"didFailWithError");
     [delegate loginWithResult: NO];
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+- (void)connectionDidFinishLoading:(NSURLConnection *)_connection {
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if ([jsonString isEqualToString:@""]) {
         NSLog(@"jsonString is empty");

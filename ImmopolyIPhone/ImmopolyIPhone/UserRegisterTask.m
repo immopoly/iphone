@@ -13,9 +13,9 @@
 @implementation UserRegisterTask
 @synthesize data, connection, delegate;
 
--(void)performRegistration:(NSString *)userName withPassword:(NSString *)password withEmail:(NSString *)email withTwitter:(NSString *)twitter {
+- (void)performRegistration:(NSString *)_userName withPassword:(NSString *)_password withEmail:(NSString *)_email withTwitter:(NSString *)_twitter {
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/register?username=%@&password=%@&email=%@&twitter=%@", userName, password, email, twitter]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/register?username=%@&password=%@&email=%@&twitter=%@", _userName, _password, _email, _twitter]];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
     
@@ -26,15 +26,15 @@
     }
 }
 
-- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)d {
-    [[self data] appendData:d];
+- (void)connection:(NSURLConnection *)_connection didReceiveData:(NSData *)_data {
+    [[self data] appendData:_data];
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+- (void)connection:(NSURLConnection *)_connection didFailWithError:(NSError *)_error {
     NSLog(@"didFailWithError");
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+- (void)connectionDidFinishLoading:(NSURLConnection *)_connection {
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if ([jsonString isEqualToString:@""]) {
         NSLog(@"jsonString is empty");
