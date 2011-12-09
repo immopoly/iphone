@@ -16,8 +16,8 @@
 #import "Flat.h"
 
 #define METERS_PER_MILE 1609.344
-#define ANNO_WIDTH 33
-#define ANNO_HEIGHT 30
+#define ANNO_WIDTH 51
+#define ANNO_HEIGHT 40
 
 @interface ImmopolyMapViewController : UIViewController <LocationDelegate, MKMapViewDelegate, UIPageViewControllerDelegate> {
     MKMapView *mapView;
@@ -72,17 +72,18 @@
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation;
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view;
+- (void)setAnnotationImageWith:(NSString *)imageName atAnnotation:(Flat *) _flat;
 
 // linked to compass button 
--(IBAction)refreshLocation;
+- (IBAction)refreshLocation;
 
--(void)calloutBubbleIn;
--(IBAction)calloutBubbleOut;
--(void)showFlatsWebView;
--(void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context;
--(void)filterAnnotations:(NSArray *)flatsToFilter;
+- (void)calloutBubbleIn;
+- (IBAction)calloutBubbleOut;
+- (void)showFlatsWebView;
+- (void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context;
+- (void)filterAnnotations:(NSArray *)flatsToFilter;
 
--(void)initScrollView;
--(UIView *)createCalloutBubbleContentFromFlat:(Flat *) flat atPosition:(int) pos;
+- (void)initScrollView;
+- (UIView *)createCalloutBubbleContentFromFlat:(Flat *) flat atPosition:(int) pos;
 
 @end

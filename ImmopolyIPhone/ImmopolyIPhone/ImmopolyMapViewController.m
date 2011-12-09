@@ -157,21 +157,34 @@
         
         // NO, because our own bubble is coming in
         annotationView.canShowCallout = NO;
-     
-     
+        annotationView.animatesDrop = YES;
+        
         // checks that annotation is not the current position    
         Flat *location = (Flat *) annotation;
+        UIImageView *imageView;
         if([[location flatsAtAnnotation] count] > 0 ) {
-            annotationView.image = [UIImage imageNamed:@"house_orange.png"];
+            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi_small.png.png"]] autorelease];
+
         }
         else {
-            annotationView.image = [UIImage imageNamed:@"house_green.png"];
+            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single_small.png"]] autorelease];
         }
-        
+        [annotationView addSubview:imageView];
         return annotationView;
     }
      
     return nil;
+}
+
+- (void)setAnnotationImageWith:(NSString *)imageName atAnnotation:(Flat *) _flat{
+    MKAnnotationView *annotationView = [mapView viewForAnnotation:_flat];
+    
+    [[[annotationView subviews] objectAtIndex:0] removeFromSuperview];
+
+    UIImageView *imageView;
+    imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]] autorelease];
+    
+    [annotationView addSubview:imageView];
 }
 
 // action for the compass button
@@ -230,7 +243,10 @@
     
     [self setIsCalloutBubbleIn:true];    
     [mapView deselectAnnotation:selectedImmoScoutFlat animated:NO];    
-    selViewForHouseImage.image = [UIImage imageNamed:@"house_green_selected.png"];
+    
+    
+    //selViewForHouseImage.image = [UIImage imageNamed:@"annotation_multi_small.png"];
+
     [mapView setZoomEnabled:NO];
 }
 
@@ -249,11 +265,15 @@
     [self setIsCalloutBubbleIn:false];
     [asyncImageView resetImage];
     
+    /*
     if([[selectedImmoScoutFlat flatsAtAnnotation] count] > 0) {
-        selViewForHouseImage.image = [UIImage imageNamed:@"house_orange.png"];
+        //selViewForHouseImage.image = [UIImage imageNamed:@"annotation_multi_small.png"];
+        [self setAnnotationImageWith:@"annotation_multi_small.png" atAnnotation:selectedImmoScoutFlat];
     } else {
-        selViewForHouseImage.image = [UIImage imageNamed:@"house_green.png"];
+        //selViewForHouseImage.image = [UIImage imageNamed:@"annotation_single_small.png"];
+        [self setAnnotationImageWith:@"annotation_single_small.png" atAnnotation:selectedImmoScoutFlat];
     }
+    */
     [mapView setZoomEnabled:YES];
 }
 
@@ -316,7 +336,7 @@
             // angezeigt werden sollen
             if(fabs([tempFlat coordinate].latitude-latitude) < latDelta &&
                fabs([tempFlat coordinate].longitude-longitude) <longDelta ) {
-                
+ 
                 // wenn gefunden, dann remove die aktuelle flat von der view
                 [mapView removeAnnotation:actFlat];
                 found = TRUE;
@@ -325,8 +345,7 @@
                 [[tempFlat flatsAtAnnotation] addObject:actFlat];
                 
                 // annotation bild der tempflat ändern, weil sie jetzt mehrere flats beinhaltet
-                MKAnnotationView *av = [mapView viewForAnnotation:tempFlat];
-                av.image = [UIImage imageNamed: @"house_orange.png"];
+                [self setAnnotationImageWith:@"annotation_multi_small.png" atAnnotation:selectedImmoScoutFlat];
                 
                 // break, weil eine in der nähe befindliche flat reicht
                 break;
