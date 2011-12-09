@@ -162,7 +162,7 @@
 
 -(IBAction)showActionSheet:(id)sender {
 
-    UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:@"Teile diese Wohnung mit Freunden!" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Abbrechen" otherButtonTitles:@"Facebook", @"Mail", nil];
+    UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:@"Teile diese Wohnung mit Freunden!" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Abbrechen" otherButtonTitles:@"Facebook", @"Twitter", @"Mail", nil];
 
     popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 
@@ -191,11 +191,46 @@
         
         [[FacebookManager getInstance] commitShare];
 
-    } else if (buttonIndex == 2) {
+    }
+    else if (buttonIndex == 2) {
+        //Twitter
+        [self showTweet];
+        
+    }
+    else if (buttonIndex == 3) {
         //Mail
         [self showEmail];
         
     } 
+}
+
+-(void)showTweet {
+    Class twitterClass = NSClassFromString(@"TWTweetComposeViewController");
+    
+    if(!twitterClass) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No iOS 5" message:@"You need iOS 5 to use the Twitter function." delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+    else {
+        if(![TWTweetComposeViewController canSendTweet]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Twitter Account" message:@"You need Twitter account to use the Twitter function. Please check your phone settings." delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil];
+            [alert show];
+            [alert release]; 
+        }
+        else {
+            TWTweetComposeViewController *tweetView = [[TWTweetComposeViewController alloc] init];
+            [tweetView setInitialText:@"Coole Wohnung! #immopoly"];
+            NSString *url = [NSString stringWithFormat:@"http://immobilienscout24.de/expose/%i", [selectedImmoscoutFlat exposeId]];
+            
+            if(![tweetView addURL:[NSURL URLWithString:url]]) {
+                NSLog(@"Unable to add the URL.");
+            }
+            
+            [self presentModalViewController:tweetView animated:YES];
+            
+        }
+    }
 }
 
 - (void) showEmail{

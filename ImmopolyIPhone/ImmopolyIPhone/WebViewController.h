@@ -4,6 +4,7 @@
 //  Created by Tobias Heine.
 
 #import <UIKit/UIKit.h>
+#import <Twitter/Twitter.h>
 #import "Flat.h"
 #import "UserDataDelegate.h"
 #import "LoginCheck.h"
@@ -36,6 +37,7 @@
 -(IBAction)showActionSheet:(id)sender;
 - (void) showEmail;
 -(void)enableFlatButton:(NSTimer *)theTimer;
+-(void)showTweet;
 
 
 @end
