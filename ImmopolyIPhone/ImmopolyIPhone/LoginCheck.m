@@ -17,7 +17,7 @@
 
 @synthesize delegate;
 
--(void) checkUserLogin {
+- (void)checkUserLogin {
     
     //For tests
     //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userToken"];
@@ -50,8 +50,8 @@
     }
 }
 
--(void) loginWithResult:(BOOL)result {
-    if(result) {
+- (void)loginWithResult:(BOOL)_result {
+    if(_result) {
         [self notifyMyDelegateView];
     }
     else {
@@ -67,11 +67,11 @@
     }
 }
 
--(void) notifyMyDelegateView {
+- (void)notifyMyDelegateView {
     [delegate displayUserData];
 }
 
--(void) closeMyDelegateView {
+- (void)closeMyDelegateView {
     AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
     if(![delegate isKindOfClass: [WebViewController class]]) {
         //show map

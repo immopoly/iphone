@@ -23,21 +23,21 @@
     LoginCheck *loginCheck;
 }
 
-@property (nonatomic, retain) UIWebView *webView;
-@property (nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property (nonatomic, assign) int selectedExposeId;
-@property (nonatomic, retain) Flat *selectedImmoscoutFlat;
+@property(nonatomic, retain) UIWebView *webView;
+@property(nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property(nonatomic, assign) int selectedExposeId;
+@property(nonatomic, retain) Flat *selectedImmoscoutFlat;
 @property(nonatomic, retain) LoginCheck *loginCheck;
 @property(nonatomic, retain) IBOutlet UIButton *flatActionButton;
 
--(IBAction)goBack;
--(IBAction)flatAction;
--(IBAction)performFacebookPost;
--(void)reloadData;
--(IBAction)showActionSheet:(id)sender;
+- (IBAction)goBack;
+- (IBAction)flatAction;
+- (IBAction)performFacebookPost;
+- (void)reloadData;
+- (IBAction)showActionSheet:(id)sender;
 - (void) showEmail;
--(void)enableFlatButton:(NSTimer *)theTimer;
--(void)showTweet;
+- (void)enableFlatButton:(NSTimer *)_theTimer;
+- (void)showTweet;
 
 
 @end

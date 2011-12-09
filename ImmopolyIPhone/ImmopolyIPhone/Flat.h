@@ -64,8 +64,7 @@
 
 @property(nonatomic, retain) NSMutableArray *flatsAtAnnotation;
 
-
-- (id)initWithName:(NSString*)lName description:(NSString*)ldescription coordinate:(CLLocationCoordinate2D)lCoordinate exposeId:(int) lexposeId;
+- (id)initWithName:(NSString*)_name description:(NSString*)_description coordinate:(CLLocationCoordinate2D)_oordinate exposeId:(int)_lexposeId;
 
 
 @end

@@ -11,7 +11,7 @@
 @implementation AsynchronousImageView
 @synthesize connection, data, spinner;
 
-- (void)loadImageFromURLString:(NSString *)theUrlString {
+- (void)loadImageFromURLString:(NSString *)_urlString {
     
     // spinner stuff
     spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleGray)];
@@ -21,7 +21,7 @@
     spinner.center = [self center];
     [spinner startAnimating];
     
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:theUrlString]cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
+    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_urlString]cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
     
     connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
 }

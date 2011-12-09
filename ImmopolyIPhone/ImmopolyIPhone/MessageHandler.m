@@ -10,7 +10,7 @@
 
 @implementation MessageHandler
 
-+ (NSString *)giveErrorMsg:(NSError*) error {
++ (NSString *)giveErrorMsg:(NSError*)error {
     
     int errorCode = [error code];
     NSString *errorMsg;

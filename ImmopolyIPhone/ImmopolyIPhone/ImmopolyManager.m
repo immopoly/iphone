@@ -12,7 +12,7 @@
 
 @synthesize user, loginSuccessful,immoScoutFlats,actLocation,delegate,selectedExposeId;
 
-+(ImmopolyManager *) instance{
++ (ImmopolyManager *)instance {
     static ImmopolyManager *instance;
     
     @synchronized(self)
@@ -27,15 +27,15 @@
     }
 }
 
--(void)callFlatsDelegate{
+- (void)callFlatsDelegate {
     [delegate displayFlatsOnMap];
 }
 
--(void)callLocationDelegate {
+- (void)callLocationDelegate {
     [delegate displayCurrentLocation];
 }
 
--(void)dealloc {
+- (void)dealloc {
     [immoScoutFlats release];
 }
 

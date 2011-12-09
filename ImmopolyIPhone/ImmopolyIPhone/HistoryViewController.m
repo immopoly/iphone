@@ -15,8 +15,7 @@
 
 @synthesize tvCell, table, loginCheck, spinner,loading,flagForReload,loadingHistoryEntriesLimit,loadingHistoryEntriesStart;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -27,8 +26,7 @@
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
@@ -37,8 +35,7 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [[self table] setHidden: YES];
     [spinner startAnimating];
@@ -56,26 +53,24 @@
     [[self table]reloadData];
 }
 
--(void) stopSpinnerAnimation {
+- (void)stopSpinnerAnimation {
     [spinner stopAnimating];
     [spinner setHidden: YES];
 }
 
--(void) displayUserData {
+- (void)displayUserData {
     [table reloadData];
     [self stopSpinnerAnimation];
     [[self table] setHidden: NO];
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
@@ -86,7 +81,7 @@
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     /*int numRows = [[[[ImmopolyManager instance] user] history] count]; 
     if(numRows > 0){
         return numRows;
@@ -99,12 +94,12 @@
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 89;
 }
 
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"selected row %d",[indexPath row]);
 }
 
@@ -206,7 +201,7 @@
     return cell;
 }
 
--(void)hasMoreData:(bool)result{
+- (void)hasMoreData:(bool)result {
     if (result) {
         loading = false;
         loadingHistoryEntriesStart+=10;
@@ -215,13 +210,12 @@
     [self.table reloadData];
 }
 
--(void) dealloc {
+- (void)dealloc {
     [tvCell release];
     [table release];
     [loginCheck release];
     [spinner release];
     [super dealloc];
 }
-
 
 @end

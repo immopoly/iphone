@@ -13,10 +13,10 @@
 @required
 
 // Our location updates are sent here
-- (void)locationUpdate:(CLLocation *)location; 
+- (void)locationUpdate:(CLLocation *)_location; 
 
 // Any errors are sent here
-- (void)locationError:(NSError *)error; 
+- (void)locationError:(NSError *)_error; 
 
 @end
 

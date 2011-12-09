@@ -10,6 +10,6 @@
 
 @protocol RegisterDelegate <NSObject>
 
--(void)registerWithResult:(BOOL) result;
+- (void)registerWithResult:(BOOL)_result;
 
 @end

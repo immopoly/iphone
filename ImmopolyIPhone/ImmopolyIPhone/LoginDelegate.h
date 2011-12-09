@@ -10,6 +10,6 @@
 
 @protocol LoginDelegate <NSObject>
 
--(void) loginWithResult: (BOOL) result;
+- (void)loginWithResult:(BOOL)_result;
 
 @end

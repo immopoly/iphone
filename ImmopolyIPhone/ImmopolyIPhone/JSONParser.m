@@ -17,7 +17,7 @@
 
 @synthesize delegate;
 
-+ (ImmopolyUser *)parseUserData:(NSString *)jsonString:(NSError **) err{
++ (ImmopolyUser *)parseUserData:(NSString *)jsonString:(NSError **)err{
     // Create a dictionary from the JSON string
     NSDictionary *results = [jsonString JSONValue];
     ImmopolyUser *myUser = [[[ImmopolyUser alloc] init] autorelease];
@@ -109,7 +109,7 @@
     return myUser;
 }
 
-+ (NSMutableArray *)parseFlatData:(NSString *)jsonString:(NSError **) err{
++ (NSMutableArray *)parseFlatData:(NSString *)jsonString:(NSError **)err{
 
     NSDictionary *results = [jsonString JSONValue];
     NSMutableArray *immoScoutFlats = [[[NSMutableArray alloc] init] autorelease];
@@ -176,7 +176,7 @@
     return immoScoutFlats;
 }
 
-+ (HistoryEntry *)parseHistoryEntry:(NSString *)jsonString:(NSError **) err{
++ (HistoryEntry *)parseHistoryEntry:(NSString *)jsonString:(NSError **)err{
     NSDictionary *results = [jsonString JSONValue];
     
     if ([jsonString rangeOfString:@"ImmopolyException"].location != NSNotFound) {
@@ -202,7 +202,7 @@
     }
 }
 
-+ (NSArray *)parseHistoryEntries:(NSString *)jsonString:(NSError **) err{
++ (NSArray *)parseHistoryEntries:(NSString *)jsonString:(NSError **)err{
     NSMutableArray *histEntries = [[[NSMutableArray alloc] init] autorelease];
     
     NSDictionary *results = [jsonString JSONValue];

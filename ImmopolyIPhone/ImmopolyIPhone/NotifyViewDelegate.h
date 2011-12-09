@@ -10,8 +10,7 @@
 
 @protocol NotifyViewDelegate <NSObject>
 
--(void) notifyMyDelegateView;
-
--(void) closeMyDelegateView;
+- (void)notifyMyDelegateView;
+- (void)closeMyDelegateView;
 
 @end

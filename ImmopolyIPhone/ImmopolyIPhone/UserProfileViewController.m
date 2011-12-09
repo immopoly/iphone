@@ -15,8 +15,7 @@
 
 @synthesize hello, bank, miete, provision, loginCheck, spinner, labelBank, labelMiete, labelProvision;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -27,8 +26,7 @@
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
@@ -38,35 +36,34 @@
 #pragma mark - View lifecycle
 
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     [self hideLabels: YES];
     [spinner startAnimating];
 }
 
--(void) viewDidAppear:(BOOL)animated {
+- (void)viewDidAppear:(BOOL)animated {
     loginCheck.delegate = self;
     [loginCheck checkUserLogin];
     [super viewDidAppear:animated];
 }
 
--(void) hideLabels: (BOOL) hidden {
-    [hello setHidden: hidden];
-    [bank setHidden: hidden];
-    [miete setHidden: hidden];
-    [provision setHidden: hidden];
-    [labelBank setHidden: hidden];
-    [labelMiete setHidden: hidden];
-    [labelProvision setHidden: hidden];
+-(void)hideLabels:(BOOL)_hidden {
+    [hello setHidden: _hidden];
+    [bank setHidden: _hidden];
+    [miete setHidden: _hidden];
+    [provision setHidden: _hidden];
+    [labelBank setHidden: _hidden];
+    [labelMiete setHidden: _hidden];
+    [labelProvision setHidden: _hidden];
 }
 
--(void) stopSpinnerAnimation {
+- (void)stopSpinnerAnimation {
     [spinner stopAnimating];
     [spinner setHidden: YES];
 }
 
--(void) displayUserData {
+- (void)displayUserData {
     
     ImmopolyUser *myUser = [[ImmopolyManager instance] user];
     
@@ -79,15 +76,13 @@
     [self hideLabels: NO];
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }

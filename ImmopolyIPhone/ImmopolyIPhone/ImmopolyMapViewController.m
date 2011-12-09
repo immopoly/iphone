@@ -17,14 +17,13 @@
 
 @synthesize mapView, adressLabel, calloutBubble,selectedExposeId, lbFlatName, lbFlatDescription, lbFlatPrice, lbNumberOfRooms, lbLivingSpace,selectedImmoScoutFlat, isCalloutBubbleIn, isOutInCall, selViewForHouseImage, asyncImageView, iphoneScaleFactorLatitude, iphoneScaleFactorLongitude, scrollView, numOfScrollViewSubviews, pageControl;
 
--(void)dealloc{
+-(void)dealloc {
     [super dealloc];
     [exposeWebViewController release];
     [loginViewController release];
 }
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization        
@@ -34,8 +33,7 @@
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
@@ -48,8 +46,7 @@
 
 }
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     
     // that only the background is transparent and not the whole view
@@ -65,8 +62,7 @@
     [self setNumOfScrollViewSubviews:0];
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -80,17 +76,16 @@
     [mapView setZoomEnabled:YES];
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(void) setAdressLabelText:(NSString *)locationName {
-    [adressLabel setText:locationName];
+- (void)setAdressLabelText:(NSString *)_locationName {
+    [adressLabel setText:_locationName];
 }
 
--(void) displayCurrentLocation {
+- (void)displayCurrentLocation {
     CLLocationCoordinate2D zoomLocation = [[[ImmopolyManager instance]actLocation]coordinate];
     
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.3*METERS_PER_MILE, 0.3*METERS_PER_MILE);
@@ -176,13 +171,13 @@
     return nil;
 }
 
-- (void)setAnnotationImageWith:(NSString *)imageName atAnnotation:(Flat *) _flat{
+- (void)setAnnotationImageWith:(NSString *)_imageName atAnnotation:(Flat *)_flat {
     MKAnnotationView *annotationView = [mapView viewForAnnotation:_flat];
     
     [[[annotationView subviews] objectAtIndex:0] removeFromSuperview];
 
     UIImageView *imageView;
-    imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:imageName]] autorelease];
+    imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:_imageName]] autorelease];
     
     [annotationView addSubview:imageView];
 }
@@ -276,7 +271,7 @@
     [mapView setZoomEnabled:YES];
 }
 
--(void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
+- (void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
     if([animationID isEqualToString:@"inAnimation"]){
         NSLog(@"animation in");
     } else if([animationID isEqualToString:@"outAnimation"]) {
@@ -294,7 +289,7 @@
     }
 }
 
--(void)showFlatsWebView {
+- (void)showFlatsWebView {
     // if pageControl is at a page > 0, then the selected flat is one of the flats in flatsAtAnnotation
     if(self.pageControl.currentPage > 0) {
         Flat *tempFlat = [[selectedImmoScoutFlat flatsAtAnnotation] objectAtIndex:self.pageControl.currentPage-1];
@@ -312,19 +307,19 @@
 }
 
 // method for clustering
--(void)filterAnnotations:(NSArray *)flatsToFilter {
+- (void)filterAnnotations:(NSArray *)_flatsToFilter {
     float latDelta = mapView.region.span.latitudeDelta/iphoneScaleFactorLatitude;
     float longDelta = mapView.region.span.longitudeDelta/iphoneScaleFactorLongitude;
     
     NSMutableArray *flatsToShow=[[NSMutableArray alloc] initWithCapacity:0];
 
     // resetting the flatsAtAnnotation array
-    for (Flat *tempFlat in flatsToFilter) {
+    for (Flat *tempFlat in _flatsToFilter) {
         [[tempFlat flatsAtAnnotation] removeAllObjects];
     }
     
-    for (int i=0; i<[flatsToFilter count]; i++) {
-        Flat *actFlat = [flatsToFilter objectAtIndex:i];
+    for (int i=0; i<[_flatsToFilter count]; i++) {
+        Flat *actFlat = [_flatsToFilter objectAtIndex:i];
         CLLocationDegrees latitude = [actFlat coordinate].latitude;
         CLLocationDegrees longitude = [actFlat coordinate].longitude;
         
@@ -361,14 +356,14 @@
 
 }
 
--(void)mapView:(MKMapView *)mpView regionDidChangeAnimated:(BOOL)animated{
+- (void)mapView:(MKMapView *)mpView regionDidChangeAnimated:(BOOL)animated {
     if (zoomLevel != mpView.region.span.longitudeDelta || animated) {
         [self filterAnnotations: [[ImmopolyManager instance] immoScoutFlats]];
         zoomLevel = mpView.region.span.longitudeDelta;
     }
 }
 
--(void)initScrollView {
+- (void)initScrollView {
     
     // deleting all existing views (labels, images) 
     UIView *v;
@@ -400,10 +395,10 @@
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * self.numOfScrollViewSubviews, self.scrollView.frame.size.height);
 }
 
--(UIView *)createCalloutBubbleContentFromFlat:(Flat *) flat atPosition:(int) pos {
+- (UIView *)createCalloutBubbleContentFromFlat:(Flat *)_flat atPosition:(int)_pos {
     
     CGRect frame;
-    frame.origin.x = self.scrollView.frame.size.width * pos;
+    frame.origin.x = self.scrollView.frame.size.width * _pos;
     frame.origin.y = 0;
     frame.size = self.scrollView.frame.size;
     
@@ -413,18 +408,18 @@
     //labels
     UILabel *lbName = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 100, 30)];
     lbName.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-    [lbName setText:[flat name]];
+    [lbName setText:[_flat name]];
     [subview addSubview:lbName];
     
     UILabel *lbRooms = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, 100, 30)];
     lbRooms.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-    NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[flat numberOfRooms]];
+    NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[_flat numberOfRooms]];
     [lbRooms setText:rooms];
     [subview addSubview:lbRooms];
     
     // image
     AsynchronousImageView *img = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(130, 30, 60, 60)];
-    [img loadImageFromURLString:[flat pictureUrl]];
+    [img loadImageFromURLString:[_flat pictureUrl]];
     [subview addSubview:img];
 
     // button
@@ -442,7 +437,7 @@
 }
 
 // update the pagecontrol when more than 50% of the previous/next page is visible
--(void)scrollViewDidScroll:(UIScrollView *)sender {
+- (void)scrollViewDidScroll:(UIScrollView *)sender {
     CGFloat pageWidth = self.scrollView.frame.size.width;
     int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
     self.pageControl.currentPage = page;

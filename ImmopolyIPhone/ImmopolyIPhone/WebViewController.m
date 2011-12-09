@@ -44,7 +44,7 @@
     
 }
 
--(void)enableFlatButton:(NSTimer *)theTimer{
+-(void)enableFlatButton:(NSTimer *)_theTimer {
     [[self flatActionButton]setEnabled:YES];
 }
 
@@ -79,7 +79,6 @@
 	// Release anything that's not essential, such as cached data
 }
 
-
 - (void)dealloc {
 	[webView release];
     [activityIndicator release];
@@ -88,7 +87,7 @@
 	[super dealloc];
 }
 
--(IBAction)goBack{
+- (IBAction)goBack {
     [self.view removeFromSuperview];
 }
 
@@ -102,7 +101,7 @@
     activityIndicator.hidden=YES;
 }
 
--(IBAction)flatAction{
+- (IBAction)flatAction {
      
     //FlatTakeOverTask *flatTask = [[FlatTakeOverTask alloc]init];
     //[flatTask takeOverFlat:[self selectedImmoscoutFlat]];
@@ -110,7 +109,7 @@
     [loginCheck checkUserLogin];
 }
 
--(void) displayUserData {
+- (void)displayUserData {
     
     if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]) {
         
@@ -127,8 +126,7 @@
     }
 }
 
-- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
-{
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     FlatRemoveTask *flatRemoveTask = [[FlatRemoveTask alloc]init];
     
     switch (buttonIndex) {
@@ -148,18 +146,18 @@
     [flatRemoveTask release];
 }
 
--(IBAction)performFacebookPost{
+-(IBAction)performFacebookPost {
  
 }
 
-- (void) facebookStartedLoading{
+- (void)facebookStartedLoading {
     
 }
-- (void) facebookStopedLoading{
+- (void)facebookStopedLoading {
     
 }
 
--(IBAction)showActionSheet:(id)sender {
+- (IBAction)showActionSheet:(id)sender {
 
     UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:@"Teile diese Wohnung mit Freunden!" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Abbrechen" otherButtonTitles:@"Facebook", @"Twitter", @"Mail", nil];
 
@@ -170,7 +168,7 @@
     [popupQuery release];
 }
 
--(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
     [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
     
     if (buttonIndex == 1) {
@@ -203,7 +201,7 @@
     } 
 }
 
--(void)showTweet {
+- (void)showTweet {
     Class twitterClass = NSClassFromString(@"TWTweetComposeViewController");
     
     if(!twitterClass) {
@@ -232,7 +230,7 @@
     }
 }
 
-- (void) showEmail{
+- (void)showEmail {
     
     NSMutableString* html = [[NSMutableString alloc] init];
 	[html appendString:	
@@ -344,7 +342,7 @@
     [html release];
 }
 
-- (void) mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
+- (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
 	[self dismissModalViewControllerAnimated:YES];
 }
 

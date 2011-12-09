@@ -23,8 +23,8 @@
     
 }
 
-@property (nonatomic, retain) UITableViewCell *tvCell;
-@property (nonatomic, retain) UITableView *table;
+@property(nonatomic, retain) UITableViewCell *tvCell;
+@property(nonatomic, retain) UITableView *table;
 @property(nonatomic, retain) LoginCheck *loginCheck;
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, assign) BOOL loading;

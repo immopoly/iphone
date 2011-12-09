@@ -22,15 +22,15 @@
     int selectedExposeId;
 }
 
--(void)callLocationDelegate;
--(void)callFlatsDelegate;
-
-+ (ImmopolyManager *) instance;
-
 @property(nonatomic, assign) id<LocationDelegate>delegate;
 @property(nonatomic, retain) ImmopolyUser *user;
 @property(nonatomic, assign) BOOL loginSuccessful;
 @property(nonatomic, retain) NSMutableArray *immoScoutFlats;
 @property(nonatomic, retain) CLLocation *actLocation;
 @property(nonatomic, assign) int selectedExposeId;
+
+- (void)callLocationDelegate;
+- (void)callFlatsDelegate;
++ (ImmopolyManager *) instance;
+
 @end
