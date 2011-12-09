@@ -38,15 +38,15 @@
     }
 }
 
-- (void)connection:(NSURLConnection *)_connection didReceiveData:(NSData *)_data {
-    [[self data] appendData:_data];
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)d {
+    [[self data] appendData:d];
 }
 
-- (void)connection:(NSURLConnection *)_connection didFailWithError:(NSError *)_error {
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError");
 }
 
-- (void)connectionDidFinishLoading:(NSURLConnection *)_connection {
+- (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if ([jsonString isEqualToString:@""]) {

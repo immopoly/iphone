@@ -23,8 +23,8 @@
     [url release];
 }
 
-- (void)requestFinished:(ASIHTTPRequest *)_request {
-    NSString *responseString = [_request responseString];
+- (void)requestFinished:(ASIHTTPRequest *)request {
+    NSString *responseString = [request responseString];
     NSError *err=nil;
     [[ImmopolyManager instance] setImmoScoutFlats:[JSONParser parseFlatData:responseString :&err]]; 
     
@@ -38,8 +38,8 @@
     }
 }
 
-- (void)requestFailed:(ASIHTTPRequest *)_request {
-    NSError *error = [_request error];
+- (void)requestFailed:(ASIHTTPRequest *)request {
+    NSError *error = [request error];
 
     NSLog(@"Error: %@",[error localizedDescription]);
 }
