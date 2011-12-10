@@ -58,8 +58,19 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    self.tvCell = nil;
+    self.table = nil;
+    self.adressLabel = nil;
+    self.lbFlatName = nil;
+    self.lbFlatDescription = nil;
+    self.lbFlatPrice = nil;
+    self.lbNumberOfRooms = nil;
+    self.lbLivingSpace = nil;
+    self.spinner = nil;
+    self.topBar = nil;
+    self.btRecenterMap = nil;
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {

@@ -21,15 +21,16 @@
     IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet UILabel *loginLabel;
     IBOutlet UIButton *loginButton;
-    UserProfileViewController *userProfileViewController;
-    id<NotifyViewDelegate> delegate;
-    
-    // stuff for user registration
     IBOutlet UIView *registerView;
     IBOutlet UITextField *registerUserName;
     IBOutlet UITextField *registerUserPassword;
     IBOutlet UITextField *registerUserEmail;
     IBOutlet UITextField *registerUserTwitter;
+    
+    
+    UserProfileViewController *userProfileViewController;
+    id<NotifyViewDelegate> delegate;
+    
 }
 
 @property(nonatomic, retain) IBOutlet UITextField *userName;

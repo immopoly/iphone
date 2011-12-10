@@ -20,34 +20,34 @@
 #define ANNO_HEIGHT 40
 
 @interface ImmopolyMapViewController : UIViewController <LocationDelegate, MKMapViewDelegate, UIPageViewControllerDelegate> {
-    MKMapView *mapView;
-    WebViewController *exposeWebViewController;
-    LoginViewController *loginViewController;
-    UserProfileViewController *userProfileViewController;
-    PortfolioViewController *portfolioViewController;
     IBOutlet UILabel *adressLabel;
     IBOutlet UILabel *lbFlatName;
     IBOutlet UILabel *lbFlatDescription;
     IBOutlet UILabel *lbFlatPrice;
     IBOutlet UILabel *lbNumberOfRooms;
     IBOutlet UILabel *lbLivingSpace;
-    
     IBOutlet UIView *calloutBubble;
+    IBOutlet AsynchronousImageView *asyncImageView;
+    IBOutlet UIScrollView *scrollView;
+    IBOutlet UIPageControl *pageControl;
+    
+    MKMapView *mapView;
+    WebViewController *exposeWebViewController;
+    LoginViewController *loginViewController;
+    UserProfileViewController *userProfileViewController;
+    PortfolioViewController *portfolioViewController;
+    
     bool isCalloutBubbleIn;
     bool isOutInCall;
     int selectedExposeId;
     Flat *selectedImmoScoutFlat;
     MKAnnotationView *selViewForHouseImage;
-    IBOutlet AsynchronousImageView *asyncImageView;
     
     // variables vor clustering
     float iphoneScaleFactorLatitude;
     float iphoneScaleFactorLongitude;
     CLLocationDegrees zoomLevel;
-    IBOutlet UIScrollView *scrollView;
     int numOfScrollViewSubviews;
-    
-    IBOutlet UIPageControl *pageControl;
 }
 
 @property(nonatomic, retain) IBOutlet MKMapView *mapView;

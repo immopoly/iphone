@@ -15,9 +15,9 @@
 @interface WebViewController : UIViewController <UIWebViewDelegate, UserDataDelegate, FacebookManagerDelegate,UIActionSheetDelegate,MFMailComposeViewControllerDelegate,UIAlertViewDelegate>{
 	
 	IBOutlet UIWebView *webView;
-    //Spinner
     IBOutlet UIActivityIndicatorView *activityIndicator;
     IBOutlet UIButton *flatActionButton;
+    
     int selectedExposeId;
     Flat *selectedImmoscoutFlat;
     LoginCheck *loginCheck;

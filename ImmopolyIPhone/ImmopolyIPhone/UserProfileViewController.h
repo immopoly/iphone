@@ -20,8 +20,9 @@
     IBOutlet UILabel *labelBank;
     IBOutlet UILabel *labelMiete;
     IBOutlet UILabel *labelProvision;
-    LoginCheck *loginCheck;
     IBOutlet UIActivityIndicatorView *spinner;
+    
+    LoginCheck *loginCheck;
 }
 
 @property(nonatomic, retain) IBOutlet UILabel *hello;

@@ -344,6 +344,13 @@
 	[self dismissModalViewControllerAnimated:YES];
 }
 
+-(void)viewDidUnload{
+    [super viewDidUnload];
+    self.webView = nil;
+    self.activityIndicator = nil;
+    self.flatActionButton = nil;
+}
+
 
 
 @end

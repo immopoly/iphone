@@ -78,8 +78,18 @@
 
 - (void)viewDidUnload {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    self.userName = nil;
+    self.password = nil;
+    self.spinner = nil;
+    self.loginLabel = nil;
+    self.loginButton = nil;
+    self.registerView = nil;
+    self.registerUserName = nil;
+    self.registerUserPassword = nil;
+    self.registerUserEmail = nil;
+    self.registerUserTwitter = nil;
+    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

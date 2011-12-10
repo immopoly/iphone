@@ -18,6 +18,16 @@
 @interface PortfolioViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UserDataDelegate> {
     IBOutlet UITableViewCell *tvCell;
     IBOutlet UITableView *table;
+    IBOutlet UILabel *adressLabel;
+    IBOutlet UILabel *lbFlatName;
+    IBOutlet UILabel *lbFlatDescription;
+    IBOutlet UILabel *lbFlatPrice;
+    IBOutlet UILabel *lbNumberOfRooms;
+    IBOutlet UILabel *lbLivingSpace;
+    IBOutlet UIActivityIndicatorView *spinner;
+    IBOutlet UIImageView *topBar;
+    IBOutlet UIButton *btRecenterMap;
+    
     LoginCheck *loginCheck;
     
     WebViewController *exposeWebViewController;
@@ -32,17 +42,7 @@
     int selectedExposeId;
     Flat *selectedImmoScoutFlat;
     MKAnnotationView *selViewForHouseImage;
-    IBOutlet UILabel *adressLabel;
-    IBOutlet UILabel *lbFlatName;
-    IBOutlet UILabel *lbFlatDescription;
-    IBOutlet UILabel *lbFlatPrice;
-    IBOutlet UILabel *lbNumberOfRooms;
-    IBOutlet UILabel *lbLivingSpace;
-    IBOutlet UIActivityIndicatorView *spinner;
-    IBOutlet UIImageView *topBar;
-    
-    IBOutlet UIButton *btRecenterMap;
-    bool isBtHidden;
+        bool isBtHidden;
 }
 
 @property(nonatomic, retain) UITableViewCell *tvCell;

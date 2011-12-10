@@ -14,8 +14,9 @@
 @interface HistoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UserDataDelegate,HistoryDelegate> {
     IBOutlet UITableViewCell *tvCell;
     IBOutlet UITableView *table;
-    LoginCheck *loginCheck;
     IBOutlet UIActivityIndicatorView *spinner;
+    
+    LoginCheck *loginCheck;
     BOOL loading;
     BOOL flagForReload;
     int loadingHistoryEntriesStart;

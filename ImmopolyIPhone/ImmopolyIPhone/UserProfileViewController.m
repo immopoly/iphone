@@ -77,9 +77,17 @@
 }
 
 - (void)viewDidUnload {
-    [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    [super viewDidUnload];  
+    
+    self.hello = nil;
+    self.bank = nil;
+    self.miete = nil;
+    self.provision = nil;
+    self.labelBank = nil;
+    self.labelMiete = nil;
+    self.labelProvision = nil;
+    self.spinner = nil;
+
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
