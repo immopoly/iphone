@@ -14,14 +14,15 @@
 #define TYPE_DAILY_RENT 6
 
 @interface HistoryEntry : NSObject{
-    NSString *histText;
     long long time;
     int type;
     int type2;
+    int exposeId;
 }
 
 @property(nonatomic, retain) NSString *histText;
 @property(nonatomic, assign) long long time;
 @property(nonatomic, assign) int type;
 @property(nonatomic, assign) int type2;
+@property(nonatomic, assign) int exposeId;
 @end

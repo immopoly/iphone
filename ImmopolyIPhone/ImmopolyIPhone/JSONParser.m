@@ -58,6 +58,7 @@
             [userHistoryEntry setTime: [[listEntry objectForKey: @"time"] longLongValue]];
             [userHistoryEntry setType: [[listEntry objectForKey: @"type"] intValue]];
             [userHistoryEntry setType2: [[listEntry objectForKey:@"type2"] intValue]];
+            [userHistoryEntry setExposeId:[[listEntry objectForKey:@"exposeId"]intValue]];
             
             [[myUser history] addObject: userHistoryEntry];
             
@@ -197,6 +198,7 @@
         [histEntry setTime:[[histDic objectForKey:@"time"]longLongValue]];
         [histEntry setType:[[histDic objectForKey:@"type"]intValue]];
         [histEntry setType2:[[histDic objectForKey:@"type2"]intValue]];
+        [histEntry setExposeId:[[histDic objectForKey:@"exposeId"]intValue]];
         
         return  histEntry;
     }
@@ -226,7 +228,7 @@
             [histEntry setTime:[[histDic objectForKey:@"time"]longLongValue]];
             [histEntry setType:[[histDic objectForKey:@"type"]intValue]];
             [histEntry setType2:[[histDic objectForKey:@"type2"]intValue]];
-            
+            [histEntry setExposeId:[[histDic objectForKey:@"exposeId"]intValue]];
             [histEntries addObject:histEntry];
         }
     }
