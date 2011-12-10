@@ -1,0 +1,49 @@
+//
+//  Constants.m
+//  ImmopolyIPhone
+//
+//  Created by Tobias Heine on 10.12.11.
+//  Copyright (c) 2011 __MyCompanyName__. All rights reserved.
+//
+
+#import "Constants.h"
+
+@implementation Constants
+
+NSString* const errorMissingUsername = @"Sorry, der Username fehlt.";
+NSString* const errorMissingPassword = @"Sorry, das Passwort fehlt.";
+NSString* const errorUsernameAlreadyInUse = @"Sorry, dieser Name ist leider schon vergeben.";
+NSString* const errorUsernameOrUsernameIncorrect = @"Sorry, der Username oder das Passwort ist falsch.";
+NSString* const errorTryAgainLater = @"Ups, da ging etwas schief. Probiere es später noch einmal!";
+NSString* const errorAlreadyYourExpose = @"Dieses Expose gehört dir schon!";
+NSString* const errorExposeHasNoRent = @"Das Expose hat keinen Wert für Kaltmiete, sie kann nicht übernommen werden.";
+NSString* const errorExposeNotExists = @"Das Expose gibt es nicht";
+
+NSString* const urlIS24API = @"http://rest.immobilienscout24.de/restapi/api/search/v1.0/";
+NSString* const urlIS24MobileExpose = @"http://mobil.immobilienscout24.de/expose/";
+NSString* const urlImmopolyUser = @"https://immopoly.appspot.com/user/";
+NSString* const urlImmopolyPortfolio = @"http://immopoly.appspot.com/portfolio/";
+
+NSString* const alertRegisterWrongInput = @"Es wurde eine falsche Eingabe getätigt.";
+NSString* const alertRegisterSuccessful = @"Glückwunsch! Du hast dich erfolgreich registriert und kannst dich nun einlogen.";
+
+NSString* const alertExposeGiveAwayWarning =@"Das Abgeben eines Exposes kostet dich eine Strafe. Möchtest du trotzdem fortfahren?";
+
+NSString* const sharingActionSheetTitle = @"Teile diese Wohnung mit Freunden!";
+
+NSString* const sharingFacebookTitle = @"Immopoly for iPhone";
+NSString* const sharingFacebookCaption = @"Werde Immobilienhai und Millionär";
+NSString* const sharingFacebookDescription = @"Immopoly ein Spiel für iPhone & Android";
+NSString* const sharingFacebookLink = @"http://immopoly.appspot.com/";
+NSString* const sharingFacebookActionLabel = @"Immobilien Scout 24";
+NSString* const sharingFacebookActionText = @"Schau dir doch mal die folgende Wohnung an";
+
+NSString* const sharingTwitterAPINotAvailableAlertTitle = @"No iOS 5";
+NSString* const sharingTwitterAPINotAvailableAlertMessage = @"You need iOS 5 to use the Twitter function.";
+NSString* const sharingTwitterNoAccountAlertTitle = @"No Twitter Account";
+NSString* const sharingTwitterNoAccountAlertMessage = @"You need Twitter account to use the Twitter function. Please check your phone settings.";
+NSString* const sharingTwitterMessage = @"Coole Wohnung! #immopoly";
+
+NSString* const sharingMailSubject = @"Super Wohnung gefunden";
+
+@end

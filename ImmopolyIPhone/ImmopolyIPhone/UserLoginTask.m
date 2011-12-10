@@ -9,6 +9,7 @@
 #import "UserLoginTask.h"
 #import "JSONParser.h"
 #import "ImmopolyManager.h"
+#import "Constants.h"
 
 @implementation UserLoginTask
 
@@ -21,7 +22,7 @@
 
 // TODO: releasing url and request (not possible?)
 - (void)performLogin:(NSString *)_userName password:(NSString *)_password {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/login?username=%@&password=%@",_userName, _password]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@login?username=%@&password=%@",urlImmopolyUser,_userName, _password]];
    
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
     
@@ -35,7 +36,7 @@
 
 // TODO: releasing url and request (not possible?)
 - (void)performLoginWithToken:(NSString *)_userToken {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/info?token=%@", _userToken]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@info?token=%@",urlImmopolyUser,_userToken]];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
     

@@ -10,6 +10,7 @@
 #import "UserLoginTask.h"
 #import "UserRegisterTask.h"
 #import "ImmopolyManager.h"
+#import "Constants.h"
 
 @implementation LoginViewController
 
@@ -149,7 +150,7 @@
         [loader performRegistration:[registerUserName text] withPassword:[registerUserPassword text] withEmail:[registerUserEmail text] withTwitter:[registerUserTwitter text]];
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Es wurde eine falsche Eingabe getätigt." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:alertRegisterWrongInput delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
     }
@@ -171,9 +172,9 @@
 }
 
 - (void)registerWithResult:(BOOL)_result {
-    
+
     if(_result) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Glückwunsch! Du hast dich erfolgreich registriert und kannst dich nun einlogen." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:alertRegisterSuccessful delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
         [self closeRegistration];

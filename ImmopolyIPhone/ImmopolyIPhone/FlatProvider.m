@@ -10,13 +10,26 @@
 #import "OAuthManager.h"
 #import "JSONParser.h"
 #import "ImmopolyManager.h"
+#import "Constants.h"
 
 @implementation FlatProvider
+
+
+- (void)getExposeFromId:(int)_exposeId {
+    OAuthManager *manager = [[OAuthManager alloc] init];
+    
+    NSString *url = [[NSString alloc]initWithFormat:@"%@expose/%d",urlIS24API,_exposeId];
+    
+    [manager grabURLInBackground:url withFormat:@"application/json" withDelegate:self];
+    [manager release];
+    [url release];
+}
+
 
 - (void)getFlatsFromLocation:(CLLocationCoordinate2D)_location {
     OAuthManager *manager = [[OAuthManager alloc] init];
     
-    NSString *url = [[NSString alloc]initWithFormat:@"http://rest.immobilienscout24.de/restapi/api/search/v1.0/search/radius.json?realEstateType=apartmentrent&pagenumber=1&geocoordinates=%f;%f;3.0",_location.latitude,_location.longitude];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@search/radius.json?realEstateType=apartmentrent&pagenumber=1&geocoordinates=%f;%f;3.0",urlIS24API,_location.latitude,_location.longitude];
     
     [manager grabURLInBackground:url withFormat:@"application/json" withDelegate:self];
     [manager release];

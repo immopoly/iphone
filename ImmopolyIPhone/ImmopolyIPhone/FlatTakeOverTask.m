@@ -10,6 +10,7 @@
 #import "JSONParser.h"
 #import "ImmopolyManager.h"
 #import "Flat.h"
+#import "Constants.h"
 
 @implementation FlatTakeOverTask
 @synthesize connection,data,selectedImmoscoutFlat;
@@ -23,7 +24,7 @@
         //get user token
         NSString *userToken = [defaults objectForKey:@"userToken"];
         
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://immopoly.appspot.com/portfolio/add?token=%@&expose=%d",userToken, [[self selectedImmoscoutFlat] exposeId]]];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@add?token=%@&expose=%d",urlImmopolyPortfolio, userToken, [[self selectedImmoscoutFlat] exposeId]]];
         
         NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
         

@@ -7,6 +7,7 @@
 //
 
 #import "MessageHandler.h"
+#import "Constants.h"
 
 @implementation MessageHandler
 
@@ -18,40 +19,40 @@
     switch (errorCode) {
         case 43:
             //missing username
-            errorMsg = [[[NSString alloc]initWithString:@"Sorry, der Username fehlt."] autorelease];
+            errorMsg = [[[NSString alloc]initWithString:errorMissingUsername] autorelease];
             break;
         case 44:
             //missing password
-            errorMsg = [[[NSString alloc]initWithString:@"Sorry, das Passwort fehlt."]autorelease ];
+            errorMsg = [[[NSString alloc]initWithString:errorMissingPassword]autorelease ];
             break;
         case 45:
             //username already taken
-            errorMsg = [[[NSString alloc]initWithString:@"Sorry, dieser Name ist leider schon vergeben."] autorelease];
+            errorMsg = [[[NSString alloc]initWithString:errorUsernameAlreadyInUse] autorelease];
             break;
         case 51:    
             //username or password not found
-            errorMsg = [[[NSString alloc]initWithString:@"Sorry, der Username oder das Passwort ist falsch."] autorelease];
+            errorMsg = [[[NSString alloc]initWithString:errorUsernameOrUsernameIncorrect] autorelease];
             break;
         case 61:
             //missing token
-            errorMsg = [[[NSString alloc]initWithString:@"Ups, da ging etwas schief. Probiere es später noch einmal!"] autorelease];
+            errorMsg = [[[NSString alloc]initWithString:errorTryAgainLater] autorelease];
             break;
         case 62:
             //token not found
-            errorMsg = [[[NSString alloc]initWithString:@"Ups, da ging etwas schief. Probiere es später noch einmal!"] autorelease];
+            errorMsg = [[[NSString alloc]initWithString:errorTryAgainLater] autorelease];
             break;
         case 101:    
             //could not login user or add expose
-            errorMsg = [[[NSString alloc]initWithString:@"Ups, da ging etwas schief. Probiere es später noch einmal!"] autorelease];
+            errorMsg = [[[NSString alloc]initWithString:errorTryAgainLater] autorelease];
             break;
         case 201:
-            errorMsg = [[[NSString alloc]initWithString:@"Dieses Expose gehört dir schon!"] autorelease];
+            errorMsg = [[[NSString alloc]initWithString:errorAlreadyYourExpose] autorelease];
             break;
         case 302:
-            errorMsg = [[[NSString alloc]initWithString:@"Das Expose hat keinen Wert für Kaltmiete, sie kann nicht übernommen werden."] autorelease];
+            errorMsg = [[[NSString alloc]initWithString:errorExposeHasNoRent] autorelease];
             break;
         case 301:
-            errorMsg = [[[NSString alloc] initWithString:@"Das Expose gibt es nicht"] autorelease];
+            errorMsg = [[[NSString alloc] initWithString:errorExposeNotExists] autorelease];
             break;
         default:
             errorMsg = [[[NSString alloc] initWithFormat: @"%@", [[error userInfo] objectForKey: @"ErrorMessage"]] autorelease];

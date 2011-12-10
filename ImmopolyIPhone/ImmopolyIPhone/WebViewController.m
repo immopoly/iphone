@@ -8,6 +8,8 @@
 #import "FlatTakeOverTask.h"
 #import "FlatRemoveTask.h"
 #import "FacebookManager.h"
+#import "Constants.h"
+#import "Secrets.h"
 
 @implementation WebViewController
 
@@ -32,8 +34,8 @@
 - (void)viewDidLoad {
 	[self reloadData];
     
-    [[FacebookManager getInstance] set_APP_KEY:@"144949825610311"];
-	[[FacebookManager getInstance] set_SECRET_KEY:@"7dab17bab8145e9d973378ea1582d0ca"];
+    [[FacebookManager getInstance] set_APP_KEY:facebookAppKey];
+	[[FacebookManager getInstance] set_SECRET_KEY:facebookAppSecret];
     
     [FacebookManager getInstance].delegate = self;
     
@@ -49,9 +51,8 @@
 }
 
 -(void)reloadData {
-    NSString *urlAddress = [[NSString alloc]initWithFormat:@"http://mobil.immobilienscout24.de/expose/%i",[selectedImmoscoutFlat exposeId]];
-	//NSString *urlAddress = @"http://mobil.immobilienscout24.de/expose/";
-	
+    NSString *urlAddress = [[NSString alloc]initWithFormat:@"%@%i",urlIS24MobileExpose,[selectedImmoscoutFlat exposeId]];
+
 	//Create a URL object.
 	NSURL *url = [NSURL URLWithString:urlAddress];
     [urlAddress release];
@@ -113,7 +114,7 @@
     
     if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]) {
         
-        UIAlertView *removeFlatDialog = [[UIAlertView alloc]initWithTitle:@"Expose abgeben" message:@"Das Abgeben eines Exposes kostet dich eine Strafe. Möchtest du trotzdem fortfahren?" delegate:self cancelButtonTitle:@"Nein" otherButtonTitles:@"Ja", nil];
+        UIAlertView *removeFlatDialog = [[UIAlertView alloc]initWithTitle:@"Expose abgeben" message:alertExposeGiveAwayWarning delegate:self cancelButtonTitle:@"Nein" otherButtonTitles:@"Ja", nil];
         
         [removeFlatDialog show];
         [removeFlatDialog release];
@@ -159,7 +160,7 @@
 
 - (IBAction)showActionSheet:(id)sender {
 
-    UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:@"Teile diese Wohnung mit Freunden!" delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Abbrechen" otherButtonTitles:@"Facebook", @"Twitter", @"Mail", nil];
+    UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:sharingActionSheetTitle delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Abbrechen" otherButtonTitles:@"Facebook", @"Twitter", @"Mail", nil];
 
     popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
 
@@ -176,15 +177,15 @@
         [[FacebookManager getInstance] beginShare];
         
         //[[FacebookManager getInstance] setFacebookText:@"FacebookText"];
-        [[FacebookManager getInstance] setFacebookTitle:@"Immopoly for iPhone"];
-        [[FacebookManager getInstance] setFacebookCaption:@"Werde Immobilienhai und Millionär"];
-        [[FacebookManager getInstance] setFacebookDescription:@"Immopoly ein Spiel für iPhone & Android"];
+        [[FacebookManager getInstance] setFacebookTitle:sharingFacebookTitle];
+        [[FacebookManager getInstance] setFacebookCaption:sharingFacebookCaption];
+        [[FacebookManager getInstance] setFacebookDescription:sharingFacebookDescription];
         [[FacebookManager getInstance] setFacebookImage:[selectedImmoscoutFlat pictureUrl]];
-        [[FacebookManager getInstance] setFacebookLink:@"http://immopoly.appspot.com/"];
+        [[FacebookManager getInstance] setFacebookLink:sharingFacebookLink];
         //[[FacebookManager getInstance] setFacebookUserPrompt:@"FacebookPrompt"];
-        [[FacebookManager getInstance] setFacebookActionLabel:@"Immobilien Scout 24"];
-        [[FacebookManager getInstance] setFacebookActionText:@"Schau dir doch mal die folgende Wohnung an"];
-        [[FacebookManager getInstance] setFacebookActionLink:[[NSString alloc]initWithFormat:@"http://mobil.immobilienscout24.de/expose/%i",[selectedImmoscoutFlat exposeId]]];
+        [[FacebookManager getInstance] setFacebookActionLabel:sharingFacebookActionLabel];
+        [[FacebookManager getInstance] setFacebookActionText:sharingFacebookActionText];
+        [[FacebookManager getInstance] setFacebookActionLink:[[NSString alloc]initWithFormat:@"%@%i",urlIS24MobileExpose,[selectedImmoscoutFlat exposeId]]];
         
         [[FacebookManager getInstance] commitShare];
 
@@ -205,20 +206,20 @@
     Class twitterClass = NSClassFromString(@"TWTweetComposeViewController");
     
     if(!twitterClass) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No iOS 5" message:@"You need iOS 5 to use the Twitter function." delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:sharingTwitterAPINotAvailableAlertTitle message:sharingTwitterAPINotAvailableAlertMessage delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil];
         [alert show];
         [alert release];
     }
     else {
         if(![TWTweetComposeViewController canSendTweet]) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"No Twitter Account" message:@"You need Twitter account to use the Twitter function. Please check your phone settings." delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:sharingTwitterNoAccountAlertTitle message:sharingTwitterNoAccountAlertMessage delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil];
             [alert show];
             [alert release]; 
         }
         else {
             TWTweetComposeViewController *tweetView = [[TWTweetComposeViewController alloc] init];
-            [tweetView setInitialText:@"Coole Wohnung! #immopoly"];
-            NSString *url = [NSString stringWithFormat:@"http://immobilienscout24.de/expose/%i", [selectedImmoscoutFlat exposeId]];
+            [tweetView setInitialText:sharingTwitterMessage];
+            NSString *url = [NSString stringWithFormat:@"%@%i", urlIS24MobileExpose,[selectedImmoscoutFlat exposeId]];
             
             if(![tweetView addURL:[NSURL URLWithString:url]]) {
                 NSLog(@"Unable to add the URL.");
@@ -296,9 +297,6 @@
 	 \
 	 <td height=\"20\"><font color=\"#999\" size=\"2\">"];
 	
-	//[html appendString:@"Cor Ideal - Suvinil Cores App"];
-	
-	
 	[html appendString: @"</font></td>\
 	 </tr>\
 	 <tr>\
@@ -334,7 +332,7 @@
 	MFMailComposeViewController* controller = [[MFMailComposeViewController alloc] init];
 	controller.mailComposeDelegate = self;
     
-	[controller setSubject:@"Super Wohnung gefunden"];
+	[controller setSubject:sharingMailSubject];
 	[controller setMessageBody:html isHTML:YES];
 	
     if (controller) [self presentModalViewController:controller animated:YES];

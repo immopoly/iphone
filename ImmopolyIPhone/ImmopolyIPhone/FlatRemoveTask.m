@@ -10,6 +10,7 @@
 #import "HistoryEntry.h"
 #import "JSONParser.h"
 #import "ImmopolyManager.h"
+#import "Constants.h"
 
 @implementation FlatRemoveTask
 @synthesize selectedPortfoliotFlat,data,connection;
@@ -29,7 +30,7 @@
         //get user token
         NSString *userToken = [defaults objectForKey:@"userToken"];
         
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"http://immopoly.appspot.com/portfolio/remove?token=%@&expose=%d",userToken, [[self selectedPortfoliotFlat] exposeId]]];
+        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@remove?token=%@&expose=%d",urlImmopolyPortfolio ,userToken, [[self selectedPortfoliotFlat] exposeId]]];
         
         NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
         

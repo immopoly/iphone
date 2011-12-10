@@ -128,6 +128,8 @@
 		D2E53FC5148136AB0042B205 /* AsynchronousImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53FC4148136AB0042B205 /* AsynchronousImageView.m */; };
 		D2E53FCF148148780042B205 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2E53FCE148148780042B205 /* MessageUI.framework */; };
 		D2E53FD71481909E0042B205 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2E53FD61481909D0042B205 /* Default@2x.png */; };
+		D2F05B5E149396CE00BE171C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F05B5D149396CE00BE171C /* Constants.m */; };
+		D2F05B621493A56700BE171C /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F05B611493A56700BE171C /* Secrets.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -351,6 +353,10 @@
 		D2E53FC4148136AB0042B205 /* AsynchronousImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AsynchronousImageView.m; sourceTree = "<group>"; };
 		D2E53FCE148148780042B205 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		D2E53FD61481909D0042B205 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default@2x.png"; path = "../Default@2x.png"; sourceTree = "<group>"; };
+		D2F05B5C149396CE00BE171C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
+		D2F05B5D149396CE00BE171C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
+		D2F05B601493A56700BE171C /* Secrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
+		D2F05B611493A56700BE171C /* Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Secrets.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -757,6 +763,10 @@
 				D2C67D40145AA565008C3295 /* ImmopolyManager.m */,
 				D2B0A6FA1461DC9A004CB870 /* MessageHandler.h */,
 				D2B0A6FB1461DC9A004CB870 /* MessageHandler.m */,
+				D2F05B5C149396CE00BE171C /* Constants.h */,
+				D2F05B5D149396CE00BE171C /* Constants.m */,
+				D2F05B601493A56700BE171C /* Secrets.h */,
+				D2F05B611493A56700BE171C /* Secrets.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -968,6 +978,8 @@
 				D2E53FA7148129AC0042B205 /* FacebookManager.m in Sources */,
 				D2E53FC5148136AB0042B205 /* AsynchronousImageView.m in Sources */,
 				D2BAA087148BA3FF00F3DD87 /* HistoryTask.m in Sources */,
+				D2F05B5E149396CE00BE171C /* Constants.m in Sources */,
+				D2F05B621493A56700BE171C /* Secrets.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

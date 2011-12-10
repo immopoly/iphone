@@ -9,6 +9,7 @@
 #import "HistoryTask.h"
 #import "ImmopolyManager.h"
 #import "JSONParser.h"
+#import "Constants.h"
 
 @implementation HistoryTask
 @synthesize data,connection,delegate,limit;
@@ -17,7 +18,7 @@
     
     limit = _end - _start;
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/history?token=%@&start=%d&end=%d",[[[ImmopolyManager instance]user]userToken],_start, _end]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@history?token=%@&start=%d&end=%d",urlImmopolyUser,[[[ImmopolyManager instance]user]userToken],_start, _end]];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
     

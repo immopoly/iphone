@@ -9,13 +9,14 @@
 #import "UserRegisterTask.h"
 #import "ImmopolyManager.h"
 #import "JSONParser.h"
+#import "Constants.h"
 
 @implementation UserRegisterTask
 @synthesize data, connection, delegate;
 
 - (void)performRegistration:(NSString *)_userName withPassword:(NSString *)_password withEmail:(NSString *)_email withTwitter:(NSString *)_twitter {
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/register?username=%@&password=%@&email=%@&twitter=%@", _userName, _password, _email, _twitter]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@register?username=%@&password=%@&email=%@&twitter=%@",urlImmopolyUser,_userName, _password, _email, _twitter]];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
     
