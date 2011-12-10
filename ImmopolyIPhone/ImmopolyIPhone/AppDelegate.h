@@ -24,10 +24,10 @@
 @property(nonatomic, retain) CLGeocoder *geocoder;
 @property(nonatomic, retain) IBOutlet UILabel *adressLabel;
 
-- (void) startLocationUpdate;
-- (void) geocodeLocation:(CLLocation *)location;
--(void)handleHistoryResponse:(NSNotification *)notification;
--(void)handleErrorMsg:(NSNotification *)notification;
+- (void)startLocationUpdate;
+- (void)geocodeLocation:(CLLocation *)_location;
+- (void)handleHistoryResponse:(NSNotification *)_notification;
+- (void)handleErrorMsg:(NSNotification *)_notification;
 - (void)enableAutomaticLogin;
 
 @end

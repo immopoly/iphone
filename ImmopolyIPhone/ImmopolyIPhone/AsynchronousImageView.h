@@ -19,8 +19,7 @@
 @property(nonatomic, retain) NSMutableData *data;
 @property(nonatomic, retain) UIActivityIndicatorView *spinner;
 
-- (void)loadImageFromURLString:(NSString *)urlString;
-- (void)resetImage;
+- (void)loadImageFromURLString:(NSString *)_urlString;
 - (void)reset;
 
 @end

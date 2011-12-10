@@ -14,7 +14,7 @@
 @implementation FlatTakeOverTask
 @synthesize connection,data,selectedImmoscoutFlat;
 
--(void)takeOverFlat:(Flat *)_selectedImmoscoutFlat{
+- (void)takeOverFlat:(Flat *)_selectedImmoscoutFlat {
     [self setSelectedImmoscoutFlat:_selectedImmoscoutFlat];
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];

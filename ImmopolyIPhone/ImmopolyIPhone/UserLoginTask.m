@@ -20,8 +20,8 @@
 }
 
 // TODO: releasing url and request (not possible?)
-- (void)performLogin:(NSString *)userName password:(NSString *)password {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/login?username=%@&password=%@",userName, password]];
+- (void)performLogin:(NSString *)_userName password:(NSString *)_password {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/login?username=%@&password=%@",_userName, _password]];
    
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
     
@@ -34,8 +34,8 @@
 }
 
 // TODO: releasing url and request (not possible?)
-- (void)performLoginWithToken:(NSString *) userToken {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/info?token=%@", userToken]];
+- (void)performLoginWithToken:(NSString *)_userToken {
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/info?token=%@", _userToken]];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
     
@@ -51,7 +51,7 @@
     [[self data] appendData:d];
 }
 
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)d {
     NSLog(@"didFailWithError");
     [delegate loginWithResult: NO];
 }

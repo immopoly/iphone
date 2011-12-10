@@ -10,6 +10,6 @@
 
 @protocol HistoryDelegate <NSObject>
 
--(void)hasMoreData:(bool)result;
+- (void)hasMoreData:(bool)_result;
 
 @end

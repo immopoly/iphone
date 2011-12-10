@@ -13,18 +13,18 @@
 @required
 
 // Our location updates are sent here
-- (void)locationUpdate:(CLLocation *)location; 
+- (void)locationUpdate:(CLLocation *)_location; 
 
 // Any errors are sent here
-- (void)locationError:(NSError *)error; 
+- (void)locationError:(NSError *)_error; 
 
 @end
 
 @interface CoreLocationController : NSObject <CoreLocationControllerDelegate> {
-    CLLocationManager *locMgr;
+    CLLocationManager *locationManager;
     id delegate;
 }
 
-@property (nonatomic, retain) CLLocationManager *locMgr;
+@property (nonatomic, retain) CLLocationManager *locationManager;
 @property (nonatomic, assign) id delegate;
 @end

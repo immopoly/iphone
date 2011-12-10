@@ -21,6 +21,6 @@
 @property(nonatomic, assign) id<HistoryDelegate>delegate;
 @property(nonatomic, assign) int limit;
 
-- (void)loadHistoryEintriesFrom:(int)start To :(int)end;
+- (void)loadHistoryEintriesFrom:(int)_start To :(int)_end;
 
 @end

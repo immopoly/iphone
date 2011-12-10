@@ -17,7 +17,7 @@
 
 @synthesize delegate;
 
--(void) checkUserLogin {
+- (void)checkUserLogin {
     
     //For tests
     //[[NSUserDefaults standardUserDefaults] removeObjectForKey:@"userToken"];
@@ -34,7 +34,7 @@
         //get user token
         NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
         //login with token
-        UserLoginTask *loader = [[UserLoginTask alloc] init];
+        UserLoginTask *loader = [[[UserLoginTask alloc] init] autorelease];
         loader.delegate = self;
         [loader performLoginWithToken: userToken];
         //[loader autorelease];
@@ -46,11 +46,12 @@
         LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
         loginVC.delegate = self;
         [[appDelegate tabBarController] presentModalViewController: loginVC animated: YES];
+        [loginVC release];
     }
 }
 
--(void) loginWithResult:(BOOL)result {
-    if(result) {
+- (void)loginWithResult:(BOOL)_result {
+    if(_result) {
         [self notifyMyDelegateView];
     }
     else {
@@ -61,15 +62,16 @@
             LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
             loginVC.delegate = self;
             [[appDelegate tabBarController] presentModalViewController: loginVC animated: YES];
+            [loginVC release];
         }
     }
 }
 
--(void) notifyMyDelegateView {
+- (void)notifyMyDelegateView {
     [delegate displayUserData];
 }
 
--(void) closeMyDelegateView {
+- (void)closeMyDelegateView {
     AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
     if(![delegate isKindOfClass: [WebViewController class]]) {
         //show map

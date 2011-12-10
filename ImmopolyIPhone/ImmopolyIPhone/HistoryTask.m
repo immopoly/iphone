@@ -13,11 +13,11 @@
 @implementation HistoryTask
 @synthesize data,connection,delegate,limit;
 
-- (void)loadHistoryEintriesFrom:(int)start To :(int)end{
+- (void)loadHistoryEintriesFrom:(int)_start To :(int)_end {
     
-    limit = end - start;
+    limit = _end - _start;
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/history?token=%@&start=%d&end=%d",[[[ImmopolyManager instance]user]userToken],start, end]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"https://immopoly.appspot.com/user/history?token=%@&start=%d&end=%d",[[[ImmopolyManager instance]user]userToken],_start, _end]];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
     

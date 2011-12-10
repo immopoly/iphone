@@ -14,12 +14,12 @@
 @synthesize titlePictureSmall, price, currency, priceValue, priceIntervaleType, creationDate;
 @synthesize numberOfRooms, livingSpace, coordinate, pictureUrl, flatsAtAnnotation;
 
-- (id)initWithName:(NSString*)lName description:(NSString*)ldescription coordinate:(CLLocationCoordinate2D)lCoordinate exposeId:(int) lexposeId {
+- (id)initWithName:(NSString*)_name description:(NSString*)_description coordinate:(CLLocationCoordinate2D)_coordinate exposeId:(int)_exposeId {
     if ((self = [super init])) {
-        name = [lName copy];
-        coordinate = lCoordinate;
-        description = ldescription;
-        exposeId = lexposeId;
+        name = [_name copy];
+        coordinate = _coordinate;
+        description = _description;
+        exposeId = _exposeId;
         flatsAtAnnotation = [[NSMutableArray alloc]initWithCapacity:0];
     }
     return self;
@@ -35,12 +35,11 @@
 }
 
 
-- (void)dealloc
-{
+- (void)dealloc {
     [name release];
     name = nil;
     [description release];
-    description = nil;    
+    description = nil;
     [super dealloc];
 }
 

@@ -16,8 +16,7 @@
 @synthesize userName, password,spinner,loginLabel, loginButton, delegate;
 @synthesize registerView, registerUserName, registerUserPassword, registerUserEmail, registerUserTwitter;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -27,8 +26,7 @@
     return self;
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
@@ -37,8 +35,7 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     /*
     [super viewDidLoad];
     
@@ -78,20 +75,18 @@
     [password setEnabled:YES];
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
 }
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(IBAction)performLogin {
+- (IBAction)performLogin {
     
     
     if([[userName text] length]> 0 && [[password text] length] > 0) {
@@ -114,11 +109,11 @@
     }
 }
 
--(void) loginWithResult: (BOOL) result{
+- (void)loginWithResult:(BOOL)_result {
     [spinner stopAnimating];
     [spinner setHidden:YES];
     [loginLabel setHidden:YES];
-    if(result) {
+    if(_result) {
         //notify delegate
         [delegate notifyMyDelegateView];
         //dismiss modal view
@@ -130,13 +125,13 @@
     }
 }
 
--(IBAction) closeMyself {
+- (IBAction)closeMyself {
     [delegate closeMyDelegateView];
     [self dismissModalViewControllerAnimated:YES];
 }
 
 // methods for user registration
--(IBAction)showRegistrationView {
+- (IBAction)showRegistrationView {
     [UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.4];
 	CGPoint pos = registerView.center;
@@ -145,7 +140,7 @@
     [UIView commitAnimations];
 }
 
--(IBAction)performRegistration {
+- (IBAction)performRegistration {
     
     if([[registerUserName text] length]> 0 && [[registerUserPassword text] length] > 0) {
         UserRegisterTask *loader = [[[UserRegisterTask alloc] init] autorelease];
@@ -160,7 +155,7 @@
     }
 }
 
--(IBAction) closeRegistration {
+- (IBAction)closeRegistration {
     // removing text
     [registerUserName setText:@""];
     [registerUserPassword setText:@""];
@@ -175,9 +170,9 @@
     [UIView commitAnimations];
 }
 
--(void) registerWithResult:(BOOL)result {
+- (void)registerWithResult:(BOOL)_result {
     
-    if(result) {
+    if(_result) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:@"Glückwunsch! Du hast dich erfolgreich registriert und kannst dich nun einlogen." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
@@ -193,7 +188,7 @@
 }
 
 // to let the keyboard go away through the return key
--(BOOL) textFieldShouldReturn:(UITextField *) textField {
+- (BOOL)textFieldShouldReturn:(UITextField *)textField {
     [textField resignFirstResponder]; 
     [UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.4];

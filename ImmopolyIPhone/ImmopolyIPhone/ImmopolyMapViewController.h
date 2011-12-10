@@ -16,8 +16,8 @@
 #import "Flat.h"
 
 #define METERS_PER_MILE 1609.344
-#define ANNO_WIDTH 33
-#define ANNO_HEIGHT 30
+#define ANNO_WIDTH 51
+#define ANNO_HEIGHT 40
 
 @interface ImmopolyMapViewController : UIViewController <LocationDelegate, MKMapViewDelegate, UIPageViewControllerDelegate> {
     MKMapView *mapView;
@@ -57,8 +57,8 @@
 @property(nonatomic, retain) IBOutlet UILabel *lbFlatPrice;
 @property(nonatomic, retain) IBOutlet UILabel *lbNumberOfRooms;
 @property(nonatomic, retain) IBOutlet UILabel *lbLivingSpace;
-@property (nonatomic, retain) UIView *calloutBubble;
-@property (nonatomic, assign) int selectedExposeId;
+@property(nonatomic, retain) UIView *calloutBubble;
+@property(nonatomic, assign) int selectedExposeId;
 @property(nonatomic, retain) Flat *selectedImmoScoutFlat;
 @property(nonatomic, assign) bool isCalloutBubbleIn;
 @property(nonatomic, assign) bool isOutInCall;
@@ -69,20 +69,14 @@
 @property(nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property(nonatomic, assign) int numOfScrollViewSubviews;
 @property(nonatomic, retain) IBOutlet UIPageControl *pageControl;
-
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation;
-- (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view;
-
-// linked to compass button 
--(IBAction)refreshLocation;
-
--(void)calloutBubbleIn;
--(IBAction)calloutBubbleOut;
--(void)showFlatsWebView;
--(void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context;
--(void)filterAnnotations:(NSArray *)flatsToFilter;
-
--(void)initScrollView;
--(UIView *)createCalloutBubbleContentFromFlat:(Flat *) flat atPosition:(int) pos;
+ 
+- (IBAction)refreshLocation;
+- (void)setAnnotationImageWith:(NSString *)_imageName atAnnotation:(Flat *)_flat;
+- (void)calloutBubbleIn;
+- (IBAction)calloutBubbleOut;
+- (void)showFlatsWebView;
+- (void)filterAnnotations:(NSArray *)_flatsToFilter;
+- (void)initScrollView;
+- (UIView *)createCalloutBubbleContentFromFlat:(Flat *)_flat atPosition:(int)_pos;
 
 @end

@@ -10,7 +10,7 @@
 
 @protocol LocationDelegate <NSObject>
 
--(void) displayCurrentLocation;
--(void) setAdressLabelText:(NSString *)locationName;
+- (void)displayCurrentLocation;
+- (void)setAdressLabelText:(NSString *)_locationName;
 
 @end

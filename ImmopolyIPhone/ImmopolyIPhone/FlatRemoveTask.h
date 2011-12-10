@@ -18,6 +18,6 @@
 @property(nonatomic, retain) NSMutableData *data;
 @property(nonatomic, retain) Flat *selectedPortfoliotFlat;
 
--(void)removeFlat:(Flat *)_selectedPortfoliotFlat;
+- (void)removeFlat:(Flat *)_selectedPortfoliotFlat;
 
 @end

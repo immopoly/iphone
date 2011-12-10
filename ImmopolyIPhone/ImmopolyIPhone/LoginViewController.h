@@ -32,6 +32,19 @@
     IBOutlet UITextField *registerUserTwitter;
 }
 
+@property(nonatomic, retain) IBOutlet UITextField *userName;
+@property(nonatomic, retain) IBOutlet UITextField *password;
+@property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
+@property(nonatomic, retain) IBOutlet IBOutlet UILabel *loginLabel;
+@property(nonatomic, retain) IBOutlet UIButton *loginButton;
+@property(nonatomic, assign) id<NotifyViewDelegate> delegate;
+
+@property(nonatomic, retain) IBOutlet UIView *registerView;
+@property(nonatomic, retain) IBOutlet UITextField *registerUserName;
+@property(nonatomic, retain) IBOutlet UITextField *registerUserPassword;
+@property(nonatomic, retain) IBOutlet UITextField *registerUserEmail;
+@property(nonatomic, retain) IBOutlet UITextField *registerUserTwitter;
+
 - (IBAction) performLogin;
 - (IBAction) closeMyself;
 - (IBAction) performLogin;
@@ -40,16 +53,4 @@
 - (IBAction) closeRegistration;
 - (IBAction) dismissKeyboard;
 
-@property(nonatomic, retain) IBOutlet UITextField *userName;
-@property(nonatomic, retain) IBOutlet UITextField *password;
-@property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
-@property(nonatomic, retain) IBOutlet IBOutlet UILabel *loginLabel;
-@property(nonatomic, retain) IBOutlet UIButton *loginButton;
-@property (nonatomic, assign) id<NotifyViewDelegate> delegate;
-
-@property(nonatomic, retain) IBOutlet UIView *registerView;
-@property(nonatomic, retain) IBOutlet UITextField *registerUserName;
-@property(nonatomic, retain) IBOutlet UITextField *registerUserPassword;
-@property(nonatomic, retain) IBOutlet UITextField *registerUserEmail;
-@property(nonatomic, retain) IBOutlet UITextField *registerUserTwitter;
 @end

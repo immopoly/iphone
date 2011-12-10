@@ -10,6 +10,6 @@
 
 @protocol FlatsDelegate <NSObject>
 
--(void) displayFlatsOnMap;
+- (void)displayFlatsOnMap;
 
 @end

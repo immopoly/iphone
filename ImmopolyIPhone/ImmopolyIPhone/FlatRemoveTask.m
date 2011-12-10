@@ -19,7 +19,7 @@
     [selectedPortfoliotFlat release];
 }
 
--(void)removeFlat:(Flat *)_selectedPortfoliotFlat{
+- (void)removeFlat:(Flat *)_selectedPortfoliotFlat {
 
     [self setSelectedPortfoliotFlat:_selectedPortfoliotFlat];
     

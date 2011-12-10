@@ -41,15 +41,14 @@
     IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet UIImageView *topBar;
     
-    //IBOutlet AsynchronousImageView *asyncImageViewList;
     IBOutlet UIButton *btRecenterMap;
     bool isBtHidden;
 }
 
-@property (nonatomic, retain) UITableViewCell *tvCell;
-@property (nonatomic, retain) UITableView *table;
-@property (nonatomic,retain) IBOutlet UISegmentedControl *segmentedControl;
-@property (nonatomic,retain) IBOutlet MKMapView *portfolioMapView;
+@property(nonatomic, retain) UITableViewCell *tvCell;
+@property(nonatomic, retain) UITableView *table;
+@property(nonatomic,retain) IBOutlet UISegmentedControl *segmentedControl;
+@property(nonatomic,retain) IBOutlet MKMapView *portfolioMapView;
 @property(nonatomic, retain) LoginCheck *loginCheck;
 @property(nonatomic, retain) IBOutlet UIView *calloutBubble;
 @property(nonatomic, assign) bool isCalloutBubbleIn;
@@ -69,9 +68,7 @@
 @property(nonatomic, retain) IBOutlet UIImageView *topBar;
 
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
-//@property(nonatomic, retain) IBOutlet AsynchronousImageView *asyncImageViewList;
 
-- (IBAction)segmentedControlIndexChanged;
 - (IBAction)calloutBubbleOut;
 - (void)recenterMap;
 - (void)calloutBubbleIn;

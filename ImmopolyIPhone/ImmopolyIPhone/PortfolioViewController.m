@@ -15,8 +15,7 @@
 
 @synthesize tvCell, table, segmentedControl, portfolioMapView, loginCheck,calloutBubble,isOutInCall,isCalloutBubbleIn,selectedExposeId,selViewForHouseImage,selectedImmoScoutFlat,lbFlatDescription,lbFlatName,lbFlatPrice,lbLivingSpace,adressLabel,lbNumberOfRooms,exposeWebViewController, spinner, btRecenterMap, isBtHidden,topBar;
 
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-{ 
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil { 
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
@@ -31,11 +30,11 @@
     [segmentedControl release];
     [loginCheck release];
     [spinner release];
+    [exposeWebViewController release];
     [super dealloc];
 }
 
-- (void)didReceiveMemoryWarning
-{
+- (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
     [super didReceiveMemoryWarning];
     
@@ -44,8 +43,7 @@
 
 #pragma mark - View lifecycle
 
-- (void)viewDidLoad
-{
+- (void)viewDidLoad {
     [super viewDidLoad];
     // that only the background is transparent and not the whole view
     calloutBubble.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
@@ -58,8 +56,7 @@
     [self.table setSeparatorColor:[[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.0]];
 }
 
-- (void)viewDidUnload
-{
+- (void)viewDidUnload {
     [super viewDidUnload];
     // Release any retained subviews of the main view.
     // e.g. self.myOutlet = nil;
@@ -78,12 +75,12 @@
     [btRecenterMap setHidden:isBtHidden];
 }
 
--(void) stopSpinnerAnimation {
+- (void)stopSpinnerAnimation {
     [spinner stopAnimating];
     [spinner setHidden: YES];
 }
 
--(void) displayUserData {
+- (void)displayUserData {
     [table reloadData];
     
     // removing all existing annotations
@@ -105,8 +102,7 @@
 }
 
 
-- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
-{
+- (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
@@ -117,7 +113,7 @@
 }
 
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     /*
     if ([[[[ImmopolyManager instance] user] portfolio] count] > 0) {
         return [[[[ImmopolyManager instance] user] portfolio] count];
@@ -130,12 +126,12 @@
 }
 
 
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 135;
 }
 
             
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [self setSelectedImmoScoutFlat:[[[[ImmopolyManager instance]user]portfolio]objectAtIndex:[indexPath row]]];
     
@@ -197,49 +193,7 @@
     return cell;
 }
 
--(IBAction) segmentedControlIndexChanged{
-    CGPoint pos = calloutBubble.center;
-	pos.y = -320.0f;
-	calloutBubble.center = pos;
-    
-    CGPoint posMap;
-    CGPoint posTable;
-    NSLog(@"selIndex: %d", segmentedControl.selectedSegmentIndex);
-    switch (self.segmentedControl.selectedSegmentIndex) {
-        case 0:
-            [btRecenterMap setHidden:YES];
-            [self setIsBtHidden:YES];
-            [UIView beginAnimations:nil context:NULL];
-            [UIView setAnimationDuration:0.4];
-            posMap = portfolioMapView.center;
-            posTable = table.center;
-            posMap.x = 480.0f;
-            posTable.x = 160.0f;
-            portfolioMapView.center = posMap;
-            table.center = posTable;
-            [UIView commitAnimations]; 
-            break;
-        case 1:
-            [btRecenterMap setHidden:NO];
-            [self setIsBtHidden:NO];
-            [UIView beginAnimations:nil context:NULL];
-            [UIView setAnimationDuration:0.4];
-            posMap = portfolioMapView.center;
-            posTable = table.center;
-            posMap.x = 160.0f;
-            posTable.x = -160.0f;
-            portfolioMapView.center = posMap;
-            table.center = posTable;
-            [UIView commitAnimations];
-            [self recenterMap];
-            break;
-        default:
-            break;
-    }
-
-}
-
-- (IBAction)showList{
+- (IBAction)showList {
     [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_list.png"]];
     
     CGPoint pos = calloutBubble.center;
@@ -262,7 +216,7 @@
     [UIView commitAnimations]; 
 
 }
-- (IBAction)showMap{
+- (IBAction)showMap {
     [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_map.png"]];
     
     CGPoint pos = calloutBubble.center;
@@ -286,7 +240,7 @@
 
 }
 
-- (void)mapView:(MKMapView *)mpView didSelectAnnotationView:(MKAnnotationView *)view{
+- (void)mapView:(MKMapView *)mpView didSelectAnnotationView:(MKAnnotationView *)view { 
     if(isCalloutBubbleIn){
         [self setIsOutInCall:YES];
         [self calloutBubbleOut];
@@ -318,19 +272,16 @@
     
     if([annotation isKindOfClass:[Flat class]]) {
         
-        MKPinAnnotationView *annotationView = [[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+        MKPinAnnotationView *annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
         
         annotationView.enabled = YES;
         
         // NO, because our own bubble is coming in
         annotationView.canShowCallout = NO;
+        annotationView.animatesDrop = YES;
         
-        
-        // checks that annotation is not the current position    
-        if([annotation.title compare:@"My Location"] != NSOrderedSame) {
-            annotationView.image = [UIImage imageNamed:@"house_green.png"];
-        }
-        
+        UIImageView *imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single_small.png.png"]] autorelease];
+        [annotationView addSubview:imageView];
         return annotationView;
     }
     
@@ -453,7 +404,7 @@
     [portfolioMapView setZoomEnabled:YES];
 }
 
--(void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
+- (void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
     if([animationID isEqualToString:@"inAnimation"]){
         NSLog(@"animation in");
     } else if([animationID isEqualToString:@"outAnimation"]) {
@@ -467,7 +418,7 @@
     }
 }
 
--(IBAction)showFlatsWebView {
+- (IBAction)showFlatsWebView {
     exposeWebViewController = [[WebViewController alloc]init];
     //[exposeWebViewController setSelectedExposeId:[self selectedExposeId]];
     [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];

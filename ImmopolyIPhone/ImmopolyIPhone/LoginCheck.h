@@ -18,6 +18,6 @@
 
 @property (nonatomic, assign) id<UserDataDelegate> delegate;
 
--(void) checkUserLogin;
+- (void)checkUserLogin;
 
 @end
