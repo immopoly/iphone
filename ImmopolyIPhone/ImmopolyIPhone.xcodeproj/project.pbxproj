@@ -12,6 +12,7 @@
 		4C014A06145DBE4C00293E72 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C014A04145DBE4B00293E72 /* UserProfileViewController.m */; };
 		4C014A07145DBE4C00293E72 /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C014A05145DBE4B00293E72 /* UserProfileViewController.xib */; };
 		4C111EB5149203A800875AF3 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C111EB4149203A800875AF3 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		4C4BE8CF14953D350047F232 /* UserBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BE8CE14953D350047F232 /* UserBadge.m */; };
 		4C9C4ED91471B4E500719E0E /* LoginCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C4ED81471B4E500719E0E /* LoginCheck.m */; };
 		6D0F9A921475849000D0C59F /* UserRegisterTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0F9A911475849000D0C59F /* UserRegisterTask.m */; };
 		6D0F9AAF14799CE900D0C59F /* house_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0F9AAC14799CE900D0C59F /* house_orange.png */; };
@@ -140,6 +141,8 @@
 		4C014A04145DBE4B00293E72 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		4C014A05145DBE4B00293E72 /* UserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
 		4C111EB4149203A800875AF3 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
+		4C4BE8CD14953D350047F232 /* UserBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserBadge.h; sourceTree = "<group>"; };
+		4C4BE8CE14953D350047F232 /* UserBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserBadge.m; sourceTree = "<group>"; };
 		4C9C4ED71471B4E500719E0E /* LoginCheck.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginCheck.h; sourceTree = "<group>"; };
 		4C9C4ED81471B4E500719E0E /* LoginCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCheck.m; sourceTree = "<group>"; };
 		4C9C4EDB1471B51A00719E0E /* UserDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDataDelegate.h; sourceTree = "<group>"; };
@@ -736,6 +739,8 @@
 		D2C67D22145AA516008C3295 /* ModelClasses */ = {
 			isa = PBXGroup;
 			children = (
+				4C4BE8CD14953D350047F232 /* UserBadge.h */,
+				4C4BE8CE14953D350047F232 /* UserBadge.m */,
 				D2C67D48145AA57A008C3295 /* Flat.h */,
 				D2C67D49145AA57A008C3295 /* Flat.m */,
 				D2C67D4A145AA57A008C3295 /* ImmopolyUser.h */,
@@ -980,6 +985,7 @@
 				D2BAA087148BA3FF00F3DD87 /* HistoryTask.m in Sources */,
 				D2F05B5E149396CE00BE171C /* Constants.m in Sources */,
 				D2F05B621493A56700BE171C /* Secrets.m in Sources */,
+				4C4BE8CF14953D350047F232 /* UserBadge.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

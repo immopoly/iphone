@@ -10,6 +10,7 @@
 
 @implementation ImmopolyUser
 @synthesize  userName,userToken,email,twitter,balance,lastProvision,lastRent,portfolio,history;
+@synthesize badges;
 
 - (id)init
 {
@@ -17,6 +18,7 @@
     if (self) {
         portfolio = [[NSMutableArray alloc]init];
         history = [[NSMutableArray alloc]init];
+        badges = [[NSMutableArray alloc]init];
     }
     
     return self;

@@ -12,6 +12,7 @@
 #import "Flat.h"
 #import "ImmopolyManager.h"
 #import "HistoryEntry.h"
+#import "UserBadge.h"
 
 @implementation JSONParser
 
@@ -69,6 +70,24 @@
         [myUser setLastRent:[[info objectForKey:@"lastRent"] doubleValue]];
         [myUser setBalance:[[info objectForKey:@"balance"] doubleValue]];
         [myUser setLastProvision: [[info objectForKey:@"lastProvision"] doubleValue]];
+        
+        //parse Badges data
+        NSArray *badgesDict = [info objectForKey:@"bagdesList"];
+        for (NSDictionary *listElement in badgesDict) {
+            NSDictionary *listEntry = [listElement objectForKey:@"Badge"];
+            
+            UserBadge *userBadge = [[UserBadge alloc] init];
+            
+            [userBadge setText: [listEntry objectForKey: @"text"]];
+            [userBadge setTime: [[listEntry objectForKey: @"time"] longLongValue]];
+            [userBadge setType: [[listEntry objectForKey: @"type"] intValue]];
+            [userBadge setAmount: [[listEntry objectForKey:@"amount"] intValue]];
+            [userBadge setUrl: [listEntry objectForKey:@"url"]];
+            
+            [[myUser badges] addObject: userBadge];
+            
+            [userBadge release];
+        }
         
         //parse data for user portfolio
         NSDictionary *locationDict = [info objectForKey:@"resultlist.resultlist"];
