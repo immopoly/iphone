@@ -38,10 +38,10 @@ NSString* const sharingFacebookLink = @"http://immopoly.appspot.com/";
 NSString* const sharingFacebookActionLabel = @"Immobilien Scout 24";
 NSString* const sharingFacebookActionText = @"Schau dir doch mal die folgende Wohnung an";
 
-NSString* const sharingTwitterAPINotAvailableAlertTitle = @"No iOS 5";
-NSString* const sharingTwitterAPINotAvailableAlertMessage = @"You need iOS 5 to use the Twitter function.";
-NSString* const sharingTwitterNoAccountAlertTitle = @"No Twitter Account";
-NSString* const sharingTwitterNoAccountAlertMessage = @"You need Twitter account to use the Twitter function. Please check your phone settings.";
+NSString* const sharingTwitterAPINotAvailableAlertTitle = @"Keine iOS 5";
+NSString* const sharingTwitterAPINotAvailableAlertMessage = @"Du brauchst iOS 5, um die Twitter Funktion verwenden zu können.";
+NSString* const sharingTwitterNoAccountAlertTitle = @"Kein Account";
+NSString* const sharingTwitterNoAccountAlertMessage = @"Du brauchst ein Twitter account, um diese Funktion verwenden zu können.";
 NSString* const sharingTwitterMessage = @"Coole Wohnung! #immopoly";
 
 NSString* const sharingMailSubject = @"Super Wohnung gefunden";
