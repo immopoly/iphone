@@ -10,7 +10,8 @@
 
 @implementation CoreLocationController
 
-@synthesize locationManager, delegate;
+@synthesize locationManager;
+@synthesize delegate;
 
 - (id)init {
     self = [super init];

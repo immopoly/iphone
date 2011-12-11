@@ -12,7 +12,11 @@
 #import "Constants.h"
 
 @implementation HistoryTask
-@synthesize data,connection,delegate,limit;
+
+@synthesize data;
+@synthesize connection;
+@synthesize delegate;
+@synthesize limit;
 
 - (void)loadHistoryEintriesFrom:(int)_start To :(int)_end {
     

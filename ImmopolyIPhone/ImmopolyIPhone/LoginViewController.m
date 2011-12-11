@@ -14,8 +14,18 @@
 
 @implementation LoginViewController
 
-@synthesize userName, password,spinner,loginLabel, loginButton, delegate;
-@synthesize registerView, registerUserName, registerUserPassword, registerUserEmail, registerUserTwitter;
+@synthesize userName;
+@synthesize password;
+@synthesize spinner;
+@synthesize loginLabel;
+@synthesize loginButton;
+@synthesize delegate;
+@synthesize registerView;
+@synthesize registerUserName;
+@synthesize registerUserPassword;
+@synthesize registerUserEmail;
+@synthesize registerUserTwitter;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

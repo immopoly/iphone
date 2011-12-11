@@ -9,10 +9,28 @@
 #import "Flat.h"
 
 @implementation Flat
-@synthesize exposeId, name, description, locationNode; 
-@synthesize city, postcode, street, houseNumber, quarter; 
-@synthesize titlePictureSmall, price, currency, priceValue, priceIntervaleType, creationDate;
-@synthesize numberOfRooms, livingSpace, coordinate, pictureUrl, flatsAtAnnotation;
+
+@synthesize exposeId;
+@synthesize name;
+@synthesize description;
+@synthesize locationNode; 
+@synthesize city;
+@synthesize postcode;
+@synthesize street;
+@synthesize houseNumber;
+@synthesize quarter; 
+@synthesize titlePictureSmall;
+@synthesize price;
+@synthesize currency;
+@synthesize priceValue;
+@synthesize priceIntervaleType;
+@synthesize creationDate;
+@synthesize numberOfRooms;
+@synthesize livingSpace;
+@synthesize coordinate;
+@synthesize pictureUrl;
+@synthesize flatsAtAnnotation;
+
 
 - (id)initWithName:(NSString*)_name description:(NSString*)_description coordinate:(CLLocationCoordinate2D)_coordinate exposeId:(int)_exposeId {
     if ((self = [super init])) {

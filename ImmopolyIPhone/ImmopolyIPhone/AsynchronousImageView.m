@@ -9,7 +9,10 @@
 #import "AsynchronousImageView.h"
 
 @implementation AsynchronousImageView
-@synthesize connection, data, spinner;
+
+@synthesize connection;
+@synthesize data;
+@synthesize spinner;
 
 - (void)loadImageFromURLString:(NSString *)_urlString {
     

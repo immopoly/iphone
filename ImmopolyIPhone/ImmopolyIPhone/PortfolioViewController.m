@@ -13,7 +13,28 @@
 
 @implementation PortfolioViewController
 
-@synthesize tvCell, table, segmentedControl, portfolioMapView, loginCheck,calloutBubble,isOutInCall,isCalloutBubbleIn,selectedExposeId,selViewForHouseImage,selectedImmoScoutFlat,lbFlatDescription,lbFlatName,lbFlatPrice,lbLivingSpace,adressLabel,lbNumberOfRooms,exposeWebViewController, spinner, btRecenterMap, isBtHidden,topBar;
+@synthesize tvCell;
+@synthesize table;
+@synthesize segmentedControl;
+@synthesize portfolioMapView;
+@synthesize loginCheck;
+@synthesize calloutBubble;
+@synthesize isOutInCall;
+@synthesize isCalloutBubbleIn;
+@synthesize selectedExposeId;
+@synthesize selViewForHouseImage;
+@synthesize selectedImmoScoutFlat;
+@synthesize lbFlatDescription;
+@synthesize lbFlatName;
+@synthesize lbFlatPrice;
+@synthesize lbLivingSpace;
+@synthesize adressLabel;
+@synthesize lbNumberOfRooms;
+@synthesize exposeWebViewController;
+@synthesize spinner;
+@synthesize btRecenterMap;
+@synthesize isBtHidden;
+@synthesize topBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil { 
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

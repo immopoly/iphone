@@ -12,7 +12,10 @@
 #import "Constants.h"
 
 @implementation UserRegisterTask
-@synthesize data, connection, delegate;
+
+@synthesize data;
+@synthesize connection;
+@synthesize delegate;
 
 - (void)performRegistration:(NSString *)_userName withPassword:(NSString *)_password withEmail:(NSString *)_email withTwitter:(NSString *)_twitter {
     

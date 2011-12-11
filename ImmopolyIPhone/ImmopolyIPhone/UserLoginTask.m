@@ -13,7 +13,9 @@
 
 @implementation UserLoginTask
 
-@synthesize connection, data, delegate; 
+@synthesize connection;
+@synthesize data;
+@synthesize delegate; 
 
 -(void)dealloc{
     [connection release];

@@ -13,7 +13,10 @@
 #import "Constants.h"
 
 @implementation FlatRemoveTask
-@synthesize selectedPortfoliotFlat,data,connection;
+
+@synthesize selectedPortfoliotFlat;
+@synthesize data;
+@synthesize connection;
 
 -(void)dealloc{
     [super dealloc];

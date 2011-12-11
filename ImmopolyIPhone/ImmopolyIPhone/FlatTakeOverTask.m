@@ -13,7 +13,10 @@
 #import "Constants.h"
 
 @implementation FlatTakeOverTask
-@synthesize connection,data,selectedImmoscoutFlat;
+
+@synthesize connection;
+@synthesize data;
+@synthesize selectedImmoscoutFlat;
 
 - (void)takeOverFlat:(Flat *)_selectedImmoscoutFlat {
     [self setSelectedImmoscoutFlat:_selectedImmoscoutFlat];

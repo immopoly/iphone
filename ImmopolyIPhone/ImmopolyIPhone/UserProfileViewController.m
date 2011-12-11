@@ -13,7 +13,16 @@
 
 @implementation UserProfileViewController
 
-@synthesize hello, bank, miete, provision, loginCheck, spinner, labelBank, labelMiete, labelProvision;
+@synthesize hello;
+@synthesize bank;
+@synthesize miete;
+@synthesize provision;
+@synthesize loginCheck;
+@synthesize spinner;
+@synthesize labelBank;
+@synthesize labelMiete;
+@synthesize labelProvision;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];

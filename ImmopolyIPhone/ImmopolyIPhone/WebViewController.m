@@ -13,7 +13,13 @@
 
 @implementation WebViewController
 
-@synthesize webView,activityIndicator,selectedExposeId,selectedImmoscoutFlat, loginCheck,flatActionButton;
+@synthesize webView;
+@synthesize activityIndicator;
+@synthesize selectedExposeId;
+@synthesize selectedImmoscoutFlat;
+@synthesize loginCheck;
+@synthesize flatActionButton;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {

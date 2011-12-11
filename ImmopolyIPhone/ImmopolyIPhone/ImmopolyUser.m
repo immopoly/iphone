@@ -9,8 +9,18 @@
 #import "ImmopolyUser.h"
 
 @implementation ImmopolyUser
-@synthesize  userName,userToken,email,twitter,balance,lastProvision,lastRent,portfolio,history;
+
+@synthesize  userName;
+@synthesize userToken;
+@synthesize email;
+@synthesize twitter;
+@synthesize balance;
+@synthesize lastProvision;
+@synthesize lastRent;
+@synthesize portfolio;
+@synthesize history;
 @synthesize badges;
+
 
 - (id)init
 {

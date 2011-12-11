@@ -9,6 +9,11 @@
 #import "HistoryEntry.h"
 
 @implementation HistoryEntry
-@synthesize histText, time,type,type2,exposeId;
+
+@synthesize histText;
+@synthesize time;
+@synthesize type;
+@synthesize type2;
+@synthesize exposeId;
 
 @end

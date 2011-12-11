@@ -15,7 +15,26 @@
 
 @implementation ImmopolyMapViewController 
 
-@synthesize mapView, adressLabel, calloutBubble,selectedExposeId, lbFlatName, lbFlatDescription, lbFlatPrice, lbNumberOfRooms, lbLivingSpace,selectedImmoScoutFlat, isCalloutBubbleIn, isOutInCall, selViewForHouseImage, asyncImageView, iphoneScaleFactorLatitude, iphoneScaleFactorLongitude, scrollView, numOfScrollViewSubviews, pageControl;
+@synthesize mapView;
+@synthesize adressLabel;
+@synthesize calloutBubble;
+@synthesize selectedExposeId;
+@synthesize lbFlatName;
+@synthesize lbFlatDescription;
+@synthesize lbFlatPrice;
+@synthesize lbNumberOfRooms;
+@synthesize lbLivingSpace;
+@synthesize selectedImmoScoutFlat;
+@synthesize isCalloutBubbleIn;
+@synthesize isOutInCall;
+@synthesize selViewForHouseImage;
+@synthesize asyncImageView;
+@synthesize iphoneScaleFactorLatitude;
+@synthesize iphoneScaleFactorLongitude;
+@synthesize scrollView;
+@synthesize numOfScrollViewSubviews;
+@synthesize pageControl;
+
 
 -(void)dealloc {
     [super dealloc];

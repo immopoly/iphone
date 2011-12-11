@@ -13,7 +13,15 @@
 
 @implementation HistoryViewController
 
-@synthesize tvCell, table, loginCheck, spinner,loading,flagForReload,loadingHistoryEntriesLimit,loadingHistoryEntriesStart;
+@synthesize tvCell;
+@synthesize table;
+@synthesize loginCheck;
+@synthesize spinner;
+@synthesize loading;
+@synthesize flagForReload;
+@synthesize loadingHistoryEntriesLimit;
+@synthesize loadingHistoryEntriesStart;
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
