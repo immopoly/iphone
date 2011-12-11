@@ -72,7 +72,7 @@
     [spinner setHidden: YES];
 }
 
-- (void)displayUserData {
+- (void)performActionAfterLoginCheck {
     
     ImmopolyUser *myUser = [[ImmopolyManager instance] user];
     

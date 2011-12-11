@@ -112,7 +112,7 @@
     [spinner setHidden: YES];
 }
 
-- (void)displayUserData {
+- (void)performActionAfterLoginCheck {
     [table reloadData];
     
     // removing all existing annotations

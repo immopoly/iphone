@@ -10,6 +10,6 @@
 
 @protocol UserDataDelegate <NSObject>
 
-- (void)displayUserData;
+- (void)performActionAfterLoginCheck;
 
 @end

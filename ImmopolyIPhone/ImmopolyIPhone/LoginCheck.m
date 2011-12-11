@@ -68,7 +68,7 @@
 }
 
 - (void)notifyMyDelegateView {
-    [delegate displayUserData];
+    [delegate performActionAfterLoginCheck];
 }
 
 - (void)closeMyDelegateView {

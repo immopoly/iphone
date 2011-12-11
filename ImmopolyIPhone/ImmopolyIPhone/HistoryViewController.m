@@ -66,7 +66,7 @@
     [spinner setHidden: YES];
 }
 
-- (void)displayUserData {
+- (void)performActionAfterLoginCheck {
     [table reloadData];
     [self stopSpinnerAnimation];
     [[self table] setHidden: NO];

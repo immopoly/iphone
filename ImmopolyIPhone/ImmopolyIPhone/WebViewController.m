@@ -116,7 +116,7 @@
     [loginCheck checkUserLogin];
 }
 
-- (void)displayUserData {
+- (void)performActionAfterLoginCheck {
     
     if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]) {
         
