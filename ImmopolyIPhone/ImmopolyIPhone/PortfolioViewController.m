@@ -41,7 +41,7 @@
     if (self) {
         // Custom initialization
         self.title = NSLocalizedString(@"Portfolio", @"Second");
-        self.tabBarItem.image = [UIImage imageNamed:@"tab_portfolio"];
+        self.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon_portfolio"];
         self.loginCheck = [[LoginCheck alloc] init];
     }
     return self;

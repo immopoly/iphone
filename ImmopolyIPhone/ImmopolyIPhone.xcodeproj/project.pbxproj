@@ -131,6 +131,16 @@
 		D2E53FD71481909E0042B205 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2E53FD61481909D0042B205 /* Default@2x.png */; };
 		D2F05B5E149396CE00BE171C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F05B5D149396CE00BE171C /* Constants.m */; };
 		D2F05B621493A56700BE171C /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F05B611493A56700BE171C /* Secrets.m */; };
+		D2F05B75149622E800BE171C /* tabbar_icon_history.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F05B71149622E800BE171C /* tabbar_icon_history.png */; };
+		D2F05B76149622E800BE171C /* tabbar_icon_map.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F05B72149622E800BE171C /* tabbar_icon_map.png */; };
+		D2F05B77149622E800BE171C /* tabbar_icon_portfolio.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F05B73149622E800BE171C /* tabbar_icon_portfolio.png */; };
+		D2F05B78149622E800BE171C /* tabbar_icon_user.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F05B74149622E800BE171C /* tabbar_icon_user.png */; };
+		D2F05B801496236000BE171C /* background_login.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F05B7A1496236000BE171C /* background_login.png */; };
+		D2F05B811496236000BE171C /* cancel_button.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F05B7B1496236000BE171C /* cancel_button.png */; };
+		D2F05B821496236000BE171C /* Login_button.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F05B7C1496236000BE171C /* Login_button.png */; };
+		D2F05B831496236000BE171C /* login_top_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F05B7D1496236000BE171C /* login_top_cell.png */; };
+		D2F05B841496236000BE171C /* new_account_button.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F05B7E1496236000BE171C /* new_account_button.png */; };
+		D2F05B851496236000BE171C /* password_button.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F05B7F1496236000BE171C /* password_button.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -360,6 +370,16 @@
 		D2F05B5D149396CE00BE171C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		D2F05B601493A56700BE171C /* Secrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
 		D2F05B611493A56700BE171C /* Secrets.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Secrets.m; sourceTree = "<group>"; };
+		D2F05B71149622E800BE171C /* tabbar_icon_history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_icon_history.png; sourceTree = "<group>"; };
+		D2F05B72149622E800BE171C /* tabbar_icon_map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_icon_map.png; sourceTree = "<group>"; };
+		D2F05B73149622E800BE171C /* tabbar_icon_portfolio.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_icon_portfolio.png; sourceTree = "<group>"; };
+		D2F05B74149622E800BE171C /* tabbar_icon_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_icon_user.png; sourceTree = "<group>"; };
+		D2F05B7A1496236000BE171C /* background_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_login.png; sourceTree = "<group>"; };
+		D2F05B7B1496236000BE171C /* cancel_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel_button.png; sourceTree = "<group>"; };
+		D2F05B7C1496236000BE171C /* Login_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Login_button.png; sourceTree = "<group>"; };
+		D2F05B7D1496236000BE171C /* login_top_cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_top_cell.png; sourceTree = "<group>"; };
+		D2F05B7E1496236000BE171C /* new_account_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_account_button.png; sourceTree = "<group>"; };
+		D2F05B7F1496236000BE171C /* password_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = password_button.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -388,6 +408,8 @@
 		6D368F6114631469003113C5 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				D2F05B791496233C00BE171C /* Login */,
+				D2F05B671496218000BE171C /* TabBar */,
 				6DC8656D14912DAF00EB6D8E /* Maps */,
 				6DE29982148A6F1900FD7CCA /* Portfolio */,
 				D2A785E714841AF400783603 /* History */,
@@ -814,6 +836,30 @@
 			name = FBConnect;
 			sourceTree = "<group>";
 		};
+		D2F05B671496218000BE171C /* TabBar */ = {
+			isa = PBXGroup;
+			children = (
+				D2F05B71149622E800BE171C /* tabbar_icon_history.png */,
+				D2F05B72149622E800BE171C /* tabbar_icon_map.png */,
+				D2F05B73149622E800BE171C /* tabbar_icon_portfolio.png */,
+				D2F05B74149622E800BE171C /* tabbar_icon_user.png */,
+			);
+			name = TabBar;
+			sourceTree = "<group>";
+		};
+		D2F05B791496233C00BE171C /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				D2F05B7A1496236000BE171C /* background_login.png */,
+				D2F05B7B1496236000BE171C /* cancel_button.png */,
+				D2F05B7C1496236000BE171C /* Login_button.png */,
+				D2F05B7D1496236000BE171C /* login_top_cell.png */,
+				D2F05B7E1496236000BE171C /* new_account_button.png */,
+				D2F05B7F1496236000BE171C /* password_button.png */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -908,6 +954,16 @@
 				6D9949CB1492418800AD2307 /* annotation_multi_small.png in Resources */,
 				6D9949CC1492418800AD2307 /* annotation_single_small.png in Resources */,
 				6D9949D514928B1A00AD2307 /* bt_show_all.png in Resources */,
+				D2F05B75149622E800BE171C /* tabbar_icon_history.png in Resources */,
+				D2F05B76149622E800BE171C /* tabbar_icon_map.png in Resources */,
+				D2F05B77149622E800BE171C /* tabbar_icon_portfolio.png in Resources */,
+				D2F05B78149622E800BE171C /* tabbar_icon_user.png in Resources */,
+				D2F05B801496236000BE171C /* background_login.png in Resources */,
+				D2F05B811496236000BE171C /* cancel_button.png in Resources */,
+				D2F05B821496236000BE171C /* Login_button.png in Resources */,
+				D2F05B831496236000BE171C /* login_top_cell.png in Resources */,
+				D2F05B841496236000BE171C /* new_account_button.png in Resources */,
+				D2F05B851496236000BE171C /* password_button.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -47,7 +47,7 @@
     if (self) {
         // Custom initialization        
         self.title = NSLocalizedString(@"Map", @"First");
-        self.tabBarItem.image = [UIImage imageNamed:@"tab_map"];
+        self.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon_map"];
     }
     return self;
 }
