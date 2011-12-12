@@ -83,6 +83,7 @@
     self.tvCell = nil;
     self.table = nil;
     self.spinner = nil;
+    self.reloadDataSpinner = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -94,7 +95,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     /*int numRows = [[[[ImmopolyManager instance] user] history] count]; 
@@ -233,6 +233,7 @@
     [table release];
     [loginCheck release];
     [spinner release];
+    [reloadDataSpinner release];
     [super dealloc];
 }
 
