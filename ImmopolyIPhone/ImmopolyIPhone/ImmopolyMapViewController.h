@@ -71,7 +71,8 @@
 @property(nonatomic, retain) IBOutlet UIPageControl *pageControl;
  
 - (IBAction)refreshLocation;
-- (void)setAnnotationImageWith:(NSString *)_imageName atAnnotation:(Flat *)_flat;
+- (void)setAnnotationImageAtAnnotation:(Flat *)_flat;
+- (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat;
 - (void)calloutBubbleIn;
 - (IBAction)calloutBubbleOut;
 - (void)showFlatsWebView;
