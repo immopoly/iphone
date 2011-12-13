@@ -59,6 +59,7 @@
 		6DA75D33145C15BF0079B32C /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75D26145C15BF0079B32C /* SBJsonUTF8Stream.m */; };
 		6DA75D34145C15BF0079B32C /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75D28145C15BF0079B32C /* SBJsonWriter.m */; };
 		6DA75D99145C4B180079B32C /* PortfolioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DA75D97145C4B170079B32C /* PortfolioCell.xib */; };
+		6DB8700C1496AC4400C0D82A /* calloutBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB8700B1496AC4400C0D82A /* calloutBubble.png */; };
 		6DBCBDC8146B214300545897 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBCBDC6146B214200545897 /* HistoryViewController.m */; };
 		6DBCBDC9146B214300545897 /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DBCBDC7146B214300545897 /* HistoryViewController.xib */; };
 		6DBCBDCC146B229400545897 /* HistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DBCBDCB146B229400545897 /* HistoryCell.xib */; };
@@ -258,6 +259,7 @@
 		6DA75D27145C15BF0079B32C /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		6DA75D28145C15BF0079B32C /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		6DA75D97145C4B170079B32C /* PortfolioCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortfolioCell.xib; sourceTree = "<group>"; };
+		6DB8700B1496AC4400C0D82A /* calloutBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calloutBubble.png; sourceTree = "<group>"; };
 		6DBCBDC5146B214200545897 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		6DBCBDC6146B214200545897 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		6DBCBDC7146B214300545897 /* HistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
@@ -568,6 +570,7 @@
 		6DC8656D14912DAF00EB6D8E /* Maps */ = {
 			isa = PBXGroup;
 			children = (
+				6DB8700B1496AC4400C0D82A /* calloutBubble.png */,
 				6D9949C91492418800AD2307 /* annotation_multi_small.png */,
 				6D9949CA1492418800AD2307 /* annotation_single_small.png */,
 				6DC8656F14912DDD00EB6D8E /* annotation_single.png */,
@@ -954,6 +957,7 @@
 				6D9949CB1492418800AD2307 /* annotation_multi_small.png in Resources */,
 				6D9949CC1492418800AD2307 /* annotation_single_small.png in Resources */,
 				6D9949D514928B1A00AD2307 /* bt_show_all.png in Resources */,
+				6DB8700C1496AC4400C0D82A /* calloutBubble.png in Resources */,
 				D2F05B75149622E800BE171C /* tabbar_icon_history.png in Resources */,
 				D2F05B76149622E800BE171C /* tabbar_icon_map.png in Resources */,
 				D2F05B77149622E800BE171C /* tabbar_icon_portfolio.png in Resources */,

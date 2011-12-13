@@ -188,32 +188,46 @@
         UIImageView *imageView;
         if([[location flatsAtAnnotation] count] > 0 ) {
             imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi_small.png.png"]] autorelease];
-
+            [annotationView addSubview:imageView];
+            [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:location]];
         }
         else {
             imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single_small.png"]] autorelease];
+            [annotationView addSubview:imageView];
         }
-        [annotationView addSubview:imageView];
         return annotationView;
     }
      
     return nil;
 }
 
-- (void)setAnnotationImageWith:(NSString *)_imageName atAnnotation:(Flat *)_flat {
+- (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat {
+    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 51, 40)];
+    lbNumOfFlats.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    [lbNumOfFlats setText:[[NSString alloc] initWithFormat:@"%d", [[_flat flatsAtAnnotation] count] +1]];
+    [lbNumOfFlats setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    
+    return lbNumOfFlats;
+}
+
+- (void)setAnnotationImageAtAnnotation:(Flat *)_flat {
     MKAnnotationView *annotationView = [mapView viewForAnnotation:_flat];
     
-    [[[annotationView subviews] objectAtIndex:0] removeFromSuperview];
-
-    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(20, 20, 51, 40)];
-    lbNumOfFlats.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-    [lbNumOfFlats setText:@"5"];
+    UIImageView *imageView = [[annotationView subviews] objectAtIndex:0];
     
-    UIImageView *imageView;
-    imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:_imageName]] autorelease];
-    
-    [annotationView addSubview:imageView];
-    [annotationView addSubview:lbNumOfFlats];
+    if([[_flat flatsAtAnnotation] count] > 0 ) {
+        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi_small.png.png"]] autorelease];
+        [annotationView addSubview:imageView];
+        [[[annotationView subviews] objectAtIndex:1] removeFromSuperview];
+        [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:_flat]];
+    }
+    else {
+        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single_small.png"]] autorelease];
+        if([[annotationView subviews] count] > 1){
+            [[[annotationView subviews] objectAtIndex:1] removeFromSuperview];    
+        }
+        [annotationView addSubview:imageView];
+    }
 }
 
 // action for the compass button
@@ -296,10 +310,10 @@
     /*
     if([[selectedImmoScoutFlat flatsAtAnnotation] count] > 0) {
         //selViewForHouseImage.image = [UIImage imageNamed:@"annotation_multi_small.png"];
-        [self setAnnotationImageWith:@"annotation_multi_small.png" atAnnotation:selectedImmoScoutFlat];
+        [self setAnnotationImageAtAnnotation:selectedImmoScoutFlat];
     } else {
         //selViewForHouseImage.image = [UIImage imageNamed:@"annotation_single_small.png"];
-        [self setAnnotationImageWith:@"annotation_single_small.png" atAnnotation:selectedImmoScoutFlat];
+        [self setAnnotationImageAtAnnotation:selectedImmoScoutFlat];
     }
     */
     [mapView setZoomEnabled:YES];
@@ -373,7 +387,7 @@
                 [[tempFlat flatsAtAnnotation] addObject:actFlat];
                 
                 // annotation bild der tempflat ändern, weil sie jetzt mehrere flats beinhaltet
-                [self setAnnotationImageWith:@"annotation_multi_small.png" atAnnotation:selectedImmoScoutFlat];
+                [self setAnnotationImageAtAnnotation:tempFlat];
                 
                 // break, weil eine in der nähe befindliche flat reicht
                 break;
@@ -383,6 +397,7 @@
         // die gezeigt werden und zeige die Annotation
         if(!found) {
             [flatsToShow addObject:actFlat];
+            [self setAnnotationImageAtAnnotation:actFlat];
             [mapView addAnnotation:actFlat];
         }
     }
@@ -440,19 +455,37 @@
     subview.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     
     //labels
-    UILabel *lbName = [[UILabel alloc] initWithFrame:CGRectMake(10, 30, 100, 30)];
+    UILabel *lbName = [[UILabel alloc] initWithFrame:CGRectMake(9, -21, 193, 70)];
     lbName.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    [lbName setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
     [lbName setText:[_flat name]];
     [subview addSubview:lbName];
     
-    UILabel *lbRooms = [[UILabel alloc] initWithFrame:CGRectMake(10, 60, 100, 30)];
+    UILabel *lbRooms = [[UILabel alloc] initWithFrame:CGRectMake(100, 30, 100, 35)];
     lbRooms.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    [lbRooms setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
     NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[_flat numberOfRooms]];
     [lbRooms setText:rooms];
     [subview addSubview:lbRooms];
     
+    UILabel *lbSpace = [[UILabel alloc] initWithFrame:CGRectMake(100, 55, 150, 35)];
+    lbSpace.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    [lbSpace setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    //NSString *space = [NSString stringWithFormat:@"Fläche: %dqm",[_flat livingSpace]];
+    NSString *space = [NSString stringWithFormat:@"Fläche: 68 qm"];
+    [lbSpace setText:space];
+    [subview addSubview:lbSpace];
+    
+    UILabel *lbPrice = [[UILabel alloc] initWithFrame:CGRectMake(100, 80, 100, 35)];
+    lbPrice.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    [lbPrice setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    //NSString *price = [NSString stringWithFormat:@"Preis: %d€",[_flat price]];
+    NSString *price = [NSString stringWithFormat:@"Preis: 124 €"];
+    [lbPrice setText:price];
+    [subview addSubview:lbPrice];
+    
     // image
-    AsynchronousImageView *img = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(130, 30, 60, 60)];
+    AsynchronousImageView *img = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(10, 40, 60, 60)];
     [img loadImageFromURLString:[_flat pictureUrl]];
     [subview addSubview:img];
 

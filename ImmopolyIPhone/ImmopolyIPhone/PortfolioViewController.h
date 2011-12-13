@@ -24,6 +24,7 @@
     IBOutlet UILabel *lbFlatPrice;
     IBOutlet UILabel *lbNumberOfRooms;
     IBOutlet UILabel *lbLivingSpace;
+    IBOutlet AsynchronousImageView *asyncImageView;
     IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet UIImageView *topBar;
     IBOutlet UIButton *btRecenterMap;
@@ -47,8 +48,8 @@
 
 @property(nonatomic, retain) UITableViewCell *tvCell;
 @property(nonatomic, retain) UITableView *table;
-@property(nonatomic,retain) IBOutlet UISegmentedControl *segmentedControl;
-@property(nonatomic,retain) IBOutlet MKMapView *portfolioMapView;
+@property(nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
+@property(nonatomic, retain) IBOutlet MKMapView *portfolioMapView;
 @property(nonatomic, retain) LoginCheck *loginCheck;
 @property(nonatomic, retain) IBOutlet UIView *calloutBubble;
 @property(nonatomic, assign) bool isCalloutBubbleIn;
@@ -62,6 +63,7 @@
 @property(nonatomic, retain) IBOutlet UILabel *lbFlatPrice;
 @property(nonatomic, retain) IBOutlet UILabel *lbNumberOfRooms;
 @property(nonatomic, retain) IBOutlet UILabel *lbLivingSpace;
+@property(nonatomic, retain) IBOutlet AsynchronousImageView *asyncImageView;
 @property(nonatomic, retain) WebViewController *exposeWebViewController;
 @property(nonatomic, retain) IBOutlet UIButton *btRecenterMap;
 @property(nonatomic, assign) bool isBtHidden;

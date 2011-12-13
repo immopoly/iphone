@@ -28,6 +28,7 @@
 @synthesize lbFlatName;
 @synthesize lbFlatPrice;
 @synthesize lbLivingSpace;
+@synthesize asyncImageView;
 @synthesize adressLabel;
 @synthesize lbNumberOfRooms;
 @synthesize exposeWebViewController;
@@ -395,6 +396,7 @@
     space = [space substringToIndex:[space length]-7];
     price = [price substringToIndex:[price length]-6];
     
+    [asyncImageView loadImageFromURLString:[selectedImmoScoutFlat pictureUrl]];
     [lbFlatPrice setText:price];
     [lbNumberOfRooms setText:rooms];
     [lbLivingSpace setText:space];
@@ -442,6 +444,7 @@
     } else if([animationID isEqualToString:@"outAnimation"]) {
         NSLog(@"animation out");
         [calloutBubble removeFromSuperview];
+        [asyncImageView reset];
         // checks wether it was called due the calloutBubble was inside the view
         if(isOutInCall){
             [self calloutBubbleIn];
