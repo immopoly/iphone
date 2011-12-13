@@ -21,6 +21,7 @@
 @synthesize flagForReload;
 @synthesize loadingHistoryEntriesLimit;
 @synthesize loadingHistoryEntriesStart;
+@synthesize reloadDataSpinner;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -28,7 +29,7 @@
     if (self) {
         // Custom initialization
         self.title = NSLocalizedString(@"History", @"Fourth");
-        self.tabBarItem.image = [UIImage imageNamed:@"tab_history"];
+        self.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon_history"];
         self.loginCheck = [[LoginCheck alloc] init];
     }
     return self;
@@ -52,6 +53,8 @@
     
     loadingHistoryEntriesStart = 10;
     loadingHistoryEntriesLimit = 10;
+    
+    [reloadDataSpinner stopAnimating];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -59,6 +62,8 @@
     [loginCheck checkUserLogin];
     [super viewDidAppear:animated];
     [[self table]reloadData];
+    
+    
 }
 
 - (void)stopSpinnerAnimation {
@@ -78,6 +83,7 @@
     self.tvCell = nil;
     self.table = nil;
     self.spinner = nil;
+    self.reloadDataSpinner = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -89,7 +95,6 @@
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return 1;
 }
-
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     /*int numRows = [[[[ImmopolyManager instance] user] history] count]; 
@@ -194,6 +199,7 @@
             HistoryTask *task = [[[HistoryTask alloc] init] autorelease];
             task.delegate = self;
             [task loadHistoryEintriesFrom:loadingHistoryEntriesStart To:(loadingHistoryEntriesStart+loadingHistoryEntriesLimit)];
+            [reloadDataSpinner startAnimating];
         }
     }
     
@@ -205,6 +211,7 @@
             HistoryTask *task = [[[HistoryTask alloc] init] autorelease];
             task.delegate = self;
             [task loadHistoryEintriesFrom:loadingHistoryEntriesStart To:(loadingHistoryEntriesStart+loadingHistoryEntriesLimit)];
+            [reloadDataSpinner startAnimating];
         }
       }
     
@@ -218,6 +225,7 @@
     }
     
     [self.table reloadData];
+    [reloadDataSpinner stopAnimating];
 }
 
 - (void)dealloc {
@@ -225,6 +233,7 @@
     [table release];
     [loginCheck release];
     [spinner release];
+    [reloadDataSpinner release];
     [super dealloc];
 }
 

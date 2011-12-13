@@ -15,6 +15,7 @@
     IBOutlet UITableViewCell *tvCell;
     IBOutlet UITableView *table;
     IBOutlet UIActivityIndicatorView *spinner;
+    IBOutlet UIActivityIndicatorView *reloadDataSpinner;
     
     LoginCheck *loginCheck;
     BOOL loading;
@@ -32,6 +33,7 @@
 @property(nonatomic, assign) BOOL flagForReload;
 @property(nonatomic, assign) int loadingHistoryEntriesStart;
 @property(nonatomic, assign) int loadingHistoryEntriesLimit;
+@property(nonatomic, retain) IBOutlet UIActivityIndicatorView *reloadDataSpinner;
 
 -(void) stopSpinnerAnimation;
 

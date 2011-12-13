@@ -29,7 +29,7 @@
     if (self) {
         // Custom initialization
         self.title = NSLocalizedString(@"User", @"Third");
-        self.tabBarItem.image = [UIImage imageNamed:@"tab_user"];
+        self.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon_user"];
         self.loginCheck = [[LoginCheck alloc] init];
     }
     return self;
