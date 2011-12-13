@@ -152,17 +152,12 @@
         Flat *location = (Flat *) view.annotation;
         [self setSelectedImmoScoutFlat:location]; 
         
-        // TODO: zoom has to be changed, because for clustering it doesn't make sense 
-        // moving the coordinates, that it doesn't zoom to the center, but a bit under it 
-        /*
+        // moving the view to the center where the selected flat is placed
         CLLocationCoordinate2D zoomLocation = location.coordinate;
-        zoomLocation.latitude = zoomLocation.latitude + 0.003;
-        zoomLocation.longitude = zoomLocation.longitude + 0.0006;
-         
-        MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.3*METERS_PER_MILE, 0.3*METERS_PER_MILE);
+        MKCoordinateRegion viewRegion = MKCoordinateRegionMake(zoomLocation, mapView.region.span);
         MKCoordinateRegion adjustedRegion = [mpView regionThatFits:viewRegion];                
         [mpView setRegion:adjustedRegion animated:YES];   
-        */
+        
         if (!isOutInCall) {
             [self calloutBubbleIn];
         }
@@ -242,27 +237,6 @@
     [mapView addSubview:calloutBubble];
     
     [self initScrollView];
-    
-    /*
-    // setting text of labels in calloutBubble
-    [lbFlatName setText:[selectedImmoScoutFlat name]];
-    NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[selectedImmoScoutFlat numberOfRooms]];
-    NSString *space = [NSString stringWithFormat:@"Fläche: %f qm",[selectedImmoScoutFlat livingSpace]];
-    NSString *price = [NSString stringWithFormat:@"Preis: %f €",[selectedImmoScoutFlat price]];
-   
-    // setting the image
-    [asyncImageView loadImageFromURLString:[selectedImmoScoutFlat pictureUrl]];
-    
-    // TODO: cutting the 0 in a better way
-    space = [space substringToIndex:[space length]-7];
-    price = [price substringToIndex:[price length]-6];
-    
-    [lbFlatPrice setText:price];
-    [lbNumberOfRooms setText:rooms];
-    [lbLivingSpace setText:space];
-    // TODO: title should not be like description
-    [lbFlatDescription setText:[selectedImmoScoutFlat title]];
-    */
      
     // Animation
     [UIView beginAnimations:@"inAnimation" context:NULL];	
@@ -271,7 +245,7 @@
 	[UIView setAnimationDuration:0.4];
 	
 	CGPoint pos = calloutBubble.center;
-	pos.y = 160.0f;
+	pos.y = 164.0f;
 	calloutBubble.center = pos;
 	
     [UIView commitAnimations]; 
@@ -455,34 +429,47 @@
     subview.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     
     //labels
-    UILabel *lbName = [[UILabel alloc] initWithFrame:CGRectMake(9, -21, 193, 70)];
-    lbName.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    UILabel *lbName = [[UILabel alloc] initWithFrame:CGRectMake(10, -20, 193, 70)];
+    [lbName setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
+    [lbName setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
+    [lbName setNumberOfLines:2];
     [lbName setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
     [lbName setText:[_flat name]];
     [subview addSubview:lbName];
     
-    UILabel *lbRooms = [[UILabel alloc] initWithFrame:CGRectMake(100, 30, 100, 35)];
-    lbRooms.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-    [lbRooms setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    UILabel *lbRooms = [[UILabel alloc] initWithFrame:CGRectMake(90, 30, 100, 35)];
+    [lbRooms setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
     NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[_flat numberOfRooms]];
+    [lbRooms setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
+    [lbRooms setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
     [lbRooms setText:rooms];
     [subview addSubview:lbRooms];
     
-    UILabel *lbSpace = [[UILabel alloc] initWithFrame:CGRectMake(100, 55, 150, 35)];
-    lbSpace.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    UILabel *lbSpace = [[UILabel alloc] initWithFrame:CGRectMake(90, 55, 200, 35)];
+    NSString *space = [NSString stringWithFormat:@"Fläche: %f qm",[_flat livingSpace]];
+    space = [space substringToIndex:[space length]-7];
+    [lbSpace setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
+    [lbSpace setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
     [lbSpace setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-    //NSString *space = [NSString stringWithFormat:@"Fläche: %dqm",[_flat livingSpace]];
-    NSString *space = [NSString stringWithFormat:@"Fläche: 68 qm"];
     [lbSpace setText:space];
     [subview addSubview:lbSpace];
     
-    UILabel *lbPrice = [[UILabel alloc] initWithFrame:CGRectMake(100, 80, 100, 35)];
-    lbPrice.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    UILabel *lbPrice = [[UILabel alloc] initWithFrame:CGRectMake(90, 80, 200, 35)];
+    NSString *price = [NSString stringWithFormat:@"Preis: %f €",[_flat price]];
+    price = [price substringToIndex:[price length]-6];
+    [lbPrice setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
+    [lbPrice setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
     [lbPrice setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-    //NSString *price = [NSString stringWithFormat:@"Preis: %d€",[_flat price]];
-    NSString *price = [NSString stringWithFormat:@"Preis: 124 €"];
     [lbPrice setText:price];
     [subview addSubview:lbPrice];
+    
+    UILabel *lbPageNum = [[UILabel alloc] initWithFrame:CGRectMake(30, 100, 200, 35)];
+    NSString *pageNum = [NSString stringWithFormat:@"%d/%d", _pos+1, numOfScrollViewSubviews];
+    [lbPageNum setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
+    [lbPageNum setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
+    [lbPageNum setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    [lbPageNum setText:pageNum];
+    [subview addSubview:lbPageNum];
     
     // image
     AsynchronousImageView *img = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(10, 40, 60, 60)];
@@ -493,7 +480,7 @@
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button addTarget:self action:@selector(showFlatsWebView) forControlEvents:UIControlEventTouchUpInside];
     [button setTitle:@">" forState:UIControlStateNormal];
-    button.frame = CGRectMake(180, 90, 25, 25);
+    button.frame = CGRectMake(180, 120, 25, 25);
     [subview addSubview:button];
     
     [lbName release];
