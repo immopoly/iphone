@@ -313,7 +313,7 @@
         annotationView.canShowCallout = NO;
         annotationView.animatesDrop = YES;
         
-        UIImageView *imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single_small.png.png"]] autorelease];
+        UIImageView *imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
         [annotationView addSubview:imageView];
         return annotationView;
     }
