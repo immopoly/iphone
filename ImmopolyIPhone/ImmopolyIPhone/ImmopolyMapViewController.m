@@ -195,12 +195,12 @@
         Flat *location = (Flat *) annotation;
         UIImageView *imageView;
         if([[location flatsAtAnnotation] count] > 0 ) {
-            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi_small.png"]] autorelease];
+            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi.png"]] autorelease];
             [annotationView addSubview:imageView];
             [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:location]];
         }
         else {
-            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single_small.png"]] autorelease];
+            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
             [annotationView addSubview:imageView];
         }
         return annotationView;
@@ -224,13 +224,13 @@
     UIImageView *imageView = [[annotationView subviews] objectAtIndex:0];
     
     if([[_flat flatsAtAnnotation] count] > 0 ) {
-        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi_small.png"]] autorelease];
+        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi.png"]] autorelease];
         [annotationView addSubview:imageView];
         [[[annotationView subviews] objectAtIndex:1] removeFromSuperview];
         [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:_flat]];
     }
     else {
-        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single_small.png"]] autorelease];
+        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
         if([[annotationView subviews] count] > 1){
             [[[annotationView subviews] objectAtIndex:1] removeFromSuperview];    
         }
