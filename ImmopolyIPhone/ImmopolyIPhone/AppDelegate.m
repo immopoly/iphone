@@ -69,7 +69,7 @@
     //loginVC = [[[LoginViewController alloc]init]autorelease]; 
     userVC = [[[UserProfileViewController alloc] init] autorelease];
     historyVC = [[[HistoryViewController alloc] init] autorelease];    
-    missionVC = [[MissionViewController alloc]init];
+    missionVC = [[[MissionViewController alloc]init]autorelease];
     
     self.tabBarController = [[[CustomTabBarController alloc] init] autorelease];
     
