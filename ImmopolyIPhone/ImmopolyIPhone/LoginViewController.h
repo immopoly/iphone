@@ -22,6 +22,7 @@
     IBOutlet UILabel *loginLabel;
     IBOutlet UIButton *loginButton;
     IBOutlet UIView *registerView;
+    IBOutlet UIView *loginView;
     IBOutlet UITextField *registerUserName;
     IBOutlet UITextField *registerUserPassword;
     IBOutlet UITextField *registerUserEmail;
@@ -41,6 +42,7 @@
 @property(nonatomic, assign) id<NotifyViewDelegate> delegate;
 
 @property(nonatomic, retain) IBOutlet UIView *registerView;
+@property(nonatomic, retain) IBOutlet UIView *loginView;
 @property(nonatomic, retain) IBOutlet UITextField *registerUserName;
 @property(nonatomic, retain) IBOutlet UITextField *registerUserPassword;
 @property(nonatomic, retain) IBOutlet UITextField *registerUserEmail;
