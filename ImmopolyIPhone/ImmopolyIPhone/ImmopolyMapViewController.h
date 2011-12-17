@@ -16,8 +16,8 @@
 #import "Flat.h"
 
 #define METERS_PER_MILE 1609.344
-#define ANNO_WIDTH 51
-#define ANNO_HEIGHT 40
+#define ANNO_WIDTH 40
+#define ANNO_HEIGHT 51
 
 @interface ImmopolyMapViewController : UIViewController <LocationDelegate, MKMapViewDelegate, UIPageViewControllerDelegate> {
     IBOutlet UILabel *adressLabel;
@@ -30,6 +30,7 @@
     IBOutlet AsynchronousImageView *asyncImageView;
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIPageControl *pageControl;
+    IBOutlet UIImageView *calloutBubbleImg;
     
     MKMapView *mapView;
     WebViewController *exposeWebViewController;
@@ -39,9 +40,11 @@
     
     bool isCalloutBubbleIn;
     bool isOutInCall;
+    bool showCalloutBubble;
     int selectedExposeId;
     Flat *selectedImmoScoutFlat;
     MKAnnotationView *selViewForHouseImage;
+    MKAnnotationView *selViewForHouseImageInOut;
     
     // variables vor clustering
     float iphoneScaleFactorLatitude;
@@ -62,13 +65,16 @@
 @property(nonatomic, retain) Flat *selectedImmoScoutFlat;
 @property(nonatomic, assign) bool isCalloutBubbleIn;
 @property(nonatomic, assign) bool isOutInCall;
+@property(nonatomic, assign) bool showCalloutBubble;
 @property(nonatomic, retain) MKAnnotationView *selViewForHouseImage;
+@property(nonatomic, retain) MKAnnotationView *selViewForHouseImageInOut;
 @property(nonatomic, retain) IBOutlet AsynchronousImageView *asyncImageView;
 @property(nonatomic, assign) float iphoneScaleFactorLatitude;
 @property(nonatomic, assign) float iphoneScaleFactorLongitude;
 @property(nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property(nonatomic, assign) int numOfScrollViewSubviews;
-@property(nonatomic, retain) IBOutlet UIPageControl *pageControl;
+@property(nonatomic, assign) IBOutlet UIPageControl *pageControl;
+@property(nonatomic, retain) IBOutlet UIImageView *calloutBubbleImg;
  
 - (IBAction)refreshLocation;
 - (void)setAnnotationImageAtAnnotation:(Flat *)_flat;

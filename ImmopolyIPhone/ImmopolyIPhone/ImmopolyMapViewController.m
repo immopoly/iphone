@@ -27,13 +27,16 @@
 @synthesize selectedImmoScoutFlat;
 @synthesize isCalloutBubbleIn;
 @synthesize isOutInCall;
+@synthesize showCalloutBubble;
 @synthesize selViewForHouseImage;
+@synthesize selViewForHouseImageInOut;
 @synthesize asyncImageView;
 @synthesize iphoneScaleFactorLatitude;
 @synthesize iphoneScaleFactorLongitude;
 @synthesize scrollView;
 @synthesize numOfScrollViewSubviews;
 @synthesize pageControl;
+@synthesize calloutBubbleImg;
 
 
 -(void)dealloc {
@@ -62,11 +65,18 @@
 #pragma mark - View lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {  
-
+    // hiding calloutBubble when the user returns from another tab
+    [calloutBubble removeFromSuperview];
+    [self setShowCalloutBubble:NO];
+    
+    // showing the annotation imgae
+    [selViewForHouseImage setHidden:NO];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [calloutBubbleImg setHidden:YES];
+    [self setShowCalloutBubble:NO];
     
     // that only the background is transparent and not the whole view
     calloutBubble.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
@@ -98,10 +108,6 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    CGPoint pos = calloutBubble.center;
-	pos.y = -320.0f;
-	calloutBubble.center = pos;
-	
     [mapView setZoomEnabled:YES];
 }
 
@@ -126,41 +132,48 @@
     
     // removing all existing annotations
     for (id<MKAnnotation> annotation in mapView.annotations) {
-        // check that the my location annotion does not get removed
         if([annotation isKindOfClass:[Flat class]]){    
             [mapView removeAnnotation:annotation];
         }
     }     
     
+    // gets called that the filter is running and the flats are shown at the view
     [self mapView:mapView regionDidChangeAnimated:YES];
-    
-    /*
-    for(Flat *flat in [[ImmopolyManager instance] immoScoutFlats]) {
-        [mapView addAnnotation: flat];
-    }
-    */ 
 }
 
 - (void)mapView:(MKMapView *)mpView didSelectAnnotationView:(MKAnnotationView *)view{
     
+    // TODO: wenn die selbe annotation gewählt wird, ohne die region zu verändern,
+    //       wird calloutBubbleIn nicht aufgerufen
+    
     if(isCalloutBubbleIn){
         [self setIsOutInCall:YES];
         [self calloutBubbleOut];
-    }
-    if([view.annotation isKindOfClass:[Flat class]]) {
-        [self setSelViewForHouseImage:view];
-        Flat *location = (Flat *) view.annotation;
-        [self setSelectedImmoScoutFlat:location]; 
         
-        // moving the view to the center where the selected flat is placed
-        CLLocationCoordinate2D zoomLocation = location.coordinate;
-        MKCoordinateRegion viewRegion = MKCoordinateRegionMake(zoomLocation, mapView.region.span);
-        MKCoordinateRegion adjustedRegion = [mpView regionThatFits:viewRegion];                
-        [mpView setRegion:adjustedRegion animated:YES];   
-        
-        if (!isOutInCall) {
-            [self calloutBubbleIn];
+        if([view.annotation isKindOfClass:[Flat class]]) {
+            // that the right annotation gets shown, whenn an outIn call is happening
+            [self setSelViewForHouseImageInOut:selViewForHouseImage];
+            [self setSelViewForHouseImage:view];
+            
+            Flat *location = (Flat *) view.annotation;
+            [self setSelectedImmoScoutFlat:location]; 
         }
+    }
+    else {
+        if([view.annotation isKindOfClass:[Flat class]]) {
+            [self setSelViewForHouseImage:view];
+            Flat *location = (Flat *) view.annotation;
+            [self setSelectedImmoScoutFlat:location]; 
+            
+            // moving the view to the center where the selected flat is placed
+            CLLocationCoordinate2D zoomLocation = location.coordinate;
+            MKCoordinateRegion viewRegion = MKCoordinateRegionMake(zoomLocation, mapView.region.span);
+            MKCoordinateRegion adjustedRegion = [mpView regionThatFits:viewRegion];                
+            [mpView setRegion:adjustedRegion animated:YES];   
+            
+            // calloutBubbleIn gets called at regionDidChanged, when bool showCalloutBubble is true
+            [self setShowCalloutBubble:YES];
+        }   
     }
 }
 
@@ -178,7 +191,7 @@
         annotationView.canShowCallout = NO;
         annotationView.animatesDrop = YES;
         
-        // checks that annotation is not the current position    
+        // differentiates between single and multi annotation view
         Flat *location = (Flat *) annotation;
         UIImageView *imageView;
         if([[location flatsAtAnnotation] count] > 0 ) {
@@ -227,6 +240,7 @@
 
 // action for the compass button
 - (IBAction)refreshLocation {
+    [self calloutBubbleOut];
     AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
     [delegate startLocationUpdate];
     
@@ -236,77 +250,89 @@
     // that the flats are clickable through the imageview
     [mapView addSubview:calloutBubble];
     
-    [self initScrollView];
-     
-    // Animation
-    [UIView beginAnimations:@"inAnimation" context:NULL];	
+    // show the image of the stretchable calloutBubble
+    [calloutBubbleImg setHidden:NO];
+    
+    // checks hiding the right annotation
+    if(isOutInCall){
+        [selViewForHouseImageInOut setHidden:YES];   
+    } else {
+        [selViewForHouseImage setHidden:YES];
+    }
+	
+    [UIView beginAnimations:@"inAnimation" context:NULL];
+    [UIView setAnimationDuration:0.5];
     [UIView setAnimationDelegate:self];
-    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];    
-	[UIView setAnimationDuration:0.4];
-	
-	CGPoint pos = calloutBubble.center;
-	pos.y = 164.0f;
-	calloutBubble.center = pos;
-	
-    [UIView commitAnimations]; 
+    [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
 
-    // showing or hiding the pageControl
-    if (numOfScrollViewSubviews == 1) {
-        [pageControl setHidden:YES];
-    }
-    else {
-        [pageControl setHidden:NO];
-    }
+	CGRect b = calloutBubbleImg.bounds;
+	b.size.height = 172;
+	b.size.width = 225;
+	calloutBubbleImg.bounds =  b;
     
-    [self setIsCalloutBubbleIn:true];    
+    CGPoint pos = calloutBubbleImg.center;
+	pos.y = 115.0f;
+	calloutBubbleImg.center = pos;
+    
+    [UIView commitAnimations]; 
+    
+    [self setIsCalloutBubbleIn:YES];    
     [mapView deselectAnnotation:selectedImmoScoutFlat animated:NO];    
-    
-    
-    //selViewForHouseImage.image = [UIImage imageNamed:@"annotation_multi_small.png"];
 
     [mapView setZoomEnabled:NO];
 }
 
 - (IBAction)calloutBubbleOut {
     
+    [scrollView setHidden:YES];
+    
     [UIView beginAnimations:@"outAnimation" context:NULL];	
-	[UIView setAnimationDuration:0.4];
+	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
+	CGRect b = calloutBubbleImg.bounds;
+	b.size.height = 51;
+	b.size.width = 40;
+	calloutBubbleImg.bounds =  b;
     
-	CGPoint pos = calloutBubble.center;
-	pos.y = -320;
-	calloutBubble.center = pos;
-	
-    [UIView commitAnimations];
-    [self setIsCalloutBubbleIn:false];
+    CGPoint pos = calloutBubbleImg.center;
+	pos.y = 175.5f;
+	calloutBubbleImg.center = pos;
     
-    /*
-    if([[selectedImmoScoutFlat flatsAtAnnotation] count] > 0) {
-        //selViewForHouseImage.image = [UIImage imageNamed:@"annotation_multi_small.png"];
-        [self setAnnotationImageAtAnnotation:selectedImmoScoutFlat];
-    } else {
-        //selViewForHouseImage.image = [UIImage imageNamed:@"annotation_single_small.png"];
-        [self setAnnotationImageAtAnnotation:selectedImmoScoutFlat];
-    }
-    */
+    [UIView commitAnimations]; 
+    [self setIsCalloutBubbleIn:NO];
+
     [mapView setZoomEnabled:YES];
 }
 
 - (void)animationDidStop:(NSString *)animationID finished:(BOOL)finished context:(void *)context {
     if([animationID isEqualToString:@"inAnimation"]){
-        NSLog(@"animation in");
+        [scrollView setHidden:NO]; 
+        [self initScrollView];
     } else if([animationID isEqualToString:@"outAnimation"]) {
-        NSLog(@"animation out");
+        // calloutBubble gets removed, because it was added at calloutBubbleIn
         [calloutBubble removeFromSuperview];
+        
+        [calloutBubbleImg setHidden:YES];
+        [self setShowCalloutBubble:NO];
         
         // sets the scrollview page to the first
         [scrollView setContentOffset:CGPointMake(0, 0)];
         
         // checks wether it was called due the calloutBubble was inside the view
         if(isOutInCall){
-            [self calloutBubbleIn];
+            [selViewForHouseImageInOut setHidden:NO];
+            
+            CLLocationCoordinate2D zoomLocation = selectedImmoScoutFlat.coordinate;
+            MKCoordinateRegion viewRegion = MKCoordinateRegionMake(zoomLocation, mapView.region.span);
+            MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];                
+            [mapView setRegion:adjustedRegion animated:YES];   
+
+            // calloutBubbleIn gets called at regionDidChanged, when bool showCalloutBubble is true
+            [self setShowCalloutBubble:YES];
             [self setIsOutInCall:NO];
+        } else {
+            [selViewForHouseImage setHidden:NO];
         }
     }
 }
@@ -348,27 +374,26 @@
         bool found = FALSE;
         
         for (Flat *tempFlat in flatsToShow) {
-            // überprüfe ob die akktuelle flat in der Nähe einer der Flats ist, welche
-            // angezeigt werden sollen
+            // checks whether the actFlat is nearby to a flat, which is/should be shown
+            // on the map
             if(fabs([tempFlat coordinate].latitude-latitude) < latDelta &&
                fabs([tempFlat coordinate].longitude-longitude) <longDelta ) {
  
-                // wenn gefunden, dann remove die aktuelle flat von der view
+                // if is found, remove the actFlat from view
                 [mapView removeAnnotation:actFlat];
                 found = TRUE;
                 
-                // adde aktuelle flat zur annotation der tempflat
+                // add actFlat to the annotation of tempFlat
                 [[tempFlat flatsAtAnnotation] addObject:actFlat];
                 
                 // annotation bild der tempflat ändern, weil sie jetzt mehrere flats beinhaltet
                 [self setAnnotationImageAtAnnotation:tempFlat];
                 
-                // break, weil eine in der nähe befindliche flat reicht
+                // break, because you can only add to one another flat
                 break;
             }
         }   
-        // wenn keine flat in der nähe gefunden wurde, adde diese flat zur Liste aller flats,
-        // die gezeigt werden und zeige die Annotation
+        // if no flat got found nearby, add actFlat to list of all flats at the view and show it
         if(!found) {
             [flatsToShow addObject:actFlat];
             [self setAnnotationImageAtAnnotation:actFlat];
@@ -376,10 +401,15 @@
         }
     }
     [flatsToShow release];
-
 }
 
 - (void)mapView:(MKMapView *)mpView regionDidChangeAnimated:(BOOL)animated {
+
+    // checks whether the calloutBubble is allowed to come in
+    if (showCalloutBubble) {
+        [self calloutBubbleIn];
+    }
+    
     if (zoomLevel != mpView.region.span.longitudeDelta || animated) {
         [self filterAnnotations: [[ImmopolyManager instance] immoScoutFlats]];
         zoomLevel = mpView.region.span.longitudeDelta;
@@ -397,7 +427,6 @@
     }
     // + 1 because of the selected flat, which holds the other flats
     numOfScrollViewSubviews = [[selectedImmoScoutFlat flatsAtAnnotation] count]+1;
-    pageControl.numberOfPages = numOfScrollViewSubviews;
 
     for (int i=0; i<numOfScrollViewSubviews; i++) {
         UIView *subview;
@@ -463,13 +492,18 @@
     [lbPrice setText:price];
     [subview addSubview:lbPrice];
     
-    UILabel *lbPageNum = [[UILabel alloc] initWithFrame:CGRectMake(30, 100, 200, 35)];
-    NSString *pageNum = [NSString stringWithFormat:@"%d/%d", _pos+1, numOfScrollViewSubviews];
-    [lbPageNum setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
-    [lbPageNum setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
-    [lbPageNum setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-    [lbPageNum setText:pageNum];
-    [subview addSubview:lbPageNum];
+    // don't show label, if it is a single flat annotation
+    if(numOfScrollViewSubviews > 1) {
+        UILabel *lbPageNum = [[UILabel alloc] initWithFrame:CGRectMake(30, 100, 200, 35)];
+        NSString *pageNum = [NSString stringWithFormat:@"%d/%d", _pos+1, numOfScrollViewSubviews];
+        [lbPageNum setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
+        [lbPageNum setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
+        [lbPageNum setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+        [lbPageNum setText:pageNum];
+        [subview addSubview:lbPageNum]; 
+        [lbPageNum release];
+    }
+    
     
     // image
     AsynchronousImageView *img = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(10, 40, 60, 60)];
@@ -485,6 +519,8 @@
     
     [lbName release];
     [lbRooms release];
+    [lbSpace release];
+    [lbPrice release];
     [img release];
     
     return subview;
