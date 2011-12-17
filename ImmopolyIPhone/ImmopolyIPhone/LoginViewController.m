@@ -21,6 +21,7 @@
 @synthesize loginButton;
 @synthesize delegate;
 @synthesize registerView;
+@synthesize loginView;
 @synthesize registerUserName;
 @synthesize registerUserPassword;
 @synthesize registerUserEmail;
@@ -95,11 +96,11 @@
     self.loginLabel = nil;
     self.loginButton = nil;
     self.registerView = nil;
+    self.loginView = nil;
     self.registerUserName = nil;
     self.registerUserPassword = nil;
     self.registerUserEmail = nil;
     self.registerUserTwitter = nil;
-    
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -155,10 +156,16 @@
 - (IBAction)showRegistrationView {
     [UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.4];
-	CGPoint pos = registerView.center;
-	pos.x = 160.0f;
-    registerView.center = pos;
+	CGPoint posRegister = registerView.center;
+    CGPoint posLogin = loginView.center;
+	posRegister.x = 160.0f;
+    posLogin.x = -480.0f;
+    registerView.center = posRegister;
+    loginView.center = posLogin;
     [UIView commitAnimations];
+    
+    [userName setText:@""];
+    [password setText:@""];
 }
 
 - (IBAction)performRegistration {
@@ -185,9 +192,12 @@
     
     [UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.4];
-	CGPoint pos = registerView.center;
-	pos.x = 480.0f;
-    registerView.center = pos;
+    CGPoint posRegister = registerView.center;
+    CGPoint posLogin = loginView.center;
+	posRegister.x = 480.0f;
+    posLogin.x = 160.0f;
+    registerView.center = posRegister;
+    loginView.center = posLogin;
     [UIView commitAnimations];
 }
 
