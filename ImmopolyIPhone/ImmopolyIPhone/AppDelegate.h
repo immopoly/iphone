@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "ASIHTTPRequest.h"
 #import "CoreLocationController.h"
+#import "CustomTabBarController.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate, CoreLocationControllerDelegate> {
     
@@ -18,7 +19,7 @@
 }
 
 @property (retain, nonatomic) UIWindow *window;
-@property (retain, nonatomic) UITabBarController *tabBarController;
+@property (retain, nonatomic) CustomTabBarController *tabBarController;
 
 @property(nonatomic, retain) CoreLocationController *CLController;
 @property(nonatomic, retain) CLGeocoder *geocoder;

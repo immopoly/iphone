@@ -17,6 +17,7 @@
 #import "HistoryEntry.h"
 #import "MessageHandler.h"
 #import "UserProfileViewController.h"
+#import "MissionViewController.h"
 
 @implementation AppDelegate
 
@@ -61,17 +62,23 @@
     //LoginViewController *loginVC;
     UserProfileViewController *userVC;
     HistoryViewController *historyVC;
+    MissionViewController *missionVC;
     
     mapVC = [[[ImmopolyMapViewController alloc] init] autorelease];
     portfolioVC = [[[PortfolioViewController alloc] init] autorelease];
     //loginVC = [[[LoginViewController alloc]init]autorelease]; 
     userVC = [[[UserProfileViewController alloc] init] autorelease];
     historyVC = [[[HistoryViewController alloc] init] autorelease];    
+    missionVC = [[MissionViewController alloc]init];
     
-    self.tabBarController = [[[UITabBarController alloc] init] autorelease];
+    self.tabBarController = [[[CustomTabBarController alloc] init] autorelease];
     
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:mapVC,portfolioVC,userVC,historyVC, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:userVC,portfolioVC,mapVC,historyVC,missionVC, nil];
+    [self.tabBarController addCenterButtonWithImage:[UIImage imageNamed:@"camera_button_take.png"] highlightImage:nil];
+    [self.tabBarController setSelectedIndex:2];
+    
     self.window.rootViewController = self.tabBarController;
+    
 
     [self.window makeKeyAndVisible];
     

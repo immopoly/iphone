@@ -75,7 +75,7 @@
     AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
     if(![delegate isKindOfClass: [WebViewController class]]) {
         //show map
-        [[appDelegate tabBarController] setSelectedIndex:0];
+        [[appDelegate tabBarController] setSelectedIndex:2];
     }
 }
 
