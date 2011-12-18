@@ -21,7 +21,8 @@
     [self addSubview:spinner];
     [spinner setHidden:NO];
     [spinner setHidesWhenStopped:YES];
-    spinner.center = [self center];
+    CGPoint pos = CGPointMake(30, 30);
+    [spinner setCenter:pos];
     [spinner startAnimating];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_urlString]cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
