@@ -191,7 +191,7 @@
         
         MKPinAnnotationView *annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
              
-        annotationView.enabled = YES;
+        annotationView.enabled = YES;   
         
         // NO, because our own bubble is coming in
         annotationView.canShowCallout = NO;
@@ -227,19 +227,22 @@
 - (void)setAnnotationImageAtAnnotation:(Flat *)_flat {
     MKAnnotationView *annotationView = [mapView viewForAnnotation:_flat];
     
-    UIImageView *imageView = [[annotationView subviews] objectAtIndex:0];
+    // deleting all existing views (labels, images) 
+    UIView *v;
+    for (int i=0; i<[[annotationView subviews] count]; i++){
+        v = [[annotationView subviews] objectAtIndex:0];
+        [v removeFromSuperview];
+        v = nil;
+    }
+    UIImageView *imageView;
     
     if([[_flat flatsAtAnnotation] count] > 0 ) {
         imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi.png"]] autorelease];
         [annotationView addSubview:imageView];
-        [[[annotationView subviews] objectAtIndex:1] removeFromSuperview];
         [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:_flat]];
     }
     else {
         imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
-        if([[annotationView subviews] count] > 1){
-            [[[annotationView subviews] objectAtIndex:1] removeFromSuperview];    
-        }
         [annotationView addSubview:imageView];
     }
 }
@@ -431,7 +434,7 @@
     
     // deleting all existing views (labels, images) 
     UIView *v;
-    for (NSInteger i=0; i<numOfScrollViewSubviews; i++){
+    for (int i=0; i<numOfScrollViewSubviews; i++){
         v = [[scrollView subviews] objectAtIndex:0];
         [v removeFromSuperview];
         v = nil;
@@ -496,8 +499,7 @@
     [subview addSubview:lbRooms];
     
     UILabel *lbSpace = [[UILabel alloc] initWithFrame:CGRectMake(90, 55, 200, 35)];
-    NSString *space = [NSString stringWithFormat:@"Fläche: %f qm",[_flat livingSpace]];
-    space = [space substringToIndex:[space length]-7];
+    NSString *space = [NSString stringWithFormat:@"Fläche: %.2f qm",[_flat livingSpace]];
     [lbSpace setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
     [lbSpace setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
     [lbSpace setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
@@ -505,8 +507,7 @@
     [subview addSubview:lbSpace];
     
     UILabel *lbPrice = [[UILabel alloc] initWithFrame:CGRectMake(90, 80, 200, 35)];
-    NSString *price = [NSString stringWithFormat:@"Preis: %f €",[_flat price]];
-    price = [price substringToIndex:[price length]-6];
+    NSString *price = [NSString stringWithFormat:@"Preis: %.2f €",[_flat price]];
     [lbPrice setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
     [lbPrice setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
     [lbPrice setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
