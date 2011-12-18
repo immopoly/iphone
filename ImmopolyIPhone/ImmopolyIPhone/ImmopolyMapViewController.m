@@ -24,6 +24,7 @@
 @synthesize lbFlatPrice;
 @synthesize lbNumberOfRooms;
 @synthesize lbLivingSpace;
+@synthesize lbPageNumber;
 @synthesize selectedImmoScoutFlat;
 @synthesize isCalloutBubbleIn;
 @synthesize isOutInCall;
@@ -37,7 +38,7 @@
 @synthesize numOfScrollViewSubviews;
 @synthesize pageControl;
 @synthesize calloutBubbleImg;
-
+@synthesize btShowFlatsWebView;
 
 -(void)dealloc {
     [super dealloc];
@@ -68,6 +69,8 @@
     // hiding calloutBubble when the user returns from another tab
     [calloutBubble removeFromSuperview];
     [self setShowCalloutBubble:NO];
+    [lbPageNumber setHidden:YES];
+    [btShowFlatsWebView setHidden:YES];
     
     // showing the annotation imgae
     [selViewForHouseImage setHidden:NO];
@@ -76,6 +79,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [calloutBubbleImg setHidden:YES];
+    [lbPageNumber setHidden:YES];
+    [btShowFlatsWebView setHidden:YES];
     [self setShowCalloutBubble:NO];
     
     // that only the background is transparent and not the whole view
@@ -100,6 +105,7 @@
     self.lbFlatPrice = nil;
     self.lbNumberOfRooms = nil;
     self.lbLivingSpace = nil;
+    self.lbPageNumber = nil;
     self.calloutBubble = nil;
     self.asyncImageView = nil;
     self.scrollView = nil;
@@ -260,6 +266,7 @@
         [selViewForHouseImage setHidden:YES];
     }
 	
+    // animation
     [UIView beginAnimations:@"inAnimation" context:NULL];
     [UIView setAnimationDuration:0.5];
     [UIView setAnimationDelegate:self];
@@ -284,8 +291,12 @@
 
 - (IBAction)calloutBubbleOut {
     
+    // hiding the text and stuff
     [scrollView setHidden:YES];
+    [lbPageNumber setHidden:YES];
+    [btShowFlatsWebView setHidden:YES];
     
+    // animation
     [UIView beginAnimations:@"outAnimation" context:NULL];	
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationDelegate:self];
@@ -337,9 +348,9 @@
     }
 }
 
-- (void)showFlatsWebView {
+- (IBAction)showFlatsWebView {
     // if pageControl is at a page > 0, then the selected flat is one of the flats in flatsAtAnnotation
-    if(self.pageControl.currentPage > 0) {
+    if(pageControl.currentPage > 0) {
         Flat *tempFlat = [[selectedImmoScoutFlat flatsAtAnnotation] objectAtIndex:self.pageControl.currentPage-1];
         [self setSelectedExposeId:[tempFlat exposeId]];
         exposeWebViewController = [[WebViewController alloc]init];
@@ -445,6 +456,16 @@
     
     // setting the whole size of the scrollView
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * self.numOfScrollViewSubviews, self.scrollView.frame.size.height);
+    
+    // showing the not scrollview content of calloutBubble
+    [btShowFlatsWebView setHidden:NO];    
+    if (numOfScrollViewSubviews > 1) { 
+        // don't show label, if it is a single flat annotation
+        [lbPageNumber setHidden:NO];
+        NSString *pageNum = [NSString stringWithFormat:@"1/%d", numOfScrollViewSubviews];
+        [lbPageNumber setText:pageNum];
+    }
+    
 }
 
 - (UIView *)createCalloutBubbleContentFromFlat:(Flat *)_flat atPosition:(int)_pos {
@@ -492,31 +513,11 @@
     [lbPrice setText:price];
     [subview addSubview:lbPrice];
     
-    // don't show label, if it is a single flat annotation
-    if(numOfScrollViewSubviews > 1) {
-        UILabel *lbPageNum = [[UILabel alloc] initWithFrame:CGRectMake(30, 100, 200, 35)];
-        NSString *pageNum = [NSString stringWithFormat:@"%d/%d", _pos+1, numOfScrollViewSubviews];
-        [lbPageNum setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
-        [lbPageNum setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
-        [lbPageNum setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-        [lbPageNum setText:pageNum];
-        [subview addSubview:lbPageNum]; 
-        [lbPageNum release];
-    }
-    
-    
     // image
     AsynchronousImageView *img = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(10, 40, 60, 60)];
     [img loadImageFromURLString:[_flat pictureUrl]];
     [subview addSubview:img];
-
-    // button
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-    [button addTarget:self action:@selector(showFlatsWebView) forControlEvents:UIControlEventTouchUpInside];
-    [button setTitle:@">" forState:UIControlStateNormal];
-    button.frame = CGRectMake(180, 120, 25, 25);
-    [subview addSubview:button];
-    
+     
     [lbName release];
     [lbRooms release];
     [lbSpace release];
@@ -530,6 +531,9 @@
 - (void)scrollViewDidScroll:(UIScrollView *)sender {
     CGFloat pageWidth = self.scrollView.frame.size.width;
     int page = floor((self.scrollView.contentOffset.x - pageWidth / 2) / pageWidth) + 1;
-    self.pageControl.currentPage = page;
+    pageControl.currentPage = page;
+
+    NSString *pageNum = [NSString stringWithFormat:@"%d/%d", page+1, numOfScrollViewSubviews];
+    [lbPageNumber setText:pageNum];
 }
 @end

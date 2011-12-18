@@ -26,11 +26,13 @@
     IBOutlet UILabel *lbFlatPrice;
     IBOutlet UILabel *lbNumberOfRooms;
     IBOutlet UILabel *lbLivingSpace;
+    IBOutlet UILabel *lbPageNumber;
     IBOutlet UIView *calloutBubble;
     IBOutlet AsynchronousImageView *asyncImageView;
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIPageControl *pageControl;
     IBOutlet UIImageView *calloutBubbleImg;
+    IBOutlet UIButton *btShowFlatsWebView;
     
     MKMapView *mapView;
     WebViewController *exposeWebViewController;
@@ -60,6 +62,7 @@
 @property(nonatomic, retain) IBOutlet UILabel *lbFlatPrice;
 @property(nonatomic, retain) IBOutlet UILabel *lbNumberOfRooms;
 @property(nonatomic, retain) IBOutlet UILabel *lbLivingSpace;
+@property(nonatomic, retain) IBOutlet UILabel *lbPageNumber;
 @property(nonatomic, retain) UIView *calloutBubble;
 @property(nonatomic, assign) int selectedExposeId;
 @property(nonatomic, retain) Flat *selectedImmoScoutFlat;
@@ -73,15 +76,16 @@
 @property(nonatomic, assign) float iphoneScaleFactorLongitude;
 @property(nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property(nonatomic, assign) int numOfScrollViewSubviews;
-@property(nonatomic, assign) IBOutlet UIPageControl *pageControl;
+@property(nonatomic, retain) IBOutlet UIPageControl *pageControl;
 @property(nonatomic, retain) IBOutlet UIImageView *calloutBubbleImg;
+@property(nonatomic, retain) IBOutlet UIButton *btShowFlatsWebView;
  
 - (IBAction)refreshLocation;
 - (void)setAnnotationImageAtAnnotation:(Flat *)_flat;
 - (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat;
 - (void)calloutBubbleIn;
 - (IBAction)calloutBubbleOut;
-- (void)showFlatsWebView;
+- (IBAction)showFlatsWebView;
 - (void)filterAnnotations:(NSArray *)_flatsToFilter;
 - (void)initScrollView;
 - (UIView *)createCalloutBubbleContentFromFlat:(Flat *)_flat atPosition:(int)_pos;
