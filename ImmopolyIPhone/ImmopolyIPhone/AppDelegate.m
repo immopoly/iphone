@@ -74,7 +74,7 @@
     self.tabBarController = [[[CustomTabBarController alloc] init] autorelease];
     
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:userVC,portfolioVC,mapVC,historyVC,missionVC, nil];
-    [self.tabBarController addCenterButtonWithImage:[UIImage imageNamed:@"camera_button_take.png"] highlightImage:nil];
+    [self.tabBarController addCenterButtonWithImage:[UIImage imageNamed:@"tabbar_center_icon.png"] highlightImage:nil];
     [self.tabBarController setSelectedIndex:2];
     
     self.window.rootViewController = self.tabBarController;
