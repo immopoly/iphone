@@ -11,6 +11,7 @@
 #import "UserRegisterTask.h"
 #import "ImmopolyManager.h"
 #import "Constants.h"
+#import "ResetPasswordTask.h"
 
 @implementation LoginViewController
 
@@ -26,6 +27,9 @@
 @synthesize registerUserPassword;
 @synthesize registerUserEmail;
 @synthesize registerUserTwitter;
+@synthesize resetPasswordView;
+@synthesize resetPasswordUserName;
+@synthesize resetPasswordEmail;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -256,6 +260,63 @@
 	CGPoint pos = registerView.center;
 	pos.y = 225.0f;
     registerView.center = pos;
+    [UIView commitAnimations];
+}
+
+
+//show reset password view
+- (IBAction)showResetPasswordView {
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.4];
+	CGPoint posResetPassword = resetPasswordView.center;
+    CGPoint posLogin = loginView.center;
+	posResetPassword.x = 160.0f;
+    posLogin.x = -480.0f;
+    resetPasswordView.center = posResetPassword;
+    loginView.center = posLogin;
+    [UIView commitAnimations];
+    [userName setText:@""];
+    [password setText:@""];
+}
+
+//send reset password request
+- (IBAction)performResetPassword {
+    if([[resetPasswordUserName text] length]> 0 && [[resetPasswordEmail text] length] > 0) {
+        ResetPasswordTask *loader = [[[ResetPasswordTask alloc] init] autorelease];
+        [loader setDelegate: self];
+        
+        [loader performResetPasswordWithUsername:[resetPasswordUserName text] andEmail:[resetPasswordEmail text]];
+    }
+    else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:alertResetPasswordWrongInput delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+}
+
+- (void)resetPasswordWithResult:(BOOL)result {
+    if(result) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:alertResetPasswordSuccessful delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+        [self dismissResetPasswordView];
+        [self dismissModalViewControllerAnimated:YES];
+    }
+}
+
+
+//dismiss reset password view
+- (IBAction)dismissResetPasswordView {
+    [resetPasswordUserName setText:@""];
+    [resetPasswordEmail setText:@""];
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.4];
+    CGPoint posResetPassword = resetPasswordView.center;
+    CGPoint posLogin = loginView.center;
+	posResetPassword.x = 480.0f;
+    posLogin.x = 160.0f;
+    resetPasswordView.center = posResetPassword;
+    loginView.center = posLogin;
     [UIView commitAnimations];
 }
 

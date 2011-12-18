@@ -14,6 +14,7 @@
 		4C111EB5149203A800875AF3 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C111EB4149203A800875AF3 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4C4BE8CF14953D350047F232 /* UserBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BE8CE14953D350047F232 /* UserBadge.m */; };
 		4C9C4ED91471B4E500719E0E /* LoginCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C4ED81471B4E500719E0E /* LoginCheck.m */; };
+		4CDF1B7F149E44DD00E735DB /* ResetPasswordTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CDF1B7E149E44DD00E735DB /* ResetPasswordTask.m */; };
 		6D0F9A921475849000D0C59F /* UserRegisterTask.m in Sources */ = {isa = PBXBuildFile; fileRef = 6D0F9A911475849000D0C59F /* UserRegisterTask.m */; };
 		6D0F9AAF14799CE900D0C59F /* house_orange.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0F9AAC14799CE900D0C59F /* house_orange.png */; };
 		6D0F9AB014799CE900D0C59F /* house_red.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D0F9AAD14799CE900D0C59F /* house_red.png */; };
@@ -173,6 +174,9 @@
 		4C9C4ED81471B4E500719E0E /* LoginCheck.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginCheck.m; sourceTree = "<group>"; };
 		4C9C4EDB1471B51A00719E0E /* UserDataDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserDataDelegate.h; sourceTree = "<group>"; };
 		4C9C4EDC1471B51A00719E0E /* NotifyViewDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NotifyViewDelegate.h; sourceTree = "<group>"; };
+		4CDF1B7D149E44DD00E735DB /* ResetPasswordTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPasswordTask.h; sourceTree = "<group>"; };
+		4CDF1B7E149E44DD00E735DB /* ResetPasswordTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordTask.m; sourceTree = "<group>"; };
+		4CDF1B81149E475200E735DB /* ResetPasswordDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPasswordDelegate.h; sourceTree = "<group>"; };
 		6D0F9A901475849000D0C59F /* UserRegisterTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserRegisterTask.h; sourceTree = "<group>"; };
 		6D0F9A911475849000D0C59F /* UserRegisterTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserRegisterTask.m; sourceTree = "<group>"; };
 		6D0F9A941475896900D0C59F /* RegisterDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisterDelegate.h; sourceTree = "<group>"; };
@@ -728,6 +732,8 @@
 				D2E53F75148113A20042B205 /* FlatRemoveTask.m */,
 				D2BAA085148BA3FF00F3DD87 /* HistoryTask.h */,
 				D2BAA086148BA3FF00F3DD87 /* HistoryTask.m */,
+				4CDF1B7D149E44DD00E735DB /* ResetPasswordTask.h */,
+				4CDF1B7E149E44DD00E735DB /* ResetPasswordTask.m */,
 			);
 			name = Tasks;
 			sourceTree = "<group>";
@@ -796,6 +802,7 @@
 				D2C67D5A145AAF33008C3295 /* FlatsDelegate.h */,
 				6D0F9A941475896900D0C59F /* RegisterDelegate.h */,
 				D2BAA088148BA95900F3DD87 /* HistoryDelegate.h */,
+				4CDF1B81149E475200E735DB /* ResetPasswordDelegate.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -1110,6 +1117,7 @@
 				4C4BE8CF14953D350047F232 /* UserBadge.m in Sources */,
 				D2C139BE149CE1DB0068B6DC /* CustomTabBarController.m in Sources */,
 				D2C139CB149CE43A0068B6DC /* MissionViewController.m in Sources */,
+				4CDF1B7F149E44DD00E735DB /* ResetPasswordTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

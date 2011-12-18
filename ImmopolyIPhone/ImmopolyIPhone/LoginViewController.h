@@ -13,8 +13,9 @@
 #import "PortfolioViewController.h"
 #import "UserDataDelegate.h"
 #import "NotifyViewDelegate.h"
+#import "ResetPasswordDelegate.h"
 
-@interface LoginViewController : UIViewController <LoginDelegate, RegisterDelegate>{
+@interface LoginViewController : UIViewController <LoginDelegate, RegisterDelegate, ResetPasswordDelegate>{
     
     IBOutlet UITextField *userName;
     IBOutlet UITextField *password;
@@ -27,7 +28,9 @@
     IBOutlet UITextField *registerUserPassword;
     IBOutlet UITextField *registerUserEmail;
     IBOutlet UITextField *registerUserTwitter;
-    
+    IBOutlet UIView *resetPasswordView;
+    IBOutlet UITextField *resetPasswordUserName;
+    IBOutlet UITextField *resetPasswordEmail;
     
     UserProfileViewController *userProfileViewController;
     id<NotifyViewDelegate> delegate;
@@ -48,6 +51,11 @@
 @property(nonatomic, retain) IBOutlet UITextField *registerUserEmail;
 @property(nonatomic, retain) IBOutlet UITextField *registerUserTwitter;
 
+@property(nonatomic, retain) IBOutlet UIView *resetPasswordView;
+@property(nonatomic, retain) IBOutlet UITextField *resetPasswordUserName;
+@property(nonatomic, retain) IBOutlet UITextField *resetPasswordEmail;
+
+
 - (IBAction) performLogin;
 - (IBAction) closeMyself;
 - (IBAction) performLogin;
@@ -55,5 +63,8 @@
 - (IBAction) performRegistration;
 - (IBAction) closeRegistration;
 - (IBAction) dismissKeyboard;
+- (IBAction) showResetPasswordView;
+- (IBAction) performResetPassword;
+- (IBAction) dismissResetPasswordView;
 
 @end
