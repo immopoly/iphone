@@ -18,6 +18,14 @@
     IBOutlet UIActivityIndicatorView *activityIndicator;
     IBOutlet UIButton *flatActionButton;
     
+    IBOutlet UIButton *exposeAction;
+    IBOutlet UIButton *shareButton;
+    IBOutlet UIButton *twitterButton;
+    IBOutlet UIButton *facebookButton;
+    IBOutlet UIButton *mailButton;
+    
+    BOOL animating;
+    BOOL buttonsVisible;
     int selectedExposeId;
     Flat *selectedImmoscoutFlat;
     LoginCheck *loginCheck;
@@ -30,6 +38,14 @@
 @property(nonatomic, retain) LoginCheck *loginCheck;
 @property(nonatomic, retain) IBOutlet UIButton *flatActionButton;
 
+@property(nonatomic, assign) BOOL animating;
+@property(nonatomic, assign) BOOL buttonsVisible;
+@property(nonatomic, retain) IBOutlet UIButton *exposeActionButton;
+@property(nonatomic, retain) IBOutlet UIButton *shareButton;
+@property(nonatomic, retain) IBOutlet UIButton *twitterButton;
+@property(nonatomic, retain) IBOutlet UIButton *facebookButton;
+@property(nonatomic, retain) IBOutlet UIButton *mailButton;
+
 - (IBAction)goBack;
 - (IBAction)flatAction;
 - (IBAction)performFacebookPost;
@@ -38,6 +54,12 @@
 - (void) showEmail;
 - (void)enableFlatButton:(NSTimer *)_theTimer;
 - (void)showTweet;
+
+- (IBAction) share;
+- (IBAction) exposeAction;
+- (IBAction) email;
+- (IBAction) facebook;
+- (IBAction) twitter;
 
 
 @end

@@ -19,7 +19,13 @@
 @synthesize selectedImmoscoutFlat;
 @synthesize loginCheck;
 @synthesize flatActionButton;
-
+@synthesize exposeActionButton;
+@synthesize facebookButton;
+@synthesize twitterButton;
+@synthesize shareButton;
+@synthesize mailButton;
+@synthesize animating;
+@synthesize buttonsVisible;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -350,11 +356,117 @@
 	[self dismissModalViewControllerAnimated:YES];
 }
 
+
+- (IBAction) share {
+	if(!animating) {
+		animating = YES;
+		if(!buttonsVisible) {
+			
+			[[self shareButton] setSelected:YES];
+			buttonsVisible = YES;
+			
+			[UIView beginAnimations:@"showButtons" context:nil];
+			[UIView setAnimationDuration:0.4f];
+			[UIView setAnimationDelegate:self];
+			
+			CGRect frame1 = [self exposeActionButton].frame;
+			frame1.origin.x = 11;
+			[self exposeActionButton].frame = frame1;
+			
+			CGRect frame2 = [self shareButton].frame;
+			frame2.origin.x = 56;
+			[self shareButton].frame = frame2;
+			
+			CGRect frame3 = [self twitterButton].frame;
+			frame3.origin.x = 101;
+			[self twitterButton].frame = frame3;
+			
+			CGRect frame4 = [self facebookButton].frame;
+			frame4.origin.x = 182;
+			[self facebookButton].frame = frame4;
+			
+			CGRect frame5 = [self mailButton].frame;
+			frame5.origin.x = 268;
+			[self mailButton].frame = frame5;
+			
+			[UIView setAnimationDidStopSelector:@selector(animationEnded)];
+			[UIView commitAnimations];
+		}
+		else {
+			
+			[[self shareButton] setSelected:NO];
+			buttonsVisible = NO;
+			
+			[UIView beginAnimations:@"hideButtons" context:nil];
+			[UIView setAnimationDuration:0.4f];
+			[UIView setAnimationDelegate:self];
+			
+			CGRect frame1 = [self exposeActionButton].frame;
+			frame1.origin.x = 221;
+			[self exposeActionButton].frame = frame1;
+			
+			CGRect frame2 = [self shareButton].frame;
+			frame2.origin.x = 266;
+			[self shareButton].frame = frame2;
+			
+			CGRect frame3 = [self twitterButton].frame;
+			frame3.origin.x = 321;
+			[self twitterButton].frame = frame3;
+			
+			CGRect frame4 = [self facebookButton].frame;
+			frame4.origin.x = 402;
+			[self facebookButton].frame = frame4;
+			
+			CGRect frame5 = [self mailButton].frame;
+			frame5.origin.x = 488;
+			[self mailButton].frame = frame5;
+			
+			[UIView setAnimationDidStopSelector:@selector(animationEnded)];
+			[UIView commitAnimations];
+		}
+    }
+}
+
+- (void) animationEnded {
+	animating = NO;
+}
+
+- (IBAction) exposeAction{
+    
+}
+- (IBAction) email{
+    [self showEmail];
+}
+- (IBAction) facebook{
+    [[FacebookManager getInstance] beginShare];
+    
+    //[[FacebookManager getInstance] setFacebookText:@"FacebookText"];
+    [[FacebookManager getInstance] setFacebookTitle:sharingFacebookTitle];
+    [[FacebookManager getInstance] setFacebookCaption:sharingFacebookCaption];
+    [[FacebookManager getInstance] setFacebookDescription:sharingFacebookDescription];
+    [[FacebookManager getInstance] setFacebookImage:[selectedImmoscoutFlat pictureUrl]];
+    [[FacebookManager getInstance] setFacebookLink:sharingFacebookLink];
+    //[[FacebookManager getInstance] setFacebookUserPrompt:@"FacebookPrompt"];
+    [[FacebookManager getInstance] setFacebookActionLabel:sharingFacebookActionLabel];
+    [[FacebookManager getInstance] setFacebookActionText:sharingFacebookActionText];
+    [[FacebookManager getInstance] setFacebookActionLink:[[NSString alloc]initWithFormat:@"%@%i",urlIS24MobileExpose,[selectedImmoscoutFlat exposeId]]];
+    
+    [[FacebookManager getInstance] commitShare];
+}
+- (IBAction) twitter{
+    [self showTweet];
+}
+
 -(void)viewDidUnload{
     [super viewDidUnload];
     self.webView = nil;
     self.activityIndicator = nil;
     self.flatActionButton = nil;
+    self.exposeActionButton = nil;
+    self.shareButton = nil;
+    self.twitterButton = nil;
+    self.facebookButton = nil;
+    self.mailButton = nil;
 }
 
 
