@@ -26,6 +26,7 @@
 @synthesize mailButton;
 @synthesize animating;
 @synthesize buttonsVisible;
+@synthesize shareBar;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -76,9 +77,11 @@
 	[webView loadRequest:requestObj];
     
     if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]) {
-        [flatActionButton setTitle: @"Expose abgeben" forState: UIControlStateNormal];
+        //[flatActionButton setTitle: @"Expose abgeben" forState: UIControlStateNormal];
+        [flatActionButton setImage:[UIImage imageNamed:@"webview_give_away.png"] forState:UIControlStateNormal];
     }else{
-        [flatActionButton setTitle: @"Expose übernehmen" forState: UIControlStateNormal];
+        //[flatActionButton setTitle: @"Expose übernehmen" forState: UIControlStateNormal];
+        [flatActionButton setImage:[UIImage imageNamed:@"webview_takeover.png"] forState:UIControlStateNormal];
     }
 }
 
@@ -369,7 +372,11 @@
 			[UIView setAnimationDuration:0.4f];
 			[UIView setAnimationDelegate:self];
 			
-			CGRect frame1 = [self exposeActionButton].frame;
+            CGRect frame = [self shareBar].frame;
+            frame.origin.x = 5;
+            [self shareBar].frame = frame;
+            
+			/*CGRect frame1 = [self exposeActionButton].frame;
 			frame1.origin.x = 11;
 			[self exposeActionButton].frame = frame1;
 			
@@ -387,7 +394,7 @@
 			
 			CGRect frame5 = [self mailButton].frame;
 			frame5.origin.x = 268;
-			[self mailButton].frame = frame5;
+			[self mailButton].frame = frame5;*/
 			
 			[UIView setAnimationDidStopSelector:@selector(animationEnded)];
 			[UIView commitAnimations];
@@ -400,8 +407,12 @@
 			[UIView beginAnimations:@"hideButtons" context:nil];
 			[UIView setAnimationDuration:0.4f];
 			[UIView setAnimationDelegate:self];
+            
+            CGRect frame = [self shareBar].frame;
+            frame.origin.x = 225;
+            [self shareBar].frame = frame;
 			
-			CGRect frame1 = [self exposeActionButton].frame;
+			/*CGRect frame1 = [self exposeActionButton].frame;
 			frame1.origin.x = 221;
 			[self exposeActionButton].frame = frame1;
 			
@@ -419,7 +430,7 @@
 			
 			CGRect frame5 = [self mailButton].frame;
 			frame5.origin.x = 488;
-			[self mailButton].frame = frame5;
+			[self mailButton].frame = frame5;*/
 			
 			[UIView setAnimationDidStopSelector:@selector(animationEnded)];
 			[UIView commitAnimations];
@@ -467,6 +478,7 @@
     self.twitterButton = nil;
     self.facebookButton = nil;
     self.mailButton = nil;
+    self.shareBar = nil;
 }
 
 

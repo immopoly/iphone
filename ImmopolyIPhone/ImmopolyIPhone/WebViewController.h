@@ -18,6 +18,7 @@
     IBOutlet UIActivityIndicatorView *activityIndicator;
     IBOutlet UIButton *flatActionButton;
     
+    IBOutlet UIView *shareBar;
     IBOutlet UIButton *exposeAction;
     IBOutlet UIButton *shareButton;
     IBOutlet UIButton *twitterButton;
@@ -37,6 +38,7 @@
 @property(nonatomic, retain) Flat *selectedImmoscoutFlat;
 @property(nonatomic, retain) LoginCheck *loginCheck;
 @property(nonatomic, retain) IBOutlet UIButton *flatActionButton;
+@property(nonatomic, retain) IBOutlet UIView *shareBar;
 
 @property(nonatomic, assign) BOOL animating;
 @property(nonatomic, assign) BOOL buttonsVisible;
