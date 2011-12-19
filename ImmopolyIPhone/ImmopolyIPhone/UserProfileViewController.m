@@ -22,6 +22,10 @@
 @synthesize labelBank;
 @synthesize labelMiete;
 @synthesize labelProvision;
+@synthesize badgesViewClosed;
+@synthesize badgesView;
+@synthesize showBadgesButton;
+@synthesize badgeImages;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -31,6 +35,7 @@
         self.title = NSLocalizedString(@"User", @"Third");
         self.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon_user"];
         self.loginCheck = [[LoginCheck alloc] init];
+        self.badgesViewClosed = YES;
     }
     return self;
 }
@@ -49,6 +54,7 @@
     [super viewDidLoad];
     [self hideLabels: YES];
     [spinner startAnimating];
+    [badgesView setHidden:YES];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -72,17 +78,30 @@
     [spinner setHidden: YES];
 }
 
+-(NSString*) formatToCurrencyWithNumber:(double)number {
+    NSLocale *german = [[NSLocale alloc] initWithLocaleIdentifier:@"de_DE"]; 
+    
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setLocale:german];
+    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
+    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
+    
+    return [numberFormatter stringFromNumber: [NSNumber numberWithDouble: number]];
+}
+
 - (void)performActionAfterLoginCheck {
     
     ImmopolyUser *myUser = [[ImmopolyManager instance] user];
     
     [hello setText: [NSString stringWithFormat: @"Hello, %@!", [myUser userName]]];
-    [bank setText: [NSString stringWithFormat: @"%.2f", [myUser balance]]];
-    [miete setText: [NSString stringWithFormat: @"%.2f", [myUser lastRent]]];
-    [provision setText: [NSString stringWithFormat: @"%.2f", [myUser lastProvision]]];
+    [bank setText: [self formatToCurrencyWithNumber:[myUser balance]]];
+    [miete setText: [self formatToCurrencyWithNumber:[myUser lastRent]]];
+    [provision setText: [self formatToCurrencyWithNumber:[myUser lastProvision]]];
     
     [self stopSpinnerAnimation];
     [self hideLabels: NO];
+    [self.badgesView setHidden:[[myUser badges] count] == 0];
+    [[self.badgeImages objectAtIndex:0] setImage:[UIImage imageNamed:@"immopoly.png"]];
 }
 
 - (void)viewDidUnload {
@@ -104,6 +123,25 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+-(void)toggleBadgesView {
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.4];
+	CGPoint posBadgesView = badgesView.center;
+    if (self.badgesViewClosed) {
+        posBadgesView.y = 310.0f;
+        self.badgesViewClosed = NO;
+        [showBadgesButton setTitle:@"weniger anzeigen" forState:UIControlStateNormal];
+    }
+    else {
+        posBadgesView.y = 390.0f;
+        self.badgesViewClosed = YES;
+        [showBadgesButton setTitle:@"mehr anzeigen" forState:UIControlStateNormal];
+    }
+	
+    badgesView.center = posBadgesView;
+    [UIView commitAnimations];
+}
+
 -(void) dealloc {
     [hello release];
     [bank release];
@@ -114,6 +152,9 @@
     [labelProvision release];
     [loginCheck release];
     [spinner release];
+    [badgesView release];
+    [showBadgesButton release];
+    [badgeImages release];
     [super dealloc];
 }
 

@@ -11,6 +11,7 @@
 		4C014A01145DAD0200293E72 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C0149FF145DAD0200293E72 /* LoginViewController.xib */; };
 		4C014A06145DBE4C00293E72 /* UserProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C014A04145DBE4B00293E72 /* UserProfileViewController.m */; };
 		4C014A07145DBE4C00293E72 /* UserProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4C014A05145DBE4B00293E72 /* UserProfileViewController.xib */; };
+		4C0CF0BD149FDCA600ECB70D /* immopoly.png in Resources */ = {isa = PBXBuildFile; fileRef = 4C0CF0BC149FDCA600ECB70D /* immopoly.png */; };
 		4C111EB5149203A800875AF3 /* Twitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C111EB4149203A800875AF3 /* Twitter.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4C4BE8CF14953D350047F232 /* UserBadge.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BE8CE14953D350047F232 /* UserBadge.m */; };
 		4C9C4ED91471B4E500719E0E /* LoginCheck.m in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C4ED81471B4E500719E0E /* LoginCheck.m */; };
@@ -177,6 +178,7 @@
 		4C014A03145DBE4A00293E72 /* UserProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserProfileViewController.h; sourceTree = "<group>"; };
 		4C014A04145DBE4B00293E72 /* UserProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserProfileViewController.m; sourceTree = "<group>"; };
 		4C014A05145DBE4B00293E72 /* UserProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserProfileViewController.xib; sourceTree = "<group>"; };
+		4C0CF0BC149FDCA600ECB70D /* immopoly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = immopoly.png; sourceTree = "<group>"; };
 		4C111EB4149203A800875AF3 /* Twitter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Twitter.framework; path = System/Library/Frameworks/Twitter.framework; sourceTree = SDKROOT; };
 		4C4BE8CD14953D350047F232 /* UserBadge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserBadge.h; sourceTree = "<group>"; };
 		4C4BE8CE14953D350047F232 /* UserBadge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserBadge.m; sourceTree = "<group>"; };
@@ -463,9 +465,18 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4C0CF0BA149FDC8E00ECB70D /* Badges */ = {
+			isa = PBXGroup;
+			children = (
+				4C0CF0BC149FDCA600ECB70D /* immopoly.png */,
+			);
+			name = Badges;
+			sourceTree = "<group>";
+		};
 		6D368F6114631469003113C5 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				4C0CF0BA149FDC8E00ECB70D /* Badges */,
 				D2B237A8149F8F1700A26602 /* webview */,
 				D2F05B791496233C00BE171C /* Login */,
 				D2F05B671496218000BE171C /* TabBar */,
@@ -1085,6 +1096,7 @@
 				D2B237BA149F8F2500A26602 /* webview_topbar.png in Resources */,
 				D2B237BB149F8F2500A26602 /* webview_twitter.png in Resources */,
 				D2B237BD149F923C00A26602 /* webview_lightgrey_button.png in Resources */,
+				4C0CF0BD149FDCA600ECB70D /* immopoly.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
