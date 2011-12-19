@@ -16,12 +16,12 @@
 @synthesize hello;
 @synthesize bank;
 @synthesize miete;
-@synthesize provision;
+@synthesize numExposes;
 @synthesize loginCheck;
 @synthesize spinner;
 @synthesize labelBank;
 @synthesize labelMiete;
-@synthesize labelProvision;
+@synthesize labelNumExposes;
 @synthesize badgesViewClosed;
 @synthesize badgesView;
 @synthesize showBadgesButton;
@@ -67,10 +67,10 @@
     [hello setHidden: _hidden];
     [bank setHidden: _hidden];
     [miete setHidden: _hidden];
-    [provision setHidden: _hidden];
+    [numExposes setHidden: _hidden];
     [labelBank setHidden: _hidden];
     [labelMiete setHidden: _hidden];
-    [labelProvision setHidden: _hidden];
+    [labelNumExposes setHidden: _hidden];
 }
 
 - (void)stopSpinnerAnimation {
@@ -96,7 +96,8 @@
     [hello setText: [NSString stringWithFormat: @"Hello, %@!", [myUser userName]]];
     [bank setText: [self formatToCurrencyWithNumber:[myUser balance]]];
     [miete setText: [self formatToCurrencyWithNumber:[myUser lastRent]]];
-    [provision setText: [self formatToCurrencyWithNumber:[myUser lastProvision]]];
+    //[provision setText: [self formatToCurrencyWithNumber:[myUser lastProvision]]];
+    [numExposes setText: [ NSString stringWithFormat:@"%i von %i", [myUser numExposes], [myUser maxExposes]]];
     
     [self stopSpinnerAnimation];
     [self hideLabels: NO];
@@ -110,10 +111,10 @@
     self.hello = nil;
     self.bank = nil;
     self.miete = nil;
-    self.provision = nil;
+    self.numExposes = nil;
     self.labelBank = nil;
     self.labelMiete = nil;
-    self.labelProvision = nil;
+    self.labelNumExposes = nil;
     self.spinner = nil;
 
 }
@@ -146,10 +147,10 @@
     [hello release];
     [bank release];
     [miete release];
-    [provision release];
+    [numExposes release];
     [labelBank release];
     [labelMiete release];
-    [labelProvision release];
+    [labelNumExposes release];
     [loginCheck release];
     [spinner release];
     [badgesView release];

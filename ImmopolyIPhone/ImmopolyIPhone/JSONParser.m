@@ -69,7 +69,9 @@
         //parse user balance, lastRent and lastProvision
         [myUser setLastRent:[[info objectForKey:@"lastRent"] doubleValue]];
         [myUser setBalance:[[info objectForKey:@"balance"] doubleValue]];
-        [myUser setLastProvision: [[info objectForKey:@"lastProvision"] doubleValue]];
+        [myUser setLastProvision: [[info objectForKey:@"lastProvision"] intValue]];
+        [myUser setNumExposes: [[info objectForKey:@"numExposes"] intValue]];
+        [myUser setMaxExposes: [[info objectForKey:@"maxExposes"] intValue]];
         
         //parse Badges data
         NSArray *badgesDict = [info objectForKey:@"bagdesList"];

@@ -17,8 +17,10 @@
     NSString *email;
     
     double balance;
-    double lastProvision;
+    int lastProvision;
     double lastRent;
+    int numExposes;
+    int maxExposes;
     
     NSMutableArray *portfolio;
     NSMutableArray *history;
@@ -29,8 +31,10 @@
 @property(nonatomic, retain) NSString *userToken;
 @property(nonatomic, retain) NSString *email;
 @property(nonatomic, assign) double balance;
-@property(nonatomic, assign) double lastProvision;
+@property(nonatomic, assign) int lastProvision;
 @property(nonatomic, assign) double lastRent;
+@property(nonatomic, assign) int numExposes;
+@property(nonatomic, assign) int maxExposes;
 
 @property(nonatomic,retain) NSMutableArray *portfolio;
 @property(nonatomic,retain) NSMutableArray *history;

@@ -19,6 +19,8 @@
 @synthesize portfolio;
 @synthesize history;
 @synthesize badges;
+@synthesize numExposes;
+@synthesize maxExposes;
 
 
 - (id)init
