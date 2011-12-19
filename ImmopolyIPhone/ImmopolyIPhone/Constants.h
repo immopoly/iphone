@@ -26,6 +26,9 @@ extern NSString* const urlImmopolyPortfolio;
 
 extern NSString* const alertRegisterWrongInput;
 extern NSString* const alertRegisterSuccessful;
+extern NSString* const alertResetPasswordWrongInput;
+extern NSString* const alertResetPasswordSuccessful;
+
 extern NSString* const alertExposeGiveAwayWarning;
 
 extern NSString* const sharingActionSheetTitle;
