@@ -13,8 +13,10 @@
 @synthesize connection;
 @synthesize data;
 @synthesize spinner;
+@synthesize flat;
 
-- (void)loadImageFromURLString:(NSString *)_urlString {
+- (void)loadImageFromURLString:(NSString *)_urlString forFlat:(Flat *)_flat{
+    flat = _flat;
     
     // spinner stuff
     spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleGray)];
@@ -39,6 +41,7 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)c {
     self.image = [UIImage imageWithData:data];
+    [flat setImage:self.image];
     [data release], data = nil;
     [connection release], connection = nil;
     [spinner stopAnimating];
@@ -47,6 +50,7 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError");
     self.image = [UIImage imageNamed:@"default_house.png"];
+    [flat setImage:self.image];
     [spinner stopAnimating];
 }
 

@@ -147,14 +147,6 @@
 
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    /*
-    if ([[[[ImmopolyManager instance] user] portfolio] count] > 0) {
-        return [[[[ImmopolyManager instance] user] portfolio] count];
-    }
-    else {
-        return [[[ImmopolyManager instance] immoScoutFlats] count];
-    }
-     */
     return [[[[ImmopolyManager instance] user] portfolio] count];
 }
 
@@ -211,7 +203,11 @@
     lbSpace = (UILabel *)[cell viewWithTag:4];
     [asyncImageViewList reset];
     
-    [asyncImageViewList loadImageFromURLString: [actFlat pictureUrl]];
+    if([actFlat image] == nil) {
+        [asyncImageViewList loadImageFromURLString:[actFlat pictureUrl] forFlat:actFlat];
+    } else {
+        [asyncImageViewList setImage:[actFlat image]];
+    }
     
     NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d", [actFlat numberOfRooms]];
     NSString *space = [NSString stringWithFormat:@"qm: %f", [actFlat livingSpace]];
@@ -272,6 +268,8 @@
     [self recenterMap];
 
 }
+
+/* ========== MapView methods ========== */
 
 - (void)mapView:(MKMapView *)mpView didSelectAnnotationView:(MKAnnotationView *)view { 
     if(isCalloutBubbleIn){
@@ -396,7 +394,7 @@
     space = [space substringToIndex:[space length]-7];
     price = [price substringToIndex:[price length]-6];
     
-    [asyncImageView loadImageFromURLString:[selectedImmoScoutFlat pictureUrl]];
+    [asyncImageView loadImageFromURLString:[selectedImmoScoutFlat pictureUrl] forFlat:selectedImmoScoutFlat];
     [lbFlatPrice setText:price];
     [lbNumberOfRooms setText:rooms];
     [lbLivingSpace setText:space];

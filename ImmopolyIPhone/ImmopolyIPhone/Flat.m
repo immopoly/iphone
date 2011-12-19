@@ -30,6 +30,7 @@
 @synthesize coordinate;
 @synthesize pictureUrl;
 @synthesize flatsAtAnnotation;
+@synthesize image;
 
 
 - (id)initWithName:(NSString*)_name description:(NSString*)_description coordinate:(CLLocationCoordinate2D)_coordinate exposeId:(int)_exposeId {
@@ -39,6 +40,7 @@
         description = _description;
         exposeId = _exposeId;
         flatsAtAnnotation = [[NSMutableArray alloc]initWithCapacity:0];
+        image = nil;
     }
     return self;
 }

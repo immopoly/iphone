@@ -515,15 +515,20 @@
     [subview addSubview:lbPrice];
     
     // image
-    AsynchronousImageView *img = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(10, 40, 60, 60)];
-    [img loadImageFromURLString:[_flat pictureUrl]];
-    [subview addSubview:img];
+    AsynchronousImageView *imgView = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(10, 40, 60, 60)];
+    if([_flat image] == nil) {
+        [imgView loadImageFromURLString:[_flat pictureUrl] forFlat:_flat];
+    } else {
+        [imgView setImage:[_flat image]];
+    }
+
+    [subview addSubview:imgView];
      
     [lbName release];
     [lbRooms release];
     [lbSpace release];
     [lbPrice release];
-    [img release];
+    [imgView release];
     
     return subview;
 }
