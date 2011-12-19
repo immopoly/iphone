@@ -14,8 +14,10 @@
 #import "AsynchronousImageView.h"
 
 #define METERS_PER_MILE 1609.344
+#define ANNO_WIDTH 40
+#define ANNO_HEIGHT 51
 
-@interface PortfolioViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UserDataDelegate> {
+@interface PortfolioViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UserDataDelegate, MKMapViewDelegate, UIPageViewControllerDelegate> {
     IBOutlet UITableViewCell *tvCell;
     IBOutlet UITableView *table;
     IBOutlet UILabel *adressLabel;
@@ -27,7 +29,13 @@
     IBOutlet AsynchronousImageView *asyncImageView;
     IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet UIImageView *topBar;
-    IBOutlet UIButton *btRecenterMap;
+    IBOutlet UIButton *btRecenterMap;    
+    IBOutlet UIScrollView *scrollView;
+    IBOutlet UIPageControl *pageControl;
+    IBOutlet UIImageView *calloutBubbleImg;
+    IBOutlet UIButton *btShowFlatsWebView;
+    IBOutlet UILabel *lbPageNumber;
+
     
     LoginCheck *loginCheck;
     
@@ -38,12 +46,21 @@
     MKMapView *portfolioMapView;
     IBOutlet UIView *calloutBubble;
     
+    bool isBtHidden;
     bool isCalloutBubbleIn;
     bool isOutInCall;
+    bool showCalloutBubble;
     int selectedExposeId;
     Flat *selectedImmoScoutFlat;
     MKAnnotationView *selViewForHouseImage;
-        bool isBtHidden;
+    MKAnnotationView *selViewForHouseImageInOut;
+    
+    // variables vor clustering
+    float iphoneScaleFactorLatitude;
+    float iphoneScaleFactorLongitude;
+    CLLocationDegrees zoomLevel;
+    int numOfScrollViewSubviews;
+    
 }
 
 @property(nonatomic, retain) UITableViewCell *tvCell;
@@ -54,9 +71,9 @@
 @property(nonatomic, retain) IBOutlet UIView *calloutBubble;
 @property(nonatomic, assign) bool isCalloutBubbleIn;
 @property(nonatomic, assign) bool isOutInCall;
+@property(nonatomic, assign) bool showCalloutBubble;
 @property(nonatomic, assign) int selectedExposeId;
 @property(nonatomic, retain) Flat *selectedImmoScoutFlat;
-@property(nonatomic, retain) MKAnnotationView *selViewForHouseImage;
 @property(nonatomic, retain) IBOutlet UILabel *adressLabel;
 @property(nonatomic, retain) IBOutlet UILabel *lbFlatName;
 @property(nonatomic, retain) IBOutlet UILabel *lbFlatDescription;
@@ -68,8 +85,17 @@
 @property(nonatomic, retain) IBOutlet UIButton *btRecenterMap;
 @property(nonatomic, assign) bool isBtHidden;
 @property(nonatomic, retain) IBOutlet UIImageView *topBar;
-
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
+@property(nonatomic, assign) float iphoneScaleFactorLatitude;
+@property(nonatomic, assign) float iphoneScaleFactorLongitude;
+@property(nonatomic, retain) MKAnnotationView *selViewForHouseImage;
+@property(nonatomic, retain) MKAnnotationView *selViewForHouseImageInOut;
+@property(nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property(nonatomic, assign) int numOfScrollViewSubviews;
+@property(nonatomic, retain) IBOutlet UIPageControl *pageControl;
+@property(nonatomic, retain) IBOutlet UIImageView *calloutBubbleImg;
+@property(nonatomic, retain) IBOutlet UIButton *btShowFlatsWebView;
+@property(nonatomic, retain) IBOutlet UILabel *lbPageNumber;
 
 - (IBAction)calloutBubbleOut;
 - (void)recenterMap;
@@ -78,5 +104,11 @@
 - (void)stopSpinnerAnimation;
 - (IBAction)showList;
 - (IBAction)showMap;
+
+- (void)setAnnotationImageAtAnnotation:(Flat *)_flat;
+- (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat;
+- (void)filterAnnotations:(NSArray *)_flatsToFilter;
+- (void)initScrollView;
+- (UIView *)createCalloutBubbleContentFromFlat:(Flat *)_flat atPosition:(int)_pos;
 
 @end
