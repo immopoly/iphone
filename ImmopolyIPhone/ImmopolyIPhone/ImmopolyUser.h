@@ -15,7 +15,6 @@
     NSString *userName;
     NSString *userToken;
     NSString *email;
-    NSString *twitter;
     
     double balance;
     double lastProvision;
@@ -29,7 +28,6 @@
 @property(nonatomic, retain) NSString *userName;
 @property(nonatomic, retain) NSString *userToken;
 @property(nonatomic, retain) NSString *email;
-@property(nonatomic, retain) NSString *twitter;
 @property(nonatomic, assign) double balance;
 @property(nonatomic, assign) double lastProvision;
 @property(nonatomic, assign) double lastRent;

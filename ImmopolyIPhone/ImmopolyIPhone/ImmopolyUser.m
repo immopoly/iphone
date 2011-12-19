@@ -13,7 +13,6 @@
 @synthesize  userName;
 @synthesize userToken;
 @synthesize email;
-@synthesize twitter;
 @synthesize balance;
 @synthesize lastProvision;
 @synthesize lastRent;
