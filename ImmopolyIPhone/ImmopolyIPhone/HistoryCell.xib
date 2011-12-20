@@ -43,7 +43,7 @@
 							<object class="IBUIImageView" id="940822356">
 								<reference key="NSNextResponder" ref="275262557"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrameSize">{303, 81}</string>
+								<string key="NSFrameSize">{303, 111}</string>
 								<reference key="NSSuperview" ref="275262557"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="960117437"/>
@@ -90,10 +90,9 @@
 							<object class="IBUILabel" id="89530565">
 								<reference key="NSNextResponder" ref="275262557"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{96, 15}, {194, 65}}</string>
+								<string key="NSFrame">{{96, 9}, {194, 99}}</string>
 								<reference key="NSSuperview" ref="275262557"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -104,7 +103,7 @@
 								<reference key="IBUITextColor" ref="512775259"/>
 								<nil key="IBUIHighlightedColor"/>
 								<float key="IBUIMinimumFontSize">10</float>
-								<int key="IBUINumberOfLines">4</int>
+								<int key="IBUINumberOfLines">6</int>
 								<object class="IBUIFontDescription" key="IBUIFontDescription">
 									<int key="type">1</int>
 									<double key="pointSize">12</double>
@@ -118,7 +117,7 @@
 							<object class="IBUIImageView" id="960117437">
 								<reference key="NSNextResponder" ref="275262557"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{20, 21}, {39, 39}}</string>
+								<string key="NSFrame">{{20, 35}, {39, 39}}</string>
 								<reference key="NSSuperview" ref="275262557"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="618809682"/>
@@ -128,7 +127,7 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 							</object>
 						</array>
-						<string key="NSFrameSize">{303, 80}</string>
+						<string key="NSFrameSize">{303, 109}</string>
 						<reference key="NSSuperview" ref="144803153"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="940822356"/>
@@ -143,7 +142,7 @@
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
 				</array>
-				<string key="NSFrameSize">{303, 81}</string>
+				<string key="NSFrameSize">{303, 110}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="275262557"/>
@@ -247,37 +246,48 @@
 					<string key="superclassName">UIViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="calloutBubbleOut">id</string>
-						<string key="segmentedControlIndexChanged">id</string>
 						<string key="showAllFlats">id</string>
+						<string key="showList">id</string>
+						<string key="showMap">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
 						<object class="IBActionInfo" key="calloutBubbleOut">
 							<string key="name">calloutBubbleOut</string>
 							<string key="candidateClassName">id</string>
 						</object>
-						<object class="IBActionInfo" key="segmentedControlIndexChanged">
-							<string key="name">segmentedControlIndexChanged</string>
-							<string key="candidateClassName">id</string>
-						</object>
 						<object class="IBActionInfo" key="showAllFlats">
 							<string key="name">showAllFlats</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="showList">
+							<string key="name">showList</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="showMap">
+							<string key="name">showMap</string>
 							<string key="candidateClassName">id</string>
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
 						<string key="adressLabel">UILabel</string>
-						<string key="asyncImageViewList">AsynchronousImageView</string>
+						<string key="asyncImageView">AsynchronousImageView</string>
 						<string key="btRecenterMap">UIButton</string>
+						<string key="btShowFlatsWebView">UIButton</string>
 						<string key="calloutBubble">UIView</string>
+						<string key="calloutBubbleImg">UIImageView</string>
 						<string key="lbFlatDescription">UILabel</string>
 						<string key="lbFlatName">UILabel</string>
 						<string key="lbFlatPrice">UILabel</string>
 						<string key="lbLivingSpace">UILabel</string>
 						<string key="lbNumberOfRooms">UILabel</string>
+						<string key="lbPageNumber">UILabel</string>
+						<string key="pageControl">UIPageControl</string>
 						<string key="portfolioMapView">MKMapView</string>
+						<string key="scrollView">UIScrollView</string>
 						<string key="segmentedControl">UISegmentedControl</string>
 						<string key="spinner">UIActivityIndicatorView</string>
 						<string key="table">UITableView</string>
+						<string key="topBar">UIImageView</string>
 						<string key="tvCell">UITableViewCell</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
@@ -285,17 +295,25 @@
 							<string key="name">adressLabel</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
-						<object class="IBToOneOutletInfo" key="asyncImageViewList">
-							<string key="name">asyncImageViewList</string>
+						<object class="IBToOneOutletInfo" key="asyncImageView">
+							<string key="name">asyncImageView</string>
 							<string key="candidateClassName">AsynchronousImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="btRecenterMap">
 							<string key="name">btRecenterMap</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="btShowFlatsWebView">
+							<string key="name">btShowFlatsWebView</string>
+							<string key="candidateClassName">UIButton</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="calloutBubble">
 							<string key="name">calloutBubble</string>
 							<string key="candidateClassName">UIView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="calloutBubbleImg">
+							<string key="name">calloutBubbleImg</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="lbFlatDescription">
 							<string key="name">lbFlatDescription</string>
@@ -317,9 +335,21 @@
 							<string key="name">lbNumberOfRooms</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
+						<object class="IBToOneOutletInfo" key="lbPageNumber">
+							<string key="name">lbPageNumber</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="pageControl">
+							<string key="name">pageControl</string>
+							<string key="candidateClassName">UIPageControl</string>
+						</object>
 						<object class="IBToOneOutletInfo" key="portfolioMapView">
 							<string key="name">portfolioMapView</string>
 							<string key="candidateClassName">MKMapView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="scrollView">
+							<string key="name">scrollView</string>
+							<string key="candidateClassName">UIScrollView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="segmentedControl">
 							<string key="name">segmentedControl</string>
@@ -332,6 +362,10 @@
 						<object class="IBToOneOutletInfo" key="table">
 							<string key="name">table</string>
 							<string key="candidateClassName">UITableView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="topBar">
+							<string key="name">topBar</string>
+							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="tvCell">
 							<string key="name">tvCell</string>
