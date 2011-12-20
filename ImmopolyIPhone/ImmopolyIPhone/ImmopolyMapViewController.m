@@ -202,11 +202,13 @@
         UIImageView *imageView;
         if([[location flatsAtAnnotation] count] > 0 ) {
             imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi.png"]] autorelease];
+            imageView.center = CGPointMake(19, 24.5);
             [annotationView addSubview:imageView];
             [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:location]];
         }
         else {
             imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
+            imageView.center = CGPointMake(19, 24.5);
             [annotationView addSubview:imageView];
         }
         return annotationView;
@@ -238,11 +240,13 @@
     
     if([[_flat flatsAtAnnotation] count] > 0 ) {
         imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi.png"]] autorelease];
+        imageView.center = CGPointMake(19, 24.5);
         [annotationView addSubview:imageView];
         [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:_flat]];
     }
     else {
         imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
+        imageView.center = CGPointMake(19, 24.5);
         [annotationView addSubview:imageView];
     }
 }
@@ -441,6 +445,7 @@
     }
     // + 1 because of the selected flat, which holds the other flats
     numOfScrollViewSubviews = [[selectedImmoScoutFlat flatsAtAnnotation] count]+1;
+    pageControl.numberOfPages = numOfScrollViewSubviews;
 
     for (int i=0; i<numOfScrollViewSubviews; i++) {
         UIView *subview;
@@ -542,4 +547,5 @@
     NSString *pageNum = [NSString stringWithFormat:@"%d/%d", page+1, numOfScrollViewSubviews];
     [lbPageNumber setText:pageNum];
 }
+
 @end
