@@ -408,11 +408,13 @@
         UIImageView *imageView;
         if([[location flatsAtAnnotation] count] > 0 ) {
             imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi.png"]] autorelease];
+            imageView.center = CGPointMake(19, 24.5);
             [annotationView addSubview:imageView];
             [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:location]];
         }
         else {
             imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
+            imageView.center = CGPointMake(19, 24.5);
             [annotationView addSubview:imageView];
         }
         return annotationView;
@@ -444,11 +446,13 @@
     
     if([[_flat flatsAtAnnotation] count] > 0 ) {
         imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi.png"]] autorelease];
+        imageView.center = CGPointMake(19, 24.5);
         [annotationView addSubview:imageView];
         [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:_flat]];
     }
     else {
         imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
+        imageView.center = CGPointMake(19, 24.5);
         [annotationView addSubview:imageView];
     }
 }
