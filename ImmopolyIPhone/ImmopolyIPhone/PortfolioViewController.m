@@ -298,6 +298,8 @@
     imgShadowTop.center = posImgShadowTop;
     imgShadowBottom.center = posImgShadowBottom;    
     [UIView commitAnimations];
+    
+    [self recenterMap];
 }
 
 /* ========== MapView methods ========== */
