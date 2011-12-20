@@ -98,7 +98,7 @@
 @property(nonatomic, retain) IBOutlet UILabel *lbPageNumber;
 
 - (IBAction)calloutBubbleOut;
-- (void)recenterMap;
+- (void)recenterMapWithAnimation:(bool)_animated;
 - (void)calloutBubbleIn;
 - (IBAction)showAllFlats;
 - (void)stopSpinnerAnimation;

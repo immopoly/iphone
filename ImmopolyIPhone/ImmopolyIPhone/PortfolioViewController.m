@@ -152,14 +152,12 @@
             [portfolioMapView removeAnnotation:annotation];
         }
     }     
-    
-    // gets called that the filter is running and the flats are shown at the view
-    [self mapView:portfolioMapView regionDidChangeAnimated:YES];
-    
-    [self recenterMap];
-    
     [self stopSpinnerAnimation];
     [[self table] setHidden: NO];
+    
+    // do in background
+    [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]];
+    [self recenterMapWithAnimation:NO];
 }
 
 
@@ -270,6 +268,8 @@
 
 }
 - (IBAction)showMap {
+    [self recenterMapWithAnimation:NO];
+    
     [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_map.png"]];
      
     CGPoint posMap;
@@ -285,8 +285,6 @@
     portfolioMapView.center = posMap;
     table.center = posTable;
     [UIView commitAnimations];
-    [self recenterMap];
-
 }
 
 /* ========== MapView methods ========== */
@@ -581,6 +579,7 @@
     }
     // + 1 because of the selected flat, which holds the other flats
     numOfScrollViewSubviews = [[selectedImmoScoutFlat flatsAtAnnotation] count]+1;
+    pageControl.numberOfPages = numOfScrollViewSubviews;
     
     for (int i=0; i<numOfScrollViewSubviews; i++) {
         UIView *subview;
@@ -683,7 +682,7 @@
     [lbPageNumber setText:pageNum];
 }
 
-- (void)recenterMap {
+- (void)recenterMapWithAnimation:(bool)_animated {
     
     NSArray *coordinates = [self.portfolioMapView valueForKeyPath:@"annotations.coordinate"];
     
@@ -719,7 +718,12 @@
         region.span.longitudeDelta = maxCoord.longitude - minCoord.longitude;        
         region.span.latitudeDelta = maxCoord.latitude - minCoord.latitude;
         
-        [self.portfolioMapView setRegion:region animated:YES]; 
+        if(_animated) {
+            [self.portfolioMapView setRegion:region animated:YES]; 
+        } else {
+            [self.portfolioMapView setRegion:region animated:NO];
+        }
+        
     } else {
         // zoom to germany? ^^
     }
@@ -727,7 +731,7 @@
 
 - (IBAction)showAllFlats {
     [self calloutBubbleOut];
-    [self recenterMap];
+    [self recenterMapWithAnimation:YES];
 }
 
 
