@@ -103,7 +103,7 @@
 @property(nonatomic, retain) IBOutlet UIImageView *imgShadowBottom;
 
 - (IBAction)calloutBubbleOut;
-- (void)recenterMapWithAnimation:(bool)_animated;
+- (void)recenterMap;
 - (void)calloutBubbleIn;
 - (IBAction)showAllFlats;
 - (void)stopSpinnerAnimation;

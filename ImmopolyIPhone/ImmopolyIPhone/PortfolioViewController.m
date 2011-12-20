@@ -156,7 +156,7 @@
     if([[self.portfolioMapView valueForKeyPath:@"annotations.coordinate"] count] == 0) {
         [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]];   
     }
-    [self recenterMapWithAnimation:YES];
+    [self recenterMap];
 }
 
 
@@ -274,7 +274,6 @@
 
 }
 - (IBAction)showMap {
-    [self recenterMapWithAnimation:NO];
     
     [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_map.png"]];
      
@@ -696,18 +695,17 @@
     [lbPageNumber setText:pageNum];
 }
 
-- (void)recenterMapWithAnimation:(bool)_animated {
+- (void)recenterMap {
     
-    NSArray *coordinates = [self.portfolioMapView valueForKeyPath:@"annotations.coordinate"];
+    NSMutableArray *annotations = [[[ImmopolyManager instance] user] portfolio];
     
-    if([coordinates count] > 0) {
+    if([annotations count] > 0) {
         CLLocationCoordinate2D maxCoord = {-90.0f, -180.0f};        
         CLLocationCoordinate2D minCoord = {90.0f, 180.0f};
         
-        for(NSValue *value in coordinates) {
+        for(Flat *flat in annotations) {
 
-            CLLocationCoordinate2D coord = {0.0f, 0.0f};            
-            [value getValue:&coord];
+            CLLocationCoordinate2D coord = [flat coordinate];            
             
             if(coord.longitude > maxCoord.longitude) {
                 maxCoord.longitude = coord.longitude;
@@ -732,11 +730,8 @@
         region.span.longitudeDelta = maxCoord.longitude - minCoord.longitude;        
         region.span.latitudeDelta = maxCoord.latitude - minCoord.latitude;
         
-        if(_animated) {
-            [self.portfolioMapView setRegion:region animated:YES]; 
-        } else {
-            [self.portfolioMapView setRegion:region animated:NO];
-        }
+
+        [self.portfolioMapView setRegion:region animated:YES]; 
         
     } else {
         // zoom to germany? ^^
@@ -745,7 +740,7 @@
 
 - (IBAction)showAllFlats {
     [self calloutBubbleOut];
-    [self recenterMapWithAnimation:YES];
+    [self recenterMap];
 }
 
 
