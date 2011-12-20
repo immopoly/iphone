@@ -45,6 +45,9 @@
 @synthesize pageControl;
 @synthesize calloutBubbleImg;
 @synthesize btShowFlatsWebView;
+@synthesize lbPageNumber;
+@synthesize imgShadowTop;
+@synthesize imgShadowBottom;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil { 
@@ -250,20 +253,27 @@
 
 - (IBAction)showList {
     [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_list.png"]];
-
+    
     CGPoint posMap;
     CGPoint posTable;
-    
+    CGPoint posImgShadowTop;
+    CGPoint posImgShadowBottom;
     [btRecenterMap setHidden:YES];
     [self setIsBtHidden:YES];
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.4];
     posMap = portfolioMapView.center;
     posTable = table.center;
+    posImgShadowTop = imgShadowTop.center;
+    posImgShadowBottom = imgShadowBottom.center;
     posMap.x = 480.0f;
     posTable.x = 160.0f;
+    posImgShadowTop.x = 160.0f;
+    posImgShadowBottom.x = 160.0f;
     portfolioMapView.center = posMap;
     table.center = posTable;
+    imgShadowTop.center = posImgShadowTop;
+    imgShadowBottom.center = posImgShadowBottom; 
     [UIView commitAnimations]; 
 
 }
@@ -274,16 +284,24 @@
      
     CGPoint posMap;
     CGPoint posTable;
+    CGPoint posImgShadowTop;
+    CGPoint posImgShadowBottom;
     [btRecenterMap setHidden:NO];
     [self setIsBtHidden:NO];
     [UIView beginAnimations:nil context:NULL];
     [UIView setAnimationDuration:0.4];
     posMap = portfolioMapView.center;
     posTable = table.center;
+    posImgShadowTop = imgShadowTop.center;
+    posImgShadowBottom = imgShadowBottom.center;
     posMap.x = 160.0f;
     posTable.x = -160.0f;
+    posImgShadowTop.x = -160.0f;
+    posImgShadowBottom.x = -160.0f;
     portfolioMapView.center = posMap;
     table.center = posTable;
+    imgShadowTop.center = posImgShadowTop;
+    imgShadowBottom.center = posImgShadowBottom;    
     [UIView commitAnimations];
 }
 

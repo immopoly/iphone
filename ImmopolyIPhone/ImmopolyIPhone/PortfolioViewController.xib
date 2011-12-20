@@ -83,7 +83,6 @@
 						<string key="NSFrame">{{320, 42}, {320, 369}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIClipsSubviews">YES</bool>
 						<bool key="IBUIMultipleTouchEnabled">YES</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -472,6 +471,22 @@
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">imgShadowBottom</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="907951543"/>
+					</object>
+					<int key="connectionID">78</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">imgShadowTop</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="110665738"/>
+					</object>
+					<int key="connectionID">79</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
 						<string key="label">delegate</string>
 						<reference key="source" ref="283178944"/>
 						<reference key="destination" ref="372490531"/>
@@ -711,7 +726,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">77</int>
+			<int key="maxID">79</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -757,6 +772,8 @@
 						<string key="btShowFlatsWebView">UIButton</string>
 						<string key="calloutBubble">UIView</string>
 						<string key="calloutBubbleImg">UIImageView</string>
+						<string key="imgShadowBottom">UIImageView</string>
+						<string key="imgShadowTop">UIImageView</string>
 						<string key="lbFlatDescription">UILabel</string>
 						<string key="lbFlatName">UILabel</string>
 						<string key="lbFlatPrice">UILabel</string>
@@ -795,6 +812,14 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="calloutBubbleImg">
 							<string key="name">calloutBubbleImg</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="imgShadowBottom">
+							<string key="name">imgShadowBottom</string>
+							<string key="candidateClassName">UIImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="imgShadowTop">
+							<string key="name">imgShadowTop</string>
 							<string key="candidateClassName">UIImageView</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="lbFlatDescription">

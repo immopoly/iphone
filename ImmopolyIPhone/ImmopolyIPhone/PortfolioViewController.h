@@ -36,6 +36,9 @@
     IBOutlet UIButton *btShowFlatsWebView;
     IBOutlet UILabel *lbPageNumber;
 
+    IBOutlet UIImageView *imgShadowTop;
+    IBOutlet UIImageView *imgShadowBottom;
+
     
     LoginCheck *loginCheck;
     
@@ -96,6 +99,8 @@
 @property(nonatomic, retain) IBOutlet UIImageView *calloutBubbleImg;
 @property(nonatomic, retain) IBOutlet UIButton *btShowFlatsWebView;
 @property(nonatomic, retain) IBOutlet UILabel *lbPageNumber;
+@property(nonatomic, retain) IBOutlet UIImageView *imgShadowTop;
+@property(nonatomic, retain) IBOutlet UIImageView *imgShadowBottom;
 
 - (IBAction)calloutBubbleOut;
 - (void)recenterMapWithAnimation:(bool)_animated;
