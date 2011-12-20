@@ -10,6 +10,7 @@
 #import "ImmopolyManager.h"
 #import "ImmopolyUser.h"
 #import "LoginViewController.h"
+#import "UserBadge.h"
 
 @implementation UserProfileViewController
 
@@ -101,8 +102,49 @@
     
     [self stopSpinnerAnimation];
     [self hideLabels: NO];
-    [self.badgesView setHidden:[[myUser badges] count] == 0];
-    [[self.badgeImages objectAtIndex:0] setImage:[UIImage imageNamed:@"immopoly.png"]];
+    
+    if([[myUser badges] count] > 0) {
+        [self.badgesView setHidden:NO];
+        [self displayBadges];
+    }
+    else {
+        [self.badgesView setHidden:YES];
+    }
+}
+
+- (void)displayBadges {
+    NSArray *userBadges = [[[ImmopolyManager instance] user] badges];
+    
+    //Set coordinates for badges. Shall be implemented in a more smart way later..
+    NSMutableArray *imageCoordinates = [NSMutableArray array];
+    [imageCoordinates addObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:20], [NSNumber numberWithInt:35], nil]];
+    [imageCoordinates addObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:124], [NSNumber numberWithInt:35], nil]];
+    [imageCoordinates addObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:228], [NSNumber numberWithInt:35], nil]];
+    [imageCoordinates addObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:20], [NSNumber numberWithInt:116], nil]];
+    [imageCoordinates addObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:124], [NSNumber numberWithInt:116], nil]];
+    [imageCoordinates addObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:228], [NSNumber numberWithInt:116], nil]];
+    
+    for (UserBadge *badge in userBadges) {
+        NSURL *url = [NSURL URLWithString:[badge url]];
+        NSData *data = [NSData dataWithContentsOfURL:url];
+        UIImage *image = [[[UIImage alloc] initWithData:data] autorelease];
+        
+        NSArray *coords = [imageCoordinates objectAtIndex: [userBadges indexOfObject:badge]];
+        
+        UIButton *badgeButton = [[[UIButton alloc] initWithFrame:CGRectMake([[coords objectAtIndex:0]intValue], [[coords objectAtIndex:1] intValue], 72, 72)] autorelease];
+        [badgeButton setBackgroundImage:image forState:UIControlStateNormal];
+        [badgeButton addTarget:self action:@selector(showBadgeText:) forControlEvents:UIControlEventTouchUpInside];
+        [badgeButton setTag: [userBadges indexOfObject:badge]];
+        [badgesView addSubview:badgeButton];
+    }
+}
+
+- (void)showBadgeText:(id)sender {
+    NSArray *userBadges = [[[ImmopolyManager instance] user] badges];
+    NSString *badgeText = [[userBadges objectAtIndex:[sender tag]] text];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:badgeText delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+    [alert show];
+    [alert release]; 
 }
 
 - (void)viewDidUnload {
@@ -116,7 +158,9 @@
     self.labelMiete = nil;
     self.labelNumExposes = nil;
     self.spinner = nil;
-
+    self.badgesView = nil;
+    self.showBadgesButton = nil;
+    self.badgeImages = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -124,7 +168,7 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(void)toggleBadgesView {
+- (void)toggleBadgesView {
     [UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.4];
 	CGPoint posBadgesView = badgesView.center;
