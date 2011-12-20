@@ -296,6 +296,20 @@
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<array class="NSMutableArray" key="NSSubviews">
+							<object class="IBUIImageView" id="359394619">
+								<reference key="NSNextResponder" ref="555966278"/>
+								<int key="NSvFlags">292</int>
+								<string key="NSFrame">{{5, 6}, {270, 335}}</string>
+								<reference key="NSSuperview" ref="555966278"/>
+								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView" ref="302149432"/>
+								<bool key="IBUIUserInteractionEnabled">NO</bool>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<object class="NSCustomResource" key="IBUIImage">
+									<string key="NSClassName">NSImage</string>
+									<string key="NSResourceName">register_cell.png</string>
+								</object>
+							</object>
 							<object class="IBUITextField" id="302149432">
 								<reference key="NSNextResponder" ref="555966278"/>
 								<int key="NSvFlags">292</int>
@@ -309,7 +323,6 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<string key="IBUIText"/>
-								<int key="IBUIBorderStyle">3</int>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MAA</bytes>
@@ -337,7 +350,6 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<string key="IBUIText"/>
-								<int key="IBUIBorderStyle">3</int>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MAA</bytes>
@@ -365,7 +377,6 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<string key="IBUIText"/>
-								<int key="IBUIBorderStyle">3</int>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MAA</bytes>
@@ -393,7 +404,6 @@
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentVerticalAlignment">0</int>
 								<string key="IBUIText"/>
-								<int key="IBUIBorderStyle">3</int>
 								<object class="NSColor" key="IBUITextColor">
 									<int key="NSColorSpace">3</int>
 									<bytes key="NSWhite">MAA</bytes>
@@ -407,20 +417,6 @@
 								</object>
 								<reference key="IBUIFontDescription" ref="930305765"/>
 								<reference key="IBUIFont" ref="408278582"/>
-							</object>
-							<object class="IBUIImageView" id="359394619">
-								<reference key="NSNextResponder" ref="555966278"/>
-								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{5, 6}, {270, 335}}</string>
-								<reference key="NSSuperview" ref="555966278"/>
-								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="302149432"/>
-								<bool key="IBUIUserInteractionEnabled">NO</bool>
-								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
-								<object class="NSCustomResource" key="IBUIImage">
-									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">register_cell.png</string>
-								</object>
 							</object>
 							<object class="IBUIButton" id="415314568">
 								<reference key="NSNextResponder" ref="555966278"/>
@@ -621,7 +617,6 @@
 								<string key="NSFrame">{{20, 243}, {235, 37}}</string>
 								<reference key="NSSuperview" ref="874348787"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:225</string>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
