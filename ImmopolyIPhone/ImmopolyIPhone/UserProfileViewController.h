@@ -51,5 +51,6 @@
 
 -(NSString*) formatToCurrencyWithNumber:(double)number;
 -(IBAction) toggleBadgesView;
+- (void)displayBadges;
 
 @end
