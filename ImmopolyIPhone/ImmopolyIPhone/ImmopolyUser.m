@@ -13,13 +13,14 @@
 @synthesize  userName;
 @synthesize userToken;
 @synthesize email;
-@synthesize twitter;
 @synthesize balance;
 @synthesize lastProvision;
 @synthesize lastRent;
 @synthesize portfolio;
 @synthesize history;
 @synthesize badges;
+@synthesize numExposes;
+@synthesize maxExposes;
 
 
 - (id)init
