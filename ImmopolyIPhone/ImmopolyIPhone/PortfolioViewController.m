@@ -148,19 +148,15 @@
 
 - (void)performActionAfterLoginCheck {
     [table reloadData];
-    
-    // removing all existing annotations
-    for (id<MKAnnotation> annotation in portfolioMapView.annotations) {
-        if([annotation isKindOfClass:[Flat class]]){    
-            [portfolioMapView removeAnnotation:annotation];
-        }
-    }     
+   
     [self stopSpinnerAnimation];
     [[self table] setHidden: NO];
     
-    // do in background
-    [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]];
-    [self recenterMapWithAnimation:NO];
+    // do in background and only filter if no annotations are on the map
+    if([[self.portfolioMapView valueForKeyPath:@"annotations.coordinate"] count] == 0) {
+        [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]];   
+    }
+    [self recenterMapWithAnimation:YES];
 }
 
 
