@@ -25,7 +25,7 @@ NSString* const urlImmopolyUser = @"https://immopoly.appspot.com/user/";
 NSString* const urlImmopolyPortfolio = @"http://immopoly.appspot.com/portfolio/";
 
 NSString* const alertRegisterWrongInput = @"Es wurde eine falsche Eingabe getätigt.";
-NSString* const alertRegisterSuccessful = @"Glückwunsch! Du hast dich erfolgreich registriert und kannst dich nun einlogen.";
+NSString* const alertRegisterSuccessful = @"Glückwunsch! Du hast dich erfolgreich registriert und kannst dich nun einloggen.";
 
 NSString* const alertResetPasswordWrongInput = @"Es wurde eine falsche Eingabe getätigt.";
 NSString* const alertResetPasswordSuccessful = @"Du bekommst in Kürze eine E-Mail mit dem Link, mit dem du dein Passwort ändern kannst.";

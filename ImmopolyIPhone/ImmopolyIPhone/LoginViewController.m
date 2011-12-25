@@ -52,34 +52,6 @@
 #pragma mark - View lifecycle
 
 - (void)viewDidLoad {
-    /*
-    [super viewDidLoad];
-    
-    [password setSecureTextEntry:YES];
-    
-    [spinner startAnimating];
-    
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
-    if ([defaults objectForKey:@"userToken"] != nil) {
-        //get user token
-        NSString *userToken = [defaults objectForKey:@"userToken"];
-        //login with token
-        UserLoginTask *loader = [[UserLoginTask alloc] init];
-        loader.delegate = self;
-        
-        [loader performLoginWithToken: userToken];
-        
-        [loader autorelease];
-    }    
-    else {
-        [spinner stopAnimating];
-        [spinner setHidden:YES];
-        [loginLabel setHidden:YES];
-        [userName setEnabled:YES];
-        [password setEnabled:YES];
-    }
-     */
     [super viewDidLoad];
     
     [password setSecureTextEntry:YES];
@@ -175,6 +147,9 @@
 - (IBAction)performRegistration {
     
     if([[registerUserName text] length]> 0 && [[registerUserPassword text] length] > 0) {
+        [spinner setHidden:NO];
+        [spinner startAnimating];
+        
         UserRegisterTask *loader = [[[UserRegisterTask alloc] init] autorelease];
         [loader setDelegate:self];
     
@@ -206,9 +181,11 @@
 }
 
 - (void)registerWithResult:(BOOL)_result {
-
+    [spinner stopAnimating];
+    [spinner setHidden:YES];
+    
     if(_result) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:alertRegisterSuccessful delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erfolg" message:alertRegisterSuccessful delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
         [self closeRegistration];
@@ -217,6 +194,9 @@
         [loader setDelegate:self];
         [loader performLoginWithToken:[[[ImmopolyManager instance] user] userToken]];
     }else{
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Kein Erfolg" message:errorTryAgainLater delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
         [self closeRegistration];
         [self dismissModalViewControllerAnimated:YES];
     }
