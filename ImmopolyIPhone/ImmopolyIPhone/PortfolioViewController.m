@@ -518,7 +518,7 @@
     [portfolioMapView setZoomEnabled:NO];
 }
 
-- (IBAction)calloutBubbleOut {
+- (void)calloutBubbleOut {
     
     // hiding the text and stuff
     [scrollView setHidden:YES];
@@ -762,5 +762,11 @@
     [self recenterMap];
 }
 
+// method for a big invisible button to close the calloutBubble
+- (IBAction)closeBubble {
+    if(!isOutInCall){
+        [self calloutBubbleOut];    
+    }
+}
 
 @end

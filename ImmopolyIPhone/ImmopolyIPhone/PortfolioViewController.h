@@ -104,13 +104,14 @@
 @property(nonatomic, retain) IBOutlet UIImageView *imgShadowBottom;
 @property(nonatomic, retain) Flat *sameFlat;
 
-- (IBAction)calloutBubbleOut;
+- (void)calloutBubbleOut;
 - (void)recenterMap;
 - (void)calloutBubbleIn;
 - (IBAction)showAllFlats;
 - (void)stopSpinnerAnimation;
 - (IBAction)showList;
 - (IBAction)showMap;
+- (IBAction)closeBubble;
 
 - (void)setAnnotationImageAtAnnotation:(Flat *)_flat;
 - (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat;

@@ -303,7 +303,7 @@
     [mapView setZoomEnabled:NO];
 }
 
-- (IBAction)calloutBubbleOut {
+- (void)calloutBubbleOut {
     
     // hiding the text and stuff
     [scrollView setHidden:YES];
@@ -532,14 +532,13 @@
     } else {
         [imgView setImage:[_flat image]];
     }
+    [subview addSubview:imgView];
     
     // button
     UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button addTarget:self action:@selector(showFlatsWebView) forControlEvents:UIControlEventTouchUpInside];
     button.frame = CGRectMake(10, 40, 60, 60);
     [subview addSubview:button];
-
-    [subview addSubview:imgView];
      
     [lbName release];
     [lbRooms release];
@@ -560,4 +559,10 @@
     [lbPageNumber setText:pageNum];
 }
 
+// method for a big invisible button to close the calloutBubble
+- (IBAction)closeBubble {
+    if(!isOutInCall){
+        [self calloutBubbleOut];    
+    }
+}
 @end

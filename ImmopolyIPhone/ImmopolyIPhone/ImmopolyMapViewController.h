@@ -86,10 +86,11 @@
 - (void)setAnnotationImageAtAnnotation:(Flat *)_flat;
 - (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat;
 - (void)calloutBubbleIn;
-- (IBAction)calloutBubbleOut;
+- (void)calloutBubbleOut;
 - (IBAction)showFlatsWebView;
 - (void)filterAnnotations:(NSArray *)_flatsToFilter;
 - (void)initScrollView;
 - (UIView *)createCalloutBubbleContentFromFlat:(Flat *)_flat atPosition:(int)_pos;
+- (IBAction)closeBubble;
 
 @end
