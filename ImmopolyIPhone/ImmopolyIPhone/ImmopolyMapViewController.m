@@ -39,7 +39,7 @@
 @synthesize pageControl;
 @synthesize calloutBubbleImg;
 // @synthesize btShowFlatsWebView;
-@synthesize regionSpan;
+@synthesize sameFlat;
 
 -(void)dealloc {
     [super dealloc];
@@ -161,6 +161,7 @@
             
             Flat *location = (Flat *) view.annotation;
             [self setSelectedImmoScoutFlat:location]; 
+            sameFlat = location;
         }
     }
     else {
@@ -180,8 +181,10 @@
             
             // when the same annotation is selected, the region does not change, so regionDidChanged
             // doesn't get called
-            if(regionSpan.latitudeDelta == mpView.region.span.latitudeDelta) {
+            if(sameFlat == location){
                 [self calloutBubbleIn];
+            } else {
+                sameFlat = location;
             }
         }   
     }
@@ -388,8 +391,7 @@
         [[tempFlat flatsAtAnnotation] removeAllObjects];
     }
     
-    for (int i=0; i<[_flatsToFilter count]; i++) {
-        Flat *actFlat = [_flatsToFilter objectAtIndex:i];
+    for (Flat *actFlat in _flatsToFilter) {
         CLLocationDegrees latitude = [actFlat coordinate].latitude;
         CLLocationDegrees longitude = [actFlat coordinate].longitude;
         
@@ -408,7 +410,7 @@
                 // add actFlat to the annotation of tempFlat
                 [[tempFlat flatsAtAnnotation] addObject:actFlat];
                 
-                // annotation bild der tempflat ändern, weil sie jetzt mehrere flats beinhaltet
+                // change image of annotation, because now it contains more flats than before
                 [self setAnnotationImageAtAnnotation:tempFlat];
                 
                 // break, because you can only add to one another flat
@@ -436,9 +438,6 @@
         [self filterAnnotations: [[ImmopolyManager instance] immoScoutFlats]];
         zoomLevel = mpView.region.span.longitudeDelta;
     }
-    
-    // save the span for detecting, when the region does not change
-    regionSpan = mpView.region.span;
 }
 
 - (void)initScrollView {

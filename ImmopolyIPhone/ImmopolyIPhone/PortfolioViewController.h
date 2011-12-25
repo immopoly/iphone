@@ -63,7 +63,7 @@
     float iphoneScaleFactorLongitude;
     CLLocationDegrees zoomLevel;
     int numOfScrollViewSubviews;
-    MKCoordinateSpan regionSpan;
+    Flat *sameFlat;
     
 }
 
@@ -102,7 +102,7 @@
 @property(nonatomic, retain) IBOutlet UILabel *lbPageNumber;
 @property(nonatomic, retain) IBOutlet UIImageView *imgShadowTop;
 @property(nonatomic, retain) IBOutlet UIImageView *imgShadowBottom;
-@property(nonatomic, assign) MKCoordinateSpan regionSpan;
+@property(nonatomic, retain) Flat *sameFlat;
 
 - (IBAction)calloutBubbleOut;
 - (void)recenterMap;

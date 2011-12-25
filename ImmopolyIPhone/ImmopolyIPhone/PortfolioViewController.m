@@ -48,7 +48,7 @@
 @synthesize lbPageNumber;
 @synthesize imgShadowTop;
 @synthesize imgShadowBottom;
-@synthesize regionSpan;
+@synthesize sameFlat;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil { 
@@ -318,9 +318,6 @@
         [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]];
         zoomLevel = mpView.region.span.longitudeDelta;
     }
-    
-    // save the span for detecting, when the region does not change
-    regionSpan = mpView.region.span;
 }
 
 // method for clustering
@@ -335,8 +332,7 @@
         [[tempFlat flatsAtAnnotation] removeAllObjects];
     }
     
-    for (int i=0; i<[_flatsToFilter count]; i++) {
-        Flat *actFlat = [_flatsToFilter objectAtIndex:i];
+    for (Flat *actFlat in _flatsToFilter) {
         CLLocationDegrees latitude = [actFlat coordinate].latitude;
         CLLocationDegrees longitude = [actFlat coordinate].longitude;
         
@@ -388,6 +384,7 @@
             
             Flat *location = (Flat *) view.annotation;
             [self setSelectedImmoScoutFlat:location]; 
+            sameFlat = location; 
         }
     }
     else {
@@ -407,8 +404,10 @@
             
             // when the same annotation is selected, the region does not change, so regionDidChanged
             // doesn't get called
-            if(regionSpan.latitudeDelta == mpView.region.span.latitudeDelta) {
+            if(sameFlat == location){
                 [self calloutBubbleIn];
+            } else {
+                sameFlat = location;
             }
         }   
     }
