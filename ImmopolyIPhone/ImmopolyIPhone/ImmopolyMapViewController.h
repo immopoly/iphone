@@ -32,7 +32,7 @@
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIPageControl *pageControl;
     IBOutlet UIImageView *calloutBubbleImg;
-    IBOutlet UIButton *btShowFlatsWebView;
+//    IBOutlet UIButton *btShowFlatsWebView;
     
     MKMapView *mapView;
     WebViewController *exposeWebViewController;
@@ -52,7 +52,8 @@
     float iphoneScaleFactorLatitude;
     float iphoneScaleFactorLongitude;
     CLLocationDegrees zoomLevel;
-    int numOfScrollViewSubviews;
+    int numOfScrollViewSubviews;    
+    MKCoordinateSpan regionSpan;
 }
 
 @property(nonatomic, retain) IBOutlet MKMapView *mapView;
@@ -78,7 +79,8 @@
 @property(nonatomic, assign) int numOfScrollViewSubviews;
 @property(nonatomic, retain) IBOutlet UIPageControl *pageControl;
 @property(nonatomic, retain) IBOutlet UIImageView *calloutBubbleImg;
-@property(nonatomic, retain) IBOutlet UIButton *btShowFlatsWebView;
+// @property(nonatomic, retain) IBOutlet UIButton *btShowFlatsWebView;
+@property(nonatomic, assign) MKCoordinateSpan regionSpan;
  
 - (IBAction)refreshLocation;
 - (void)setAnnotationImageAtAnnotation:(Flat *)_flat;

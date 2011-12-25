@@ -38,7 +38,8 @@
 @synthesize numOfScrollViewSubviews;
 @synthesize pageControl;
 @synthesize calloutBubbleImg;
-@synthesize btShowFlatsWebView;
+// @synthesize btShowFlatsWebView;
+@synthesize regionSpan;
 
 -(void)dealloc {
     [super dealloc];
@@ -70,7 +71,7 @@
     [calloutBubble removeFromSuperview];
     [self setShowCalloutBubble:NO];
     [lbPageNumber setHidden:YES];
-    [btShowFlatsWebView setHidden:YES];
+//    [btShowFlatsWebView setHidden:YES];
     
     // showing the annotation imgae
     [selViewForHouseImage setHidden:NO];
@@ -80,7 +81,7 @@
     [super viewDidLoad];
     [calloutBubbleImg setHidden:YES];
     [lbPageNumber setHidden:YES];
-    [btShowFlatsWebView setHidden:YES];
+//    [btShowFlatsWebView setHidden:YES];
     [self setShowCalloutBubble:NO];
     
     // that only the background is transparent and not the whole view
@@ -144,14 +145,11 @@
     }     
     
     // gets called that the filter is running and the flats are shown at the view
-    [self mapView:mapView regionDidChangeAnimated:YES];
+    [self filterAnnotations: [[ImmopolyManager instance] immoScoutFlats]];
 }
 
 - (void)mapView:(MKMapView *)mpView didSelectAnnotationView:(MKAnnotationView *)view{
-    
-    // TODO: wenn die selbe annotation gewählt wird, ohne die region zu verändern,
-    //       wird calloutBubbleIn nicht aufgerufen
-    
+
     if(isCalloutBubbleIn){
         [self setIsOutInCall:YES];
         [self calloutBubbleOut];
@@ -170,15 +168,21 @@
             [self setSelViewForHouseImage:view];
             Flat *location = (Flat *) view.annotation;
             [self setSelectedImmoScoutFlat:location]; 
-            
+                        
             // moving the view to the center where the selected flat is placed
             CLLocationCoordinate2D zoomLocation = location.coordinate;
-            MKCoordinateRegion viewRegion = MKCoordinateRegionMake(zoomLocation, mapView.region.span);
+            MKCoordinateRegion viewRegion = MKCoordinateRegionMake(zoomLocation, mpView.region.span);
             MKCoordinateRegion adjustedRegion = [mpView regionThatFits:viewRegion];                
             [mpView setRegion:adjustedRegion animated:YES];   
             
             // calloutBubbleIn gets called at regionDidChanged, when bool showCalloutBubble is true
             [self setShowCalloutBubble:YES];
+            
+            // when the same annotation is selected, the region does not change, so regionDidChanged
+            // doesn't get called
+            if(regionSpan.latitudeDelta == mpView.region.span.latitudeDelta) {
+                [self calloutBubbleIn];
+            }
         }   
     }
 }
@@ -301,7 +305,7 @@
     // hiding the text and stuff
     [scrollView setHidden:YES];
     [lbPageNumber setHidden:YES];
-    [btShowFlatsWebView setHidden:YES];
+//    [btShowFlatsWebView setHidden:YES];
     
     // animation
     [UIView beginAnimations:@"outAnimation" context:NULL];	
@@ -428,10 +432,13 @@
         [self calloutBubbleIn];
     }
     
-    if (zoomLevel != mpView.region.span.longitudeDelta || animated) {
+    if (zoomLevel != mpView.region.span.longitudeDelta) {
         [self filterAnnotations: [[ImmopolyManager instance] immoScoutFlats]];
         zoomLevel = mpView.region.span.longitudeDelta;
     }
+    
+    // save the span for detecting, when the region does not change
+    regionSpan = mpView.region.span;
 }
 
 - (void)initScrollView {
@@ -466,7 +473,7 @@
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * self.numOfScrollViewSubviews, self.scrollView.frame.size.height);
     
     // showing the not scrollview content of calloutBubble
-    [btShowFlatsWebView setHidden:NO];    
+//    [[self view] bringSubviewToFront:btShowFlatsWebView];    
     if (numOfScrollViewSubviews > 1) { 
         // don't show label, if it is a single flat annotation
         [lbPageNumber setHidden:NO];
@@ -526,6 +533,12 @@
     } else {
         [imgView setImage:[_flat image]];
     }
+    
+    // button
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button addTarget:self action:@selector(showFlatsWebView) forControlEvents:UIControlEventTouchUpInside];
+    button.frame = CGRectMake(10, 40, 60, 60);
+    [subview addSubview:button];
 
     [subview addSubview:imgView];
      

@@ -44,10 +44,11 @@
 @synthesize numOfScrollViewSubviews;
 @synthesize pageControl;
 @synthesize calloutBubbleImg;
-@synthesize btShowFlatsWebView;
+// @synthesize btShowFlatsWebView;
 @synthesize lbPageNumber;
 @synthesize imgShadowTop;
 @synthesize imgShadowBottom;
+@synthesize regionSpan;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil { 
@@ -83,7 +84,7 @@
     [calloutBubble removeFromSuperview];
     [self setShowCalloutBubble:NO];
     [lbPageNumber setHidden:YES];
-    [btShowFlatsWebView setHidden:YES];
+//    [btShowFlatsWebView setHidden:YES];
     
     // showing the annotation imgae
     [selViewForHouseImage setHidden:NO];
@@ -93,7 +94,7 @@
     [super viewDidLoad];
     [calloutBubbleImg setHidden:YES];
     [lbPageNumber setHidden:YES];
-    [btShowFlatsWebView setHidden:YES];
+//    [btShowFlatsWebView setHidden:YES];
     [self setShowCalloutBubble:NO];
     
     // that only the background is transparent and not the whole view
@@ -248,6 +249,8 @@
 }
 
 - (IBAction)showList {
+    [self calloutBubbleOut];
+    
     [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_list.png"]];
     
     CGPoint posMap;
@@ -315,6 +318,9 @@
         [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]];
         zoomLevel = mpView.region.span.longitudeDelta;
     }
+    
+    // save the span for detecting, when the region does not change
+    regionSpan = mpView.region.span;
 }
 
 // method for clustering
@@ -398,6 +404,12 @@
             
             // calloutBubbleIn gets called at regionDidChanged, when bool showCalloutBubble is true
             [self setShowCalloutBubble:YES];
+            
+            // when the same annotation is selected, the region does not change, so regionDidChanged
+            // doesn't get called
+            if(regionSpan.latitudeDelta == mpView.region.span.latitudeDelta) {
+                [self calloutBubbleIn];
+            }
         }   
     }
 }
@@ -512,7 +524,7 @@
     // hiding the text and stuff
     [scrollView setHidden:YES];
     [lbPageNumber setHidden:YES];
-    [btShowFlatsWebView setHidden:YES];
+//    [btShowFlatsWebView setHidden:YES];
     
     // animation
     [UIView beginAnimations:@"outAnimation" context:NULL];	
@@ -615,7 +627,7 @@
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * self.numOfScrollViewSubviews, self.scrollView.frame.size.height);
     
     // showing the not scrollview content of calloutBubble
-    [btShowFlatsWebView setHidden:NO];    
+//    [btShowFlatsWebView setHidden:NO];    
     if (numOfScrollViewSubviews > 1) { 
         // don't show label, if it is a single flat annotation
         [lbPageNumber setHidden:NO];
@@ -675,6 +687,12 @@
     } else {
         [imgView setImage:[_flat image]];
     }
+    
+    // button
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    [button addTarget:self action:@selector(showFlatsWebView) forControlEvents:UIControlEventTouchUpInside];
+    button.frame = CGRectMake(10, 40, 60, 60);
+    [subview addSubview:button];
     
     [subview addSubview:imgView];
     

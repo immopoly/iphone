@@ -33,7 +33,7 @@
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIPageControl *pageControl;
     IBOutlet UIImageView *calloutBubbleImg;
-    IBOutlet UIButton *btShowFlatsWebView;
+//    IBOutlet UIButton *btShowFlatsWebView;
     IBOutlet UILabel *lbPageNumber;
 
     IBOutlet UIImageView *imgShadowTop;
@@ -63,6 +63,7 @@
     float iphoneScaleFactorLongitude;
     CLLocationDegrees zoomLevel;
     int numOfScrollViewSubviews;
+    MKCoordinateSpan regionSpan;
     
 }
 
@@ -97,10 +98,11 @@
 @property(nonatomic, assign) int numOfScrollViewSubviews;
 @property(nonatomic, retain) IBOutlet UIPageControl *pageControl;
 @property(nonatomic, retain) IBOutlet UIImageView *calloutBubbleImg;
-@property(nonatomic, retain) IBOutlet UIButton *btShowFlatsWebView;
+// @property(nonatomic, retain) IBOutlet UIButton *btShowFlatsWebView;
 @property(nonatomic, retain) IBOutlet UILabel *lbPageNumber;
 @property(nonatomic, retain) IBOutlet UIImageView *imgShadowTop;
 @property(nonatomic, retain) IBOutlet UIImageView *imgShadowBottom;
+@property(nonatomic, assign) MKCoordinateSpan regionSpan;
 
 - (IBAction)calloutBubbleOut;
 - (void)recenterMap;
