@@ -64,7 +64,7 @@
     CLLocationDegrees zoomLevel;
     int numOfScrollViewSubviews;
     Flat *sameFlat;
-    
+    MKCoordinateSpan regionSpan;
 }
 
 @property(nonatomic, retain) UITableViewCell *tvCell;
@@ -103,6 +103,7 @@
 @property(nonatomic, retain) IBOutlet UIImageView *imgShadowTop;
 @property(nonatomic, retain) IBOutlet UIImageView *imgShadowBottom;
 @property(nonatomic, retain) Flat *sameFlat;
+@property(nonatomic, assign) MKCoordinateSpan regionSpan;
 
 - (void)calloutBubbleOut;
 - (void)recenterMap;

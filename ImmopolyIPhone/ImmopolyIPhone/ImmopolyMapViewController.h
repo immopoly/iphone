@@ -54,6 +54,7 @@
     CLLocationDegrees zoomLevel;
     int numOfScrollViewSubviews;    
     Flat *sameFlat;
+    MKCoordinateSpan regionSpan;
 }
 
 @property(nonatomic, retain) IBOutlet MKMapView *mapView;
@@ -81,6 +82,7 @@
 @property(nonatomic, retain) IBOutlet UIImageView *calloutBubbleImg;
 // @property(nonatomic, retain) IBOutlet UIButton *btShowFlatsWebView;
 @property(nonatomic, retain) Flat *sameFlat;
+@property(nonatomic, assign) MKCoordinateSpan regionSpan;
  
 - (IBAction)refreshLocation;
 - (void)setAnnotationImageAtAnnotation:(Flat *)_flat;
