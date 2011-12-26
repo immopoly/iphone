@@ -18,6 +18,7 @@
 #import "MessageHandler.h"
 #import "UserProfileViewController.h"
 #import "MissionViewController.h"
+#import "LoginCheck.h"
 
 @implementation AppDelegate
 
@@ -72,6 +73,7 @@
     missionVC = [[[MissionViewController alloc]init]autorelease];
     
     self.tabBarController = [[[CustomTabBarController alloc] init] autorelease];
+    self.tabBarController.delegate = self;
     
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:userVC,portfolioVC,mapVC,historyVC,missionVC, nil];
     [self.tabBarController addCenterButtonWithImage:[UIImage imageNamed:@"tabbar_center_icon.png"] highlightImage:nil];
@@ -98,15 +100,25 @@
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleHistoryResponse:) name:@"portfolio/remove" object:nil];
     
     [self enableAutomaticLogin];
-    
+
     sleep(3);
 
     return YES;
 }
 
-- (void)tabBarController:(UITabBarController *)tabBarController didSelectViewController:(UIViewController *)viewController {
-    [viewController viewWillAppear:YES];
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
+    /*if ([viewController class] == [PortfolioViewController class] || [viewController class] == [HistoryViewController class]  || [viewController class] == [UserProfileViewController class]){
+
+        ...
+     
+        return false;
+    }else{
+        return true;
+    }*/
+    
+    return true;
 }
+
 
 // method for getting the phone coordinates
 - (void)startLocationUpdate {
@@ -196,5 +208,6 @@
     [defaults registerDefaults:appDefaults];
     [defaults synchronize];
 }
+
 
 @end
