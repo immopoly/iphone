@@ -49,6 +49,7 @@
 @synthesize imgShadowTop;
 @synthesize imgShadowBottom;
 @synthesize sameFlat;
+@synthesize regionSpan;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil { 
@@ -318,6 +319,8 @@
         [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]];
         zoomLevel = mpView.region.span.longitudeDelta;
     }
+    // save the span for detecting, when the region did change, but the same annotation was selected
+    regionSpan.latitudeDelta = mpView.region.span.latitudeDelta;
 }
 
 // method for clustering
@@ -405,7 +408,8 @@
             // when the same annotation is selected, the region does not change, so regionDidChanged
             // doesn't get called
             if(sameFlat == location){
-                [self calloutBubbleIn];
+                if(regionSpan.latitudeDelta == mpView.region.span.latitudeDelta)
+                    [self calloutBubbleIn];
             } else {
                 sameFlat = location;
             }

@@ -40,6 +40,7 @@
 @synthesize calloutBubbleImg;
 // @synthesize btShowFlatsWebView;
 @synthesize sameFlat;
+@synthesize regionSpan;
 
 -(void)dealloc {
     [super dealloc];
@@ -182,7 +183,8 @@
             // when the same annotation is selected, the region does not change, so regionDidChanged
             // doesn't get called
             if(sameFlat == location){
-                [self calloutBubbleIn];
+                if(regionSpan.latitudeDelta == mpView.region.span.latitudeDelta)
+                    [self calloutBubbleIn];
             } else {
                 sameFlat = location;
             }
@@ -438,6 +440,8 @@
         [self filterAnnotations: [[ImmopolyManager instance] immoScoutFlats]];
         zoomLevel = mpView.region.span.longitudeDelta;
     }
+    // save the span for detecting, when the region did change, but the same annotation was selected
+    regionSpan.latitudeDelta = mpView.region.span.latitudeDelta;
 }
 
 - (void)initScrollView {
