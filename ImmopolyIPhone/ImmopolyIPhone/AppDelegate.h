@@ -11,7 +11,7 @@
 #import "CoreLocationController.h"
 #import "CustomTabBarController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate, CoreLocationControllerDelegate> {
+@interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate, CoreLocationControllerDelegate, UITabBarControllerDelegate> {
     
     // for getting phone coordinates
     CoreLocationController *CLController;
