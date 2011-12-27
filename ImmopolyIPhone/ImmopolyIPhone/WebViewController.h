@@ -52,7 +52,6 @@
 - (IBAction)flatAction;
 - (IBAction)performFacebookPost;
 - (void)reloadData;
-- (IBAction)showActionSheet:(id)sender;
 - (void) showEmail;
 - (void)enableFlatButton:(NSTimer *)_theTimer;
 - (void)showTweet;
