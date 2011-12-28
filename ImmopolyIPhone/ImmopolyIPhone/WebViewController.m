@@ -118,9 +118,6 @@
 }
 
 - (IBAction)flatAction {
-     
-    //FlatTakeOverTask *flatTask = [[FlatTakeOverTask alloc]init];
-    //[flatTask takeOverFlat:[self selectedImmoscoutFlat]];
     loginCheck.delegate = self;
     [loginCheck checkUserLogin];
 }
@@ -171,50 +168,6 @@
 }
 - (void)facebookStopedLoading {
     
-}
-
-- (IBAction)showActionSheet:(id)sender {
-
-    UIActionSheet *popupQuery = [[UIActionSheet alloc] initWithTitle:sharingActionSheetTitle delegate:self cancelButtonTitle:nil destructiveButtonTitle:@"Abbrechen" otherButtonTitles:@"Facebook", @"Twitter", @"Mail", nil];
-
-    popupQuery.actionSheetStyle = UIActionSheetStyleBlackOpaque;
-
-    [popupQuery showInView:self.view];
-
-    [popupQuery release];
-}
-
-- (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-    [actionSheet dismissWithClickedButtonIndex:0 animated:YES];
-    
-    if (buttonIndex == 1) {
-
-        [[FacebookManager getInstance] beginShare];
-        
-        //[[FacebookManager getInstance] setFacebookText:@"FacebookText"];
-        [[FacebookManager getInstance] setFacebookTitle:sharingFacebookTitle];
-        [[FacebookManager getInstance] setFacebookCaption:sharingFacebookCaption];
-        [[FacebookManager getInstance] setFacebookDescription:sharingFacebookDescription];
-        [[FacebookManager getInstance] setFacebookImage:[selectedImmoscoutFlat pictureUrl]];
-        [[FacebookManager getInstance] setFacebookLink:sharingFacebookLink];
-        //[[FacebookManager getInstance] setFacebookUserPrompt:@"FacebookPrompt"];
-        [[FacebookManager getInstance] setFacebookActionLabel:sharingFacebookActionLabel];
-        [[FacebookManager getInstance] setFacebookActionText:sharingFacebookActionText];
-        [[FacebookManager getInstance] setFacebookActionLink:[[NSString alloc]initWithFormat:@"%@%i",urlIS24MobileExpose,[selectedImmoscoutFlat exposeId]]];
-        
-        [[FacebookManager getInstance] commitShare];
-
-    }
-    else if (buttonIndex == 2) {
-        //Twitter
-        [self showTweet];
-        
-    }
-    else if (buttonIndex == 3) {
-        //Mail
-        [self showEmail];
-        
-    } 
 }
 
 - (void)showTweet {
@@ -375,27 +328,7 @@
             CGRect frame = [self shareBar].frame;
             frame.origin.x = 5;
             [self shareBar].frame = frame;
-            
-			/*CGRect frame1 = [self exposeActionButton].frame;
-			frame1.origin.x = 11;
-			[self exposeActionButton].frame = frame1;
-			
-			CGRect frame2 = [self shareButton].frame;
-			frame2.origin.x = 56;
-			[self shareButton].frame = frame2;
-			
-			CGRect frame3 = [self twitterButton].frame;
-			frame3.origin.x = 101;
-			[self twitterButton].frame = frame3;
-			
-			CGRect frame4 = [self facebookButton].frame;
-			frame4.origin.x = 182;
-			[self facebookButton].frame = frame4;
-			
-			CGRect frame5 = [self mailButton].frame;
-			frame5.origin.x = 268;
-			[self mailButton].frame = frame5;*/
-			
+            			
 			[UIView setAnimationDidStopSelector:@selector(animationEnded)];
 			[UIView commitAnimations];
 		}
@@ -411,26 +344,6 @@
             CGRect frame = [self shareBar].frame;
             frame.origin.x = 225;
             [self shareBar].frame = frame;
-			
-			/*CGRect frame1 = [self exposeActionButton].frame;
-			frame1.origin.x = 221;
-			[self exposeActionButton].frame = frame1;
-			
-			CGRect frame2 = [self shareButton].frame;
-			frame2.origin.x = 266;
-			[self shareButton].frame = frame2;
-			
-			CGRect frame3 = [self twitterButton].frame;
-			frame3.origin.x = 321;
-			[self twitterButton].frame = frame3;
-			
-			CGRect frame4 = [self facebookButton].frame;
-			frame4.origin.x = 402;
-			[self facebookButton].frame = frame4;
-			
-			CGRect frame5 = [self mailButton].frame;
-			frame5.origin.x = 488;
-			[self mailButton].frame = frame5;*/
 			
 			[UIView setAnimationDidStopSelector:@selector(animationEnded)];
 			[UIView commitAnimations];

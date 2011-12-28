@@ -23,22 +23,18 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-    if ([defaults objectForKey:@"userToken"] != nil) {
-        //get user token
-        NSString *userToken = [defaults objectForKey:@"userToken"];
-        
-        NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@add?token=%@&expose=%d",urlImmopolyPortfolio, userToken, [[self selectedImmoscoutFlat] exposeId]]];
-        
-        NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
-        
-        [self setConnection: [NSURLConnection connectionWithRequest:request delegate:self]];
-        
-        
-        if ([self connection]) {
-            [self setData: [[NSMutableData data] retain]];
-        }
-    }else{
-        //ToDo handle login
+    //get user token
+    NSString *userToken = [defaults objectForKey:@"userToken"];
+    
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@add?token=%@&expose=%d",urlImmopolyPortfolio, userToken, [[self selectedImmoscoutFlat] exposeId]]];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
+    
+    [self setConnection: [NSURLConnection connectionWithRequest:request delegate:self]];
+    
+    
+    if ([self connection]) {
+        [self setData: [[NSMutableData data] retain]];
     }
 }
 
