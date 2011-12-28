@@ -56,15 +56,16 @@
 @property(nonatomic, retain) IBOutlet UITextField *resetPasswordEmail;
 
 
-- (IBAction) performLogin;
-- (IBAction) closeMyself;
-- (IBAction) performLogin;
-- (IBAction) showRegistrationView;
-- (IBAction) performRegistration;
-- (IBAction) closeRegistration;
-- (IBAction) dismissKeyboard;
-- (IBAction) showResetPasswordView;
-- (IBAction) performResetPassword;
-- (IBAction) dismissResetPasswordView;
+- (IBAction)performLogin;
+- (IBAction)closeMyself;
+- (IBAction)performLogin;
+- (IBAction)showRegistrationView;
+- (IBAction)performRegistration;
+- (IBAction)closeRegistration;
+- (IBAction)dismissKeyboard;
+- (IBAction)showResetPasswordView;
+- (IBAction)performResetPassword;
+- (IBAction)dismissResetPasswordView;
+- (void)setTextFieldsEnabled:(BOOL)_enabeled;
 
 @end

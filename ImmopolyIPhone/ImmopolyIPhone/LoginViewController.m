@@ -85,7 +85,7 @@
 }
 
 - (IBAction)performLogin {
-    
+    [self setTextFieldsEnabled:NO];
     
     if([[userName text] length]> 0 && [[password text] length] > 0) {
     
@@ -104,6 +104,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Wrong input" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
+        [self setTextFieldsEnabled:YES];
     }
 }
 
@@ -111,6 +112,9 @@
     [spinner stopAnimating];
     [spinner setHidden:YES];
     [loginLabel setHidden:YES];
+    
+    [self setTextFieldsEnabled:YES];
+    
     if(_result) {
         //notify delegate
         [delegate notifyMyDelegateView];
@@ -145,6 +149,7 @@
 }
 
 - (IBAction)performRegistration {
+    [self setTextFieldsEnabled:NO];
     
     if([[registerUserName text] length]> 0 && [[registerUserPassword text] length] > 0) {
         [spinner setHidden:NO];
@@ -159,6 +164,7 @@
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:alertRegisterWrongInput delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
+        [self setTextFieldsEnabled:YES];
     }
 }
 
@@ -183,6 +189,8 @@
 - (void)registerWithResult:(BOOL)_result {
     [spinner stopAnimating];
     [spinner setHidden:YES];
+    
+    [self setTextFieldsEnabled:YES];
     
     if(_result) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erfolg" message:alertRegisterSuccessful delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
@@ -298,6 +306,16 @@
     resetPasswordView.center = posResetPassword;
     loginView.center = posLogin;
     [UIView commitAnimations];
+}
+
+- (void)setTextFieldsEnabled:(BOOL)_enabeled {
+    [userName setUserInteractionEnabled:_enabeled];
+    [password setUserInteractionEnabled:_enabeled];
+    
+    [registerUserName setUserInteractionEnabled:_enabeled];
+    [registerUserPassword setUserInteractionEnabled:_enabeled];
+    [registerUserEmail setUserInteractionEnabled:_enabeled];
+    [registerUserTwitter setUserInteractionEnabled:_enabeled];
 }
 
 @end
