@@ -49,4 +49,6 @@ NSString* const sharingTwitterMessage = @"Coole Wohnung! #immopoly";
 
 NSString* const sharingMailSubject = @"Super Wohnung gefunden";
 
+NSString* const errorTokenNotFound = @"Automatischer Login ist fehlgeschlagen. Bitte gib deine Anmeldedaten erneut ein.";
+
 @end

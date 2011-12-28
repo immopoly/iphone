@@ -48,4 +48,6 @@ extern NSString* const sharingTwitterMessage;
 
 extern NSString* const sharingMailSubject;
 
+extern NSString* const errorTokenNotFound;
+
 @end
