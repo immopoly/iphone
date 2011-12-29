@@ -15,7 +15,7 @@
 
 @synthesize tvCell;
 @synthesize table;
-@synthesize loginCheck;
+//@synthesize loginCheck;
 @synthesize spinner;
 @synthesize loading;
 @synthesize flagForReload;
@@ -30,7 +30,7 @@
         // Custom initialization
         self.title = NSLocalizedString(@"History", @"Fourth");
         self.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon_history"];
-        self.loginCheck = [[LoginCheck alloc] init];
+        //self.loginCheck = [[LoginCheck alloc] init];
     }
     return self;
 }
@@ -55,11 +55,14 @@
     loadingHistoryEntriesLimit = 10;
     
     [reloadDataSpinner stopAnimating];
+    
+    [self performActionAfterLoginCheck];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    loginCheck.delegate = self;
-    [loginCheck checkUserLogin];
+    //loginCheck.delegate = self;
+    //[loginCheck checkUserLogin];
+    
     [super viewDidAppear:animated];
     [[self table]reloadData];
     
@@ -231,7 +234,7 @@
 - (void)dealloc {
     [tvCell release];
     [table release];
-    [loginCheck release];
+    //[loginCheck release];
     [spinner release];
     [reloadDataSpinner release];
     [super dealloc];

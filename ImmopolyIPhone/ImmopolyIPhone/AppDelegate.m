@@ -29,11 +29,14 @@
 @synthesize geocoder;
 @synthesize adressLabel;
 
+@synthesize selectedViewController;
+
 - (void)dealloc
 {
     [_window release];
     [_tabBarController release];
     [CLController release];
+    [selectedViewController release];
     [super dealloc];
 }
 
@@ -102,21 +105,63 @@
     [self enableAutomaticLogin];
 
     sleep(3);
-
+    
     return YES;
 }
 
-- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController{
-    /*if ([viewController class] == [PortfolioViewController class] || [viewController class] == [HistoryViewController class]  || [viewController class] == [UserProfileViewController class]){
-
-        ...
-     
-        return false;
-    }else{
-        return true;
-    }*/
+- (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
+        
+    [self setSelectedViewController:viewController];
     
-    return true;
+    if([viewController class] == [MissionViewController class] || [viewController class] == [ImmopolyMapViewController class] || [[ImmopolyManager instance] loginSuccessful]) {
+        return YES;
+    }
+    else {
+        [self tryLoginWithToken];
+        return NO;
+    }
+}
+
+-(void) tryLoginWithToken {
+    
+    BOOL automaticLogin = [[NSUserDefaults standardUserDefaults] boolForKey:@"saveToken"];
+    
+    if([[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"] != nil && automaticLogin) {
+        //get user token
+        NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+        //login with token
+        UserLoginTask *loader = [[[UserLoginTask alloc] init] autorelease];
+        loader.delegate = self;
+        [loader performLoginWithToken: userToken];
+    }
+    else {
+        //show modal view controller
+        [self showLoginViewController];
+    }
+}
+
+-(void) loginWithResult:(BOOL)_result {
+    if(_result) {
+        [self.tabBarController setSelectedViewController:selectedViewController];
+    }
+    else {
+        [self showLoginViewController];
+    }
+}
+
+- (void)notifyMyDelegateView {
+    [self loginWithResult:YES];
+}
+
+- (void)closeMyDelegateView {
+    [self.tabBarController setSelectedIndex:2];
+}
+
+-(void) showLoginViewController {
+    LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
+    loginVC.delegate = self;
+    [self.tabBarController presentModalViewController: loginVC animated: YES];
+    [loginVC release];
 }
 
 
