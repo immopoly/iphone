@@ -50,6 +50,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // setting the text of the helperView
+    [super initHelperView];
+    [super setHelperViewTitle:@"Hilfe zur Benutzeransicht"];
 }
 
 
