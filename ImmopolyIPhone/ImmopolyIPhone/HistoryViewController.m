@@ -55,6 +55,10 @@
     loadingHistoryEntriesLimit = 10;
     
     [reloadDataSpinner stopAnimating];
+    
+    // setting the text of the helperView
+    [super initHelperView];
+    [super setHelperViewTitle:@"Hilfe zur Historyansicht"];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

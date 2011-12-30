@@ -10,8 +10,9 @@
 #import "UserDataDelegate.h"
 #import "LoginCheck.h"
 #import "HistoryDelegate.h"
+#import "AbstractViewController.h"
 
-@interface HistoryViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UserDataDelegate,HistoryDelegate> {
+@interface HistoryViewController : AbstractViewController <UITableViewDataSource, UITableViewDelegate, UserDataDelegate,HistoryDelegate> {
     IBOutlet UITableViewCell *tvCell;
     IBOutlet UITableView *table;
     IBOutlet UIActivityIndicatorView *spinner;

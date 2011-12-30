@@ -14,12 +14,13 @@
 #import "UserProfileViewController.h"
 #import "PortfolioViewController.h"
 #import "Flat.h"
+#import "AbstractViewController.h"
 
 #define METERS_PER_MILE 1609.344
 #define ANNO_WIDTH 40
 #define ANNO_HEIGHT 51
 
-@interface ImmopolyMapViewController : UIViewController <LocationDelegate, MKMapViewDelegate, UIPageViewControllerDelegate> {
+@interface ImmopolyMapViewController : AbstractViewController <LocationDelegate, MKMapViewDelegate, UIPageViewControllerDelegate> {
     IBOutlet UILabel *adressLabel;
     IBOutlet UILabel *lbFlatName;
     IBOutlet UILabel *lbFlatDescription;

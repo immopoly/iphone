@@ -7,7 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AbstractViewController.h"
 
-@interface MissionViewController : UIViewController
+@interface MissionViewController : AbstractViewController
 
 @end

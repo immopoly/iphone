@@ -10,8 +10,9 @@
 #import "UserDataDelegate.h"
 #import "LoginDelegate.h"
 #import "LoginCheck.h"
+#import "AbstractViewController.h"
 
-@interface UserProfileViewController : UIViewController <UserDataDelegate> {
+@interface UserProfileViewController : AbstractViewController <UserDataDelegate> {
     
     IBOutlet UILabel *hello;
     IBOutlet UILabel *bank;

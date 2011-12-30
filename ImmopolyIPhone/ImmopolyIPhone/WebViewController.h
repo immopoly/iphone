@@ -11,8 +11,9 @@
 #import "FacebookManagerDelegate.h"
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
+#import "AbstractViewController.h"
 
-@interface WebViewController : UIViewController <UIWebViewDelegate, UserDataDelegate, FacebookManagerDelegate,UIActionSheetDelegate,MFMailComposeViewControllerDelegate,UIAlertViewDelegate>{
+@interface WebViewController : AbstractViewController <UIWebViewDelegate, UserDataDelegate, FacebookManagerDelegate,UIActionSheetDelegate,MFMailComposeViewControllerDelegate,UIAlertViewDelegate>{
 	
 	IBOutlet UIWebView *webView;
     IBOutlet UIActivityIndicatorView *activityIndicator;

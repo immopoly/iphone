@@ -114,6 +114,10 @@
     iphoneScaleFactorLatitude = (float) scrWidth/ANNO_WIDTH;
     iphoneScaleFactorLongitude = (float) scrHeight/ANNO_HEIGHT;
     [self setNumOfScrollViewSubviews:0];
+    
+    // setting the text of the helperView
+    [super initHelperView];
+    [super setHelperViewTitle:@"Hilfe zur Portfolioansicht"];
 }
 
 - (void)viewDidUnload {

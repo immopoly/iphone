@@ -56,6 +56,10 @@
     [self hideLabels: YES];
     [spinner startAnimating];
     [badgesView setHidden:YES];
+    
+    // setting the text of the helperView
+    [super initHelperView];
+    [super setHelperViewTitle:@"Hilfe zur Benutzeransicht"];
 }
 
 - (void)viewDidAppear:(BOOL)animated {

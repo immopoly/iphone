@@ -12,12 +12,13 @@
 #import "Flat.h"
 #import "WebViewController.h"
 #import "AsynchronousImageView.h"
+#import "AbstractViewController.h"
 
 #define METERS_PER_MILE 1609.344
 #define ANNO_WIDTH 40
 #define ANNO_HEIGHT 51
 
-@interface PortfolioViewController : UIViewController <UITableViewDataSource, UITableViewDelegate, UserDataDelegate, MKMapViewDelegate, UIPageViewControllerDelegate> {
+@interface PortfolioViewController : AbstractViewController <UITableViewDataSource, UITableViewDelegate, UserDataDelegate, MKMapViewDelegate, UIPageViewControllerDelegate> {
     IBOutlet UITableViewCell *tvCell;
     IBOutlet UITableView *table;
     IBOutlet UILabel *adressLabel;
