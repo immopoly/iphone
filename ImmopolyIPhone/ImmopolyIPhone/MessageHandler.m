@@ -35,11 +35,11 @@
             break;
         case 61:
             //missing token
-            errorMsg = [[[NSString alloc]initWithString:errorTryAgainLater] autorelease];
+            errorMsg = [[[NSString alloc]initWithString:errorTokenNotFound] autorelease];
             break;
         case 62:
             //token not found
-            errorMsg = [[[NSString alloc]initWithString:errorTryAgainLater] autorelease];
+            errorMsg = [[[NSString alloc]initWithString:errorTokenNotFound] autorelease];
             break;
         case 101:    
             //could not login user or add expose

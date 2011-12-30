@@ -9,7 +9,6 @@
 #import "UserProfileViewController.h"
 #import "ImmopolyManager.h"
 #import "ImmopolyUser.h"
-#import "LoginViewController.h"
 #import "UserBadge.h"
 
 @implementation UserProfileViewController
@@ -18,15 +17,14 @@
 @synthesize bank;
 @synthesize miete;
 @synthesize numExposes;
-@synthesize loginCheck;
-@synthesize spinner;
+//@synthesize loginCheck;
+//@synthesize spinner;
 @synthesize labelBank;
 @synthesize labelMiete;
 @synthesize labelNumExposes;
 @synthesize badgesViewClosed;
 @synthesize badgesView;
 @synthesize showBadgesButton;
-@synthesize badgeImages;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -35,7 +33,6 @@
         // Custom initialization
         self.title = NSLocalizedString(@"User", @"Third");
         self.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon_user"];
-        self.loginCheck = [[LoginCheck alloc] init];
         self.badgesViewClosed = YES;
     }
     return self;
@@ -53,37 +50,15 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self hideLabels: YES];
-    [spinner startAnimating];
-    [badgesView setHidden:YES];
-    
-    // setting the text of the helperView
-    [super initHelperView];
-    [super setHelperViewTitle:@"Hilfe zur Benutzeransicht"];
 }
 
+
 - (void)viewDidAppear:(BOOL)animated {
-    loginCheck.delegate = self;
-    [loginCheck checkUserLogin];
+    [self performActionAfterLoginCheck];
     [super viewDidAppear:animated];
 }
 
--(void)hideLabels:(BOOL)_hidden {
-    [hello setHidden: _hidden];
-    [bank setHidden: _hidden];
-    [miete setHidden: _hidden];
-    [numExposes setHidden: _hidden];
-    [labelBank setHidden: _hidden];
-    [labelMiete setHidden: _hidden];
-    [labelNumExposes setHidden: _hidden];
-}
-
-- (void)stopSpinnerAnimation {
-    [spinner stopAnimating];
-    [spinner setHidden: YES];
-}
-
--(NSString*) formatToCurrencyWithNumber:(double)number {
+- (NSString*) formatToCurrencyWithNumber:(double)number {
     NSLocale *german = [[NSLocale alloc] initWithLocaleIdentifier:@"de_DE"]; 
     
     NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
@@ -98,21 +73,18 @@
     
     ImmopolyUser *myUser = [[ImmopolyManager instance] user];
     
-    [hello setText: [NSString stringWithFormat: @"Hello, %@!", [myUser userName]]];
-    [bank setText: [self formatToCurrencyWithNumber:[myUser balance]]];
-    [miete setText: [self formatToCurrencyWithNumber:[myUser lastRent]]];
-    //[provision setText: [self formatToCurrencyWithNumber:[myUser lastProvision]]];
-    [numExposes setText: [ NSString stringWithFormat:@"%i von %i", [myUser numExposes], [myUser maxExposes]]];
-    
-    [self stopSpinnerAnimation];
-    [self hideLabels: NO];
-    
-    if([[myUser badges] count] > 0) {
-        [self.badgesView setHidden:NO];
-        [self displayBadges];
-    }
-    else {
-        [self.badgesView setHidden:YES];
+    if(myUser != nil) {
+        [hello setText: [NSString stringWithFormat: @"Hello, %@!", [myUser userName]]];
+        [bank setText: [self formatToCurrencyWithNumber:[myUser balance]]];
+        [miete setText: [self formatToCurrencyWithNumber:[myUser lastRent]]];
+        [numExposes setText: [ NSString stringWithFormat:@"%i von %i", [myUser numExposes], [myUser maxExposes]]];
+        
+        if([[myUser badges] count] > 0) {
+            [self displayBadges];
+        }
+        else {
+            [self.badgesView setHidden:YES];
+        }
     }
 }
 
@@ -161,10 +133,8 @@
     self.labelBank = nil;
     self.labelMiete = nil;
     self.labelNumExposes = nil;
-    self.spinner = nil;
     self.badgesView = nil;
     self.showBadgesButton = nil;
-    self.badgeImages = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -199,11 +169,8 @@
     [labelBank release];
     [labelMiete release];
     [labelNumExposes release];
-    [loginCheck release];
-    [spinner release];
     [badgesView release];
     [showBadgesButton release];
-    [badgeImages release];
     [super dealloc];
 }
 

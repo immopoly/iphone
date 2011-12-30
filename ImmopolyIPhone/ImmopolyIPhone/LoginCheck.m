@@ -17,6 +17,7 @@
 
 @synthesize delegate;
 
+
 - (void)checkUserLogin {
     
     //For tests

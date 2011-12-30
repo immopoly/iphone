@@ -8,7 +8,7 @@
 
 #import <MapKit/MapKit.h>
 #import "UserDataDelegate.h"
-#import "LoginCheck.h"
+//#import "LoginCheck.h"
 #import "Flat.h"
 #import "WebViewController.h"
 #import "AsynchronousImageView.h"
@@ -41,7 +41,7 @@
     IBOutlet UIImageView *imgShadowBottom;
 
     
-    LoginCheck *loginCheck;
+    //LoginCheck *loginCheck;
     
     WebViewController *exposeWebViewController;
     
@@ -72,7 +72,7 @@
 @property(nonatomic, retain) UITableView *table;
 @property(nonatomic, retain) IBOutlet UISegmentedControl *segmentedControl;
 @property(nonatomic, retain) IBOutlet MKMapView *portfolioMapView;
-@property(nonatomic, retain) LoginCheck *loginCheck;
+//@property(nonatomic, retain) LoginCheck *loginCheck;
 @property(nonatomic, retain) IBOutlet UIView *calloutBubble;
 @property(nonatomic, assign) bool isCalloutBubbleIn;
 @property(nonatomic, assign) bool isOutInCall;

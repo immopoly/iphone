@@ -10,12 +10,15 @@
 #import "ASIHTTPRequest.h"
 #import "CoreLocationController.h"
 #import "CustomTabBarController.h"
+#import "LoginCheck.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate, CoreLocationControllerDelegate, UITabBarControllerDelegate> {
+@interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate, CoreLocationControllerDelegate, UITabBarControllerDelegate, UserDataDelegate, LoginDelegate, NotifyViewDelegate> {
     
     // for getting phone coordinates
     CoreLocationController *CLController;
     CLGeocoder *geocoder;
+    LoginCheck *loginCheck;
+    UIViewController *selectedViewController;
 }
 
 @property (retain, nonatomic) UIWindow *window;
@@ -25,10 +28,16 @@
 @property(nonatomic, retain) CLGeocoder *geocoder;
 @property(nonatomic, retain) IBOutlet UILabel *adressLabel;
 
+@property(nonatomic, retain) UIViewController *selectedViewController;
+
+
 - (void)startLocationUpdate;
 - (void)geocodeLocation:(CLLocation *)_location;
 - (void)handleHistoryResponse:(NSNotification *)_notification;
 - (void)handleErrorMsg:(NSNotification *)_notification;
 - (void)enableAutomaticLogin;
+
+-(void) showLoginViewController;
+-(void) tryLoginWithToken;
 
 @end

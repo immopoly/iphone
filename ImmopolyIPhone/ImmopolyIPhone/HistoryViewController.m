@@ -15,7 +15,7 @@
 
 @synthesize tvCell;
 @synthesize table;
-@synthesize loginCheck;
+//@synthesize loginCheck;
 @synthesize spinner;
 @synthesize loading;
 @synthesize flagForReload;
@@ -30,7 +30,7 @@
         // Custom initialization
         self.title = NSLocalizedString(@"History", @"Fourth");
         self.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon_history"];
-        self.loginCheck = [[LoginCheck alloc] init];
+        //self.loginCheck = [[LoginCheck alloc] init];
     }
     return self;
 }
@@ -56,14 +56,17 @@
     
     [reloadDataSpinner stopAnimating];
     
+    [self performActionAfterLoginCheck];
+    
     // setting the text of the helperView
     [super initHelperView];
     [super setHelperViewTitle:@"Hilfe zur Historyansicht"];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    loginCheck.delegate = self;
-    [loginCheck checkUserLogin];
+    //loginCheck.delegate = self;
+    //[loginCheck checkUserLogin];
+    
     [super viewDidAppear:animated];
     [[self table]reloadData];
     
@@ -235,7 +238,7 @@
 - (void)dealloc {
     [tvCell release];
     [table release];
-    [loginCheck release];
+    //[loginCheck release];
     [spinner release];
     [reloadDataSpinner release];
     [super dealloc];
