@@ -258,7 +258,7 @@
 	[UIView setAnimationDuration:0.4];
 	CGPoint posResetPassword = resetPasswordView.center;
     CGPoint posLogin = loginView.center;
-	posResetPassword.x = 160.0f;
+	posResetPassword.x = 170.0f;
     posLogin.x = 480.0f;
     resetPasswordView.center = posResetPassword;
     loginView.center = posLogin;
