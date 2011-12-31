@@ -56,6 +56,11 @@
 		6DA75D33145C15BF0079B32C /* SBJsonUTF8Stream.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75D26145C15BF0079B32C /* SBJsonUTF8Stream.m */; };
 		6DA75D34145C15BF0079B32C /* SBJsonWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75D28145C15BF0079B32C /* SBJsonWriter.m */; };
 		6DA75D99145C4B180079B32C /* PortfolioCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DA75D97145C4B170079B32C /* PortfolioCell.xib */; };
+		6DB1E07C14AE517B005E858E /* helperText_mapView.html in Resources */ = {isa = PBXBuildFile; fileRef = 6DB1E07B14AE517B005E858E /* helperText_mapView.html */; };
+		6DB1E07E14AE539F005E858E /* helperText_portfolioView.html in Resources */ = {isa = PBXBuildFile; fileRef = 6DB1E07D14AE539F005E858E /* helperText_portfolioView.html */; };
+		6DB1E08014AE53EE005E858E /* helperText_historyView.html in Resources */ = {isa = PBXBuildFile; fileRef = 6DB1E07F14AE53EE005E858E /* helperText_historyView.html */; };
+		6DB1E08214AE542C005E858E /* helperText_userView.html in Resources */ = {isa = PBXBuildFile; fileRef = 6DB1E08114AE542C005E858E /* helperText_userView.html */; };
+		6DB1E08414AE54E0005E858E /* helperText_webView.html in Resources */ = {isa = PBXBuildFile; fileRef = 6DB1E08314AE54E0005E858E /* helperText_webView.html */; };
 		6DB4EAD314ADC2AE0057B16E /* AbstractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB4EAD214ADC2AE0057B16E /* AbstractViewController.m */; };
 		6DB4EAD714ADCBDB0057B16E /* pw_cancel_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB4EAD614ADCBDB0057B16E /* pw_cancel_button.png */; };
 		6DB4EAD914ADCBED0057B16E /* password_top_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB4EAD814ADCBED0057B16E /* password_top_cell.png */; };
@@ -278,6 +283,11 @@
 		6DA75D27145C15BF0079B32C /* SBJsonWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SBJsonWriter.h; sourceTree = "<group>"; };
 		6DA75D28145C15BF0079B32C /* SBJsonWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SBJsonWriter.m; sourceTree = "<group>"; };
 		6DA75D97145C4B170079B32C /* PortfolioCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortfolioCell.xib; sourceTree = "<group>"; };
+		6DB1E07B14AE517B005E858E /* helperText_mapView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = helperText_mapView.html; sourceTree = "<group>"; };
+		6DB1E07D14AE539F005E858E /* helperText_portfolioView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = helperText_portfolioView.html; sourceTree = "<group>"; };
+		6DB1E07F14AE53EE005E858E /* helperText_historyView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = helperText_historyView.html; sourceTree = "<group>"; };
+		6DB1E08114AE542C005E858E /* helperText_userView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = helperText_userView.html; sourceTree = "<group>"; };
+		6DB1E08314AE54E0005E858E /* helperText_webView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = helperText_webView.html; sourceTree = "<group>"; };
 		6DB4EAD114ADC2AE0057B16E /* AbstractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractViewController.h; sourceTree = "<group>"; };
 		6DB4EAD214ADC2AE0057B16E /* AbstractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractViewController.m; sourceTree = "<group>"; };
 		6DB4EAD614ADCBDB0057B16E /* pw_cancel_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pw_cancel_button.png; sourceTree = "<group>"; };
@@ -728,6 +738,11 @@
 		D24E7647145834DA003C91A8 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				6DB1E08314AE54E0005E858E /* helperText_webView.html */,
+				6DB1E08114AE542C005E858E /* helperText_userView.html */,
+				6DB1E07F14AE53EE005E858E /* helperText_historyView.html */,
+				6DB1E07D14AE539F005E858E /* helperText_portfolioView.html */,
+				6DB1E07B14AE517B005E858E /* helperText_mapView.html */,
 				D24E7648145834DA003C91A8 /* ImmopolyIPhone-Info.plist */,
 				D24E7649145834DA003C91A8 /* InfoPlist.strings */,
 				D24E764C145834DA003C91A8 /* main.m */,
@@ -1080,6 +1095,11 @@
 				6DB4EAD914ADCBED0057B16E /* password_top_cell.png in Resources */,
 				6DB4EADB14ADCBFF0057B16E /* send_button.png in Resources */,
 				6DB4EADD14ADCC170057B16E /* top_bar_password.png in Resources */,
+				6DB1E07C14AE517B005E858E /* helperText_mapView.html in Resources */,
+				6DB1E07E14AE539F005E858E /* helperText_portfolioView.html in Resources */,
+				6DB1E08014AE53EE005E858E /* helperText_historyView.html in Resources */,
+				6DB1E08214AE542C005E858E /* helperText_userView.html in Resources */,
+				6DB1E08414AE54E0005E858E /* helperText_webView.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

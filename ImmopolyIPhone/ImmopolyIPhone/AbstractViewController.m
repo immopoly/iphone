@@ -11,6 +11,8 @@
 @implementation AbstractViewController
 
 @synthesize helperView;
+@synthesize helperViewBubble;
+@synthesize btHelperViewIn;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -54,24 +56,29 @@
 }
 
 - (void)initButton {
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button addTarget:self action:@selector(helperViewIn) forControlEvents:UIControlEventTouchUpInside];
-    button.frame = CGRectMake(0, 0, 40, 40);
-    [[self view] addSubview:button];
+    btHelperViewIn = [UIButton buttonWithType:UIButtonTypeCustom];
+    [btHelperViewIn addTarget:self action:@selector(helperViewIn) forControlEvents:UIControlEventTouchUpInside];
+    btHelperViewIn.frame = CGRectMake(0, 0, 40, 40);
+    [[self view] addSubview:btHelperViewIn];
 }
 
 - (void)initHelperView {
-    helperView = [[UIView alloc] initWithFrame:CGRectMake(20, -310, 280, 310)];
-    helperView.backgroundColor = [UIColor whiteColor];
-    [[self view] addSubview:helperView];
+    helperView = [[UIView alloc] initWithFrame:CGRectMake(0, -370, 320, 370)];
+    
+    helperViewBubble = [[UIView alloc] initWithFrame:CGRectMake(20, 30, 280, 310)];
+    helperViewBubble.backgroundColor = [UIColor whiteColor];
     
     UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
     [button addTarget:self action:@selector(helperViewOut) forControlEvents:UIControlEventTouchUpInside];
     button.frame = CGRectMake(240, 10, 30, 30);
-    [helperView addSubview:button];
+    
+    [helperViewBubble addSubview:button];
+    [helperView addSubview:helperViewBubble];
+    [[self view] addSubview:helperView];
 }
 
 - (void)helperViewIn {
+    NSLog(@"hpvin");
     [UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.4];
     CGPoint pos = helperView.center;
@@ -89,15 +96,32 @@
     [UIView commitAnimations];
 }
 
-- (void)setHelperViewTitle:(NSString *)title {
+- (void)setHelperViewTitle:(NSString *)_viewTitle {
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, 10, 200, 30)];
     [lbTitle setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(15.0)]];
     [lbTitle setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
     [lbTitle setTextColor:[UIColor blackColor]];
     [lbTitle setTextAlignment:UITextAlignmentCenter];
-    [lbTitle setText:title];
+    [lbTitle setText:_viewTitle];
     
-    [helperView addSubview:lbTitle];
+    [helperViewBubble addSubview:lbTitle];
 }
 
+- (void)setHelperViewTextWithFile:(NSString *)_fileName {
+    /*
+    UITextView *tvText = [[UITextView alloc] initWithFrame:CGRectMake(10, 50, 270, 250)];
+    [tvText setEditable:NO];
+    [tvText setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
+    [tvText setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
+    [tvText setTextColor:[UIColor blackColor]];
+    NSString *text = [[NSString alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource: _fileName ofType: @"html"] encoding:NSUTF8StringEncoding error:nil];
+    [tvText setText:text];
+    [helperViewBubble addSubview:tvText];
+     */
+    NSString *html = [[NSString alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource: _fileName ofType: @"html"] encoding:NSUTF8StringEncoding error:nil];
+    UIWebView *webview = [[UIWebView alloc] initWithFrame:CGRectMake(10, 50, 270, 250)];
+    [webview loadHTMLString:html baseURL:nil];
+    webview.backgroundColor = [UIColor whiteColor];
+    [helperViewBubble addSubview:webview];
+}
 @end

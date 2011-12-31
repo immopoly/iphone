@@ -100,6 +100,7 @@
     // setting the text of the helperView
     [super initHelperView];
     [super setHelperViewTitle:@"Hilfe zur Kartenansicht"];
+    [super setHelperViewTextWithFile:@"helperText_mapView"];
 }
 
 - (void)viewDidUnload {
