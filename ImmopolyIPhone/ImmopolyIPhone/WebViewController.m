@@ -56,7 +56,7 @@
     [flatActionButton setTitle: @"Disabled" forState: UIControlStateDisabled];
     [[self flatActionButton]setEnabled:NO];
     
-   // NSTimer *rat =[NSTimer scheduledTimerWithTimeInterval:(5) target:self selector:@selector(enableFlatButton:) userInfo:nil repeats:NO]; 
+    NSTimer *rat =[NSTimer scheduledTimerWithTimeInterval:(5) target:self selector:@selector(enableFlatButton:) userInfo:nil repeats:NO]; 
     
     // setting the text of the helperView
     [super initHelperView];
