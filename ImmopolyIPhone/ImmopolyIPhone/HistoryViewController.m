@@ -26,7 +26,6 @@
 @synthesize loadingHistoryEntriesLimit;
 @synthesize loadingHistoryEntriesStart;
 @synthesize reloadDataSpinner;
-@synthesize selectedHistoryEntry;
 @synthesize lbTime;
 @synthesize lbText;
 @synthesize btShareBack;
@@ -70,9 +69,9 @@
     // setting the text of the helperView
     //[super initHelperView];
     
-    [super initHelperView];
-    [super setHelperViewTitle:@"Hilfe zur Historyansicht"];
-    [super setHelperViewTextWithFile:@"helperText_historyView"];
+    // [super initHelperView];
+    //[super setHelperViewTitle:@"Hilfe zur Historyansicht"];
+    //[super setHelperViewTextWithFile:@"helperText_historyView"];
     
     // set this controller to facebook delegate stuff
     [[FacebookManager getInstance] set_APP_KEY:facebookAppKey];
@@ -146,8 +145,8 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"selected row %d",[indexPath row]);
     
-    selectedHistoryEntry = [[[[ImmopolyManager instance] user] history] objectAtIndex:[indexPath row]];
-    [selectedHistoryEntry setIsSharingActivated:YES];
+    HistoryEntry *histEntry = [[[[ImmopolyManager instance] user] history] objectAtIndex:[indexPath row]];
+    [histEntry setIsSharingActivated:YES];
     
     // hiding the text and showing the buttons for sharing an entry
     UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
@@ -164,8 +163,21 @@
     [self viewFadeIn:btTwitter];
 }
 
--(IBAction)showCellLabels {
-    [selectedHistoryEntry setIsSharingActivated:NO];
+-(IBAction)showCellLabels:(id)sender{
+    
+    UIView *senderButton = (UIView*) sender;
+    NSIndexPath *indexPath = [table indexPathForCell: (UITableViewCell*)[[senderButton superview]superview]];
+    
+    UITableViewCell *selectedCell = [table cellForRowAtIndexPath:indexPath];
+    lbTime = (UILabel *)[selectedCell viewWithTag:1];
+    lbText = (UILabel *)[selectedCell viewWithTag:2];
+    btShareBack = (UIButton *)[selectedCell viewWithTag:4];
+    btFacebook = (UIButton *)[selectedCell viewWithTag:5];
+    btTwitter = (UIButton *)[selectedCell viewWithTag:6];
+    
+    HistoryEntry *histEntry = [[[[ImmopolyManager instance] user] history] objectAtIndex: indexPath.row];
+    [histEntry setIsSharingActivated:NO];
+    
 
     [self viewFadeIn:lbTime];
     [self viewFadeIn:lbText];
@@ -192,10 +204,10 @@
     btFacebook = (UIButton *)[cell viewWithTag:5];
     btTwitter = (UIButton *)[cell viewWithTag:6];
     
-    // adding the actions because in xib not visible yet
-    [btShareBack addTarget:self action:@selector(showCellLabels) forControlEvents:UIControlEventTouchUpInside];
-    [btFacebook addTarget:self action:@selector(facebook) forControlEvents:UIControlEventTouchUpInside];
-    [btTwitter addTarget:self action:@selector(twitter) forControlEvents:UIControlEventTouchUpInside];
+     //adding the actions because in xib not visible yet
+    [btShareBack addTarget:self action:@selector(showCellLabels:) forControlEvents:UIControlEventTouchUpInside];
+    /*[btFacebook addTarget:self action:@selector(facebook) forControlEvents:UIControlEventTouchUpInside];
+    [btTwitter addTarget:self action:@selector(twitter) forControlEvents:UIControlEventTouchUpInside];*/
     
     // fetching the selected history entry
     HistoryEntry *historyEntry;
@@ -331,7 +343,13 @@
     [UIView commitAnimations];
 }
 
-- (IBAction)facebook {
+- (IBAction)facebook:(id)sender{ 
+    
+    UIView *senderButton = (UIView*) sender;
+    NSIndexPath *indexPath = [table indexPathForCell: (UITableViewCell*)[[senderButton superview]superview]];
+    
+    HistoryEntry *histEntry = [[[[ImmopolyManager instance] user] history] objectAtIndex: indexPath.row];
+    
     
     [[FacebookManager getInstance] beginShare];
     
@@ -341,7 +359,7 @@
     //[[FacebookManager getInstance] setFacebookImage:[selectedImmoscoutFlat pictureUrl]];
     [[FacebookManager getInstance] setFacebookLink:sharingFacebookLink];
     [[FacebookManager getInstance] setFacebookActionLabel:sharingFacebookActionLabel];
-    [[FacebookManager getInstance] setFacebookActionText:[selectedHistoryEntry histText]];
+    [[FacebookManager getInstance] setFacebookActionText:[histEntry histText]];
     [[FacebookManager getInstance] setFacebookActionLink:sharingFacebookLink];
     //[[FacebookManager getInstance] setFacebookText:[selectedHistoryEntry histText]];
     
@@ -353,11 +371,9 @@
 - (void)facebookStartedLoading {}
 - (void)facebookStopedLoading {}
 
-- (IBAction)twitter {
-    [self showTweet];
-}
 
-- (void)showTweet {
+
+- (IBAction)twitter:(id)sender{
     Class twitterClass = NSClassFromString(@"TWTweetComposeViewController");
     
     if(!twitterClass) {
@@ -372,8 +388,14 @@
             [alert release]; 
         }
         else {
+            
+            UIView *senderButton = (UIView*) sender;
+            NSIndexPath *indexPath = [table indexPathForCell: (UITableViewCell*)[[senderButton superview]superview]];
+            
+            HistoryEntry *histEntry = [[[[ImmopolyManager instance] user] history] objectAtIndex: indexPath.row];
+            
             TWTweetComposeViewController *tweetView = [[TWTweetComposeViewController alloc] init];
-            [tweetView setInitialText:[selectedHistoryEntry histText]];
+            [tweetView setInitialText:[histEntry histText]];
            // NSString *url = [NSString stringWithFormat:@"%@%i", urlIS24MobileExpose,[selectedImmoscoutFlat exposeId]];
             
            // if(![tweetView addURL:[NSURL URLWithString:url]]) {

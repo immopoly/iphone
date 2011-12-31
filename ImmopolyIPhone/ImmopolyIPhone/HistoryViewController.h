@@ -32,7 +32,7 @@
     int loadingHistoryEntriesStart;
     int loadingHistoryEntriesLimit;
     
-    HistoryEntry *selectedHistoryEntry;
+    
     
 }
 
@@ -45,7 +45,7 @@
 @property(nonatomic, assign) int loadingHistoryEntriesStart;
 @property(nonatomic, assign) int loadingHistoryEntriesLimit;
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *reloadDataSpinner;
-@property(nonatomic, retain) HistoryEntry *selectedHistoryEntry;
+
 @property(nonatomic, retain) IBOutlet UILabel *lbTime;
 @property(nonatomic, retain) IBOutlet UILabel *lbText;
 @property(nonatomic, retain) IBOutlet UIButton *btShareBack;
@@ -53,11 +53,12 @@
 @property(nonatomic, retain) IBOutlet UIButton *btTwitter;
 
 - (void)stopSpinnerAnimation;
-- (IBAction)showCellLabels;
+//- (IBAction)showCellLabels;
 - (void)viewFadeIn:(UIView *)view;
 - (void)viewFadeOut:(UIView *)view;
-- (IBAction)facebook;
-- (IBAction)twitter;
-- (void)showTweet;
+- (IBAction)facebook:(id)sender;
+- (IBAction)twitter:(id)sender;
+
+-(IBAction)showCellLabels:(id)sender;
 
 @end
