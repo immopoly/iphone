@@ -118,9 +118,8 @@
     //[self performActionAfterLoginCheck];
     
     // setting the text of the helperView
-    [super initHelperView];
-    [super setHelperViewTitle:@"Hilfe zur Portfolioansicht"];
-    [super setHelperViewTextWithFile:@"helperText_portfolioView"];
+    [super initHelperViewWithMode:2];
+   
 }
 
 - (void)viewDidUnload {

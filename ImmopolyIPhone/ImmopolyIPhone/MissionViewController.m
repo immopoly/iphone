@@ -37,8 +37,8 @@
     // Do any additional setup after loading the view from its nib.
     
     // setting the text of the helperView
-    [super initHelperView];
-    [super setHelperViewTitle:@"Hilfe zur Missionsansicht"];
+    //[super initHelperView];
+    
 }
 
 - (void)viewDidUnload

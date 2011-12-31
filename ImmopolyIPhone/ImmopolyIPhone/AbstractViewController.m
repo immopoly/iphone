@@ -7,12 +7,16 @@
 //
 
 #import "AbstractViewController.h"
+#import "Constants.h"
 
 @implementation AbstractViewController
 
 @synthesize helperView;
 @synthesize helperViewBubble;
 @synthesize btHelperViewIn;
+@synthesize helperBackground;
+@synthesize helperScroll;
+@synthesize helperTextImage;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -21,6 +25,17 @@
         // Custom initialization
     }
     return self;
+}
+
+-(void)dealloc{
+    [super dealloc];
+    
+    [self.helperView release];
+    [self.helperBackground release];
+    [self.helperScroll release];
+    [self.helperTextImage release];
+    [self.helperViewBubble release];
+    [self.btHelperViewIn release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,15 +53,20 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    [self initHelperView];
+    //[self initHelperView];
     [self initButton];
 }
 
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    
+    self.helperView = nil;
+    self.helperBackground = nil;
+    self.helperScroll = nil;
+    self.helperTextImage = nil;
+    self.helperViewBubble = nil;
+    self.btHelperViewIn = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -62,15 +82,51 @@
     [[self view] addSubview:btHelperViewIn];
 }
 
-- (void)initHelperView {
+- (void)initHelperViewWithMode:(int)_infoMode {
     helperView = [[UIView alloc] initWithFrame:CGRectMake(0, -370, 320, 370)];
     
-    helperViewBubble = [[UIView alloc] initWithFrame:CGRectMake(20, 30, 280, 310)];
-    helperViewBubble.backgroundColor = [UIColor whiteColor];
+    helperViewBubble = [[UIView alloc] initWithFrame:CGRectMake(18, 30, 283, 329)];
+
+    helperBackground = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_background"]];
+
+    helperScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 10, 284, 310)];
     
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+    helperScroll.scrollEnabled = YES;
+
+    helperScroll.showsVerticalScrollIndicator = NO;
+    
+    switch (_infoMode) {
+        case 1:
+            helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_map"]];
+            helperTextImage.frame = CGRectMake(0, 0, 283, 380);    
+        break;
+            
+        case 2:
+            helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_portfolio"]];
+            helperTextImage.frame = CGRectMake(0, 0, 284, 382);    
+        break;
+            
+        default:
+            break;
+    }
+    
+    
+    
+    helperScroll.contentSize = CGSizeMake(helperTextImage.frame.size.width, helperTextImage.frame.size.height-10);
+    
+    [helperScroll addSubview:helperTextImage];
+    
+    [helperViewBubble addSubview:helperBackground];
+    
+    [helperViewBubble addSubview:helperScroll];    
+    
+    
+    
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
     [button addTarget:self action:@selector(helperViewOut) forControlEvents:UIControlEventTouchUpInside];
-    button.frame = CGRectMake(240, 10, 30, 30);
+    [button setImage:[UIImage imageNamed:@"close_info_button"] forState:UIControlStateNormal];
+    
+    button.frame = CGRectMake(228, 5, 50, 52);
     
     [helperViewBubble addSubview:button];
     [helperView addSubview:helperViewBubble];
@@ -82,7 +138,7 @@
     [UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.4];
     CGPoint pos = helperView.center;
-    pos.y = 230.0f;
+    pos.y = 217.0f;
     helperView.center = pos;
     [UIView commitAnimations];
 }
@@ -96,7 +152,7 @@
     [UIView commitAnimations];
 }
 
-- (void)setHelperViewTitle:(NSString *)_viewTitle {
+/*- (void)setHelperViewTitle:(NSString *)_viewTitle {
     UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, 10, 200, 30)];
     [lbTitle setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(15.0)]];
     [lbTitle setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
@@ -105,9 +161,37 @@
     [lbTitle setText:_viewTitle];
     
     [helperViewBubble addSubview:lbTitle];
-}
+}*/
 
-- (void)setHelperViewTextWithFile:(NSString *)_fileName {
+- (void)setHelperViewTextWithFile:(int)_infoMode {
+    
+
+    
+    /*switch (_infoMode) {
+        case infoModeWelcome:
+            
+            break;
+        
+        case infoModeMap:
+            
+            break;
+        
+        case infoModePortfolio:
+            
+            break;
+            
+        case infoModeExpose:
+            
+            break;
+            
+        case infoModeHistory:
+            
+            break;
+            
+        default:
+            break;
+    }*/
+    
     /*
     UITextView *tvText = [[UITextView alloc] initWithFrame:CGRectMake(10, 50, 270, 250)];
     [tvText setEditable:NO];
@@ -118,10 +202,13 @@
     [tvText setText:text];
     [helperViewBubble addSubview:tvText];
      */
-    NSString *html = [[NSString alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource: _fileName ofType: @"html"] encoding:NSUTF8StringEncoding error:nil];
+    
+    /*NSString *html = [[NSString alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource: _fileName ofType: @"html"] encoding:NSUTF8StringEncoding error:nil];
     UIWebView *webview = [[UIWebView alloc] initWithFrame:CGRectMake(10, 50, 270, 250)];
     [webview loadHTMLString:html baseURL:nil];
     webview.backgroundColor = [UIColor whiteColor];
-    [helperViewBubble addSubview:webview];
+    [helperViewBubble addSubview:webview];*/
+    
+    
 }
 @end

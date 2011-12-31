@@ -59,9 +59,8 @@
     //[self performActionAfterLoginCheck];
     
     // setting the text of the helperView
-    [super initHelperView];
-    [super setHelperViewTitle:@"Hilfe zur Historyansicht"];
-    [super setHelperViewTextWithFile:@"helperText_historyView"];
+    //[super initHelperView];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {

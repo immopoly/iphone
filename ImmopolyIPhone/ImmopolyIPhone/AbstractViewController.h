@@ -10,6 +10,9 @@
 
 @interface AbstractViewController : UIViewController {
     UIView *helperView;
+    UIImageView *helperBackground;
+    UIScrollView *helperScroll;
+    UIImageView *helperTextImage;
     UIView *helperViewBubble;
     UIButton *btHelperViewIn;
 }
@@ -17,12 +20,13 @@
 @property(nonatomic, retain) UIView *helperView;
 @property(nonatomic, retain) UIView *helperViewBubble;
 @property(nonatomic, retain) UIButton *btHelperViewIn;
+@property(nonatomic, retain) UIImageView *helperBackground;
+@property(nonatomic, retain) UIScrollView *helperScroll;
+@property(nonatomic, retain) UIImageView *helperTextImage;
 
 - (void)initButton;
-- (void)initHelperView;
+- (void)initHelperViewWithMode:(int)_infoMode;
 - (void)helperViewIn;
 - (void)helperViewOut;
-- (void)setHelperViewTitle:(NSString *)_viewTitle;
-- (void)setHelperViewTextWithFile:(NSString *)_fileName;
 
 @end
