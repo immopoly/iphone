@@ -55,8 +55,17 @@
     [flatActionButton setTitle: @"Disabled" forState: UIControlStateDisabled];
     [[self flatActionButton]setEnabled:NO];
     
-    NSTimer *rat =[NSTimer scheduledTimerWithTimeInterval:(5) target:self selector:@selector(enableFlatButton:) userInfo:nil repeats:NO]; 
+   // NSTimer *rat =[NSTimer scheduledTimerWithTimeInterval:(5) target:self selector:@selector(enableFlatButton:) userInfo:nil repeats:NO]; 
     
+    // setting the text of the helperView
+    [super initHelperView];
+    [super initButton];
+    [super setHelperViewTitle:@"Hilfe zur Exposéansicht"];
+    [super setHelperViewTextWithFile:@"helperText_webView"];
+    //moving the button to the right site
+    CGPoint pos = btHelperViewIn.center; 
+    pos.x = 300.0f;
+    [btHelperViewIn setCenter:pos];
 }
 
 -(void)enableFlatButton:(NSTimer *)_theTimer {

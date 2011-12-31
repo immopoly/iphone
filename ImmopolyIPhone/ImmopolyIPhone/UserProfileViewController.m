@@ -54,6 +54,7 @@
     // setting the text of the helperView
     [super initHelperView];
     [super setHelperViewTitle:@"Hilfe zur Benutzeransicht"];
+    [super setHelperViewTextWithFile:@"helperText_userView"];
 }
 
 

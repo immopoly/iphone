@@ -120,6 +120,7 @@
     // setting the text of the helperView
     [super initHelperView];
     [super setHelperViewTitle:@"Hilfe zur Portfolioansicht"];
+    [super setHelperViewTextWithFile:@"helperText_portfolioView"];
 }
 
 - (void)viewDidUnload {

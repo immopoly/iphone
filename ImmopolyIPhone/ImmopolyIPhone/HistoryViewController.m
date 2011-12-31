@@ -61,6 +61,7 @@
     // setting the text of the helperView
     [super initHelperView];
     [super setHelperViewTitle:@"Hilfe zur Historyansicht"];
+    [super setHelperViewTextWithFile:@"helperText_historyView"];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
