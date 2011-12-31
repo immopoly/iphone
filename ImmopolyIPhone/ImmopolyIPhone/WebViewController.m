@@ -27,6 +27,7 @@
 @synthesize animating;
 @synthesize buttonsVisible;
 @synthesize shareBar;
+@synthesize spinner;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -98,6 +99,7 @@
 - (void)dealloc {
 	[webView release];
     [activityIndicator release];
+    [spinner release];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [loginCheck release];
 	[super dealloc];
@@ -118,8 +120,17 @@
 }
 
 - (IBAction)flatAction {
+    [spinner startAnimating];
+    
     loginCheck.delegate = self;
     [loginCheck checkUserLogin];
+    
+    [self.flatActionButton setEnabled:NO];
+}
+
+- (void)stopSpinnerAnimation {
+    [spinner stopAnimating];
+    //[spinner setHidden: YES];
 }
 
 - (void)performActionAfterLoginCheck {
@@ -128,8 +139,11 @@
         
         UIAlertView *removeFlatDialog = [[UIAlertView alloc]initWithTitle:@"Expose abgeben" message:alertExposeGiveAwayWarning delegate:self cancelButtonTitle:@"Nein" otherButtonTitles:@"Ja", nil];
         
+        removeFlatDialog.delegate = self;
         [removeFlatDialog show];
         [removeFlatDialog release];
+        
+        [self.flatActionButton setEnabled:YES];
         
     }else{
         FlatTakeOverTask *flatTakeOverTask = [[FlatTakeOverTask alloc]init];
@@ -140,23 +154,26 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    [self stopSpinnerAnimation];
     FlatRemoveTask *flatRemoveTask = [[FlatRemoveTask alloc]init];
     
     switch (buttonIndex) {
         //Nein
         case 0:
+            [self.flatActionButton setEnabled:YES];
             [flatRemoveTask release];
         break;
         //Ja                
         case 1:
             [flatRemoveTask removeFlat:[self selectedImmoscoutFlat]];
+            [flatRemoveTask release];
         break;
             
         default:
             break;
     }   
-    [self.view removeFromSuperview];
-    [flatRemoveTask release];
+    //[self.view removeFromSuperview];
+    
 }
 
 -(IBAction)performFacebookPost {
@@ -392,6 +409,7 @@
     self.facebookButton = nil;
     self.mailButton = nil;
     self.shareBar = nil;
+    self.spinner = nil;
 }
 
 

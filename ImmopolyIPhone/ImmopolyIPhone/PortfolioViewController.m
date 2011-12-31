@@ -17,7 +17,7 @@
 @synthesize table;
 @synthesize segmentedControl;
 @synthesize portfolioMapView;
-//@synthesize loginCheck;
+@synthesize loginCheck;
 @synthesize calloutBubble;
 @synthesize isOutInCall;
 @synthesize isCalloutBubbleIn;
@@ -58,14 +58,14 @@
         // Custom initialization
         self.title = NSLocalizedString(@"Portfolio", @"Second");
         self.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon_portfolio"];
-        //self.loginCheck = [[LoginCheck alloc] init];
+        self.loginCheck = [[LoginCheck alloc] init];
     }
     return self;
 }
 
 - (void)dealloc {
     [segmentedControl release];
-    //[loginCheck release];
+    [loginCheck release];
     [spinner release];
     [exposeWebViewController release];
     [super dealloc];
@@ -115,7 +115,7 @@
     iphoneScaleFactorLongitude = (float) scrHeight/ANNO_HEIGHT;
     [self setNumOfScrollViewSubviews:0];
     
-    [self performActionAfterLoginCheck];
+    //[self performActionAfterLoginCheck];
     
     // setting the text of the helperView
     [super initHelperView];
@@ -140,8 +140,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    //loginCheck.delegate = self;
-    //[loginCheck checkUserLogin];
+    loginCheck.delegate = self;
+    [loginCheck checkUserLogin];
     
     [super viewDidAppear:animated];
     [[self table]reloadData];

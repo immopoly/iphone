@@ -17,7 +17,7 @@
 @synthesize bank;
 @synthesize miete;
 @synthesize numExposes;
-//@synthesize loginCheck;
+@synthesize loginCheck;
 //@synthesize spinner;
 @synthesize labelBank;
 @synthesize labelMiete;
@@ -50,6 +50,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.loginCheck = [[LoginCheck alloc]init];
     
     // setting the text of the helperView
     [super initHelperView];
@@ -58,7 +59,9 @@
 
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self performActionAfterLoginCheck];
+    //[self performActionAfterLoginCheck];
+    loginCheck.delegate = self;
+    [loginCheck checkUserLogin];
     [super viewDidAppear:animated];
 }
 
@@ -170,6 +173,7 @@
     [bank release];
     [miete release];
     [numExposes release];
+    [loginCheck release];
     [labelBank release];
     [labelMiete release];
     [labelNumExposes release];

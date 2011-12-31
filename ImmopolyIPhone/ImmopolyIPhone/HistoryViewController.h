@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "UserDataDelegate.h"
-//#import "LoginCheck.h"
+#import "LoginCheck.h"
 #import "HistoryDelegate.h"
 #import "AbstractViewController.h"
 
@@ -18,7 +18,7 @@
     IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet UIActivityIndicatorView *reloadDataSpinner;
     
-    //LoginCheck *loginCheck;
+    LoginCheck *loginCheck;
     BOOL loading;
     BOOL flagForReload;
     int loadingHistoryEntriesStart;
@@ -28,7 +28,7 @@
 
 @property(nonatomic, retain) UITableViewCell *tvCell;
 @property(nonatomic, retain) UITableView *table;
-//@property(nonatomic, retain) LoginCheck *loginCheck;
+@property(nonatomic, retain) LoginCheck *loginCheck;
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, assign) BOOL loading;
 @property(nonatomic, assign) BOOL flagForReload;

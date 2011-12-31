@@ -17,6 +17,7 @@
 	
 	IBOutlet UIWebView *webView;
     IBOutlet UIActivityIndicatorView *activityIndicator;
+    IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet UIButton *flatActionButton;
     
     IBOutlet UIView *shareBar;
@@ -35,6 +36,7 @@
 
 @property(nonatomic, retain) UIWebView *webView;
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property(nonatomic, retain) IBOutlet IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, assign) int selectedExposeId;
 @property(nonatomic, retain) Flat *selectedImmoscoutFlat;
 @property(nonatomic, retain) LoginCheck *loginCheck;
@@ -53,6 +55,7 @@
 - (IBAction)flatAction;
 - (IBAction)performFacebookPost;
 - (void)reloadData;
+- (void)stopSpinnerAnimation;
 - (void) showEmail;
 - (void)enableFlatButton:(NSTimer *)_theTimer;
 - (void)showTweet;

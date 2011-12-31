@@ -117,7 +117,16 @@
         return YES;
     }
     else {
-        [self tryLoginWithToken];
+        BOOL automaticLogin = [[NSUserDefaults standardUserDefaults] boolForKey:@"saveToken"];
+        
+        if([[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"] != nil && automaticLogin) {
+            return YES;
+        }else{
+            [self showLoginViewController];
+        }
+        
+        //[self tryLoginWithToken];
+        
         return NO;
     }
 }
@@ -136,7 +145,7 @@
     }
     else {
         //show modal view controller
-        [self showLoginViewController];
+        
     }
 }
 

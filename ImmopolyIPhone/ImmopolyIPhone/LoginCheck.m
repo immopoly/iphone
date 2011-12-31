@@ -53,7 +53,9 @@
 
 - (void)loginWithResult:(BOOL)_result {
     if(_result) {
-        [self notifyMyDelegateView];
+        
+        [delegate performActionAfterLoginCheck];
+        //[self notifyMyDelegateView];
     }
     else {
         if(![delegate isKindOfClass: [WebViewController class]]) {
