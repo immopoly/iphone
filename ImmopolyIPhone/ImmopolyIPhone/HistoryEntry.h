@@ -13,11 +13,13 @@
 #define TYPE_DAILY_PROVISION 5
 #define TYPE_DAILY_RENT 6
 
-@interface HistoryEntry : NSObject{
+@interface HistoryEntry : NSObject {
+    NSString *histText;
     long long time;
     int type;
     int type2;
     int exposeId;
+    bool isSharingActivated;
 }
 
 @property(nonatomic, retain) NSString *histText;
@@ -25,4 +27,5 @@
 @property(nonatomic, assign) int type;
 @property(nonatomic, assign) int type2;
 @property(nonatomic, assign) int exposeId;
+@property(nonatomic, assign) bool isSharingActivated;
 @end

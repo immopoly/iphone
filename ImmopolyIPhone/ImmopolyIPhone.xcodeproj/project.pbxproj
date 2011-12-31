@@ -61,6 +61,7 @@
 		6DB1E08014AE53EE005E858E /* helperText_historyView.html in Resources */ = {isa = PBXBuildFile; fileRef = 6DB1E07F14AE53EE005E858E /* helperText_historyView.html */; };
 		6DB1E08214AE542C005E858E /* helperText_userView.html in Resources */ = {isa = PBXBuildFile; fileRef = 6DB1E08114AE542C005E858E /* helperText_userView.html */; };
 		6DB1E08414AE54E0005E858E /* helperText_webView.html in Resources */ = {isa = PBXBuildFile; fileRef = 6DB1E08314AE54E0005E858E /* helperText_webView.html */; };
+		6DB1E08614AF1E55005E858E /* Icon_share_back.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB1E08514AF1E55005E858E /* Icon_share_back.png */; };
 		6DB4EAD314ADC2AE0057B16E /* AbstractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB4EAD214ADC2AE0057B16E /* AbstractViewController.m */; };
 		6DB4EAD714ADCBDB0057B16E /* pw_cancel_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB4EAD614ADCBDB0057B16E /* pw_cancel_button.png */; };
 		6DB4EAD914ADCBED0057B16E /* password_top_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB4EAD814ADCBED0057B16E /* password_top_cell.png */; };
@@ -288,6 +289,7 @@
 		6DB1E07F14AE53EE005E858E /* helperText_historyView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = helperText_historyView.html; sourceTree = "<group>"; };
 		6DB1E08114AE542C005E858E /* helperText_userView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = helperText_userView.html; sourceTree = "<group>"; };
 		6DB1E08314AE54E0005E858E /* helperText_webView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = helperText_webView.html; sourceTree = "<group>"; };
+		6DB1E08514AF1E55005E858E /* Icon_share_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_share_back.png; sourceTree = "<group>"; };
 		6DB4EAD114ADC2AE0057B16E /* AbstractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractViewController.h; sourceTree = "<group>"; };
 		6DB4EAD214ADC2AE0057B16E /* AbstractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractViewController.m; sourceTree = "<group>"; };
 		6DB4EAD614ADCBDB0057B16E /* pw_cancel_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pw_cancel_button.png; sourceTree = "<group>"; };
@@ -775,6 +777,7 @@
 		D2A785E714841AF400783603 /* History */ = {
 			isa = PBXGroup;
 			children = (
+				6DB1E08514AF1E55005E858E /* Icon_share_back.png */,
 				D2AFE1851485094800B09988 /* icon_info.png */,
 				D2AFE1861485094800B09988 /* icon_minus.png */,
 				D2AFE1871485094800B09988 /* icon_plus.png */,
@@ -1100,6 +1103,7 @@
 				6DB1E08014AE53EE005E858E /* helperText_historyView.html in Resources */,
 				6DB1E08214AE542C005E858E /* helperText_userView.html in Resources */,
 				6DB1E08414AE54E0005E858E /* helperText_webView.html in Resources */,
+				6DB1E08614AF1E55005E858E /* Icon_share_back.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

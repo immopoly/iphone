@@ -10,6 +10,10 @@
 #import "ImmopolyManager.h"
 #import "HistoryEntry.h"
 #import "HistoryTask.h"
+#import "FacebookManager.h"
+#import "Constants.h"
+#import "Secrets.h"
+
 
 @implementation HistoryViewController
 
@@ -22,7 +26,12 @@
 @synthesize loadingHistoryEntriesLimit;
 @synthesize loadingHistoryEntriesStart;
 @synthesize reloadDataSpinner;
-
+@synthesize selectedHistoryEntry;
+@synthesize lbTime;
+@synthesize lbText;
+@synthesize btShareBack;
+@synthesize btFacebook;
+@synthesize btTwitter;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -62,6 +71,16 @@
     [super initHelperView];
     [super setHelperViewTitle:@"Hilfe zur Historyansicht"];
     [super setHelperViewTextWithFile:@"helperText_historyView"];
+    
+    // set this controller to facebook delegate stuff
+    [[FacebookManager getInstance] set_APP_KEY:facebookAppKey];
+	[[FacebookManager getInstance] set_SECRET_KEY:facebookAppSecret];    
+    [FacebookManager getInstance].delegate = self;
+    
+    // setting all entries to not activated
+    for (HistoryEntry *entry in [[[ImmopolyManager instance] user] history]) {
+        [entry setIsSharingActivated:NO];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -124,6 +143,33 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"selected row %d",[indexPath row]);
+    
+    selectedHistoryEntry = [[[[ImmopolyManager instance] user] history] objectAtIndex:[indexPath row]];
+    [selectedHistoryEntry setIsSharingActivated:YES];
+    
+    // hiding the text and showing the buttons for sharing an entry
+    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    lbTime = (UILabel *)[selectedCell viewWithTag:1];
+    lbText = (UILabel *)[selectedCell viewWithTag:2];
+    btShareBack = (UIButton *)[selectedCell viewWithTag:4];
+    btFacebook = (UIButton *)[selectedCell viewWithTag:5];
+    btTwitter = (UIButton *)[selectedCell viewWithTag:6];
+    
+    [self viewFadeOut:lbTime];
+    [self viewFadeOut:lbText];
+    [self viewFadeIn:btShareBack];
+    [self viewFadeIn:btFacebook];
+    [self viewFadeIn:btTwitter];
+}
+
+-(IBAction)showCellLabels {
+    [selectedHistoryEntry setIsSharingActivated:NO];
+
+    [self viewFadeIn:lbTime];
+    [self viewFadeIn:lbText];
+    [self viewFadeOut:btShareBack];
+    [self viewFadeOut:btFacebook];
+    [self viewFadeOut:btTwitter];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -137,9 +183,17 @@
         cell = (UITableViewCell *)[nib objectAtIndex:0];
     }
     
-    UILabel *lbTime = (UILabel *)[cell viewWithTag:1];
-    UILabel *lbText = (UILabel *)[cell viewWithTag:2];
+    lbTime = (UILabel *)[cell viewWithTag:1];
+    lbText = (UILabel *)[cell viewWithTag:2];
     UIImageView *lblImage = (UIImageView *)[cell viewWithTag:3];
+    btShareBack = (UIButton *)[cell viewWithTag:4];
+    btFacebook = (UIButton *)[cell viewWithTag:5];
+    btTwitter = (UIButton *)[cell viewWithTag:6];
+    
+    // adding the actions because in xib not visible yet
+    [btShareBack addTarget:self action:@selector(showCellLabels) forControlEvents:UIControlEventTouchUpInside];
+    [btFacebook addTarget:self action:@selector(facebook) forControlEvents:UIControlEventTouchUpInside];
+    [btTwitter addTarget:self action:@selector(twitter) forControlEvents:UIControlEventTouchUpInside];
     
     // fetching the selected history entry
     HistoryEntry *historyEntry;
@@ -157,8 +211,7 @@
         NSString *formattedDateString = [dateFormatter stringFromDate:date];
         [dateFormatter release];      
         
-        UIColor *color = [UIColor blackColor];
-        
+        // defining which icon get choosed
         switch ([historyEntry type]) {
             case TYPE_EXPOSE_SOLD:
                 [lblImage setImage:[UIImage imageNamed:@"icon_plus"]];
@@ -180,12 +233,24 @@
                 [lblImage setImage:[UIImage imageNamed:@"icon_info"]];
                 break;
         }
+    
         
-        lbTime.textColor = color;
-        lbText.textColor = color;
+        // showing or hiding the share stuff
+        if([historyEntry isSharingActivated]) {
+            [lbTime setAlpha:0.0f];
+            [lbText setAlpha:0.0f];
+            [btShareBack setAlpha:1.0f];
+            [btFacebook setAlpha:1.0f];
+            [btTwitter setAlpha:1.0f];
+        } else {
+            [lbTime setAlpha:1.0f];
+            [lbText setAlpha:1.0f];
+            [btShareBack setAlpha:0.0f];
+            [btFacebook setAlpha:0.0f];
+            [btTwitter setAlpha:0.0f];
+        }
         
-//        NSString *time = [NSString stringWithFormat:@"%d", [historyEntry time]];
-//        [lbTime setText: time]; 
+        // setting text
         [lbTime setText: formattedDateString]; 
         [lbText setText: [historyEntry histText]];
     } 
@@ -243,6 +308,75 @@
     [spinner release];
     [reloadDataSpinner release];
     [super dealloc];
+}
+
+- (void)viewFadeIn:(UIView *)view {
+    
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.4];
+    [view setAlpha:1.0f];
+    [UIView commitAnimations];
+}
+
+- (void)viewFadeOut:(UIView *)view {
+    [UIView beginAnimations:nil context:NULL];
+	[UIView setAnimationDuration:0.4];
+    [view setAlpha:0.0f];
+    [UIView commitAnimations];
+}
+
+- (IBAction)facebook {
+    
+    [[FacebookManager getInstance] beginShare];
+    
+    [[FacebookManager getInstance] setFacebookTitle:sharingFacebookTitle];
+    [[FacebookManager getInstance] setFacebookCaption:sharingFacebookCaption];
+    [[FacebookManager getInstance] setFacebookDescription:sharingFacebookDescription];
+    //[[FacebookManager getInstance] setFacebookImage:[selectedImmoscoutFlat pictureUrl]];
+    [[FacebookManager getInstance] setFacebookLink:sharingFacebookLink];
+    [[FacebookManager getInstance] setFacebookActionLabel:sharingFacebookActionLabel];
+    [[FacebookManager getInstance] setFacebookActionText:[selectedHistoryEntry histText]];
+    [[FacebookManager getInstance] setFacebookActionLink:sharingFacebookLink];
+    //[[FacebookManager getInstance] setFacebookText:[selectedHistoryEntry histText]];
+    
+    [[FacebookManager getInstance] commitShare];
+}
+
+// methods to implement because of FaceBookManager
+-(IBAction)performFacebookPost {}
+- (void)facebookStartedLoading {}
+- (void)facebookStopedLoading {}
+
+- (IBAction)twitter {
+    [self showTweet];
+}
+
+- (void)showTweet {
+    Class twitterClass = NSClassFromString(@"TWTweetComposeViewController");
+    
+    if(!twitterClass) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:sharingTwitterAPINotAvailableAlertTitle message:sharingTwitterAPINotAvailableAlertMessage delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+    }
+    else {
+        if(![TWTweetComposeViewController canSendTweet]) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:sharingTwitterNoAccountAlertTitle message:sharingTwitterNoAccountAlertMessage delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil];
+            [alert show];
+            [alert release]; 
+        }
+        else {
+            TWTweetComposeViewController *tweetView = [[TWTweetComposeViewController alloc] init];
+            [tweetView setInitialText:[selectedHistoryEntry histText]];
+           // NSString *url = [NSString stringWithFormat:@"%@%i", urlIS24MobileExpose,[selectedImmoscoutFlat exposeId]];
+            
+           // if(![tweetView addURL:[NSURL URLWithString:url]]) {
+            //    NSLog(@"Unable to add the URL.");
+           // }
+            
+            [self presentModalViewController:tweetView animated:YES];
+        }
+    }
 }
 
 @end
