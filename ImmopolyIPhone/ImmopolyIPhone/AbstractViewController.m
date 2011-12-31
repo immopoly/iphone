@@ -103,7 +103,7 @@
             
         case 2:
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_portfolio"]];
-            helperTextImage.frame = CGRectMake(0, 0, 284, 382);    
+            helperTextImage.frame = CGRectMake(0, 0, 284, 330);    
         break;
             
         default:
