@@ -23,6 +23,7 @@
     IBOutlet UILabel *labelNumExposes;
     IBOutlet UIView *badgesView;
     IBOutlet UIButton *showBadgesButton;
+    LoginCheck *loginCheck;
     BOOL bagdesViewClosed;
 }
 
@@ -37,6 +38,7 @@
 @property(nonatomic, assign) BOOL badgesViewClosed;
 @property(nonatomic, retain) IBOutlet UIView *badgesView;
 @property(nonatomic, retain) IBOutlet UIButton *showBadgesButton;
+@property(nonatomic, retain) LoginCheck *loginCheck;
 
 - (NSString*)formatToCurrencyWithNumber:(double)number;
 - (IBAction)toggleBadgesView;

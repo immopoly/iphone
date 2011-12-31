@@ -98,9 +98,8 @@
     [self setNumOfScrollViewSubviews:0];
     
     // setting the text of the helperView
-    [super initHelperView];
-    [super setHelperViewTitle:@"Hilfe zur Kartenansicht"];
-    [super setHelperViewTextWithFile:@"helperText_mapView"];
+    [super initHelperViewWithMode:1];
+    
 }
 
 - (void)viewDidUnload {
