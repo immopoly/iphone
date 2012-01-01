@@ -76,6 +76,31 @@
     
     // showing the annotation imgae
     [selViewForHouseImage setHidden:NO];
+    
+    if (![self alreadyUsed]) {
+       //Show first start text
+        
+        [self initHelperViewWithMode:0];
+        [self initButton];
+        [self helperViewIn];        
+        
+       [[NSUserDefaults standardUserDefaults] setBool:YES forKey:@"alreadyUsed"];
+        
+        
+    }else{
+        [self initHelperViewWithMode:1];
+    }
+}
+
+- (void)helperViewIn {
+    if ([self alreadyUsed]) {
+        [self initHelperViewWithMode:1];
+    }
+    [super helperViewIn];
+}
+
+- (BOOL)alreadyUsed{
+    return [[NSUserDefaults standardUserDefaults] boolForKey:@"alreadyUsed"];
 }
 
 - (void)viewDidLoad {

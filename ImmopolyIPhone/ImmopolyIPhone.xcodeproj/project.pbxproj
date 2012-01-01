@@ -100,6 +100,10 @@
 		D252750A145C424200627725 /* PortfolioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2527508145C424200627725 /* PortfolioViewController.xib */; };
 		D28E075E145B195D003D83D8 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28E075D145B195D003D83D8 /* WebViewController.m */; };
 		D28E0761145B1968003D83D8 /* WebView.xib in Resources */ = {isa = PBXBuildFile; fileRef = D28E0760145B1968003D83D8 /* WebView.xib */; };
+		D29EB46F14B0A584007E4BA0 /* infotext_immopoly.png in Resources */ = {isa = PBXBuildFile; fileRef = D29EB46D14B0A584007E4BA0 /* infotext_immopoly.png */; };
+		D29EB47014B0A584007E4BA0 /* infotext_immopoly@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D29EB46E14B0A584007E4BA0 /* infotext_immopoly@2x.png */; };
+		D29EB47414B0AE7E007E4BA0 /* infotext_expose.png in Resources */ = {isa = PBXBuildFile; fileRef = D29EB47214B0AE7E007E4BA0 /* infotext_expose.png */; };
+		D29EB47514B0AE7E007E4BA0 /* infotext_expose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D29EB47314B0AE7E007E4BA0 /* infotext_expose@2x.png */; };
 		D2A09C7B145EF936002646A1 /* FlatTakeOverTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A09C7A145EF936002646A1 /* FlatTakeOverTask.m */; };
 		D2A09C7F145EFC5D002646A1 /* HistoryEntry.m in Sources */ = {isa = PBXBuildFile; fileRef = D2A09C7E145EFC5D002646A1 /* HistoryEntry.m */; };
 		D2A785D11482BD4C00783603 /* Metallicrahmen_Icon_forrent_2_114x114 Kopie.png in Resources */ = {isa = PBXBuildFile; fileRef = D2A785D01482BD4C00783603 /* Metallicrahmen_Icon_forrent_2_114x114 Kopie.png */; };
@@ -352,6 +356,10 @@
 		D28E075C145B195D003D83D8 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
 		D28E075D145B195D003D83D8 /* WebViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WebViewController.m; sourceTree = "<group>"; };
 		D28E0760145B1968003D83D8 /* WebView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = WebView.xib; sourceTree = "<group>"; };
+		D29EB46D14B0A584007E4BA0 /* infotext_immopoly.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infotext_immopoly.png; sourceTree = "<group>"; };
+		D29EB46E14B0A584007E4BA0 /* infotext_immopoly@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infotext_immopoly@2x.png"; sourceTree = "<group>"; };
+		D29EB47214B0AE7E007E4BA0 /* infotext_expose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infotext_expose.png; sourceTree = "<group>"; };
+		D29EB47314B0AE7E007E4BA0 /* infotext_expose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infotext_expose@2x.png"; sourceTree = "<group>"; };
 		D2A09C79145EF935002646A1 /* FlatTakeOverTask.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FlatTakeOverTask.h; sourceTree = "<group>"; };
 		D2A09C7A145EF936002646A1 /* FlatTakeOverTask.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FlatTakeOverTask.m; sourceTree = "<group>"; };
 		D2A09C7D145EFC5D002646A1 /* HistoryEntry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryEntry.h; sourceTree = "<group>"; };
@@ -990,6 +998,10 @@
 		D2EB9ECE14AF2B2B00CB6120 /* Infotexts */ = {
 			isa = PBXGroup;
 			children = (
+				D29EB47214B0AE7E007E4BA0 /* infotext_expose.png */,
+				D29EB47314B0AE7E007E4BA0 /* infotext_expose@2x.png */,
+				D29EB46D14B0A584007E4BA0 /* infotext_immopoly.png */,
+				D29EB46E14B0A584007E4BA0 /* infotext_immopoly@2x.png */,
 				D2EB9EEC14AF476700CB6120 /* infotext_portfolio.png */,
 				D2EB9EED14AF476700CB6120 /* infotext_portfolio@2x.png */,
 				D2EB9EE414AF44ED00CB6120 /* close_info_button.png */,
@@ -1173,6 +1185,10 @@
 				D2EB9EEE14AF476700CB6120 /* infotext_portfolio.png in Resources */,
 				D2EB9EEF14AF476700CB6120 /* infotext_portfolio@2x.png in Resources */,
 				6DB1E08614AF1E55005E858E /* Icon_share_back.png in Resources */,
+				D29EB46F14B0A584007E4BA0 /* infotext_immopoly.png in Resources */,
+				D29EB47014B0A584007E4BA0 /* infotext_immopoly@2x.png in Resources */,
+				D29EB47414B0AE7E007E4BA0 /* infotext_expose.png in Resources */,
+				D29EB47514B0AE7E007E4BA0 /* infotext_expose@2x.png in Resources */,
 				6D943A7314AF7AB300414539 /* top_bar_user.png in Resources */,
 				6D943A7A14AF7AC900414539 /* button_bereich_rapport.png in Resources */,
 				6D943A7B14AF7AC900414539 /* bg_username.png in Resources */,

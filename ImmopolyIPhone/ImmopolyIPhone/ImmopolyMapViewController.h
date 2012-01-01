@@ -95,5 +95,6 @@
 - (void)initScrollView;
 - (UIView *)createCalloutBubbleContentFromFlat:(Flat *)_flat atPosition:(int)_pos;
 - (IBAction)closeBubble;
+- (BOOL)alreadyUsed;
 
 @end

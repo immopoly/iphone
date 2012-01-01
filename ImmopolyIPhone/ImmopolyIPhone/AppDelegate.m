@@ -19,6 +19,7 @@
 #import "UserProfileViewController.h"
 #import "MissionViewController.h"
 #import "LoginCheck.h"
+#import "AbstractViewController.h"
 
 @implementation AppDelegate
 
@@ -111,6 +112,11 @@
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
         
+    AbstractViewController *actViewController = (AbstractViewController*)[[self tabBarController]selectedViewController];
+    if (([actViewController viewIsVisible])) {
+        [actViewController helperViewOut];
+    }
+    
     [self setSelectedViewController:viewController];
     
     if([viewController class] == [MissionViewController class] || [viewController class] == [ImmopolyMapViewController class] || [[ImmopolyManager instance] loginSuccessful]) {
