@@ -41,7 +41,9 @@
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)c {
     self.image = [UIImage imageWithData:data];
-    [flat setImage:self.image];
+    if(flat) {
+        [flat setImage:self.image];
+    }
     [data release], data = nil;
     [connection release], connection = nil;
     [spinner stopAnimating];
@@ -49,8 +51,10 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError");
-    self.image = [UIImage imageNamed:@"default_house.png"];
-    [flat setImage:self.image];
+    if(flat) {
+        self.image = [UIImage imageNamed:@"default_house.png"];
+        [flat setImage:self.image];
+    }
     [spinner stopAnimating];
 }
 

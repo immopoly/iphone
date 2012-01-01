@@ -10,6 +10,7 @@
 #import "ImmopolyManager.h"
 #import "ImmopolyUser.h"
 #import "UserBadge.h"
+#import "AsynchronousImageView.h"
 
 @implementation UserProfileViewController
 
@@ -18,13 +19,11 @@
 @synthesize miete;
 @synthesize numExposes;
 @synthesize loginCheck;
-//@synthesize spinner;
+@synthesize spinner;
 @synthesize labelBank;
 @synthesize labelMiete;
 @synthesize labelNumExposes;
-@synthesize badgesViewClosed;
 @synthesize badgesView;
-@synthesize showBadgesButton;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -33,7 +32,6 @@
         // Custom initialization
         self.title = NSLocalizedString(@"User", @"Third");
         self.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon_user"];
-        self.badgesViewClosed = YES;
     }
     return self;
 }
@@ -51,6 +49,8 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.loginCheck = [[LoginCheck alloc]init];
+    
+    [spinner startAnimating];
     
     // setting the text of the helperView
     //[super initHelperView];
@@ -77,11 +77,12 @@
 }
 
 - (void)performActionAfterLoginCheck {
+    [self stopSpinnerAnimation];
     
     ImmopolyUser *myUser = [[ImmopolyManager instance] user];
     
     if(myUser != nil) {
-        [hello setText: [NSString stringWithFormat: @"Hello, %@!", [myUser userName]]];
+        [hello setText: [NSString stringWithFormat: @"%@", [myUser userName]]];
         [bank setText: [self formatToCurrencyWithNumber:[myUser balance]]];
         [miete setText: [self formatToCurrencyWithNumber:[myUser lastRent]]];
         [numExposes setText: [ NSString stringWithFormat:@"%i von %i", [myUser numExposes], [myUser maxExposes]]];
@@ -97,28 +98,26 @@
 
 - (void)displayBadges {
     NSArray *userBadges = [[[ImmopolyManager instance] user] badges];
-    
-    //Set coordinates for badges. Shall be implemented in a more smart way later..
-    NSMutableArray *imageCoordinates = [NSMutableArray array];
-    [imageCoordinates addObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:20], [NSNumber numberWithInt:35], nil]];
-    [imageCoordinates addObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:124], [NSNumber numberWithInt:35], nil]];
-    [imageCoordinates addObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:228], [NSNumber numberWithInt:35], nil]];
-    [imageCoordinates addObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:20], [NSNumber numberWithInt:116], nil]];
-    [imageCoordinates addObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:124], [NSNumber numberWithInt:116], nil]];
-    [imageCoordinates addObject:[NSArray arrayWithObjects:[NSNumber numberWithInt:228], [NSNumber numberWithInt:116], nil]];
-    
-    for (UserBadge *badge in userBadges) {
+
+    for (int i=0; i<[userBadges count]; i++) {
+        UserBadge *badge = [userBadges objectAtIndex:i];
         NSURL *url = [NSURL URLWithString:[badge url]];
         NSData *data = [NSData dataWithContentsOfURL:url];
         UIImage *image = [[[UIImage alloc] initWithData:data] autorelease];
         
-        NSArray *coords = [imageCoordinates objectAtIndex: [userBadges indexOfObject:badge]];
+        //AsynchronousImageView *imgView = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+        //[imgView loadImageFromURLString:[badge url] forFlat:nil];
         
-        UIButton *badgeButton = [[[UIButton alloc] initWithFrame:CGRectMake([[coords objectAtIndex:0]intValue], [[coords objectAtIndex:1] intValue], 72, 72)] autorelease];
-        [badgeButton setBackgroundImage:image forState:UIControlStateNormal];
-        [badgeButton addTarget:self action:@selector(showBadgeText:) forControlEvents:UIControlEventTouchUpInside];
-        [badgeButton setTag: [userBadges indexOfObject:badge]];
-        [badgesView addSubview:badgeButton];
+        UIButton *btBadge = [UIButton buttonWithType:UIButtonTypeCustom];
+        [btBadge setBackgroundImage:image forState:UIControlStateNormal];
+        if (i%2 == 0) {
+            btBadge.frame = CGRectMake(18+(i*76)-i-1, 2, 60, 60);
+        } else {
+            btBadge.frame = CGRectMake(18+(i*76)-i-1, 67, 60, 60);
+        }
+        [btBadge addTarget:self action:@selector(showBadgeText:) forControlEvents:UIControlEventTouchUpInside];
+        [btBadge setTag: [userBadges indexOfObject:badge]];
+        [badgesView addSubview:btBadge];
     }
 }
 
@@ -128,6 +127,11 @@
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:badgeText delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     [alert release]; 
+}
+
+- (void)stopSpinnerAnimation {
+    [spinner stopAnimating];
+    [spinner setHidden: YES];
 }
 
 - (void)viewDidUnload {
@@ -141,31 +145,12 @@
     self.labelMiete = nil;
     self.labelNumExposes = nil;
     self.badgesView = nil;
-    self.showBadgesButton = nil;
+    self.spinner = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-- (void)toggleBadgesView {
-    [UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:0.4];
-	CGPoint posBadgesView = badgesView.center;
-    if (self.badgesViewClosed) {
-        posBadgesView.y = 310.0f;
-        self.badgesViewClosed = NO;
-        [showBadgesButton setTitle:@"weniger anzeigen" forState:UIControlStateNormal];
-    }
-    else {
-        posBadgesView.y = 390.0f;
-        self.badgesViewClosed = YES;
-        [showBadgesButton setTitle:@"mehr anzeigen" forState:UIControlStateNormal];
-    }
-	
-    badgesView.center = posBadgesView;
-    [UIView commitAnimations];
 }
 
 -(void) dealloc {
@@ -178,7 +163,7 @@
     [labelMiete release];
     [labelNumExposes release];
     [badgesView release];
-    [showBadgesButton release];
+    [spinner release];
     [super dealloc];
 }
 

@@ -22,9 +22,8 @@
     IBOutlet UILabel *labelMiete;
     IBOutlet UILabel *labelNumExposes;
     IBOutlet UIView *badgesView;
-    IBOutlet UIButton *showBadgesButton;
     LoginCheck *loginCheck;
-    BOOL bagdesViewClosed;
+    IBOutlet UIActivityIndicatorView *spinner;
 }
 
 @property(nonatomic, retain) IBOutlet UILabel *hello;
@@ -35,13 +34,12 @@
 @property(nonatomic, retain) IBOutlet UILabel *labelMiete;
 @property(nonatomic, retain) IBOutlet UILabel *labelNumExposes;
 
-@property(nonatomic, assign) BOOL badgesViewClosed;
 @property(nonatomic, retain) IBOutlet UIView *badgesView;
-@property(nonatomic, retain) IBOutlet UIButton *showBadgesButton;
 @property(nonatomic, retain) LoginCheck *loginCheck;
+@property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 
 - (NSString*)formatToCurrencyWithNumber:(double)number;
-- (IBAction)toggleBadgesView;
 - (void)displayBadges;
+- (void)stopSpinnerAnimation;
 
 @end
