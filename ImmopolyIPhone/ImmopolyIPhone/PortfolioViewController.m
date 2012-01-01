@@ -458,10 +458,11 @@
 }
 
 - (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat {
-    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(15, 0, 51, 40)];
+    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(-7, 0, 51, 40)];
     lbNumOfFlats.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     [lbNumOfFlats setText:[[NSString alloc] initWithFormat:@"%d", [[_flat flatsAtAnnotation] count] +1]];
     [lbNumOfFlats setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    [lbNumOfFlats setTextAlignment:UITextAlignmentCenter];
     
     return lbNumOfFlats;
 }
