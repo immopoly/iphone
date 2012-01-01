@@ -220,6 +220,7 @@
         [histEntry setType:[[histDic objectForKey:@"type"]intValue]];
         [histEntry setType2:[[histDic objectForKey:@"type2"]intValue]];
         [histEntry setExposeId:[[histDic objectForKey:@"exposeId"]intValue]];
+        [histEntry setAmount:[[histDic objectForKey:@"amount"]doubleValue]];
         
         return  histEntry;
     }

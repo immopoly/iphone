@@ -61,11 +61,16 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"portfolio/add fail" object:nil userInfo:errorInfo];
     }else{
         if (resultHistEntry) {
-            [[[[ImmopolyManager instance]user]history]insertObject:resultHistEntry atIndex:0];
+            ImmopolyUser *user = [[ImmopolyManager instance]user];
+            [[user history]insertObject:resultHistEntry atIndex:0];
+            
+            // set new balance
+            [user setBalance:[user balance]+[resultHistEntry amount]];
             
             //when history has type 1 add expose to portfolio
-            if([resultHistEntry type]==1){
-                    [[[[ImmopolyManager instance]user]portfolio]insertObject:[self selectedImmoscoutFlat] atIndex:0];
+            if([resultHistEntry type] == 1){
+                [[user portfolio] insertObject:[self selectedImmoscoutFlat] atIndex:0];
+                [user setNumExposes:[user numExposes]+1];
             }
             
             //TODO: send Notification with history entry

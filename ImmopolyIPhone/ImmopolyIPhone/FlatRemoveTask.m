@@ -71,11 +71,17 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"portfolio/add fail" object:nil userInfo:errorInfo];
     }else{
         if (resultHistEntry) {
+            ImmopolyUser *user = [[ImmopolyManager instance]user];
+            
             //add history
-            [[[[ImmopolyManager instance]user]history]insertObject:resultHistEntry atIndex:0];
+            [[user history]insertObject:resultHistEntry atIndex:0];
             
             //remove flat from portfolio
-            [[[[ImmopolyManager instance]user]portfolio]removeObject:[self selectedPortfoliotFlat]];
+            [[user portfolio]removeObject:[self selectedPortfoliotFlat]];
+            
+            // set new balance 
+            [user setBalance:[user balance]+[resultHistEntry amount]];
+            [user setNumExposes:[user numExposes]-1];
             
             //send notification
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:resultHistEntry forKey:@"histEntry"];

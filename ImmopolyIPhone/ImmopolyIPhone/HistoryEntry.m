@@ -16,5 +16,6 @@
 @synthesize type2;
 @synthesize exposeId;
 @synthesize isSharingActivated;
+@synthesize amount;
 
 @end

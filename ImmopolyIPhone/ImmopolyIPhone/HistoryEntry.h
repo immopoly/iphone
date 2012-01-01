@@ -20,6 +20,7 @@
     int type2;
     int exposeId;
     bool isSharingActivated;
+    double amount;
 }
 
 @property(nonatomic, retain) NSString *histText;
@@ -28,4 +29,5 @@
 @property(nonatomic, assign) int type2;
 @property(nonatomic, assign) int exposeId;
 @property(nonatomic, assign) bool isSharingActivated;
+@property(nonatomic, assign) double amount;
 @end
