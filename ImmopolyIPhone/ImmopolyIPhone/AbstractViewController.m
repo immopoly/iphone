@@ -17,6 +17,7 @@
 @synthesize helperBackground;
 @synthesize helperScroll;
 @synthesize helperTextImage;
+@synthesize viewIsVisible; 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -96,6 +97,11 @@
     helperScroll.showsVerticalScrollIndicator = NO;
     
     switch (_infoMode) {
+        case 0:
+            helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_immopoly"]];
+            helperTextImage.frame = CGRectMake(0, 0, 283, 370);    
+            break;
+        
         case 1:
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_map"]];
             helperTextImage.frame = CGRectMake(0, 0, 283, 380);    
@@ -105,6 +111,11 @@
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_portfolio"]];
             helperTextImage.frame = CGRectMake(0, 0, 284, 330);    
         break;
+            
+        case 3:
+            helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_expose"]];
+            helperTextImage.frame = CGRectMake(0, 0, 284, 550);    
+            break;
             
         default:
             break;
@@ -134,13 +145,17 @@
 }
 
 - (void)helperViewIn {
-    NSLog(@"hpvin");
-    [UIView beginAnimations:nil context:NULL];
-	[UIView setAnimationDuration:0.4];
-    CGPoint pos = helperView.center;
-    pos.y = 217.0f;
-    helperView.center = pos;
-    [UIView commitAnimations];
+    if (![self viewIsVisible]) {
+        NSLog(@"hpvin");
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.4];
+        CGPoint pos = helperView.center;
+        pos.y = 217.0f;
+        helperView.center = pos;
+        [UIView commitAnimations];
+        
+        [self setViewIsVisible:YES];
+    }
 }
 
 - (void)helperViewOut {
@@ -150,6 +165,8 @@
     pos.y = -320.0f;
     helperView.center = pos;
     [UIView commitAnimations];
+    
+    [self setViewIsVisible:NO];
 }
 
 /*- (void)setHelperViewTitle:(NSString *)_viewTitle {

@@ -66,6 +66,8 @@
     CGPoint pos = btHelperViewIn.center; 
     pos.x = 300.0f;
     [btHelperViewIn setCenter:pos];
+    
+    [super initHelperViewWithMode:3];
 }
 
 -(void)enableFlatButton:(NSTimer *)_theTimer {
@@ -114,6 +116,9 @@
 }
 
 - (IBAction)goBack {
+    if ([self viewIsVisible]) {
+        [self helperViewOut];
+    }
     [self.view removeFromSuperview];
 }
 

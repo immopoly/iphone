@@ -15,6 +15,8 @@
     UIImageView *helperTextImage;
     UIView *helperViewBubble;
     UIButton *btHelperViewIn;
+    
+    BOOL viewIsVisible;
 }
 
 @property(nonatomic, retain) UIView *helperView;
@@ -23,6 +25,7 @@
 @property(nonatomic, retain) UIImageView *helperBackground;
 @property(nonatomic, retain) UIScrollView *helperScroll;
 @property(nonatomic, retain) UIImageView *helperTextImage;
+@property(nonatomic, assign) BOOL viewIsVisible;
 
 - (void)initButton;
 - (void)initHelperViewWithMode:(int)_infoMode;
