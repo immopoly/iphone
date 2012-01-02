@@ -112,6 +112,12 @@
     self.table = nil;
     self.spinner = nil;
     self.reloadDataSpinner = nil;
+    self.lbText = nil;
+    self.lbTime = nil;
+    self.btShareBack = nil;
+    self.btFacebook = nil;
+    self.btTwitter = nil;
+    self.btHelperViewIn = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -321,6 +327,12 @@
     [loginCheck release];
     [spinner release];
     [reloadDataSpinner release];
+    [lbTime release];
+    [lbText release];
+    [btShareBack release];
+    [btFacebook release];
+    [btTwitter release];
+    [btHelperViewIn release];
     [super dealloc];
 }
 
