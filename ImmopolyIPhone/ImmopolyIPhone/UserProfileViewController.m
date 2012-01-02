@@ -24,6 +24,7 @@
 @synthesize labelMiete;
 @synthesize labelNumExposes;
 @synthesize badgesView;
+@synthesize userImage;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -54,7 +55,12 @@
     
     // setting the text of the helperView
     //[super initHelperView];
-  
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    long long uid = [[defaults objectForKey:@"FBUserId"] longLongValue];
+    NSString *url = [[NSString alloc] initWithFormat:@"https://graph.facebook.com/%qi/picture", uid];
+    
+    [userImage loadImageFromURLString:url forFlat:nil];
 }
 
 

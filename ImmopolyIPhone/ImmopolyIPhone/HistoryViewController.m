@@ -408,11 +408,6 @@
             
             TWTweetComposeViewController *tweetView = [[TWTweetComposeViewController alloc] init];
             [tweetView setInitialText:[histEntry histText]];
-           // NSString *url = [NSString stringWithFormat:@"%@%i", urlIS24MobileExpose,[selectedImmoscoutFlat exposeId]];
-            
-           // if(![tweetView addURL:[NSURL URLWithString:url]]) {
-            //    NSLog(@"Unable to add the URL.");
-           // }
             
             [self presentModalViewController:tweetView animated:YES];
         }

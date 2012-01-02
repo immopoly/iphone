@@ -11,6 +11,7 @@
 #import "LoginDelegate.h"
 #import "LoginCheck.h"
 #import "AbstractViewController.h"
+#import "AsynchronousImageView.h"
 
 @interface UserProfileViewController : AbstractViewController <UserDataDelegate> {
     
@@ -24,6 +25,7 @@
     IBOutlet UIView *badgesView;
     LoginCheck *loginCheck;
     IBOutlet UIActivityIndicatorView *spinner;
+    IBOutlet AsynchronousImageView *userImage;
 }
 
 @property(nonatomic, retain) IBOutlet UILabel *hello;
@@ -37,6 +39,7 @@
 @property(nonatomic, retain) IBOutlet UIView *badgesView;
 @property(nonatomic, retain) LoginCheck *loginCheck;
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
+@property(nonatomic, retain) IBOutlet AsynchronousImageView *userImage;
 
 - (NSString*)formatToCurrencyWithNumber:(double)number;
 - (void)displayBadges;
