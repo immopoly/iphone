@@ -8,6 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
+#define INFO_IMMOPOLY 0
+#define INFO_MAP 1
+#define INFO_PORTFOLIO 2
+#define INFO_EXPOSE 3
+#define INFO_HISTORY 4
+#define INFO_USER 5
+
+
 @interface AbstractViewController : UIViewController {
     UIView *helperView;
     UIImageView *helperBackground;

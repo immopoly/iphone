@@ -97,26 +97,33 @@
     helperScroll.showsVerticalScrollIndicator = NO;
     
     switch (_infoMode) {
-        case 0:
+        case INFO_IMMOPOLY:
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_immopoly"]];
             helperTextImage.frame = CGRectMake(0, 0, 283, 370);    
             break;
         
-        case 1:
+        case INFO_MAP:
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_map"]];
             helperTextImage.frame = CGRectMake(0, 0, 283, 380);    
         break;
             
-        case 2:
+        case INFO_PORTFOLIO:
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_portfolio"]];
             helperTextImage.frame = CGRectMake(0, 0, 284, 330);    
         break;
             
-        case 3:
+        case INFO_EXPOSE:
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_expose"]];
             helperTextImage.frame = CGRectMake(0, 0, 284, 550);    
             break;
-            
+        case INFO_HISTORY: 
+            helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_history"]];
+            helperTextImage.frame = CGRectMake(0, 0, 284, 370); 
+            break;
+        case INFO_USER: 
+            helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_user"]];
+            helperTextImage.frame = CGRectMake(0, 0, 284, 430);     
+            break;
         default:
             break;
     }
@@ -146,7 +153,6 @@
 
 - (void)helperViewIn {
     if (![self viewIsVisible]) {
-        NSLog(@"hpvin");
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.4];
         CGPoint pos = helperView.center;

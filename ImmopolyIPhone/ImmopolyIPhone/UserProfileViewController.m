@@ -71,6 +71,9 @@
     CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], cropRect);
     userImage.image = [UIImage imageWithCGImage:imageRef]; 
     CGImageRelease(imageRef);
+    
+    // setting the text of the helperView
+    [super initHelperViewWithMode:INFO_USER];
 }
 
 

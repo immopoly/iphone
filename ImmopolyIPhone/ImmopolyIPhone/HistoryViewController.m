@@ -67,11 +67,7 @@
     //[self performActionAfterLoginCheck];
     
     // setting the text of the helperView
-    //[super initHelperView];
-    
-    // [super initHelperView];
-    //[super setHelperViewTitle:@"Hilfe zur Historyansicht"];
-    //[super setHelperViewTextWithFile:@"helperText_historyView"];
+    [super initHelperViewWithMode:INFO_HISTORY];
     
     // set this controller to facebook delegate stuff
     [[FacebookManager getInstance] set_APP_KEY:facebookAppKey];

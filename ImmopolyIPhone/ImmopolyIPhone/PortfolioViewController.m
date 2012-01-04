@@ -118,7 +118,7 @@
     //[self performActionAfterLoginCheck];
     
     // setting the text of the helperView
-    [super initHelperViewWithMode:2];
+    [super initHelperViewWithMode:INFO_PORTFOLIO];
    
 }
 
