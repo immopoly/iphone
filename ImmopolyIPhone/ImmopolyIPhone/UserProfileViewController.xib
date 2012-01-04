@@ -61,8 +61,6 @@
 								<string key="NSFrameSize">{320, 132}</string>
 								<reference key="NSSuperview" ref="1021837678"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
-								<int key="IBUIContentMode">3</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -318,6 +316,7 @@
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="703135085"/>
+						<int key="IBUIContentMode">4</int>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 					</object>
