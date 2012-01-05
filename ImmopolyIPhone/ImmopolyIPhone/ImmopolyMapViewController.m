@@ -80,7 +80,7 @@
     if (![self alreadyUsed]) {
        //Show first start text
         
-        [self initHelperViewWithMode:0];
+        [self initHelperViewWithMode:INFO_IMMOPOLY];
         [self initButton];
         [self helperViewIn];        
         
@@ -88,13 +88,13 @@
         
         
     }else{
-        [self initHelperViewWithMode:1];
+        [self initHelperViewWithMode:INFO_MAP];
     }
 }
 
 - (void)helperViewIn {
     if ([self alreadyUsed]) {
-        [self initHelperViewWithMode:1];
+        [self initHelperViewWithMode:INFO_MAP];
     }
     [super helperViewIn];
 }
@@ -123,7 +123,7 @@
     [self setNumOfScrollViewSubviews:0];
     
     // setting the text of the helperView
-    [super initHelperViewWithMode:1];
+    [super initHelperViewWithMode:INFO_MAP];
     
 }
 

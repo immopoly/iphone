@@ -67,7 +67,8 @@
     pos.x = 300.0f;
     [btHelperViewIn setCenter:pos];
     
-    [super initHelperViewWithMode:3];
+    // setting the text of the helperView
+    [super initHelperViewWithMode:INFO_EXPOSE];
 }
 
 -(void)enableFlatButton:(NSTimer *)_theTimer {

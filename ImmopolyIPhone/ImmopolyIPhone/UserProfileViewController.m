@@ -58,9 +58,22 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     long long uid = [[defaults objectForKey:@"FBUserId"] longLongValue];
-    NSString *url = [[NSString alloc] initWithFormat:@"https://graph.facebook.com/%qi/picture", uid];
+    NSString *urlString = [[NSString alloc] initWithFormat:@"https://graph.facebook.com/%qi/picture?type=large", uid];
     
-    [userImage loadImageFromURLString:url forFlat:nil];
+    //[userImage loadImageFromURLString:urlString forFlat:nil];
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *image = [[[UIImage alloc] initWithData:data] autorelease];
+    
+    // cropping the image
+    CGRect cropRect = CGRectMake(image.size.width/4, 0, 100, 100);
+    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], cropRect);
+    userImage.image = [UIImage imageWithCGImage:imageRef]; 
+    CGImageRelease(imageRef);
+    
+    // setting the text of the helperView
+    [super initHelperViewWithMode:INFO_USER];
 }
 
 
