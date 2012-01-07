@@ -7,13 +7,25 @@
 //
 
 #import "AsynchronousImageView.h"
+#import "ASIHTTPRequest.h"
+#import "Flat.h"
+
+@interface AsynchronousImageView () {
+    UIActivityIndicatorView *spinner;
+    Flat *flat;
+}
+
+@property(nonatomic, retain) ASIHTTPRequest *imageRequest;
+@property(nonatomic, retain) UIActivityIndicatorView *spinner;
+@property(nonatomic, retain) Flat *flat;
+    
+@end
 
 @implementation AsynchronousImageView
 
-@synthesize connection;
-@synthesize data;
 @synthesize spinner;
 @synthesize flat;
+@synthesize imageRequest;
 
 - (void)loadImageFromURLString:(NSString *)_urlString forFlat:(Flat *)_flat{
     flat = _flat;
@@ -26,36 +38,28 @@
     CGPoint pos = CGPointMake(30, 30);
     [spinner setCenter:pos];
     [spinner startAnimating];
-    
-    NSURLRequest *request = [NSURLRequest requestWithURL:[NSURL URLWithString:_urlString]cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
-    
-    connection = [[NSURLConnection alloc] initWithRequest:request delegate:self];
-}
 
-- (void)connection:(NSURLConnection *)theConnection didReceiveData:(NSData *)d {
-    if (data == nil)
-        data = [[NSMutableData alloc] initWithCapacity:2048];
+    [self.imageRequest cancel];
     
-    [data appendData:d];
-}
-
-- (void)connectionDidFinishLoading:(NSURLConnection *)c {
-    self.image = [UIImage imageWithData:data];
-    if(flat) {
-        [flat setImage:self.image];
-    }
-    [data release], data = nil;
-    [connection release], connection = nil;
-    [spinner stopAnimating];
-}
-
-- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
-    NSLog(@"didFailWithError");
-    if(flat) {
-        self.image = [UIImage imageNamed:@"default_house.png"];
-        [flat setImage:self.image];
-    }
-    [spinner stopAnimating];
+    self.imageRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:_urlString]] autorelease];
+    [self.imageRequest setCompletionBlock:^{
+        UIImage* flatImage = [UIImage imageWithData:imageRequest.responseData];
+        [flat setImage:flatImage];
+        self.image = flatImage;
+        [self.spinner stopAnimating];
+    }];
+    [self.imageRequest setFailedBlock:^{
+        if (![self.imageRequest isCancelled]) {
+            self.image = [UIImage imageNamed:@"default_house.png"];
+            [spinner stopAnimating];
+            NSLog(@"image failed and request was not canceled");
+        }
+        else{
+            NSLog(@"image failed but request was canceled");
+        }
+    }];
+    NSOperationQueue* queue = [[[NSOperationQueue alloc] init] autorelease];
+    [queue addOperation:self.imageRequest];
 }
 
 - (void)reset {
@@ -66,8 +70,6 @@
 
 - (void)dealloc {
     [spinner release];
-    [data release];
-    [connection release];
 }
 
 @end
