@@ -7,6 +7,7 @@
 //
 
 #import "PortfolioCell.h"
+#import "Flat.h"
 
 @implementation PortfolioCell
 @synthesize labelRooms;
@@ -58,7 +59,7 @@
         }
         
         NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d", [flat numberOfRooms]];
-        NSString *space = [NSString stringWithFormat:@"qm: %.2f", [flat livingSpace]];
+        NSString *space = [NSString stringWithFormat:@"Fläche: %.2f qm",[flat livingSpace]];
         
         [labelTitel setText: [flat title]];
         [labelRooms setText: rooms]; 
