@@ -38,7 +38,7 @@
         // Custom initialization
         self.title = NSLocalizedString(@"History", @"Fourth");
         self.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon_history"];
-        self.loginCheck = [[LoginCheck alloc] init];
+        self.loginCheck = [[[LoginCheck alloc] init] autorelease];
     }
     return self;
 }
@@ -57,7 +57,7 @@
     [[self table] setHidden: YES];
     [spinner startAnimating];
     [self.table setBackgroundColor:[UIColor clearColor]];
-    [self.table setSeparatorColor:[[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.0]];
+    [self.table setSeparatorColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.0]];
     
     loadingHistoryEntriesStart = 10;
     loadingHistoryEntriesLimit = 10;
