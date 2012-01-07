@@ -123,8 +123,8 @@
 		D2B02D0E14B8741C00985E3C /* webview_back_button.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B02D0D14B8741C00985E3C /* webview_back_button.png */; };
 		D2B02D1314B8769400985E3C /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D2B02D1214B8769400985E3C /* QuartzCore.framework */; };
 		D2B02D1514B87D8B00985E3C /* bt_refresh.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B02D1414B87D8B00985E3C /* bt_refresh.png */; };
-		D2B02D1814B895F700985E3C /* UserTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B02D1714B895F700985E3C /* UserTask.m */; };
-		D2B02D1B14B8A01900985E3C /* PortfolioTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B02D1A14B8A01900985E3C /* PortfolioTask.m */; };
+		D2B02D2414B8AA3E00985E3C /* PortfolioTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B02D1A14B8A01900985E3C /* PortfolioTask.m */; };
+		D2B02D2614B8AA4700985E3C /* UserTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B02D1714B895F700985E3C /* UserTask.m */; };
 		D2B0A6FC1461DC9A004CB870 /* MessageHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2B0A6FB1461DC9A004CB870 /* MessageHandler.m */; };
 		D2B2379B149E527E00A26602 /* tabbar_center_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B2379A149E527E00A26602 /* tabbar_center_icon@2x.png */; };
 		D2B2379E149E5DE900A26602 /* tabbar_icon_mission.png in Resources */ = {isa = PBXBuildFile; fileRef = D2B2379C149E5DE900A26602 /* tabbar_icon_mission.png */; };
@@ -1318,6 +1318,8 @@
 				4CDF1B7F149E44DD00E735DB /* ResetPasswordTask.m in Sources */,
 				6DB4EAD314ADC2AE0057B16E /* AbstractViewController.m in Sources */,
 				6DD3BDA114B8949400D6D7B2 /* PortfolioCell.m in Sources */,
+				D2B02D2414B8AA3E00985E3C /* PortfolioTask.m in Sources */,
+				D2B02D2614B8AA4700985E3C /* UserTask.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

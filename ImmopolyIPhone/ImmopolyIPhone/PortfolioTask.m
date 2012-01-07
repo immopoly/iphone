@@ -19,7 +19,7 @@
 
 - (void)refreshPortolio{
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?token=%@&start=%d&end=%d",urlIS24MobileExpose,[[[ImmopolyManager instance]user]userToken],0, 30]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?token=%@&start=0&end=30",urlImmopolyExpose,[[[ImmopolyManager instance]user]userToken],0, 30]];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
     
@@ -31,6 +31,14 @@
     }
 }
 
+- (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)d {
+    [[self data] appendData:d];
+}
+
+- (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
+    NSLog(@"didFailWithError");
+}
+
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if ([jsonString isEqualToString:@""]) {
@@ -38,7 +46,7 @@
     }
     
     NSError *err=nil;
-    [[[ImmopolyManager instance]user]setPortfolio:[JSONParser parseFlatData:jsonString :&err]];
+    [[[ImmopolyManager instance]user]setPortfolio:[JSONParser parseExposes:jsonString :&err]];
  
     
     if (err) {

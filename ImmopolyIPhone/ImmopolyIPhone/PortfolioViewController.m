@@ -761,6 +761,10 @@
     [spinner stopAnimating];
     [spinner setHidden: YES];
     
+    [[self table]reloadData];
+    [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]]; 
+    [self recenterMap];
+    
     //ToDo: actualise
 }
 
