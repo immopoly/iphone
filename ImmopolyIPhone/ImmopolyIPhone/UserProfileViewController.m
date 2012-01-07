@@ -51,7 +51,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.loginCheck = [[LoginCheck alloc]init];
+    self.loginCheck = [[[LoginCheck alloc]init] autorelease];
     
     [spinner startAnimating];
     
@@ -70,7 +70,7 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     long long uid = [[defaults objectForKey:@"FBUserId"] longLongValue];
-    NSString *urlString = [[NSString alloc] initWithFormat:@"https://graph.facebook.com/%qi/picture?type=large", uid];
+    NSString *urlString = [NSString stringWithFormat:@"https://graph.facebook.com/%qi/picture?type=large", uid];
     
     //[userImage loadImageFromURLString:urlString forFlat:nil];
     

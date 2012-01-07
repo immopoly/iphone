@@ -18,18 +18,18 @@
 @synthesize selectedExposeId;
 
 + (ImmopolyManager *)instance {
-    static ImmopolyManager *instance;
-    
-    @synchronized(self)
-    {
-        if(!instance){
-            instance = [[[ImmopolyManager alloc] init] autorelease]; // all initialisations are here
-            instance.loginSuccessful = NO;
-            instance.immoScoutFlats = [[NSMutableArray alloc] init];
-            
-        }
-        return instance;
-    }
+    static ImmopolyManager* instance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        instance =  [[ImmopolyManager alloc] init];
+    });
+    return instance;
+}
+
+- (id)init{
+    self = [super init];
+    self.immoScoutFlats = [NSMutableArray array];
+    return self;
 }
 
 - (void)callFlatsDelegate {

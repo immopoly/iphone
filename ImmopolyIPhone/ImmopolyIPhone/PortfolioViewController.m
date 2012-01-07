@@ -11,6 +11,7 @@
 #import "Flat.h"
 #import "UserLoginTask.h"
 #import "PortfolioTask.h"
+#import "PortfolioCell.h"
 
 @implementation PortfolioViewController
 
@@ -214,46 +215,19 @@
     
     Flat *actFlat = [[[[ImmopolyManager instance] user] portfolio] objectAtIndex: indexPath.row];
 
-    UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:@"PortfolioCell"];
-    
-    UILabel *lbStreet;
-    UILabel *lbRooms;
-    UILabel *lbSpace;
-    AsynchronousImageView *asyncImageViewList;
+    PortfolioCell *cell = (PortfolioCell *)[tableView dequeueReusableCellWithIdentifier:@"PortfolioCell"];
     
     // recycling cells
     if(cell==nil){
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PortfolioCell" owner:self options:nil];
-        cell = (UITableViewCell *)[nib objectAtIndex:0];
+        cell = (PortfolioCell *)[nib objectAtIndex:0];
+        [cell setFlat:actFlat];
         
     }else{
-        NSLog(@"Bla");
         //STOP SPINNER
         //[asyncImageViewList reset];
     }
-    
-    asyncImageViewList = (AsynchronousImageView *)[cell viewWithTag:1];
-    lbStreet = (UILabel *)[cell viewWithTag:2];
-    lbRooms = (UILabel *)[cell viewWithTag:3];
-    lbSpace = (UILabel *)[cell viewWithTag:4];
-    [asyncImageViewList reset];
-    
-    if([actFlat image] == nil) {
-        [asyncImageViewList loadImageFromURLString:[actFlat pictureUrl] forFlat:actFlat];
-    } else {
-        [asyncImageViewList setImage:[actFlat image]];
-    }
-    
-    NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d", [actFlat numberOfRooms]];
-    NSString *space = [NSString stringWithFormat:@"qm: %f", [actFlat livingSpace]];
-    
-    space = [space substringToIndex:[space length]-7];
-    
-    [lbStreet setText: [actFlat title]];
-    //[lbStreet setText: [actFlat street]]; 
-    [lbRooms setText: rooms]; 
-    [lbSpace setText: space];
-     
+
     return cell;
 }
 
