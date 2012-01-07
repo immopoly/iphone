@@ -131,6 +131,7 @@
 								<string key="NSFrame">{{131, 88}, {90, 21}}</string>
 								<reference key="NSSuperview" ref="275262557"/>
 								<reference key="NSWindow"/>
+								<reference key="NSNextKeyView"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -182,6 +183,38 @@
 					</object>
 					<int key="connectionID">11</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">labelTitel</string>
+						<reference key="source" ref="144803153"/>
+						<reference key="destination" ref="618809682"/>
+					</object>
+					<int key="connectionID">18</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">labelRooms</string>
+						<reference key="source" ref="144803153"/>
+						<reference key="destination" ref="89530565"/>
+					</object>
+					<int key="connectionID">20</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">labelFlatSpace</string>
+						<reference key="source" ref="144803153"/>
+						<reference key="destination" ref="20938709"/>
+					</object>
+					<int key="connectionID">21</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">flatImage</string>
+						<reference key="source" ref="144803153"/>
+						<reference key="destination" ref="5679236"/>
+					</object>
+					<int key="connectionID">22</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -208,9 +241,9 @@
 						<array class="NSMutableArray" key="children">
 							<reference ref="785656240"/>
 							<reference ref="20938709"/>
-							<reference ref="89530565"/>
 							<reference ref="618809682"/>
 							<reference ref="5679236"/>
+							<reference ref="89530565"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -250,6 +283,7 @@
 				<string key="12.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="13.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="16.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="8.CustomClassName">PortfolioCell</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="9.CustomClassName">AsynchronousImageView</string>
 				<string key="9.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
@@ -258,10 +292,18 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">17</int>
+			<int key="maxID">22</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">AbstractViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/AbstractViewController.h</string>
+					</object>
+				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">AsynchronousImageView</string>
 					<string key="superclassName">UIImageView</string>
@@ -271,17 +313,49 @@
 					</object>
 				</object>
 				<object class="IBPartialClassDescription">
+					<string key="className">PortfolioCell</string>
+					<string key="superclassName">UITableViewCell</string>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="flatImage">AsynchronousImageView</string>
+						<string key="labelFlatSpace">UILabel</string>
+						<string key="labelRooms">UILabel</string>
+						<string key="labelTitel">UILabel</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="flatImage">
+							<string key="name">flatImage</string>
+							<string key="candidateClassName">AsynchronousImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="labelFlatSpace">
+							<string key="name">labelFlatSpace</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="labelRooms">
+							<string key="name">labelRooms</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="labelTitel">
+							<string key="name">labelTitel</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/PortfolioCell.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">PortfolioViewController</string>
-					<string key="superclassName">UIViewController</string>
+					<string key="superclassName">AbstractViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
-						<string key="calloutBubbleOut">id</string>
+						<string key="closeBubble">id</string>
 						<string key="showAllFlats">id</string>
 						<string key="showList">id</string>
 						<string key="showMap">id</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="actionInfosByName">
-						<object class="IBActionInfo" key="calloutBubbleOut">
-							<string key="name">calloutBubbleOut</string>
+						<object class="IBActionInfo" key="closeBubble">
+							<string key="name">closeBubble</string>
 							<string key="candidateClassName">id</string>
 						</object>
 						<object class="IBActionInfo" key="showAllFlats">
@@ -301,7 +375,6 @@
 						<string key="adressLabel">UILabel</string>
 						<string key="asyncImageView">AsynchronousImageView</string>
 						<string key="btRecenterMap">UIButton</string>
-						<string key="btShowFlatsWebView">UIButton</string>
 						<string key="calloutBubble">UIView</string>
 						<string key="calloutBubbleImg">UIImageView</string>
 						<string key="imgShadowBottom">UIImageView</string>
@@ -332,10 +405,6 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="btRecenterMap">
 							<string key="name">btRecenterMap</string>
-							<string key="candidateClassName">UIButton</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="btShowFlatsWebView">
-							<string key="name">btShowFlatsWebView</string>
 							<string key="candidateClassName">UIButton</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="calloutBubble">
