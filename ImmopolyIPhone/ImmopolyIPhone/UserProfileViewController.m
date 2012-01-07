@@ -11,6 +11,7 @@
 #import "ImmopolyUser.h"
 #import "UserBadge.h"
 #import "AsynchronousImageView.h"
+#import "UserTask.h"
 
 @implementation UserProfileViewController
 
@@ -25,6 +26,7 @@
 @synthesize labelNumExposes;
 @synthesize badgesView;
 @synthesize userImage;
+@synthesize loading;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -56,6 +58,16 @@
     // setting the text of the helperView
     //[super initHelperView];
     
+    // setting the text of the helperView
+    [super initHelperViewWithMode:INFO_USER];
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    //[self performActionAfterLoginCheck];
+    loginCheck.delegate = self;
+    [loginCheck checkUserLogin];
+    [super viewDidAppear:animated];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     long long uid = [[defaults objectForKey:@"FBUserId"] longLongValue];
     NSString *urlString = [[NSString alloc] initWithFormat:@"https://graph.facebook.com/%qi/picture?type=large", uid];
@@ -72,16 +84,6 @@
     userImage.image = [UIImage imageWithCGImage:imageRef]; 
     CGImageRelease(imageRef);
     
-    // setting the text of the helperView
-    [super initHelperViewWithMode:INFO_USER];
-}
-
-
-- (void)viewDidAppear:(BOOL)animated {
-    //[self performActionAfterLoginCheck];
-    loginCheck.delegate = self;
-    [loginCheck checkUserLogin];
-    [super viewDidAppear:animated];
 }
 
 - (NSString*) formatToCurrencyWithNumber:(double)number {
@@ -184,6 +186,39 @@
     [badgesView release];
     [spinner release];
     [super dealloc];
+}
+
+-(void)notifyMyDelegateView{
+    loading = NO;
+    [spinner stopAnimating];
+    [spinner setHidden: YES];
+    ImmopolyUser *myUser = [[ImmopolyManager instance] user];
+    
+    if(myUser != nil) {
+        [hello setText: [NSString stringWithFormat: @"%@", [myUser userName]]];
+        [bank setText: [self formatToCurrencyWithNumber:[myUser balance]]];
+        [miete setText: [self formatToCurrencyWithNumber:[myUser lastRent]]];
+        [numExposes setText: [ NSString stringWithFormat:@"%i von %i", [myUser numExposes], [myUser maxExposes]]];
+        
+        if([[myUser badges] count] > 0) {
+            [self displayBadges];
+        }
+        else {
+            [self.badgesView setHidden:YES];
+        }
+    }
+}
+
+- (IBAction)update{
+    [spinner setHidden: NO];
+    if(!loading){
+        UserTask *task = [[[UserTask alloc] init] autorelease];
+        task.delegate = self;
+        loading = YES;
+        
+        [task refreshUser:[[ImmopolyManager instance]user].userName];
+        [spinner startAnimating];
+    }
 }
 
 @end

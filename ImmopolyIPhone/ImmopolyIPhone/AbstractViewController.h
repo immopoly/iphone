@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-
 #define INFO_IMMOPOLY 0
 #define INFO_MAP 1
 #define INFO_PORTFOLIO 2

@@ -26,6 +26,7 @@
 //
 
 #import "CustomTabBarController.h"
+#import "AppDelegate.h"
 
 @implementation CustomTabBarController
 
@@ -65,6 +66,9 @@
 
 -(void) centerClicked{
     [self setSelectedIndex:2];
+    
+    AppDelegate *delegate = [(AppDelegate *) [UIApplication sharedApplication]delegate];
+    [delegate setSelectedViewController:[[[delegate tabBarController]viewControllers]objectAtIndex:2]];
 }
 
 

@@ -18,7 +18,7 @@
 #define ANNO_WIDTH 40
 #define ANNO_HEIGHT 51
 
-@interface PortfolioViewController : AbstractViewController <UITableViewDataSource, UITableViewDelegate, UserDataDelegate, MKMapViewDelegate, UIPageViewControllerDelegate> {
+@interface PortfolioViewController : AbstractViewController <UITableViewDataSource, UITableViewDelegate, UserDataDelegate, MKMapViewDelegate, UIPageViewControllerDelegate,NotifyViewDelegate> {
     IBOutlet UITableViewCell *tvCell;
     IBOutlet UITableView *table;
     IBOutlet UILabel *adressLabel;
@@ -40,6 +40,7 @@
     IBOutlet UIImageView *imgShadowTop;
     IBOutlet UIImageView *imgShadowBottom;
 
+    BOOL loading;
     
     LoginCheck *loginCheck;
     
@@ -105,6 +106,7 @@
 @property(nonatomic, retain) IBOutlet UIImageView *imgShadowBottom;
 @property(nonatomic, retain) Flat *sameFlat;
 @property(nonatomic, assign) MKCoordinateSpan regionSpan;
+@property(nonatomic, assign) BOOL loading;
 
 - (void)calloutBubbleOut;
 - (void)recenterMap;

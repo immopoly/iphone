@@ -21,5 +21,6 @@
 + (NSMutableArray *)parseFlatData:(NSString *)jsonString:(NSError **) err;
 + (HistoryEntry *)parseHistoryEntry:(NSString *)jsonString:(NSError **) err;
 + (NSArray *)parseHistoryEntries:(NSString *)jsonString:(NSError **) err;
++ (void)parsePublicUserData:(NSString *)jsonString:(NSError **)err;
 
 @end

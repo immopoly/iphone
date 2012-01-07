@@ -13,7 +13,7 @@
 #import "AbstractViewController.h"
 #import "AsynchronousImageView.h"
 
-@interface UserProfileViewController : AbstractViewController <UserDataDelegate> {
+@interface UserProfileViewController : AbstractViewController <UserDataDelegate,NotifyViewDelegate> {
     
     IBOutlet UILabel *hello;
     IBOutlet UILabel *bank;
@@ -26,6 +26,7 @@
     LoginCheck *loginCheck;
     IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet AsynchronousImageView *userImage;
+    BOOL loading;
 }
 
 @property(nonatomic, retain) IBOutlet UILabel *hello;
@@ -40,6 +41,7 @@
 @property(nonatomic, retain) LoginCheck *loginCheck;
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, retain) IBOutlet AsynchronousImageView *userImage;
+@property(nonatomic, assign) BOOL loading;
 
 - (NSString*)formatToCurrencyWithNumber:(double)number;
 - (void)displayBadges;
