@@ -59,6 +59,7 @@
 - (void) showEmail;
 - (void)enableFlatButton:(NSTimer *)_theTimer;
 - (void)showTweet;
+- (void)resetContent;
 
 - (IBAction) share;
 - (IBAction) exposeAction;

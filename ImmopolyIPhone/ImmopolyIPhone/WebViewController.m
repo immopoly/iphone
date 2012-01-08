@@ -37,6 +37,10 @@
 	return self;
 }
 
+- (void)viewWillAppear:(BOOL)animated {
+    [self resetContent];
+}
+
 /*
  Implement loadView if you want to create a view hierarchy programmatically
 - (void)loadView {
@@ -124,8 +128,7 @@
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
-    [activityIndicator startAnimating];
-    
+    [activityIndicator startAnimating];    
 }
 
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
@@ -426,6 +429,11 @@
     self.spinner = nil;
 }
 
-
+- (void)resetContent {
+    // resetting the webview content
+    [activityIndicator setHidden:NO];
+    [activityIndicator startAnimating];
+    [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
+}
 
 @end
