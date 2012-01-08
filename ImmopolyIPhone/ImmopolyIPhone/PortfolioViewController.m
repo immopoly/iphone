@@ -10,6 +10,7 @@
 #import "ImmopolyManager.h"
 #import "Flat.h"
 #import "UserLoginTask.h"
+#import "PortfolioTask.h"
 #import "PortfolioCell.h"
 
 @implementation PortfolioViewController
@@ -51,6 +52,7 @@
 @synthesize imgShadowBottom;
 @synthesize sameFlat;
 @synthesize regionSpan;
+@synthesize loading;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil { 
@@ -753,5 +755,30 @@
         [self calloutBubbleOut];    
     }
 }
+
+-(void)notifyMyDelegateView{
+    loading = NO;
+    [spinner stopAnimating];
+    [spinner setHidden: YES];
+    
+    [[self table]reloadData];
+    [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]]; 
+    [self recenterMap];
+    
+    //ToDo: actualise
+}
+
+- (IBAction)update{
+    [spinner setHidden: NO];
+    if(!loading){
+        PortfolioTask *task = [[[PortfolioTask alloc] init] autorelease];
+        task.delegate = self;
+        loading = YES;
+        
+        [task refreshPortolio];
+        [spinner startAnimating];
+    }
+}
+
 
 @end

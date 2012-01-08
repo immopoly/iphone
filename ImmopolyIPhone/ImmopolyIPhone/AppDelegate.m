@@ -31,6 +31,7 @@
 @synthesize adressLabel;
 
 @synthesize selectedViewController;
+@synthesize actualisationSpinner;
 
 - (void)dealloc
 {
@@ -57,6 +58,7 @@
     [errorAlert release];
 }
 
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self startLocationUpdate];
     
@@ -82,6 +84,8 @@
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:userVC,portfolioVC,mapVC,historyVC,missionVC, nil];
     [self.tabBarController addCenterButtonWithImage:[UIImage imageNamed:@"tabbar_center_icon.png"] highlightImage:nil];
     [self.tabBarController setSelectedIndex:2];
+    
+    [self setSelectedViewController:[[self tabBarController]selectedViewController]];
     
     self.window.rootViewController = self.tabBarController;
     
@@ -151,12 +155,20 @@
     }
     else {
         //show modal view controller
-        
     }
 }
 
 -(void) loginWithResult:(BOOL)_result {
+    
+    [actualisationSpinner stopAnimating];
+    [actualisationSpinner release];
+    
     if(_result) {
+        //[[self selectedViewController]viewWillAppear:YES];
+        
+        if ([selectedViewController isKindOfClass:[HistoryViewController class]]) {
+            [(HistoryViewController *)selectedViewController setLoadingHistoryEntriesStart:10];
+        }
         [self.tabBarController setSelectedViewController:selectedViewController];
     }
     else {
@@ -225,9 +237,42 @@
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    /*
-     Called as part of the transition from the background to the inactive state; here you can undo many of the changes made on entering the background.
-     */
+    /*UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Daten aktualisieren?" message:@"Möchtest du dein Benutzerkonto mit Immopoly neu synchroniseren?" delegate:self cancelButtonTitle:@"Nein" otherButtonTitles:@"Ja",nil, nil];
+    
+    
+    [alert show];
+    [alert release];*/
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
+    actualisationSpinner = [[UIActivityIndicatorView alloc] init];
+    
+    switch (buttonIndex) {
+            //Nein
+        case 0:
+            
+            break;
+            //Ja                
+        case 1:
+            [actualisationSpinner setActivityIndicatorViewStyle:UIActivityIndicatorViewStyleWhite];
+            
+            
+            CGPoint point;
+            point.x = 300;
+            point.y = 21;
+            
+            [[[self.tabBarController selectedViewController]view]addSubview:actualisationSpinner];
+            [actualisationSpinner setCenter:point];
+            [actualisationSpinner startAnimating];
+            
+            [self tryLoginWithToken];
+            break;
+            
+        default:
+            break;
+    }   
+    //[self.view removeFromSuperview];
+    
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {

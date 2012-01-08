@@ -18,6 +18,57 @@
 
 @synthesize delegate;
 
+
++ (void)parsePublicUserData:(NSString *)jsonString:(NSError **)err{
+    // Create a dictionary from the JSON string
+    NSDictionary *results = [jsonString JSONValue];
+    ImmopolyUser *myUser = [[[ImmopolyUser alloc] init] autorelease];
+    
+    if ([jsonString rangeOfString:@"ImmopolyException"].location != NSNotFound) {
+        
+        NSDictionary *exceptionDic = [results objectForKey:@"org.immopoly.common.ImmopolyException"];
+        NSString *exceptionMessage = [exceptionDic objectForKey:@"message"];
+        int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
+        
+        *err = [NSError errorWithDomain:@"parseUserData" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:exceptionMessage],@"ErrorMessage",nil]];
+    } 
+    else {
+        NSDictionary *user = [results objectForKey:@"org.immopoly.common.User"];
+        
+        [[ImmopolyManager instance] user].userName = [user objectForKey:@"username"];
+        [[ImmopolyManager instance] user].email = [user objectForKey:@"email"];
+        
+       
+        NSDictionary *info = [user objectForKey:@"info"];
+        
+        //parse user balance, lastRent and lastProvision
+        [myUser setLastRent:[[info objectForKey:@"lastRent"] doubleValue]];
+        [myUser setBalance:[[info objectForKey:@"balance"] doubleValue]];
+        [myUser setLastProvision: [[info objectForKey:@"lastProvision"] intValue]];
+        [myUser setNumExposes: [[info objectForKey:@"numExposes"] intValue]];
+        [myUser setMaxExposes: [[info objectForKey:@"maxExposes"] intValue]];
+        
+        //parse Badges data
+        NSArray *badgesDict = [info objectForKey:@"bagdesList"];
+        for (NSDictionary *listElement in badgesDict) {
+            NSDictionary *listEntry = [listElement objectForKey:@"Badge"];
+            
+            UserBadge *userBadge = [[UserBadge alloc] init];
+            
+            [userBadge setText: [listEntry objectForKey: @"text"]];
+            [userBadge setTime: [[listEntry objectForKey: @"time"] longLongValue]];
+            [userBadge setType: [[listEntry objectForKey: @"type"] intValue]];
+            [userBadge setAmount: [[listEntry objectForKey:@"amount"] intValue]];
+            [userBadge setUrl: [listEntry objectForKey:@"url"]];
+            
+            [[myUser badges] addObject: userBadge];
+            
+            [userBadge release];
+        }
+    }
+    
+}
+
 + (ImmopolyUser *)parseUserData:(NSString *)jsonString:(NSError **)err{
     // Create a dictionary from the JSON string
     NSDictionary *results = [jsonString JSONValue];
@@ -131,6 +182,90 @@
     return myUser;
 }
 
++ (NSArray *)parseHistoryEntries:(NSString *)jsonString:(NSError **)err{
+    NSMutableArray *histEntries = [[[NSMutableArray alloc] init] autorelease];
+    
+    NSDictionary *results = [jsonString JSONValue];
+    
+    if ([jsonString rangeOfString:@"ImmopolyException"].location != NSNotFound) {
+        
+        NSDictionary *exceptionDic = [results objectForKey:@"org.immopoly.common.ImmopolyException"];
+        NSString *exceptionMessage = [exceptionDic objectForKey:@"message"];
+        int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
+        
+        *err = [NSError errorWithDomain:@"parseHistoryEntries" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:exceptionMessage],@"ErrorMessage",nil]];
+        
+        return nil;
+    } 
+    else {
+        for (NSDictionary *dictionary in results) {
+            NSDictionary *histDic = [dictionary objectForKey:@"org.immopoly.common.History"];
+            
+            HistoryEntry *histEntry = [[[HistoryEntry alloc] init] autorelease];
+            [histEntry setHistText:[histDic objectForKey:@"text"]];
+            [histEntry setTime:[[histDic objectForKey:@"time"]longLongValue]];
+            [histEntry setType:[[histDic objectForKey:@"type"]intValue]];
+            [histEntry setType2:[[histDic objectForKey:@"type2"]intValue]];
+            [histEntry setExposeId:[[histDic objectForKey:@"exposeId"]intValue]];
+            [histEntries addObject:histEntry];
+        }
+    }
+    
+    return histEntries;
+}
+
++ (NSMutableArray *)parseExposes:(NSString *)jsonString:(NSError **)err{
+    NSMutableArray *exposes = [[[NSMutableArray alloc] init] autorelease];
+    
+    NSDictionary *results = [jsonString JSONValue];
+    
+    
+    if ([jsonString rangeOfString:@"ImmopolyException"].location != NSNotFound) {
+        
+        NSDictionary *exceptionDic = [results objectForKey:@"org.immopoly.common.ImmopolyException"];
+        NSString *exceptionMessage = [exceptionDic objectForKey:@"message"];
+        int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
+        
+        *err = [NSError errorWithDomain:@"parseExposes" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:exceptionMessage],@"ErrorMessage",nil]];
+        
+        return nil;
+    } 
+    else {
+        for (NSDictionary *dictionary in results) {
+            NSDictionary *flat = [dictionary objectForKey:@"expose.expose"];
+            NSDictionary *realEstate = [flat objectForKey:@"realEstate"];
+            NSDictionary *address = [realEstate objectForKey:@"address"];
+            NSDictionary *coordinate = [address objectForKey: @"wgs84Coordinate"];
+            
+            CLLocationCoordinate2D tempCoord = CLLocationCoordinate2DMake([[coordinate objectForKey:@"latitude"] doubleValue],[[coordinate objectForKey:@"longitude"] doubleValue]);
+            
+            //create a Flat object
+            Flat *myFlat = [[Flat alloc] initWithName:[realEstate objectForKey:@"title"] description:[realEstate objectForKey:@"descriptionNote"] coordinate:tempCoord exposeId:[[dictionary objectForKey:@"realEstateId"] intValue]];
+            
+            //save Flat info
+            [myFlat setExposeId:[[realEstate objectForKey:@"@id"]intValue]];
+            [myFlat setNumberOfRooms: [[realEstate objectForKey: @"numberOfRooms"] intValue]];
+            [myFlat setLivingSpace: [[realEstate objectForKey: @"livingSpace"] doubleValue]];
+            [myFlat setPriceValue: [realEstate objectForKey:@"baseRent"]];
+            
+            //parse and save Flat title picture url
+            NSDictionary *titlePicture = [realEstate objectForKey: @"titlePicture"];
+            NSMutableArray *urls = [titlePicture objectForKey: @"urls"];
+            NSDictionary *urlObject = [urls objectAtIndex: 0];
+            NSDictionary *url = [urlObject objectForKey: @"url"];
+            [myFlat setPictureUrl: [url objectForKey: @"@href"]];
+            
+            [exposes addObject:myFlat];
+            
+            [myFlat release];        }
+    }
+    
+    return exposes;
+    
+    
+
+}
+
 + (NSMutableArray *)parseFlatData:(NSString *)jsonString:(NSError **)err{
 
     NSDictionary *results = [jsonString JSONValue];
@@ -226,36 +361,6 @@
     }
 }
 
-+ (NSArray *)parseHistoryEntries:(NSString *)jsonString:(NSError **)err{
-    NSMutableArray *histEntries = [[[NSMutableArray alloc] init] autorelease];
-    
-    NSDictionary *results = [jsonString JSONValue];
-    
-    if ([jsonString rangeOfString:@"ImmopolyException"].location != NSNotFound) {
-        
-        NSDictionary *exceptionDic = [results objectForKey:@"org.immopoly.common.ImmopolyException"];
-        NSString *exceptionMessage = [exceptionDic objectForKey:@"message"];
-        int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
-        
-        *err = [NSError errorWithDomain:@"parseHistoryEntries" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:exceptionMessage],@"ErrorMessage",nil]];
-        
-        return nil;
-    } 
-    else {
-        for (NSDictionary *dictionary in results) {
-            NSDictionary *histDic = [dictionary objectForKey:@"org.immopoly.common.History"];
-            
-            HistoryEntry *histEntry = [[[HistoryEntry alloc] init] autorelease];
-            [histEntry setHistText:[histDic objectForKey:@"text"]];
-            [histEntry setTime:[[histDic objectForKey:@"time"]longLongValue]];
-            [histEntry setType:[[histDic objectForKey:@"type"]intValue]];
-            [histEntry setType2:[[histDic objectForKey:@"type2"]intValue]];
-            [histEntry setExposeId:[[histDic objectForKey:@"exposeId"]intValue]];
-            [histEntries addObject:histEntry];
-        }
-    }
-    
-    return histEntries;
-}
+
 @end
 

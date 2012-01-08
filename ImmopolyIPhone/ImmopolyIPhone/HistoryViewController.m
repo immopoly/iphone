@@ -299,7 +299,9 @@
             
             HistoryTask *task = [[[HistoryTask alloc] init] autorelease];
             task.delegate = self;
+            task.refresh = NO;
             [task loadHistoryEintriesFrom:loadingHistoryEntriesStart To:(loadingHistoryEntriesStart+loadingHistoryEntriesLimit)];
+            loadingHistoryEntriesStart+=10;
             [reloadDataSpinner startAnimating];
         }
       }
@@ -310,9 +312,7 @@
 - (void)hasMoreData:(bool)result {
     if (result) {
         loading = false;
-        loadingHistoryEntriesStart+=10;
     }
-    
     [self.table reloadData];
     [reloadDataSpinner stopAnimating];
 }
@@ -407,6 +407,18 @@
             
             [self presentModalViewController:tweetView animated:YES];
         }
+    }
+}
+
+- (IBAction)update{
+    
+    if(!loading){
+        HistoryTask *task = [[[HistoryTask alloc] init] autorelease];
+        task.delegate = self;
+        task.refresh = YES;
+        loading = YES;
+        [task loadHistoryEintriesFrom:0 To:loadingHistoryEntriesStart];
+        [reloadDataSpinner startAnimating];
     }
 }
 

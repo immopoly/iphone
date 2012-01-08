@@ -24,6 +24,8 @@ NSString* const urlIS24MobileExpose = @"http://mobil.immobilienscout24.de/expose
 NSString* const urlImmopolyUser = @"https://immopoly.appspot.com/user/";
 NSString* const urlImmopolyPortfolio = @"http://immopoly.appspot.com/portfolio/";
 
+NSString* const urlImmopolyExpose = @"https://immopoly.appspot.com/user/exposes";
+
 NSString* const alertRegisterWrongInput = @"Es wurde eine falsche Eingabe getätigt.";
 NSString* const alertRegisterSuccessful = @"Glückwunsch! Du hast dich erfolgreich registriert und kannst dich nun einloggen.";
 

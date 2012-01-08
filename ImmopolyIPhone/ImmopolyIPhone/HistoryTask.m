@@ -17,6 +17,7 @@
 @synthesize connection;
 @synthesize delegate;
 @synthesize limit;
+@synthesize refresh;
 
 - (void)loadHistoryEintriesFrom:(int)_start To :(int)_end {
     
@@ -42,7 +43,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError");
-    //[delegate loginWithResult: NO];
+    [delegate hasMoreData: YES];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
@@ -56,17 +57,20 @@
     NSArray *resultEntries = [[[NSArray alloc]init] autorelease];
     
     resultEntries = [JSONParser parseHistoryEntries:jsonString:&err];
-    [[[[ImmopolyManager instance]user]history]addObjectsFromArray:resultEntries];
     
     if (err) {
         //Handle Error here
         NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:err forKey:@"error"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"user/history entries" object:nil userInfo:errorInfo];
-
+         [delegate hasMoreData: YES];
+    }else if(refresh){
+        [[[ImmopolyManager instance]user]setHistory:[[NSMutableArray alloc]initWithArray:resultEntries]];
+    
     }else if([resultEntries count]< limit){
-        //call delegate to tell table view what happened
+        [[[[ImmopolyManager instance]user]history]addObjectsFromArray:resultEntries];
         [delegate hasMoreData:NO];
     }else{
+        [[[[ImmopolyManager instance]user]history]addObjectsFromArray:resultEntries];
         [delegate hasMoreData:YES];
     }
     

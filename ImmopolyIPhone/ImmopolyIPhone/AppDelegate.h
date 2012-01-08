@@ -19,6 +19,7 @@
     CLGeocoder *geocoder;
     LoginCheck *loginCheck;
     UIViewController *selectedViewController;
+    UIActivityIndicatorView *actualisationSpinner;
 }
 
 @property (retain, nonatomic) UIWindow *window;
@@ -29,6 +30,7 @@
 @property(nonatomic, retain) IBOutlet UILabel *adressLabel;
 
 @property(nonatomic, retain) UIViewController *selectedViewController;
+@property(nonatomic, retain) UIActivityIndicatorView *actualisationSpinner;
 
 
 - (void)startLocationUpdate;

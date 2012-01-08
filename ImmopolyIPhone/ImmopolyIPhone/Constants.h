@@ -23,6 +23,7 @@ extern NSString* const urlIS24API;
 extern NSString* const urlIS24MobileExpose;
 extern NSString* const urlImmopolyUser;
 extern NSString* const urlImmopolyPortfolio;
+extern NSString* const urlImmopolyExpose;
 
 extern NSString* const alertRegisterWrongInput;
 extern NSString* const alertRegisterSuccessful;

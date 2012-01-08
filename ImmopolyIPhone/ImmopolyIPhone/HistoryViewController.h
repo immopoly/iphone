@@ -58,6 +58,7 @@
 - (void)viewFadeOut:(UIView *)view;
 - (IBAction)facebook:(id)sender;
 - (IBAction)twitter:(id)sender;
+- (IBAction)update;
 
 -(IBAction)showCellLabels:(id)sender;
 
