@@ -81,7 +81,6 @@
             
             // set new balance 
             [user setBalance:[user balance]+[resultHistEntry amount]];
-            [user setNumExposes:[user numExposes]-1];
             
             //send notification
             NSDictionary *userInfo = [NSDictionary dictionaryWithObject:resultHistEntry forKey:@"histEntry"];

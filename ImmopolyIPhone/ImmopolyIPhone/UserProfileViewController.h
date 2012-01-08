@@ -12,6 +12,7 @@
 #import "LoginCheck.h"
 #import "AbstractViewController.h"
 #import "AsynchronousImageView.h"
+#import "ImmopolyUser.h"
 
 @interface UserProfileViewController : AbstractViewController <UserDataDelegate,NotifyViewDelegate> {
     
@@ -46,5 +47,7 @@
 - (NSString*)formatToCurrencyWithNumber:(double)number;
 - (void)displayBadges;
 - (void)stopSpinnerAnimation;
+- (void)setLabelTextsOfUser:(ImmopolyUser *)_user;
+- (void)loadFacebookPicture;
 
 @end

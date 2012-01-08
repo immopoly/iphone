@@ -70,7 +70,6 @@
             //when history has type 1 add expose to portfolio
             if([resultHistEntry type] == 1){
                 [[user portfolio] insertObject:[self selectedImmoscoutFlat] atIndex:0];
-                [user setNumExposes:[user numExposes]+1];
             }
             
             //TODO: send Notification with history entry

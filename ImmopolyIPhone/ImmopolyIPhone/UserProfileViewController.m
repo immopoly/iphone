@@ -68,33 +68,7 @@
     [loginCheck checkUserLogin];
     [super viewDidAppear:animated];
     
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    long long uid = [[defaults objectForKey:@"FBUserId"] longLongValue];
-    NSString *urlString = [NSString stringWithFormat:@"https://graph.facebook.com/%qi/picture?type=large", uid];
-    
-    //[userImage loadImageFromURLString:urlString forFlat:nil];
-    
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *image = [[[UIImage alloc] initWithData:data] autorelease];
-    
-    // cropping the image
-    CGRect cropRect = CGRectMake(image.size.width/4, 0, 100, 100);
-    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], cropRect);
-    userImage.image = [UIImage imageWithCGImage:imageRef]; 
-    CGImageRelease(imageRef);
-    
-}
-
-- (NSString*) formatToCurrencyWithNumber:(double)number {
-    NSLocale *german = [[NSLocale alloc] initWithLocaleIdentifier:@"de_DE"]; 
-    
-    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
-    [numberFormatter setLocale:german];
-    [numberFormatter setFormatterBehavior:NSNumberFormatterBehavior10_4];
-    [numberFormatter setNumberStyle:NSNumberFormatterCurrencyStyle];
-    
-    return [numberFormatter stringFromNumber: [NSNumber numberWithDouble: number]];
+    [self loadFacebookPicture];
 }
 
 - (void)performActionAfterLoginCheck {
@@ -103,42 +77,38 @@
     ImmopolyUser *myUser = [[ImmopolyManager instance] user];
     
     if(myUser != nil) {
-        [hello setText: [NSString stringWithFormat: @"%@", [myUser userName]]];
-        [bank setText: [self formatToCurrencyWithNumber:[myUser balance]]];
-        [miete setText: [self formatToCurrencyWithNumber:[myUser lastRent]]];
-        [numExposes setText: [ NSString stringWithFormat:@"%i von %i", [myUser numExposes], [myUser maxExposes]]];
-        
-        if([[myUser badges] count] > 0) {
-            [self displayBadges];
-        }
-        else {
-            [self.badgesView setHidden:YES];
-        }
+        [self setLabelTextsOfUser:myUser];
+        [self displayBadges];
     }
 }
 
 - (void)displayBadges {
     NSArray *userBadges = [[[ImmopolyManager instance] user] badges];
-
-    for (int i=0; i<[userBadges count]; i++) {
-        UserBadge *badge = [userBadges objectAtIndex:i];
-        NSURL *url = [NSURL URLWithString:[badge url]];
-        NSData *data = [NSData dataWithContentsOfURL:url];
-        UIImage *image = [[[UIImage alloc] initWithData:data] autorelease];
-        
-        //AsynchronousImageView *imgView = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
-        //[imgView loadImageFromURLString:[badge url] forFlat:nil];
-        
-        UIButton *btBadge = [UIButton buttonWithType:UIButtonTypeCustom];
-        [btBadge setBackgroundImage:image forState:UIControlStateNormal];
-        if (i%2 == 0) {
-            btBadge.frame = CGRectMake(18+(i*76)-i-1, 2, 60, 60);
-        } else {
-            btBadge.frame = CGRectMake(18+(i*76)-i-1, 67, 60, 60);
+    int posX = 17;
+    
+    if([userBadges count] > 0) {
+        for (int i=0; i<[userBadges count]; i++) {
+            UserBadge *badge = [userBadges objectAtIndex:i];
+            NSURL *url = [NSURL URLWithString:[badge url]];
+            NSData *data = [NSData dataWithContentsOfURL:url];
+            UIImage *image = [[[UIImage alloc] initWithData:data] autorelease];
+            
+            //AsynchronousImageView *imgView = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+            //[imgView loadImageFromURLString:[badge url] forFlat:nil];
+            
+            UIButton *btBadge = [UIButton buttonWithType:UIButtonTypeCustom];
+            [btBadge setBackgroundImage:image forState:UIControlStateNormal];
+            
+            if (i%2 == 0) {
+                btBadge.frame = CGRectMake(posX, 2, 60, 60);
+            } else {
+                btBadge.frame = CGRectMake(posX, 67, 60, 60);
+                posX += 76;
+            }
+            [btBadge addTarget:self action:@selector(showBadgeText:) forControlEvents:UIControlEventTouchUpInside];
+            [btBadge setTag: [userBadges indexOfObject:badge]];
+            [badgesView addSubview:btBadge];
         }
-        [btBadge addTarget:self action:@selector(showBadgeText:) forControlEvents:UIControlEventTouchUpInside];
-        [btBadge setTag: [userBadges indexOfObject:badge]];
-        [badgesView addSubview:btBadge];
     }
 }
 
@@ -195,17 +165,8 @@
     ImmopolyUser *myUser = [[ImmopolyManager instance] user];
     
     if(myUser != nil) {
-        [hello setText: [NSString stringWithFormat: @"%@", [myUser userName]]];
-        [bank setText: [self formatToCurrencyWithNumber:[myUser balance]]];
-        [miete setText: [self formatToCurrencyWithNumber:[myUser lastRent]]];
-        [numExposes setText: [ NSString stringWithFormat:@"%i von %i", [myUser numExposes], [myUser maxExposes]]];
-        
-        if([[myUser badges] count] > 0) {
-            [self displayBadges];
-        }
-        else {
-            [self.badgesView setHidden:YES];
-        }
+        [self setLabelTextsOfUser:myUser];
+        [self displayBadges];
     }
 }
 
@@ -219,6 +180,34 @@
         [task refreshUser:[[ImmopolyManager instance]user].userName];
         [spinner startAnimating];
     }
+}
+
+- (void)setLabelTextsOfUser:(ImmopolyUser *)_user; {
+    NSString *balance = [NSString stringWithFormat:@"%.2f €",[_user balance]];
+    NSString *lastRent = [NSString stringWithFormat:@"%.2f €",[_user lastRent]];
+    
+    [hello setText: [NSString stringWithFormat: @"%@", [_user userName]]];
+    [bank setText: balance];
+    [miete setText: lastRent];
+    [numExposes setText: [ NSString stringWithFormat:@"%i von %i", [[_user portfolio] count], [_user maxExposes]]];
+}
+
+- (void)loadFacebookPicture {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    long long uid = [[defaults objectForKey:@"FBUserId"] longLongValue];
+    NSString *urlString = [NSString stringWithFormat:@"https://graph.facebook.com/%qi/picture?type=large", uid];
+    
+    //[userImage loadImageFromURLString:urlString forFlat:nil];
+    
+    NSURL *url = [NSURL URLWithString:urlString];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *image = [[[UIImage alloc] initWithData:data] autorelease];
+    
+    // cropping the image
+    CGRect cropRect = CGRectMake(image.size.width/4, 0, 100, 100);
+    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], cropRect);
+    userImage.image = [UIImage imageWithCGImage:imageRef]; 
+    CGImageRelease(imageRef); 
 }
 
 @end
