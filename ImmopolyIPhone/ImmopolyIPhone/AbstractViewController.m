@@ -161,6 +161,7 @@
         [UIView commitAnimations];
         
         [self setViewIsVisible:YES];
+        [btHelperViewIn setEnabled:NO];
     }
 }
 
@@ -173,6 +174,7 @@
     [UIView commitAnimations];
     
     [self setViewIsVisible:NO];
+    [btHelperViewIn setEnabled:YES];
 }
 
 /*- (void)setHelperViewTitle:(NSString *)_viewTitle {
