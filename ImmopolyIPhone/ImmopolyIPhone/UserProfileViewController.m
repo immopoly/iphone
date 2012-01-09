@@ -199,6 +199,7 @@
     
     [userImage loadImageFromURLString:urlString forFlat:nil];
     userImage.contentMode = UIViewContentModeScaleAspectFit;
+    
 }
 
 @end

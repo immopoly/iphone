@@ -47,6 +47,9 @@
         
         [flat setImage:flatImage];
         self.image = flatImage;
+        if(flat == nil){
+            [self setBackgroundColor:[UIColor whiteColor]];
+        }
         [self.spinner stopAnimating];
     }];
     [self.imageRequest setFailedBlock:^{
