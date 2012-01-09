@@ -103,6 +103,10 @@
     [table reloadData];
     [self stopSpinnerAnimation];
     [[self table] setHidden: NO];
+    
+    if ([[[ImmopolyManager instance]user]history] == nil || [[[[ImmopolyManager instance]user]history]count]<=0) {
+        [super helperViewIn];
+    }
 }
 
 - (void)viewDidUnload {

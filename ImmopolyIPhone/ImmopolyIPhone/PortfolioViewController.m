@@ -152,6 +152,7 @@
     [[self table]reloadData];
     
     [btRecenterMap setHidden:isBtHidden];
+    
 }
 
 - (void)stopSpinnerAnimation {
@@ -170,6 +171,10 @@
         [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]];   
     }
     [self recenterMap];
+    
+    if ([[[ImmopolyManager instance]user]portfolio] == nil || [[[[ImmopolyManager instance]user]portfolio]count]<=0) {
+        [super helperViewIn];
+    }
 }
 
 
