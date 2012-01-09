@@ -228,7 +228,7 @@
     [UIView beginAnimations:nil context:NULL];
 	[UIView setAnimationDuration:0.4];
 	CGPoint pos = registerView.center;
-	pos.y = 117.0f;
+	pos.y = 136.0f;
     registerView.center = pos;
     [UIView commitAnimations];
 }

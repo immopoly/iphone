@@ -100,9 +100,9 @@
             [btBadge setBackgroundImage:image forState:UIControlStateNormal];
             
             if (i%2 == 0) {
-                btBadge.frame = CGRectMake(posX, 2, 60, 60);
+                btBadge.frame = CGRectMake(posX, 10, 60, 60);
             } else {
-                btBadge.frame = CGRectMake(posX, 67, 60, 60);
+                btBadge.frame = CGRectMake(posX, 71, 60, 60);
                 posX += 76;
             }
             [btBadge addTarget:self action:@selector(showBadgeText:) forControlEvents:UIControlEventTouchUpInside];

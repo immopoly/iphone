@@ -20,16 +20,15 @@
 		6D269A0A149B4F6600ACAC2E /* top_bar_map.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D269A09149B4F6600ACAC2E /* top_bar_map.png */; };
 		6D269A20149CA9DA00ACAC2E /* bt_actualise.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D269A1F149CA9DA00ACAC2E /* bt_actualise.png */; };
 		6D943A7314AF7AB300414539 /* top_bar_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D943A7214AF7AB300414539 /* top_bar_user.png */; };
-		6D943A7A14AF7AC900414539 /* button_bereich_rapport.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D943A7414AF7AC900414539 /* button_bereich_rapport.png */; };
 		6D943A7B14AF7AC900414539 /* bg_username.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D943A7514AF7AC900414539 /* bg_username.png */; };
-		6D943A7C14AF7AC900414539 /* devider.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D943A7614AF7AC900414539 /* devider.png */; };
 		6D943A7D14AF7AC900414539 /* user_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D943A7714AF7AC900414539 /* user_background.png */; };
 		6D943A7E14AF7AC900414539 /* user_image_border.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D943A7814AF7AC900414539 /* user_image_border.png */; };
 		6D943A7F14AF7AC900414539 /* User_image_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D943A7914AF7AC900414539 /* User_image_default.png */; };
 		6D9949D514928B1A00AD2307 /* bt_show_all.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D9949D414928B1A00AD2307 /* bt_show_all.png */; };
-		6DA3F63E149CDA4900ED9BBB /* register_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA3F63D149CDA4900ED9BBB /* register_cell.png */; };
 		6DA3F641149CDA5C00ED9BBB /* register_ok_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA3F640149CDA5C00ED9BBB /* register_ok_button.png */; };
 		6DA3F643149CDA6500ED9BBB /* register_cancel_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA3F642149CDA6500ED9BBB /* register_cancel_button.png */; };
+		6DA5BA5D14BB2DE400D5BF68 /* badgesview.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA5BA5C14BB2DE400D5BF68 /* badgesview.png */; };
+		6DA5BA6414BB38D300D5BF68 /* register_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA5BA6314BB38D300D5BF68 /* register_cell.png */; };
 		6DA75CB3145C12580079B32C /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C62145C12580079B32C /* ASIAuthenticationDialog.m */; };
 		6DA75CB4145C12580079B32C /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C65145C12580079B32C /* ASIDataCompressor.m */; };
 		6DA75CB5145C12580079B32C /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C67145C12580079B32C /* ASIDataDecompressor.m */; };
@@ -225,16 +224,15 @@
 		6D269A09149B4F6600ACAC2E /* top_bar_map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_bar_map.png; sourceTree = "<group>"; };
 		6D269A1F149CA9DA00ACAC2E /* bt_actualise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_actualise.png; sourceTree = "<group>"; };
 		6D943A7214AF7AB300414539 /* top_bar_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_bar_user.png; sourceTree = "<group>"; };
-		6D943A7414AF7AC900414539 /* button_bereich_rapport.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = button_bereich_rapport.png; sourceTree = "<group>"; };
 		6D943A7514AF7AC900414539 /* bg_username.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bg_username.png; sourceTree = "<group>"; };
-		6D943A7614AF7AC900414539 /* devider.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = devider.png; sourceTree = "<group>"; };
 		6D943A7714AF7AC900414539 /* user_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_background.png; sourceTree = "<group>"; };
 		6D943A7814AF7AC900414539 /* user_image_border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_image_border.png; sourceTree = "<group>"; };
 		6D943A7914AF7AC900414539 /* User_image_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = User_image_default.png; sourceTree = "<group>"; };
 		6D9949D414928B1A00AD2307 /* bt_show_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_show_all.png; sourceTree = "<group>"; };
-		6DA3F63D149CDA4900ED9BBB /* register_cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_cell.png; sourceTree = "<group>"; };
 		6DA3F640149CDA5C00ED9BBB /* register_ok_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_ok_button.png; sourceTree = "<group>"; };
 		6DA3F642149CDA6500ED9BBB /* register_cancel_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_cancel_button.png; sourceTree = "<group>"; };
+		6DA5BA5C14BB2DE400D5BF68 /* badgesview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = badgesview.png; sourceTree = "<group>"; };
+		6DA5BA6314BB38D300D5BF68 /* register_cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_cell.png; sourceTree = "<group>"; };
 		6DA75C61145C12580079B32C /* ASIAuthenticationDialog.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASIAuthenticationDialog.h; sourceTree = "<group>"; };
 		6DA75C62145C12580079B32C /* ASIAuthenticationDialog.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASIAuthenticationDialog.m; sourceTree = "<group>"; };
 		6DA75C63145C12580079B32C /* ASICacheDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASICacheDelegate.h; sourceTree = "<group>"; };
@@ -558,9 +556,8 @@
 		6D943A7014AF7AA300414539 /* UserProfile */ = {
 			isa = PBXGroup;
 			children = (
-				6D943A7414AF7AC900414539 /* button_bereich_rapport.png */,
+				6DA5BA5C14BB2DE400D5BF68 /* badgesview.png */,
 				6D943A7514AF7AC900414539 /* bg_username.png */,
-				6D943A7614AF7AC900414539 /* devider.png */,
 				6D943A7714AF7AC900414539 /* user_background.png */,
 				6D943A7814AF7AC900414539 /* user_image_border.png */,
 				6D943A7914AF7AC900414539 /* User_image_default.png */,
@@ -1076,8 +1073,8 @@
 			isa = PBXGroup;
 			children = (
 				6DB4EAD514ADCABA0057B16E /* ForgotPassword */,
-				6DA3F63D149CDA4900ED9BBB /* register_cell.png */,
 				6DA3F642149CDA6500ED9BBB /* register_cancel_button.png */,
+				6DA5BA6314BB38D300D5BF68 /* register_cell.png */,
 				6DA3F640149CDA5C00ED9BBB /* register_ok_button.png */,
 				D2F05B7A1496236000BE171C /* background_login.png */,
 				D2F05B7B1496236000BE171C /* cancel_button.png */,
@@ -1180,7 +1177,6 @@
 				D2F05B851496236000BE171C /* password_button.png in Resources */,
 				6D269A0A149B4F6600ACAC2E /* top_bar_map.png in Resources */,
 				6D269A20149CA9DA00ACAC2E /* bt_actualise.png in Resources */,
-				6DA3F63E149CDA4900ED9BBB /* register_cell.png in Resources */,
 				6DA3F641149CDA5C00ED9BBB /* register_ok_button.png in Resources */,
 				6DA3F643149CDA6500ED9BBB /* register_cancel_button.png in Resources */,
 				D2C139CC149CE43A0068B6DC /* MissionViewController.xib in Resources */,
@@ -1229,9 +1225,7 @@
 				D29EB47414B0AE7E007E4BA0 /* infotext_expose.png in Resources */,
 				D29EB47514B0AE7E007E4BA0 /* infotext_expose@2x.png in Resources */,
 				6D943A7314AF7AB300414539 /* top_bar_user.png in Resources */,
-				6D943A7A14AF7AC900414539 /* button_bereich_rapport.png in Resources */,
 				6D943A7B14AF7AC900414539 /* bg_username.png in Resources */,
-				6D943A7C14AF7AC900414539 /* devider.png in Resources */,
 				6D943A7D14AF7AC900414539 /* user_background.png in Resources */,
 				6D943A7E14AF7AC900414539 /* user_image_border.png in Resources */,
 				6D943A7F14AF7AC900414539 /* User_image_default.png in Resources */,
@@ -1243,6 +1237,8 @@
 				D279C95814BB06F60018A1C4 /* tabbar_center_icon_pressed.png in Resources */,
 				D279C95914BB06F60018A1C4 /* tabbar_center_icon_pressed@2x.png in Resources */,
 				D279C95A14BB06F60018A1C4 /* tabbar_center_icon.png in Resources */,
+				6DA5BA5D14BB2DE400D5BF68 /* badgesview.png in Resources */,
+				6DA5BA6414BB38D300D5BF68 /* register_cell.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

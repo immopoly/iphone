@@ -44,7 +44,7 @@
 						<string key="NSFrameSize">{320, 460}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="46183341"/>
+						<reference key="NSNextKeyView" ref="555966278"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -264,7 +264,7 @@
 						<string key="NSFrame">{{20, 20}, {280, 393}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
+						<reference key="NSNextKeyView" ref="250593292"/>
 						<object class="NSColor" key="IBUIBackgroundColor" id="628541215">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MCAwAA</bytes>
@@ -278,7 +278,7 @@
 							<object class="IBUIImageView" id="359394619">
 								<reference key="NSNextResponder" ref="555966278"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{5, 6}, {270, 335}}</string>
+								<string key="NSFrame">{{5, 6}, {262, 284}}</string>
 								<reference key="NSSuperview" ref="555966278"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="302149432"/>
@@ -349,7 +349,7 @@
 								<string key="NSFrame">{{31, 178}, {217, 31}}</string>
 								<reference key="NSSuperview" ref="555966278"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="596800844"/>
+								<reference key="NSNextKeyView" ref="415314568"/>
 								<reference key="IBUIBackgroundColor" ref="628541215"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -376,7 +376,7 @@
 								<string key="NSFrame">{{31, 245}, {217, 31}}</string>
 								<reference key="NSSuperview" ref="555966278"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="415314568"/>
+								<reference key="NSNextKeyView" ref="966827034"/>
 								<reference key="IBUIBackgroundColor" ref="628541215"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -400,10 +400,10 @@
 							<object class="IBUIButton" id="415314568">
 								<reference key="NSNextResponder" ref="555966278"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{34, 290}, {101, 38}}</string>
+								<string key="NSFrame">{{31, 236}, {101, 38}}</string>
 								<reference key="NSSuperview" ref="555966278"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="966827034"/>
+								<reference key="NSNextKeyView" ref="596800844"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -425,10 +425,10 @@
 							<object class="IBUIButton" id="966827034">
 								<reference key="NSNextResponder" ref="555966278"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{149, 289}, {101, 38}}</string>
+								<string key="NSFrame">{{147, 236}, {101, 38}}</string>
 								<reference key="NSSuperview" ref="555966278"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="46183341"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -587,7 +587,7 @@
 						<string key="NSFrame">{{141, 212}, {37, 37}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="555966278"/>
+						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<bool key="IBUIHidesWhenStopped">NO</bool>
@@ -907,10 +907,10 @@
 							<reference ref="302149432"/>
 							<reference ref="70983519"/>
 							<reference ref="943599132"/>
-							<reference ref="415314568"/>
-							<reference ref="966827034"/>
 							<reference ref="596800844"/>
 							<reference ref="359394619"/>
+							<reference ref="415314568"/>
+							<reference ref="966827034"/>
 						</array>
 						<reference key="parent" ref="191373211"/>
 					</object>
@@ -1242,7 +1242,7 @@
 			<string key="password_top_cell.png">{522, 440}</string>
 			<string key="pw_cancel_button.png">{202, 76}</string>
 			<string key="register_cancel_button.png">{202, 76}</string>
-			<string key="register_cell.png">{524, 656}</string>
+			<string key="register_cell.png">{524, 568}</string>
 			<string key="register_ok_button.png">{202, 76}</string>
 			<string key="send_button.png">{202, 76}</string>
 		</dictionary>
