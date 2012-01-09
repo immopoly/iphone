@@ -35,7 +35,7 @@
     [self addSubview:spinner];
     [spinner setHidden:NO];
     [spinner setHidesWhenStopped:YES];
-    CGPoint pos = CGPointMake(30, 30);
+    CGPoint pos = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [spinner setCenter:pos];
     [spinner startAnimating];
 
