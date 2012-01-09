@@ -200,13 +200,16 @@
     if (exposeWebViewController) {
         [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
         [exposeWebViewController reloadData];
-        [self.view addSubview:exposeWebViewController.view];
+        //[self.view addSubview:exposeWebViewController.view];
     }else{
-        exposeWebViewController = [[WebViewController alloc]init];
+        exposeWebViewController = [[WebViewController alloc] initWithNibName:@"WebView" bundle:[NSBundle mainBundle]];
     }
     
     [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
-    [self.view addSubview:exposeWebViewController.view];
+    //[self.view addSubview:exposeWebViewController.view];
+    
+    exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentModalViewController:exposeWebViewController animated:YES];
     
     
 }
@@ -221,12 +224,8 @@
     if(cell==nil){
         NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"PortfolioCell" owner:self options:nil];
         cell = (PortfolioCell *)[nib objectAtIndex:0];
-        [cell setFlat:actFlat];
-        
-    }else{
-        //STOP SPINNER
-        //[asyncImageViewList reset];
     }
+    [cell setFlat:actFlat];
 
     return cell;
 }
@@ -571,14 +570,15 @@
         [self setSelectedExposeId:[tempFlat exposeId]];
         exposeWebViewController = [[WebViewController alloc]init];
         [exposeWebViewController setSelectedImmoscoutFlat:tempFlat];
-        [self.view addSubview:exposeWebViewController.view];
     }
     else {
         [self setSelectedExposeId:[selectedImmoScoutFlat exposeId]];
         exposeWebViewController = [[WebViewController alloc]init];
         [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
-        [self.view addSubview:exposeWebViewController.view];
     }
+    //[self.view addSubview:exposeWebViewController.view];
+    exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentModalViewController:exposeWebViewController animated:YES];
 }
 
 - (void)initScrollView {
@@ -651,7 +651,7 @@
     [subview addSubview:lbRooms];
     
     UILabel *lbSpace = [[UILabel alloc] initWithFrame:CGRectMake(90, 55, 200, 35)];
-    NSString *space = [NSString stringWithFormat:@"Fläche: %.2f qm",[_flat livingSpace]];
+    NSString *space = [NSString stringWithFormat:@"Fläche: %.2f m²",[_flat livingSpace]];
     [lbSpace setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
     [lbSpace setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
     [lbSpace setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];

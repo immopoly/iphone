@@ -124,7 +124,8 @@
     if ([self viewIsVisible]) {
         [self helperViewOut];
     }
-    [self.view removeFromSuperview];
+    //[self.view removeFromSuperview];
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 - (void)webViewDidStartLoad:(UIWebView *)webView {
@@ -165,7 +166,7 @@
     }else{
         FlatTakeOverTask *flatTakeOverTask = [[FlatTakeOverTask alloc]init];
         [flatTakeOverTask takeOverFlat:[self selectedImmoscoutFlat]];
-        [self.view removeFromSuperview];
+        [self dismissModalViewControllerAnimated:YES];
         [flatTakeOverTask release];
     }
 }
@@ -178,19 +179,17 @@
         //Nein
         case 0:
             [self.flatActionButton setEnabled:YES];
-            [flatRemoveTask release];
-        break;
+            break;
         //Ja                
         case 1:
             [flatRemoveTask removeFlat:[self selectedImmoscoutFlat]];
-            [flatRemoveTask release];
-        break;
+            break;
             
         default:
             break;
     }   
     //[self.view removeFromSuperview];
-    
+    [flatRemoveTask release];
 }
 
 -(IBAction)performFacebookPost {

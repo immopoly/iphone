@@ -401,14 +401,15 @@
         [self setSelectedExposeId:[tempFlat exposeId]];
         exposeWebViewController = [[WebViewController alloc]init];
         [exposeWebViewController setSelectedImmoscoutFlat:tempFlat];
-        [self.view addSubview:exposeWebViewController.view];
     }
     else {
         [self setSelectedExposeId:[selectedImmoScoutFlat exposeId]];
         exposeWebViewController = [[WebViewController alloc]init];
         [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
-        [self.view addSubview:exposeWebViewController.view];
     }
+    //[self.view addSubview:exposeWebViewController.view];
+    exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentModalViewController:exposeWebViewController animated:YES];
 }
 
 // method for clustering
@@ -544,7 +545,7 @@
     [subview addSubview:lbRooms];
     
     UILabel *lbSpace = [[UILabel alloc] initWithFrame:CGRectMake(90, 55, 200, 35)];
-    NSString *space = [NSString stringWithFormat:@"Fläche: %.2f qm",[_flat livingSpace]];
+    NSString *space = [NSString stringWithFormat:@"Fläche: %.2f m²",[_flat livingSpace]];
     [lbSpace setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
     [lbSpace setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
     [lbSpace setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
