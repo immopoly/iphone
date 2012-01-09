@@ -57,10 +57,9 @@
     
     [FacebookManager getInstance].delegate = self;
     
-    [flatActionButton setTitle: @"Disabled" forState: UIControlStateDisabled];
     [[self flatActionButton]setEnabled:NO];
     
-    [NSTimer scheduledTimerWithTimeInterval:(5) target:self selector:@selector(enableFlatButton:) userInfo:nil repeats:NO]; 
+    
     
     // setting the text of the helperView
     //[super initHelperView];
@@ -135,6 +134,7 @@
 - (void)webViewDidFinishLoad:(UIWebView *)webView {
     [activityIndicator stopAnimating];
     activityIndicator.hidden=YES;
+    [NSTimer scheduledTimerWithTimeInterval:(5) target:self selector:@selector(enableFlatButton:) userInfo:nil repeats:NO]; 
 }
 
 - (IBAction)flatAction {

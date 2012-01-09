@@ -84,6 +84,7 @@
 #pragma mark - View lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {  
+    [table reloadData];
     // hiding calloutBubble when the user returns from another tab
     [calloutBubble removeFromSuperview];
     [self setShowCalloutBubble:NO];
@@ -92,6 +93,7 @@
     
     // showing the annotation imgae
     [selViewForHouseImage setHidden:NO];
+    
 }
 
 - (void)viewDidLoad {
@@ -768,7 +770,7 @@
     //ToDo: actualise
 }
 
-- (IBAction)update{
+/*- (IBAction)update{
     [spinner setHidden: NO];
     if(!loading){
         PortfolioTask *task = [[[PortfolioTask alloc] init] autorelease];
@@ -778,7 +780,7 @@
         [task refreshPortolio];
         [spinner startAnimating];
     }
-}
+}*/
 
 
 @end
