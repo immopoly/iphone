@@ -18,6 +18,7 @@
 @synthesize helperScroll;
 @synthesize helperTextImage;
 @synthesize viewIsVisible; 
+@synthesize linkButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -37,6 +38,7 @@
     [self.helperTextImage release];
     [self.helperViewBubble release];
     [self.btHelperViewIn release];
+    [self.linkButton release]; 
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,6 +70,7 @@
     self.helperTextImage = nil;
     self.helperViewBubble = nil;
     self.btHelperViewIn = nil;
+    self.linkButton = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -96,10 +99,17 @@
 
     helperScroll.showsVerticalScrollIndicator = NO;
     
+    linkButton = [UIButton buttonWithType:UIButtonTypeCustom];
+    [linkButton addTarget:self action:@selector(openImmopolyWeb) forControlEvents:UIControlEventTouchUpInside];
+    
     switch (_infoMode) {
         case INFO_IMMOPOLY:
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_immopoly"]];
             helperTextImage.frame = CGRectMake(0, 0, 283, 370);    
+            
+            linkButton.frame = CGRectMake(12, 274, 35, 20);
+            [helperScroll addSubview:linkButton];
+            
             break;
         
         case INFO_MAP:
@@ -115,6 +125,9 @@
         case INFO_EXPOSE:
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_expose"]];
             helperTextImage.frame = CGRectMake(0, 0, 284, 550);    
+
+            linkButton.frame = CGRectMake(142, 367, 35, 20);
+            [helperScroll addSubview:linkButton];
             break;
         case INFO_HISTORY: 
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_history"]];
@@ -185,6 +198,11 @@
     
     [helperViewBubble addSubview:lbTitle];
 }*/
+
+
+-(void)openImmopolyWeb{
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://immopoly.appspot.com/"]];
+}
 
 - (void)setHelperViewTextWithFile:(int)_infoMode {
     

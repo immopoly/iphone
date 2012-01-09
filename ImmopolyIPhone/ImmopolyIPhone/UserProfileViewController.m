@@ -195,11 +195,12 @@
 - (void)loadFacebookPicture {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     long long uid = [[defaults objectForKey:@"FBUserId"] longLongValue];
-    NSString *urlString = [NSString stringWithFormat:@"https://graph.facebook.com/%qi/picture?type=large", uid];
-    
-    [userImage loadImageFromURLString:urlString forFlat:nil];
-    userImage.contentMode = UIViewContentModeScaleAspectFit;
-    
+    if (uid>0) {
+        NSString *urlString = [NSString stringWithFormat:@"https://graph.facebook.com/%qi/picture?type=large", uid];
+        
+        [userImage loadImageFromURLString:urlString forFlat:nil];
+        userImage.contentMode = UIViewContentModeScaleAspectFit;        
+    }
 }
 
 @end

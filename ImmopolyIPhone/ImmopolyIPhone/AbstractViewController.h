@@ -22,6 +22,7 @@
     UIImageView *helperTextImage;
     UIView *helperViewBubble;
     UIButton *btHelperViewIn;
+    UIButton *linkButton;
     
     BOOL viewIsVisible;
 }
@@ -33,10 +34,12 @@
 @property(nonatomic, retain) UIScrollView *helperScroll;
 @property(nonatomic, retain) UIImageView *helperTextImage;
 @property(nonatomic, assign) BOOL viewIsVisible;
+@property(nonatomic, retain) UIButton *linkButton;
 
 - (void)initButton;
 - (void)initHelperViewWithMode:(int)_infoMode;
 - (void)helperViewIn;
 - (void)helperViewOut;
+-(void)openImmopolyWeb;
 
 @end
