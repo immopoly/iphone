@@ -38,7 +38,6 @@
 @synthesize numOfScrollViewSubviews;
 @synthesize pageControl;
 @synthesize calloutBubbleImg;
-// @synthesize btShowFlatsWebView;
 @synthesize sameFlat;
 @synthesize regionSpan;
 
@@ -68,14 +67,6 @@
 #pragma mark - View lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {  
-    // hiding calloutBubble when the user returns from another tab
-    [calloutBubble removeFromSuperview];
-    [self setShowCalloutBubble:NO];
-    [lbPageNumber setHidden:YES];
-//    [btShowFlatsWebView setHidden:YES];
-    
-    // showing the annotation imgae
-    [selViewForHouseImage setHidden:NO];
     
     if (![self alreadyUsed]) {
        //Show first start text
@@ -107,7 +98,6 @@
     [super viewDidLoad];
     [calloutBubbleImg setHidden:YES];
     [lbPageNumber setHidden:YES];
-//    [btShowFlatsWebView setHidden:YES];
     [self setShowCalloutBubble:NO];
     
     // that only the background is transparent and not the whole view
@@ -146,6 +136,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [mapView setZoomEnabled:YES];
+    [self calloutBubbleOut];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -340,7 +331,6 @@
     // hiding the text and stuff
     [scrollView setHidden:YES];
     [lbPageNumber setHidden:YES];
-//    [btShowFlatsWebView setHidden:YES];
     
     // animation
     [UIView beginAnimations:@"outAnimation" context:NULL];	
@@ -506,8 +496,7 @@
     // setting the whole size of the scrollView
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * self.numOfScrollViewSubviews, self.scrollView.frame.size.height);
     
-    // showing the not scrollview content of calloutBubble
-//    [[self view] bringSubviewToFront:btShowFlatsWebView];    
+    // showing the not scrollview content of calloutBubble    
     if (numOfScrollViewSubviews > 1) { 
         // don't show label, if it is a single flat annotation
         [lbPageNumber setHidden:NO];

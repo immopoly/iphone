@@ -146,7 +146,7 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     loginCheck.delegate = self;
-    [loginCheck checkUserLogin];
+    [loginCheck initiateLoginWithToken];
     
     [super viewDidAppear:animated];
     [[self table]reloadData];

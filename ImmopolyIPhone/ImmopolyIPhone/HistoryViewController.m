@@ -89,7 +89,7 @@
 - (void)viewDidAppear:(BOOL)animated {
     [spinner startAnimating];
     loginCheck.delegate = self;
-    [loginCheck checkUserLogin];
+    [loginCheck initiateLoginWithToken];
     
     [super viewDidAppear:animated];
 }

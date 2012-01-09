@@ -14,6 +14,7 @@
 @synthesize name;
 @synthesize description;
 @synthesize locationNode; 
+@synthesize overtakeDate;
 @synthesize city;
 @synthesize postcode;
 @synthesize street;
@@ -21,10 +22,7 @@
 @synthesize quarter; 
 @synthesize titlePictureSmall;
 @synthesize price;
-@synthesize currency;
-@synthesize priceValue;
 @synthesize priceIntervaleType;
-@synthesize creationDate;
 @synthesize numberOfRooms;
 @synthesize livingSpace;
 @synthesize coordinate;

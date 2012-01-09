@@ -14,11 +14,9 @@
     int exposeId;
     int houseNumber;
     int numberOfRooms;
-    
     double price;
     double livingSpace;
-    
-    long creationDate;
+    long long overtakeDate;
     
     NSString *name;
     NSString *description;
@@ -28,25 +26,20 @@
     NSString *street;
     NSString *quarter;
     NSString *titlePictureSmall;
-    NSString *currency;
-    NSString *priceValue;
     NSString *priceIntervaleType;
     NSString *pictureUrl;
 
     CLLocationCoordinate2D coordinate;
     NSMutableArray *flatsAtAnnotation;
     UIImage *image;
-
 }
 
 @property(nonatomic, assign) int exposeId;
 @property(nonatomic, assign) int houseNumber;
 @property(nonatomic, assign) int numberOfRooms;
-
 @property(nonatomic, assign) double price;
 @property(nonatomic, assign) double livingSpace;
-
-@property(nonatomic, assign) long creationDate;
+@property(nonatomic, assign) long long overtakeDate;
 
 @property(nonatomic, retain) NSString *name;
 @property(nonatomic, retain) NSString *description;
@@ -56,8 +49,6 @@
 @property(nonatomic, retain) NSString *street;
 @property(nonatomic, retain) NSString *quarter;
 @property(nonatomic, retain) NSString *titlePictureSmall;
-@property(nonatomic, retain) NSString *currency;
-@property(nonatomic, retain) NSString *priceValue;
 @property(nonatomic, retain) NSString *priceIntervaleType;
 @property(nonatomic, retain) NSString *pictureUrl;
 

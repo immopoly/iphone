@@ -15,6 +15,8 @@
 @synthesize flatImage;
 @synthesize labelTitel;
 @synthesize flat;
+@synthesize labelPrice;
+@synthesize labelOvertakeDate;
 
 - (id)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier
 {
@@ -39,6 +41,8 @@
     [labelFlatSpace release];
     [flatImage release];
     [flat release];
+    [labelPrice release];
+    [labelOvertakeDate release];
     [super dealloc];
 }
 
@@ -58,12 +62,26 @@
             [flatImage setImage:[flat image]];
         }
         
+        // Convert long to date object
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+        [dateFormatter setDateFormat:@"'Übernommen am:  \t\t' dd.MM.yyyy"];
+        
+        long timeInterval = [flat overtakeDate]/1000; //1321922162430
+        NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+        
+        NSString *formattedDateString = [dateFormatter stringFromDate:date];
+        [dateFormatter release]; 
+        
         NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d", [flat numberOfRooms]];
-        NSString *space = [NSString stringWithFormat:@"Fläche: %.2f qm",[flat livingSpace]];
+        NSString *space = [NSString stringWithFormat:@"%.0f m²",[flat livingSpace]];
+        NSString *price = [NSString stringWithFormat:@"Preis: %.0f €",[flat price]];
         
         [labelTitel setText: [flat title]];
         [labelRooms setText: rooms]; 
         [labelFlatSpace setText: space];
+        [labelPrice setText: price];
+        [labelOvertakeDate setText:formattedDateString];
     }
 }
 @end

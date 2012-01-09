@@ -44,7 +44,6 @@
 @property(nonatomic, retain) IBOutlet AsynchronousImageView *userImage;
 @property(nonatomic, assign) BOOL loading;
 
-- (NSString*)formatToCurrencyWithNumber:(double)number;
 - (void)displayBadges;
 - (void)stopSpinnerAnimation;
 - (void)setLabelTextsOfUser:(ImmopolyUser *)_user;

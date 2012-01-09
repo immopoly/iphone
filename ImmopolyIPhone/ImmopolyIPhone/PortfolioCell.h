@@ -15,5 +15,7 @@
 @property (retain, nonatomic) IBOutlet AsynchronousImageView *flatImage;
 @property (retain, nonatomic) IBOutlet UILabel *labelTitel;
 @property (retain, nonatomic) Flat *flat;
+@property (retain, nonatomic) IBOutlet UILabel *labelPrice;
+@property (retain, nonatomic) IBOutlet UILabel *labelOvertakeDate;
 
 @end

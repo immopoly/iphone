@@ -163,7 +163,8 @@
             [myFlat setExposeId:[[realEstate objectForKey:@"@id"]intValue]];
             [myFlat setNumberOfRooms: [[realEstate objectForKey: @"numberOfRooms"] intValue]];
             [myFlat setLivingSpace: [[realEstate objectForKey: @"livingSpace"] doubleValue]];
-            [myFlat setPriceValue: [realEstate objectForKey:@"baseRent"]];
+            [myFlat setPrice: [[realEstate objectForKey:@"baseRent"] doubleValue]];
+            [myFlat setOvertakeDate:[[realEstate objectForKey:@"overtakeDate"] longLongValue]];
             
             //parse and save Flat title picture url
             NSDictionary *titlePicture = [realEstate objectForKey: @"titlePicture"];
@@ -246,7 +247,7 @@
             [myFlat setExposeId:[[realEstate objectForKey:@"@id"]intValue]];
             [myFlat setNumberOfRooms: [[realEstate objectForKey: @"numberOfRooms"] intValue]];
             [myFlat setLivingSpace: [[realEstate objectForKey: @"livingSpace"] doubleValue]];
-            [myFlat setPriceValue: [realEstate objectForKey:@"baseRent"]];
+            [myFlat setPrice: [[realEstate objectForKey:@"baseRent"] doubleValue]];
             
             //parse and save Flat title picture url
             NSDictionary *titlePicture = [realEstate objectForKey: @"titlePicture"];
