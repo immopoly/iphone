@@ -365,15 +365,17 @@
     
     [[FacebookManager getInstance] beginShare];
     
+    //[[FacebookManager getInstance] setFacebookText:[histEntry histText]];
     [[FacebookManager getInstance] setFacebookTitle:sharingFacebookTitle];
-    [[FacebookManager getInstance] setFacebookCaption:sharingFacebookCaption];
+    [[FacebookManager getInstance] setFacebookCaption:[histEntry histText]];
     [[FacebookManager getInstance] setFacebookDescription:sharingFacebookDescription];
     //[[FacebookManager getInstance] setFacebookImage:[selectedImmoscoutFlat pictureUrl]];
     [[FacebookManager getInstance] setFacebookLink:sharingFacebookLink];
     [[FacebookManager getInstance] setFacebookActionLabel:sharingFacebookActionLabel];
-    [[FacebookManager getInstance] setFacebookActionText:[histEntry histText]];
-    [[FacebookManager getInstance] setFacebookActionLink:sharingFacebookLink];
-    //[[FacebookManager getInstance] setFacebookText:[selectedHistoryEntry histText]];
+    [[FacebookManager getInstance] setFacebookActionText:@"www.immobilienscout24.de"];
+    [[FacebookManager getInstance] setFacebookActionLink:@"http://www.immobilienscout24.de"];
+    
+    //
     
     [[FacebookManager getInstance] commitShare];
 }
