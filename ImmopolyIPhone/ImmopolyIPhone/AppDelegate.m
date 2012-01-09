@@ -82,7 +82,7 @@
     self.tabBarController.delegate = self;
     
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:userVC,portfolioVC,mapVC,historyVC,missionVC, nil];
-    [self.tabBarController addCenterButtonWithImage:[UIImage imageNamed:@"tabbar_center_icon.png"] highlightImage:nil];
+    [self.tabBarController addCenterButtonWithImage:[UIImage imageNamed:@"tabbar_center_icon.png"] highlightImage:[UIImage imageNamed:@"tabbar_center_icon_pressed.png"]];
     [self.tabBarController setSelectedIndex:2];
     
     [self setSelectedViewController:[[self tabBarController]selectedViewController]];
@@ -111,11 +111,15 @@
 
     sleep(3);
     
+    [[self.tabBarController button] setBackgroundImage:[UIImage imageNamed:@"tabbar_center_icon_pressed.png"] forState:UIControlStateNormal];
+    
     return YES;
 }
 
 - (BOOL)tabBarController:(UITabBarController *)tabBarController shouldSelectViewController:(UIViewController *)viewController {
-        
+    
+    [[self.tabBarController button] setBackgroundImage:[UIImage imageNamed:@"tabbar_center_icon.png"] forState:UIControlStateNormal];
+    
     AbstractViewController *actViewController = (AbstractViewController*)[[self tabBarController]selectedViewController];
     if (([actViewController viewIsVisible])) {
         [actViewController helperViewOut];

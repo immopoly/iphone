@@ -29,6 +29,7 @@
 #import "AppDelegate.h"
 
 @implementation CustomTabBarController
+@synthesize button;
 
 // Create a view controller and setup it's tab bar item with a title and image
 -(UIViewController*) viewControllerWithTabTitle:(NSString*) title image:(UIImage*)image
@@ -41,7 +42,7 @@
 // Create a custom UIButton and add it to the center of our tab bar
 -(void) addCenterButtonWithImage:(UIImage*)buttonImage highlightImage:(UIImage*)highlightImage
 {
-  UIButton* button = [UIButton buttonWithType:UIButtonTypeCustom];
+  button = [UIButton buttonWithType:UIButtonTypeCustom];
   button.autoresizingMask = UIViewAutoresizingFlexibleRightMargin | UIViewAutoresizingFlexibleLeftMargin | UIViewAutoresizingFlexibleBottomMargin | UIViewAutoresizingFlexibleTopMargin;
   button.frame = CGRectMake(0.0, 0.0, buttonImage.size.width, buttonImage.size.height);
   [button setBackgroundImage:buttonImage forState:UIControlStateNormal];
@@ -66,7 +67,7 @@
 
 -(void) centerClicked{
     [self setSelectedIndex:2];
-    
+    [button setBackgroundImage:[UIImage imageNamed:@"tabbar_center_icon_pressed.png"] forState:UIControlStateNormal];
     AppDelegate *delegate = [(AppDelegate *) [UIApplication sharedApplication]delegate];
     [delegate setSelectedViewController:[[[delegate tabBarController]viewControllers]objectAtIndex:2]];
 }
