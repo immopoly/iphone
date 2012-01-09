@@ -230,18 +230,17 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    /*
-     Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later. 
-     If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-     */
+    [[self tabBarController]setSelectedIndex:2];
+    [[ImmopolyManager instance]setLoginSuccessful:NO];
+    [[[[ImmopolyManager instance]user]history]removeAllObjects];
+    [[[[ImmopolyManager instance]user]portfolio]removeAllObjects];
+    [[self.tabBarController.viewControllers objectAtIndex:1]dismissModalViewControllerAnimated:NO];
+    [[self.tabBarController.viewControllers objectAtIndex:2]dismissModalViewControllerAnimated:NO];
+    ((HistoryViewController *) [[[self tabBarController]viewControllers]objectAtIndex:3]).loadingHistoryEntriesStart=0;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
-    /*UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Daten aktualisieren?" message:@"Möchtest du dein Benutzerkonto mit Immopoly neu synchroniseren?" delegate:self cancelButtonTitle:@"Nein" otherButtonTitles:@"Ja",nil, nil];
     
-    
-    [alert show];
-    [alert release];*/
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {

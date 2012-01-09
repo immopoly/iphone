@@ -170,7 +170,7 @@
     }
 }
 
-- (IBAction)update{
+/*- (IBAction)update{
     [spinner setHidden: NO];
     if(!loading){
         UserTask *task = [[[UserTask alloc] init] autorelease];
@@ -180,7 +180,7 @@
         [task refreshUser:[[ImmopolyManager instance]user].userName];
         [spinner startAnimating];
     }
-}
+}*/
 
 - (void)setLabelTextsOfUser:(ImmopolyUser *)_user; {
     NSString *balance = [NSString stringWithFormat:@"%.2f €",[_user balance]];

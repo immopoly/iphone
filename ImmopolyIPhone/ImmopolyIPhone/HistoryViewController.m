@@ -55,7 +55,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [[self table] setHidden: YES];
-    [spinner startAnimating];
     [self.table setBackgroundColor:[UIColor clearColor]];
     [self.table setSeparatorColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.0]];
     
@@ -80,14 +79,19 @@
     }
 }
 
+
+-(void)viewWillAppear:(BOOL)animated{
+    [[self table]reloadData];
+    
+    [super viewWillAppear:animated];
+}
+
 - (void)viewDidAppear:(BOOL)animated {
+    [spinner startAnimating];
     loginCheck.delegate = self;
     [loginCheck checkUserLogin];
     
     [super viewDidAppear:animated];
-    [[self table]reloadData];
-    
-    
 }
 
 - (void)stopSpinnerAnimation {
@@ -410,7 +414,7 @@
     }
 }
 
-- (IBAction)update{
+/*- (IBAction)update{
     
     if(!loading){
         HistoryTask *task = [[[HistoryTask alloc] init] autorelease];
@@ -420,6 +424,6 @@
         [task loadHistoryEintriesFrom:0 To:loadingHistoryEntriesStart];
         [reloadDataSpinner startAnimating];
     }
-}
+}*/
 
 @end
