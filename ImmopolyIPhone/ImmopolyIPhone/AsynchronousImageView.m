@@ -35,7 +35,7 @@
     [self addSubview:spinner];
     [spinner setHidden:NO];
     [spinner setHidesWhenStopped:YES];
-    CGPoint pos = CGPointMake(30, 30);
+    CGPoint pos = CGPointMake(self.frame.size.width/2, self.frame.size.height/2);
     [spinner setCenter:pos];
     [spinner startAnimating];
 
@@ -44,6 +44,7 @@
     self.imageRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:_urlString]] autorelease];
     [self.imageRequest setCompletionBlock:^{
         UIImage* flatImage = [UIImage imageWithData:imageRequest.responseData];
+        
         [flat setImage:flatImage];
         self.image = flatImage;
         [self.spinner stopAnimating];

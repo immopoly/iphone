@@ -197,17 +197,8 @@
     long long uid = [[defaults objectForKey:@"FBUserId"] longLongValue];
     NSString *urlString = [NSString stringWithFormat:@"https://graph.facebook.com/%qi/picture?type=large", uid];
     
-    //[userImage loadImageFromURLString:urlString forFlat:nil];
-    
-    NSURL *url = [NSURL URLWithString:urlString];
-    NSData *data = [NSData dataWithContentsOfURL:url];
-    UIImage *image = [[[UIImage alloc] initWithData:data] autorelease];
-    
-    // cropping the image
-    CGRect cropRect = CGRectMake(image.size.width/4, 0, 100, 100);
-    CGImageRef imageRef = CGImageCreateWithImageInRect([image CGImage], cropRect);
-    userImage.image = [UIImage imageWithCGImage:imageRef]; 
-    CGImageRelease(imageRef); 
+    [userImage loadImageFromURLString:urlString forFlat:nil];
+    userImage.contentMode = UIViewContentModeScaleAspectFit;
 }
 
 @end
