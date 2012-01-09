@@ -44,6 +44,7 @@
     self.imageRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:_urlString]] autorelease];
     [self.imageRequest setCompletionBlock:^{
         UIImage* flatImage = [UIImage imageWithData:imageRequest.responseData];
+        
         [flat setImage:flatImage];
         self.image = flatImage;
         [self.spinner stopAnimating];
