@@ -25,6 +25,7 @@ extern NSString* const urlImmopolyUser;
 extern NSString* const urlImmopolyPortfolio;
 extern NSString* const urlImmopolyExpose;
 
+extern NSString* const alertLoginWrongInput;
 extern NSString* const alertRegisterWrongInput;
 extern NSString* const alertRegisterSuccessful;
 extern NSString* const alertResetPasswordWrongInput;

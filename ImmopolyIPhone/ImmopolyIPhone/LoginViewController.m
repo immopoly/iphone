@@ -101,7 +101,7 @@
         [loader performLogin: [userName text] password: [password text]];
     }
     else {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:@"Wrong input" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:alertLoginWrongInput delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
         [self setTextFieldsEnabled:YES];
