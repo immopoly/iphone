@@ -19,5 +19,6 @@
 @property (nonatomic, assign) id<UserDataDelegate> delegate;
 
 - (void)checkUserLogin;
+- (void) initiateLoginWithToken;
 
 @end

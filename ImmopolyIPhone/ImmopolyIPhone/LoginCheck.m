@@ -31,14 +31,7 @@
         [self notifyMyDelegateView];
     }
     else if([[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"] != nil && automaticLogin) {
-        
-        //get user token
-        NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
-        //login with token
-        UserLoginTask *loader = [[[UserLoginTask alloc] init] autorelease];
-        loader.delegate = self;
-        [loader performLoginWithToken: userToken];
-        //[loader autorelease];
+        [self initiateLoginWithToken];
     }
     //otherwise display login view
     else {
@@ -49,6 +42,16 @@
         [[appDelegate tabBarController] presentModalViewController: loginVC animated: YES];
         [loginVC release];
     }
+}
+
+- (void) initiateLoginWithToken {
+    //get user token
+    NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
+    //login with token
+    UserLoginTask *loader = [[[UserLoginTask alloc] init] autorelease];
+    loader.delegate = self;
+    [loader performLoginWithToken: userToken];
+    //[loader autorelease];
 }
 
 - (void)loginWithResult:(BOOL)_result {
