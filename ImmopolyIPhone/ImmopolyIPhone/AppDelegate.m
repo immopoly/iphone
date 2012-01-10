@@ -242,7 +242,7 @@
     [[[[ImmopolyManager instance]user]portfolio]removeAllObjects];
     [[self.tabBarController.viewControllers objectAtIndex:1]dismissModalViewControllerAnimated:NO];
     [[self.tabBarController.viewControllers objectAtIndex:2]dismissModalViewControllerAnimated:NO];
-    ((HistoryViewController *) [[[self tabBarController]viewControllers]objectAtIndex:3]).loadingHistoryEntriesStart=0;
+    ((HistoryViewController *) [[[self tabBarController]viewControllers]objectAtIndex:3]).loadingHistoryEntriesStart=10;
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {
