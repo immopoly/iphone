@@ -24,7 +24,10 @@
 
 // TODO: releasing url and request (not possible?)
 - (void)performLogin:(NSString *)_userName password:(NSString *)_password {
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@login?username=%@&password=%@",urlImmopolyUser,_userName, _password]];
+    
+    NSString *urlString = [NSString stringWithFormat:@"%@login?username=%@&password=%@",urlImmopolyUser,_userName, _password];
+    
+    NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
    
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
     
