@@ -236,13 +236,20 @@
 }
 
 - (void)applicationDidEnterBackground:(UIApplication *)application {
-    [[self tabBarController]setSelectedIndex:2];
-    [[ImmopolyManager instance]setLoginSuccessful:NO];
-    [[[[ImmopolyManager instance]user]history]removeAllObjects];
-    [[[[ImmopolyManager instance]user]portfolio]removeAllObjects];
-    [[self.tabBarController.viewControllers objectAtIndex:1]dismissModalViewControllerAnimated:NO];
-    [[self.tabBarController.viewControllers objectAtIndex:2]dismissModalViewControllerAnimated:NO];
-    ((HistoryViewController *) [[[self tabBarController]viewControllers]objectAtIndex:3]).loadingHistoryEntriesStart=10;
+    
+    if (![[ImmopolyManager instance]willComeBack]) {
+        
+        [[self tabBarController]setSelectedIndex:2];
+        [[ImmopolyManager instance]setLoginSuccessful:NO];
+        [[[[ImmopolyManager instance]user]history]removeAllObjects];
+        [[[[ImmopolyManager instance]user]portfolio]removeAllObjects];
+        [[self.tabBarController.viewControllers objectAtIndex:1]dismissModalViewControllerAnimated:NO];
+        [[self.tabBarController.viewControllers objectAtIndex:2]dismissModalViewControllerAnimated:NO];
+        ((HistoryViewController *) [[[self tabBarController]viewControllers]objectAtIndex:3]).loadingHistoryEntriesStart=10;
+    }else{
+        [[ImmopolyManager instance]setWillComeBack:NO];
+    }
+    
 }
 
 - (void)applicationWillEnterForeground:(UIApplication *)application {

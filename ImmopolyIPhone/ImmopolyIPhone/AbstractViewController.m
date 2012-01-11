@@ -8,6 +8,7 @@
 
 #import "AbstractViewController.h"
 #import "Constants.h"
+#import "ImmopolyManager.h"
 
 @implementation AbstractViewController
 
@@ -204,6 +205,8 @@
 
 -(void)openImmopolyWeb{
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://immopoly.appspot.com/"]];
+    [[ImmopolyManager instance]setWillComeBack:YES];
+    
 }
 
 - (void)setHelperViewTextWithFile:(int)_infoMode {

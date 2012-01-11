@@ -16,6 +16,7 @@
 @synthesize actLocation;
 @synthesize delegate;
 @synthesize selectedExposeId;
+@synthesize willComeBack;
 
 + (ImmopolyManager *)instance {
     static ImmopolyManager* instance = nil;
@@ -29,6 +30,7 @@
 - (id)init{
     self = [super init];
     self.immoScoutFlats = [NSMutableArray array];
+    self.willComeBack = NO;
     return self;
 }
 

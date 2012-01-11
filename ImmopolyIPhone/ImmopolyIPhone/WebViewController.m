@@ -38,7 +38,7 @@
 }
 
 - (void)viewWillAppear:(BOOL)animated {
-    [self resetContent];
+    
 }
 
 /*
@@ -123,6 +123,9 @@
     if ([self viewIsVisible]) {
         [self helperViewOut];
     }
+    
+    [self resetContent];
+    
     //[self.view removeFromSuperview];
     [self dismissModalViewControllerAnimated:YES];
 }
@@ -280,12 +283,16 @@
 	 \
 	 <table width=\"98%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\
 	 <tr>\
-	 <td width=\"60\" height=\"60\" valign=\"top\" align=\"left\"><img src=\""];
+     "];
 	
-	[html appendString:[[self selectedImmoscoutFlat]pictureUrl]];	  
-	
-	[html appendString: @"\" width=\"60\" height=\"60\" /></td>\
-	 <td height=\"100\" align=\"left\" valign=\"top\"><table width=\"98%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\
+    if([[self selectedImmoscoutFlat]pictureUrl] != nil){
+        [html appendString:@"<td width=\"60\" height=\"60\" valign=\"top\" align=\"left\"><img src=\""];
+        [html appendString:[[self selectedImmoscoutFlat]pictureUrl]];
+        [html appendString: @"\" width=\"60\" height=\"60\" /></td>\""];    
+        
+    }
+
+    [html appendString: @"<td height=\"100\" align=\"left\" valign=\"top\"><table width=\"98%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\
 	 <tr>\
 	 <td><font color=\"#666\" size=\"4\"><b>"];
 	

@@ -20,11 +20,13 @@
     CLLocation *actLocation;
     id<LocationDelegate, FlatsDelegate>delegate;
     int selectedExposeId;
+    BOOL willComeBack;
 }
 
 @property(nonatomic, assign) id<LocationDelegate>delegate;
 @property(nonatomic, retain) ImmopolyUser *user;
 @property(nonatomic, assign) BOOL loginSuccessful;
+@property(nonatomic, assign) BOOL willComeBack;
 @property(nonatomic, retain) NSMutableArray *immoScoutFlats;
 @property(nonatomic, retain) CLLocation *actLocation;
 @property(nonatomic, assign) int selectedExposeId;
