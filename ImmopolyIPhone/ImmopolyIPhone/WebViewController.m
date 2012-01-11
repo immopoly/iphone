@@ -72,6 +72,11 @@
     
     // setting the text of the helperView
     [super initHelperViewWithMode:INFO_EXPOSE];
+    
+    [[self shareButton]setImage:[UIImage imageNamed:@"webview_share.png"] forState:UIControlStateNormal];
+    [[self shareButton]setImage:[UIImage imageNamed:@"webview_share_active.png"] forState:UIControlStateSelected];
+    
+
 }
 
 -(void)enableFlatButton:(NSTimer *)_theTimer {
