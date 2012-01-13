@@ -67,7 +67,16 @@
     [loginCheck checkUserLogin];
     [super viewDidAppear:animated];
     
-    [self loadFacebookPicture];
+    NSData *imageData;
+    
+    imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"image"];
+    if (imageData != nil) {
+        userImage.image = [NSKeyedUnarchiver unarchiveObjectWithData: imageData];
+        userImage.contentMode = UIViewContentModeScaleAspectFit;
+        [userImage setBackgroundColor:[UIColor whiteColor]];
+    }else{
+        [self loadFacebookPicture];
+    }
 }
 
 - (void)performActionAfterLoginCheck {
@@ -198,7 +207,7 @@
         NSString *urlString = [NSString stringWithFormat:@"https://graph.facebook.com/%qi/picture?type=large", uid];
         
         [userImage loadImageFromURLString:urlString forFlat:nil];
-        userImage.contentMode = UIViewContentModeScaleAspectFit;        
+        userImage.contentMode = UIViewContentModeScaleAspectFit;
     }
 }
 
