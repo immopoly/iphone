@@ -124,7 +124,11 @@
     
     // setting the text of the helperView
     [super initHelperViewWithMode:INFO_PORTFOLIO];
-   
+    
+    UITapGestureRecognizer *singleFingerDTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleBubbleTap)];
+    singleFingerDTap.numberOfTapsRequired = 1;
+    [self.scrollView addGestureRecognizer:singleFingerDTap];
+    [singleFingerDTap release];
 }
 
 - (void)viewDidUnload {
@@ -681,12 +685,6 @@
         [imgView setImage:[_flat image]];
     }
     
-    // button
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button addTarget:self action:@selector(showFlatsWebView) forControlEvents:UIControlEventTouchUpInside];
-    button.frame = CGRectMake(10, 40, 60, 60);
-    [subview addSubview:button];
-    
     [subview addSubview:imgView];
     
     [lbName release];
@@ -773,6 +771,24 @@
     [self recenterMap];
     
     //ToDo: actualise
+}
+
+- (void)handleBubbleTap{
+    // if pageControl is at a page > 0, then the selected flat is one of the flats in flatsAtAnnotation
+    if(pageControl.currentPage > 0) {
+        Flat *tempFlat = [[selectedImmoScoutFlat flatsAtAnnotation] objectAtIndex:self.pageControl.currentPage-1];
+        [self setSelectedExposeId:[tempFlat exposeId]];
+        exposeWebViewController = [[WebViewController alloc]init];
+        [exposeWebViewController setSelectedImmoscoutFlat:tempFlat];
+    }
+    else {
+        [self setSelectedExposeId:[selectedImmoScoutFlat exposeId]];
+        exposeWebViewController = [[WebViewController alloc]init];
+        [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
+    }
+    //[self.view addSubview:exposeWebViewController.view];
+    exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentModalViewController:exposeWebViewController animated:YES];
 }
 
 /*- (IBAction)update{

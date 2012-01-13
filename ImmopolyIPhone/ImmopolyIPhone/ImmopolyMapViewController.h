@@ -96,5 +96,6 @@
 - (UIView *)createCalloutBubbleContentFromFlat:(Flat *)_flat atPosition:(int)_pos;
 - (IBAction)closeBubble;
 - (BOOL)alreadyUsed;
+- (void)handleBubbleTap;
 
 @end

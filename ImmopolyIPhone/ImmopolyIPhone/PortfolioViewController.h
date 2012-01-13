@@ -122,5 +122,6 @@
 - (void)filterAnnotations:(NSArray *)_flatsToFilter;
 - (void)initScrollView;
 - (UIView *)createCalloutBubbleContentFromFlat:(Flat *)_flat atPosition:(int)_pos;
+- (void)handleBubbleTap;
 
 @end

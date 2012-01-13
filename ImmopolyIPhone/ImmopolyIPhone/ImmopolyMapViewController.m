@@ -115,6 +115,10 @@
     // setting the text of the helperView
     [super initHelperViewWithMode:INFO_MAP];
     
+    UITapGestureRecognizer *singleFingerDTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleBubbleTap)];
+    singleFingerDTap.numberOfTapsRequired = 1;
+    [self.scrollView addGestureRecognizer:singleFingerDTap];
+    [singleFingerDTap release];
 }
 
 - (void)viewDidUnload {
@@ -384,24 +388,6 @@
     }
 }
 
-- (IBAction)showFlatsWebView {
-    // if pageControl is at a page > 0, then the selected flat is one of the flats in flatsAtAnnotation
-    if(pageControl.currentPage > 0) {
-        Flat *tempFlat = [[selectedImmoScoutFlat flatsAtAnnotation] objectAtIndex:self.pageControl.currentPage-1];
-        [self setSelectedExposeId:[tempFlat exposeId]];
-        exposeWebViewController = [[WebViewController alloc]init];
-        [exposeWebViewController setSelectedImmoscoutFlat:tempFlat];
-    }
-    else {
-        [self setSelectedExposeId:[selectedImmoScoutFlat exposeId]];
-        exposeWebViewController = [[WebViewController alloc]init];
-        [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
-    }
-    //[self.view addSubview:exposeWebViewController.view];
-    exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:exposeWebViewController animated:YES];
-}
-
 // method for clustering
 - (void)filterAnnotations:(NSArray *)_flatsToFilter {
     float latDelta = mapView.region.span.latitudeDelta/iphoneScaleFactorLatitude;
@@ -558,12 +544,6 @@
     }
     [subview addSubview:imgView];
     
-    // button
-    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
-    [button addTarget:self action:@selector(showFlatsWebView) forControlEvents:UIControlEventTouchUpInside];
-    button.frame = CGRectMake(10, 40, 60, 60);
-    [subview addSubview:button];
-     
     [lbName release];
     [lbRooms release];
     [lbSpace release];
@@ -588,5 +568,23 @@
     if(!isOutInCall){
         [self calloutBubbleOut];    
     }
+}
+
+- (void)handleBubbleTap{
+    // if pageControl is at a page > 0, then the selected flat is one of the flats in flatsAtAnnotation
+    if(pageControl.currentPage > 0) {
+        Flat *tempFlat = [[selectedImmoScoutFlat flatsAtAnnotation] objectAtIndex:self.pageControl.currentPage-1];
+        [self setSelectedExposeId:[tempFlat exposeId]];
+        exposeWebViewController = [[WebViewController alloc]init];
+        [exposeWebViewController setSelectedImmoscoutFlat:tempFlat];
+    }
+    else {
+        [self setSelectedExposeId:[selectedImmoScoutFlat exposeId]];
+        exposeWebViewController = [[WebViewController alloc]init];
+        [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
+    }
+    //[self.view addSubview:exposeWebViewController.view];
+    exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
+    [self presentModalViewController:exposeWebViewController animated:YES];
 }
 @end
