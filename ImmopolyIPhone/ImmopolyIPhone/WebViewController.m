@@ -229,7 +229,15 @@
         }
         else {
             TWTweetComposeViewController *tweetView = [[TWTweetComposeViewController alloc] init];
-            [tweetView setInitialText:sharingTwitterMessage];
+            
+            NSString *tweetText = [NSString stringWithFormat:@"@immopoly %@",sharingTwitterMessage];
+            if ([tweetText length]>140) {
+                tweetText = [tweetText substringToIndex:137];
+                tweetText = [tweetText stringByAppendingString:@"..."];
+            }
+            
+            
+            [tweetView setInitialText:tweetText];
             NSString *url = [NSString stringWithFormat:@"%@%i", urlIS24MobileExpose,[selectedImmoscoutFlat exposeId]];
             
             if(![tweetView addURL:[NSURL URLWithString:url]]) {
@@ -292,12 +300,13 @@
 	 <tr>\
      "];
 	
-    if([[self selectedImmoscoutFlat]pictureUrl] != nil){
-        [html appendString:@"<td width=\"60\" height=\"60\" valign=\"top\" align=\"left\"><img src=\""];
-        [html appendString:[[self selectedImmoscoutFlat]pictureUrl]];
-        [html appendString: @"\" width=\"60\" height=\"60\" /></td>\""];    
-        
+    [html appendString:@"<td width=\"60\" height=\"60\" valign=\"top\" align=\"left\"><img src=\""];
+    if([[self selectedImmoscoutFlat]pictureUrl] == nil){
+        [html appendString:@"https://immopoly.appspot.com/img/immopoly.png"];            
+    } else {
+        [html appendString:[[self selectedImmoscoutFlat] pictureUrl]];        
     }
+    [html appendString: @"\" width=\"60\" height=\"60\" /></td>\""];    
 
     [html appendString: @"<td height=\"100\" align=\"left\" valign=\"top\"><table width=\"98%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\
 	 <tr>\

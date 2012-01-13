@@ -413,7 +413,14 @@
             HistoryEntry *histEntry = [[[[ImmopolyManager instance] user] history] objectAtIndex: indexPath.row];
             
             TWTweetComposeViewController *tweetView = [[TWTweetComposeViewController alloc] init];
-            [tweetView setInitialText:[histEntry histText]];
+            
+            NSString *tweetText = [NSString stringWithFormat:@"@immopoly %@",[histEntry histText]];
+            if ([tweetText length]>140) {
+                tweetText = [tweetText substringToIndex:137];
+                tweetText = [tweetText stringByAppendingString:@"..."];
+            }
+            
+            [tweetView setInitialText:tweetText];
             
             [self presentModalViewController:tweetView animated:YES];
         }
