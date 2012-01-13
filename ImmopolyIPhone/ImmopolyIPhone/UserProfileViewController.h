@@ -14,7 +14,7 @@
 #import "AsynchronousImageView.h"
 #import "ImmopolyUser.h"
 
-@interface UserProfileViewController : AbstractViewController <UserDataDelegate,NotifyViewDelegate> {
+@interface UserProfileViewController : AbstractViewController <UserDataDelegate, NotifyViewDelegate> {
     
     IBOutlet UILabel *hello;
     IBOutlet UILabel *bank;

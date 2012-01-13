@@ -145,7 +145,6 @@
     }
 }
 
-/*
 -(void) tryLoginWithToken {
     
     BOOL automaticLogin = [[NSUserDefaults standardUserDefaults] boolForKey:@"saveToken"];
@@ -162,7 +161,6 @@
         //show modal view controller
     }
 }
- */
 
 -(void) loginWithResult:(BOOL)_result {
     
