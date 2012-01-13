@@ -290,12 +290,13 @@
 	 <tr>\
      "];
 	
-    if([[self selectedImmoscoutFlat]pictureUrl] != nil){
-        [html appendString:@"<td width=\"60\" height=\"60\" valign=\"top\" align=\"left\"><img src=\""];
-        [html appendString:[[self selectedImmoscoutFlat]pictureUrl]];
-        [html appendString: @"\" width=\"60\" height=\"60\" /></td>\""];    
-        
+    [html appendString:@"<td width=\"60\" height=\"60\" valign=\"top\" align=\"left\"><img src=\""];
+    if([[self selectedImmoscoutFlat]pictureUrl] == nil){
+        [html appendString:@"https://immopoly.appspot.com/img/immopoly.png"];            
+    } else {
+        [html appendString:[[self selectedImmoscoutFlat] pictureUrl]];        
     }
+    [html appendString: @"\" width=\"60\" height=\"60\" /></td>\""];    
 
     [html appendString: @"<td height=\"100\" align=\"left\" valign=\"top\"><table width=\"98%\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\">\
 	 <tr>\
