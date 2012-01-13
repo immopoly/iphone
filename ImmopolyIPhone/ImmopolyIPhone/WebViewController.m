@@ -10,6 +10,7 @@
 #import "FacebookManager.h"
 #import "Constants.h"
 #import "Secrets.h"
+#import "LoginViewController.h"
 
 @implementation WebViewController
 
@@ -160,7 +161,7 @@
 }
 
 - (void)performActionAfterLoginCheck {
-    
+    [spinner stopAnimating];
     if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]) {
         
         UIAlertView *removeFlatDialog = [[UIAlertView alloc]initWithTitle:@"Expose abgeben" message:alertExposeGiveAwayWarning delegate:self cancelButtonTitle:@"Nein" otherButtonTitles:@"Ja", nil];
@@ -172,9 +173,10 @@
         [self.flatActionButton setEnabled:YES];
         
     }else{
+        
         FlatTakeOverTask *flatTakeOverTask = [[FlatTakeOverTask alloc]init];
         [flatTakeOverTask takeOverFlat:[self selectedImmoscoutFlat]];
-        [self dismissModalViewControllerAnimated:YES];
+        //[self dismissModalViewControllerAnimated:YES];
         [flatTakeOverTask release];
     }
 }
@@ -446,5 +448,6 @@
     [activityIndicator startAnimating];
     [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
 }
+
 
 @end
