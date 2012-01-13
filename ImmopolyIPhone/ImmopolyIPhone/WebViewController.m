@@ -10,6 +10,7 @@
 #import "FacebookManager.h"
 #import "Constants.h"
 #import "Secrets.h"
+#import "LoginViewController.h"
 
 @implementation WebViewController
 
@@ -160,7 +161,7 @@
 }
 
 - (void)performActionAfterLoginCheck {
-    
+    [spinner stopAnimating];
     if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]) {
         
         UIAlertView *removeFlatDialog = [[UIAlertView alloc]initWithTitle:@"Expose abgeben" message:alertExposeGiveAwayWarning delegate:self cancelButtonTitle:@"Nein" otherButtonTitles:@"Ja", nil];
@@ -172,9 +173,10 @@
         [self.flatActionButton setEnabled:YES];
         
     }else{
+        
         FlatTakeOverTask *flatTakeOverTask = [[FlatTakeOverTask alloc]init];
         [flatTakeOverTask takeOverFlat:[self selectedImmoscoutFlat]];
-        [self dismissModalViewControllerAnimated:YES];
+        //[self dismissModalViewControllerAnimated:YES];
         [flatTakeOverTask release];
     }
 }
@@ -227,7 +229,15 @@
         }
         else {
             TWTweetComposeViewController *tweetView = [[TWTweetComposeViewController alloc] init];
-            [tweetView setInitialText:sharingTwitterMessage];
+            
+            NSString *tweetText = [NSString stringWithFormat:@"@immopoly %@",sharingTwitterMessage];
+            if ([tweetText length]>140) {
+                tweetText = [tweetText substringToIndex:137];
+                tweetText = [tweetText stringByAppendingString:@"..."];
+            }
+            
+            
+            [tweetView setInitialText:tweetText];
             NSString *url = [NSString stringWithFormat:@"%@%i", urlIS24MobileExpose,[selectedImmoscoutFlat exposeId]];
             
             if(![tweetView addURL:[NSURL URLWithString:url]]) {
@@ -446,5 +456,6 @@
     [activityIndicator startAnimating];
     [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
 }
+
 
 @end

@@ -48,7 +48,7 @@ NSString* const sharingTwitterAPINotAvailableAlertTitle = @"Keine iOS 5";
 NSString* const sharingTwitterAPINotAvailableAlertMessage = @"Du brauchst iOS 5, um die Twitter Funktion verwenden zu können.";
 NSString* const sharingTwitterNoAccountAlertTitle = @"Kein Account";
 NSString* const sharingTwitterNoAccountAlertMessage = @"Du brauchst ein Twitter account, um diese Funktion verwenden zu können.";
-NSString* const sharingTwitterMessage = @"Coole Wohnung! #immopoly";
+NSString* const sharingTwitterMessage = @"Coole Wohnung gefunden!";
 
 NSString* const sharingMailSubject = @"Super Wohnung gefunden";
 
