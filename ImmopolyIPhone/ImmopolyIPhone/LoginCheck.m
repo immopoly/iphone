@@ -39,7 +39,18 @@
         AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
         LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
         loginVC.delegate = self;
-        [[appDelegate tabBarController] presentModalViewController: loginVC animated: YES];
+        
+        // preperations for login at webviewController
+        int selIndex = [[appDelegate tabBarController] selectedIndex];
+        UIViewController *vc = [[[appDelegate tabBarController] viewControllers] objectAtIndex:selIndex];
+        WebViewController *webviewController = (WebViewController *)[vc modalViewController]; 
+        
+        // checks whether the viewController on top is webviewController or not
+        if(webviewController != nil && [webviewController isKindOfClass:[WebViewController class]]) {
+            [webviewController presentModalViewController:loginVC animated:YES]; 
+        } else {
+            [[appDelegate tabBarController] presentModalViewController: loginVC animated: YES];  
+        }
         [loginVC release];
     }
 }
@@ -78,6 +89,7 @@
 }
 
 - (void)closeMyDelegateView {
+    [delegate stopSpinnerAnimation];
     AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
     if(![delegate isKindOfClass: [WebViewController class]]) {
         //show map

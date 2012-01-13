@@ -169,8 +169,8 @@
     // do in background and only filter if no annotations are on the map
     if([[self.portfolioMapView valueForKeyPath:@"annotations.coordinate"] count] == 0) {
         [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]];   
+        [self recenterMap];
     }
-    [self recenterMap];
     
     if ([[[ImmopolyManager instance]user]portfolio] == nil || [[[[ImmopolyManager instance]user]portfolio]count]<=0) {
         [super helperViewIn];
@@ -303,7 +303,7 @@
         [self calloutBubbleIn];
     }
     
-    if (zoomLevel != mpView.region.span.longitudeDelta || animated) {
+    if (zoomLevel != mpView.region.span.longitudeDelta) {
         [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]];
         zoomLevel = mpView.region.span.longitudeDelta;
     }
