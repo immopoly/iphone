@@ -63,9 +63,8 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    //[self performActionAfterLoginCheck];
     loginCheck.delegate = self;
-    [loginCheck initiateLoginWithToken];
+    [loginCheck checkUserLogin];
     [super viewDidAppear:animated];
     
     [self loadFacebookPicture];
