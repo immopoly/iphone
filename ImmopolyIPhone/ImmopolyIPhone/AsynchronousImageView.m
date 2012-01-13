@@ -50,6 +50,13 @@
         self.image = flatImage;
         if(flat == nil){
             [self setBackgroundColor:[UIColor whiteColor]];
+            
+            NSData *imageData;
+            
+            // create NSData-object from image
+            imageData = [NSKeyedArchiver archivedDataWithRootObject:self.image];
+            // save NSData-object to UserDefaults
+            [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:@"image"];
         }
         [self.spinner stopAnimating];
     }];
