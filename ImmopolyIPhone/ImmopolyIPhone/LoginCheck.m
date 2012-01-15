@@ -41,24 +41,28 @@
     }
     //otherwise display login view
     else {
-        //in tabbar
-        AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
-        LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
-        loginVC.delegate = self;
-        
-        // preperations for login at webviewController
-        int selIndex = [[appDelegate tabBarController] selectedIndex];
-        UIViewController *vc = [[[appDelegate tabBarController] viewControllers] objectAtIndex:selIndex];
-        WebViewController *webviewController = (WebViewController *)[vc modalViewController]; 
-        
-        // checks whether the viewController on top is webviewController or not
-        if(webviewController != nil && [webviewController isKindOfClass:[WebViewController class]]) {
-            [webviewController presentModalViewController:loginVC animated:YES]; 
-        } else {
-            [[appDelegate tabBarController] presentModalViewController: loginVC animated: YES];  
-        }
-        [loginVC release];
+        [self showLoginViewController];
     }
+}
+
+- (void)showLoginViewController {
+    //in tabbar
+    AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+    LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
+    loginVC.delegate = self;
+    
+    // preperations for login at webviewController
+    int selIndex = [[appDelegate tabBarController] selectedIndex];
+    UIViewController *vc = [[[appDelegate tabBarController] viewControllers] objectAtIndex:selIndex];
+    WebViewController *webviewController = (WebViewController *)[vc modalViewController]; 
+    
+    // checks whether the viewController on top is webviewController or not
+    if(webviewController != nil && [webviewController isKindOfClass:[WebViewController class]]) {
+        [webviewController presentModalViewController:loginVC animated:YES]; 
+    } else {
+        [[appDelegate tabBarController] presentModalViewController: loginVC animated: YES];  
+    }
+    [loginVC release];
 }
 
 - (void)loginWithResult:(BOOL)_result {
@@ -68,15 +72,15 @@
         //[self notifyMyDelegateView];
     }
     else {
-        if(![delegate isKindOfClass: [WebViewController class]]) {
-            [delegate stopSpinnerAnimation];
-            
-            AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
-            LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
-            loginVC.delegate = self;
-            [[appDelegate tabBarController] presentModalViewController: loginVC animated: YES];
-            [loginVC release];
-        }
+        [delegate stopSpinnerAnimation];
+        [self showLoginViewController];
+        /*
+        AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+        LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
+        loginVC.delegate = self;
+        [[appDelegate tabBarController] presentModalViewController: loginVC animated: YES];
+        [loginVC release];
+        */
     }
 }
 
