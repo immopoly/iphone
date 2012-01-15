@@ -41,10 +41,10 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError");
-    [delegate resetPasswordWithResult:NO];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if ([jsonString isEqualToString:@""]) {
         NSLog(@"jsonString is empty");

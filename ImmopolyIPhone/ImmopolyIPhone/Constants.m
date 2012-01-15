@@ -32,7 +32,6 @@ NSString* const alertRegisterSuccessful = @"Glückwunsch! Du hast dich erfolgrei
 
 NSString* const alertResetPasswordWrongInput = @"Es wurde eine falsche Eingabe getätigt.";
 NSString* const alertResetPasswordSuccessful = @"Du bekommst in Kürze eine E-Mail mit dem Link, mit dem du dein Passwort ändern kannst.";
-NSString* const alertResetPasswordError = @"Die Kombination vom Benutzernamen und E-Mail konnte nicht gefunden werden.";
 
 NSString* const alertExposeGiveAwayWarning =@"Das Abgeben eines Exposes kostet dich eine Strafe. Möchtest du trotzdem fortfahren?";
 

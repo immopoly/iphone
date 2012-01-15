@@ -297,13 +297,8 @@
     else {
         [spinner stopAnimating];
         [spinner setHidden:YES];
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:alertResetPasswordError delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-        [alert release];
     }
 }
-
 
 //dismiss reset password view
 - (IBAction)dismissResetPasswordView {

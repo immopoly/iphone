@@ -98,6 +98,9 @@
     // observer for register of user error
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleErrorMsg:) name:@"user/register fail" object:nil];
     
+    // observer for reset password error
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleErrorMsg:) name:@"user/reset password fail" object:nil];
+    
     // observer for parsing flat data error
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(handleErrorMsg:) name:@"flatProvider/parse fail" object:nil];
     

@@ -30,7 +30,6 @@ extern NSString* const alertRegisterWrongInput;
 extern NSString* const alertRegisterSuccessful;
 extern NSString* const alertResetPasswordWrongInput;
 extern NSString* const alertResetPasswordSuccessful;
-extern NSString* const alertResetPasswordError;
 
 extern NSString* const alertExposeGiveAwayWarning;
 
