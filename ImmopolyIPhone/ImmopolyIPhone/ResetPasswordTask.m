@@ -41,6 +41,7 @@
 
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)error {
     NSLog(@"didFailWithError");
+    [delegate resetPasswordWithResult:NO];
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
