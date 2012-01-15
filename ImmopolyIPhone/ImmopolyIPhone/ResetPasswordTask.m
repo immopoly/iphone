@@ -60,6 +60,10 @@
         [delegate resetPasswordWithResult: NO];
     }
     else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:alertResetPasswordSuccessful delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+         
         [delegate resetPasswordWithResult: YES];
     }
     

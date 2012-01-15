@@ -287,16 +287,13 @@
 }
 
 - (void)resetPasswordWithResult:(BOOL)result {
+    
+    [spinner stopAnimating];
+    [spinner setHidden:YES];
+    
     if(result) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:alertResetPasswordSuccessful delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-        [alert release];
         [self dismissResetPasswordView];
         [self dismissModalViewControllerAnimated:YES];
-    }
-    else {
-        [spinner stopAnimating];
-        [spinner setHidden:YES];
     }
 }
 
