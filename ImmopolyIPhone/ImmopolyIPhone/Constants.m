@@ -54,4 +54,6 @@ NSString* const sharingMailSubject = @"Super Wohnung gefunden";
 
 NSString* const errorTokenNotFound = @"Automatischer Login ist fehlgeschlagen. Bitte gib deine Anmeldedaten erneut ein.";
 
+NSString* const feedbackMailSubject = @"Benutzerfeedback";
+
 @end

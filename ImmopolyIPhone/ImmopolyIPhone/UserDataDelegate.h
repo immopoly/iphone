@@ -11,6 +11,5 @@
 @protocol UserDataDelegate <NSObject>
 
 - (void)performActionAfterLoginCheck;
-- (void)webViewPresentLoginView;
 
 @end

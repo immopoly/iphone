@@ -17,7 +17,7 @@
 #import "HistoryEntry.h"
 #import "MessageHandler.h"
 #import "UserProfileViewController.h"
-#import "MissionViewController.h"
+#import "FeedbackViewController.h"
 #import "LoginCheck.h"
 #import "AbstractViewController.h"
 
@@ -69,19 +69,19 @@
     //LoginViewController *loginVC;
     UserProfileViewController *userVC;
     HistoryViewController *historyVC;
-    MissionViewController *missionVC;
+    FeedbackViewController *feedbackVC;
     
     mapVC = [[[ImmopolyMapViewController alloc] init] autorelease];
     portfolioVC = [[[PortfolioViewController alloc] init] autorelease];
     //loginVC = [[[LoginViewController alloc]init]autorelease]; 
     userVC = [[[UserProfileViewController alloc] init] autorelease];
     historyVC = [[[HistoryViewController alloc] init] autorelease];    
-    missionVC = [[[MissionViewController alloc]init]autorelease];
+    feedbackVC = [[[FeedbackViewController alloc]init]autorelease];
     
     self.tabBarController = [[[CustomTabBarController alloc] init] autorelease];
     self.tabBarController.delegate = self;
     
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:userVC,portfolioVC,mapVC,historyVC,missionVC, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:userVC,portfolioVC,mapVC,historyVC,feedbackVC, nil];
     [self.tabBarController addCenterButtonWithImage:[UIImage imageNamed:@"tabbar_center_icon.png"] highlightImage:[UIImage imageNamed:@"tabbar_center_icon_pressed.png"]];
     [self.tabBarController setSelectedIndex:2];
     
@@ -130,7 +130,7 @@
     
     [self setSelectedViewController:viewController];
     
-    if([viewController class] == [MissionViewController class] || [viewController class] == [ImmopolyMapViewController class] || [[ImmopolyManager instance] loginSuccessful]) {
+    if([viewController class] == [FeedbackViewController class] || [viewController class] == [ImmopolyMapViewController class] || [[ImmopolyManager instance] loginSuccessful]) {
         return YES;
     }
     else {
