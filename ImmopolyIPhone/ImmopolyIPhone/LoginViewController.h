@@ -67,5 +67,6 @@
 - (IBAction)performResetPassword;
 - (IBAction)dismissResetPasswordView;
 - (void)setTextFieldsEnabled:(BOOL)_enabeled;
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString;
 
 @end

@@ -151,7 +151,7 @@
 - (IBAction)performRegistration {
     [self setTextFieldsEnabled:NO];
     
-    if([[registerUserName text] length]> 0 && [[registerUserPassword text] length] > 0) {
+    if([[registerUserName text] length]> 0 && [[registerUserPassword text] length] > 0 && [[registerUserEmail text]length]>0 && [self NSStringIsValidEmail:[registerUserEmail text]]) {
         [spinner setHidden:NO];
         [spinner startAnimating];
         
@@ -320,6 +320,16 @@
     [registerUserPassword setUserInteractionEnabled:_enabeled];
     [registerUserEmail setUserInteractionEnabled:_enabeled];
     [registerUserTwitter setUserInteractionEnabled:_enabeled];
+}
+
+-(BOOL) NSStringIsValidEmail:(NSString *)checkString
+{
+    BOOL stricterFilter = YES; // Discussion http://blog.logichigh.com/2010/09/02/validating-an-e-mail-address/
+    NSString *stricterFilterString = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSString *laxString = @".+@.+\\.[A-Za-z]{2}[A-Za-z]*";
+    NSString *emailRegex = stricterFilter ? stricterFilterString : laxString;
+    NSPredicate *emailTest = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", emailRegex];
+    return [emailTest evaluateWithObject:checkString];
 }
 
 @end
