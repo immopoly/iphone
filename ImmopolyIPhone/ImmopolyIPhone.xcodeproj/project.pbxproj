@@ -363,7 +363,7 @@
 		D22F594B14793BEB008918A9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D247150C14BDE52A003AB5CA /* webview_share_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = webview_share_active.png; sourceTree = "<group>"; };
 		D247150F14BDE7F5003AB5CA /* Icon_share_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_share_back.png; sourceTree = "<group>"; };
-		D24E763C145834DA003C91A8 /* ImmopolyIPhone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ImmopolyIPhone.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D24E763C145834DA003C91A8 /* Immopoly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Immopoly.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D24E7640145834DA003C91A8 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		D24E7642145834DA003C91A8 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		D24E7644145834DA003C91A8 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -809,7 +809,7 @@
 		D24E763D145834DA003C91A8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				D24E763C145834DA003C91A8 /* ImmopolyIPhone.app */,
+				D24E763C145834DA003C91A8 /* Immopoly.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1137,7 +1137,7 @@
 			);
 			name = ImmopolyIPhone;
 			productName = ImmopolyIPhone;
-			productReference = D24E763C145834DA003C91A8 /* ImmopolyIPhone.app */;
+			productReference = D24E763C145834DA003C91A8 /* Immopoly.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -1442,8 +1442,9 @@
 					"\"$(SRCROOT)/../libasi-http-request\"",
 					"\"$(SRCROOT)/../libOAuth__OFF\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Immopoly;
 				RUN_CLANG_STATIC_ANALYZER = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -1464,8 +1465,9 @@
 					"\"$(SRCROOT)/../libasi-http-request\"",
 					"\"$(SRCROOT)/../libOAuth__OFF\"",
 				);
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = Immopoly;
 				RUN_CLANG_STATIC_ANALYZER = NO;
+				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;
