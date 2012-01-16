@@ -211,4 +211,32 @@
     }
 }
 
+- (void)imagePickerController:(UIImagePickerController *)_picker didFinishPickingMediaWithInfo:(NSDictionary *)info{
+    [self dismissModalViewControllerAnimated:YES];
+    UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
+    if (image != nil) {
+        [userImage setImage:image];
+        userImage.contentMode = UIViewContentModeScaleAspectFit;
+        
+        NSData *imageData;
+        
+        // create NSData-object from image
+        imageData = [NSKeyedArchiver archivedDataWithRootObject:image];
+        // save NSData-object to UserDefaults
+        [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:@"image"];
+    }
+    
+    [picker release];
+    
+}
+
+- (IBAction)changeProfilePic{
+    picker = [[UIImagePickerController alloc] init];
+    picker.delegate = self;
+    
+    [self presentModalViewController:picker animated:YES];
+
+}
+
+
 @end
