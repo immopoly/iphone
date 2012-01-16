@@ -46,7 +46,6 @@
 @synthesize numOfScrollViewSubviews;
 @synthesize pageControl;
 @synthesize calloutBubbleImg;
-// @synthesize btShowFlatsWebView;
 @synthesize lbPageNumber;
 @synthesize imgShadowTop;
 @synthesize imgShadowBottom;
@@ -89,7 +88,6 @@
     [calloutBubble removeFromSuperview];
     [self setShowCalloutBubble:NO];
     [lbPageNumber setHidden:YES];
-//    [btShowFlatsWebView setHidden:YES];
     
     // showing the annotation imgae
     [selViewForHouseImage setHidden:NO];
@@ -100,7 +98,6 @@
     [super viewDidLoad];
     [calloutBubbleImg setHidden:YES];
     [lbPageNumber setHidden:YES];
-//    [btShowFlatsWebView setHidden:YES];
     [self setShowCalloutBubble:NO];
     
     // that only the background is transparent and not the whole view
@@ -520,7 +517,6 @@
     // hiding the text and stuff
     [scrollView setHidden:YES];
     [lbPageNumber setHidden:YES];
-//    [btShowFlatsWebView setHidden:YES];
     
     // animation
     [UIView beginAnimations:@"outAnimation" context:NULL];	
@@ -623,8 +619,7 @@
     // setting the whole size of the scrollView
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * self.numOfScrollViewSubviews, self.scrollView.frame.size.height);
     
-    // showing the not scrollview content of calloutBubble
-//    [btShowFlatsWebView setHidden:NO];    
+    // showing the not scrollview content of calloutBubble  
     if (numOfScrollViewSubviews > 1) { 
         // don't show label, if it is a single flat annotation
         [lbPageNumber setHidden:NO];
@@ -791,17 +786,7 @@
     [self presentModalViewController:exposeWebViewController animated:YES];
 }
 
-/*- (IBAction)update{
-    [spinner setHidden: NO];
-    if(!loading){
-        PortfolioTask *task = [[[PortfolioTask alloc] init] autorelease];
-        task.delegate = self;
-        loading = YES;
-        
-        [task refreshPortolio];
-        [spinner startAnimating];
-    }
-}*/
+- (void)closeMyDelegateView {}
 
 
 @end
