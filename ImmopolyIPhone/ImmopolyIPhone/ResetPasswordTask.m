@@ -44,6 +44,7 @@
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
+    
     NSString *jsonString = [[NSString alloc] initWithData:data encoding:NSUTF8StringEncoding];
     if ([jsonString isEqualToString:@""]) {
         NSLog(@"jsonString is empty");
@@ -59,6 +60,10 @@
         [delegate resetPasswordWithResult: NO];
     }
     else {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:alertResetPasswordSuccessful delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+        [alert release];
+         
         [delegate resetPasswordWithResult: YES];
     }
     

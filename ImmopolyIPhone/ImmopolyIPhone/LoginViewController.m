@@ -270,6 +270,10 @@
 //send reset password request
 - (IBAction)performResetPassword {
     if([[resetPasswordUserName text] length]> 0 && [[resetPasswordEmail text] length] > 0) {
+        
+        [spinner setHidden:NO];
+        [spinner startAnimating];
+        
         ResetPasswordTask *loader = [[[ResetPasswordTask alloc] init] autorelease];
         [loader setDelegate: self];
         
@@ -283,15 +287,15 @@
 }
 
 - (void)resetPasswordWithResult:(BOOL)result {
+    
+    [spinner stopAnimating];
+    [spinner setHidden:YES];
+    
     if(result) {
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Success" message:alertResetPasswordSuccessful delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
-        [alert show];
-        [alert release];
         [self dismissResetPasswordView];
         [self dismissModalViewControllerAnimated:YES];
     }
 }
-
 
 //dismiss reset password view
 - (IBAction)dismissResetPasswordView {
