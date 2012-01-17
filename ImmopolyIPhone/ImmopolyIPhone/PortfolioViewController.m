@@ -84,14 +84,11 @@
 
 - (void)viewWillAppear:(BOOL)animated {  
     [table reloadData];
-    // hiding calloutBubble when the user returns from another tab
-    [calloutBubble removeFromSuperview];
-    [self setShowCalloutBubble:NO];
-    [lbPageNumber setHidden:YES];
     
-    // showing the annotation imgae
-    [selViewForHouseImage setHidden:NO];
+    // showing the annotation image
+    //[selViewForHouseImage setHidden:NO];
     
+    [btRecenterMap setHidden:isBtHidden];
 }
 
 - (void)viewDidLoad {
@@ -146,14 +143,14 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    // closing calloutBubble when the user returns from another tab
+    [self calloutBubbleOut];
+    
     loginCheck.delegate = self;
     [loginCheck checkUserLogin];
     
     [super viewDidAppear:animated];
-    [[self table]reloadData];
-    
-    [btRecenterMap setHidden:isBtHidden];
-    
+    //[[self table]reloadData];
 }
 
 - (void)stopSpinnerAnimation {
@@ -256,7 +253,7 @@
     posImgShadowTop = imgShadowTop.center;
     posImgShadowBottom = imgShadowBottom.center;
     posMap.x = 480.0f;
-    posTable.x = 160.0f;
+    posTable.x = 166.0f;
     posImgShadowTop.x = 160.0f;
     posImgShadowBottom.x = 160.0f;
     portfolioMapView.center = posMap;
