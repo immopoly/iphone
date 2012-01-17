@@ -34,7 +34,6 @@
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIPageControl *pageControl;
     IBOutlet UIImageView *calloutBubbleImg;
-//    IBOutlet UIButton *btShowFlatsWebView;
     IBOutlet UILabel *lbPageNumber;
 
     IBOutlet UIImageView *imgShadowTop;
@@ -67,6 +66,8 @@
     int numOfScrollViewSubviews;
     Flat *sameFlat;
     MKCoordinateSpan regionSpan;
+    
+    int numOfFlatsBeforeChangingView;
 }
 
 @property(nonatomic, retain) UITableViewCell *tvCell;
@@ -100,13 +101,13 @@
 @property(nonatomic, assign) int numOfScrollViewSubviews;
 @property(nonatomic, retain) IBOutlet UIPageControl *pageControl;
 @property(nonatomic, retain) IBOutlet UIImageView *calloutBubbleImg;
-// @property(nonatomic, retain) IBOutlet UIButton *btShowFlatsWebView;
 @property(nonatomic, retain) IBOutlet UILabel *lbPageNumber;
 @property(nonatomic, retain) IBOutlet UIImageView *imgShadowTop;
 @property(nonatomic, retain) IBOutlet UIImageView *imgShadowBottom;
 @property(nonatomic, retain) Flat *sameFlat;
 @property(nonatomic, assign) MKCoordinateSpan regionSpan;
 @property(nonatomic, assign) BOOL loading;
+@property(nonatomic, assign) int numOfFlatsBeforeChangingView;
 
 - (void)calloutBubbleOut;
 - (void)recenterMap;

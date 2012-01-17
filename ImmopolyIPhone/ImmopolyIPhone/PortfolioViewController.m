@@ -52,6 +52,7 @@
 @synthesize sameFlat;
 @synthesize regionSpan;
 @synthesize loading;
+@synthesize numOfFlatsBeforeChangingView;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil { 
@@ -83,12 +84,17 @@
 #pragma mark - View lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {  
-    [table reloadData];
-    
-    // showing the annotation image
-    //[selViewForHouseImage setHidden:NO];
-    
+    [table reloadData];    
     [btRecenterMap setHidden:isBtHidden];
+    
+    // filter annotations if a flat was added or removed from the portfolio
+    if(numOfFlatsBeforeChangingView != [[[[ImmopolyManager instance] user] portfolio] count]) {
+        if(isCalloutBubbleIn) {
+            [self calloutBubbleOut];    
+        }
+        [portfolioMapView removeAnnotations:portfolioMapView.annotations];
+        [self recenterMap];
+    }
 }
 
 - (void)viewDidLoad {
@@ -123,6 +129,9 @@
     singleFingerDTap.numberOfTapsRequired = 1;
     [self.scrollView addGestureRecognizer:singleFingerDTap];
     [singleFingerDTap release];
+    
+    // setting the number of flats, because maybe the user removes one of them at webview
+    [self setNumOfFlatsBeforeChangingView:[[[[ImmopolyManager instance]user]portfolio] count]];
 }
 
 - (void)viewDidUnload {
@@ -150,7 +159,6 @@
     [loginCheck checkUserLogin];
     
     [super viewDidAppear:animated];
-    //[[self table]reloadData];
 }
 
 - (void)stopSpinnerAnimation {
@@ -201,22 +209,18 @@
     
     [self setSelectedImmoScoutFlat:[[[[ImmopolyManager instance]user]portfolio]objectAtIndex:[indexPath row]]];
     
-    
     if (exposeWebViewController) {
         [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
         [exposeWebViewController reloadData];
-        //[self.view addSubview:exposeWebViewController.view];
     }else{
         exposeWebViewController = [[WebViewController alloc] initWithNibName:@"WebView" bundle:[NSBundle mainBundle]];
     }
-    
     [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
-    //[self.view addSubview:exposeWebViewController.view];
-    
     exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:exposeWebViewController animated:YES];
     
-    
+    // setting the number of flats, because maybe the user removes one of them at webview
+    [self setNumOfFlatsBeforeChangingView:[[[[ImmopolyManager instance]user]portfolio] count]];
 }
                 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -567,24 +571,6 @@
     }
 }
 
-- (IBAction)showFlatsWebView {
-    // if pageControl is at a page > 0, then the selected flat is one of the flats in flatsAtAnnotation
-    if(pageControl.currentPage > 0) {
-        Flat *tempFlat = [[selectedImmoScoutFlat flatsAtAnnotation] objectAtIndex:self.pageControl.currentPage-1];
-        [self setSelectedExposeId:[tempFlat exposeId]];
-        exposeWebViewController = [[WebViewController alloc]init];
-        [exposeWebViewController setSelectedImmoscoutFlat:tempFlat];
-    }
-    else {
-        [self setSelectedExposeId:[selectedImmoScoutFlat exposeId]];
-        exposeWebViewController = [[WebViewController alloc]init];
-        [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
-    }
-    //[self.view addSubview:exposeWebViewController.view];
-    exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:exposeWebViewController animated:YES];
-}
-
 - (void)initScrollView {
     
     // deleting all existing views (labels, images) 
@@ -701,6 +687,9 @@
 - (void)recenterMap {
     
     NSMutableArray *annotations = [[[ImmopolyManager instance] user] portfolio];
+    // setting the number of flats, because maybe the user removes one of them at webview
+    [self setNumOfFlatsBeforeChangingView:[annotations count]];
+    
     
     if([annotations count] > 0) {
         CLLocationCoordinate2D maxCoord = {-90.0f, -180.0f};        
@@ -778,9 +767,11 @@
         exposeWebViewController = [[WebViewController alloc]init];
         [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
     }
-    //[self.view addSubview:exposeWebViewController.view];
     exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:exposeWebViewController animated:YES];
+    
+    // setting the number of flats, because maybe the user removes one of them at webview
+    [self setNumOfFlatsBeforeChangingView:[[[[ImmopolyManager instance]user]portfolio] count]];
 }
 
 - (void)closeMyDelegateView {}
