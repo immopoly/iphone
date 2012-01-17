@@ -37,6 +37,7 @@
 - (void)geocodeLocation:(CLLocation *)_location;
 - (void)handleHistoryResponse:(NSNotification *)_notification;
 - (void)handleErrorMsg:(NSNotification *)_notification;
+- (void)handleTaskMessage:(NSNotification *) _notification;
 - (void)enableAutomaticLogin;
 
 -(void) showLoginViewController;

@@ -193,20 +193,27 @@
     [self setTextFieldsEnabled:YES];
     
     if(_result) {
+        /*
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Erfolg" message:alertRegisterSuccessful delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
+        */
         [self closeRegistration];
         [self dismissModalViewControllerAnimated:YES];
         UserLoginTask *loader = [[[UserLoginTask alloc] init] autorelease];
         [loader setDelegate:self];
         [loader performLoginWithToken:[[[ImmopolyManager instance] user] userToken]];
-    }else{
+    } else {
+        /*
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Kein Erfolg" message:errorTryAgainLater delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
         [alert release];
-        [self closeRegistration];
-        [self dismissModalViewControllerAnimated:YES];
+        */
+        //[self closeRegistration];
+        //[self dismissModalViewControllerAnimated:YES];
+        [registerUserName setText:@""];
+        [registerUserPassword setText:@""];
+        [registerUserEmail setText:@""];
     }
 }
 
