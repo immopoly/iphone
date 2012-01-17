@@ -55,6 +55,9 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"user/register fail" object:nil userInfo:errorInfo];
         [delegate registerWithResult: NO];
     }else{
+        //Send success notification
+        NSDictionary *taskInfo = [NSDictionary dictionaryWithObject:alertRegisterSuccessful forKey:@"message"];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"user/register successful" object:nil userInfo:taskInfo];
         [delegate registerWithResult: YES];
     }
     [jsonString release];
