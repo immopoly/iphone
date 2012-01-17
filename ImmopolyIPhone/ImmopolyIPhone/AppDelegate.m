@@ -247,6 +247,13 @@
         [[self.tabBarController.viewControllers objectAtIndex:1]dismissModalViewControllerAnimated:NO];
         [[self.tabBarController.viewControllers objectAtIndex:2]dismissModalViewControllerAnimated:NO];
         ((HistoryViewController *) [[[self tabBarController]viewControllers]objectAtIndex:3]).loadingHistoryEntriesStart=10;
+        
+        // removing all annotations from portfolioMapView that they don't get doubled
+        UIViewController *vc = [[[self tabBarController]viewControllers]objectAtIndex:1];
+        if ([vc isKindOfClass:[PortfolioViewController class]]) {
+            MKMapView *mapView = [[[[self tabBarController]viewControllers]objectAtIndex:1] portfolioMapView];
+            [mapView removeAnnotations:mapView.annotations];
+        }        
     }else{
         [[ImmopolyManager instance]setWillComeBack:NO];
     }
