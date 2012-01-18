@@ -373,7 +373,7 @@
     [[FacebookManager getInstance] setFacebookTitle:sharingFacebookTitle];
     [[FacebookManager getInstance] setFacebookCaption:[histEntry histText]];
     [[FacebookManager getInstance] setFacebookDescription:sharingFacebookDescription];
-    //[[FacebookManager getInstance] setFacebookImage:[selectedImmoscoutFlat pictureUrl]];
+    [[FacebookManager getInstance] setFacebookImage:@"http://www.tobiasheine.eu/Immopoly_big.png"];
     [[FacebookManager getInstance] setFacebookLink:sharingFacebookLink];
     [[FacebookManager getInstance] setFacebookActionLabel:sharingFacebookActionLabel];
     [[FacebookManager getInstance] setFacebookActionText:@"www.immobilienscout24.de"];
