@@ -196,6 +196,8 @@
         case 1:
             [flatRemoveTask removeFlat:[self selectedImmoscoutFlat]];
             
+            [[[[ImmopolyManager instance]user]portfolio]removeObject:[self selectedImmoscoutFlat]];
+            
             AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
             
             if([[[[delegate tabBarController]viewControllers]objectAtIndex:1]isKindOfClass:[PortfolioViewController class]]){
