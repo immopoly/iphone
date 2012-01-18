@@ -13,6 +13,7 @@
 #define INFO_EXPOSE 3
 #define INFO_HISTORY 4
 #define INFO_USER 5
+#define INFO_FEEDBACK 6
 
 
 @interface AbstractViewController : UIViewController {

@@ -11,6 +11,8 @@
 #import "ImmopolyManager.h"
 #import "Flat.h"
 #import "Constants.h"
+#import "AppDelegate.h"
+#import "PortfolioViewController.h"
 
 @implementation FlatTakeOverTask
 
@@ -70,6 +72,15 @@
             //when history has type 1 add expose to portfolio
             if([resultHistEntry type] == 1){
                 [[user portfolio] insertObject:[self selectedImmoscoutFlat] atIndex:0];
+                
+                //Notify the Portfolio, that is has changed
+                AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+                
+                if([[[[delegate tabBarController]viewControllers]objectAtIndex:1]isKindOfClass:[PortfolioViewController class]]){
+                    PortfolioViewController *tempVC = (PortfolioViewController *)[[[delegate tabBarController]viewControllers]objectAtIndex:1];
+                    [tempVC setPortfolioHasChanged:YES];
+                }
+                
             }
             
             //TODO: send Notification with history entry

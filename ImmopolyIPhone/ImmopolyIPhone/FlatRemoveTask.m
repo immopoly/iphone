@@ -76,9 +76,6 @@
             //add history
             [[user history]insertObject:resultHistEntry atIndex:0];
             
-            //remove flat from portfolio
-            [[user portfolio]removeObject:[self selectedPortfoliotFlat]];
-            
             // set new balance 
             [user setBalance:[user balance]+[resultHistEntry amount]];
             

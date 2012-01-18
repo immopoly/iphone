@@ -14,7 +14,7 @@
 #import "AsynchronousImageView.h"
 #import "ImmopolyUser.h"
 
-@interface UserProfileViewController : AbstractViewController <UserDataDelegate, NotifyViewDelegate> {
+@interface UserProfileViewController : AbstractViewController <UserDataDelegate, NotifyViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     
     IBOutlet UILabel *hello;
     IBOutlet UILabel *bank;
@@ -28,6 +28,7 @@
     IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet AsynchronousImageView *userImage;
     BOOL loading;
+    UIImagePickerController *picker;
 }
 
 @property(nonatomic, retain) IBOutlet UILabel *hello;
@@ -48,5 +49,6 @@
 - (void)stopSpinnerAnimation;
 - (void)setLabelTextsOfUser:(ImmopolyUser *)_user;
 - (void)loadFacebookPicture;
+- (IBAction)changeProfilePic;
 
 @end

@@ -46,13 +46,13 @@
 @synthesize numOfScrollViewSubviews;
 @synthesize pageControl;
 @synthesize calloutBubbleImg;
-// @synthesize btShowFlatsWebView;
 @synthesize lbPageNumber;
 @synthesize imgShadowTop;
 @synthesize imgShadowBottom;
 @synthesize sameFlat;
 @synthesize regionSpan;
 @synthesize loading;
+@synthesize portfolioHasChanged;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil { 
@@ -84,23 +84,25 @@
 #pragma mark - View lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {  
-    [table reloadData];
-    // hiding calloutBubble when the user returns from another tab
-    [calloutBubble removeFromSuperview];
-    [self setShowCalloutBubble:NO];
-    [lbPageNumber setHidden:YES];
-//    [btShowFlatsWebView setHidden:YES];
+    [table reloadData];    
+    [btRecenterMap setHidden:isBtHidden];
     
-    // showing the annotation imgae
-    [selViewForHouseImage setHidden:NO];
-    
+    // filter annotations if a flat was added or removed from the portfolio
+    if(portfolioHasChanged) {
+        if(isCalloutBubbleIn) {
+            [self calloutBubbleOut];    
+        }
+        [portfolioMapView removeAnnotations:portfolioMapView.annotations];
+        [self recenterMap];
+        
+        [self setPortfolioHasChanged:NO];
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     [calloutBubbleImg setHidden:YES];
     [lbPageNumber setHidden:YES];
-//    [btShowFlatsWebView setHidden:YES];
     [self setShowCalloutBubble:NO];
     
     // that only the background is transparent and not the whole view
@@ -129,6 +131,8 @@
     singleFingerDTap.numberOfTapsRequired = 1;
     [self.scrollView addGestureRecognizer:singleFingerDTap];
     [singleFingerDTap release];
+    
+    [self setPortfolioHasChanged:NO];
 }
 
 - (void)viewDidUnload {
@@ -149,14 +153,13 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    // closing calloutBubble when the user returns from another tab
+    [self calloutBubbleOut];
+    
     loginCheck.delegate = self;
     [loginCheck checkUserLogin];
     
     [super viewDidAppear:animated];
-    [[self table]reloadData];
-    
-    [btRecenterMap setHidden:isBtHidden];
-    
 }
 
 - (void)stopSpinnerAnimation {
@@ -207,22 +210,15 @@
     
     [self setSelectedImmoScoutFlat:[[[[ImmopolyManager instance]user]portfolio]objectAtIndex:[indexPath row]]];
     
-    
     if (exposeWebViewController) {
         [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
         [exposeWebViewController reloadData];
-        //[self.view addSubview:exposeWebViewController.view];
     }else{
         exposeWebViewController = [[WebViewController alloc] initWithNibName:@"WebView" bundle:[NSBundle mainBundle]];
     }
-    
     [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
-    //[self.view addSubview:exposeWebViewController.view];
-    
     exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:exposeWebViewController animated:YES];
-    
-    
 }
                 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -259,7 +255,7 @@
     posImgShadowTop = imgShadowTop.center;
     posImgShadowBottom = imgShadowBottom.center;
     posMap.x = 480.0f;
-    posTable.x = 160.0f;
+    posTable.x = 166.0f;
     posImgShadowTop.x = 160.0f;
     posImgShadowBottom.x = 160.0f;
     portfolioMapView.center = posMap;
@@ -520,7 +516,6 @@
     // hiding the text and stuff
     [scrollView setHidden:YES];
     [lbPageNumber setHidden:YES];
-//    [btShowFlatsWebView setHidden:YES];
     
     // animation
     [UIView beginAnimations:@"outAnimation" context:NULL];	
@@ -574,24 +569,6 @@
     }
 }
 
-- (IBAction)showFlatsWebView {
-    // if pageControl is at a page > 0, then the selected flat is one of the flats in flatsAtAnnotation
-    if(pageControl.currentPage > 0) {
-        Flat *tempFlat = [[selectedImmoScoutFlat flatsAtAnnotation] objectAtIndex:self.pageControl.currentPage-1];
-        [self setSelectedExposeId:[tempFlat exposeId]];
-        exposeWebViewController = [[WebViewController alloc]init];
-        [exposeWebViewController setSelectedImmoscoutFlat:tempFlat];
-    }
-    else {
-        [self setSelectedExposeId:[selectedImmoScoutFlat exposeId]];
-        exposeWebViewController = [[WebViewController alloc]init];
-        [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
-    }
-    //[self.view addSubview:exposeWebViewController.view];
-    exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
-    [self presentModalViewController:exposeWebViewController animated:YES];
-}
-
 - (void)initScrollView {
     
     // deleting all existing views (labels, images) 
@@ -623,8 +600,7 @@
     // setting the whole size of the scrollView
     self.scrollView.contentSize = CGSizeMake(self.scrollView.frame.size.width * self.numOfScrollViewSubviews, self.scrollView.frame.size.height);
     
-    // showing the not scrollview content of calloutBubble
-//    [btShowFlatsWebView setHidden:NO];    
+    // showing the not scrollview content of calloutBubble  
     if (numOfScrollViewSubviews > 1) { 
         // don't show label, if it is a single flat annotation
         [lbPageNumber setHidden:NO];
@@ -709,6 +685,7 @@
 - (void)recenterMap {
     
     NSMutableArray *annotations = [[[ImmopolyManager instance] user] portfolio];
+    // setting the number of flats, because maybe the user removes one of them at webview
     
     if([annotations count] > 0) {
         CLLocationCoordinate2D maxCoord = {-90.0f, -180.0f};        
@@ -786,22 +763,11 @@
         exposeWebViewController = [[WebViewController alloc]init];
         [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
     }
-    //[self.view addSubview:exposeWebViewController.view];
     exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:exposeWebViewController animated:YES];
 }
 
-/*- (IBAction)update{
-    [spinner setHidden: NO];
-    if(!loading){
-        PortfolioTask *task = [[[PortfolioTask alloc] init] autorelease];
-        task.delegate = self;
-        loading = YES;
-        
-        [task refreshPortolio];
-        [spinner startAnimating];
-    }
-}*/
+- (void)closeMyDelegateView {}
 
 
 @end

@@ -34,6 +34,9 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    // setting the text of the helperView
+    [super initHelperViewWithMode:INFO_FEEDBACK];
 }
 
 - (void)viewDidUnload
