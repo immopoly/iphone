@@ -67,7 +67,7 @@
     Flat *sameFlat;
     MKCoordinateSpan regionSpan;
     
-    int numOfFlatsBeforeChangingView;
+    BOOL portfolioHasChanged;
 }
 
 @property(nonatomic, retain) UITableViewCell *tvCell;
@@ -107,7 +107,7 @@
 @property(nonatomic, retain) Flat *sameFlat;
 @property(nonatomic, assign) MKCoordinateSpan regionSpan;
 @property(nonatomic, assign) BOOL loading;
-@property(nonatomic, assign) int numOfFlatsBeforeChangingView;
+@property(nonatomic, assign) BOOL portfolioHasChanged;
 
 - (void)calloutBubbleOut;
 - (void)recenterMap;

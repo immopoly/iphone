@@ -11,6 +11,8 @@
 #import "Constants.h"
 #import "Secrets.h"
 #import "LoginViewController.h"
+#import "PortfolioViewController.h"
+#import "AppDelegate.h"
 
 @implementation WebViewController
 
@@ -193,6 +195,14 @@
         //Ja                
         case 1:
             [flatRemoveTask removeFlat:[self selectedImmoscoutFlat]];
+            
+            AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+            
+            if([[[[delegate tabBarController]viewControllers]objectAtIndex:1]isKindOfClass:[PortfolioViewController class]]){
+                PortfolioViewController *tempVC = (PortfolioViewController *)[[[delegate tabBarController]viewControllers]objectAtIndex:1];
+                [tempVC setPortfolioHasChanged:YES];
+            }
+            
             break;
             
         default:

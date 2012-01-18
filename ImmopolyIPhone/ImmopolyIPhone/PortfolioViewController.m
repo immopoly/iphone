@@ -52,7 +52,7 @@
 @synthesize sameFlat;
 @synthesize regionSpan;
 @synthesize loading;
-@synthesize numOfFlatsBeforeChangingView;
+@synthesize portfolioHasChanged;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil { 
@@ -88,12 +88,14 @@
     [btRecenterMap setHidden:isBtHidden];
     
     // filter annotations if a flat was added or removed from the portfolio
-    if(numOfFlatsBeforeChangingView != [[[[ImmopolyManager instance] user] portfolio] count]) {
+    if(portfolioHasChanged) {
         if(isCalloutBubbleIn) {
             [self calloutBubbleOut];    
         }
         [portfolioMapView removeAnnotations:portfolioMapView.annotations];
         [self recenterMap];
+        
+        [self setPortfolioHasChanged:NO];
     }
 }
 
@@ -130,8 +132,7 @@
     [self.scrollView addGestureRecognizer:singleFingerDTap];
     [singleFingerDTap release];
     
-    // setting the number of flats, because maybe the user removes one of them at webview
-    [self setNumOfFlatsBeforeChangingView:[[[[ImmopolyManager instance]user]portfolio] count]];
+    [self setPortfolioHasChanged:NO];
 }
 
 - (void)viewDidUnload {
@@ -218,9 +219,6 @@
     [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
     exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:exposeWebViewController animated:YES];
-    
-    // setting the number of flats, because maybe the user removes one of them at webview
-    [self setNumOfFlatsBeforeChangingView:[[[[ImmopolyManager instance]user]portfolio] count]];
 }
                 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -688,8 +686,6 @@
     
     NSMutableArray *annotations = [[[ImmopolyManager instance] user] portfolio];
     // setting the number of flats, because maybe the user removes one of them at webview
-    [self setNumOfFlatsBeforeChangingView:[annotations count]];
-    
     
     if([annotations count] > 0) {
         CLLocationCoordinate2D maxCoord = {-90.0f, -180.0f};        
@@ -769,9 +765,6 @@
     }
     exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:exposeWebViewController animated:YES];
-    
-    // setting the number of flats, because maybe the user removes one of them at webview
-    [self setNumOfFlatsBeforeChangingView:[[[[ImmopolyManager instance]user]portfolio] count]];
 }
 
 - (void)closeMyDelegateView {}
