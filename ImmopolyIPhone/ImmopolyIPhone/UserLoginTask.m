@@ -29,7 +29,7 @@
     
     NSURL *url = [NSURL URLWithString:[urlString stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
    
-    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringCacheData timeoutInterval:30.0];
     
     [self setConnection: [NSURLConnection connectionWithRequest:request delegate:self]];
     
@@ -60,6 +60,10 @@
 - (void)connection:(NSURLConnection *)connection didFailWithError:(NSError *)d {
     NSLog(@"didFailWithError");
     [delegate loginWithResult: NO];
+}
+
+- (NSCachedURLResponse *)connection:(NSURLConnection *)connection willCacheResponse:(NSCachedURLResponse *)cachedResponse {
+    return nil;
 }
 
 - (void)connectionDidFinishLoading:(NSURLConnection *)connection {
