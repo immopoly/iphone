@@ -97,6 +97,8 @@
 		6DE29991148A6F5A00FD7CCA /* topshadow_portfolio_list.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE2998B148A6F5A00FD7CCA /* topshadow_portfolio_list.png */; };
 		6DEB02A414B4FA0300B901A2 /* infotext_history.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DEB02A214B4FA0300B901A2 /* infotext_history.png */; };
 		6DEB02A514B4FA0300B901A2 /* infotext_history@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DEB02A314B4FA0300B901A2 /* infotext_history@2x.png */; };
+		D21EDC8D14C89591006EA134 /* Immopoly_klein.png in Resources */ = {isa = PBXBuildFile; fileRef = D21EDC8C14C89591006EA134 /* Immopoly_klein.png */; };
+		D21EDC8F14C895CB006EA134 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D21EDC8E14C895CB006EA134 /* Default.png */; };
 		D22F594C14793BEB008918A9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D22F594B14793BEB008918A9 /* Settings.bundle */; };
 		D247150D14BDE52A003AB5CA /* webview_share_active.png in Resources */ = {isa = PBXBuildFile; fileRef = D247150C14BDE52A003AB5CA /* webview_share_active.png */; };
 		D247151014BDE7F5003AB5CA /* Icon_share_back.png in Resources */ = {isa = PBXBuildFile; fileRef = D247150F14BDE7F5003AB5CA /* Icon_share_back.png */; };
@@ -368,6 +370,8 @@
 		6DE2998B148A6F5A00FD7CCA /* topshadow_portfolio_list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topshadow_portfolio_list.png; sourceTree = "<group>"; };
 		6DEB02A214B4FA0300B901A2 /* infotext_history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infotext_history.png; sourceTree = "<group>"; };
 		6DEB02A314B4FA0300B901A2 /* infotext_history@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infotext_history@2x.png"; sourceTree = "<group>"; };
+		D21EDC8C14C89591006EA134 /* Immopoly_klein.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Immopoly_klein.png; sourceTree = "<group>"; };
+		D21EDC8E14C895CB006EA134 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D22F594B14793BEB008918A9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
 		D247150C14BDE52A003AB5CA /* webview_share_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = webview_share_active.png; sourceTree = "<group>"; };
 		D247150F14BDE7F5003AB5CA /* Icon_share_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_share_back.png; sourceTree = "<group>"; };
@@ -793,6 +797,8 @@
 		D24E7631145834DA003C91A8 = {
 			isa = PBXGroup;
 			children = (
+				D21EDC8E14C895CB006EA134 /* Default.png */,
+				D21EDC8C14C89591006EA134 /* Immopoly_klein.png */,
 				D2B02D1214B8769400985E3C /* QuartzCore.framework */,
 				4C111EB4149203A800875AF3 /* Twitter.framework */,
 				D2E53FCE148148780042B205 /* MessageUI.framework */,
@@ -1288,6 +1294,8 @@
 				6D5CD10C14C4E509008C6DE1 /* infotext_portfolio@2x.png in Resources */,
 				6D5CD10F14C4E77F008C6DE1 /* infotext_feedback.png in Resources */,
 				6D5CD11014C4E77F008C6DE1 /* infotext_feedback@2x.png in Resources */,
+				D21EDC8D14C89591006EA134 /* Immopoly_klein.png in Resources */,
+				D21EDC8F14C895CB006EA134 /* Default.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1396,6 +1404,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tobias Heine (MVU4N9SD8F)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1411,6 +1420,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				PROVISIONING_PROFILE = "62734CFC-FDC8-43D0-96B7-DEE08B0C0899";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -1420,6 +1430,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tobias Heine (MVU4N9SD8F)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1429,6 +1440,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				PROVISIONING_PROFILE = "62734CFC-FDC8-43D0-96B7-DEE08B0C0899";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1437,6 +1449,8 @@
 		D24E765B145834DA003C91A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tobias Heine (MVU4N9SD8F)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ImmopolyIPhone/ImmopolyIPhone-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1451,6 +1465,7 @@
 					"\"$(SRCROOT)/../libOAuth__OFF\"",
 				);
 				PRODUCT_NAME = Immopoly;
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "62734CFC-FDC8-43D0-96B7-DEE08B0C0899";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -1460,6 +1475,8 @@
 		D24E765C145834DA003C91A8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ImmopolyIPhone/ImmopolyIPhone-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
