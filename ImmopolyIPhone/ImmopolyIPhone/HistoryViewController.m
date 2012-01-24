@@ -286,7 +286,7 @@
     cell.selectionStyle = UITableViewCellSelectionStyleNone;
     
     
-    if ([indexPath row]>[[[[ImmopolyManager instance] user] history] count]-3) {
+    if ([indexPath row]>[[[[ImmopolyManager instance] user] history] count]-3 && [[[[ImmopolyManager instance] user] history] count]>9) {
         if (loading) {
             flagForReload = YES;
         }else{
