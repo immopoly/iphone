@@ -28,6 +28,8 @@
 @synthesize userImage;
 @synthesize loading;
 @synthesize userIsNotMyself;
+@synthesize otherUserName;
+@synthesize closeProfileButton;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -62,25 +64,35 @@
     // setting the text of the helperView
     [super initHelperViewWithMode:INFO_USER];
     
-    if(userIsNotMyself){
-        NSLog(@"Bla");
-    }
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    loginCheck.delegate = self;
-    [loginCheck checkUserLogin];
-    [super viewDidAppear:animated];
     
-    NSData *imageData;
-    
-    imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"image"];
-    if (imageData != nil) {
-        userImage.image = [NSKeyedUnarchiver unarchiveObjectWithData: imageData];
-        userImage.contentMode = UIViewContentModeScaleAspectFit;
-        [userImage setBackgroundColor:[UIColor whiteColor]];
+    if(userIsNotMyself){
+        [spinner setHidden:NO];
+        
+        UserTask *task = [[UserTask alloc]init];
+        task.delegate = self;
+        [task refreshUser:otherUserName];
+        
+        [[self closeProfileButton] setHidden:NO];
+        [[self closeProfileButton] setEnabled:YES];
     }else{
-        [self loadFacebookPicture];
+        loginCheck.delegate = self;
+        [loginCheck checkUserLogin];
+        [super viewDidAppear:animated];
+        
+        NSData *imageData;
+        
+        imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"image"];
+        if (imageData != nil) {
+            userImage.image = [NSKeyedUnarchiver unarchiveObjectWithData: imageData];
+            userImage.contentMode = UIViewContentModeScaleAspectFit;
+            [userImage setBackgroundColor:[UIColor whiteColor]];
+        }else{
+            [self loadFacebookPicture];
+        }
     }
 }
 
@@ -91,12 +103,12 @@
     
     if(myUser != nil) {
         [self setLabelTextsOfUser:myUser];
-        [self displayBadges];
+        [self displayBadges:myUser];
     }
 }
 
-- (void)displayBadges {
-    NSArray *userBadges = [[[ImmopolyManager instance] user] badges];
+- (void)displayBadges:(ImmopolyUser *)_user{
+    NSArray *userBadges = [_user badges];
     int posX = 17;
     
     if([userBadges count] > 0) {
@@ -150,6 +162,7 @@
     self.labelNumExposes = nil;
     self.badgesView = nil;
     self.spinner = nil;
+    self.closeProfileButton = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -179,7 +192,7 @@
     
     if(myUser != nil) {
         [self setLabelTextsOfUser:myUser];
-        [self displayBadges];
+        [self displayBadges:myUser];
     }
 }
 
@@ -241,6 +254,17 @@
     
     [self presentModalViewController:picker animated:YES];
 
+}
+
+-(void)notifyMyDelegateViewWithUser:(ImmopolyUser *)user{
+    [self setLabelTextsOfUser:user];
+    [self displayBadges:user];
+    [spinner setHidden:YES];
+    
+}
+
+- (IBAction)closeProfile{
+    [self dismissModalViewControllerAnimated:YES];
 }
 
 

@@ -24,12 +24,14 @@
     IBOutlet UILabel *labelMiete;
     IBOutlet UILabel *labelNumExposes;
     IBOutlet UIView *badgesView;
+    IBOutlet UIButton *closeProfileButton;
     LoginCheck *loginCheck;
     IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet AsynchronousImageView *userImage;
     BOOL loading;
     UIImagePickerController *picker;
     BOOL userIsNotMyself;
+    NSString *otherUserName;
 }
 
 @property(nonatomic, retain) IBOutlet UILabel *hello;
@@ -44,13 +46,17 @@
 @property(nonatomic, retain) LoginCheck *loginCheck;
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, retain) IBOutlet AsynchronousImageView *userImage;
+@property(nonatomic, retain) IBOutlet UIButton *closeProfileButton;
 @property(nonatomic, assign) BOOL loading;
 @property(nonatomic, assign) BOOL userIsNotMyself;
+@property(nonatomic, retain) NSString *otherUserName;
 
 - (void)displayBadges;
 - (void)stopSpinnerAnimation;
 - (void)setLabelTextsOfUser:(ImmopolyUser *)_user;
+- (void)displayBadges:(ImmopolyUser *)_user;
 - (void)loadFacebookPicture;
 - (IBAction)changeProfilePic;
+- (IBAction)closeProfile;
 
 @end

@@ -381,31 +381,14 @@
     NSIndexPath *indexPath = [table indexPathForCell: (UITableViewCell*)[[senderButton superview]superview]];
     
     HistoryEntry *histEntry = [[[[ImmopolyManager instance] user] history] objectAtIndex: indexPath.row];
-    NSString *userName = NULL;
-    NSArray *firstSplit = NULL;
-    switch ([histEntry type]) {
-        case TYPE_EXPOSE_MONOPOLY_POSITIVE:
-            firstSplit = [[histEntry histText]  componentsSeparatedByString:@" "];
-            if ([firstSplit count]>0) {
-                userName = [firstSplit objectAtIndex:0];
-            }
-            
-            break;
-        case TYPE_EXPOSE_MONOPOLY_NEGATIVE:
-            //TODO: Last word in ''
-            
-            
-            break;
-            
-        default:
-            break;
-    }
-    
-    
-    
+    NSString *userName = [histEntry otherUserName];
+       
+    //ToDo: set userName to ViewController
+    //load & display profile
+    [userVC setOtherUserName:userName];
     [userVC setUserIsNotMyself:YES];
+    userVC.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:userVC animated:YES];
-    
 }
 
 - (IBAction)facebook:(id)sender{ 
@@ -471,7 +454,7 @@
             
             [tweetView setInitialText:tweetText];
             
-            [self presentModalViewController:tweetView animated:YES];
+            [self presentModalViewController:tweetView animated:NO];
         }
     }
 }
