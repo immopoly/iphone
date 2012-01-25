@@ -19,7 +19,7 @@
 @synthesize delegate;
 
 
-+ (void)parsePublicUserData:(NSString *)jsonString:(NSError **)err{
++ (ImmopolyUser *)parsePublicUserData:(NSString *)jsonString:(NSError **)err{
     // Create a dictionary from the JSON string
     NSDictionary *results = [jsonString JSONValue];
     ImmopolyUser *myUser = [[[ImmopolyUser alloc] init] autorelease];
@@ -35,8 +35,8 @@
     else {
         NSDictionary *user = [results objectForKey:@"org.immopoly.common.User"];
         
-        [[ImmopolyManager instance] user].userName = [user objectForKey:@"username"];
-        [[ImmopolyManager instance] user].email = [user objectForKey:@"email"];
+        [myUser setUserName:[user objectForKey:@"username"]];
+        [myUser setEmail:[user objectForKey:@"email"]];
         
        
         NSDictionary *info = [user objectForKey:@"info"];
@@ -66,6 +66,8 @@
             [userBadge release];
         }
     }
+    
+    return myUser;
     
 }
 

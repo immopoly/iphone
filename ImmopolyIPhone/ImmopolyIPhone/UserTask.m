@@ -10,6 +10,7 @@
 #import "ImmopolyManager.h"
 #import "JSONParser.h"
 #import "Constants.h"
+#import "ImmopolyUser.h"
 
 @implementation UserTask
 @synthesize data;
@@ -45,7 +46,7 @@
     }
     
     NSError *err=nil;
-    [JSONParser parsePublicUserData:jsonString :&err];
+    ImmopolyUser *otherUser = [JSONParser parsePublicUserData:jsonString :&err];
     
     if (err) {
         //Handle Error here
@@ -53,7 +54,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"user/login fail" object:nil userInfo:errorInfo];
         
     }else{
-        [delegate notifyMyDelegateView];
+        [delegate notifyMyDelegateViewWithUser:otherUser];
     }
     
     [jsonString release];
