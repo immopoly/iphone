@@ -261,6 +261,7 @@
         [[self.tabBarController.viewControllers objectAtIndex:1]dismissModalViewControllerAnimated:NO];
         [[self.tabBarController.viewControllers objectAtIndex:2]dismissModalViewControllerAnimated:NO];
         ((HistoryViewController *) [[[self tabBarController]viewControllers]objectAtIndex:3]).loadingHistoryEntriesStart=10;
+        ((HistoryViewController *) [[[self tabBarController]viewControllers]objectAtIndex:3]).loading=NO;
         
         // removing all annotations from portfolioMapView that they don't get doubled
         UIViewController *vc = [[[self tabBarController]viewControllers]objectAtIndex:1];
