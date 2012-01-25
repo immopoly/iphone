@@ -30,6 +30,7 @@
 @synthesize userIsNotMyself;
 @synthesize otherUserName;
 @synthesize closeProfileButton;
+@synthesize tabBar;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -65,6 +66,16 @@
     [super initHelperViewWithMode:INFO_USER];
     
 
+}
+
+-(void)viewWillAppear:(BOOL)animated{
+    //TODO: reset labels
+    if (userIsNotMyself) {
+        [[self tabBar]setHidden:NO];
+    }else{
+        //That the badged can be clicked
+        [[self view]sendSubviewToBack:[self tabBar]];
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -163,6 +174,7 @@
     self.badgesView = nil;
     self.spinner = nil;
     self.closeProfileButton = nil;
+    self.tabBar = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

@@ -25,6 +25,7 @@
     IBOutlet UILabel *labelNumExposes;
     IBOutlet UIView *badgesView;
     IBOutlet UIButton *closeProfileButton;
+    IBOutlet UITabBar *tabBar;
     LoginCheck *loginCheck;
     IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet AsynchronousImageView *userImage;
@@ -47,6 +48,7 @@
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, retain) IBOutlet AsynchronousImageView *userImage;
 @property(nonatomic, retain) IBOutlet UIButton *closeProfileButton;
+@property(nonatomic, retain) IBOutlet UITabBar *tabBar;
 @property(nonatomic, assign) BOOL loading;
 @property(nonatomic, assign) BOOL userIsNotMyself;
 @property(nonatomic, retain) NSString *otherUserName;
