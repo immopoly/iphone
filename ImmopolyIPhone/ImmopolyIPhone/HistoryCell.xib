@@ -190,7 +190,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{220, 35}, {80, 42}}</string>
 								<reference key="NSSuperview" ref="275262557"/>
-								<reference key="NSNextKeyView"/>
+								<reference key="NSNextKeyView" ref="187163682"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<float key="IBUIAlpha">0.0</float>
 								<int key="IBUITag">6</int>
@@ -207,6 +207,29 @@
 									<string key="NSClassName">NSImage</string>
 									<string key="NSResourceName">webview_twitter.png</string>
 								</object>
+								<reference key="IBUIFontDescription" ref="588272263"/>
+								<reference key="IBUIFont" ref="558279491"/>
+							</object>
+							<object class="IBUIButton" id="187163682">
+								<reference key="NSNextResponder" ref="275262557"/>
+								<int key="NSvFlags">-2147483356</int>
+								<string key="NSFrame">{{4, 79}, {72, 28}}</string>
+								<reference key="NSSuperview" ref="275262557"/>
+								<reference key="NSNextKeyView"/>
+								<string key="NSReuseIdentifierKey">_NS:225</string>
+								<bool key="IBUIOpaque">NO</bool>
+								<int key="IBUITag">7</int>
+								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
+								<bool key="IBUIEnabled">NO</bool>
+								<int key="IBUIContentHorizontalAlignment">0</int>
+								<int key="IBUIContentVerticalAlignment">0</int>
+								<string key="IBUINormalTitle">USER</string>
+								<reference key="IBUIHighlightedTitleColor" ref="872884020"/>
+								<object class="NSColor" key="IBUINormalTitleColor">
+									<int key="NSColorSpace">1</int>
+									<bytes key="NSRGB">MC4xOTYwNzg0MzQ2IDAuMzA5ODAzOTMyOSAwLjUyMTU2ODY1NgA</bytes>
+								</object>
+								<reference key="IBUINormalTitleShadowColor" ref="412437866"/>
 								<reference key="IBUIFontDescription" ref="588272263"/>
 								<reference key="IBUIFont" ref="558279491"/>
 							</object>
@@ -270,6 +293,15 @@
 					</object>
 					<int key="connectionID">26</int>
 				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchEventConnection" key="connection">
+						<string key="label">openUserProfile:</string>
+						<reference key="source" ref="187163682"/>
+						<reference key="destination" ref="372490531"/>
+						<int key="IBEventType">7</int>
+					</object>
+					<int key="connectionID">28</int>
+				</object>
 			</array>
 			<object class="IBMutableOrderedSet" key="objectRecords">
 				<array key="orderedObjects">
@@ -301,6 +333,7 @@
 							<reference ref="984654926"/>
 							<reference ref="681221829"/>
 							<reference ref="824516365"/>
+							<reference ref="187163682"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -339,6 +372,11 @@
 						<reference key="object" ref="824516365"/>
 						<reference key="parent" ref="144803153"/>
 					</object>
+					<object class="IBObjectRecord">
+						<int key="objectID">27</int>
+						<reference key="object" ref="187163682"/>
+						<reference key="parent" ref="144803153"/>
+					</object>
 				</array>
 			</object>
 			<dictionary class="NSMutableDictionary" key="flattenedProperties">
@@ -353,13 +391,14 @@
 				<string key="18.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="19.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="20.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
+				<string key="27.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 				<string key="8.IBPluginDependency">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			</dictionary>
 			<dictionary class="NSMutableDictionary" key="unlocalizedProperties"/>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">26</int>
+			<int key="maxID">28</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

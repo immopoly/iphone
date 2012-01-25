@@ -27,6 +27,7 @@
 @synthesize badgesView;
 @synthesize userImage;
 @synthesize loading;
+@synthesize userIsNotMyself;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -60,6 +61,10 @@
     
     // setting the text of the helperView
     [super initHelperViewWithMode:INFO_USER];
+    
+    if(userIsNotMyself){
+        NSLog(@"Bla");
+    }
 }
 
 - (void)viewDidAppear:(BOOL)animated {

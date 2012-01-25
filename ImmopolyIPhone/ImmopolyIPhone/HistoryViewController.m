@@ -31,6 +31,9 @@
 @synthesize btShareBack;
 @synthesize btFacebook;
 @synthesize btTwitter;
+@synthesize btOpenProfile;
+@synthesize lblImage;
+@synthesize userVC;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -77,6 +80,8 @@
     for (HistoryEntry *entry in [[[ImmopolyManager instance] user] history]) {
         [entry setIsSharingActivated:NO];
     }
+    
+    userVC = [[UserProfileViewController alloc]init];
 }
 
 
@@ -122,6 +127,7 @@
     self.btFacebook = nil;
     self.btTwitter = nil;
     self.btHelperViewIn = nil;
+    self.btOpenProfile = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -171,6 +177,7 @@
     [self viewFadeIn:btShareBack];
     [self viewFadeIn:btFacebook];
     [self viewFadeIn:btTwitter];
+    //[self viewFadeIn:btOpenProfile];
 }
 
 -(IBAction)showCellLabels:(id)sender{
@@ -194,6 +201,7 @@
     [self viewFadeOut:btShareBack];
     [self viewFadeOut:btFacebook];
     [self viewFadeOut:btTwitter];
+    //[self viewFadeOut:btOpenProfile];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -209,10 +217,14 @@
     
     lbTime = (UILabel *)[cell viewWithTag:1];
     lbText = (UILabel *)[cell viewWithTag:2];
-    UIImageView *lblImage = (UIImageView *)[cell viewWithTag:3];
+    lblImage = (UIImageView *)[cell viewWithTag:3];
     btShareBack = (UIButton *)[cell viewWithTag:4];
     btFacebook = (UIButton *)[cell viewWithTag:5];
     btTwitter = (UIButton *)[cell viewWithTag:6];
+    btOpenProfile = (UIButton *)[cell viewWithTag:7];
+    
+    [btOpenProfile setHidden:YES];
+    [btOpenProfile setEnabled:NO];
     
      //adding the actions because in xib not visible yet
     [btShareBack addTarget:self action:@selector(showCellLabels:) forControlEvents:UIControlEventTouchUpInside];
@@ -241,6 +253,9 @@
                 [lblImage setImage:[UIImage imageNamed:@"icon_plus"]];
                 break;
             case TYPE_EXPOSE_MONOPOLY_POSITIVE:
+                //the first word is now the username
+                [btOpenProfile setHidden:NO];
+                [btOpenProfile setEnabled:YES];
                 [lblImage setImage:[UIImage imageNamed:@"icon_plus"]];
                 break;
             case TYPE_DAILY_PROVISION:
@@ -248,6 +263,8 @@
                 break;
             case TYPE_EXPOSE_MONOPOLY_NEGATIVE:
                 [lblImage setImage:[UIImage imageNamed:@"icon_minus"]]; 
+                [btOpenProfile setHidden:NO];
+                [btOpenProfile setEnabled:YES];
                 break;
             case TYPE_DAILY_RENT:
                 [lblImage setImage:[UIImage imageNamed:@"icon_minus"]];
@@ -357,6 +374,38 @@
 	[UIView setAnimationDuration:0.4];
     [view setAlpha:0.0f];
     [UIView commitAnimations];
+}
+
+- (IBAction)openUserProfile:(id)sender{ 
+    UIView *senderButton = (UIView*) sender;
+    NSIndexPath *indexPath = [table indexPathForCell: (UITableViewCell*)[[senderButton superview]superview]];
+    
+    HistoryEntry *histEntry = [[[[ImmopolyManager instance] user] history] objectAtIndex: indexPath.row];
+    NSString *userName = NULL;
+    NSArray *firstSplit = NULL;
+    switch ([histEntry type]) {
+        case TYPE_EXPOSE_MONOPOLY_POSITIVE:
+            firstSplit = [[histEntry histText]  componentsSeparatedByString:@" "];
+            if ([firstSplit count]>0) {
+                userName = [firstSplit objectAtIndex:0];
+            }
+            
+            break;
+        case TYPE_EXPOSE_MONOPOLY_NEGATIVE:
+            //TODO: Last word in ''
+            
+            
+            break;
+            
+        default:
+            break;
+    }
+    
+    
+    
+    [userVC setUserIsNotMyself:YES];
+    [self presentModalViewController:userVC animated:YES];
+    
 }
 
 - (IBAction)facebook:(id)sender{ 

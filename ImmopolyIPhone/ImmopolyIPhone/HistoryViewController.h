@@ -14,17 +14,20 @@
 #import "FacebookManagerDelegate.h"
 #import <Twitter/Twitter.h>
 #import "HistoryEntry.h"
+#import "UserProfileViewController.h"
 
 @interface HistoryViewController : AbstractViewController <UITableViewDataSource, UITableViewDelegate, UserDataDelegate, HistoryDelegate, FacebookManagerDelegate> {
     IBOutlet UITableViewCell *tvCell;
     IBOutlet UITableView *table;
     IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet UIActivityIndicatorView *reloadDataSpinner;
-    IBOutlet UILabel *lbTime;
-    IBOutlet UILabel *lbText;
-    IBOutlet UIButton *btShareBack;
-    IBOutlet UIButton *btFacebook;
-    IBOutlet UIButton *btTwitter;
+    UILabel *lbTime;
+    UILabel *lbText;
+    UIButton *btShareBack;
+    UIButton *btFacebook;
+    UIButton *btTwitter;
+    UIButton *btOpenProfile;
+    UIImageView *lblImage;
     
     LoginCheck *loginCheck;
     BOOL loading;
@@ -32,6 +35,7 @@
     int loadingHistoryEntriesStart;
     int loadingHistoryEntriesLimit;
     
+    UserProfileViewController *userVC;
     
     
 }
@@ -46,11 +50,15 @@
 @property(nonatomic, assign) int loadingHistoryEntriesLimit;
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *reloadDataSpinner;
 
-@property(nonatomic, retain) IBOutlet UILabel *lbTime;
-@property(nonatomic, retain) IBOutlet UILabel *lbText;
-@property(nonatomic, retain) IBOutlet UIButton *btShareBack;
-@property(nonatomic, retain) IBOutlet UIButton *btFacebook;
-@property(nonatomic, retain) IBOutlet UIButton *btTwitter;
+@property(nonatomic, retain) UILabel *lbTime;
+@property(nonatomic, retain) UILabel *lbText;
+@property(nonatomic, retain) UIButton *btShareBack;
+@property(nonatomic, retain) UIButton *btFacebook;
+@property(nonatomic, retain) UIButton *btTwitter;
+@property(nonatomic, retain) UIButton *btOpenProfile;
+@property(nonatomic, retain) UIImageView *lblImage;
+
+@property(nonatomic, retain) UserProfileViewController *userVC;
 
 - (void)stopSpinnerAnimation;
 //- (IBAction)showCellLabels;
@@ -58,6 +66,7 @@
 - (void)viewFadeOut:(UIView *)view;
 - (IBAction)facebook:(id)sender;
 - (IBAction)twitter:(id)sender;
+- (IBAction)openUserProfile:(id)sender;
 - (IBAction)update;
 
 -(IBAction)showCellLabels:(id)sender;

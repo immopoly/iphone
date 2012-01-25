@@ -29,6 +29,7 @@
     IBOutlet AsynchronousImageView *userImage;
     BOOL loading;
     UIImagePickerController *picker;
+    BOOL userIsNotMyself;
 }
 
 @property(nonatomic, retain) IBOutlet UILabel *hello;
@@ -44,6 +45,7 @@
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, retain) IBOutlet AsynchronousImageView *userImage;
 @property(nonatomic, assign) BOOL loading;
+@property(nonatomic, assign) BOOL userIsNotMyself;
 
 - (void)displayBadges;
 - (void)stopSpinnerAnimation;
