@@ -11,6 +11,7 @@
 @implementation HistoryEntry
 
 @synthesize histText;
+@synthesize otherUserName;
 @synthesize time;
 @synthesize type;
 @synthesize type2;

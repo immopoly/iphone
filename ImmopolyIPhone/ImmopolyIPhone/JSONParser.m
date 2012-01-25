@@ -107,6 +107,7 @@
             HistoryEntry *userHistoryEntry = [[HistoryEntry alloc] init];
             
             [userHistoryEntry setHistText: [listEntry objectForKey: @"text"]];
+            [userHistoryEntry setOtherUserName: [listEntry objectForKey: @"otherUsername"]];
             [userHistoryEntry setTime: [[listEntry objectForKey: @"time"] longLongValue]];
             [userHistoryEntry setType: [[listEntry objectForKey: @"type"] intValue]];
             [userHistoryEntry setType2: [[listEntry objectForKey:@"type2"] intValue]];
@@ -204,6 +205,7 @@
             
             HistoryEntry *histEntry = [[[HistoryEntry alloc] init] autorelease];
             [histEntry setHistText:[histDic objectForKey:@"text"]];
+            [histEntry setOtherUserName: [histDic objectForKey: @"otherUsername"]];
             [histEntry setTime:[[histDic objectForKey:@"time"]longLongValue]];
             [histEntry setType:[[histDic objectForKey:@"type"]intValue]];
             [histEntry setType2:[[histDic objectForKey:@"type2"]intValue]];

@@ -253,9 +253,6 @@
                 [lblImage setImage:[UIImage imageNamed:@"icon_plus"]];
                 break;
             case TYPE_EXPOSE_MONOPOLY_POSITIVE:
-                //the first word is now the username
-                [btOpenProfile setHidden:NO];
-                [btOpenProfile setEnabled:YES];
                 [lblImage setImage:[UIImage imageNamed:@"icon_plus"]];
                 break;
             case TYPE_DAILY_PROVISION:
@@ -263,8 +260,6 @@
                 break;
             case TYPE_EXPOSE_MONOPOLY_NEGATIVE:
                 [lblImage setImage:[UIImage imageNamed:@"icon_minus"]]; 
-                [btOpenProfile setHidden:NO];
-                [btOpenProfile setEnabled:YES];
                 break;
             case TYPE_DAILY_RENT:
                 [lblImage setImage:[UIImage imageNamed:@"icon_minus"]];
@@ -294,6 +289,11 @@
         // setting text
         [lbTime setText: formattedDateString]; 
         [lbText setText: [historyEntry histText]];
+        
+        if ([[historyEntry otherUserName]length]>0) {
+            [btOpenProfile setHidden:NO];
+            [btOpenProfile setEnabled:YES];
+        }
     } 
     else {
         NSLog(@"user history object is empty!");
