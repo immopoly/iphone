@@ -28,7 +28,6 @@
 @synthesize reloadDataSpinner;
 @synthesize lbTime;
 @synthesize lbText;
-@synthesize btShareBack;
 @synthesize btFacebook;
 @synthesize btTwitter;
 @synthesize btOpenProfile;
@@ -123,7 +122,6 @@
     self.reloadDataSpinner = nil;
     self.lbText = nil;
     self.lbTime = nil;
-    self.btShareBack = nil;
     self.btFacebook = nil;
     self.btTwitter = nil;
     self.btHelperViewIn = nil;
@@ -160,48 +158,37 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"selected row %d",[indexPath row]);
-    
-    HistoryEntry *histEntry = [[[[ImmopolyManager instance] user] history] objectAtIndex:[indexPath row]];
-    [histEntry setIsSharingActivated:YES];
-    
-    // hiding the text and showing the buttons for sharing an entry
-    UITableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
-    lbTime = (UILabel *)[selectedCell viewWithTag:1];
-    lbText = (UILabel *)[selectedCell viewWithTag:2];
-    btShareBack = (UIButton *)[selectedCell viewWithTag:4];
-    btFacebook = (UIButton *)[selectedCell viewWithTag:5];
-    btTwitter = (UIButton *)[selectedCell viewWithTag:6];
-    
-    [self viewFadeOut:lbTime];
-    [self viewFadeOut:lbText];
-    [self viewFadeIn:btShareBack];
-    [self viewFadeIn:btFacebook];
-    [self viewFadeIn:btTwitter];
-    //[self viewFadeIn:btOpenProfile];
 }
 
 -(IBAction)showCellLabels:(id)sender{
     
     UIView *senderButton = (UIView*) sender;
-    NSIndexPath *indexPath = [table indexPathForCell: (UITableViewCell*)[[senderButton superview]superview]];
-    
+    NSIndexPath *indexPath = [table indexPathForCell: (UITableViewCell*)[senderButton superview]];
     UITableViewCell *selectedCell = [table cellForRowAtIndexPath:indexPath];
+    
     lbTime = (UILabel *)[selectedCell viewWithTag:1];
     lbText = (UILabel *)[selectedCell viewWithTag:2];
-    btShareBack = (UIButton *)[selectedCell viewWithTag:4];
     btFacebook = (UIButton *)[selectedCell viewWithTag:5];
     btTwitter = (UIButton *)[selectedCell viewWithTag:6];
+    btOpenProfile = (UIButton *)[selectedCell viewWithTag:7];
     
     HistoryEntry *histEntry = [[[[ImmopolyManager instance] user] history] objectAtIndex: indexPath.row];
-    [histEntry setIsSharingActivated:NO];
     
-
-    [self viewFadeIn:lbTime];
-    [self viewFadeIn:lbText];
-    [self viewFadeOut:btShareBack];
-    [self viewFadeOut:btFacebook];
-    [self viewFadeOut:btTwitter];
-    //[self viewFadeOut:btOpenProfile];
+    if ([histEntry isSharingActivated]) {
+        [histEntry setIsSharingActivated:NO];
+        [self viewFadeIn:lbTime];
+        [self viewFadeIn:lbText];
+        [self viewFadeOut:btFacebook];
+        [self viewFadeOut:btTwitter]; 
+        [self viewFadeOut:btOpenProfile];
+    }else{
+        [histEntry setIsSharingActivated:YES];
+        [self viewFadeOut:lbTime];
+        [self viewFadeOut:lbText];
+        [self viewFadeIn:btFacebook];
+        [self viewFadeIn:btTwitter];
+        [self viewFadeIn:btOpenProfile];
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -218,7 +205,6 @@
     lbTime = (UILabel *)[cell viewWithTag:1];
     lbText = (UILabel *)[cell viewWithTag:2];
     lblImage = (UIImageView *)[cell viewWithTag:3];
-    btShareBack = (UIButton *)[cell viewWithTag:4];
     btFacebook = (UIButton *)[cell viewWithTag:5];
     btTwitter = (UIButton *)[cell viewWithTag:6];
     btOpenProfile = (UIButton *)[cell viewWithTag:7];
@@ -226,10 +212,16 @@
     [btOpenProfile setHidden:YES];
     [btOpenProfile setEnabled:NO];
     
-     //adding the actions because in xib not visible yet
-    [btShareBack addTarget:self action:@selector(showCellLabels:) forControlEvents:UIControlEventTouchUpInside];
-    /*[btFacebook addTarget:self action:@selector(facebook) forControlEvents:UIControlEventTouchUpInside];
-    [btTwitter addTarget:self action:@selector(twitter) forControlEvents:UIControlEventTouchUpInside];*/
+    //ToDo: Besser machen...
+    UIButton *showOptionsButton = [UIButton buttonWithType:UIButtonTypeCustom];
+	[showOptionsButton addTarget:self 
+			   action:@selector(showCellLabels:)
+	 forControlEvents:UIControlEventTouchDown];
+	[showOptionsButton setTitle:@"" forState:UIControlStateNormal];
+	showOptionsButton.frame = CGRectMake(22.0f, 35.0f, 35.0f, 35.0f);
+    
+	[cell addSubview:showOptionsButton];
+    
     
     // fetching the selected history entry
     HistoryEntry *historyEntry;
@@ -275,15 +267,15 @@
         if([historyEntry isSharingActivated]) {
             [lbTime setAlpha:0.0f];
             [lbText setAlpha:0.0f];
-            [btShareBack setAlpha:1.0f];
             [btFacebook setAlpha:1.0f];
             [btTwitter setAlpha:1.0f];
+            [btOpenProfile setAlpha:1.0];
         } else {
             [lbTime setAlpha:1.0f];
             [lbText setAlpha:1.0f];
-            [btShareBack setAlpha:0.0f];
             [btFacebook setAlpha:0.0f];
             [btTwitter setAlpha:0.0f];
+            [btOpenProfile setAlpha:0.0];
         }
         
         // setting text
@@ -350,7 +342,6 @@
     [reloadDataSpinner release];
     [lbTime release];
     [lbText release];
-    [btShareBack release];
     [btFacebook release];
     [btTwitter release];
     [btHelperViewIn release];

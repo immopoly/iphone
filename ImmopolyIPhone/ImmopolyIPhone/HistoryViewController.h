@@ -23,7 +23,6 @@
     IBOutlet UIActivityIndicatorView *reloadDataSpinner;
     UILabel *lbTime;
     UILabel *lbText;
-    UIButton *btShareBack;
     UIButton *btFacebook;
     UIButton *btTwitter;
     UIButton *btOpenProfile;
@@ -52,7 +51,6 @@
 
 @property(nonatomic, retain) UILabel *lbTime;
 @property(nonatomic, retain) UILabel *lbText;
-@property(nonatomic, retain) UIButton *btShareBack;
 @property(nonatomic, retain) UIButton *btFacebook;
 @property(nonatomic, retain) UIButton *btTwitter;
 @property(nonatomic, retain) UIButton *btOpenProfile;
