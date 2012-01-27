@@ -46,6 +46,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrameSize">{303, 111}</string>
 								<reference key="NSSuperview" ref="275262557"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="618809682"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
@@ -59,6 +60,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{96, 0}, {187, 20}}</string>
 								<reference key="NSSuperview" ref="275262557"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="984654926"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -90,6 +92,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{96, 9}, {194, 99}}</string>
 								<reference key="NSSuperview" ref="275262557"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="824516365"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
@@ -117,6 +120,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{20, 35}, {39, 39}}</string>
 								<reference key="NSSuperview" ref="275262557"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="681221829"/>
 								<int key="IBUITag">3</int>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
@@ -127,6 +131,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{19, 34}, {42, 42}}</string>
 								<reference key="NSSuperview" ref="275262557"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="960117437"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<int key="IBUITag">4</int>
@@ -158,8 +163,9 @@
 							<object class="IBUIButton" id="681221829">
 								<reference key="NSNextResponder" ref="275262557"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{92, 35}, {84, 42}}</string>
+								<string key="NSFrame">{{89, 35}, {84, 42}}</string>
 								<reference key="NSSuperview" ref="275262557"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="89530565"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<float key="IBUIAlpha">0.0</float>
@@ -185,6 +191,7 @@
 								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{174, 35}, {80, 42}}</string>
 								<reference key="NSSuperview" ref="275262557"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="187163682"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<float key="IBUIAlpha">0.0</float>
@@ -207,9 +214,10 @@
 							</object>
 							<object class="IBUIButton" id="187163682">
 								<reference key="NSNextResponder" ref="275262557"/>
-								<int key="NSvFlags">-2147483356</int>
+								<int key="NSvFlags">292</int>
 								<string key="NSFrame">{{255, 35}, {42, 42}}</string>
 								<reference key="NSSuperview" ref="275262557"/>
+								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView"/>
 								<string key="NSReuseIdentifierKey">_NS:225</string>
 								<bool key="IBUIOpaque">NO</bool>
@@ -227,7 +235,7 @@
 								<reference key="IBUINormalTitleShadowColor" ref="412437866"/>
 								<object class="NSCustomResource" key="IBUINormalImage">
 									<string key="NSClassName">NSImage</string>
-									<string key="NSResourceName">Icon_share_back.png</string>
+									<string key="NSResourceName">icon_user.png</string>
 								</object>
 								<reference key="IBUIFontDescription" ref="588272263"/>
 								<reference key="IBUIFont" ref="558279491"/>
@@ -235,6 +243,7 @@
 						</array>
 						<string key="NSFrameSize">{303, 109}</string>
 						<reference key="NSSuperview" ref="144803153"/>
+						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="940822356"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
@@ -249,6 +258,7 @@
 				</array>
 				<string key="NSFrameSize">{303, 110}</string>
 				<reference key="NSSuperview"/>
+				<reference key="NSWindow"/>
 				<reference key="NSNextKeyView" ref="275262557"/>
 				<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 				<reference key="IBUIContentView" ref="275262557"/>
@@ -400,14 +410,86 @@
 			<nil key="sourceID"/>
 			<int key="maxID">28</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">AbstractViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/AbstractViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">HistoryViewController</string>
+					<string key="superclassName">AbstractViewController</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="facebook:">id</string>
+						<string key="openUserProfile:">id</string>
+						<string key="showCellLabels:">id</string>
+						<string key="twitter:">id</string>
+						<string key="update">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="facebook:">
+							<string key="name">facebook:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="openUserProfile:">
+							<string key="name">openUserProfile:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="showCellLabels:">
+							<string key="name">showCellLabels:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="twitter:">
+							<string key="name">twitter:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="update">
+							<string key="name">update</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="reloadDataSpinner">UIActivityIndicatorView</string>
+						<string key="spinner">UIActivityIndicatorView</string>
+						<string key="table">UITableView</string>
+						<string key="tvCell">UITableViewCell</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="reloadDataSpinner">
+							<string key="name">reloadDataSpinner</string>
+							<string key="candidateClassName">UIActivityIndicatorView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="spinner">
+							<string key="name">spinner</string>
+							<string key="candidateClassName">UIActivityIndicatorView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="table">
+							<string key="name">table</string>
+							<string key="candidateClassName">UITableView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="tvCell">
+							<string key="name">tvCell</string>
+							<string key="candidateClassName">UITableViewCell</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/HistoryViewController.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaTouchFramework</string>
 		<bool key="IBDocument.PluginDeclaredDependenciesTrackSystemTargetVersion">YES</bool>
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
-			<string key="Icon_share_back.png">{84, 84}</string>
 			<string key="cell_background.png">{606, 162}</string>
+			<string key="icon_user.png">{84, 84}</string>
 			<string key="webview_facebook.png">{168, 84}</string>
 			<string key="webview_twitter.png">{160, 84}</string>
 		</dictionary>
