@@ -31,6 +31,7 @@
 @synthesize otherUserName;
 @synthesize closeProfileButton;
 @synthesize tabBar;
+@synthesize topBarImage;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -60,20 +61,17 @@
     [spinner startAnimating];
     
     // setting the text of the helperView
-    //[super initHelperView];
-    
-    // setting the text of the helperView
     [super initHelperViewWithMode:INFO_USER];
-    
-
 }
 
 -(void)viewWillAppear:(BOOL)animated{
+
     //TODO: reset labels
     if (userIsNotMyself) {
+        [self prepareOtherUserProfile];
         [[self tabBar]setHidden:NO];
     }else{
-        //That the badged can be clicked
+        //That the badges can be clicked
         [[self view]sendSubviewToBack:[self tabBar]];
     }
 }
@@ -277,6 +275,24 @@
 
 - (IBAction)closeProfile{
     [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)prepareOtherUserProfile {
+    // setting the text of the helperView
+    [super initHelperViewWithMode:INFO_OTHER_USER];
+    
+    [topBarImage setImage:[UIImage imageNamed:@"top_bar_other_user.png"]];
+    [closeProfileButton setHidden:NO];
+    
+    //moving the button to the right site
+    CGPoint posBt = btHelperViewIn.center; 
+    posBt.x = 300.0f;
+    [btHelperViewIn setCenter:posBt];
+    
+    // moving the spinner a bit more to the left
+    CGPoint posSpinner = spinner.center;
+    posSpinner.x = 265.0f;
+    [spinner setCenter:posSpinner];
 }
 
 

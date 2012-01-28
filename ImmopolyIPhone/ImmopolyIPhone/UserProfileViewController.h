@@ -26,6 +26,7 @@
     IBOutlet UIView *badgesView;
     IBOutlet UIButton *closeProfileButton;
     IBOutlet UITabBar *tabBar;
+    IBOutlet UIImageView *topBarImage;
     LoginCheck *loginCheck;
     IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet AsynchronousImageView *userImage;
@@ -42,6 +43,7 @@
 @property(nonatomic, retain) IBOutlet UILabel *labelBank;
 @property(nonatomic, retain) IBOutlet UILabel *labelMiete;
 @property(nonatomic, retain) IBOutlet UILabel *labelNumExposes;
+@property(nonatomic, retain) IBOutlet UIImageView *topBarImage;
 
 @property(nonatomic, retain) IBOutlet UIView *badgesView;
 @property(nonatomic, retain) LoginCheck *loginCheck;
@@ -60,5 +62,6 @@
 - (void)loadFacebookPicture;
 - (IBAction)changeProfilePic;
 - (IBAction)closeProfile;
+- (void)prepareOtherUserProfile;
 
 @end
