@@ -28,6 +28,7 @@
 @synthesize selectedImmoScoutFlat;
 @synthesize isCalloutBubbleIn;
 @synthesize isOutInCall;
+@synthesize wasMapRefreshedAfterLogin;
 @synthesize showCalloutBubble;
 @synthesize selViewForHouseImage;
 @synthesize selViewForHouseImageInOut;
@@ -67,6 +68,12 @@
 #pragma mark - View lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {  
+    
+    // refreshes the map after login one time, that the user can see his own flats
+    if([[ImmopolyManager instance] loginSuccessful] && !wasMapRefreshedAfterLogin) {
+        [self setWasMapRefreshedAfterLogin:YES];
+        [self refreshLocation];
+    }
     
     if (![self alreadyUsed]) {
        //Show first start text
@@ -240,7 +247,11 @@
             [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:location]];
         }
         else {
-            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
+            if ([self checkOfOwnFlat:location]) {
+                imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single_green.png"]] autorelease];
+            } else {
+                imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
+            }
             imageView.center = CGPointMake(19, 24.5);
             [annotationView addSubview:imageView];
         }
@@ -279,10 +290,26 @@
         [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:_flat]];
     }
     else {
-        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
+        if ([self checkOfOwnFlat:_flat]) {
+            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single_green.png"]] autorelease];
+        } else {
+            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
+        }
         imageView.center = CGPointMake(19, 24.5);
         [annotationView addSubview:imageView];
     }
+     
+}
+
+- (BOOL)checkOfOwnFlat:(Flat *)_flat {    
+    if ([[ImmopolyManager instance] user] != NULL) {
+        for (Flat *tempFlat in [[[ImmopolyManager instance] user] portfolio]) {
+            if ([tempFlat exposeId] == [_flat exposeId]) {
+                return YES;
+            }
+        }
+    }
+    return NO;
 }
 
 // action for the compass button
@@ -400,7 +427,7 @@
         [[tempFlat flatsAtAnnotation] removeAllObjects];
     }
     
-    for (Flat *actFlat in _flatsToFilter) {
+    for (Flat *actFlat in _flatsToFilter) {        
         CLLocationDegrees latitude = [actFlat coordinate].latitude;
         CLLocationDegrees longitude = [actFlat coordinate].longitude;
         
@@ -543,6 +570,14 @@
         [imgView setImage:[_flat image]];
     }
     [subview addSubview:imgView];
+    
+    // banner image
+    if ([self checkOfOwnFlat:_flat]) {
+        UIImageView *bannerImgView = [[UIImageView alloc] initWithFrame:CGRectMake(133, 1, 83, 80)];
+        bannerImgView.image = [UIImage imageNamed:@"banner_for_own_flat.png"];
+        [subview addSubview:bannerImgView];
+        [bannerImgView release];
+    } 
     
     [lbName release];
     [lbRooms release];
