@@ -68,6 +68,11 @@
 
     //TODO: reset labels
     if (userIsNotMyself) {
+        [hello setText: @""];
+        [bank setText: @""];
+        [miete setText: @""];
+        [numExposes setText: @""];
+        
         [self prepareOtherUserProfile];
         [[self tabBar]setHidden:NO];
     }else{
@@ -225,7 +230,7 @@
     [hello setText: [NSString stringWithFormat: @"%@", [_user userName]]];
     [bank setText: balance];
     [miete setText: lastRent];
-    [numExposes setText: [ NSString stringWithFormat:@"%i von %i", [[_user portfolio] count], [_user maxExposes]]];
+    [numExposes setText: [ NSString stringWithFormat:@"%i von %i", [_user numExposes], [_user maxExposes]]];
 }
 
 - (void)loadFacebookPicture {

@@ -208,8 +208,7 @@
     btFacebook = (UIButton *)[cell viewWithTag:5];
     btTwitter = (UIButton *)[cell viewWithTag:6];
     btOpenProfile = (UIButton *)[cell viewWithTag:7];
-    
-    [btOpenProfile setHidden:YES];
+
     [btOpenProfile setEnabled:NO];
     
     //ToDo: Besser machen...
@@ -283,7 +282,6 @@
         [lbText setText: [historyEntry histText]];
         
         if ([[historyEntry otherUserName]length]>0) {
-            [btOpenProfile setHidden:NO];
             [btOpenProfile setEnabled:YES];
         }
     } 
