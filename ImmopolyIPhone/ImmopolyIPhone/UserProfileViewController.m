@@ -97,15 +97,18 @@
         [loginCheck checkUserLogin];
         [super viewDidAppear:animated];
         
-        NSData *imageData;
-        
-        imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"image"];
-        if (imageData != nil) {
-            userImage.image = [NSKeyedUnarchiver unarchiveObjectWithData: imageData];
-            userImage.contentMode = UIViewContentModeScaleAspectFit;
-            [userImage setBackgroundColor:[UIColor whiteColor]];
-        }else{
-            [self loadFacebookPicture];
+        if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0")){
+            NSData *imageData;
+            imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"image"];
+            
+            if(imageData != nil)
+            {
+                userImage.image = [NSKeyedUnarchiver unarchiveObjectWithData: imageData];
+                userImage.contentMode = UIViewContentModeScaleAspectFit;
+                [userImage setBackgroundColor:[UIColor whiteColor]];
+            }else{
+                [self loadFacebookPicture];    
+            }
         }
     }
 }

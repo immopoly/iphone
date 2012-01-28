@@ -229,7 +229,7 @@
         
         // Convert string to date object
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"MEZ"]];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"CET"]];
         [dateFormatter setDateFormat:@"'am' dd.MM.yyyy 'um' HH:mm 'Uhr'"];
         
         long timeInterval = [historyEntry time]/1000; //1321922162430

@@ -14,6 +14,8 @@
 #import "AsynchronousImageView.h"
 #import "ImmopolyUser.h"
 
+#define SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(v)  ([[[UIDevice currentDevice] systemVersion] compare:v options:NSNumericSearch] != NSOrderedAscending)
+
 @interface UserProfileViewController : AbstractViewController <UserDataDelegate, NotifyViewDelegate, UINavigationControllerDelegate, UIImagePickerControllerDelegate> {
     
     IBOutlet UILabel *hello;
