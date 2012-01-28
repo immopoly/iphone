@@ -23,6 +23,7 @@
 
 
 //HACK FOR 4.3
+/*
 @implementation CLLocationManager (TemporaryHack)
 
 - (void)hackLocationFix
@@ -38,6 +39,7 @@
 
 @end
 //STOP HACK FOR 4.3
+*/
 
 @implementation AppDelegate
 
@@ -221,6 +223,7 @@
 
 - (void)closeMyDelegateView {
     [self.tabBarController setSelectedIndex:2];
+    [[self tabBarController]centerClicked];
 }
 
 -(void) showLoginViewController {
@@ -275,7 +278,7 @@
         [[self tabBarController]centerClicked];
         [[ImmopolyManager instance]setLoginSuccessful:NO];
         [[[[ImmopolyManager instance]user]history]removeAllObjects];
-        [[[[ImmopolyManager instance]user]portfolio]removeAllObjects];
+        //[[[[ImmopolyManager instance]user]portfolio]removeAllObjects];
         [[self.tabBarController.viewControllers objectAtIndex:1]dismissModalViewControllerAnimated:NO];
         [[self.tabBarController.viewControllers objectAtIndex:2]dismissModalViewControllerAnimated:NO];
         ((HistoryViewController *) [[[self tabBarController]viewControllers]objectAtIndex:3]).loadingHistoryEntriesStart=10;

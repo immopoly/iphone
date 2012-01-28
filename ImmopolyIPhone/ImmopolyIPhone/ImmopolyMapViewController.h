@@ -44,7 +44,6 @@
     bool isCalloutBubbleIn;
     bool isOutInCall;
     bool showCalloutBubble;
-    bool wasMapRefreshedAfterLogin;
     int selectedExposeId;
     Flat *selectedImmoScoutFlat;
     MKAnnotationView *selViewForHouseImage;
@@ -73,7 +72,6 @@
 @property(nonatomic, assign) bool isCalloutBubbleIn;
 @property(nonatomic, assign) bool isOutInCall;
 @property(nonatomic, assign) bool showCalloutBubble;
-@property(nonatomic, assign) bool wasMapRefreshedAfterLogin;
 @property(nonatomic, retain) MKAnnotationView *selViewForHouseImage;
 @property(nonatomic, retain) MKAnnotationView *selViewForHouseImageInOut;
 @property(nonatomic, retain) IBOutlet AsynchronousImageView *asyncImageView;

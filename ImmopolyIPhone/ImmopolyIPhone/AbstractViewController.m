@@ -115,7 +115,7 @@
         
         case INFO_MAP:
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_map"]];
-            helperTextImage.frame = CGRectMake(0, 0, 283, 515);    
+            helperTextImage.frame = CGRectMake(0, 0, 283, 600);    
         break;
             
         case INFO_PORTFOLIO:

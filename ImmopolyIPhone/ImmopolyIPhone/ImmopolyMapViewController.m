@@ -28,7 +28,6 @@
 @synthesize selectedImmoScoutFlat;
 @synthesize isCalloutBubbleIn;
 @synthesize isOutInCall;
-@synthesize wasMapRefreshedAfterLogin;
 @synthesize showCalloutBubble;
 @synthesize selViewForHouseImage;
 @synthesize selViewForHouseImageInOut;
@@ -68,12 +67,6 @@
 #pragma mark - View lifecycle
 
 - (void)viewWillAppear:(BOOL)animated {  
-    
-    // refreshes the map after login one time, that the user can see his own flats
-    if([[ImmopolyManager instance] loginSuccessful] && !wasMapRefreshedAfterLogin) {
-        [self setWasMapRefreshedAfterLogin:YES];
-        [self refreshLocation];
-    }
     
     if (![self alreadyUsed]) {
        //Show first start text
@@ -247,11 +240,7 @@
             [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:location]];
         }
         else {
-            if ([self checkOfOwnFlat:location]) {
-                imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single_green.png"]] autorelease];
-            } else {
-                imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
-            }
+            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
             imageView.center = CGPointMake(19, 24.5);
             [annotationView addSubview:imageView];
         }
@@ -290,11 +279,7 @@
         [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:_flat]];
     }
     else {
-        if ([self checkOfOwnFlat:_flat]) {
-            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single_green.png"]] autorelease];
-        } else {
-            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
-        }
+        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
         imageView.center = CGPointMake(19, 24.5);
         [annotationView addSubview:imageView];
     }
@@ -302,7 +287,7 @@
 }
 
 - (BOOL)checkOfOwnFlat:(Flat *)_flat {    
-    if ([[ImmopolyManager instance] user] != NULL) {
+    if ([[[[ImmopolyManager instance] user] portfolio] count] != 0) {
         for (Flat *tempFlat in [[[ImmopolyManager instance] user] portfolio]) {
             if ([tempFlat exposeId] == [_flat exposeId]) {
                 return YES;
