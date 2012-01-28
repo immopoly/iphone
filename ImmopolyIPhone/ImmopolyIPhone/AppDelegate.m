@@ -21,6 +21,24 @@
 #import "LoginCheck.h"
 #import "AbstractViewController.h"
 
+
+//HACK FOR 4.3
+@implementation CLLocationManager (TemporaryHack)
+
+- (void)hackLocationFix
+{
+    CLLocation *fhain = [[CLLocation alloc] initWithLatitude:52.517527 longitude:13.469474];
+    [[self delegate] locationManager:self didUpdateToLocation:fhain fromLocation:nil];     
+}
+
+- (void)startUpdatingLocation
+{
+    [self performSelector:@selector(hackLocationFix) withObject:nil afterDelay:0.1];
+}
+
+@end
+//STOP HACK FOR 4.3
+
 @implementation AppDelegate
 
 @synthesize window = _window;
@@ -90,7 +108,7 @@
     self.tabBarController.delegate = self;
     
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:userVC,portfolioVC,mapVC,historyVC,feedbackVC, nil];
-    [self.tabBarController addCenterButtonWithImage:[UIImage imageNamed:@"tabbar_center_icon.png"] highlightImage:[UIImage imageNamed:@"tabbar_center_icon_pressed.png"]];
+    [self.tabBarController addCenterButtonWithImage:[UIImage imageNamed:@"tabbar_center_icon.png"] highlightImage:[UIImage imageNamed:@"tabbar_center_icon_blue.png"]];
     [self.tabBarController setSelectedIndex:2];
     
     [self setSelectedViewController:[[self tabBarController]selectedViewController]];
@@ -128,7 +146,7 @@
 
     sleep(3);
     
-    [[self.tabBarController button] setBackgroundImage:[UIImage imageNamed:@"tabbar_center_icon_pressed.png"] forState:UIControlStateNormal];
+    [[self.tabBarController button] setBackgroundImage:[UIImage imageNamed:@"tabbar_center_icon_blue.png"] forState:UIControlStateNormal];
     
     return YES;
 }
@@ -254,7 +272,7 @@
     
     if (![[ImmopolyManager instance]willComeBack]) {
         
-        [[self tabBarController]setSelectedIndex:2];
+        [[self tabBarController]centerClicked];
         [[ImmopolyManager instance]setLoginSuccessful:NO];
         [[[[ImmopolyManager instance]user]history]removeAllObjects];
         [[[[ImmopolyManager instance]user]portfolio]removeAllObjects];
