@@ -132,7 +132,7 @@
             break;
         case INFO_HISTORY: 
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_history"]];
-            helperTextImage.frame = CGRectMake(0, 0, 283, 574); 
+            helperTextImage.frame = CGRectMake(0, 0, 283, 553); 
             break;
         case INFO_USER: 
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_user"]];
