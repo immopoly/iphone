@@ -515,7 +515,7 @@
     subview.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     
     //labels
-    UILabel *lbName = [[UILabel alloc] initWithFrame:CGRectMake(10, -20, 193, 70)];
+    UILabel *lbName = [[UILabel alloc] initWithFrame:CGRectMake(10, -15, 193, 70)];
     [lbName setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
     [lbName setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
     [lbName setNumberOfLines:2];
@@ -523,7 +523,7 @@
     [lbName setText:[_flat name]];
     [subview addSubview:lbName];
     
-    UILabel *lbRooms = [[UILabel alloc] initWithFrame:CGRectMake(90, 30, 100, 35)];
+    UILabel *lbRooms = [[UILabel alloc] initWithFrame:CGRectMake(90, 35, 100, 35)];
     [lbRooms setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
     NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[_flat numberOfRooms]];
     [lbRooms setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
@@ -531,7 +531,7 @@
     [lbRooms setText:rooms];
     [subview addSubview:lbRooms];
     
-    UILabel *lbSpace = [[UILabel alloc] initWithFrame:CGRectMake(90, 55, 200, 35)];
+    UILabel *lbSpace = [[UILabel alloc] initWithFrame:CGRectMake(90, 60, 200, 35)];
     NSString *space = [NSString stringWithFormat:@"Fläche: %.2f m²",[_flat livingSpace]];
     [lbSpace setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
     [lbSpace setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
@@ -539,7 +539,7 @@
     [lbSpace setText:space];
     [subview addSubview:lbSpace];
     
-    UILabel *lbPrice = [[UILabel alloc] initWithFrame:CGRectMake(90, 80, 200, 35)];
+    UILabel *lbPrice = [[UILabel alloc] initWithFrame:CGRectMake(90, 85, 200, 35)];
     NSString *price = [NSString stringWithFormat:@"Preis: %.2f €",[_flat price]];
     [lbPrice setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
     [lbPrice setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
@@ -548,7 +548,7 @@
     [subview addSubview:lbPrice];
     
     // image
-    AsynchronousImageView *imgView = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(10, 40, 60, 60)];
+    AsynchronousImageView *imgView = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(10, 45, 60, 60)];
     if([_flat image] == nil) {
         [imgView loadImageFromURLString:[_flat pictureUrl] forFlat:_flat];
     } else {
