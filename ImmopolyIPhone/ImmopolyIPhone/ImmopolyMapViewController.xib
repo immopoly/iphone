@@ -94,7 +94,7 @@
 							<object class="IBUIScrollView" id="565122929">
 								<reference key="NSNextResponder" ref="678056138"/>
 								<int key="NSvFlags">268</int>
-								<string key="NSFrame">{{60, 38}, {213, 147}}</string>
+								<string key="NSFrame">{{60, 33}, {216, 147}}</string>
 								<reference key="NSSuperview" ref="678056138"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="559805637"/>
@@ -199,7 +199,6 @@
 						<string key="NSFrame">{{195, 350}, {117, 38}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -467,6 +466,14 @@
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
 				<object class="IBPartialClassDescription">
+					<string key="className">AbstractViewController</string>
+					<string key="superclassName">UIViewController</string>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/AbstractViewController.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
 					<string key="className">AsynchronousImageView</string>
 					<string key="superclassName">UIImageView</string>
 					<object class="IBClassDescriptionSource" key="sourceIdentifier">
@@ -476,7 +483,7 @@
 				</object>
 				<object class="IBPartialClassDescription">
 					<string key="className">ImmopolyMapViewController</string>
-					<string key="superclassName">UIViewController</string>
+					<string key="superclassName">AbstractViewController</string>
 					<dictionary class="NSMutableDictionary" key="actions">
 						<string key="closeBubble">id</string>
 						<string key="refreshLocation">id</string>

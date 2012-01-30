@@ -97,5 +97,6 @@
 - (IBAction)closeBubble;
 - (BOOL)alreadyUsed;
 - (void)handleBubbleTap;
+- (BOOL)checkOfOwnFlat:(Flat *)_flat;
 
 @end

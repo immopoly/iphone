@@ -115,7 +115,7 @@
         
         case INFO_MAP:
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_map"]];
-            helperTextImage.frame = CGRectMake(0, 0, 283, 515);    
+            helperTextImage.frame = CGRectMake(0, 0, 283, 600);    
         break;
             
         case INFO_PORTFOLIO:
@@ -132,11 +132,15 @@
             break;
         case INFO_HISTORY: 
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_history"]];
-            helperTextImage.frame = CGRectMake(0, 0, 284, 370); 
+            helperTextImage.frame = CGRectMake(0, 0, 283, 553); 
             break;
         case INFO_USER: 
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_user"]];
             helperTextImage.frame = CGRectMake(0, 0, 284, 430);     
+            break;
+        case INFO_OTHER_USER: 
+            helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_otherUser"]];
+            helperTextImage.frame = CGRectMake(0, 0, 283, 357);     
             break;
         case INFO_FEEDBACK: 
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_feedback"]];

@@ -67,7 +67,7 @@
 
 -(void) centerClicked{
     [self setSelectedIndex:2];
-    [button setBackgroundImage:[UIImage imageNamed:@"tabbar_center_icon_pressed.png"] forState:UIControlStateNormal];
+    [button setBackgroundImage:[UIImage imageNamed:@"tabbar_center_icon_blue.png"] forState:UIControlStateNormal];
     AppDelegate *delegate = [(AppDelegate *) [UIApplication sharedApplication]delegate];
     [delegate setSelectedViewController:[[[delegate tabBarController]viewControllers]objectAtIndex:2]];
 }

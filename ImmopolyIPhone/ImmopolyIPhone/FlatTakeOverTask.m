@@ -73,6 +73,12 @@
             if([resultHistEntry type] == 1){
                 [[user portfolio] insertObject:[self selectedImmoscoutFlat] atIndex:0];
                 
+                [user setNumExposes:[user numExposes]+1];
+                
+                // set the current date to the flat
+                NSDate *curDate = [NSDate date];
+                [[[user portfolio] objectAtIndex:0] setOvertakeDate:[curDate timeIntervalSince1970]*1000];
+                
                 //Notify the Portfolio, that is has changed
                 AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
                 

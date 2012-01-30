@@ -64,7 +64,7 @@
         
         // Convert long to date object
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT"]];
+        [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"MEZ"]];
         [dateFormatter setDateFormat:@"'Übernommen am:  \t\t' dd.MM.yyyy"];
         
         long timeInterval = [flat overtakeDate]/1000; //1321922162430

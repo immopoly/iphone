@@ -62,7 +62,7 @@
         //Handle Error here
         NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:err forKey:@"error"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"user/history entries" object:nil userInfo:errorInfo];
-         [delegate hasMoreData: YES];
+         [delegate hasMoreData: NO];
     }else if(refresh){
         [[[ImmopolyManager instance]user]setHistory:[[NSMutableArray alloc]initWithArray:resultEntries]];
     

@@ -7,10 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ImmopolyUser.h"
 
 @protocol NotifyViewDelegate <NSObject>
 
 - (void)notifyMyDelegateView;
 - (void)closeMyDelegateView;
+- (void)notifyMyDelegateViewWithUser:(ImmopolyUser *)user;
 
 @end

@@ -27,6 +27,11 @@
 @synthesize badgesView;
 @synthesize userImage;
 @synthesize loading;
+@synthesize userIsNotMyself;
+@synthesize otherUserName;
+@synthesize closeProfileButton;
+@synthesize tabBar;
+@synthesize topBarImage;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -56,26 +61,55 @@
     [spinner startAnimating];
     
     // setting the text of the helperView
-    //[super initHelperView];
-    
-    // setting the text of the helperView
     [super initHelperViewWithMode:INFO_USER];
 }
 
-- (void)viewDidAppear:(BOOL)animated {
-    loginCheck.delegate = self;
-    [loginCheck checkUserLogin];
-    [super viewDidAppear:animated];
-    
-    NSData *imageData;
-    
-    imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"image"];
-    if (imageData != nil) {
-        userImage.image = [NSKeyedUnarchiver unarchiveObjectWithData: imageData];
-        userImage.contentMode = UIViewContentModeScaleAspectFit;
-        [userImage setBackgroundColor:[UIColor whiteColor]];
+-(void)viewWillAppear:(BOOL)animated{
+
+    //TODO: reset labels
+    if (userIsNotMyself) {
+        [hello setText: @""];
+        [bank setText: @""];
+        [miete setText: @""];
+        [numExposes setText: @""];
+        
+        [self prepareOtherUserProfile];
+        [[self tabBar]setHidden:NO];
     }else{
-        [self loadFacebookPicture];
+        //That the badges can be clicked
+        [[self view]sendSubviewToBack:[self tabBar]];
+    }
+}
+
+- (void)viewDidAppear:(BOOL)animated {
+    
+    if(userIsNotMyself){
+        [spinner setHidden:NO];
+        
+        UserTask *task = [[UserTask alloc]init];
+        task.delegate = self;
+        [task refreshUser:otherUserName];
+        
+        [[self closeProfileButton] setHidden:NO];
+        [[self closeProfileButton] setEnabled:YES];
+    }else{
+        loginCheck.delegate = self;
+        [loginCheck checkUserLogin];
+        [super viewDidAppear:animated];
+        
+        if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0")){
+            NSData *imageData;
+            imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"image"];
+            
+            if(imageData != nil)
+            {
+                userImage.image = [NSKeyedUnarchiver unarchiveObjectWithData: imageData];
+                userImage.contentMode = UIViewContentModeScaleAspectFit;
+                [userImage setBackgroundColor:[UIColor whiteColor]];
+            }else{
+                [self loadFacebookPicture];    
+            }
+        }
     }
 }
 
@@ -86,12 +120,12 @@
     
     if(myUser != nil) {
         [self setLabelTextsOfUser:myUser];
-        [self displayBadges];
+        [self displayBadges:myUser];
     }
 }
 
-- (void)displayBadges {
-    NSArray *userBadges = [[[ImmopolyManager instance] user] badges];
+- (void)displayBadges:(ImmopolyUser *)_user{
+    NSArray *userBadges = [_user badges];
     int posX = 17;
     
     if([userBadges count] > 0) {
@@ -145,6 +179,8 @@
     self.labelNumExposes = nil;
     self.badgesView = nil;
     self.spinner = nil;
+    self.closeProfileButton = nil;
+    self.tabBar = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -174,7 +210,7 @@
     
     if(myUser != nil) {
         [self setLabelTextsOfUser:myUser];
-        [self displayBadges];
+        [self displayBadges:myUser];
     }
 }
 
@@ -197,7 +233,7 @@
     [hello setText: [NSString stringWithFormat: @"%@", [_user userName]]];
     [bank setText: balance];
     [miete setText: lastRent];
-    [numExposes setText: [ NSString stringWithFormat:@"%i von %i", [[_user portfolio] count], [_user maxExposes]]];
+    [numExposes setText: [ NSString stringWithFormat:@"%i von %i", [_user numExposes], [_user maxExposes]]];
 }
 
 - (void)loadFacebookPicture {
@@ -236,6 +272,35 @@
     
     [self presentModalViewController:picker animated:YES];
 
+}
+
+-(void)notifyMyDelegateViewWithUser:(ImmopolyUser *)user{
+    [self setLabelTextsOfUser:user];
+    [self displayBadges:user];
+    [spinner setHidden:YES];
+    
+}
+
+- (IBAction)closeProfile{
+    [self dismissModalViewControllerAnimated:YES];
+}
+
+- (void)prepareOtherUserProfile {
+    // setting the text of the helperView
+    [super initHelperViewWithMode:INFO_OTHER_USER];
+    
+    [topBarImage setImage:[UIImage imageNamed:@"top_bar_other_user.png"]];
+    [closeProfileButton setHidden:NO];
+    
+    //moving the button to the right site
+    CGPoint posBt = btHelperViewIn.center; 
+    posBt.x = 300.0f;
+    [btHelperViewIn setCenter:posBt];
+    
+    // moving the spinner a bit more to the left
+    CGPoint posSpinner = spinner.center;
+    posSpinner.x = 265.0f;
+    [spinner setCenter:posSpinner];
 }
 
 
