@@ -197,6 +197,7 @@
             [flatRemoveTask removeFlat:[self selectedImmoscoutFlat]];
             
             [[[[ImmopolyManager instance]user]portfolio]removeObject:[self selectedImmoscoutFlat]];
+            [[[ImmopolyManager instance]user]setNumExposes:[[[ImmopolyManager instance]user]numExposes]-1];
             
             AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
             
