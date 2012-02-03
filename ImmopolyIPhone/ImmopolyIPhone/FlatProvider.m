@@ -57,22 +57,21 @@
     
     NSArray *flats = [JSONParser parseFlatData:responseString :&err];
     
-    [[[ImmopolyManager instance] immoScoutFlats] addObjectsFromArray:[JSONParser parseFlatData:responseString :&err]];
+    [[[ImmopolyManager instance] immoScoutFlats] addObjectsFromArray:flats];
     
     if (err) {
         //Handle Error here
         NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:err forKey:@"error"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"flatProvider/parse fail" object:nil userInfo:errorInfo];
-    }
-    
-    if(pageNum == NUMBER_OF_PAGES || [flats count] == 0 ){
-        [[ImmopolyManager instance] callFlatsDelegate];
-        NSLog(@"Response: %@",responseString);    
     }else{
-        pageNum++;
-        [self getFlatsFromLocationAndPageNumber:pageNum];
+        if(pageNum == NUMBER_OF_PAGES || [flats count] == 0 ){
+            [[ImmopolyManager instance] callFlatsDelegate];
+            NSLog(@"Response: %@",responseString);    
+        }else{
+            pageNum++;
+            [self getFlatsFromLocationAndPageNumber:pageNum];
+        }
     }
-    
     
 }
 
