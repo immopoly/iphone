@@ -12,6 +12,15 @@
 #import "ImmopolyManager.h"
 #import "Constants.h"
 
+#define NUMBER_OF_PAGES 4
+
+@interface FlatProvider() {
+    // counter variable for getting flats from location of 5 pages
+    int pageNum; 
+}
+
+@end
+
 @implementation FlatProvider
 
 
@@ -28,27 +37,35 @@
 
 - (void)getFlatsFromLocation:(CLLocationCoordinate2D)_location {
     OAuthManager *manager = [[OAuthManager alloc] init];
+    NSString *url; 
     
-    NSString *url = [[NSString alloc]initWithFormat:@"%@search/radius.json?realEstateType=apartmentrent&pagenumber=1&geocoordinates=%f;%f;3.0",urlIS24API,_location.latitude,_location.longitude];
+    for(pageNum=1; pageNum<=NUMBER_OF_PAGES; pageNum++) {
+        url = [[NSString alloc]initWithFormat:@"%@search/radius.json?realEstateType=apartmentrent&pagenumber=%d&geocoordinates=%f;%f;3.0",urlIS24API, pageNum, _location.latitude, _location.longitude];
     
-    [manager grabURLInBackground:url withFormat:@"application/json" withDelegate:self];
+        [manager grabURLInBackground:url withFormat:@"application/json" withDelegate:self];
+    }
+    
     [manager release];
     [url release];
+    pageNum=1;
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
     NSString *responseString = [request responseString];
     NSError *err=nil;
-    [[ImmopolyManager instance] setImmoScoutFlats:[JSONParser parseFlatData:responseString :&err]]; 
+    [[[ImmopolyManager instance] immoScoutFlats] addObjectsFromArray:[JSONParser parseFlatData:responseString :&err]];
     
     if (err) {
         //Handle Error here
         NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:err forKey:@"error"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"flatProvider/parse fail" object:nil userInfo:errorInfo];
     }else{
-        [[ImmopolyManager instance] callFlatsDelegate];
-        NSLog(@"Response: %@",responseString);
+        if(pageNum == NUMBER_OF_PAGES) {
+            [[ImmopolyManager instance] callFlatsDelegate];
+            NSLog(@"Response: %@",responseString);    
+        }
     }
+    pageNum++;
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
@@ -57,7 +74,4 @@
     NSLog(@"Error: %@",[error localizedDescription]);
 }
 
--(void)testMethod{
-
-}
 @end

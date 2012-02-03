@@ -20,6 +20,7 @@
     LoginCheck *loginCheck;
     UIViewController *selectedViewController;
     UIActivityIndicatorView *actualisationSpinner;
+    bool isLocationUpdated;
 }
 
 @property (retain, nonatomic) UIWindow *window;
@@ -31,7 +32,7 @@
 
 @property(nonatomic, retain) UIViewController *selectedViewController;
 @property(nonatomic, retain) UIActivityIndicatorView *actualisationSpinner;
-
+@property(nonatomic, assign) bool isLocationUpdated;
 
 - (void)startLocationUpdate;
 - (void)geocodeLocation:(CLLocation *)_location;

@@ -342,7 +342,7 @@
     [lbText release];
     [btFacebook release];
     [btTwitter release];
-    [btHelperViewIn release];
+    //[btHelperViewIn release];
     [super dealloc];
 }
 

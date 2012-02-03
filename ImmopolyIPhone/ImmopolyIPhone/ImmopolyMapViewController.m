@@ -303,6 +303,8 @@
     AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
     [delegate startLocationUpdate];
     
+    [delegate setIsLocationUpdated:NO];
+    [[[ImmopolyManager instance] immoScoutFlats] removeAllObjects];
 }
 
 - (void)calloutBubbleIn {
