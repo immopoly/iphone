@@ -212,7 +212,7 @@
 
 
 -(void)openImmopolyWeb{
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://immopoly.appspot.com/"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://immopoly.org/description.html"]];
     [[ImmopolyManager instance]setWillComeBack:YES];
     
 }
