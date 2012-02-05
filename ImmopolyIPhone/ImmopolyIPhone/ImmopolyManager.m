@@ -34,6 +34,12 @@
     return self;
 }
 
+
+
+-(void)showFlatSpinner{
+    [delegate showFlatSpinner];
+}
+
 - (void)callFlatsDelegate {
     [delegate displayFlatsOnMap];
 }

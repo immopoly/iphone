@@ -11,5 +11,6 @@
 @protocol FlatsDelegate <NSObject>
 
 - (void)displayFlatsOnMap;
+- (void)showFlatSpinner;
 
 @end

@@ -33,6 +33,7 @@
 
 - (void)callLocationDelegate;
 - (void)callFlatsDelegate;
+- (void)showFlatSpinner;
 + (ImmopolyManager *) instance;
 
 @end

@@ -40,11 +40,19 @@
 @synthesize calloutBubbleImg;
 @synthesize sameFlat;
 @synthesize regionSpan;
+@synthesize spinner;
+
+- (void)showFlatSpinner{
+    [[self spinner]setHidden:NO];
+    [[self spinner]startAnimating];
+}
+    
 
 -(void)dealloc {
     [super dealloc];
     [exposeWebViewController release];
     [loginViewController release];
+    [spinner release];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -161,6 +169,7 @@
 }
 
 - (void) displayFlatsOnMap {
+    [[self spinner]stopAnimating];
     
     // removing all existing annotations
     for (id<MKAnnotation> annotation in mapView.annotations) {

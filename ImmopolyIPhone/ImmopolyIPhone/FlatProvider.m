@@ -34,6 +34,9 @@
     [self setLocation:_location];
     [self getFlatsFromLocationAndPageNumber:pageNum];
     
+    [[ImmopolyManager instance]showFlatSpinner];
+    
+    
 }
 
 - (void)getFlatsFromLocationAndPageNumber:(int)_pageNumber{
