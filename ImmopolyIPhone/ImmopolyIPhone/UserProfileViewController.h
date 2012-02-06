@@ -25,7 +25,8 @@
     IBOutlet UILabel *labelBank;
     IBOutlet UILabel *labelMiete;
     IBOutlet UILabel *labelNumExposes;
-    IBOutlet UIView *badgesView;
+    UIView *badgesView;
+    UIImageView *badgesBackground;
     IBOutlet UIButton *closeProfileButton;
     IBOutlet UITabBar *tabBar;
     IBOutlet UIImageView *topBarImage;
@@ -36,6 +37,9 @@
     UIImagePickerController *picker;
     BOOL userIsNotMyself;
     NSString *otherUserName;
+    ImmopolyUser *otherUser;
+    
+
 }
 
 @property(nonatomic, retain) IBOutlet UILabel *hello;
@@ -47,7 +51,7 @@
 @property(nonatomic, retain) IBOutlet UILabel *labelNumExposes;
 @property(nonatomic, retain) IBOutlet UIImageView *topBarImage;
 
-@property(nonatomic, retain) IBOutlet UIView *badgesView;
+@property(nonatomic, retain) UIView *badgesView;
 @property(nonatomic, retain) LoginCheck *loginCheck;
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, retain) IBOutlet AsynchronousImageView *userImage;
@@ -56,6 +60,8 @@
 @property(nonatomic, assign) BOOL loading;
 @property(nonatomic, assign) BOOL userIsNotMyself;
 @property(nonatomic, retain) NSString *otherUserName;
+@property(nonatomic, retain) ImmopolyUser *otherUser;
+@property(nonatomic, retain) UIImageView *badgesBackground;
 
 - (void)displayBadges;
 - (void)stopSpinnerAnimation;

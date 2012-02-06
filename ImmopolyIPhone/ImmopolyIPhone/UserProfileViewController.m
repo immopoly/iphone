@@ -32,6 +32,8 @@
 @synthesize closeProfileButton;
 @synthesize tabBar;
 @synthesize topBarImage;
+@synthesize otherUser;
+@synthesize badgesBackground;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -72,6 +74,18 @@
         [bank setText: @""];
         [miete setText: @""];
         [numExposes setText: @""];
+        
+        if ([self badgesView] !=NULL) {
+            [[self badgesView]release];
+        }
+        
+        self.badgesView = [[UIView alloc]initWithFrame:CGRectMake(0, 320-43, 320, 132)];
+        self.badgesBackground = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 132)];
+        [[self badgesBackground]setImage:[UIImage imageNamed:@"badgesview"]];
+        
+        [self.badgesView addSubview:badgesBackground];
+        [[self view]addSubview:badgesView];
+        [[self view]bringSubviewToFront:[self badgesView]];
         
         [self prepareOtherUserProfile];
         [[self tabBar]setHidden:NO];
@@ -155,7 +169,15 @@
 }
 
 - (void)showBadgeText:(id)sender {
-    NSArray *userBadges = [[[ImmopolyManager instance] user] badges];
+    
+    NSArray *userBadges = NULL;
+    
+    if (userIsNotMyself) {
+        userBadges = [[self otherUser]badges];
+    }else{
+       userBadges = [[[ImmopolyManager instance] user] badges];     
+    }
+
     NSString *badgeText = [[userBadges objectAtIndex:[sender tag]] text];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:badgeText delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
@@ -199,6 +221,7 @@
     [labelNumExposes release];
     [badgesView release];
     [spinner release];
+    [badgesBackground release];
     [super dealloc];
 }
 
@@ -277,6 +300,7 @@
 -(void)notifyMyDelegateViewWithUser:(ImmopolyUser *)user{
     [self setLabelTextsOfUser:user];
     [self displayBadges:user];
+    [self setOtherUser:user];
     [spinner setHidden:YES];
     
 }
