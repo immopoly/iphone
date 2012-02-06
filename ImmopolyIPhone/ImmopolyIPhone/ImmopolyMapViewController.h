@@ -16,7 +16,7 @@
 #import "Flat.h"
 #import "AbstractViewController.h"
 
-#define METERS_PER_MILE 1609.344
+#define METERS_PER_MILE 5000.00
 #define ANNO_WIDTH 40
 #define ANNO_HEIGHT 51
 
@@ -33,7 +33,7 @@
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIPageControl *pageControl;
     IBOutlet UIImageView *calloutBubbleImg;
-//    IBOutlet UIButton *btShowFlatsWebView;
+    IBOutlet UIActivityIndicatorView *spinner;
     
     MKMapView *mapView;
     WebViewController *exposeWebViewController;
@@ -84,6 +84,7 @@
 // @property(nonatomic, retain) IBOutlet UIButton *btShowFlatsWebView;
 @property(nonatomic, retain) Flat *sameFlat;
 @property(nonatomic, assign) MKCoordinateSpan regionSpan;
+@property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
  
 - (IBAction)refreshLocation;
 - (void)setAnnotationImageAtAnnotation:(Flat *)_flat;

@@ -52,6 +52,7 @@
 
 @synthesize selectedViewController;
 @synthesize actualisationSpinner;
+@synthesize isLocationUpdated;
 
 - (void)dealloc
 {
@@ -348,15 +349,19 @@
 // methods for getting phone coordinates
 - (void)locationUpdate:(CLLocation *)_location {
     
-    [self geocodeLocation:_location];
+    if(!isLocationUpdated) {
+        [self geocodeLocation:_location];
     
-    FlatProvider *provider = [[FlatProvider alloc] init];
-    [provider getFlatsFromLocation:[_location coordinate]];
+        FlatProvider *provider = [[FlatProvider alloc] init];
+        [provider getFlatsFromLocation:[_location coordinate]];
     
-    [[ImmopolyManager instance]setActLocation:_location];
-    [[ImmopolyManager instance].delegate displayCurrentLocation];
+        [[ImmopolyManager instance]setActLocation:_location];
+        [[ImmopolyManager instance].delegate displayCurrentLocation];
             
-    [CLController.locationManager stopUpdatingLocation];
+        [CLController.locationManager stopUpdatingLocation];
+        
+        [self setIsLocationUpdated:YES];
+    }
 }
 
 - (void)locationError:(NSError *)_error {

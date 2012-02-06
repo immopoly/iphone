@@ -115,7 +115,7 @@
         
         case INFO_MAP:
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_map"]];
-            helperTextImage.frame = CGRectMake(0, 0, 283, 600);    
+            helperTextImage.frame = CGRectMake(0, 0, 283, 608);    
         break;
             
         case INFO_PORTFOLIO:
@@ -125,7 +125,7 @@
             
         case INFO_EXPOSE:
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_expose"]];
-            helperTextImage.frame = CGRectMake(0, 0, 284, 550);    
+            helperTextImage.frame = CGRectMake(0, 0, 284, 570);    
 
             linkButton.frame = CGRectMake(142, 367, 35, 20);
             [helperScroll addSubview:linkButton];
@@ -136,7 +136,7 @@
             break;
         case INFO_USER: 
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_user"]];
-            helperTextImage.frame = CGRectMake(0, 0, 284, 430);     
+            helperTextImage.frame = CGRectMake(0, 0, 284, 481);     
             break;
         case INFO_OTHER_USER: 
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_otherUser"]];
@@ -212,7 +212,7 @@
 
 
 -(void)openImmopolyWeb{
-    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://immopoly.appspot.com/"]];
+    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://immopoly.org/description.html"]];
     [[ImmopolyManager instance]setWillComeBack:YES];
     
 }

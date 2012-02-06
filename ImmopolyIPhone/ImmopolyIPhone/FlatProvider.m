@@ -12,8 +12,11 @@
 #import "ImmopolyManager.h"
 #import "Constants.h"
 
+#define NUMBER_OF_PAGES 4
+
 @implementation FlatProvider
 
+@synthesize location,pageNum;
 
 - (void)getExposeFromId:(int)_exposeId {
     OAuthManager *manager = [[OAuthManager alloc] init];
@@ -27,28 +30,52 @@
 
 
 - (void)getFlatsFromLocation:(CLLocationCoordinate2D)_location {
-    OAuthManager *manager = [[OAuthManager alloc] init];
+    pageNum=1;
+    [self setLocation:_location];
+    [self getFlatsFromLocationAndPageNumber:pageNum];
     
-    NSString *url = [[NSString alloc]initWithFormat:@"%@search/radius.json?realEstateType=apartmentrent&pagenumber=1&geocoordinates=%f;%f;3.0",urlIS24API,_location.latitude,_location.longitude];
+    [[ImmopolyManager instance]showFlatSpinner];
+    
+    
+}
+
+- (void)getFlatsFromLocationAndPageNumber:(int)_pageNumber{
+    OAuthManager *manager = [[OAuthManager alloc] init];
+    NSString *url; 
+    
+    url = [[NSString alloc]initWithFormat:@"%@search/radius.json?realEstateType=apartmentrent&pagenumber=%d&geocoordinates=%f;%f;3.0",urlIS24API, pageNum, self.location.latitude, self.location.longitude];
     
     [manager grabURLInBackground:url withFormat:@"application/json" withDelegate:self];
+    
+    
     [manager release];
     [url release];
+    
+    
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
     NSString *responseString = [request responseString];
     NSError *err=nil;
-    [[ImmopolyManager instance] setImmoScoutFlats:[JSONParser parseFlatData:responseString :&err]]; 
+    
+    NSArray *flats = [JSONParser parseFlatData:responseString :&err];
+    
+    [[[ImmopolyManager instance] immoScoutFlats] addObjectsFromArray:flats];
     
     if (err) {
         //Handle Error here
         NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:err forKey:@"error"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"flatProvider/parse fail" object:nil userInfo:errorInfo];
     }else{
-        [[ImmopolyManager instance] callFlatsDelegate];
-        NSLog(@"Response: %@",responseString);
+        if(pageNum == NUMBER_OF_PAGES || [flats count] == 0 ){
+            [[ImmopolyManager instance] callFlatsDelegate];
+            NSLog(@"Response: %@",responseString);    
+        }else{
+            pageNum++;
+            [self getFlatsFromLocationAndPageNumber:pageNum];
+        }
     }
+    
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {
@@ -57,7 +84,4 @@
     NSLog(@"Error: %@",[error localizedDescription]);
 }
 
--(void)testMethod{
-
-}
 @end

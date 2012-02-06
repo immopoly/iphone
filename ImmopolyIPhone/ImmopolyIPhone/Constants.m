@@ -40,7 +40,7 @@ NSString* const sharingActionSheetTitle = @"Teile diese Wohnung mit Freunden!";
 NSString* const sharingFacebookTitle = @"Immopoly for iPhone";
 NSString* const sharingFacebookCaption = @"Werde Immobilienhai und Millionär";
 NSString* const sharingFacebookDescription = @"Immopoly ein Spiel für iPhone & Android";
-NSString* const sharingFacebookLink = @"http://immopoly.appspot.com/";
+NSString* const sharingFacebookLink = @"http://www.immopoly.org/";
 NSString* const sharingFacebookActionLabel = @"Immobilien Scout 24";
 NSString* const sharingFacebookActionText = @"Schau dir doch mal die folgende Wohnung an";
 
