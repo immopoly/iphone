@@ -75,24 +75,25 @@
         [miete setText: @""];
         [numExposes setText: @""];
         
-        if ([self badgesView] !=NULL) {
-            [[self badgesView]release];
-        }
-        
-        self.badgesView = [[UIView alloc]initWithFrame:CGRectMake(0, 320-43, 320, 132)];
-        self.badgesBackground = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 132)];
-        [[self badgesBackground]setImage:[UIImage imageNamed:@"badgesview"]];
-        
-        [self.badgesView addSubview:badgesBackground];
-        [[self view]addSubview:badgesView];
-        [[self view]bringSubviewToFront:[self badgesView]];
-        
         [self prepareOtherUserProfile];
         [[self tabBar]setHidden:NO];
     }else{
         //That the badges can be clicked
         [[self view]sendSubviewToBack:[self tabBar]];
     }
+    
+    if ([self badgesView] !=NULL) {
+        [[self badgesView]release];
+    }
+    
+    self.badgesView = [[UIView alloc]initWithFrame:CGRectMake(0, 320-43, 320, 132)];
+    self.badgesBackground = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 132)];
+    [[self badgesBackground]setImage:[UIImage imageNamed:@"badgesview"]];
+    
+    [self.badgesView addSubview:badgesBackground];
+    [[self view]addSubview:badgesView];
+    [[self view]bringSubviewToFront:[self badgesView]];
+    
 }
 
 - (void)viewDidAppear:(BOOL)animated {
