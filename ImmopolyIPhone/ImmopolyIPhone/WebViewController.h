@@ -12,6 +12,7 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import "AbstractViewController.h"
+#import "PortfolioDelegate.h"
 
 @interface WebViewController : AbstractViewController <UIWebViewDelegate, UserDataDelegate, FacebookManagerDelegate,UIActionSheetDelegate,MFMailComposeViewControllerDelegate,UIAlertViewDelegate>{
 	
@@ -32,12 +33,16 @@
     int selectedExposeId;
     Flat *selectedImmoscoutFlat;
     LoginCheck *loginCheck;
+    
+    id<PortfolioDelegate> delegate;
+    
 }
 
 @property(nonatomic, retain) UIWebView *webView;
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property(nonatomic, retain) IBOutlet IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, assign) int selectedExposeId;
+@property(nonatomic, assign) id<PortfolioDelegate> delegate;
 @property(nonatomic, retain) Flat *selectedImmoscoutFlat;
 @property(nonatomic, retain) LoginCheck *loginCheck;
 @property(nonatomic, retain) IBOutlet UIButton *flatActionButton;
@@ -49,11 +54,13 @@
 @property(nonatomic, retain) IBOutlet UIButton *shareButton;
 @property(nonatomic, retain) IBOutlet UIButton *twitterButton;
 @property(nonatomic, retain) IBOutlet UIButton *facebookButton;
+
 @property(nonatomic, retain) IBOutlet UIButton *mailButton;
 
 - (IBAction)goBack;
 - (IBAction)flatAction;
 - (IBAction)performFacebookPost;
+- (IBAction)showFlatOnMap;
 - (void)reloadData;
 - (void)stopSpinnerAnimation;
 - (void) showEmail;

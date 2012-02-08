@@ -31,6 +31,7 @@
 @synthesize buttonsVisible;
 @synthesize shareBar;
 @synthesize spinner;
+@synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -469,6 +470,11 @@
     [activityIndicator setHidden:NO];
     [activityIndicator startAnimating];
     [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
+}
+
+- (IBAction)showFlatOnMap{
+    [delegate showSelectedFlatOnMap:selectedImmoscoutFlat];
+    [self goBack];
 }
 
 
