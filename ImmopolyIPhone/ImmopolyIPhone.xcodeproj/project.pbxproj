@@ -477,6 +477,7 @@
 		D2C139E9149D54B30068B6DC /* tabbar_icon_map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_icon_map@2x.png"; sourceTree = "<group>"; };
 		D2C139EA149D54B30068B6DC /* tabbar_icon_portfolio@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_icon_portfolio@2x.png"; sourceTree = "<group>"; };
 		D2C139EB149D54B30068B6DC /* tabbar_icon_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_icon_user@2x.png"; sourceTree = "<group>"; };
+		D2C48BE314E1267D00BC2A41 /* PortfolioDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortfolioDelegate.h; sourceTree = "<group>"; };
 		D2C67D19145AA4D5008C3295 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		D2C67D1C145AA4DF008C3295 /* libz.1.2.5.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.1.2.5.dylib; path = usr/lib/libz.1.2.5.dylib; sourceTree = SDKROOT; };
 		D2C67D1E145AA4EA008C3295 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -1011,6 +1012,7 @@
 				6D0F9A941475896900D0C59F /* RegisterDelegate.h */,
 				D2BAA088148BA95900F3DD87 /* HistoryDelegate.h */,
 				4CDF1B81149E475200E735DB /* ResetPasswordDelegate.h */,
+				D2C48BE314E1267D00BC2A41 /* PortfolioDelegate.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";

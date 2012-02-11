@@ -215,6 +215,7 @@
         [exposeWebViewController reloadData];
     }else{
         exposeWebViewController = [[WebViewController alloc] initWithNibName:@"WebView" bundle:[NSBundle mainBundle]];
+        exposeWebViewController.delegate = self;
     }
     [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
     exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
@@ -756,11 +757,13 @@
         Flat *tempFlat = [[selectedImmoScoutFlat flatsAtAnnotation] objectAtIndex:self.pageControl.currentPage-1];
         [self setSelectedExposeId:[tempFlat exposeId]];
         exposeWebViewController = [[WebViewController alloc]init];
+        exposeWebViewController.delegate = self;
         [exposeWebViewController setSelectedImmoscoutFlat:tempFlat];
     }
     else {
         [self setSelectedExposeId:[selectedImmoScoutFlat exposeId]];
         exposeWebViewController = [[WebViewController alloc]init];
+        exposeWebViewController.delegate = self;
         [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
     }
     exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
@@ -768,6 +771,24 @@
 }
 
 - (void)closeMyDelegateView {}
+
+- (void)showSelectedFlatOnMap:(Flat *)flat{
+    [self showMap];
+    
+    //[self setSelectedImmoScoutFlat:flat];
+    //[self calloutBubbleIn];
+    
+    //[self setPortfolioHasChanged:NO];
+    
+    CLLocationCoordinate2D zoomLocation = flat.coordinate;
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.01*METERS_PER_MILE, 0.01*METERS_PER_MILE);
+    MKCoordinateRegion adjustedRegion = [portfolioMapView regionThatFits:viewRegion];                
+    [portfolioMapView setRegion:adjustedRegion animated:YES];  
+    
+    // save the span for detecting, when the region did change, but the same annotation was selected
+    regionSpan.latitudeDelta = portfolioMapView.region.span.latitudeDelta;
+    
+}
 
 
 @end
