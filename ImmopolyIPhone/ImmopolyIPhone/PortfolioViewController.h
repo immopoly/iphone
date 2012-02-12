@@ -116,7 +116,9 @@
 - (IBAction)showAllFlats;
 - (void)stopSpinnerAnimation;
 - (IBAction)showList;
+- (void)showListWithAnimation:(BOOL)_animated;
 - (IBAction)showMap;
+- (void)showMapWithAnimation:(BOOL)_animated;
 - (IBAction)closeBubble;
 
 - (void)setAnnotationImageAtAnnotation:(Flat *)_flat;

@@ -239,60 +239,85 @@
 }
 
 - (IBAction)showList {
+    [self showListWithAnimation:YES];
+}
+
+- (void)showListWithAnimation:(BOOL)_animated {
     [self calloutBubbleOut];
     
     [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_list.png"]];
     
-    CGPoint posMap;
-    CGPoint posTable;
-    CGPoint posImgShadowTop;
-    CGPoint posImgShadowBottom;
+    CGPoint posMap = portfolioMapView.center;
+    CGPoint posTable = table.center;
+    CGPoint posImgShadowTop = imgShadowTop.center;
+    CGPoint posImgShadowBottom = imgShadowBottom.center;
+    
     [btRecenterMap setHidden:YES];
     [self setIsBtHidden:YES];
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.4];
-    posMap = portfolioMapView.center;
-    posTable = table.center;
-    posImgShadowTop = imgShadowTop.center;
-    posImgShadowBottom = imgShadowBottom.center;
-    posMap.x = 480.0f;
-    posTable.x = 166.0f;
-    posImgShadowTop.x = 160.0f;
-    posImgShadowBottom.x = 160.0f;
-    portfolioMapView.center = posMap;
-    table.center = posTable;
-    imgShadowTop.center = posImgShadowTop;
-    imgShadowBottom.center = posImgShadowBottom; 
-    [UIView commitAnimations]; 
-
+    
+    if(_animated) {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.4];
+        posMap.x = 480.0f;
+        posTable.x = 166.0f;
+        posImgShadowTop.x = 160.0f;
+        posImgShadowBottom.x = 160.0f;
+        portfolioMapView.center = posMap;
+        table.center = posTable;
+        imgShadowTop.center = posImgShadowTop;
+        imgShadowBottom.center = posImgShadowBottom; 
+        [UIView commitAnimations];     
+    } else {
+        posMap.x = 480.0f;
+        posTable.x = 166.0f;
+        posImgShadowTop.x = 160.0f;
+        posImgShadowBottom.x = 160.0f;
+        portfolioMapView.center = posMap;
+        table.center = posTable;
+        imgShadowTop.center = posImgShadowTop;
+        imgShadowBottom.center = posImgShadowBottom; 
+    }
 }
+
 - (IBAction)showMap {
+    [self showMapWithAnimation:YES];
+}
+
+- (void)showMapWithAnimation:(BOOL)_animated {
     
     [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_map.png"]];
      
-    CGPoint posMap;
-    CGPoint posTable;
-    CGPoint posImgShadowTop;
-    CGPoint posImgShadowBottom;
-    [btRecenterMap setHidden:NO];
-    [self setIsBtHidden:NO];
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.4];
-    posMap = portfolioMapView.center;
-    posTable = table.center;
-    posImgShadowTop = imgShadowTop.center;
-    posImgShadowBottom = imgShadowBottom.center;
-    posMap.x = 160.0f;
-    posTable.x = -160.0f;
-    posImgShadowTop.x = -160.0f;
-    posImgShadowBottom.x = -160.0f;
-    portfolioMapView.center = posMap;
-    table.center = posTable;
-    imgShadowTop.center = posImgShadowTop;
-    imgShadowBottom.center = posImgShadowBottom;    
-    [UIView commitAnimations];
+    CGPoint posMap = portfolioMapView.center;
+    CGPoint posTable = table.center;
+    CGPoint posImgShadowTop = imgShadowTop.center;
+    CGPoint posImgShadowBottom = imgShadowBottom.center;
     
-    [self recenterMap];
+    if(_animated) {
+        [btRecenterMap setHidden:NO];
+        [self setIsBtHidden:NO];
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.4];
+        posMap.x = 160.0f;
+        posTable.x = -160.0f;
+        posImgShadowTop.x = -160.0f;
+        posImgShadowBottom.x = -160.0f;
+        portfolioMapView.center = posMap;
+        table.center = posTable;
+        imgShadowTop.center = posImgShadowTop;
+        imgShadowBottom.center = posImgShadowBottom;    
+        [UIView commitAnimations];
+        
+        [self recenterMap];
+    } else {
+        posMap.x = 160.0f;
+        posTable.x = -160.0f;
+        posImgShadowTop.x = -160.0f;
+        posImgShadowBottom.x = -160.0f;
+        portfolioMapView.center = posMap;
+        table.center = posTable;
+        imgShadowTop.center = posImgShadowTop;
+        imgShadowBottom.center = posImgShadowBottom;  
+    }
 }
 
 /* ========== MapView methods ========== */
@@ -773,21 +798,16 @@
 - (void)closeMyDelegateView {}
 
 - (void)showSelectedFlatOnMap:(Flat *)flat{
-    [self showMap];
+    [self showMapWithAnimation:NO];
     
-    //[self setSelectedImmoScoutFlat:flat];
-    //[self calloutBubbleIn];
-    
-    //[self setPortfolioHasChanged:NO];
-    
+    // moving the view to the center where the selected flat is placed
     CLLocationCoordinate2D zoomLocation = flat.coordinate;
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.01*METERS_PER_MILE, 0.01*METERS_PER_MILE);
     MKCoordinateRegion adjustedRegion = [portfolioMapView regionThatFits:viewRegion];                
-    [portfolioMapView setRegion:adjustedRegion animated:YES];  
+    [portfolioMapView setRegion:adjustedRegion animated:NO];   
     
-    // save the span for detecting, when the region did change, but the same annotation was selected
-    regionSpan.latitudeDelta = portfolioMapView.region.span.latitudeDelta;
-    
+    // see didSelectAnnotation if conditions
+    sameFlat = flat; 
 }
 
 
