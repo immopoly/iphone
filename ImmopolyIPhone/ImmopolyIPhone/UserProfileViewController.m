@@ -24,7 +24,7 @@
 @synthesize labelBank;
 @synthesize labelMiete;
 @synthesize labelNumExposes;
-@synthesize badgesView;
+@synthesize badgesScrollView;
 @synthesize userImage;
 @synthesize loading;
 @synthesize userIsNotMyself;
@@ -33,7 +33,8 @@
 @synthesize tabBar;
 @synthesize topBarImage;
 @synthesize otherUser;
-@synthesize badgesBackground;
+//@synthesize badgesBackground;
+@synthesize numberOfBadges;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -64,6 +65,10 @@
     
     // setting the text of the helperView
     [super initHelperViewWithMode:INFO_USER];
+    
+    self.badgesScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 320-43, 320, 132)];
+    [[self view]addSubview:badgesScrollView];
+    [[self view]bringSubviewToFront:[self badgesScrollView]];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -73,10 +78,17 @@
     
     //TODO: reset labels
     if (userIsNotMyself) {
+        
         [hello setText: @""];
         [bank setText: @""];
         [miete setText: @""];
         [numExposes setText: @""];
+        
+        //deleting all existing badges
+        NSArray* subviews = [NSArray arrayWithArray: badgesScrollView.subviews];
+        for (UIView* view in subviews) {
+            [view removeFromSuperview];
+        }
         
         [self prepareOtherUserProfile];
         [[self tabBar]setHidden:NO];
@@ -85,24 +97,18 @@
         [[self view]sendSubviewToBack:[self tabBar]];
     }
     
-    if ([self badgesView] !=NULL) {
-        [[self badgesView]release];
+    /*
+    if ([self badgesScrollView] !=NULL) {
+        [[self badgesScrollView]release];
     }
-    
-    self.badgesView = [[UIView alloc]initWithFrame:CGRectMake(0, 320-43, 320, 132)];
-    self.badgesBackground = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, 320, 132)];
-    [[self badgesBackground]setImage:[UIImage imageNamed:@"badgesview"]];
-    
-    [self.badgesView addSubview:badgesBackground];
-    [[self view]addSubview:badgesView];
-    [[self view]bringSubviewToFront:[self badgesView]];
-    
+     */
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     
     if(userIsNotMyself){
         [spinner setHidden:NO];
+        [spinner startAnimating];
         
         UserTask *task = [[UserTask alloc]init];
         task.delegate = self;
@@ -142,31 +148,77 @@
 }
 
 - (void)displayBadges:(ImmopolyUser *)_user{
-    NSArray *userBadges = [_user badges];
-    int posX = 17;
     
-    if([userBadges count] > 0) {
-        for (int i=0; i<[userBadges count]; i++) {
-            UserBadge *badge = [userBadges objectAtIndex:i];
-            NSURL *url = [NSURL URLWithString:[badge url]];
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            UIImage *image = [[[UIImage alloc] initWithData:data] autorelease];
+    NSMutableArray *userBadges = [_user badges];
+    
+    if(([userBadges count] > 0 && numberOfBadges != [userBadges count]) || userIsNotMyself) {
+        
+        /* FOR TESTING
+        UserBadge *test = [userBadges objectAtIndex:0];
+        for (int k=0; k<10; k++) [userBadges addObject:test];
+        */
+        
+        [self setNumberOfBadges:[userBadges count]];
+        
+        int posX = 0;
+        int userBadgesCount;
+        
+        // setting the whole size of the scrollView
+        int scrollviewSize;
+        if ([userBadges count]%8 == 0) {
+            scrollviewSize = [userBadges count]/8;
+        } else {
+            scrollviewSize = [userBadges count]/8 + 1;
+        }
             
-            //AsynchronousImageView *imgView = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
-            //[imgView loadImageFromURLString:[badge url] forFlat:nil];
+        // configure the scrollview
+        self.badgesScrollView.contentSize = CGSizeMake(self.badgesScrollView.frame.size.width * scrollviewSize, self.badgesScrollView.frame.size.height);
+        [self.badgesScrollView setPagingEnabled:YES];
+        [self.badgesScrollView setShowsHorizontalScrollIndicator:NO];
+        [self.badgesScrollView setBounces:NO];
+ 
+        // sets the scrollview page to the first
+        [badgesScrollView setContentOffset:CGPointMake(0, 0)];
+        
+        
+        for(int j=0; j<scrollviewSize; j++) {
+            posX += 16;
+            UIImageView *badgesBackground = [[UIImageView alloc]initWithFrame:CGRectMake(j*320, 0, 320, 132)];
+            [badgesBackground setImage:[UIImage imageNamed:@"badgesview"]];
+            [self.badgesScrollView addSubview:badgesBackground];
             
-            UIButton *btBadge = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btBadge setBackgroundImage:image forState:UIControlStateNormal];
-            
-            if (i%2 == 0) {
-                btBadge.frame = CGRectMake(posX, 10, 60, 60);
+            // determine how often the second for-loop should iterate
+            if([userBadges count] > (j+1)*8 || [userBadges count]%8 == 0) {
+                userBadgesCount = 8;    
             } else {
-                btBadge.frame = CGRectMake(posX, 71, 60, 60);
-                posX += 76;
+                userBadgesCount = [userBadges count]%8;
             }
-            [btBadge addTarget:self action:@selector(showBadgeText:) forControlEvents:UIControlEventTouchUpInside];
-            [btBadge setTag: [userBadges indexOfObject:badge]];
-            [badgesView addSubview:btBadge];
+            
+            for (int i=0; i<userBadgesCount; i++) {
+                UserBadge *badge = [userBadges objectAtIndex:i+(j*8)];
+                NSURL *url = [NSURL URLWithString:[badge url]];
+                NSData *data = [NSData dataWithContentsOfURL:url];
+                UIImage *image = [[[UIImage alloc] initWithData:data] autorelease];
+                
+                //AsynchronousImageView *imgView = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
+                //[imgView loadImageFromURLString:[badge url] forFlat:nil];
+                
+                UIButton *btBadge = [UIButton buttonWithType:UIButtonTypeCustom];
+                [btBadge setBackgroundImage:image forState:UIControlStateNormal];
+                //[btBadge addSubview:imgView];
+                
+                if (i%2 == 0) {
+                    btBadge.frame = CGRectMake(posX, 10, 60, 60);
+                } else {
+                    btBadge.frame = CGRectMake(posX, 71, 60, 60);
+                    posX += 76;
+                }
+                [btBadge addTarget:self action:@selector(showBadgeText:) forControlEvents:UIControlEventTouchUpInside];
+                [btBadge setTag: [userBadges indexOfObject:badge]];
+                [badgesScrollView bringSubviewToFront:btBadge];
+                [badgesScrollView addSubview:btBadge];
+            }
+            [badgesBackground release];
         }
     }
 }
@@ -202,7 +254,7 @@
     self.labelBank = nil;
     self.labelMiete = nil;
     self.labelNumExposes = nil;
-    self.badgesView = nil;
+    self.badgesScrollView = nil;
     self.spinner = nil;
     self.closeProfileButton = nil;
     self.tabBar = nil;
@@ -222,16 +274,16 @@
     [labelBank release];
     [labelMiete release];
     [labelNumExposes release];
-    [badgesView release];
+    [badgesScrollView release];
     [spinner release];
-    [badgesBackground release];
+//    [badgesBackground release];
     [super dealloc];
 }
 
 -(void)notifyMyDelegateView{
     loading = NO;
-    [spinner stopAnimating];
-    [spinner setHidden: YES];
+    //[spinner stopAnimating];
+    //[spinner setHidden: YES];
     ImmopolyUser *myUser = [[ImmopolyManager instance] user];
     
     if(myUser != nil) {
@@ -330,5 +382,6 @@
     [spinner setCenter:posSpinner];
 }
 
+- (void)closeMyDelegateView {}
 
 @end
