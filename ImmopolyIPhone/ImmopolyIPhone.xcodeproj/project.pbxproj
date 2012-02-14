@@ -1468,8 +1468,8 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
-				CODE_SIGN_IDENTITY = "iPhone Distribution: Tobias Heine";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tobias Heine";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Tobias Heine (MVU4N9SD8F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tobias Heine (MVU4N9SD8F)";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
@@ -1478,8 +1478,8 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
-				PROVISIONING_PROFILE = "5598796A-756F-4147-A3E7-8B736C82EF05";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5598796A-756F-4147-A3E7-8B736C82EF05";
+				PROVISIONING_PROFILE = "326A40B7-67DE-4D83-B35D-7CD8FBA8AC49";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "326A40B7-67DE-4D83-B35D-7CD8FBA8AC49";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1489,7 +1489,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tobias Heine (5NJV66FC6K)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tobias Heine (MVU4N9SD8F)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ImmopolyIPhone/ImmopolyIPhone-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1504,7 +1504,7 @@
 					"\"$(SRCROOT)/../libOAuth__OFF\"",
 				);
 				PRODUCT_NAME = Immopoly;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F172DFC0-31B0-4843-8834-ED33DB058049";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B5E5F8F2-91CA-40B8-B26E-4229311F46A6";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

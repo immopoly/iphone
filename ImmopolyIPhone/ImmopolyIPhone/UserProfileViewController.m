@@ -68,6 +68,9 @@
 
 -(void)viewWillAppear:(BOOL)animated{
 
+    [spinner setHidden:NO];
+    [spinner startAnimating];
+    
     //TODO: reset labels
     if (userIsNotMyself) {
         [hello setText: @""];
@@ -129,14 +132,13 @@
 }
 
 - (void)performActionAfterLoginCheck {
-    [self stopSpinnerAnimation];
-    
     ImmopolyUser *myUser = [[ImmopolyManager instance] user];
     
     if(myUser != nil) {
         [self setLabelTextsOfUser:myUser];
         [self displayBadges:myUser];
     }
+    [self stopSpinnerAnimation];
 }
 
 - (void)displayBadges:(ImmopolyUser *)_user{
