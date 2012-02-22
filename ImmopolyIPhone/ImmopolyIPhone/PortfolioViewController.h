@@ -29,7 +29,6 @@
     IBOutlet UILabel *lbNumberOfRooms;
     IBOutlet UILabel *lbLivingSpace;
     IBOutlet AsynchronousImageView *asyncImageView;
-    IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet UIImageView *topBar;
     IBOutlet UIButton *btRecenterMap;    
     IBOutlet UIScrollView *scrollView;
@@ -93,7 +92,6 @@
 @property(nonatomic, retain) IBOutlet UIButton *btRecenterMap;
 @property(nonatomic, assign) bool isBtHidden;
 @property(nonatomic, retain) IBOutlet UIImageView *topBar;
-@property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, assign) float iphoneScaleFactorLatitude;
 @property(nonatomic, assign) float iphoneScaleFactorLongitude;
 @property(nonatomic, retain) MKAnnotationView *selViewForHouseImage;
@@ -114,7 +112,6 @@
 - (void)recenterMap;
 - (void)calloutBubbleIn;
 - (IBAction)showAllFlats;
-- (void)stopSpinnerAnimation;
 - (IBAction)showList;
 - (void)showListWithAnimation:(BOOL)_animated;
 - (IBAction)showMap;

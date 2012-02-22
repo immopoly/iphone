@@ -30,7 +30,6 @@
 @synthesize animating;
 @synthesize buttonsVisible;
 @synthesize shareBar;
-@synthesize spinner;
 @synthesize delegate;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -63,10 +62,11 @@
     
     [[self flatActionButton]setEnabled:NO];
     
-    
+    [super initSpinner];
+    [super.spinner setCenter:CGPointMake(265, 21)];
+    [super.spinner setHidden:YES];
     
     // setting the text of the helperView
-    //[super initHelperView];
     [super initButton];
   
     //moving the button to the right site
@@ -122,7 +122,6 @@
 - (void)dealloc {
 	[webView release];
     [activityIndicator release];
-    [spinner release];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [loginCheck release];
 	[super dealloc];
@@ -150,7 +149,7 @@
 }
 
 - (IBAction)flatAction {
-    [spinner startAnimating];
+    [super.spinner startAnimating];
     
     loginCheck.delegate = self;
     [loginCheck checkUserLogin];
@@ -158,13 +157,8 @@
     [self.flatActionButton setEnabled:NO];
 }
 
-- (void)stopSpinnerAnimation {
-    [spinner stopAnimating];
-    //[spinner setHidden: YES];
-}
-
 - (void)performActionAfterLoginCheck {
-    [spinner stopAnimating];
+    [super stopSpinnerAnimation];
     if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]) {
         
         UIAlertView *removeFlatDialog = [[UIAlertView alloc]initWithTitle:@"Expose abgeben" message:alertExposeGiveAwayWarning delegate:self cancelButtonTitle:@"Nein" otherButtonTitles:@"Ja", nil];
@@ -185,7 +179,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    [self stopSpinnerAnimation];
+    [super stopSpinnerAnimation];
     FlatRemoveTask *flatRemoveTask = [[FlatRemoveTask alloc]init];
     
     switch (buttonIndex) {
@@ -462,7 +456,6 @@
     self.facebookButton = nil;
     self.mailButton = nil;
     self.shareBar = nil;
-    self.spinner = nil;
 }
 
 - (void)resetContent {

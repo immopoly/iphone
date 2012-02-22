@@ -31,7 +31,6 @@
     IBOutlet UITabBar *tabBar;
     IBOutlet UIImageView *topBarImage;
     LoginCheck *loginCheck;
-    IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet AsynchronousImageView *userImage;
     BOOL loading;
     UIImagePickerController *picker;
@@ -63,7 +62,6 @@
 @property(nonatomic, retain) ImmopolyUser *otherUser;
 //@property(nonatomic, retain) UIImageView *badgesBackground;
 
-- (void)stopSpinnerAnimation;
 - (void)setLabelTextsOfUser:(ImmopolyUser *)_user;
 - (void)displayBadges:(ImmopolyUser *)_user;
 - (void)loadFacebookPicture;

@@ -36,7 +36,6 @@
 @synthesize adressLabel;
 @synthesize lbNumberOfRooms;
 @synthesize exposeWebViewController;
-@synthesize spinner;
 @synthesize btRecenterMap;
 @synthesize isBtHidden;
 @synthesize topBar;
@@ -69,7 +68,6 @@
 - (void)dealloc {
     [segmentedControl release];
     [loginCheck release];
-    [spinner release];
     [exposeWebViewController release];
     [super dealloc];
 }
@@ -109,7 +107,8 @@
     calloutBubble.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     
     [[self table] setHidden: YES];
-    [spinner startAnimating];
+    [super initSpinner];
+    [super.spinner startAnimating];
     [self setIsBtHidden:YES];
     
     [self.table setBackgroundColor:[UIColor clearColor]];
@@ -146,7 +145,6 @@
     self.lbFlatPrice = nil;
     self.lbNumberOfRooms = nil;
     self.lbLivingSpace = nil;
-    self.spinner = nil;
     self.topBar = nil;
     self.btRecenterMap = nil;
     
@@ -162,15 +160,10 @@
     [super viewDidAppear:animated];
 }
 
-- (void)stopSpinnerAnimation {
-    [spinner stopAnimating];
-    [spinner setHidden: YES];
-}
-
 - (void)performActionAfterLoginCheck {
     [table reloadData];
    
-    [self stopSpinnerAnimation];
+    [super stopSpinnerAnimation];
     [[self table] setHidden: NO];
     
     // do in background and only filter if no annotations are on the map
@@ -766,8 +759,8 @@
 
 -(void)notifyMyDelegateView{
     loading = NO;
-    [spinner stopAnimating];
-    [spinner setHidden: YES];
+    [super.spinner stopAnimating];
+    [super.spinner setHidden: YES];
     
     [[self table]reloadData];
     [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]]; 

@@ -20,6 +20,7 @@
 @synthesize helperTextImage;
 @synthesize viewIsVisible; 
 @synthesize linkButton;
+@synthesize spinner;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -40,6 +41,7 @@
     [self.helperViewBubble release];
     [self.btHelperViewIn release];
     [self.linkButton release]; 
+    [self.spinner release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -57,8 +59,14 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     
-    //[self initHelperView];
     [self initButton];
+}
+
+- (void) initSpinner {
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleWhite)];
+    [spinner setHidden:NO];
+    [spinner setCenter:CGPointMake(291, 21)];
+    [[self view] addSubview:spinner];
 }
 
 - (void)viewDidUnload
@@ -72,6 +80,7 @@
     self.helperViewBubble = nil;
     self.btHelperViewIn = nil;
     self.linkButton = nil;
+    self.spinner = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -199,70 +208,15 @@
     [btHelperViewIn setEnabled:YES];
 }
 
-/*- (void)setHelperViewTitle:(NSString *)_viewTitle {
-    UILabel *lbTitle = [[UILabel alloc] initWithFrame:CGRectMake(30, 10, 200, 30)];
-    [lbTitle setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(15.0)]];
-    [lbTitle setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
-    [lbTitle setTextColor:[UIColor blackColor]];
-    [lbTitle setTextAlignment:UITextAlignmentCenter];
-    [lbTitle setText:_viewTitle];
-    
-    [helperViewBubble addSubview:lbTitle];
-}*/
-
-
 -(void)openImmopolyWeb{
     [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"http://immopoly.org/description.html"]];
     [[ImmopolyManager instance]setWillComeBack:YES];
     
 }
 
-- (void)setHelperViewTextWithFile:(int)_infoMode {
-    
-
-    
-    /*switch (_infoMode) {
-        case infoModeWelcome:
-            
-            break;
-        
-        case infoModeMap:
-            
-            break;
-        
-        case infoModePortfolio:
-            
-            break;
-            
-        case infoModeExpose:
-            
-            break;
-            
-        case infoModeHistory:
-            
-            break;
-            
-        default:
-            break;
-    }*/
-    
-    /*
-    UITextView *tvText = [[UITextView alloc] initWithFrame:CGRectMake(10, 50, 270, 250)];
-    [tvText setEditable:NO];
-    [tvText setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
-    [tvText setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
-    [tvText setTextColor:[UIColor blackColor]];
-    NSString *text = [[NSString alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource: _fileName ofType: @"html"] encoding:NSUTF8StringEncoding error:nil];
-    [tvText setText:text];
-    [helperViewBubble addSubview:tvText];
-     */
-    
-    /*NSString *html = [[NSString alloc] initWithContentsOfFile:[[NSBundle mainBundle] pathForResource: _fileName ofType: @"html"] encoding:NSUTF8StringEncoding error:nil];
-    UIWebView *webview = [[UIWebView alloc] initWithFrame:CGRectMake(10, 50, 270, 250)];
-    [webview loadHTMLString:html baseURL:nil];
-    webview.backgroundColor = [UIColor whiteColor];
-    [helperViewBubble addSubview:webview];*/
-    
-    
+- (void)stopSpinnerAnimation {
+    [spinner stopAnimating];
+    [spinner setHidden: YES];
 }
+
 @end

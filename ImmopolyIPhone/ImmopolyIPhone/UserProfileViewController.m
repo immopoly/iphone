@@ -20,7 +20,6 @@
 @synthesize miete;
 @synthesize numExposes;
 @synthesize loginCheck;
-@synthesize spinner;
 @synthesize labelBank;
 @synthesize labelMiete;
 @synthesize labelNumExposes;
@@ -61,7 +60,8 @@
     [super viewDidLoad];
     self.loginCheck = [[[LoginCheck alloc]init] autorelease];
     
-    [spinner startAnimating];
+    [super initSpinner];
+    [super.spinner startAnimating];
     
     // setting the text of the helperView
     [super initHelperViewWithMode:INFO_USER];
@@ -93,19 +93,13 @@
         //That the badges can be clicked
         [[self view]sendSubviewToBack:[self tabBar]];
     }
-    
-    /*
-    if ([self badgesScrollView] !=NULL) {
-        [[self badgesScrollView]release];
-    }
-     */
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     
     if(userIsNotMyself){
-        [spinner setHidden:NO];
-        [spinner startAnimating];
+        [super.spinner setHidden:NO];
+        [super.spinner startAnimating];
         
         UserTask *task = [[UserTask alloc]init];
         task.delegate = self;
@@ -135,7 +129,7 @@
 }
 
 - (void)performActionAfterLoginCheck {
-    [self stopSpinnerAnimation];
+    [super stopSpinnerAnimation];
     
     ImmopolyUser *myUser = [[ImmopolyManager instance] user];
     
@@ -237,11 +231,6 @@
     [alert release]; 
 }
 
-- (void)stopSpinnerAnimation {
-    [spinner stopAnimating];
-    [spinner setHidden: YES];
-}
-
 - (void)viewDidUnload {
     [super viewDidUnload];  
     
@@ -253,7 +242,6 @@
     self.labelMiete = nil;
     self.labelNumExposes = nil;
     self.badgesScrollView = nil;
-    self.spinner = nil;
     self.closeProfileButton = nil;
     self.tabBar = nil;
 }
@@ -273,8 +261,6 @@
     [labelMiete release];
     [labelNumExposes release];
     [badgesScrollView release];
-    [spinner release];
-//    [badgesBackground release];
     [super dealloc];
 }
 
@@ -289,18 +275,6 @@
         [self displayBadges:myUser];
     }
 }
-
-/*- (IBAction)update{
-    [spinner setHidden: NO];
-    if(!loading){
-        UserTask *task = [[[UserTask alloc] init] autorelease];
-        task.delegate = self;
-        loading = YES;
-        
-        [task refreshUser:[[ImmopolyManager instance]user].userName];
-        [spinner startAnimating];
-    }
-}*/
 
 - (void)setLabelTextsOfUser:(ImmopolyUser *)_user; {
     NSString *balance = [NSString stringWithFormat:@"%.2f €",[_user balance]];
@@ -354,7 +328,7 @@
     [self setLabelTextsOfUser:user];
     [self displayBadges:user];
     [self setOtherUser:user];
-    [spinner setHidden:YES];
+    [super.spinner setHidden:YES];
     
 }
 
@@ -375,9 +349,9 @@
     [btHelperViewIn setCenter:posBt];
     
     // moving the spinner a bit more to the left
-    CGPoint posSpinner = spinner.center;
+    CGPoint posSpinner = super.spinner.center;
     posSpinner.x = 265.0f;
-    [spinner setCenter:posSpinner];
+    [super.spinner setCenter:posSpinner];
 }
 
 - (void)closeMyDelegateView {}

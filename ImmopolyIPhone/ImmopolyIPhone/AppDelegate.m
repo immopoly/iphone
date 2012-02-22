@@ -279,7 +279,6 @@
         [[self tabBarController]centerClicked];
         [[ImmopolyManager instance]setLoginSuccessful:NO];
         [[[[ImmopolyManager instance]user]history]removeAllObjects];
-        //[[[[ImmopolyManager instance]user]portfolio]removeAllObjects];
         [[self.tabBarController.viewControllers objectAtIndex:1]dismissModalViewControllerAnimated:NO];
         [[self.tabBarController.viewControllers objectAtIndex:2]dismissModalViewControllerAnimated:NO];
         ((HistoryViewController *) [[[self tabBarController]viewControllers]objectAtIndex:3]).loadingHistoryEntriesStart=10;
@@ -291,6 +290,8 @@
             MKMapView *mapView = [[[[self tabBarController]viewControllers]objectAtIndex:1] portfolioMapView];
             [mapView removeAnnotations:mapView.annotations];
         }        
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"image"];
+        
     }else{
         [[ImmopolyManager instance]setWillComeBack:NO];
     }
