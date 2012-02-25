@@ -33,6 +33,8 @@ extern NSString* const alertResetPasswordSuccessful;
 
 extern NSString* const alertExposeGiveAwayWarning;
 
+extern NSString* const alertNoFlatsAvailabe;
+
 extern NSString* const sharingActionSheetTitle;
 
 extern NSString* const sharingFacebookTitle;

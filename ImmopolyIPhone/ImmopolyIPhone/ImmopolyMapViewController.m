@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "UserLoginTask.h"
 #import "AsynchronousImageView.h"
+#import "Constants.h"
 
 @implementation ImmopolyMapViewController 
 
@@ -177,8 +178,14 @@
         }
     }     
     
-    // gets called that the filter is running and the flats are shown at the view
-    [self filterAnnotations: [[ImmopolyManager instance] immoScoutFlats]];
+    if([[[ImmopolyManager instance] immoScoutFlats] count] > 0) {
+        // gets called that the filter is running and the flats are shown at the view
+        [self filterAnnotations: [[ImmopolyManager instance] immoScoutFlats]];
+    } else {
+        UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:alertNoFlatsAvailabe delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [errorAlert show];
+        [errorAlert release];
+    }
 }
 
 - (void)mapView:(MKMapView *)mpView didSelectAnnotationView:(MKAnnotationView *)view{

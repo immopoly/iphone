@@ -33,7 +33,9 @@ NSString* const alertRegisterSuccessful = @"Glückwunsch! Du hast dich erfolgrei
 NSString* const alertResetPasswordWrongInput = @"Es wurde eine falsche Eingabe getätigt.";
 NSString* const alertResetPasswordSuccessful = @"Du bekommst in Kürze eine E-Mail mit dem Link, mit dem du dein Passwort ändern kannst.";
 
-NSString* const alertExposeGiveAwayWarning =@"Das Abgeben eines Exposes kostet dich eine Strafe. Möchtest du trotzdem fortfahren?";
+NSString* const alertExposeGiveAwayWarning = @"Das Abgeben eines Exposes kostet dich eine Strafe. Möchtest du trotzdem fortfahren?";
+
+NSString* const alertNoFlatsAvailabe = @"Sorry, leider konnten keine Wohnungen in deiner Umgebung gefunden werden.";
 
 NSString* const sharingActionSheetTitle = @"Teile diese Wohnung mit Freunden!";
 
