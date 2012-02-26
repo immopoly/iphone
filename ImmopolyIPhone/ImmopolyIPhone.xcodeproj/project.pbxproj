@@ -93,6 +93,7 @@
 		6DB4EADB14ADCBFF0057B16E /* send_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB4EADA14ADCBFF0057B16E /* send_button.png */; };
 		6DB4EADD14ADCC170057B16E /* top_bar_password.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB4EADC14ADCC170057B16E /* top_bar_password.png */; };
 		6DB8700C1496AC4400C0D82A /* calloutBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB8700B1496AC4400C0D82A /* calloutBubble.png */; };
+		6DBB1DFD14FA63EA00BCA1BB /* btBadge_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DBB1DFC14FA63EA00BCA1BB /* btBadge_selected.png */; };
 		6DBCBDC8146B214300545897 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBCBDC6146B214200545897 /* HistoryViewController.m */; };
 		6DBCBDC9146B214300545897 /* HistoryViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DBCBDC7146B214300545897 /* HistoryViewController.xib */; };
 		6DBCBDCC146B229400545897 /* HistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DBCBDCB146B229400545897 /* HistoryCell.xib */; };
@@ -373,6 +374,7 @@
 		6DB4EADA14ADCBFF0057B16E /* send_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send_button.png; sourceTree = "<group>"; };
 		6DB4EADC14ADCC170057B16E /* top_bar_password.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_bar_password.png; sourceTree = "<group>"; };
 		6DB8700B1496AC4400C0D82A /* calloutBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calloutBubble.png; sourceTree = "<group>"; };
+		6DBB1DFC14FA63EA00BCA1BB /* btBadge_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btBadge_selected.png; sourceTree = "<group>"; };
 		6DBCBDC5146B214200545897 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
 		6DBCBDC6146B214200545897 /* HistoryViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HistoryViewController.m; sourceTree = "<group>"; };
 		6DBCBDC7146B214300545897 /* HistoryViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryViewController.xib; sourceTree = "<group>"; };
@@ -576,6 +578,7 @@
 		4C0CF0BA149FDC8E00ECB70D /* Badges */ = {
 			isa = PBXGroup;
 			children = (
+				6DBB1DFC14FA63EA00BCA1BB /* btBadge_selected.png */,
 				4C0CF0BC149FDCA600ECB70D /* immopoly.png */,
 			);
 			name = Badges;
@@ -1338,6 +1341,7 @@
 				6DC7A1C314DC01220073A4B2 /* infotext_user.png in Resources */,
 				6DC7A1C614DC014E0073A4B2 /* infotext_user@2x.png in Resources */,
 				6D5B16ED14E1D54300DDEAC8 /* user_background_big.png in Resources */,
+				6DBB1DFD14FA63EA00BCA1BB /* btBadge_selected.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -119,8 +119,7 @@
             NSData *imageData;
             imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"image"];
             
-            if(imageData != nil)
-            {
+            if(imageData != nil) {
                 userImage.image = [NSKeyedUnarchiver unarchiveObjectWithData: imageData];
                 userImage.contentMode = UIViewContentModeScaleAspectFit;
                 [userImage setBackgroundColor:[UIColor whiteColor]];
@@ -149,7 +148,7 @@
         
         /* FOR TESTING
         UserBadge *test = [userBadges objectAtIndex:0];
-        for (int k=0; k<10; k++) [userBadges addObject:test];
+        for (int k=0; k<40; k++) [userBadges addObject:test];
         */
         
         [self setNumberOfBadges:[userBadges count]];
@@ -176,7 +175,7 @@
         
         
         for(int j=0; j<scrollviewSize; j++) {
-            posX += 16;
+            posX += 12;
             UIImageView *badgesBackground = [[UIImageView alloc]initWithFrame:CGRectMake(j*320, 0, 320, 132)];
             [badgesBackground setImage:[UIImage imageNamed:@"badgesview"]];
             [self.badgesScrollView addSubview:badgesBackground];
@@ -190,28 +189,33 @@
             
             for (int i=0; i<userBadgesCount; i++) {
                 UserBadge *badge = [userBadges objectAtIndex:i+(j*8)];
-                NSURL *url = [NSURL URLWithString:[badge url]];
+                /*NSURL *url = [NSURL URLWithString:[badge url]];
                 NSData *data = [NSData dataWithContentsOfURL:url];
                 UIImage *image = [[[UIImage alloc] initWithData:data] autorelease];
-                
-                //AsynchronousImageView *imgView = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
-                //[imgView loadImageFromURLString:[badge url] forFlat:nil];
+                */
+                AsynchronousImageView *imgView = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
+                [imgView setShouldBeSaved:NO];
+                [imgView setOwnBgColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0]];
+                [imgView loadImageFromURLString:[badge url] forFlat:nil];
                 
                 UIButton *btBadge = [UIButton buttonWithType:UIButtonTypeCustom];
-                [btBadge setBackgroundImage:image forState:UIControlStateNormal];
-                //[btBadge addSubview:imgView];
+                [btBadge setBackgroundImage:[UIImage imageNamed:@"btBadge_selected.png"] forState:UIControlStateHighlighted];
                 
                 if (i%2 == 0) {
-                    btBadge.frame = CGRectMake(posX, 10, 60, 60);
+                    btBadge.frame = CGRectMake(posX, 6, 70, 70);
+                    [imgView setCenter:btBadge.center];
                 } else {
-                    btBadge.frame = CGRectMake(posX, 71, 60, 60);
+                    btBadge.frame = CGRectMake(posX, 66, 70, 70);
+                    [imgView setCenter:btBadge.center];
                     posX += 76;
                 }
                 [btBadge addTarget:self action:@selector(showBadgeText:) forControlEvents:UIControlEventTouchUpInside];
                 [btBadge setTag: [userBadges indexOfObject:badge]];
                 [badgesScrollView bringSubviewToFront:btBadge];
+                [badgesScrollView addSubview:imgView];
                 [badgesScrollView addSubview:btBadge];
             }
+            posX += 4;
             [badgesBackground release];
         }
     }
@@ -294,6 +298,8 @@
     if (uid>0) {
         NSString *urlString = [NSString stringWithFormat:@"https://graph.facebook.com/%qi/picture?type=large", uid];
         
+        [userImage setOwnBgColor:[UIColor whiteColor]];
+        [userImage setShouldBeSaved:YES];
         [userImage loadImageFromURLString:urlString forFlat:nil];
         userImage.contentMode = UIViewContentModeScaleAspectFit;
     }

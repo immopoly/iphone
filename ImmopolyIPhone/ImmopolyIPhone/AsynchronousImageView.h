@@ -10,7 +10,13 @@
 
 @class Flat;
 
-@interface AsynchronousImageView : UIImageView 
+@interface AsynchronousImageView : UIImageView  {
+    UIColor *ownBgColor;
+    bool shouldBeSaved;
+}
+
+@property(nonatomic, retain) UIColor *ownBgColor;
+@property(nonatomic, assign) bool shouldBeSaved;
 
 - (void)loadImageFromURLString:(NSString *)_urlString forFlat:(Flat *)_flat;
 - (void)reset;
