@@ -390,7 +390,7 @@
 			[UIView setAnimationDelegate:self];
 			
             CGRect frame = [self shareBar].frame;
-            frame.origin.x = 5;
+            frame.origin.x = -53;
             [self shareBar].frame = frame;
             			
 			[UIView setAnimationDidStopSelector:@selector(animationEnded)];
@@ -406,7 +406,7 @@
 			[UIView setAnimationDelegate:self];
             
             CGRect frame = [self shareBar].frame;
-            frame.origin.x = 225;
+            frame.origin.x = 172;
             [self shareBar].frame = frame;
 			
 			[UIView setAnimationDidStopSelector:@selector(animationEnded)];
