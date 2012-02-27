@@ -35,7 +35,7 @@ NSString* const alertResetPasswordSuccessful = @"Du bekommst in Kürze eine E-Ma
 
 NSString* const alertExposeGiveAwayWarning = @"Das Abgeben eines Exposes kostet dich eine Strafe. Möchtest du trotzdem fortfahren?";
 
-NSString* const alertNoFlatsAvailabe = @"Sorry, leider konnten keine Wohnungen in deiner Umgebung gefunden werden.";
+NSString* const alertNoFlatsAvailabe = @"Sorry, leider konnten keine ImmobilienScout24-Wohnungen in deiner Umgebung gefunden werden. Wechsel einfach deinen Standort und klicke auf Aktualisieren um neue Wohnungen zu laden.";
 
 NSString* const sharingActionSheetTitle = @"Teile diese Wohnung mit Freunden!";
 
