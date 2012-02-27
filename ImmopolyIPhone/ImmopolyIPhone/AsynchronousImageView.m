@@ -58,7 +58,7 @@
                 NSData *imageData;
                 imageData = [NSKeyedArchiver archivedDataWithRootObject:self.image];
                 // save NSData-object to UserDefaults
-                [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:@"image"];    
+                [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:@"facebook-image"];    
             }
         }
         [self.spinner stopAnimating];

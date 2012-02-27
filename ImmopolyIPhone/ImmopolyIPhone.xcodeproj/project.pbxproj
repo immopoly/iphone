@@ -210,6 +210,7 @@
 		D2EB9ED914AF36A700CB6120 /* infotext_background.png in Resources */ = {isa = PBXBuildFile; fileRef = D2EB9ED814AF36A700CB6120 /* infotext_background.png */; };
 		D2EB9EE614AF44ED00CB6120 /* close_info_button.png in Resources */ = {isa = PBXBuildFile; fileRef = D2EB9EE414AF44ED00CB6120 /* close_info_button.png */; };
 		D2EB9EE714AF44ED00CB6120 /* close_info_button@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D2EB9EE514AF44ED00CB6120 /* close_info_button@2x.png */; };
+		D2ECBCDC14FBB10400143EEF /* webview_button_kompass.png in Resources */ = {isa = PBXBuildFile; fileRef = D2ECBCDB14FBB10400143EEF /* webview_button_kompass.png */; };
 		D2F05B5E149396CE00BE171C /* Constants.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F05B5D149396CE00BE171C /* Constants.m */; };
 		D2F05B621493A56700BE171C /* Secrets.m in Sources */ = {isa = PBXBuildFile; fileRef = D2F05B611493A56700BE171C /* Secrets.m */; };
 		D2F05B76149622E800BE171C /* tabbar_icon_map.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F05B72149622E800BE171C /* tabbar_icon_map.png */; };
@@ -536,6 +537,7 @@
 		D2EB9ED814AF36A700CB6120 /* infotext_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infotext_background.png; sourceTree = "<group>"; };
 		D2EB9EE414AF44ED00CB6120 /* close_info_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = close_info_button.png; sourceTree = "<group>"; };
 		D2EB9EE514AF44ED00CB6120 /* close_info_button@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close_info_button@2x.png"; sourceTree = "<group>"; };
+		D2ECBCDB14FBB10400143EEF /* webview_button_kompass.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = webview_button_kompass.png; sourceTree = "<group>"; };
 		D2F05B5C149396CE00BE171C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		D2F05B5D149396CE00BE171C /* Constants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Constants.m; sourceTree = "<group>"; };
 		D2F05B601493A56700BE171C /* Secrets.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Secrets.h; sourceTree = "<group>"; };
@@ -989,6 +991,7 @@
 		D2B237A8149F8F1700A26602 /* webview */ = {
 			isa = PBXGroup;
 			children = (
+				D2ECBCDB14FBB10400143EEF /* webview_button_kompass.png */,
 				D247150C14BDE52A003AB5CA /* webview_share_active.png */,
 				D2B02D0D14B8741C00985E3C /* webview_back_button.png */,
 				D2B237BC149F923C00A26602 /* webview_lightgrey_button.png */,
@@ -1342,6 +1345,7 @@
 				6DC7A1C614DC014E0073A4B2 /* infotext_user@2x.png in Resources */,
 				6D5B16ED14E1D54300DDEAC8 /* user_background_big.png in Resources */,
 				6DBB1DFD14FA63EA00BCA1BB /* btBadge_selected.png in Resources */,
+				D2ECBCDC14FBB10400143EEF /* webview_button_kompass.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1497,7 +1501,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tobias Buchholz (2AS26V39W4)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tobias Heine (MVU4N9SD8F)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ImmopolyIPhone/ImmopolyIPhone-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1512,7 +1516,7 @@
 					"\"$(SRCROOT)/../libOAuth__OFF\"",
 				);
 				PRODUCT_NAME = Immopoly;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F172DFC0-31B0-4843-8834-ED33DB058049";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B5E5F8F2-91CA-40B8-B26E-4229311F46A6";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

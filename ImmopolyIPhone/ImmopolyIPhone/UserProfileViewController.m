@@ -117,7 +117,7 @@
         
         if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0")){
             NSData *imageData;
-            imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"image"];
+            imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"facebook-image"];
             
             if(imageData != nil) {
                 userImage.image = [NSKeyedUnarchiver unarchiveObjectWithData: imageData];
@@ -296,6 +296,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     long long uid = [[defaults objectForKey:@"FBUserId"] longLongValue];
     if (uid>0) {
+        [userImage setHidden:NO];
+        
         NSString *urlString = [NSString stringWithFormat:@"https://graph.facebook.com/%qi/picture?type=large", uid];
         
         [userImage setOwnBgColor:[UIColor whiteColor]];
@@ -309,6 +311,7 @@
     [self dismissModalViewControllerAnimated:YES];
     UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
     if (image != nil) {
+        [userImage setHidden:NO];
         [userImage setImage:image];
         userImage.contentMode = UIViewContentModeScaleAspectFit;
         

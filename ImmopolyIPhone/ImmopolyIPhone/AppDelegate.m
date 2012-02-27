@@ -298,10 +298,6 @@
     
 }
 
-- (void)applicationWillEnterForeground:(UIApplication *)application {
-    
-}
-
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
     actualisationSpinner = [[UIActivityIndicatorView alloc] init];
     
@@ -331,6 +327,21 @@
     }   
     //[self.view removeFromSuperview];
     
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application{
+    BOOL shouldLogout = [[NSUserDefaults standardUserDefaults] boolForKey:@"facebook_logout"];
+    //delete User Profile Pic
+    if(shouldLogout){
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"FBUserId"]; 
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"facebook-image"]; 
+        
+        UIViewController *vc = [[[self tabBarController]viewControllers]objectAtIndex:0];
+        if ([vc isKindOfClass:[UserProfileViewController class]]) {
+            [[[[[self tabBarController]viewControllers]objectAtIndex:0] userImage]reset];
+            [[[[[self tabBarController]viewControllers]objectAtIndex:0] userImage]setHidden:YES];
+        }        
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
