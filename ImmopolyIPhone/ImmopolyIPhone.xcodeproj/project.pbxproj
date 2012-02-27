@@ -99,8 +99,6 @@
 		6DBCBDCC146B229400545897 /* HistoryCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DBCBDCB146B229400545897 /* HistoryCell.xib */; };
 		6DC7A1AA14DBEC480073A4B2 /* infotext_map.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DC7A1A814DBEC480073A4B2 /* infotext_map.png */; };
 		6DC7A1AF14DBECA90073A4B2 /* infotext_map@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DC7A1AE14DBECA90073A4B2 /* infotext_map@2x.png */; };
-		6DC7A1BE14DBFF470073A4B2 /* infotext_expose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DC7A1BA14DBFF470073A4B2 /* infotext_expose@2x.png */; };
-		6DC7A1BF14DBFF470073A4B2 /* infotext_expose.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DC7A1BB14DBFF470073A4B2 /* infotext_expose.png */; };
 		6DC7A1C314DC01220073A4B2 /* infotext_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DC7A1C114DC01210073A4B2 /* infotext_user.png */; };
 		6DC7A1C614DC014E0073A4B2 /* infotext_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DC7A1C514DC014E0073A4B2 /* infotext_user@2x.png */; };
 		6DCEA02314C329FE0032A89C /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCEA02114C329FE0032A89C /* FeedbackViewController.m */; };
@@ -110,6 +108,8 @@
 		6DCEA03514C36B700032A89C /* bt_sendmail.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEA03314C36B700032A89C /* bt_sendmail.png */; };
 		6DCEA03614C36B700032A89C /* top_bar_feedback.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEA03414C36B700032A89C /* top_bar_feedback.png */; };
 		6DD3BDA114B8949400D6D7B2 /* PortfolioCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DD3BDA014B8949400D6D7B2 /* PortfolioCell.m */; };
+		6DDABAEC14FBED3D00108C1C /* infotext_expose@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DDABAEA14FBED3C00108C1C /* infotext_expose@2x.png */; };
+		6DDABAED14FBED3D00108C1C /* infotext_expose.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DDABAEB14FBED3C00108C1C /* infotext_expose.png */; };
 		6DE2998C148A6F5A00FD7CCA /* buttomshadow_portfolio_list.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE29986148A6F5A00FD7CCA /* buttomshadow_portfolio_list.png */; };
 		6DE2998E148A6F5A00FD7CCA /* portfolio_list_background.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE29988148A6F5A00FD7CCA /* portfolio_list_background.png */; };
 		6DE29991148A6F5A00FD7CCA /* topshadow_portfolio_list.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE2998B148A6F5A00FD7CCA /* topshadow_portfolio_list.png */; };
@@ -382,8 +382,6 @@
 		6DBCBDCB146B229400545897 /* HistoryCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = HistoryCell.xib; sourceTree = "<group>"; };
 		6DC7A1A814DBEC480073A4B2 /* infotext_map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infotext_map.png; sourceTree = "<group>"; };
 		6DC7A1AE14DBECA90073A4B2 /* infotext_map@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infotext_map@2x.png"; sourceTree = "<group>"; };
-		6DC7A1BA14DBFF470073A4B2 /* infotext_expose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infotext_expose@2x.png"; sourceTree = "<group>"; };
-		6DC7A1BB14DBFF470073A4B2 /* infotext_expose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infotext_expose.png; sourceTree = "<group>"; };
 		6DC7A1C114DC01210073A4B2 /* infotext_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infotext_user.png; sourceTree = "<group>"; };
 		6DC7A1C514DC014E0073A4B2 /* infotext_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infotext_user@2x.png"; sourceTree = "<group>"; };
 		6DCEA02014C329FE0032A89C /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
@@ -395,6 +393,8 @@
 		6DCEA03414C36B700032A89C /* top_bar_feedback.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_bar_feedback.png; sourceTree = "<group>"; };
 		6DD3BD9F14B8949400D6D7B2 /* PortfolioCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortfolioCell.h; sourceTree = "<group>"; };
 		6DD3BDA014B8949400D6D7B2 /* PortfolioCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortfolioCell.m; sourceTree = "<group>"; };
+		6DDABAEA14FBED3C00108C1C /* infotext_expose@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infotext_expose@2x.png"; sourceTree = "<group>"; };
+		6DDABAEB14FBED3C00108C1C /* infotext_expose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = infotext_expose.png; sourceTree = "<group>"; };
 		6DE29986148A6F5A00FD7CCA /* buttomshadow_portfolio_list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buttomshadow_portfolio_list.png; sourceTree = "<group>"; };
 		6DE29988148A6F5A00FD7CCA /* portfolio_list_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = portfolio_list_background.png; sourceTree = "<group>"; };
 		6DE2998B148A6F5A00FD7CCA /* topshadow_portfolio_list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topshadow_portfolio_list.png; sourceTree = "<group>"; };
@@ -1108,8 +1108,8 @@
 			children = (
 				6DC7A1C114DC01210073A4B2 /* infotext_user.png */,
 				6DC7A1C514DC014E0073A4B2 /* infotext_user@2x.png */,
-				6DC7A1BA14DBFF470073A4B2 /* infotext_expose@2x.png */,
-				6DC7A1BB14DBFF470073A4B2 /* infotext_expose.png */,
+				6DDABAEA14FBED3C00108C1C /* infotext_expose@2x.png */,
+				6DDABAEB14FBED3C00108C1C /* infotext_expose.png */,
 				6DC7A1A814DBEC480073A4B2 /* infotext_map.png */,
 				6DC7A1AE14DBECA90073A4B2 /* infotext_map@2x.png */,
 				6D5CD10D14C4E77F008C6DE1 /* infotext_feedback.png */,
@@ -1339,13 +1339,13 @@
 				6D40B52E14D56C4900A74EAD /* infotext_history@2x.png in Resources */,
 				6DC7A1AA14DBEC480073A4B2 /* infotext_map.png in Resources */,
 				6DC7A1AF14DBECA90073A4B2 /* infotext_map@2x.png in Resources */,
-				6DC7A1BE14DBFF470073A4B2 /* infotext_expose@2x.png in Resources */,
-				6DC7A1BF14DBFF470073A4B2 /* infotext_expose.png in Resources */,
 				6DC7A1C314DC01220073A4B2 /* infotext_user.png in Resources */,
 				6DC7A1C614DC014E0073A4B2 /* infotext_user@2x.png in Resources */,
 				6D5B16ED14E1D54300DDEAC8 /* user_background_big.png in Resources */,
 				6DBB1DFD14FA63EA00BCA1BB /* btBadge_selected.png in Resources */,
 				D2ECBCDC14FBB10400143EEF /* webview_button_kompass.png in Resources */,
+				6DDABAEC14FBED3D00108C1C /* infotext_expose@2x.png in Resources */,
+				6DDABAED14FBED3D00108C1C /* infotext_expose.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1501,7 +1501,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tobias Heine (MVU4N9SD8F)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tobias Buchholz (2AS26V39W4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ImmopolyIPhone/ImmopolyIPhone-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1516,7 +1516,7 @@
 					"\"$(SRCROOT)/../libOAuth__OFF\"",
 				);
 				PRODUCT_NAME = Immopoly;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "B5E5F8F2-91CA-40B8-B26E-4229311F46A6";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F172DFC0-31B0-4843-8834-ED33DB058049";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;
@@ -1527,7 +1527,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tobias Heine";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer: Tobias Buchholz (2AS26V39W4)";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "ImmopolyIPhone/ImmopolyIPhone-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -1542,7 +1542,7 @@
 					"\"$(SRCROOT)/../libOAuth__OFF\"",
 				);
 				PRODUCT_NAME = Immopoly;
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "5598796A-756F-4147-A3E7-8B736C82EF05";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "F172DFC0-31B0-4843-8834-ED33DB058049";
 				RUN_CLANG_STATIC_ANALYZER = NO;
 				TARGETED_DEVICE_FAMILY = 1;
 				WRAPPER_EXTENSION = app;

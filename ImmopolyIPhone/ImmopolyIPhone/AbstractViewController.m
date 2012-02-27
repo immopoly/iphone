@@ -134,7 +134,7 @@
             
         case INFO_EXPOSE:
             helperTextImage = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_expose"]];
-            helperTextImage.frame = CGRectMake(0, 0, 284, 570);    
+            helperTextImage.frame = CGRectMake(0, 0, 284, 657);    
 
             linkButton.frame = CGRectMake(142, 367, 35, 20);
             [helperScroll addSubview:linkButton];
