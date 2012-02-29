@@ -21,11 +21,13 @@
     IBOutlet UIButton *flatActionButton;
     
     IBOutlet UIView *shareBar;
+    IBOutlet UIView *buttons;
     IBOutlet UIButton *exposeAction;
     IBOutlet UIButton *shareButton;
     IBOutlet UIButton *twitterButton;
     IBOutlet UIButton *facebookButton;
     IBOutlet UIButton *mailButton;
+    IBOutlet UIButton *mapButton;
     
     BOOL animating;
     BOOL buttonsVisible;
@@ -54,6 +56,8 @@
 @property(nonatomic, retain) IBOutlet UIButton *facebookButton;
 
 @property(nonatomic, retain) IBOutlet UIButton *mailButton;
+@property(nonatomic, retain) IBOutlet UIButton *mapButton;
+@property(nonatomic, retain) IBOutlet UIView *buttons;
 
 - (IBAction)goBack;
 - (IBAction)flatAction;

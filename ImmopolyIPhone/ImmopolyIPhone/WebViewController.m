@@ -31,6 +31,8 @@
 @synthesize buttonsVisible;
 @synthesize shareBar;
 @synthesize delegate;
+@synthesize mapButton;
+@synthesize buttons;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -101,11 +103,14 @@
 	[webView loadRequest:requestObj];
     
     if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]) {
-        //[flatActionButton setTitle: @"Expose abgeben" forState: UIControlStateNormal];
         [flatActionButton setImage:[UIImage imageNamed:@"webview_give_away.png"] forState:UIControlStateNormal];
+        [shareBar setFrame:CGRectMake(172, shareBar.frame.origin.y, 370, shareBar.frame.size.height)];
+        [mapButton setHidden:NO];
     }else{
-        //[flatActionButton setTitle: @"Expose übernehmen" forState: UIControlStateNormal];
         [flatActionButton setImage:[UIImage imageNamed:@"webview_takeover.png"] forState:UIControlStateNormal];
+        [shareBar setFrame:CGRectMake(220, shareBar.frame.origin.y, 315, shareBar.frame.size.height)];
+        [mapButton setHidden:YES];
+        [buttons setCenter:CGPointMake(buttons.center.x - 52, buttons.center.y)];
     }
 }
 
@@ -390,7 +395,12 @@
 			[UIView setAnimationDelegate:self];
 			
             CGRect frame = [self shareBar].frame;
-            frame.origin.x = -53;
+            
+            if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]){
+                frame.origin.x = -53;
+            } else {
+                frame.origin.x = 2;
+            }         
             [self shareBar].frame = frame;
             			
 			[UIView setAnimationDidStopSelector:@selector(animationEnded)];
@@ -406,7 +416,11 @@
 			[UIView setAnimationDelegate:self];
             
             CGRect frame = [self shareBar].frame;
-            frame.origin.x = 172;
+            if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]){
+                frame.origin.x = 172;
+            } else {
+                frame.origin.x = 220;
+            }
             [self shareBar].frame = frame;
 			
 			[UIView setAnimationDidStopSelector:@selector(animationEnded)];
@@ -456,6 +470,7 @@
     self.facebookButton = nil;
     self.mailButton = nil;
     self.shareBar = nil;
+    self.mapButton = nil;
 }
 
 - (void)resetContent {
