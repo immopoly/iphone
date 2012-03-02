@@ -12,32 +12,37 @@
 #import <MessageUI/MessageUI.h>
 #import <MessageUI/MFMailComposeViewController.h>
 #import "AbstractViewController.h"
+#import "PortfolioDelegate.h"
 
 @interface WebViewController : AbstractViewController <UIWebViewDelegate, UserDataDelegate, FacebookManagerDelegate,UIActionSheetDelegate,MFMailComposeViewControllerDelegate,UIAlertViewDelegate>{
 	
 	IBOutlet UIWebView *webView;
     IBOutlet UIActivityIndicatorView *activityIndicator;
-    IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet UIButton *flatActionButton;
     
     IBOutlet UIView *shareBar;
+    IBOutlet UIView *buttons;
     IBOutlet UIButton *exposeAction;
     IBOutlet UIButton *shareButton;
     IBOutlet UIButton *twitterButton;
     IBOutlet UIButton *facebookButton;
     IBOutlet UIButton *mailButton;
+    IBOutlet UIButton *mapButton;
     
     BOOL animating;
     BOOL buttonsVisible;
     int selectedExposeId;
     Flat *selectedImmoscoutFlat;
     LoginCheck *loginCheck;
+    
+    id<PortfolioDelegate> delegate;
+    
 }
 
 @property(nonatomic, retain) UIWebView *webView;
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
-@property(nonatomic, retain) IBOutlet IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, assign) int selectedExposeId;
+@property(nonatomic, assign) id<PortfolioDelegate> delegate;
 @property(nonatomic, retain) Flat *selectedImmoscoutFlat;
 @property(nonatomic, retain) LoginCheck *loginCheck;
 @property(nonatomic, retain) IBOutlet UIButton *flatActionButton;
@@ -49,13 +54,16 @@
 @property(nonatomic, retain) IBOutlet UIButton *shareButton;
 @property(nonatomic, retain) IBOutlet UIButton *twitterButton;
 @property(nonatomic, retain) IBOutlet UIButton *facebookButton;
+
 @property(nonatomic, retain) IBOutlet UIButton *mailButton;
+@property(nonatomic, retain) IBOutlet UIButton *mapButton;
+@property(nonatomic, retain) IBOutlet UIView *buttons;
 
 - (IBAction)goBack;
 - (IBAction)flatAction;
 - (IBAction)performFacebookPost;
+- (IBAction)showFlatOnMap;
 - (void)reloadData;
-- (void)stopSpinnerAnimation;
 - (void) showEmail;
 - (void)enableFlatButton:(NSTimer *)_theTimer;
 - (void)showTweet;

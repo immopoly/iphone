@@ -26,6 +26,8 @@
 @synthesize spinner;
 @synthesize flat;
 @synthesize imageRequest;
+@synthesize ownBgColor;
+@synthesize shouldBeSaved;
 
 - (void)loadImageFromURLString:(NSString *)_urlString forFlat:(Flat *)_flat{
     flat = _flat;
@@ -49,14 +51,15 @@
         [flat setImage:flatImage];
         self.image = flatImage;
         if(flat == nil){
-            [self setBackgroundColor:[UIColor whiteColor]];
+            [self setBackgroundColor:ownBgColor];
             
-            NSData *imageData;
-            
-            // create NSData-object from image
-            imageData = [NSKeyedArchiver archivedDataWithRootObject:self.image];
-            // save NSData-object to UserDefaults
-            [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:@"image"];
+            if(shouldBeSaved) {
+                // create NSData-object from image
+                NSData *imageData;
+                imageData = [NSKeyedArchiver archivedDataWithRootObject:self.image];
+                // save NSData-object to UserDefaults
+                [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:@"facebook-image"];    
+            }
         }
         [self.spinner stopAnimating];
     }];

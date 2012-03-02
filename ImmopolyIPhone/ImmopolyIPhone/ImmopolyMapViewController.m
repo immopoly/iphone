@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "UserLoginTask.h"
 #import "AsynchronousImageView.h"
+#import "Constants.h"
 
 @implementation ImmopolyMapViewController 
 
@@ -40,11 +41,10 @@
 @synthesize calloutBubbleImg;
 @synthesize sameFlat;
 @synthesize regionSpan;
-@synthesize spinner;
 
 - (void)showFlatSpinner{
-    [[self spinner]setHidden:NO];
-    [[self spinner]startAnimating];
+    [[super spinner]setHidden:NO];
+    [[super spinner]startAnimating];
 }
     
 
@@ -52,7 +52,6 @@
     [super dealloc];
     [exposeWebViewController release];
     [loginViewController release];
-    [spinner release];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -104,6 +103,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [super initSpinner];
     [calloutBubbleImg setHidden:YES];
     [lbPageNumber setHidden:YES];
     [self setShowCalloutBubble:NO];
@@ -169,7 +169,7 @@
 }
 
 - (void) displayFlatsOnMap {
-    [[self spinner]stopAnimating];
+    [super stopSpinnerAnimation];
     
     // removing all existing annotations
     for (id<MKAnnotation> annotation in mapView.annotations) {
@@ -178,8 +178,14 @@
         }
     }     
     
-    // gets called that the filter is running and the flats are shown at the view
-    [self filterAnnotations: [[ImmopolyManager instance] immoScoutFlats]];
+    if([[[ImmopolyManager instance] immoScoutFlats] count] > 0) {
+        // gets called that the filter is running and the flats are shown at the view
+        [self filterAnnotations: [[ImmopolyManager instance] immoScoutFlats]];
+    } else {
+        UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:alertNoFlatsAvailabe delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [errorAlert show];
+        [errorAlert release];
+    }
 }
 
 - (void)mapView:(MKMapView *)mpView didSelectAnnotationView:(MKAnnotationView *)view{

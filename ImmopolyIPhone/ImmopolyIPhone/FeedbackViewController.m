@@ -34,6 +34,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [super.spinner setHidden:YES];
     
     // setting the text of the helperView
     [super initHelperViewWithMode:INFO_FEEDBACK];

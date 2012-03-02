@@ -33,7 +33,9 @@ NSString* const alertRegisterSuccessful = @"Glückwunsch! Du hast dich erfolgrei
 NSString* const alertResetPasswordWrongInput = @"Es wurde eine falsche Eingabe getätigt.";
 NSString* const alertResetPasswordSuccessful = @"Du bekommst in Kürze eine E-Mail mit dem Link, mit dem du dein Passwort ändern kannst.";
 
-NSString* const alertExposeGiveAwayWarning =@"Das Abgeben eines Exposes kostet dich eine Strafe. Möchtest du trotzdem fortfahren?";
+NSString* const alertExposeGiveAwayWarning = @"Das Abgeben eines Exposes kostet dich eine Strafe. Möchtest du trotzdem fortfahren?";
+
+NSString* const alertNoFlatsAvailabe = @"Sorry, leider konnten keine ImmobilienScout24-Wohnungen in deiner Umgebung gefunden werden. Wechsel einfach deinen Standort und klicke auf Aktualisieren um neue Wohnungen zu laden.";
 
 NSString* const sharingActionSheetTitle = @"Teile diese Wohnung mit Freunden!";
 

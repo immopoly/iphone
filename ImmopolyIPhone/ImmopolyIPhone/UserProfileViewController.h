@@ -25,17 +25,19 @@
     IBOutlet UILabel *labelBank;
     IBOutlet UILabel *labelMiete;
     IBOutlet UILabel *labelNumExposes;
-    IBOutlet UIView *badgesView;
+    UIScrollView *badgesScrollView;
+//    UIImageView *badgesBackground;
     IBOutlet UIButton *closeProfileButton;
     IBOutlet UITabBar *tabBar;
     IBOutlet UIImageView *topBarImage;
     LoginCheck *loginCheck;
-    IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet AsynchronousImageView *userImage;
     BOOL loading;
     UIImagePickerController *picker;
     BOOL userIsNotMyself;
+    int numberOfBadges;
     NSString *otherUserName;
+    ImmopolyUser *otherUser;
 }
 
 @property(nonatomic, retain) IBOutlet UILabel *hello;
@@ -47,7 +49,7 @@
 @property(nonatomic, retain) IBOutlet UILabel *labelNumExposes;
 @property(nonatomic, retain) IBOutlet UIImageView *topBarImage;
 
-@property(nonatomic, retain) IBOutlet UIView *badgesView;
+@property(nonatomic, retain) UIScrollView *badgesScrollView;
 @property(nonatomic, retain) LoginCheck *loginCheck;
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, retain) IBOutlet AsynchronousImageView *userImage;
@@ -55,10 +57,11 @@
 @property(nonatomic, retain) IBOutlet UITabBar *tabBar;
 @property(nonatomic, assign) BOOL loading;
 @property(nonatomic, assign) BOOL userIsNotMyself;
+@property(nonatomic, assign) int numberOfBadges;
 @property(nonatomic, retain) NSString *otherUserName;
+@property(nonatomic, retain) ImmopolyUser *otherUser;
+//@property(nonatomic, retain) UIImageView *badgesBackground;
 
-- (void)displayBadges;
-- (void)stopSpinnerAnimation;
 - (void)setLabelTextsOfUser:(ImmopolyUser *)_user;
 - (void)displayBadges:(ImmopolyUser *)_user;
 - (void)loadFacebookPicture;

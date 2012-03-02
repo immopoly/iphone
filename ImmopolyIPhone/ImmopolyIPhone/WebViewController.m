@@ -30,7 +30,9 @@
 @synthesize animating;
 @synthesize buttonsVisible;
 @synthesize shareBar;
-@synthesize spinner;
+@synthesize delegate;
+@synthesize mapButton;
+@synthesize buttons;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
@@ -62,10 +64,11 @@
     
     [[self flatActionButton]setEnabled:NO];
     
-    
+    [super initSpinner];
+    [super.spinner setCenter:CGPointMake(265, 21)];
+    [super.spinner setHidden:YES];
     
     // setting the text of the helperView
-    //[super initHelperView];
     [super initButton];
   
     //moving the button to the right site
@@ -100,11 +103,14 @@
 	[webView loadRequest:requestObj];
     
     if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]) {
-        //[flatActionButton setTitle: @"Expose abgeben" forState: UIControlStateNormal];
         [flatActionButton setImage:[UIImage imageNamed:@"webview_give_away.png"] forState:UIControlStateNormal];
+        [shareBar setFrame:CGRectMake(172, shareBar.frame.origin.y, 370, shareBar.frame.size.height)];
+        [mapButton setHidden:NO];
     }else{
-        //[flatActionButton setTitle: @"Expose übernehmen" forState: UIControlStateNormal];
         [flatActionButton setImage:[UIImage imageNamed:@"webview_takeover.png"] forState:UIControlStateNormal];
+        [shareBar setFrame:CGRectMake(220, shareBar.frame.origin.y, 315, shareBar.frame.size.height)];
+        [mapButton setHidden:YES];
+        [buttons setCenter:CGPointMake(buttons.center.x - 52, buttons.center.y)];
     }
 }
 
@@ -121,7 +127,6 @@
 - (void)dealloc {
 	[webView release];
     [activityIndicator release];
-    [spinner release];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
     [loginCheck release];
 	[super dealloc];
@@ -149,7 +154,7 @@
 }
 
 - (IBAction)flatAction {
-    [spinner startAnimating];
+    [super.spinner startAnimating];
     
     loginCheck.delegate = self;
     [loginCheck checkUserLogin];
@@ -157,13 +162,8 @@
     [self.flatActionButton setEnabled:NO];
 }
 
-- (void)stopSpinnerAnimation {
-    [spinner stopAnimating];
-    //[spinner setHidden: YES];
-}
-
 - (void)performActionAfterLoginCheck {
-    [spinner stopAnimating];
+    [super stopSpinnerAnimation];
     if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]) {
         
         UIAlertView *removeFlatDialog = [[UIAlertView alloc]initWithTitle:@"Expose abgeben" message:alertExposeGiveAwayWarning delegate:self cancelButtonTitle:@"Nein" otherButtonTitles:@"Ja", nil];
@@ -184,7 +184,7 @@
 }
 
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    [self stopSpinnerAnimation];
+    [super stopSpinnerAnimation];
     FlatRemoveTask *flatRemoveTask = [[FlatRemoveTask alloc]init];
     
     switch (buttonIndex) {
@@ -395,7 +395,12 @@
 			[UIView setAnimationDelegate:self];
 			
             CGRect frame = [self shareBar].frame;
-            frame.origin.x = 5;
+            
+            if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]){
+                frame.origin.x = -53;
+            } else {
+                frame.origin.x = 2;
+            }         
             [self shareBar].frame = frame;
             			
 			[UIView setAnimationDidStopSelector:@selector(animationEnded)];
@@ -411,7 +416,11 @@
 			[UIView setAnimationDelegate:self];
             
             CGRect frame = [self shareBar].frame;
-            frame.origin.x = 225;
+            if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]){
+                frame.origin.x = 172;
+            } else {
+                frame.origin.x = 220;
+            }
             [self shareBar].frame = frame;
 			
 			[UIView setAnimationDidStopSelector:@selector(animationEnded)];
@@ -461,7 +470,7 @@
     self.facebookButton = nil;
     self.mailButton = nil;
     self.shareBar = nil;
-    self.spinner = nil;
+    self.mapButton = nil;
 }
 
 - (void)resetContent {
@@ -469,6 +478,11 @@
     [activityIndicator setHidden:NO];
     [activityIndicator startAnimating];
     [webView stringByEvaluatingJavaScriptFromString:@"document.body.innerHTML = \"\";"];
+}
+
+- (IBAction)showFlatOnMap{
+    [delegate showSelectedFlatOnMap:selectedImmoscoutFlat];
+    [self goBack];
 }
 
 

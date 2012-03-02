@@ -20,12 +20,10 @@
 @synthesize tvCell;
 @synthesize table;
 @synthesize loginCheck;
-@synthesize spinner;
 @synthesize loading;
 @synthesize flagForReload;
 @synthesize loadingHistoryEntriesLimit;
 @synthesize loadingHistoryEntriesStart;
-@synthesize reloadDataSpinner;
 @synthesize lbTime;
 @synthesize lbText;
 @synthesize btFacebook;
@@ -56,6 +54,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    [super initSpinner];
     [[self table] setHidden: YES];
     [self.table setBackgroundColor:[UIColor clearColor]];
     [self.table setSeparatorColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.0]];
@@ -63,7 +62,7 @@
     loadingHistoryEntriesStart = 10;
     loadingHistoryEntriesLimit = 10;
     
-    [reloadDataSpinner stopAnimating];
+    [super.spinner stopAnimating];
     
     //[self performActionAfterLoginCheck];
     
@@ -91,21 +90,16 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [spinner startAnimating];
+    [super.spinner startAnimating];
     loginCheck.delegate = self;
     [loginCheck checkUserLogin];
     
     [super viewDidAppear:animated];
 }
 
-- (void)stopSpinnerAnimation {
-    [spinner stopAnimating];
-    [spinner setHidden: YES];
-}
-
 - (void)performActionAfterLoginCheck {
     [table reloadData];
-    [self stopSpinnerAnimation];
+    [super stopSpinnerAnimation];
     [[self table] setHidden: NO];
     
     if ([[[ImmopolyManager instance]user]history] == nil || [[[[ImmopolyManager instance]user]history]count]<=0) {
@@ -118,8 +112,6 @@
     
     self.tvCell = nil;
     self.table = nil;
-    self.spinner = nil;
-    self.reloadDataSpinner = nil;
     self.lbText = nil;
     self.lbTime = nil;
     self.btFacebook = nil;
@@ -303,7 +295,7 @@
             HistoryTask *task = [[[HistoryTask alloc] init] autorelease];
             task.delegate = self;
             [task loadHistoryEintriesFrom:loadingHistoryEntriesStart To:(loadingHistoryEntriesStart+loadingHistoryEntriesLimit)];
-            [reloadDataSpinner startAnimating];
+            [super.spinner startAnimating];
         }
     }
     
@@ -317,7 +309,7 @@
             task.refresh = NO;
             [task loadHistoryEintriesFrom:loadingHistoryEntriesStart To:(loadingHistoryEntriesStart+loadingHistoryEntriesLimit)];
             loadingHistoryEntriesStart+=10;
-            [reloadDataSpinner startAnimating];
+            [super.spinner startAnimating];
         }
       }
     
@@ -329,15 +321,13 @@
         loading = false;
     }
     [self.table reloadData];
-    [reloadDataSpinner stopAnimating];
+    [super.spinner stopAnimating];
 }
 
 - (void)dealloc {
     [tvCell release];
     [table release];
     [loginCheck release];
-    [spinner release];
-    [reloadDataSpinner release];
     [lbTime release];
     [lbText release];
     [btFacebook release];
@@ -447,17 +437,5 @@
         }
     }
 }
-
-/*- (IBAction)update{
-    
-    if(!loading){
-        HistoryTask *task = [[[HistoryTask alloc] init] autorelease];
-        task.delegate = self;
-        task.refresh = YES;
-        loading = YES;
-        [task loadHistoryEintriesFrom:0 To:loadingHistoryEntriesStart];
-        [reloadDataSpinner startAnimating];
-    }
-}*/
 
 @end

@@ -20,11 +20,10 @@
 @synthesize miete;
 @synthesize numExposes;
 @synthesize loginCheck;
-@synthesize spinner;
 @synthesize labelBank;
 @synthesize labelMiete;
 @synthesize labelNumExposes;
-@synthesize badgesView;
+@synthesize badgesScrollView;
 @synthesize userImage;
 @synthesize loading;
 @synthesize userIsNotMyself;
@@ -32,6 +31,9 @@
 @synthesize closeProfileButton;
 @synthesize tabBar;
 @synthesize topBarImage;
+@synthesize otherUser;
+//@synthesize badgesBackground;
+@synthesize numberOfBadges;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -58,20 +60,35 @@
     [super viewDidLoad];
     self.loginCheck = [[[LoginCheck alloc]init] autorelease];
     
-    [spinner startAnimating];
+    [super initSpinner];
+    [super.spinner startAnimating];
     
     // setting the text of the helperView
     [super initHelperViewWithMode:INFO_USER];
+    
+    self.badgesScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 320-43, 320, 132)];
+    [[self view]addSubview:badgesScrollView];
+    [[self view]bringSubviewToFront:[self badgesScrollView]];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
 
+    [spinner setHidden:NO];
+    [spinner startAnimating];
+    
     //TODO: reset labels
     if (userIsNotMyself) {
+        
         [hello setText: @""];
         [bank setText: @""];
         [miete setText: @""];
         [numExposes setText: @""];
+        
+        //deleting all existing badges
+        NSArray* subviews = [NSArray arrayWithArray: badgesScrollView.subviews];
+        for (UIView* view in subviews) {
+            [view removeFromSuperview];
+        }
         
         [self prepareOtherUserProfile];
         [[self tabBar]setHidden:NO];
@@ -84,7 +101,8 @@
 - (void)viewDidAppear:(BOOL)animated {
     
     if(userIsNotMyself){
-        [spinner setHidden:NO];
+        [super.spinner setHidden:NO];
+        [super.spinner startAnimating];
         
         UserTask *task = [[UserTask alloc]init];
         task.delegate = self;
@@ -99,10 +117,9 @@
         
         if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0")){
             NSData *imageData;
-            imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"image"];
+            imageData = [[NSUserDefaults standardUserDefaults] objectForKey:@"facebook-image"];
             
-            if(imageData != nil)
-            {
+            if(imageData != nil) {
                 userImage.image = [NSKeyedUnarchiver unarchiveObjectWithData: imageData];
                 userImage.contentMode = UIViewContentModeScaleAspectFit;
                 [userImage setBackgroundColor:[UIColor whiteColor]];
@@ -114,57 +131,110 @@
 }
 
 - (void)performActionAfterLoginCheck {
-    [self stopSpinnerAnimation];
-    
     ImmopolyUser *myUser = [[ImmopolyManager instance] user];
     
     if(myUser != nil) {
         [self setLabelTextsOfUser:myUser];
         [self displayBadges:myUser];
     }
+    [self stopSpinnerAnimation];
 }
 
 - (void)displayBadges:(ImmopolyUser *)_user{
-    NSArray *userBadges = [_user badges];
-    int posX = 17;
     
-    if([userBadges count] > 0) {
-        for (int i=0; i<[userBadges count]; i++) {
-            UserBadge *badge = [userBadges objectAtIndex:i];
-            NSURL *url = [NSURL URLWithString:[badge url]];
-            NSData *data = [NSData dataWithContentsOfURL:url];
-            UIImage *image = [[[UIImage alloc] initWithData:data] autorelease];
+    NSMutableArray *userBadges = [_user badges];
+    
+    if(([userBadges count] > 0 && numberOfBadges != [userBadges count]) || userIsNotMyself) {
+        
+        /* FOR TESTING
+        UserBadge *test = [userBadges objectAtIndex:0];
+        for (int k=0; k<40; k++) [userBadges addObject:test];
+        */
+        
+        [self setNumberOfBadges:[userBadges count]];
+        
+        int posX = 0;
+        int userBadgesCount;
+        
+        // setting the whole size of the scrollView
+        int scrollviewSize;
+        if ([userBadges count]%8 == 0) {
+            scrollviewSize = [userBadges count]/8;
+        } else {
+            scrollviewSize = [userBadges count]/8 + 1;
+        }
             
-            //AsynchronousImageView *imgView = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(0, 0, 60, 60)];
-            //[imgView loadImageFromURLString:[badge url] forFlat:nil];
+        // configure the scrollview
+        self.badgesScrollView.contentSize = CGSizeMake(self.badgesScrollView.frame.size.width * scrollviewSize, self.badgesScrollView.frame.size.height);
+        [self.badgesScrollView setPagingEnabled:YES];
+        [self.badgesScrollView setShowsHorizontalScrollIndicator:NO];
+        [self.badgesScrollView setBounces:NO];
+ 
+        // sets the scrollview page to the first
+        [badgesScrollView setContentOffset:CGPointMake(0, 0)];
+        
+        
+        for(int j=0; j<scrollviewSize; j++) {
+            posX += 12;
+            UIImageView *badgesBackground = [[UIImageView alloc]initWithFrame:CGRectMake(j*320, 0, 320, 132)];
+            [badgesBackground setImage:[UIImage imageNamed:@"badgesview"]];
+            [self.badgesScrollView addSubview:badgesBackground];
             
-            UIButton *btBadge = [UIButton buttonWithType:UIButtonTypeCustom];
-            [btBadge setBackgroundImage:image forState:UIControlStateNormal];
-            
-            if (i%2 == 0) {
-                btBadge.frame = CGRectMake(posX, 10, 60, 60);
+            // determine how often the second for-loop should iterate
+            if([userBadges count] > (j+1)*8 || [userBadges count]%8 == 0) {
+                userBadgesCount = 8;    
             } else {
-                btBadge.frame = CGRectMake(posX, 71, 60, 60);
-                posX += 76;
+                userBadgesCount = [userBadges count]%8;
             }
-            [btBadge addTarget:self action:@selector(showBadgeText:) forControlEvents:UIControlEventTouchUpInside];
-            [btBadge setTag: [userBadges indexOfObject:badge]];
-            [badgesView addSubview:btBadge];
+            
+            for (int i=0; i<userBadgesCount; i++) {
+                UserBadge *badge = [userBadges objectAtIndex:i+(j*8)];
+                /*NSURL *url = [NSURL URLWithString:[badge url]];
+                NSData *data = [NSData dataWithContentsOfURL:url];
+                UIImage *image = [[[UIImage alloc] initWithData:data] autorelease];
+                */
+                AsynchronousImageView *imgView = [[AsynchronousImageView alloc] initWithFrame:CGRectMake(0, 0, 70, 70)];
+                [imgView setShouldBeSaved:NO];
+                [imgView setOwnBgColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:0]];
+                [imgView loadImageFromURLString:[badge url] forFlat:nil];
+                
+                UIButton *btBadge = [UIButton buttonWithType:UIButtonTypeCustom];
+                [btBadge setBackgroundImage:[UIImage imageNamed:@"btBadge_selected.png"] forState:UIControlStateHighlighted];
+                
+                if (i%2 == 0) {
+                    btBadge.frame = CGRectMake(posX, 6, 70, 70);
+                    [imgView setCenter:btBadge.center];
+                } else {
+                    btBadge.frame = CGRectMake(posX, 66, 70, 70);
+                    [imgView setCenter:btBadge.center];
+                    posX += 76;
+                }
+                [btBadge addTarget:self action:@selector(showBadgeText:) forControlEvents:UIControlEventTouchUpInside];
+                [btBadge setTag: [userBadges indexOfObject:badge]];
+                [badgesScrollView bringSubviewToFront:btBadge];
+                [badgesScrollView addSubview:imgView];
+                [badgesScrollView addSubview:btBadge];
+            }
+            posX += 4;
+            [badgesBackground release];
         }
     }
 }
 
 - (void)showBadgeText:(id)sender {
-    NSArray *userBadges = [[[ImmopolyManager instance] user] badges];
+    
+    NSArray *userBadges = NULL;
+    
+    if (userIsNotMyself) {
+        userBadges = [[self otherUser]badges];
+    }else{
+       userBadges = [[[ImmopolyManager instance] user] badges];     
+    }
+
     NSString *badgeText = [[userBadges objectAtIndex:[sender tag]] text];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:badgeText delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
     [alert release]; 
-}
-
-- (void)stopSpinnerAnimation {
-    [spinner stopAnimating];
-    [spinner setHidden: YES];
 }
 
 - (void)viewDidUnload {
@@ -177,8 +247,7 @@
     self.labelBank = nil;
     self.labelMiete = nil;
     self.labelNumExposes = nil;
-    self.badgesView = nil;
-    self.spinner = nil;
+    self.badgesScrollView = nil;
     self.closeProfileButton = nil;
     self.tabBar = nil;
 }
@@ -197,15 +266,14 @@
     [labelBank release];
     [labelMiete release];
     [labelNumExposes release];
-    [badgesView release];
-    [spinner release];
+    [badgesScrollView release];
     [super dealloc];
 }
 
 -(void)notifyMyDelegateView{
     loading = NO;
-    [spinner stopAnimating];
-    [spinner setHidden: YES];
+    //[spinner stopAnimating];
+    //[spinner setHidden: YES];
     ImmopolyUser *myUser = [[ImmopolyManager instance] user];
     
     if(myUser != nil) {
@@ -213,18 +281,6 @@
         [self displayBadges:myUser];
     }
 }
-
-/*- (IBAction)update{
-    [spinner setHidden: NO];
-    if(!loading){
-        UserTask *task = [[[UserTask alloc] init] autorelease];
-        task.delegate = self;
-        loading = YES;
-        
-        [task refreshUser:[[ImmopolyManager instance]user].userName];
-        [spinner startAnimating];
-    }
-}*/
 
 - (void)setLabelTextsOfUser:(ImmopolyUser *)_user; {
     NSString *balance = [NSString stringWithFormat:@"%.2f €",[_user balance]];
@@ -240,8 +296,12 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     long long uid = [[defaults objectForKey:@"FBUserId"] longLongValue];
     if (uid>0) {
+        [userImage setHidden:NO];
+        
         NSString *urlString = [NSString stringWithFormat:@"https://graph.facebook.com/%qi/picture?type=large", uid];
         
+        [userImage setOwnBgColor:[UIColor whiteColor]];
+        [userImage setShouldBeSaved:YES];
         [userImage loadImageFromURLString:urlString forFlat:nil];
         userImage.contentMode = UIViewContentModeScaleAspectFit;
     }
@@ -251,6 +311,7 @@
     [self dismissModalViewControllerAnimated:YES];
     UIImage* image = [info objectForKey:UIImagePickerControllerOriginalImage];
     if (image != nil) {
+        [userImage setHidden:NO];
         [userImage setImage:image];
         userImage.contentMode = UIViewContentModeScaleAspectFit;
         
@@ -277,7 +338,8 @@
 -(void)notifyMyDelegateViewWithUser:(ImmopolyUser *)user{
     [self setLabelTextsOfUser:user];
     [self displayBadges:user];
-    [spinner setHidden:YES];
+    [self setOtherUser:user];
+    [super.spinner setHidden:YES];
     
 }
 
@@ -298,10 +360,11 @@
     [btHelperViewIn setCenter:posBt];
     
     // moving the spinner a bit more to the left
-    CGPoint posSpinner = spinner.center;
+    CGPoint posSpinner = super.spinner.center;
     posSpinner.x = 265.0f;
-    [spinner setCenter:posSpinner];
+    [super.spinner setCenter:posSpinner];
 }
 
+- (void)closeMyDelegateView {}
 
 @end

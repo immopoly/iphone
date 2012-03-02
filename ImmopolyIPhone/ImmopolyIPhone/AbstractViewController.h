@@ -25,6 +25,7 @@
     UIView *helperViewBubble;
     UIButton *btHelperViewIn;
     UIButton *linkButton;
+    UIActivityIndicatorView *spinner;
     
     BOOL viewIsVisible;
 }
@@ -37,11 +38,14 @@
 @property(nonatomic, retain) UIImageView *helperTextImage;
 @property(nonatomic, assign) BOOL viewIsVisible;
 @property(nonatomic, retain) UIButton *linkButton;
+@property(nonatomic, retain) UIActivityIndicatorView *spinner;
 
 - (void)initButton;
 - (void)initHelperViewWithMode:(int)_infoMode;
+- (void)initSpinner;
 - (void)helperViewIn;
 - (void)helperViewOut;
--(void)openImmopolyWeb;
+- (void)openImmopolyWeb;
+- (void)stopSpinnerAnimation;
 
 @end

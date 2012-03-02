@@ -36,7 +36,6 @@
 @synthesize adressLabel;
 @synthesize lbNumberOfRooms;
 @synthesize exposeWebViewController;
-@synthesize spinner;
 @synthesize btRecenterMap;
 @synthesize isBtHidden;
 @synthesize topBar;
@@ -69,7 +68,6 @@
 - (void)dealloc {
     [segmentedControl release];
     [loginCheck release];
-    [spinner release];
     [exposeWebViewController release];
     [super dealloc];
 }
@@ -109,7 +107,8 @@
     calloutBubble.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     
     [[self table] setHidden: YES];
-    [spinner startAnimating];
+    [super initSpinner];
+    [super.spinner startAnimating];
     [self setIsBtHidden:YES];
     
     [self.table setBackgroundColor:[UIColor clearColor]];
@@ -146,7 +145,6 @@
     self.lbFlatPrice = nil;
     self.lbNumberOfRooms = nil;
     self.lbLivingSpace = nil;
-    self.spinner = nil;
     self.topBar = nil;
     self.btRecenterMap = nil;
     
@@ -162,15 +160,10 @@
     [super viewDidAppear:animated];
 }
 
-- (void)stopSpinnerAnimation {
-    [spinner stopAnimating];
-    [spinner setHidden: YES];
-}
-
 - (void)performActionAfterLoginCheck {
     [table reloadData];
    
-    [self stopSpinnerAnimation];
+    [super stopSpinnerAnimation];
     [[self table] setHidden: NO];
     
     // do in background and only filter if no annotations are on the map
@@ -215,6 +208,7 @@
         [exposeWebViewController reloadData];
     }else{
         exposeWebViewController = [[WebViewController alloc] initWithNibName:@"WebView" bundle:[NSBundle mainBundle]];
+        exposeWebViewController.delegate = self;
     }
     [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
     exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
@@ -238,60 +232,85 @@
 }
 
 - (IBAction)showList {
+    [self showListWithAnimation:YES];
+}
+
+- (void)showListWithAnimation:(BOOL)_animated {
     [self calloutBubbleOut];
     
     [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_list.png"]];
     
-    CGPoint posMap;
-    CGPoint posTable;
-    CGPoint posImgShadowTop;
-    CGPoint posImgShadowBottom;
+    CGPoint posMap = portfolioMapView.center;
+    CGPoint posTable = table.center;
+    CGPoint posImgShadowTop = imgShadowTop.center;
+    CGPoint posImgShadowBottom = imgShadowBottom.center;
+    
     [btRecenterMap setHidden:YES];
     [self setIsBtHidden:YES];
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.4];
-    posMap = portfolioMapView.center;
-    posTable = table.center;
-    posImgShadowTop = imgShadowTop.center;
-    posImgShadowBottom = imgShadowBottom.center;
-    posMap.x = 480.0f;
-    posTable.x = 166.0f;
-    posImgShadowTop.x = 160.0f;
-    posImgShadowBottom.x = 160.0f;
-    portfolioMapView.center = posMap;
-    table.center = posTable;
-    imgShadowTop.center = posImgShadowTop;
-    imgShadowBottom.center = posImgShadowBottom; 
-    [UIView commitAnimations]; 
-
+    
+    if(_animated) {
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.4];
+        posMap.x = 480.0f;
+        posTable.x = 166.0f;
+        posImgShadowTop.x = 160.0f;
+        posImgShadowBottom.x = 160.0f;
+        portfolioMapView.center = posMap;
+        table.center = posTable;
+        imgShadowTop.center = posImgShadowTop;
+        imgShadowBottom.center = posImgShadowBottom; 
+        [UIView commitAnimations];     
+    } else {
+        posMap.x = 480.0f;
+        posTable.x = 166.0f;
+        posImgShadowTop.x = 160.0f;
+        posImgShadowBottom.x = 160.0f;
+        portfolioMapView.center = posMap;
+        table.center = posTable;
+        imgShadowTop.center = posImgShadowTop;
+        imgShadowBottom.center = posImgShadowBottom; 
+    }
 }
+
 - (IBAction)showMap {
+    [self showMapWithAnimation:YES];
+}
+
+- (void)showMapWithAnimation:(BOOL)_animated {
     
     [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_map.png"]];
      
-    CGPoint posMap;
-    CGPoint posTable;
-    CGPoint posImgShadowTop;
-    CGPoint posImgShadowBottom;
-    [btRecenterMap setHidden:NO];
-    [self setIsBtHidden:NO];
-    [UIView beginAnimations:nil context:NULL];
-    [UIView setAnimationDuration:0.4];
-    posMap = portfolioMapView.center;
-    posTable = table.center;
-    posImgShadowTop = imgShadowTop.center;
-    posImgShadowBottom = imgShadowBottom.center;
-    posMap.x = 160.0f;
-    posTable.x = -160.0f;
-    posImgShadowTop.x = -160.0f;
-    posImgShadowBottom.x = -160.0f;
-    portfolioMapView.center = posMap;
-    table.center = posTable;
-    imgShadowTop.center = posImgShadowTop;
-    imgShadowBottom.center = posImgShadowBottom;    
-    [UIView commitAnimations];
+    CGPoint posMap = portfolioMapView.center;
+    CGPoint posTable = table.center;
+    CGPoint posImgShadowTop = imgShadowTop.center;
+    CGPoint posImgShadowBottom = imgShadowBottom.center;
     
-    [self recenterMap];
+    if(_animated) {
+        [btRecenterMap setHidden:NO];
+        [self setIsBtHidden:NO];
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.4];
+        posMap.x = 160.0f;
+        posTable.x = -160.0f;
+        posImgShadowTop.x = -160.0f;
+        posImgShadowBottom.x = -160.0f;
+        portfolioMapView.center = posMap;
+        table.center = posTable;
+        imgShadowTop.center = posImgShadowTop;
+        imgShadowBottom.center = posImgShadowBottom;    
+        [UIView commitAnimations];
+        
+        [self recenterMap];
+    } else {
+        posMap.x = 160.0f;
+        posTable.x = -160.0f;
+        posImgShadowTop.x = -160.0f;
+        posImgShadowBottom.x = -160.0f;
+        portfolioMapView.center = posMap;
+        table.center = posTable;
+        imgShadowTop.center = posImgShadowTop;
+        imgShadowBottom.center = posImgShadowBottom;  
+    }
 }
 
 /* ========== MapView methods ========== */
@@ -740,8 +759,8 @@
 
 -(void)notifyMyDelegateView{
     loading = NO;
-    [spinner stopAnimating];
-    [spinner setHidden: YES];
+    [super.spinner stopAnimating];
+    [super.spinner setHidden: YES];
     
     [[self table]reloadData];
     [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]]; 
@@ -756,11 +775,13 @@
         Flat *tempFlat = [[selectedImmoScoutFlat flatsAtAnnotation] objectAtIndex:self.pageControl.currentPage-1];
         [self setSelectedExposeId:[tempFlat exposeId]];
         exposeWebViewController = [[WebViewController alloc]init];
+        exposeWebViewController.delegate = self;
         [exposeWebViewController setSelectedImmoscoutFlat:tempFlat];
     }
     else {
         [self setSelectedExposeId:[selectedImmoScoutFlat exposeId]];
         exposeWebViewController = [[WebViewController alloc]init];
+        exposeWebViewController.delegate = self;
         [exposeWebViewController setSelectedImmoscoutFlat:[self selectedImmoScoutFlat]];
     }
     exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
@@ -768,6 +789,19 @@
 }
 
 - (void)closeMyDelegateView {}
+
+- (void)showSelectedFlatOnMap:(Flat *)flat{
+    [self showMapWithAnimation:NO];
+    
+    // moving the view to the center where the selected flat is placed
+    CLLocationCoordinate2D zoomLocation = flat.coordinate;
+    MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.01*METERS_PER_MILE, 0.01*METERS_PER_MILE);
+    MKCoordinateRegion adjustedRegion = [portfolioMapView regionThatFits:viewRegion];                
+    [portfolioMapView setRegion:adjustedRegion animated:NO];   
+    
+    // see didSelectAnnotation if conditions
+    sameFlat = flat; 
+}
 
 
 @end

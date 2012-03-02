@@ -13,12 +13,13 @@
 #import "WebViewController.h"
 #import "AsynchronousImageView.h"
 #import "AbstractViewController.h"
+#import "PortfolioDelegate.h"
 
 #define METERS_PER_MILE 5000.00
 #define ANNO_WIDTH 40
 #define ANNO_HEIGHT 51
 
-@interface PortfolioViewController : AbstractViewController <UITableViewDataSource, UITableViewDelegate, UserDataDelegate, MKMapViewDelegate, UIPageViewControllerDelegate,NotifyViewDelegate> {
+@interface PortfolioViewController : AbstractViewController <UITableViewDataSource, UITableViewDelegate, UserDataDelegate, MKMapViewDelegate, UIPageViewControllerDelegate,NotifyViewDelegate,PortfolioDelegate> {
     IBOutlet UITableViewCell *tvCell;
     IBOutlet UITableView *table;
     IBOutlet UILabel *adressLabel;
@@ -28,7 +29,6 @@
     IBOutlet UILabel *lbNumberOfRooms;
     IBOutlet UILabel *lbLivingSpace;
     IBOutlet AsynchronousImageView *asyncImageView;
-    IBOutlet UIActivityIndicatorView *spinner;
     IBOutlet UIImageView *topBar;
     IBOutlet UIButton *btRecenterMap;    
     IBOutlet UIScrollView *scrollView;
@@ -92,7 +92,6 @@
 @property(nonatomic, retain) IBOutlet UIButton *btRecenterMap;
 @property(nonatomic, assign) bool isBtHidden;
 @property(nonatomic, retain) IBOutlet UIImageView *topBar;
-@property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, assign) float iphoneScaleFactorLatitude;
 @property(nonatomic, assign) float iphoneScaleFactorLongitude;
 @property(nonatomic, retain) MKAnnotationView *selViewForHouseImage;
@@ -113,9 +112,10 @@
 - (void)recenterMap;
 - (void)calloutBubbleIn;
 - (IBAction)showAllFlats;
-- (void)stopSpinnerAnimation;
 - (IBAction)showList;
+- (void)showListWithAnimation:(BOOL)_animated;
 - (IBAction)showMap;
+- (void)showMapWithAnimation:(BOOL)_animated;
 - (IBAction)closeBubble;
 
 - (void)setAnnotationImageAtAnnotation:(Flat *)_flat;

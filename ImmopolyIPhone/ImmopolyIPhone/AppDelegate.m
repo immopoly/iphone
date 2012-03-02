@@ -279,7 +279,6 @@
         [[self tabBarController]centerClicked];
         [[ImmopolyManager instance]setLoginSuccessful:NO];
         [[[[ImmopolyManager instance]user]history]removeAllObjects];
-        //[[[[ImmopolyManager instance]user]portfolio]removeAllObjects];
         [[self.tabBarController.viewControllers objectAtIndex:1]dismissModalViewControllerAnimated:NO];
         [[self.tabBarController.viewControllers objectAtIndex:2]dismissModalViewControllerAnimated:NO];
         ((HistoryViewController *) [[[self tabBarController]viewControllers]objectAtIndex:3]).loadingHistoryEntriesStart=10;
@@ -291,13 +290,11 @@
             MKMapView *mapView = [[[[self tabBarController]viewControllers]objectAtIndex:1] portfolioMapView];
             [mapView removeAnnotations:mapView.annotations];
         }        
+        [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"image"];
+        
     }else{
         [[ImmopolyManager instance]setWillComeBack:NO];
     }
-    
-}
-
-- (void)applicationWillEnterForeground:(UIApplication *)application {
     
 }
 
@@ -330,6 +327,21 @@
     }   
     //[self.view removeFromSuperview];
     
+}
+
+- (void)applicationWillEnterForeground:(UIApplication *)application{
+    BOOL shouldLogout = [[NSUserDefaults standardUserDefaults] boolForKey:@"facebook_logout"];
+    //delete User Profile Pic
+    if(shouldLogout){
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"FBUserId"]; 
+        [[NSUserDefaults standardUserDefaults] removeObjectForKey:@"facebook-image"]; 
+        
+        UIViewController *vc = [[[self tabBarController]viewControllers]objectAtIndex:0];
+        if ([vc isKindOfClass:[UserProfileViewController class]]) {
+            [[[[[self tabBarController]viewControllers]objectAtIndex:0] userImage]reset];
+            [[[[[self tabBarController]viewControllers]objectAtIndex:0] userImage]setHidden:YES];
+        }        
+    }
 }
 
 - (void)applicationDidBecomeActive:(UIApplication *)application {
