@@ -21,7 +21,6 @@
 #import "LoginCheck.h"
 #import "AbstractViewController.h"
 
-
 //HACK FOR 4.3
 /*
 @implementation CLLocationManager (TemporaryHack)
@@ -245,25 +244,43 @@
 // method for converting lat and long from location to user friendly address
 - (void)geocodeLocation:(CLLocation *)_location {
     
-    if (!geocoder){    
-        geocoder = [[CLGeocoder alloc] init];
-    }
-    
-    [geocoder reverseGeocodeLocation:_location completionHandler:
-     //block object
-     ^(NSArray* placemarks, NSError* error){
-         
-         // TODO: check for error
-         
-         if ([placemarks count] > 0){
-             CLPlacemark *placemark = [placemarks lastObject];
-             NSLog(@"Your current location is %@",[placemark name]);
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.2) {
+        if (!geocoder){    
+            geocoder = [[CLGeocoder alloc] init];
+        }
+        
+        [geocoder reverseGeocodeLocation:_location completionHandler:
+         //block object
+         ^(NSArray* placemarks, NSError* error){
              
-             // change label in mapviewcontroller
-             [[ImmopolyManager instance].delegate setAdressLabelText:[placemark name]];
-         }
-     }];
+             // TODO: check for error
+             
+             if ([placemarks count] > 0){
+                 CLPlacemark *placemark = [placemarks lastObject];
+                 NSLog(@"Your current location is %@",[placemark name]);
+                 
+                 // change label in mapviewcontroller
+                 [[ImmopolyManager instance].delegate setAdressLabelText:[placemark name]];
+             }
+         }];
+    } else {
+        MKReverseGeocoder* theGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:_location.coordinate];
+        theGeocoder.delegate = self;
+        [theGeocoder start]; 
+        
+    }    
 }
+
+
+- (void)reverseGeocoder:(MKReverseGeocoder*)geocoder didFindPlacemark:(MKPlacemark*)placemark {
+    // change label in mapviewcontroller
+    [[ImmopolyManager instance].delegate setAdressLabelText:[placemark locality]];
+}
+
+- (void)reverseGeocoder:(MKReverseGeocoder*)geocoder didFailWithError:(NSError*)error {
+    NSLog(@"Could not retrieve the specified place information.\n");
+}
+ 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
