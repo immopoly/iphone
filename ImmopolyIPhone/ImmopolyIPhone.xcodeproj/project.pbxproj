@@ -115,6 +115,7 @@
 		6DE29991148A6F5A00FD7CCA /* topshadow_portfolio_list.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DE2998B148A6F5A00FD7CCA /* topshadow_portfolio_list.png */; };
 		D21EDC8F14C895CB006EA134 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = D21EDC8E14C895CB006EA134 /* Default.png */; };
 		D22F594C14793BEB008918A9 /* Settings.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D22F594B14793BEB008918A9 /* Settings.bundle */; };
+		D238B25D151F65AE0022F281 /* ActionItem.m in Sources */ = {isa = PBXBuildFile; fileRef = D238B25C151F65AE0022F281 /* ActionItem.m */; };
 		D247150D14BDE52A003AB5CA /* webview_share_active.png in Resources */ = {isa = PBXBuildFile; fileRef = D247150C14BDE52A003AB5CA /* webview_share_active.png */; };
 		D247151014BDE7F5003AB5CA /* Icon_share_back.png in Resources */ = {isa = PBXBuildFile; fileRef = D247150F14BDE7F5003AB5CA /* Icon_share_back.png */; };
 		D24E7641145834DA003C91A8 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D24E7640145834DA003C91A8 /* UIKit.framework */; };
@@ -400,6 +401,8 @@
 		6DE2998B148A6F5A00FD7CCA /* topshadow_portfolio_list.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = topshadow_portfolio_list.png; sourceTree = "<group>"; };
 		D21EDC8E14C895CB006EA134 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		D22F594B14793BEB008918A9 /* Settings.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = Settings.bundle; sourceTree = "<group>"; };
+		D238B25B151F65AE0022F281 /* ActionItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionItem.h; sourceTree = "<group>"; };
+		D238B25C151F65AE0022F281 /* ActionItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionItem.m; sourceTree = "<group>"; };
 		D247150C14BDE52A003AB5CA /* webview_share_active.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = webview_share_active.png; sourceTree = "<group>"; };
 		D247150F14BDE7F5003AB5CA /* Icon_share_back.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Icon_share_back.png; sourceTree = "<group>"; };
 		D24E763C145834DA003C91A8 /* Immopoly.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Immopoly.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1034,6 +1037,8 @@
 				D2C67D4B145AA57A008C3295 /* ImmopolyUser.m */,
 				D2A09C7D145EFC5D002646A1 /* HistoryEntry.h */,
 				D2A09C7E145EFC5D002646A1 /* HistoryEntry.m */,
+				D238B25B151F65AE0022F281 /* ActionItem.h */,
+				D238B25C151F65AE0022F281 /* ActionItem.m */,
 			);
 			name = ModelClasses;
 			sourceTree = "<group>";
@@ -1432,6 +1437,7 @@
 				D2B02D2414B8AA3E00985E3C /* PortfolioTask.m in Sources */,
 				D2B02D2614B8AA4700985E3C /* UserTask.m in Sources */,
 				6DCEA02314C329FE0032A89C /* FeedbackViewController.m in Sources */,
+				D238B25D151F65AE0022F281 /* ActionItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
