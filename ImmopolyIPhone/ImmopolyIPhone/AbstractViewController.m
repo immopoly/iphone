@@ -193,6 +193,7 @@
         
         [self setViewIsVisible:YES];
         [btHelperViewIn setEnabled:NO];
+        [self.view bringSubviewToFront:helperView];
     }
 }
 

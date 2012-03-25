@@ -244,7 +244,7 @@
 // method for converting lat and long from location to user friendly address
 - (void)geocodeLocation:(CLLocation *)_location {
     
-    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 5.2) {
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0")){
         if (!geocoder){    
             geocoder = [[CLGeocoder alloc] init];
         }

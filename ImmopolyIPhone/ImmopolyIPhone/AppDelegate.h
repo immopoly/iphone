@@ -12,6 +12,7 @@
 #import "CustomTabBarController.h"
 #import "LoginCheck.h"
 
+
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate, CoreLocationControllerDelegate, UITabBarControllerDelegate, UserDataDelegate, LoginDelegate, NotifyViewDelegate> {
     
     // for getting phone coordinates

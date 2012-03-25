@@ -1510,7 +1510,7 @@
 					"../libOAuth/include__OFF/**",
 				);
 				INFOPLIST_FILE = "ImmopolyIPhone/ImmopolyIPhone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../libasi-http-request\"",
@@ -1538,7 +1538,7 @@
 					"../libOAuth/include__OFF/**",
 				);
 				INFOPLIST_FILE = "ImmopolyIPhone/ImmopolyIPhone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../libasi-http-request\"",
