@@ -274,7 +274,9 @@
 
 - (void)reverseGeocoder:(MKReverseGeocoder*)geocoder didFindPlacemark:(MKPlacemark*)placemark {
     // change label in mapviewcontroller
-    [[ImmopolyManager instance].delegate setAdressLabelText:[placemark locality]];
+    NSString *street = [placemark.addressDictionary valueForKey:@"Street"];
+    NSLog(@"Your current location is %@",street);
+    [[ImmopolyManager instance].delegate setAdressLabelText:street];
 }
 
 - (void)reverseGeocoder:(MKReverseGeocoder*)geocoder didFailWithError:(NSError*)error {
