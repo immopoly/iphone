@@ -9,5 +9,11 @@
 #import "ActionItem.h"
 
 @implementation ActionItem
+@synthesize amount;
+@synthesize text;
+@synthesize time;
+@synthesize userId;
+@synthesize type;
+@synthesize url;
 
 @end

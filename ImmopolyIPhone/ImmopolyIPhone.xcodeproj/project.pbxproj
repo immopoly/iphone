@@ -131,6 +131,9 @@
 		D24E766F1458362E003C91A8 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D24E766E1458362E003C91A8 /* libz.dylib */; };
 		D2527509145C424200627725 /* PortfolioViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2527507145C424200627725 /* PortfolioViewController.m */; };
 		D252750A145C424200627725 /* PortfolioViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2527508145C424200627725 /* PortfolioViewController.xib */; };
+		D273BF05152395CC0012A347 /* ActionItemManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D273BF04152395CC0012A347 /* ActionItemManager.m */; };
+		D273BF0A152399C60012A347 /* SpionAction.m in Sources */ = {isa = PBXBuildFile; fileRef = D273BF09152399C60012A347 /* SpionAction.m */; };
+		D273BF0D15239A6E0012A347 /* ActionItemButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D273BF0C15239A6E0012A347 /* ActionItemButton.m */; };
 		D279C95814BB06F60018A1C4 /* tabbar_center_icon_pressed.png in Resources */ = {isa = PBXBuildFile; fileRef = D279C95514BB06F60018A1C4 /* tabbar_center_icon_pressed.png */; };
 		D279C95914BB06F60018A1C4 /* tabbar_center_icon_pressed@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D279C95614BB06F60018A1C4 /* tabbar_center_icon_pressed@2x.png */; };
 		D28E075E145B195D003D83D8 /* WebViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D28E075D145B195D003D83D8 /* WebViewController.m */; };
@@ -424,6 +427,13 @@
 		D2527506145C424200627725 /* PortfolioViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PortfolioViewController.h; sourceTree = "<group>"; };
 		D2527507145C424200627725 /* PortfolioViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortfolioViewController.m; sourceTree = "<group>"; };
 		D2527508145C424200627725 /* PortfolioViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PortfolioViewController.xib; sourceTree = "<group>"; };
+		D273BF03152395CC0012A347 /* ActionItemManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionItemManager.h; sourceTree = "<group>"; };
+		D273BF04152395CC0012A347 /* ActionItemManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionItemManager.m; sourceTree = "<group>"; };
+		D273BF08152399C60012A347 /* SpionAction.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SpionAction.h; sourceTree = "<group>"; };
+		D273BF09152399C60012A347 /* SpionAction.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SpionAction.m; sourceTree = "<group>"; };
+		D273BF0B15239A6D0012A347 /* ActionItemButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionItemButton.h; sourceTree = "<group>"; };
+		D273BF0C15239A6E0012A347 /* ActionItemButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActionItemButton.m; sourceTree = "<group>"; };
+		D273BF111523A0360012A347 /* ActionItemDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActionItemDelegate.h; sourceTree = "<group>"; };
 		D279C95514BB06F60018A1C4 /* tabbar_center_icon_pressed.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_center_icon_pressed.png; sourceTree = "<group>"; };
 		D279C95614BB06F60018A1C4 /* tabbar_center_icon_pressed@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_center_icon_pressed@2x.png"; sourceTree = "<group>"; };
 		D28E075C145B195D003D83D8 /* WebViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WebViewController.h; sourceTree = "<group>"; };
@@ -908,6 +918,7 @@
 		D26633C4145ECD820082875F /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
+				D273BF07152397C80012A347 /* UserActions */,
 				D2C67D41145AA565008C3295 /* FlatProvider.h */,
 				D2C67D42145AA565008C3295 /* FlatProvider.m */,
 				D2C67D3D145AA565008C3295 /* UserLoginTask.h */,
@@ -928,6 +939,15 @@
 				D2B02D1714B895F700985E3C /* UserTask.m */,
 			);
 			name = Tasks;
+			sourceTree = "<group>";
+		};
+		D273BF07152397C80012A347 /* UserActions */ = {
+			isa = PBXGroup;
+			children = (
+				D273BF08152399C60012A347 /* SpionAction.h */,
+				D273BF09152399C60012A347 /* SpionAction.m */,
+			);
+			name = UserActions;
 			sourceTree = "<group>";
 		};
 		D2A785E714841AF400783603 /* History */ = {
@@ -981,6 +1001,8 @@
 		D2B12BA0145E98B000AFB625 /* Widgets */ = {
 			isa = PBXGroup;
 			children = (
+				D273BF0B15239A6D0012A347 /* ActionItemButton.h */,
+				D273BF0C15239A6E0012A347 /* ActionItemButton.m */,
 				D2C139BC149CE1DB0068B6DC /* CustomTabBarController.h */,
 				D2C139BD149CE1DB0068B6DC /* CustomTabBarController.m */,
 				6DBCBDCB146B229400545897 /* HistoryCell.xib */,
@@ -1022,6 +1044,7 @@
 				D2BAA088148BA95900F3DD87 /* HistoryDelegate.h */,
 				4CDF1B81149E475200E735DB /* ResetPasswordDelegate.h */,
 				D2C48BE314E1267D00BC2A41 /* PortfolioDelegate.h */,
+				D273BF111523A0360012A347 /* ActionItemDelegate.h */,
 			);
 			name = Protocols;
 			sourceTree = "<group>";
@@ -1066,6 +1089,8 @@
 				D2F05B5D149396CE00BE171C /* Constants.m */,
 				D2F05B601493A56700BE171C /* Secrets.h */,
 				D2F05B611493A56700BE171C /* Secrets.m */,
+				D273BF03152395CC0012A347 /* ActionItemManager.h */,
+				D273BF04152395CC0012A347 /* ActionItemManager.m */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -1438,6 +1463,9 @@
 				D2B02D2614B8AA4700985E3C /* UserTask.m in Sources */,
 				6DCEA02314C329FE0032A89C /* FeedbackViewController.m in Sources */,
 				D238B25D151F65AE0022F281 /* ActionItem.m in Sources */,
+				D273BF05152395CC0012A347 /* ActionItemManager.m in Sources */,
+				D273BF0A152399C60012A347 /* SpionAction.m in Sources */,
+				D273BF0D15239A6E0012A347 /* ActionItemButton.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

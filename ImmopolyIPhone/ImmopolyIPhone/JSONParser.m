@@ -13,6 +13,8 @@
 #import "ImmopolyManager.h"
 #import "HistoryEntry.h"
 #import "UserBadge.h"
+#import "ActionItem.h"
+#import "AppDelegate.h"
 
 @implementation JSONParser
 
@@ -145,6 +147,20 @@
             [userBadge release];
         }
         
+        //parse ActionItems data
+        NSArray *actionItems = [info objectForKey:@"actionItemList"];
+        for (NSDictionary *listElement in actionItems) {
+            NSDictionary *listEntry = [listElement objectForKey:@"ActionItem"];
+            
+            ActionItem *item = [[ActionItem alloc]init];
+            [item setAmount:[[listEntry objectForKey: @"amount"]intValue]];
+            [item setText: [listEntry objectForKey: @"text"]];
+            [item setTime:[[listEntry objectForKey: @"time"]longLongValue]];
+            [item setUserId:[[listEntry objectForKey: @"userId"]intValue]];
+            [item setUrl: [listEntry objectForKey: @"url"]];
+            [item setType:[[listEntry objectForKey: @"type"]intValue]];
+        }
+        
         //parse data for user portfolio
         NSDictionary *locationDict = [info objectForKey:@"resultlist.resultlist"];
         
@@ -182,6 +198,10 @@
             [myFlat release];
         }
     }
+    
+    
+    AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+    [[delegate actionItemManager]placeActionItems];
     
     return myUser;
 }

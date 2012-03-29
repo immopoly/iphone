@@ -21,6 +21,7 @@
 @synthesize badges;
 @synthesize numExposes;
 @synthesize maxExposes;
+@synthesize actionItems;
 
 
 - (id)init
@@ -30,9 +31,20 @@
         portfolio = [[NSMutableArray alloc]init];
         history = [[NSMutableArray alloc]init];
         badges = [[NSMutableArray alloc]init];
+        actionItems = [[NSMutableArray alloc]init]; 
     }
     
     return self;
+}
+
+-(void)dealloc {
+    [portfolio release];
+    [history release];
+    [badges release];
+    [actionItems release];
+    [userName release];
+    [userToken release];
+    [email release];
 }
 
 @end
