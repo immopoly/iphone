@@ -52,6 +52,7 @@
 @synthesize selectedViewController;
 @synthesize actualisationSpinner;
 @synthesize isLocationUpdated;
+@synthesize actionItemManager;
 
 - (void)dealloc
 {

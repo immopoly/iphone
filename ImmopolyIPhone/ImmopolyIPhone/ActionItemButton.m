@@ -7,13 +7,21 @@
 //
 
 #import "ActionItemButton.h"
+#import "AsynchronousImageView.h"
 
 @implementation ActionItemButton
 @synthesize item;
 
-- (id)init:(ActionItem *)_item{
+- (id)initWithActionItem:(ActionItem *)_item{
     self = [super init];
-    self.item = item;
+    self.item = _item;
+    
+    AsynchronousImageView *image = [[AsynchronousImageView alloc]init];
+    [image loadImageFromURLString:[item url] forFlat:nil];
+    
+    [self setBackgroundImage:[image image] forState:UIControlStateNormal];
+    [image autorelease];
+    
     return self;
 }
 

@@ -7,6 +7,8 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ActionItem.h"
+
 #define INFO_IMMOPOLY 0
 #define INFO_MAP 1
 #define INFO_PORTFOLIO 2
@@ -26,6 +28,7 @@
     UIButton *btHelperViewIn;
     UIButton *linkButton;
     UIActivityIndicatorView *spinner;
+    ActionItem *selectedActionItem;
     
     BOOL viewIsVisible;
 }
@@ -39,6 +42,7 @@
 @property(nonatomic, assign) BOOL viewIsVisible;
 @property(nonatomic, retain) UIButton *linkButton;
 @property(nonatomic, retain) UIActivityIndicatorView *spinner;
+@property(nonatomic, retain) ActionItem *selectedActionItem;
 
 - (void)initButton;
 - (void)initHelperViewWithMode:(int)_infoMode;
@@ -47,5 +51,6 @@
 - (void)helperViewOut;
 - (void)openImmopolyWeb;
 - (void)stopSpinnerAnimation;
+- (IBAction)performUserAction:(id)sender;
 
 @end
