@@ -22,7 +22,7 @@
 #import "AbstractViewController.h"
 
 //HACK FOR 4.3
-/*
+
 @implementation CLLocationManager (TemporaryHack)
 
 - (void)hackLocationFix
@@ -38,7 +38,7 @@
 
 @end
 //STOP HACK FOR 4.3
-*/
+
 
 @implementation AppDelegate
 
@@ -59,6 +59,7 @@
     [_tabBarController release];
     [CLController release];
     [selectedViewController release];
+    [actionItemManager release];
     [super dealloc];
 }
 
@@ -149,6 +150,8 @@
     sleep(3);
     
     [[self.tabBarController button] setBackgroundImage:[UIImage imageNamed:@"tabbar_center_icon_blue.png"] forState:UIControlStateNormal];
+    
+    actionItemManager = [[ActionItemManager alloc]init];
     
     return YES;
 }
