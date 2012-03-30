@@ -13,6 +13,8 @@
     ActionItem *item;
 }
 
+- (id)initWithActionItem:(ActionItem *)_item;
+
 @property(nonatomic,retain)ActionItem *item;
 
 @end

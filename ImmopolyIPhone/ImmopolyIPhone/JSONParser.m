@@ -159,6 +159,9 @@
             [item setUserId:[[listEntry objectForKey: @"userId"]intValue]];
             [item setUrl: [listEntry objectForKey: @"url"]];
             [item setType:[[listEntry objectForKey: @"type"]intValue]];
+            
+            [[myUser actionItems]addObject:item];
+            [item release];
         }
         
         //parse data for user portfolio
@@ -198,10 +201,6 @@
             [myFlat release];
         }
     }
-    
-    
-    AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
-    [[delegate actionItemManager]placeActionItems];
     
     return myUser;
 }

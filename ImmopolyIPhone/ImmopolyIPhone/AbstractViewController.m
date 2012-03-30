@@ -9,6 +9,8 @@
 #import "AbstractViewController.h"
 #import "Constants.h"
 #import "ImmopolyManager.h"
+#import "AppDelegate.h"
+#import "ActionItemButton.h"
 
 @implementation AbstractViewController
 
@@ -21,6 +23,7 @@
 @synthesize viewIsVisible; 
 @synthesize linkButton;
 @synthesize spinner;
+@synthesize selectedActionItem;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -218,6 +221,53 @@
 - (void)stopSpinnerAnimation {
     [spinner stopAnimating];
     [spinner setHidden: YES];
+}
+
+- (IBAction)performUserAction:(id)sender{
+    ActionItem *item = [(ActionItemButton *)sender item];
+    
+    [self setSelectedActionItem:item];
+    
+    NSString *alertString = [[NSString alloc]initWithFormat:@"%@. Möchtest du die Aktion ausführen?",[item text]];
+    
+    
+    UIAlertView *alert = [[UIAlertView alloc]initWithTitle:@"Aktion ausführen" message:alertString delegate:self cancelButtonTitle:@"Nein" otherButtonTitles:@"Ja", nil];
+
+    
+    [alert show];
+    [alert release];
+    
+    [alertString release];
+    
+}
+
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
+    
+    
+    
+    if([title isEqualToString:@"Ja"])
+    {
+        AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+        ActionItem *item = [self selectedActionItem];
+        
+        if ([item amount] > 0) {
+            [item setAmount:[item amount] -1];
+            [[delegate actionItemManager]setCurrentItem:item];
+            [[delegate actionItemManager]useCurrentActionItem];
+        }
+        
+        UIButton *sender = (UIButton *)[self.view viewWithTag:[item type]];
+
+        
+        if ([item amount] == 0) {
+            [sender removeFromSuperview];
+        }
+    }else if([title isEqualToString:@"Nein"]){
+        
+    }
+    
 }
 
 @end

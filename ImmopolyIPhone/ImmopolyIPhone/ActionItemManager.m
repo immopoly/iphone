@@ -10,6 +10,10 @@
 #import "Constants.h"
 #import "SpionAction.h"
 #import "ImmopolyManager.h"
+#import "AppDelegate.h"
+#import "ImmopolyMapViewController.h"
+#import "ActionItemButton.h"
+#import "SpionAction.h"
 
 @implementation ActionItemManager
 @synthesize currentItem;
@@ -28,11 +32,11 @@
 
 -(void)executeSpionAction{
     for (ActionItem *item in [[[ImmopolyManager instance]user]actionItems]) {
-        if ([item type] == ACTION_ITEM_SPION && [item amount]>0) {
-            [item setAmount:([item amount]-1)];
+        if ([item type] == ACTION_ITEM_SPION ) {
+            
             SpionAction *action = [[SpionAction alloc]init];
             action.delegate = self;
-            [action executeAction:[[[ImmopolyManager instance]user]portfolio]];
+            [action executeAction:[[ImmopolyManager instance]immoScoutFlats]];
             
             break;
         }
@@ -45,15 +49,26 @@
         alert = [[UIAlertView alloc]initWithTitle:@"Aktion erfolgreich ausgeführt" message:[currentItem text] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
     }
-    
 }
 
 -(void)placeActionItems{
     for (ActionItem *item in [[[ImmopolyManager instance]user]actionItems]) {
+        AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+        ImmopolyMapViewController *mapVC = NULL;
+        ActionItemButton *button = NULL;
         switch ([item type]) {
             case ACTION_ITEM_SPION:
                 //place item on map
+                mapVC = [[[delegate tabBarController]viewControllers]objectAtIndex:2];
+
+                button = [[ActionItemButton alloc]initWithActionItem:item];
+                [button setTag:[item type]];
+                [button addTarget:mapVC action:@selector(performUserAction:) forControlEvents:UIControlEventTouchUpInside];
+                [button setFrame:CGRectMake(200, 290, 50, 50)];
+                [[mapVC view]addSubview:button];
+                [[mapVC view]bringSubviewToFront:button];
                 
+                [button autorelease];
                 break;
                 
             default:
