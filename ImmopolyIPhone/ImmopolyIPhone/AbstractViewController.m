@@ -45,6 +45,7 @@
     [self.btHelperViewIn release];
     [self.linkButton release]; 
     [self.spinner release];
+    [[self selectedActionItem]release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -246,7 +247,6 @@
     NSString *title = [alertView buttonTitleAtIndex:buttonIndex];
     
     
-    
     if([title isEqualToString:@"Ja"])
     {
         AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
@@ -265,7 +265,7 @@
             [sender removeFromSuperview];
         }
     }else if([title isEqualToString:@"Nein"]){
-        
+        [self setSelectedActionItem:NULL];
     }
     
 }

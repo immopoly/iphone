@@ -77,8 +77,7 @@
     NSMutableArray *freeExposeIds = [jsonString JSONValue];
     NSMutableArray *freeExposes = [[NSMutableArray alloc]init];
     
-    //Delete other flats from portfolio
-    
+    //Create Array with free flats
     for (Flat *object in [[ImmopolyManager instance]immoScoutFlats]) {
         if ([freeExposeIds containsObject:[NSNumber numberWithInt:[object exposeId]]]) {
             [freeExposes addObject:object];
