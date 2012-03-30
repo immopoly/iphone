@@ -161,14 +161,55 @@
 }
 
 - (void)displayCurrentLocation {
-    CLLocationCoordinate2D zoomLocation = [[[ImmopolyManager instance]actLocation]coordinate];
+    /*CLLocationCoordinate2D zoomLocation = [[[ImmopolyManager instance]actLocation]coordinate];
     
     MKCoordinateRegion viewRegion = MKCoordinateRegionMakeWithDistance(zoomLocation, 0.3*METERS_PER_MILE, 0.3*METERS_PER_MILE);
     MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];                
-    [mapView setRegion:adjustedRegion animated:YES]; 
+    [mapView setRegion:adjustedRegion animated:YES]; */
+    
+    [self recenterMap];
 }
 
-- (void) displayFlatsOnMap {
+- (void)recenterMap {
+    NSMutableArray *annotations = [[ImmopolyManager instance] immoScoutFlats];
+    
+    if([annotations count] > 0) {
+        CLLocationCoordinate2D maxCoord = {-90.0f, -180.0f};        
+        CLLocationCoordinate2D minCoord = {90.0f, 180.0f};
+        
+        for(Flat *flat in annotations) {
+            
+            CLLocationCoordinate2D coord = [flat coordinate];            
+            
+            if(coord.longitude > maxCoord.longitude) {
+                maxCoord.longitude = coord.longitude;
+            }
+            
+            if(coord.latitude > maxCoord.latitude) {                
+                maxCoord.latitude = coord.latitude;
+            }
+            
+            if(coord.longitude < minCoord.longitude) {
+                minCoord.longitude = coord.longitude;
+            }
+            
+            if(coord.latitude < minCoord.latitude) {
+                minCoord.latitude = coord.latitude;
+            }
+        }
+        
+        MKCoordinateRegion region = {{0.0f, 0.0f}, {0.0f, 0.0f}};
+        region.center.longitude = (minCoord.longitude + maxCoord.longitude) / 2.0;
+        region.center.latitude = (minCoord.latitude + maxCoord.latitude) / 2.0;        
+        region.span.longitudeDelta = maxCoord.longitude - minCoord.longitude;        
+        region.span.latitudeDelta = maxCoord.latitude - minCoord.latitude;
+        
+        
+        [self.mapView setRegion:region animated:YES];
+    }
+}
+
+- (void)displayFlatsOnMap {
     [super stopSpinnerAnimation];
     
     // removing all existing annotations

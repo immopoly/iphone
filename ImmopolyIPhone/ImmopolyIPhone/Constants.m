@@ -58,4 +58,5 @@ NSString* const errorTokenNotFound = @"Automatischer Login ist fehlgeschlagen. B
 
 NSString* const feedbackMailSubject = @"Benutzerfeedback";
 
+int const SEARCH_RADII[3] = {3, 5, 10}; //in km
 @end

@@ -41,6 +41,7 @@
 }
 
 - (void)callFlatsDelegate {
+    [delegate displayCurrentLocation];
     [delegate displayFlatsOnMap];
 }
 

@@ -387,7 +387,7 @@
         [provider getFlatsFromLocation:[_location coordinate]];
     
         [[ImmopolyManager instance]setActLocation:_location];
-        [[ImmopolyManager instance].delegate displayCurrentLocation];
+        //[[ImmopolyManager instance].delegate displayCurrentLocation];
             
         [CLController.locationManager stopUpdatingLocation];
         
