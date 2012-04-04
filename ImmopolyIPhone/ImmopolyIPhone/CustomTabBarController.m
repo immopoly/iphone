@@ -31,6 +31,17 @@
 @implementation CustomTabBarController
 @synthesize button;
 
+- (id)init {
+    self = [super init];
+    
+    if(self != nil){
+        // Create new instance of locMg
+        [self setBackgroundImage:[UIImage imageNamed:@"tabbar_bg.png"]];
+    }
+    
+    return self;
+}
+
 // Create a view controller and setup it's tab bar item with a title and image
 -(UIViewController*) viewControllerWithTabTitle:(NSString*) title image:(UIImage*)image
 {
@@ -62,6 +73,10 @@
   [button addTarget:self action:@selector(centerClicked) forControlEvents:UIControlEventTouchUpInside];
   
   [self.view addSubview:button];
+    
+  [self setBackgroundImage:[UIImage imageNamed:@"tabbar_bg.png"]];
+    
+    
 }
 
 
@@ -76,6 +91,37 @@
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
 {
   return NO;
+}
+
+- (void) setBackgroundImage:(UIImage *)i {
+    // UIImageView *imageView = [[UIImageView alloc] initWithFrame:CGRectMake(0,0,320,480)];
+    //imageView.backgroundColor = [UIColor colorWithPatternImage:i];  
+    //[[self view] addSubview:imageView];
+    //[[self view] sendSubviewToBack:imageView];
+    //[[self view] setOpaque:NO];
+    //[[self view] setBackgroundColor:[UIColor clearColor]];
+    //[imageView release];
+    
+    UITabBar *tabBar = [self tabBar];
+    if ([tabBar respondsToSelector:@selector(setBackgroundImage:)])
+    {
+        // ios 5 code here
+        [tabBar setBackgroundImage:i];
+        
+    }
+    else
+    {
+        // ios 4 code here
+        
+        CGRect frame = CGRectMake(0, 0, 480, 49);
+        UIView *tabbg_view = [[UIView alloc] initWithFrame:frame];
+        UIImage *tabbag_image = i;
+        UIColor *tabbg_color = [[UIColor alloc] initWithPatternImage:tabbag_image];
+        tabbg_view.backgroundColor = tabbg_color;
+        [tabBar insertSubview:tabbg_view atIndex:0];
+        
+    }
+    
 }
 
 @end

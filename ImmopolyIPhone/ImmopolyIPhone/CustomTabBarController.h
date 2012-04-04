@@ -40,4 +40,6 @@
 
 -(void) centerClicked;
 
+- (void) setBackgroundImage:(UIImage *)i;
+
 @end
