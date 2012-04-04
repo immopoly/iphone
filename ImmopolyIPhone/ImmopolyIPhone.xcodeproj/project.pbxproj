@@ -42,6 +42,8 @@
 		6D943A7E14AF7AC900414539 /* user_image_border.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D943A7814AF7AC900414539 /* user_image_border.png */; };
 		6D943A7F14AF7AC900414539 /* User_image_default.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D943A7914AF7AC900414539 /* User_image_default.png */; };
 		6D9949D514928B1A00AD2307 /* bt_show_all.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D9949D414928B1A00AD2307 /* bt_show_all.png */; };
+		6DA36C92152633C700F04939 /* ScrollViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA36C91152633C700F04939 /* ScrollViewItem.m */; };
+		6DA36C9515286D3700F04939 /* tabbar_other_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA36C9415286D3700F04939 /* tabbar_other_user.png */; };
 		6DA3F641149CDA5C00ED9BBB /* register_ok_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA3F640149CDA5C00ED9BBB /* register_ok_button.png */; };
 		6DA3F643149CDA6500ED9BBB /* register_cancel_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA3F642149CDA6500ED9BBB /* register_cancel_button.png */; };
 		6DA5BA5D14BB2DE400D5BF68 /* badgesview.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA5BA5C14BB2DE400D5BF68 /* badgesview.png */; };
@@ -274,6 +276,9 @@
 		6D943A7814AF7AC900414539 /* user_image_border.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = user_image_border.png; sourceTree = "<group>"; };
 		6D943A7914AF7AC900414539 /* User_image_default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = User_image_default.png; sourceTree = "<group>"; };
 		6D9949D414928B1A00AD2307 /* bt_show_all.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_show_all.png; sourceTree = "<group>"; };
+		6DA36C90152633C600F04939 /* ScrollViewItem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ScrollViewItem.h; sourceTree = "<group>"; };
+		6DA36C91152633C700F04939 /* ScrollViewItem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ScrollViewItem.m; sourceTree = "<group>"; };
+		6DA36C9415286D3700F04939 /* tabbar_other_user.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tabbar_other_user.png; sourceTree = "<group>"; };
 		6DA3F640149CDA5C00ED9BBB /* register_ok_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_ok_button.png; sourceTree = "<group>"; };
 		6DA3F642149CDA6500ED9BBB /* register_cancel_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_cancel_button.png; sourceTree = "<group>"; };
 		6DA5BA5C14BB2DE400D5BF68 /* badgesview.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = badgesview.png; sourceTree = "<group>"; };
@@ -1062,6 +1067,8 @@
 				D2A09C7E145EFC5D002646A1 /* HistoryEntry.m */,
 				D238B25B151F65AE0022F281 /* ActionItem.h */,
 				D238B25C151F65AE0022F281 /* ActionItem.m */,
+				6DA36C90152633C600F04939 /* ScrollViewItem.h */,
+				6DA36C91152633C700F04939 /* ScrollViewItem.m */,
 			);
 			name = ModelClasses;
 			sourceTree = "<group>";
@@ -1163,6 +1170,7 @@
 		D2F05B671496218000BE171C /* TabBar */ = {
 			isa = PBXGroup;
 			children = (
+				6DA36C9415286D3700F04939 /* tabbar_other_user.png */,
 				6D74214514D41A3E0083BCFA /* tabbar_center_icon_blue.png */,
 				6D74214614D41A400083BCFA /* tabbar_center_icon_blue@2x.png */,
 				D279C95514BB06F60018A1C4 /* tabbar_center_icon_pressed.png */,
@@ -1376,6 +1384,7 @@
 				6DDABAEC14FBED3D00108C1C /* infotext_expose@2x.png in Resources */,
 				6DDABAED14FBED3D00108C1C /* infotext_expose.png in Resources */,
 				D2AD2F2514FF9510001B0027 /* Immopoly_klein.png in Resources */,
+				6DA36C9515286D3700F04939 /* tabbar_other_user.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1466,6 +1475,7 @@
 				D273BF05152395CC0012A347 /* ActionItemManager.m in Sources */,
 				D273BF0A152399C60012A347 /* SpionAction.m in Sources */,
 				D273BF0D15239A6E0012A347 /* ActionItemButton.m in Sources */,
+				6DA36C92152633C700F04939 /* ScrollViewItem.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

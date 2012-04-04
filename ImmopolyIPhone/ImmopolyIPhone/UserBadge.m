@@ -10,17 +10,4 @@
 
 @implementation UserBadge
 
-@synthesize amount;
-@synthesize text;
-@synthesize time;
-@synthesize type;
-@synthesize url;
-
-
--(void)dealloc {
-    [text release];
-    [url release];
-    [super dealloc];
-}
-
 @end
