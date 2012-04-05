@@ -220,6 +220,7 @@
 		D2F501BE152CA0C90010745E /* shadow_bottom.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F501BC152CA0C90010745E /* shadow_bottom.png */; };
 		D2F501BF152CA0C90010745E /* shadow_top.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F501BD152CA0C90010745E /* shadow_top.png */; };
 		D2F501C1152CA0C90010745E /* top_bar_history.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F501C0152CA0C90010745E /* top_bar_history.png */; };
+		D2F501C3152CA0C90010745E /* Metallicrahmen_Icon_forrent_2_114x114 Kopie.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F501C2152CA0C90010745E /* Metallicrahmen_Icon_forrent_2_114x114 Kopie.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -547,6 +548,7 @@
 		D2F501BC152CA0C90010745E /* shadow_bottom.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow_bottom.png; sourceTree = "<group>"; };
 		D2F501BD152CA0C90010745E /* shadow_top.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = shadow_top.png; sourceTree = "<group>"; };
 		D2F501C0152CA0C90010745E /* top_bar_history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_bar_history.png; sourceTree = "<group>"; };
+		D2F501C2152CA0C90010745E /* Metallicrahmen_Icon_forrent_2_114x114 Kopie.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Metallicrahmen_Icon_forrent_2_114x114 Kopie.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -824,6 +826,7 @@
 		D24E7631145834DA003C91A8 = {
 			isa = PBXGroup;
 			children = (
+				D2F501C2152CA0C90010745E /* Metallicrahmen_Icon_forrent_2_114x114 Kopie.png */,
 				D2AD2F2314FF9473001B0027 /* Immopoly_klein.png */,
 				D21EDC8E14C895CB006EA134 /* Default.png */,
 				D2B02D1214B8769400985E3C /* QuartzCore.framework */,
@@ -1338,6 +1341,7 @@
 				D2F501BE152CA0C90010745E /* shadow_bottom.png in Resources */,
 				D2F501BF152CA0C90010745E /* shadow_top.png in Resources */,
 				D2F501C1152CA0C90010745E /* top_bar_history.png in Resources */,
+				D2F501C3152CA0C90010745E /* Metallicrahmen_Icon_forrent_2_114x114 Kopie.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
