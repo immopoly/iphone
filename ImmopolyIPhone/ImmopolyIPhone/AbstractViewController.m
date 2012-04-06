@@ -63,7 +63,7 @@
 }
 
 - (void) initSpinner {
-    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleWhite)];
+    spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleGray)];
     [spinner setHidden:NO];
     [spinner setCenter:CGPointMake(291, 21)];
     [[self view] addSubview:spinner];
