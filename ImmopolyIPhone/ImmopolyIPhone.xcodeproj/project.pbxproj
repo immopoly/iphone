@@ -85,8 +85,6 @@
 		6DAB2625152F08CE00CDE23D /* tabbar_bg@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAB2623152F08CE00CDE23D /* tabbar_bg@2x.png */; };
 		6DAB2627152F095900CDE23D /* login_top_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAB2626152F095900CDE23D /* login_top_cell.png */; };
 		6DAB2629152F096D00CDE23D /* new_account_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAB2628152F096D00CDE23D /* new_account_button.png */; };
-		6DAB262B152F097B00CDE23D /* password_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAB262A152F097B00CDE23D /* password_button.png */; };
-		6DAB262D152F099300CDE23D /* Login_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAB262C152F099300CDE23D /* Login_button.png */; };
 		6DAB262F152F099F00CDE23D /* cancel_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAB262E152F099F00CDE23D /* cancel_button.png */; };
 		6DAB2631152F09BB00CDE23D /* background_login.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAB2630152F09BB00CDE23D /* background_login.png */; };
 		6DAB2637152F0C2700CDE23D /* register_ok_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAB2634152F0C2700CDE23D /* register_ok_button.png */; };
@@ -98,10 +96,6 @@
 		6DB1E08214AE542C005E858E /* helperText_userView.html in Resources */ = {isa = PBXBuildFile; fileRef = 6DB1E08114AE542C005E858E /* helperText_userView.html */; };
 		6DB1E08414AE54E0005E858E /* helperText_webView.html in Resources */ = {isa = PBXBuildFile; fileRef = 6DB1E08314AE54E0005E858E /* helperText_webView.html */; };
 		6DB4EAD314ADC2AE0057B16E /* AbstractViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB4EAD214ADC2AE0057B16E /* AbstractViewController.m */; };
-		6DB4EAD714ADCBDB0057B16E /* pw_cancel_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB4EAD614ADCBDB0057B16E /* pw_cancel_button.png */; };
-		6DB4EAD914ADCBED0057B16E /* password_top_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB4EAD814ADCBED0057B16E /* password_top_cell.png */; };
-		6DB4EADB14ADCBFF0057B16E /* send_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB4EADA14ADCBFF0057B16E /* send_button.png */; };
-		6DB4EADD14ADCC170057B16E /* top_bar_password.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB4EADC14ADCC170057B16E /* top_bar_password.png */; };
 		6DB8700C1496AC4400C0D82A /* calloutBubble.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DB8700B1496AC4400C0D82A /* calloutBubble.png */; };
 		6DBB1DFD14FA63EA00BCA1BB /* btBadge_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DBB1DFC14FA63EA00BCA1BB /* btBadge_selected.png */; };
 		6DBCBDC8146B214300545897 /* HistoryViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DBCBDC6146B214200545897 /* HistoryViewController.m */; };
@@ -113,6 +107,8 @@
 		6DC7A1C614DC014E0073A4B2 /* infotext_user@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DC7A1C514DC014E0073A4B2 /* infotext_user@2x.png */; };
 		6DC8A155152F12F7001D3B9B /* bt_actualise.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DC8A154152F12F7001D3B9B /* bt_actualise.png */; };
 		6DC8A158152F1407001D3B9B /* Topbar_map.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DC8A157152F1407001D3B9B /* Topbar_map.png */; };
+		6DC8A15A152F6FD1001D3B9B /* loginview_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DC8A159152F6FD1001D3B9B /* loginview_button.png */; };
+		6DC8A15C152F6FFF001D3B9B /* password_top_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DC8A15B152F6FFF001D3B9B /* password_top_cell.png */; };
 		6DCEA02314C329FE0032A89C /* FeedbackViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DCEA02114C329FE0032A89C /* FeedbackViewController.m */; };
 		6DCEA02414C329FE0032A89C /* FeedbackViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEA02214C329FE0032A89C /* FeedbackViewController.xib */; };
 		6DCEA02914C32A6D0032A89C /* tabbar_icon_feedback.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DCEA02714C32A6D0032A89C /* tabbar_icon_feedback.png */; };
@@ -364,8 +360,6 @@
 		6DAB2623152F08CE00CDE23D /* tabbar_bg@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar_bg@2x.png"; sourceTree = "<group>"; };
 		6DAB2626152F095900CDE23D /* login_top_cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = login_top_cell.png; sourceTree = "<group>"; };
 		6DAB2628152F096D00CDE23D /* new_account_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = new_account_button.png; sourceTree = "<group>"; };
-		6DAB262A152F097B00CDE23D /* password_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = password_button.png; sourceTree = "<group>"; };
-		6DAB262C152F099300CDE23D /* Login_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Login_button.png; sourceTree = "<group>"; };
 		6DAB262E152F099F00CDE23D /* cancel_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cancel_button.png; sourceTree = "<group>"; };
 		6DAB2630152F09BB00CDE23D /* background_login.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = background_login.png; sourceTree = "<group>"; };
 		6DAB2634152F0C2700CDE23D /* register_ok_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = register_ok_button.png; sourceTree = "<group>"; };
@@ -378,10 +372,6 @@
 		6DB1E08314AE54E0005E858E /* helperText_webView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = helperText_webView.html; sourceTree = "<group>"; };
 		6DB4EAD114ADC2AE0057B16E /* AbstractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractViewController.h; sourceTree = "<group>"; };
 		6DB4EAD214ADC2AE0057B16E /* AbstractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractViewController.m; sourceTree = "<group>"; };
-		6DB4EAD614ADCBDB0057B16E /* pw_cancel_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = pw_cancel_button.png; sourceTree = "<group>"; };
-		6DB4EAD814ADCBED0057B16E /* password_top_cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = password_top_cell.png; sourceTree = "<group>"; };
-		6DB4EADA14ADCBFF0057B16E /* send_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = send_button.png; sourceTree = "<group>"; };
-		6DB4EADC14ADCC170057B16E /* top_bar_password.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = top_bar_password.png; sourceTree = "<group>"; };
 		6DB8700B1496AC4400C0D82A /* calloutBubble.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = calloutBubble.png; sourceTree = "<group>"; };
 		6DBB1DFC14FA63EA00BCA1BB /* btBadge_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btBadge_selected.png; sourceTree = "<group>"; };
 		6DBCBDC5146B214200545897 /* HistoryViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HistoryViewController.h; sourceTree = "<group>"; };
@@ -394,6 +384,8 @@
 		6DC7A1C514DC014E0073A4B2 /* infotext_user@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "infotext_user@2x.png"; sourceTree = "<group>"; };
 		6DC8A154152F12F7001D3B9B /* bt_actualise.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = bt_actualise.png; sourceTree = "<group>"; };
 		6DC8A157152F1407001D3B9B /* Topbar_map.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Topbar_map.png; sourceTree = "<group>"; };
+		6DC8A159152F6FD1001D3B9B /* loginview_button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = loginview_button.png; sourceTree = "<group>"; };
+		6DC8A15B152F6FFF001D3B9B /* password_top_cell.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = password_top_cell.png; sourceTree = "<group>"; };
 		6DCEA02014C329FE0032A89C /* FeedbackViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FeedbackViewController.h; sourceTree = "<group>"; };
 		6DCEA02114C329FE0032A89C /* FeedbackViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FeedbackViewController.m; sourceTree = "<group>"; };
 		6DCEA02214C329FE0032A89C /* FeedbackViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = FeedbackViewController.xib; sourceTree = "<group>"; };
@@ -749,17 +741,6 @@
 			);
 			name = "json-framework";
 			path = "../submodules/json-framework/Classes";
-			sourceTree = "<group>";
-		};
-		6DB4EAD514ADCABA0057B16E /* ForgotPassword */ = {
-			isa = PBXGroup;
-			children = (
-				6DB4EADA14ADCBFF0057B16E /* send_button.png */,
-				6DB4EAD814ADCBED0057B16E /* password_top_cell.png */,
-				6DB4EAD614ADCBDB0057B16E /* pw_cancel_button.png */,
-				6DB4EADC14ADCC170057B16E /* top_bar_password.png */,
-			);
-			name = ForgotPassword;
 			sourceTree = "<group>";
 		};
 		6DC8656D14912DAF00EB6D8E /* Maps */ = {
@@ -1150,7 +1131,7 @@
 		D2F05B791496233C00BE171C /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				6DB4EAD514ADCABA0057B16E /* ForgotPassword */,
+				6DC8A15B152F6FFF001D3B9B /* password_top_cell.png */,
 				6DAB2630152F09BB00CDE23D /* background_login.png */,
 				6DAB263A152F0F8200CDE23D /* register_cell.png */,
 				6DAB2638152F0D4E00CDE23D /* register_cancel_button.png */,
@@ -1158,8 +1139,7 @@
 				6DAB2626152F095900CDE23D /* login_top_cell.png */,
 				6DAB2628152F096D00CDE23D /* new_account_button.png */,
 				6DAB262E152F099F00CDE23D /* cancel_button.png */,
-				6DAB262C152F099300CDE23D /* Login_button.png */,
-				6DAB262A152F097B00CDE23D /* password_button.png */,
+				6DC8A159152F6FD1001D3B9B /* loginview_button.png */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -1262,10 +1242,6 @@
 				D2B237BB149F8F2500A26602 /* webview_twitter.png in Resources */,
 				D2B237BD149F923C00A26602 /* webview_lightgrey_button.png in Resources */,
 				4C0CF0BD149FDCA600ECB70D /* immopoly.png in Resources */,
-				6DB4EAD714ADCBDB0057B16E /* pw_cancel_button.png in Resources */,
-				6DB4EAD914ADCBED0057B16E /* password_top_cell.png in Resources */,
-				6DB4EADB14ADCBFF0057B16E /* send_button.png in Resources */,
-				6DB4EADD14ADCC170057B16E /* top_bar_password.png in Resources */,
 				6DB1E07C14AE517B005E858E /* helperText_mapView.html in Resources */,
 				6DB1E07E14AE539F005E858E /* helperText_portfolioView.html in Resources */,
 				6DB1E08014AE53EE005E858E /* helperText_historyView.html in Resources */,
@@ -1329,8 +1305,6 @@
 				6DAB2625152F08CE00CDE23D /* tabbar_bg@2x.png in Resources */,
 				6DAB2627152F095900CDE23D /* login_top_cell.png in Resources */,
 				6DAB2629152F096D00CDE23D /* new_account_button.png in Resources */,
-				6DAB262B152F097B00CDE23D /* password_button.png in Resources */,
-				6DAB262D152F099300CDE23D /* Login_button.png in Resources */,
 				6DAB262F152F099F00CDE23D /* cancel_button.png in Resources */,
 				6DAB2631152F09BB00CDE23D /* background_login.png in Resources */,
 				6DAB2637152F0C2700CDE23D /* register_ok_button.png in Resources */,
@@ -1338,6 +1312,8 @@
 				6DAB263B152F0F8200CDE23D /* register_cell.png in Resources */,
 				6DC8A155152F12F7001D3B9B /* bt_actualise.png in Resources */,
 				6DC8A158152F1407001D3B9B /* Topbar_map.png in Resources */,
+				6DC8A15A152F6FD1001D3B9B /* loginview_button.png in Resources */,
+				6DC8A15C152F6FFF001D3B9B /* password_top_cell.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
