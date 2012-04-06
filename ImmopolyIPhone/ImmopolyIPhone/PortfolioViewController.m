@@ -52,6 +52,7 @@
 @synthesize regionSpan;
 @synthesize loading;
 @synthesize portfolioHasChanged;
+@synthesize lbRecenterMap;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil { 
@@ -84,6 +85,7 @@
 - (void)viewWillAppear:(BOOL)animated {  
     [table reloadData];    
     [btRecenterMap setHidden:isBtHidden];
+    [lbRecenterMap setHidden:isBtHidden];
     
     // filter annotations if a flat was added or removed from the portfolio
     if(portfolioHasChanged) {
@@ -147,7 +149,7 @@
     self.lbLivingSpace = nil;
     self.topBar = nil;
     self.btRecenterMap = nil;
-    
+    self.lbRecenterMap = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -246,13 +248,14 @@
     CGPoint posImgShadowBottom = imgShadowBottom.center;
     
     [btRecenterMap setHidden:YES];
+    [lbRecenterMap setHidden:YES];
     [self setIsBtHidden:YES];
     
     if(_animated) {
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.4];
         posMap.x = 480.0f;
-        posTable.x = 166.0f;
+        posTable.x = 164.0f;
         posImgShadowTop.x = 160.0f;
         posImgShadowBottom.x = 160.0f;
         portfolioMapView.center = posMap;
@@ -262,7 +265,7 @@
         [UIView commitAnimations];     
     } else {
         posMap.x = 480.0f;
-        posTable.x = 166.0f;
+        posTable.x = 164.0f;
         posImgShadowTop.x = 160.0f;
         posImgShadowBottom.x = 160.0f;
         portfolioMapView.center = posMap;
@@ -287,6 +290,7 @@
     
     if(_animated) {
         [btRecenterMap setHidden:NO];
+        [lbRecenterMap setHidden:NO];
         [self setIsBtHidden:NO];
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.4];
