@@ -17,5 +17,6 @@
 @property (retain, nonatomic) Flat *flat;
 @property (retain, nonatomic) IBOutlet UILabel *labelPrice;
 @property (retain, nonatomic) IBOutlet UILabel *labelOvertakeDate;
+@property (retain, nonatomic) IBOutlet UILabel *labelOvertakeTries;
 
 @end

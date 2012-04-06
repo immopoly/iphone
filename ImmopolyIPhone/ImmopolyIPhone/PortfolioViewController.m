@@ -238,7 +238,7 @@
 - (void)showListWithAnimation:(BOOL)_animated {
     [self calloutBubbleOut];
     
-    [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_list.png"]];
+    //[topBar setImage:[UIImage imageNamed:@"topbar_portfolio_list.png"]];
     
     CGPoint posMap = portfolioMapView.center;
     CGPoint posTable = table.center;
@@ -278,7 +278,7 @@
 
 - (void)showMapWithAnimation:(BOOL)_animated {
     
-    [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_map.png"]];
+    //[topBar setImage:[UIImage imageNamed:@"topbar_portfolio_map.png"]];
      
     CGPoint posMap = portfolioMapView.center;
     CGPoint posTable = table.center;

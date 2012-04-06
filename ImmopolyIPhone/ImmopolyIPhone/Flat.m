@@ -29,6 +29,7 @@
 @synthesize pictureUrl;
 @synthesize flatsAtAnnotation;
 @synthesize image;
+@synthesize overtakeTries;
 
 
 - (id)initWithName:(NSString*)_name description:(NSString*)_description coordinate:(CLLocationCoordinate2D)_coordinate exposeId:(int)_exposeId {
