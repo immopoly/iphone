@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1280</int>
-		<string key="IBDocument.SystemVersion">10K549</string>
+		<string key="IBDocument.SystemVersion">11D50b</string>
 		<string key="IBDocument.InterfaceBuilderVersion">1938</string>
-		<string key="IBDocument.AppKitVersion">1038.36</string>
-		<string key="IBDocument.HIToolboxVersion">461.00</string>
+		<string key="IBDocument.AppKitVersion">1138.32</string>
+		<string key="IBDocument.HIToolboxVersion">568.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.IBCocoaTouchPlugin</string>
 			<string key="NS.object.0">933</string>
@@ -69,9 +69,9 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">Label</string>
-								<object class="NSColor" key="IBUITextColor" id="512775259">
+								<object class="NSColor" key="IBUITextColor" id="990977949">
 									<int key="NSColorSpace">1</int>
-									<bytes key="NSRGB">MCAwIDAAA</bytes>
+									<bytes key="NSRGB">MC40OTA4MjgyMzYgMC41NzI4OTAzMzggMC42NzMzNDk4MDg3AA</bytes>
 								</object>
 								<nil key="IBUIHighlightedColor"/>
 								<int key="IBUIBaselineAdjustment">1</int>
@@ -101,7 +101,7 @@
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<string key="IBUIText">Label</string>
-								<reference key="IBUITextColor" ref="512775259"/>
+								<reference key="IBUITextColor" ref="990977949"/>
 								<nil key="IBUIHighlightedColor"/>
 								<float key="IBUIMinimumFontSize">10</float>
 								<int key="IBUINumberOfLines">6</int>
@@ -167,6 +167,10 @@
 								<reference key="NSSuperview" ref="275262557"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="89530565"/>
+								<object class="NSColor" key="IBUIBackgroundColor">
+									<int key="NSColorSpace">2</int>
+									<bytes key="NSRGB">MC41OTIxNTY4ODcxIDAuNjc0NTA5ODIzMyAwLjc0OTAxOTYyMjgAA</bytes>
+								</object>
 								<bool key="IBUIOpaque">NO</bool>
 								<float key="IBUIAlpha">0.0</float>
 								<int key="IBUITag">5</int>
@@ -189,7 +193,7 @@
 							<object class="IBUIButton" id="824516365">
 								<reference key="NSNextResponder" ref="275262557"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{174, 35}, {80, 42}}</string>
+								<string key="NSFrame">{{173, 33}, {80, 42}}</string>
 								<reference key="NSSuperview" ref="275262557"/>
 								<reference key="NSWindow"/>
 								<reference key="NSNextKeyView" ref="187163682"/>
@@ -451,20 +455,10 @@
 						</object>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="outlets">
-						<string key="reloadDataSpinner">UIActivityIndicatorView</string>
-						<string key="spinner">UIActivityIndicatorView</string>
 						<string key="table">UITableView</string>
 						<string key="tvCell">UITableViewCell</string>
 					</dictionary>
 					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
-						<object class="IBToOneOutletInfo" key="reloadDataSpinner">
-							<string key="name">reloadDataSpinner</string>
-							<string key="candidateClassName">UIActivityIndicatorView</string>
-						</object>
-						<object class="IBToOneOutletInfo" key="spinner">
-							<string key="name">spinner</string>
-							<string key="candidateClassName">UIActivityIndicatorView</string>
-						</object>
 						<object class="IBToOneOutletInfo" key="table">
 							<string key="name">table</string>
 							<string key="candidateClassName">UITableView</string>
