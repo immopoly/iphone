@@ -10,6 +10,7 @@
 #import "ImmopolyManager.h"
 #import "JSONParser.h"
 #import "Constants.h"
+#import "AppDelegate.h"
 
 @implementation UserRegisterTask
 
@@ -59,6 +60,9 @@
         NSDictionary *taskInfo = [NSDictionary dictionaryWithObject:alertRegisterSuccessful forKey:@"message"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"user/register successful" object:nil userInfo:taskInfo];
         [delegate registerWithResult: YES];
+        
+        AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+        [[appDelegate actionItemManager]placeActionItems];
     }
     [jsonString release];
 }

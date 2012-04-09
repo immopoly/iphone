@@ -69,8 +69,6 @@
     if(_result) {
         [delegate performActionAfterLoginCheck];
         
-        AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
-        [[appDelegate actionItemManager]placeActionItems];
         //[self notifyMyDelegateView];
     }
     else {
