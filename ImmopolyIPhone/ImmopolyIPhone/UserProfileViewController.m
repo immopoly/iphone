@@ -543,10 +543,18 @@
         posBV.y = 343;
         posAV.y = 546;
         activeScrollView = BADGES_ACTIVE;
+        
+        // buttonstates for badges/actions-toggle
+        [btShowBadges setImage:[UIImage imageNamed:@"button_bereich_btn_on.png"] forState:UIControlStateNormal];
+        [btShowItems setImage:[UIImage imageNamed:@"button_bereich_btn_off.png"] forState:UIControlStateNormal];
     } else {
         posBV.y = 546;
         posAV.y = 343;
         activeScrollView = ACTIONS_ACTIVE;
+        
+        // buttonstates for badges/actions-toggle
+        [btShowBadges setImage:[UIImage imageNamed:@"button_bereich_btn_off.png"] forState:UIControlStateNormal];
+        [btShowItems setImage:[UIImage imageNamed:@"button_bereich_btn_on.png"] forState:UIControlStateNormal];
     }
     
     [badgesScrollView setCenter:posBV];
