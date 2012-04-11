@@ -66,7 +66,7 @@
         // Convert long to date object
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"MEZ"]];
-        [dateFormatter setDateFormat:@"'Übernommen:  \t\t\t' dd.MM.yyyy"];
+        [dateFormatter setDateFormat:@"'Übernommen:'        dd.MM.yyyy"];
         
         long timeInterval = [flat overtakeDate]/1000; //1321922162430
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
@@ -75,7 +75,7 @@
         [dateFormatter release]; 
         
         NSString *rooms = [NSString stringWithFormat:@"%d Zimmer", [flat numberOfRooms]];
-        NSString *overtakes = [NSString stringWithFormat:@"Übernahmeversuche \t\t\t %d", [flat overtakeTries]];
+        NSString *overtakes = [NSString stringWithFormat:@"Übernahmeversuche: \t\t\t\t\t %d", [flat overtakeTries]];
         NSString *space = [NSString stringWithFormat:@"%.0f m²",[flat livingSpace]];
         NSString *price = [NSString stringWithFormat:@"%.0f €",[flat price]];
         

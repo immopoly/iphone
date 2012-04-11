@@ -14,6 +14,9 @@
 #import "AsynchronousImageView.h"
 #import "Constants.h"
 
+static NSString *ANNO_IMG_SINGLE = @"Haus_neu_hdpi.png";
+static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
+
 @implementation ImmopolyMapViewController 
 
 @synthesize mapView;
@@ -249,13 +252,13 @@
         Flat *location = (Flat *) annotation;
         UIImageView *imageView;
         if([[location flatsAtAnnotation] count] > 0 ) {
-            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi.png"]] autorelease];
+            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:ANNO_IMG_MULTI]] autorelease];
             imageView.center = CGPointMake(19, 24.5);
             [annotationView addSubview:imageView];
             [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:location]];
         }
         else {
-            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
+            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:ANNO_IMG_SINGLE]] autorelease];
             imageView.center = CGPointMake(19, 24.5);
             [annotationView addSubview:imageView];
         }
@@ -266,10 +269,11 @@
 }
 
 - (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat {
-    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(-7, 0, 51, 40)];
+    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(-11, 5, 51, 40)];
     lbNumOfFlats.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     [lbNumOfFlats setText:[[NSString alloc] initWithFormat:@"%d", [[_flat flatsAtAnnotation] count] +1]];
     [lbNumOfFlats setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    lbNumOfFlats.font = [UIFont boldSystemFontOfSize:13];
     [lbNumOfFlats setTextAlignment:UITextAlignmentCenter];
     
     return lbNumOfFlats;
@@ -288,13 +292,13 @@
     UIImageView *imageView;
     
     if([[_flat flatsAtAnnotation] count] > 0 ) {
-        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi.png"]] autorelease];
+        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:ANNO_IMG_MULTI]] autorelease];
         imageView.center = CGPointMake(19, 24.5);
         [annotationView addSubview:imageView];
         [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:_flat]];
     }
     else {
-        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
+        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:ANNO_IMG_SINGLE]] autorelease];
         imageView.center = CGPointMake(19, 24.5);
         [annotationView addSubview:imageView];
     }
@@ -624,4 +628,22 @@
     exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:exposeWebViewController animated:YES];
 }
+
+/* delegate method for annotations dropping animation 
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views { 
+    MKAnnotationView *aV; 
+    for (aV in views) {
+        CGRect endFrame = aV.frame;
+        
+        aV.frame = CGRectMake(aV.frame.origin.x, aV.frame.origin.y - 230.0, aV.frame.size.width, aV.frame.size.height);
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.35];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        [aV setFrame:endFrame];
+        [UIView commitAnimations];
+        
+    }
+}
+*/
 @end
