@@ -187,6 +187,7 @@
             [myFlat setLivingSpace: [[realEstate objectForKey: @"livingSpace"] doubleValue]];
             [myFlat setPrice: [[realEstate objectForKey:@"baseRent"] doubleValue]];
             [myFlat setOvertakeDate:[[realEstate objectForKey:@"overtakeDate"] longLongValue]];
+            [myFlat setOvertakeTries:[[realEstate objectForKey: @"overtakeTries"] intValue]];
             
             //parse and save Flat title picture url
             NSDictionary *titlePicture = [realEstate objectForKey: @"titlePicture"];
