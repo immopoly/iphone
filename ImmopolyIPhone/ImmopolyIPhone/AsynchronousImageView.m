@@ -45,7 +45,11 @@
     [self.imageRequest cancel];
     
     self.imageRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:_urlString]] autorelease];
-    [self.imageRequest setCompletionBlock:^{
+    self.imageRequest.delegate = self;
+    [self.imageRequest startSynchronous];
+    
+    
+    /*[self.imageRequest setCompletionBlock:^{
         UIImage* flatImage = [UIImage imageWithData:imageRequest.responseData];
         
         [flat setImage:flatImage];
@@ -74,7 +78,38 @@
         }
     }];
     NSOperationQueue* queue = [[[NSOperationQueue alloc] init] autorelease];
-    [queue addOperation:self.imageRequest];
+    [queue addOperation:self.imageRequest];*/
+}
+
+- (void)requestFinished:(ASIHTTPRequest *)request{
+    UIImage* flatImage = [UIImage imageWithData:imageRequest.responseData];
+    
+    [flat setImage:flatImage];
+    self.image = flatImage;
+    if(flat == nil){
+        [self setBackgroundColor:ownBgColor];
+        
+        if(shouldBeSaved) {
+            // create NSData-object from image
+            NSData *imageData;
+            imageData = [NSKeyedArchiver archivedDataWithRootObject:self.image];
+            // save NSData-object to UserDefaults
+            [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:@"facebook-image"];    
+        }
+    }
+    [self.spinner stopAnimating];
+}
+
+- (void)requestFailed:(ASIHTTPRequest *)request
+{
+    if (![self.imageRequest isCancelled]) {
+        self.image = [UIImage imageNamed:@"default_house.png"];
+        [spinner stopAnimating];
+        NSLog(@"image failed and request was not canceled");
+    }
+    else{
+        NSLog(@"image failed but request was canceled");
+    }
 }
 
 - (void)reset {

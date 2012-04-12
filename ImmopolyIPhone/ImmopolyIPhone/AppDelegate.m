@@ -21,7 +21,6 @@
 #import "LoginCheck.h"
 #import "AbstractViewController.h"
 
-
 //HACK FOR 4.3
 /*
 @implementation CLLocationManager (TemporaryHack)
@@ -53,6 +52,7 @@
 @synthesize selectedViewController;
 @synthesize actualisationSpinner;
 @synthesize isLocationUpdated;
+@synthesize actionItemManager;
 
 - (void)dealloc
 {
@@ -60,6 +60,7 @@
     [_tabBarController release];
     [CLController release];
     [selectedViewController release];
+    [actionItemManager release];
     [super dealloc];
 }
 
@@ -150,6 +151,8 @@
     sleep(3);
     
     [[self.tabBarController button] setBackgroundImage:[UIImage imageNamed:@"tabbar_center_icon_blue.png"] forState:UIControlStateNormal];
+    
+    actionItemManager = [[ActionItemManager alloc]init];
     
     return YES;
 }
@@ -245,25 +248,45 @@
 // method for converting lat and long from location to user friendly address
 - (void)geocodeLocation:(CLLocation *)_location {
     
-    if (!geocoder){    
-        geocoder = [[CLGeocoder alloc] init];
-    }
-    
-    [geocoder reverseGeocodeLocation:_location completionHandler:
-     //block object
-     ^(NSArray* placemarks, NSError* error){
-         
-         // TODO: check for error
-         
-         if ([placemarks count] > 0){
-             CLPlacemark *placemark = [placemarks lastObject];
-             NSLog(@"Your current location is %@",[placemark name]);
+    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0")){
+        if (!geocoder){    
+            geocoder = [[CLGeocoder alloc] init];
+        }
+        
+        [geocoder reverseGeocodeLocation:_location completionHandler:
+         //block object
+         ^(NSArray* placemarks, NSError* error){
              
-             // change label in mapviewcontroller
-             [[ImmopolyManager instance].delegate setAdressLabelText:[placemark name]];
-         }
-     }];
+             // TODO: check for error
+             
+             if ([placemarks count] > 0){
+                 CLPlacemark *placemark = [placemarks lastObject];
+                 NSLog(@"Your current location is %@",[placemark name]);
+                 
+                 // change label in mapviewcontroller
+                 [[ImmopolyManager instance].delegate setAdressLabelText:[placemark name]];
+             }
+         }];
+    } else {
+        MKReverseGeocoder* theGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:_location.coordinate];
+        theGeocoder.delegate = self;
+        [theGeocoder start]; 
+        
+    }    
 }
+
+
+- (void)reverseGeocoder:(MKReverseGeocoder*)geocoder didFindPlacemark:(MKPlacemark*)placemark {
+    // change label in mapviewcontroller
+    NSString *street = [placemark.addressDictionary valueForKey:@"Street"];
+    NSLog(@"Your current location is %@",street);
+    [[ImmopolyManager instance].delegate setAdressLabelText:street];
+}
+
+- (void)reverseGeocoder:(MKReverseGeocoder*)geocoder didFailWithError:(NSError*)error {
+    NSLog(@"Could not retrieve the specified place information.\n");
+}
+ 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
@@ -368,7 +391,7 @@
         [provider getFlatsFromLocation:[_location coordinate]];
     
         [[ImmopolyManager instance]setActLocation:_location];
-        [[ImmopolyManager instance].delegate displayCurrentLocation];
+        //[[ImmopolyManager instance].delegate displayCurrentLocation];
             
         [CLController.locationManager stopUpdatingLocation];
         

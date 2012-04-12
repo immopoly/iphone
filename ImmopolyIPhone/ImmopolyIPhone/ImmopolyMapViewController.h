@@ -16,7 +16,7 @@
 #import "Flat.h"
 #import "AbstractViewController.h"
 
-#define METERS_PER_MILE 5000.00
+//#define METERS_PER_MILE 50000.00
 #define ANNO_WIDTH 40
 #define ANNO_HEIGHT 51
 
@@ -96,5 +96,6 @@
 - (BOOL)alreadyUsed;
 - (void)handleBubbleTap;
 - (BOOL)checkOfOwnFlat:(Flat *)_flat;
+- (void)recenterMap;
 
 @end

@@ -7,20 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ScrollViewItem.h"
 
-@interface UserBadge : NSObject {
+@interface UserBadge : ScrollViewItem {
     
-    int amount;
-    NSString *text;
-    long long time;
-    int type;
-    NSString *url;
 }
-
-@property(nonatomic, assign) int amount;
-@property(nonatomic, retain) NSString *text;
-@property(nonatomic, assign) long long time;
-@property(nonatomic, assign) int type;
-@property(nonatomic, retain) NSString *url;
 
 @end

@@ -11,12 +11,11 @@
 #import "JSONParser.h"
 #import "ImmopolyManager.h"
 #import "Constants.h"
-
-#define NUMBER_OF_PAGES 4
+#import "SBJSON.h"
 
 @implementation FlatProvider
 
-@synthesize location,pageNum;
+@synthesize location, pageNum, idxRadius, maxRadiusReached;
 
 - (void)getExposeFromId:(int)_exposeId {
     OAuthManager *manager = [[OAuthManager alloc] init];
@@ -30,52 +29,86 @@
 
 
 - (void)getFlatsFromLocation:(CLLocationCoordinate2D)_location {
-    pageNum=1;
+    pageNum = 1;
+    idxRadius = 0;
     [self setLocation:_location];
-    [self getFlatsFromLocationAndPageNumber:pageNum];
+    
+    [self getFlatsFromLocationAndPageNumber:pageNum andRadius:SEARCH_RADII[idxRadius]];
     
     [[ImmopolyManager instance]showFlatSpinner];
     
     
 }
 
-- (void)getFlatsFromLocationAndPageNumber:(int)_pageNumber{
+- (void)getFlatsFromLocationAndPageNumber:(int)_pageNumber andRadius:(int)_radius{
     OAuthManager *manager = [[OAuthManager alloc] init];
-    NSString *url; 
     
-    url = [[NSString alloc]initWithFormat:@"%@search/radius.json?realEstateType=apartmentrent&pagenumber=%d&geocoordinates=%f;%f;3.0",urlIS24API, pageNum, self.location.latitude, self.location.longitude];
+    NSString *url = [[NSString alloc]initWithFormat:@"%@search/radius.json?realEstateType=apartmentrent&pagenumber=%d&geocoordinates=%f;%f;%d",urlIS24API, pageNum, self.location.latitude, self.location.longitude, _radius];
     
     [manager grabURLInBackground:url withFormat:@"application/json" withDelegate:self];
     
-    
     [manager release];
     [url release];
-    
-    
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request {
     NSString *responseString = [request responseString];
-    NSError *err=nil;
+    NSError *err = nil;
+    NSArray *flats = nil;
+    BOOL shouldCall = NO; 
     
-    NSArray *flats = [JSONParser parseFlatData:responseString :&err];
+    NSDictionary *results = [responseString JSONValue];
+    NSDictionary *resultList = [results objectForKey:@"resultlist.resultlist"];
+    NSDictionary *pagingInfo = [resultList objectForKey:@"paging"];
+    int numPages = [[pagingInfo objectForKey:@"numberOfPages"] doubleValue];
+    int numHits = [[pagingInfo objectForKey:@"numberOfHits"] doubleValue];
+    pageNum = [[pagingInfo objectForKey:@"pageNumber"] doubleValue];
     
-    [[[ImmopolyManager instance] immoScoutFlats] addObjectsFromArray:flats];
+    if (numPages > 5) {
+        numPages = 5;
+    } 
+    
+    if(!maxRadiusReached){
+        if (numHits < SEARCH_MIN_RESULTS) {            
+            if(idxRadius < 2) {
+                // increase radius, because not enough hits
+                idxRadius++;
+                [self getFlatsFromLocationAndPageNumber:pageNum andRadius:SEARCH_RADII[idxRadius]];    
+            } else {
+                maxRadiusReached = YES;
+                [self getFlatsFromLocationAndPageNumber:pageNum andRadius:SEARCH_RADII[idxRadius]];    
+            }
+        } else {
+            // enough hits, so trying to get more flats from another pages
+            flats = [JSONParser parseFlatData:responseString :&err];
+            pageNum++;
+            if(pageNum < numPages) {
+                [self getFlatsFromLocationAndPageNumber:pageNum andRadius:SEARCH_RADII[idxRadius]];
+            } else {
+                shouldCall = YES;
+            }
+        }    
+    } else {
+        // max. radius is reached, so trying to get more flats from another pages
+        flats = [JSONParser parseFlatData:responseString :&err];
+        pageNum++;
+        if(pageNum < numPages) {
+            [self getFlatsFromLocationAndPageNumber:pageNum andRadius:SEARCH_RADII[idxRadius]];    
+        } else {
+            shouldCall = YES;
+        }
+    }
     
     if (err) {
         //Handle Error here
         NSDictionary *errorInfo = [NSDictionary dictionaryWithObject:err forKey:@"error"];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"flatProvider/parse fail" object:nil userInfo:errorInfo];
     }else{
-        if(pageNum == NUMBER_OF_PAGES || [flats count] == 0 ){
-            [[ImmopolyManager instance] callFlatsDelegate];
-            NSLog(@"Response: %@",responseString);    
-        }else{
-            pageNum++;
-            [self getFlatsFromLocationAndPageNumber:pageNum];
+       [[[ImmopolyManager instance] immoScoutFlats] addObjectsFromArray:flats];
+        if(([flats count] > SEARCH_MIN_RESULTS && [flats count] < SEARCH_MAX_RESULTS) || shouldCall) {
+            [[ImmopolyManager instance] callFlatsDelegate];    
         }
     }
-    
 }
 
 - (void)requestFailed:(ASIHTTPRequest *)request {

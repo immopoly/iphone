@@ -55,4 +55,5 @@ extern NSString* const feedbackMailSubject;
 
 extern NSString* const errorTokenNotFound;
 
+extern int const SEARCH_RADII[3];
 @end

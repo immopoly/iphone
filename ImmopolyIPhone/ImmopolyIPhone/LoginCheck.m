@@ -67,8 +67,8 @@
 
 - (void)loginWithResult:(BOOL)_result {
     if(_result) {
-        
         [delegate performActionAfterLoginCheck];
+        
         //[self notifyMyDelegateView];
     }
     else {

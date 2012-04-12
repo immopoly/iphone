@@ -25,17 +25,22 @@
     IBOutlet UILabel *labelBank;
     IBOutlet UILabel *labelMiete;
     IBOutlet UILabel *labelNumExposes;
-    UIScrollView *badgesScrollView;
-//    UIImageView *badgesBackground;
     IBOutlet UIButton *closeProfileButton;
+    IBOutlet UIButton *btShowBadges;
+    IBOutlet UIButton *btShowItems;
     IBOutlet UITabBar *tabBar;
     IBOutlet UIImageView *topBarImage;
-    LoginCheck *loginCheck;
+    IBOutlet UIImageView *badgesViewBackground;
     IBOutlet AsynchronousImageView *userImage;
+    IBOutlet UIView *itemsView;
+    UIScrollView *badgesScrollView;
+    UIScrollView *actionsScrollView;
+    LoginCheck *loginCheck;
     BOOL loading;
     UIImagePickerController *picker;
     BOOL userIsNotMyself;
     int numberOfBadges;
+    int numberOfActions;
     NSString *otherUserName;
     ImmopolyUser *otherUser;
 }
@@ -48,25 +53,30 @@
 @property(nonatomic, retain) IBOutlet UILabel *labelMiete;
 @property(nonatomic, retain) IBOutlet UILabel *labelNumExposes;
 @property(nonatomic, retain) IBOutlet UIImageView *topBarImage;
-
 @property(nonatomic, retain) UIScrollView *badgesScrollView;
+@property(nonatomic, retain) UIScrollView *actionsScrollView;
 @property(nonatomic, retain) LoginCheck *loginCheck;
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, retain) IBOutlet AsynchronousImageView *userImage;
 @property(nonatomic, retain) IBOutlet UIButton *closeProfileButton;
+@property(nonatomic, retain) IBOutlet UIButton *btShowBadges;
+@property(nonatomic, retain) IBOutlet UIButton *btShowItems;
 @property(nonatomic, retain) IBOutlet UITabBar *tabBar;
 @property(nonatomic, assign) BOOL loading;
 @property(nonatomic, assign) BOOL userIsNotMyself;
 @property(nonatomic, assign) int numberOfBadges;
+@property(nonatomic, assign) int numberOfActions;
 @property(nonatomic, retain) NSString *otherUserName;
 @property(nonatomic, retain) ImmopolyUser *otherUser;
-//@property(nonatomic, retain) UIImageView *badgesBackground;
+@property(nonatomic, retain) UIView *itemsView;
 
 - (void)setLabelTextsOfUser:(ImmopolyUser *)_user;
-- (void)displayBadges:(ImmopolyUser *)_user;
+//- (void)displayBadges:(ImmopolyUser *)_user;
+- (void)displayItems:(NSArray *)_items ofScrollView:(UIScrollView *)_scrollView;
 - (void)loadFacebookPicture;
 - (IBAction)changeProfilePic;
 - (IBAction)closeProfile;
 - (void)prepareOtherUserProfile;
+- (IBAction)toggleBadgesAndItemsView:(id)_sender;
 
 @end

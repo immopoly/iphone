@@ -10,6 +10,7 @@
 #import "JSONParser.h"
 #import "ImmopolyManager.h"
 #import "Constants.h"
+#import "AppDelegate.h"
 
 @implementation UserLoginTask
 
@@ -83,6 +84,9 @@
     }else{
         [[ImmopolyManager instance] setLoginSuccessful:YES];
         [delegate loginWithResult: YES];
+        
+        AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+        [[appDelegate actionItemManager]placeActionItems];
     }
     
     [jsonString release];

@@ -25,6 +25,7 @@
     NSMutableArray *portfolio;
     NSMutableArray *history;
     NSMutableArray *badges;
+    NSMutableArray *actionItems;
 }
 
 @property(nonatomic, retain) NSString *userName;
@@ -39,6 +40,7 @@
 @property(nonatomic,retain) NSMutableArray *portfolio;
 @property(nonatomic,retain) NSMutableArray *history;
 @property(nonatomic,retain) NSMutableArray *badges;
+@property(nonatomic,retain) NSMutableArray *actionItems;
 
 
 @end

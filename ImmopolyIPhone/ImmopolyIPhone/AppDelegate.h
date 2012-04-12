@@ -11,6 +11,7 @@
 #import "CoreLocationController.h"
 #import "CustomTabBarController.h"
 #import "LoginCheck.h"
+#import "ActionItemManager.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate, CoreLocationControllerDelegate, UITabBarControllerDelegate, UserDataDelegate, LoginDelegate, NotifyViewDelegate> {
     
@@ -21,6 +22,7 @@
     UIViewController *selectedViewController;
     UIActivityIndicatorView *actualisationSpinner;
     bool isLocationUpdated;
+    ActionItemManager *actionItemManager;
 }
 
 @property (retain, nonatomic) UIWindow *window;
@@ -33,6 +35,8 @@
 @property(nonatomic, retain) UIViewController *selectedViewController;
 @property(nonatomic, retain) UIActivityIndicatorView *actualisationSpinner;
 @property(nonatomic, assign) bool isLocationUpdated;
+
+@property(nonatomic, retain) ActionItemManager *actionItemManager;
 
 - (void)startLocationUpdate;
 - (void)geocodeLocation:(CLLocation *)_location;
