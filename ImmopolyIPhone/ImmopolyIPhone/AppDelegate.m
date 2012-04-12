@@ -22,7 +22,7 @@
 #import "AbstractViewController.h"
 
 //HACK FOR 4.3
-
+/*
 @implementation CLLocationManager (TemporaryHack)
 
 - (void)hackLocationFix
@@ -38,7 +38,7 @@
 
 @end
 //STOP HACK FOR 4.3
-
+*/
 
 @implementation AppDelegate
 
