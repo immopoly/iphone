@@ -72,7 +72,7 @@
 
 - (void)setLabelTextsOfUser:(ImmopolyUser *)_user;
 //- (void)displayBadges:(ImmopolyUser *)_user;
-- (void)displayItems:(NSArray *)_items ofScrollView:(UIScrollView *)_scrollView;
+- (void)displayItems:(NSMutableArray *)_items ofScrollView:(UIScrollView *)_scrollView;
 - (void)loadFacebookPicture;
 - (IBAction)changeProfilePic;
 - (IBAction)closeProfile;

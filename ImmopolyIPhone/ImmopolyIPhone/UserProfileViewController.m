@@ -251,11 +251,11 @@
 }
 */
 
-- (void)displayItems:(NSArray *)_items ofScrollView:(UIScrollView *)_scrollView{
+- (void)displayItems:(NSMutableArray *)_items ofScrollView:(UIScrollView *)_scrollView{
     // show empty scrollview
     if([_items count] == 0) {
         [self initBackground:0 ofScrollView:_scrollView]; 
-    }
+    } 
     
     if([self shouldUpdateItems:_items] || userIsNotMyself) {
         
@@ -347,7 +347,7 @@
 
 // initializes the empty background of the given scrollview
 - (void)initBackground:(int)_offset ofScrollView:(UIScrollView *)_scrollView {
-    UIImageView *scrollViewBackground = [[UIImageView alloc]initWithFrame:CGRectMake(0*_offset, 0, 320, 132)];
+    UIImageView *scrollViewBackground = [[UIImageView alloc]initWithFrame:CGRectMake(320*_offset, 0, 320, 132)];
     [scrollViewBackground setImage:[UIImage imageNamed:@"badgesview"]];
     [_scrollView addSubview:scrollViewBackground];
     [scrollViewBackground release];
