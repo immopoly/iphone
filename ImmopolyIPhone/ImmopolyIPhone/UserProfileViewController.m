@@ -97,6 +97,11 @@
     self.actionsScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 480, 320, 132)];
     [[self view]addSubview:actionsScrollView];
     [[self view]bringSubviewToFront:[self actionsScrollView]];
+    
+    [[self view] bringSubviewToFront:btShowBadges];
+    [[self view] bringSubviewToFront:btShowItems];
+    [[self view] bringSubviewToFront:labelBtBadges];
+    [[self view] bringSubviewToFront:labelBtItems];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -550,6 +555,7 @@
         [btShowBadges setImage:[UIImage imageNamed:@"button_bereich_btn_on.png"] forState:UIControlStateNormal];
         [btShowItems setImage:[UIImage imageNamed:@"button_bereich_btn_off.png"] forState:UIControlStateNormal];
         [[self view] bringSubviewToFront:btShowBadges];
+        [[self view] bringSubviewToFront:labelBtBadges];
     } else {
         posBV.y = 546;
         posAV.y = 343;
@@ -559,6 +565,7 @@
         [btShowBadges setImage:[UIImage imageNamed:@"button_bereich_btn_off.png"] forState:UIControlStateNormal];
         [btShowItems setImage:[UIImage imageNamed:@"button_bereich_btn_on.png"] forState:UIControlStateNormal];
         [[self view] bringSubviewToFront:btShowItems];
+        [[self view] bringSubviewToFront:labelBtItems];
     }
     
     [badgesScrollView setCenter:posBV];

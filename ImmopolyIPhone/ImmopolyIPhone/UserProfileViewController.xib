@@ -52,7 +52,7 @@
 							<string key="NSResourceName">Topbar_map.png</string>
 						</object>
 					</object>
-					<object class="IBUILabel" id="892499940">
+					<object class="IBUILabel" id="875674452">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
 						<string key="NSFrame">{{66, 10}, {188, 21}}</string>
@@ -393,7 +393,7 @@
 						<string key="NSFrame">{{6, 7}, {68, 31}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="892499940"/>
+						<reference key="NSNextKeyView" ref="875674452"/>
 						<bool key="IBUIOpaque">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<int key="IBUIContentHorizontalAlignment">0</int>
@@ -697,6 +697,22 @@
 					<int key="connectionID">98</int>
 				</object>
 				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">labelBtBadges</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="50436521"/>
+					</object>
+					<int key="connectionID">103</int>
+				</object>
+				<object class="IBConnectionRecord">
+					<object class="IBCocoaTouchOutletConnection" key="connection">
+						<string key="label">labelBtItems</string>
+						<reference key="source" ref="372490531"/>
+						<reference key="destination" ref="787770742"/>
+					</object>
+					<int key="connectionID">104</int>
+				</object>
+				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchEventConnection" key="connection">
 						<string key="label">closeProfile</string>
 						<reference key="source" ref="205900177"/>
@@ -758,7 +774,7 @@
 							<reference ref="50436521"/>
 							<reference ref="787770742"/>
 							<reference ref="750255845"/>
-							<reference ref="892499940"/>
+							<reference ref="875674452"/>
 						</array>
 						<reference key="parent" ref="0"/>
 					</object>
@@ -894,7 +910,7 @@
 					</object>
 					<object class="IBObjectRecord">
 						<int key="objectID">102</int>
-						<reference key="object" ref="892499940"/>
+						<reference key="object" ref="875674452"/>
 						<reference key="parent" ref="191373211"/>
 					</object>
 				</array>
@@ -936,7 +952,7 @@
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">102</int>
+			<int key="maxID">104</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes">
 			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
@@ -998,6 +1014,8 @@
 						<string key="hello">UILabel</string>
 						<string key="itemsView">UIView</string>
 						<string key="labelBank">UILabel</string>
+						<string key="labelBtBadges">UILabel</string>
+						<string key="labelBtItems">UILabel</string>
 						<string key="labelMiete">UILabel</string>
 						<string key="labelNumExposes">UILabel</string>
 						<string key="miete">UILabel</string>
@@ -1039,6 +1057,14 @@
 						</object>
 						<object class="IBToOneOutletInfo" key="labelBank">
 							<string key="name">labelBank</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="labelBtBadges">
+							<string key="name">labelBtBadges</string>
+							<string key="candidateClassName">UILabel</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="labelBtItems">
+							<string key="name">labelBtItems</string>
 							<string key="candidateClassName">UILabel</string>
 						</object>
 						<object class="IBToOneOutletInfo" key="labelMiete">
