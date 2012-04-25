@@ -522,7 +522,7 @@
     
     // moving the spinner a bit more to the left
     CGPoint posSpinner = super.spinner.center;
-    posSpinner.x = 265.0f;
+    posSpinner.x = 260.0f;
     [super.spinner setCenter:posSpinner];
     
     [btShowItems setHidden:YES];
