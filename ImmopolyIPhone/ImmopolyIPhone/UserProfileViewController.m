@@ -512,7 +512,7 @@
     // setting the text of the helperView
     [super initHelperViewWithMode:INFO_OTHER_USER];
     
-    [topBarImage setImage:[UIImage imageNamed:@"top_bar_other_user.png"]];
+    [topBarImage setImage:[UIImage imageNamed:@"top_bar_info_other_side.png"]];
     [closeProfileButton setHidden:NO];
     
     //moving the button to the right site
@@ -527,6 +527,8 @@
     
     [btShowItems setHidden:YES];
     [btShowBadges setHidden:YES];
+    [labelBtBadges setHidden:YES];
+    [labelBtItems setHidden:YES];
 }
 
 - (void)closeMyDelegateView {}
