@@ -20,6 +20,7 @@
 #import "FeedbackViewController.h"
 #import "LoginCheck.h"
 #import "AbstractViewController.h"
+#import "NewsViewController.h"
 
 //HACK FOR 4.3
 /*
@@ -100,6 +101,7 @@
     UserProfileViewController *userVC;
     HistoryViewController *historyVC;
     FeedbackViewController *feedbackVC;
+    NewsViewController *newsVC;
     
     mapVC = [[[ImmopolyMapViewController alloc] init] autorelease];
     portfolioVC = [[[PortfolioViewController alloc] init] autorelease];
@@ -107,11 +109,12 @@
     userVC = [[[UserProfileViewController alloc] init] autorelease];
     historyVC = [[[HistoryViewController alloc] init] autorelease];    
     feedbackVC = [[[FeedbackViewController alloc]init]autorelease];
+    newsVC =[[[NewsViewController alloc]init]autorelease];
     
     self.tabBarController = [[[CustomTabBarController alloc] init] autorelease];
     self.tabBarController.delegate = self;
     
-    self.tabBarController.viewControllers = [NSArray arrayWithObjects:userVC,portfolioVC,mapVC,historyVC,feedbackVC, nil];
+    self.tabBarController.viewControllers = [NSArray arrayWithObjects:userVC,portfolioVC,mapVC,historyVC,newsVC, nil];
     [self.tabBarController addCenterButtonWithImage:[UIImage imageNamed:@"tabbar_center_icon.png"] highlightImage:[UIImage imageNamed:@"tabbar_center_icon_blue.png"]];
     [self.tabBarController setSelectedIndex:2];
     
@@ -168,7 +171,7 @@
     
     [self setSelectedViewController:viewController];
     
-    if([viewController class] == [FeedbackViewController class] || [viewController class] == [ImmopolyMapViewController class] || [[ImmopolyManager instance] loginSuccessful]) {
+    if([viewController class] == [NewsViewController class] || [viewController class] == [ImmopolyMapViewController class] || [[ImmopolyManager instance] loginSuccessful]) {
         return YES;
     }
     else {
