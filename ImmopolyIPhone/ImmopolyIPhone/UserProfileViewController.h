@@ -25,6 +25,8 @@
     IBOutlet UILabel *labelBank;
     IBOutlet UILabel *labelMiete;
     IBOutlet UILabel *labelNumExposes;
+    IBOutlet UILabel *labelBtBadges;
+    IBOutlet UILabel *labelBtItems;
     IBOutlet UIButton *closeProfileButton;
     IBOutlet UIButton *btShowBadges;
     IBOutlet UIButton *btShowItems;

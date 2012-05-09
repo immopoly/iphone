@@ -93,10 +93,15 @@
     self.badgesScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 320-43, 320, 132)];
     [[self view]addSubview:badgesScrollView];
     [[self view]bringSubviewToFront:[self badgesScrollView]];
- 
+
     self.actionsScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 480, 320, 132)];
     [[self view]addSubview:actionsScrollView];
     [[self view]bringSubviewToFront:[self actionsScrollView]];
+    
+    [[self view] bringSubviewToFront:btShowBadges];
+    [[self view] bringSubviewToFront:btShowItems];
+    [[self view] bringSubviewToFront:labelBtBadges];
+    [[self view] bringSubviewToFront:labelBtItems];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -512,7 +517,7 @@
     // setting the text of the helperView
     [super initHelperViewWithMode:INFO_OTHER_USER];
     
-    [topBarImage setImage:[UIImage imageNamed:@"top_bar_other_user.png"]];
+    [topBarImage setImage:[UIImage imageNamed:@"top_bar_info_other_side.png"]];
     [closeProfileButton setHidden:NO];
     
     //moving the button to the right site
@@ -522,11 +527,13 @@
     
     // moving the spinner a bit more to the left
     CGPoint posSpinner = super.spinner.center;
-    posSpinner.x = 265.0f;
+    posSpinner.x = 260.0f;
     [super.spinner setCenter:posSpinner];
     
     [btShowItems setHidden:YES];
     [btShowBadges setHidden:YES];
+    [labelBtBadges setHidden:YES];
+    [labelBtItems setHidden:YES];
 }
 
 - (void)closeMyDelegateView {}
@@ -547,6 +554,8 @@
         // buttonstates for badges/actions-toggle
         [btShowBadges setImage:[UIImage imageNamed:@"button_bereich_btn_on.png"] forState:UIControlStateNormal];
         [btShowItems setImage:[UIImage imageNamed:@"button_bereich_btn_off.png"] forState:UIControlStateNormal];
+        [[self view] bringSubviewToFront:btShowBadges];
+        [[self view] bringSubviewToFront:labelBtBadges];
     } else {
         posBV.y = 546;
         posAV.y = 343;
@@ -555,6 +564,8 @@
         // buttonstates for badges/actions-toggle
         [btShowBadges setImage:[UIImage imageNamed:@"button_bereich_btn_off.png"] forState:UIControlStateNormal];
         [btShowItems setImage:[UIImage imageNamed:@"button_bereich_btn_on.png"] forState:UIControlStateNormal];
+        [[self view] bringSubviewToFront:btShowItems];
+        [[self view] bringSubviewToFront:labelBtItems];
     }
     
     [badgesScrollView setCenter:posBV];
