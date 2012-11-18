@@ -16,6 +16,7 @@
 
 static NSString *ANNO_IMG_SINGLE = @"Haus_neu_hdpi.png";
 static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
+static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 
 @implementation ImmopolyMapViewController 
 
@@ -249,13 +250,14 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
         //annotationView.animatesDrop = YES;
         
         // differentiates between single and multi annotation view
-        Flat *location = (Flat *) annotation;
-        
+        Flat *location = (Flat *) annotation;        
         if([[location flatsAtAnnotation] count] > 0 ) {
             annotationView.image = [UIImage imageNamed:ANNO_IMG_MULTI];
             [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:location]];
         }
-        else {
+        else if ([self checkOfOwnFlat:location]) {
+            annotationView.image = [UIImage imageNamed:ANNO_IMG_OWN];
+        } else {
             annotationView.image = [UIImage imageNamed:ANNO_IMG_SINGLE];
         } 
         return annotationView;
@@ -290,10 +292,12 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
         annotationView.image = [UIImage imageNamed:ANNO_IMG_MULTI];
         [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:_flat]];
     }
-    else {
+    else if ([self checkOfOwnFlat:_flat]) {
+        annotationView.image = [UIImage imageNamed:ANNO_IMG_OWN];
+    } else {
+
         annotationView.image = [UIImage imageNamed:ANNO_IMG_SINGLE];
     }
-     
 }
 
 - (BOOL)checkOfOwnFlat:(Flat *)_flat {    
