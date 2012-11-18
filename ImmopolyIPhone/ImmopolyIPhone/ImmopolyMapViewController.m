@@ -234,34 +234,30 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     }
 }
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+- (MKAnnotationView *)mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     
     if([annotation isKindOfClass:[Flat class]]) {
         
         static NSString *identifier = @"Flat";
         
-        MKPinAnnotationView *annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
-             
+        MKAnnotationView *annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
+        
         annotationView.enabled = YES;   
         
         // NO, because our own bubble is coming in
         annotationView.canShowCallout = NO;
-        annotationView.animatesDrop = YES;
+        //annotationView.animatesDrop = YES;
         
         // differentiates between single and multi annotation view
         Flat *location = (Flat *) annotation;
-        UIImageView *imageView;
+        
         if([[location flatsAtAnnotation] count] > 0 ) {
-            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:ANNO_IMG_MULTI]] autorelease];
-            imageView.center = CGPointMake(19, 24.5);
-            [annotationView addSubview:imageView];
+            annotationView.image = [UIImage imageNamed:ANNO_IMG_MULTI];
             [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:location]];
         }
         else {
-            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:ANNO_IMG_SINGLE]] autorelease];
-            imageView.center = CGPointMake(19, 24.5);
-            [annotationView addSubview:imageView];
-        }
+            annotationView.image = [UIImage imageNamed:ANNO_IMG_SINGLE];
+        } 
         return annotationView;
     }
      
@@ -269,11 +265,11 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
 }
 
 - (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat {
-    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(-11, 5, 51, 40)];
+    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(-5, 0, 72, 58)];
     lbNumOfFlats.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     [lbNumOfFlats setText:[[NSString alloc] initWithFormat:@"%d", [[_flat flatsAtAnnotation] count] +1]];
     [lbNumOfFlats setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
-    lbNumOfFlats.font = [UIFont boldSystemFontOfSize:13];
+    lbNumOfFlats.font = [UIFont boldSystemFontOfSize:15];
     [lbNumOfFlats setTextAlignment:UITextAlignmentCenter];
     
     return lbNumOfFlats;
@@ -289,18 +285,13 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
         [v removeFromSuperview];
         v = nil;
     }
-    UIImageView *imageView;
-    
+
     if([[_flat flatsAtAnnotation] count] > 0 ) {
-        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:ANNO_IMG_MULTI]] autorelease];
-        imageView.center = CGPointMake(19, 24.5);
-        [annotationView addSubview:imageView];
+        annotationView.image = [UIImage imageNamed:ANNO_IMG_MULTI];
         [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:_flat]];
     }
     else {
-        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:ANNO_IMG_SINGLE]] autorelease];
-        imageView.center = CGPointMake(19, 24.5);
-        [annotationView addSubview:imageView];
+        annotationView.image = [UIImage imageNamed:ANNO_IMG_SINGLE];
     }
      
 }
@@ -629,7 +620,7 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     [self presentModalViewController:exposeWebViewController animated:YES];
 }
 
-/* delegate method for annotations dropping animation 
+// delegate method for annotations dropping animation
 - (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views { 
     MKAnnotationView *aV; 
     for (aV in views) {
@@ -642,8 +633,7 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
         [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
         [aV setFrame:endFrame];
         [UIView commitAnimations];
-        
     }
 }
-*/
+
 @end

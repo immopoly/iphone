@@ -33,7 +33,7 @@
     
     // Check if the class assigning itself as the delegate conforms to our protocol.  If not, the message will go nowhere.  Not good.
     if([self.delegate conformsToProtocol:@protocol(CoreLocationControllerDelegate)]){
-        //[self.delegate locationUpdate:newLocation];  //for real phone 
+        // [self.delegate locationUpdate:newLocation];  //for real phone
         [self.delegate locationUpdate:fhain]; // for simulator
     }
     

@@ -26,8 +26,8 @@
     IBOutlet UILabel *labelMiete;
     IBOutlet UILabel *labelNumExposes;
     UIScrollView *badgesScrollView;
-//    UIImageView *badgesBackground;
     IBOutlet UIButton *closeProfileButton;
+    IBOutlet UILabel *closeProfileButtonLabel;
     IBOutlet UITabBar *tabBar;
     IBOutlet UIImageView *topBarImage;
     LoginCheck *loginCheck;
@@ -54,13 +54,13 @@
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, retain) IBOutlet AsynchronousImageView *userImage;
 @property(nonatomic, retain) IBOutlet UIButton *closeProfileButton;
+@property(nonatomic, retain) IBOutlet UILabel *closeProfileButtonLabel;
 @property(nonatomic, retain) IBOutlet UITabBar *tabBar;
 @property(nonatomic, assign) BOOL loading;
 @property(nonatomic, assign) BOOL userIsNotMyself;
 @property(nonatomic, assign) int numberOfBadges;
 @property(nonatomic, retain) NSString *otherUserName;
 @property(nonatomic, retain) ImmopolyUser *otherUser;
-//@property(nonatomic, retain) UIImageView *badgesBackground;
 
 - (void)setLabelTextsOfUser:(ImmopolyUser *)_user;
 - (void)displayBadges:(ImmopolyUser *)_user;

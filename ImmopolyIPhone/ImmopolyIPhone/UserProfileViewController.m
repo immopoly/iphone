@@ -41,7 +41,7 @@
     if (self) {
         // Custom initialization
         self.title = NSLocalizedString(@"User", @"Third");
-        self.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon_user"];
+        [[self tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_icon_user"] withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_icon_user"]];
     }
     return self;
 }

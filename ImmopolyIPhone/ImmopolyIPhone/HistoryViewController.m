@@ -37,7 +37,7 @@
     if (self) {
         // Custom initialization
         self.title = NSLocalizedString(@"History", @"Fourth");
-        self.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon_history"];
+        [[self tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_icon_history"] withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_icon_history"]];
         self.loginCheck = [[[LoginCheck alloc] init] autorelease];
     }
     return self;

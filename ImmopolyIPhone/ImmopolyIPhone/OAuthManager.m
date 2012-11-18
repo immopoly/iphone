@@ -8,10 +8,10 @@
 
 #import "OAuthManager.h"
 #import "OAMutableURLRequest.h"
+#import "Secrets.h"
 
-#error insert key/value
-#define REST_AUTHENTICATION_KEY @""
-#define REST_AUTHENTICATION_SECRET @""
+#define REST_AUTHENTICATION_KEY oAuthKey
+#define REST_AUTHENTICATION_SECRET oAuthSecret
 
 @implementation OAuthManager
 

@@ -54,13 +54,16 @@
 @synthesize portfolioHasChanged;
 @synthesize lbRecenterMap;
 
+static NSString *ANNO_IMG_SINGLE = @"Haus_neu_hdpi.png";
+static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
+
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil { 
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
         self.title = NSLocalizedString(@"Portfolio", @"Second");
-        self.tabBarItem.image = [UIImage imageNamed:@"tabbar_icon_portfolio"];
+        [[self tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_icon_portfolio"] withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_icon_portfolio"]];
         self.loginCheck = [[LoginCheck alloc] init];
     }
     return self;
@@ -240,7 +243,7 @@
 - (void)showListWithAnimation:(BOOL)_animated {
     [self calloutBubbleOut];
     
-    //[topBar setImage:[UIImage imageNamed:@"topbar_portfolio_list.png"]];
+    [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_list.png"]];
     
     CGPoint posMap = portfolioMapView.center;
     CGPoint posTable = table.center;
@@ -281,7 +284,7 @@
 
 - (void)showMapWithAnimation:(BOOL)_animated {
     
-    //[topBar setImage:[UIImage imageNamed:@"topbar_portfolio_map.png"]];
+    [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_map.png"]];
      
     CGPoint posMap = portfolioMapView.center;
     CGPoint posTable = table.center;
@@ -434,27 +437,21 @@
         
         static NSString *identifier = @"Flat";
         
-        MKPinAnnotationView *annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
+        MKAnnotationView *annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
         
         annotationView.enabled = YES;   
         
         // NO, because our own bubble is coming in
         annotationView.canShowCallout = NO;
-        annotationView.animatesDrop = YES;
         
         // differentiates between single and multi annotation view
         Flat *location = (Flat *) annotation;
-        UIImageView *imageView;
         if([[location flatsAtAnnotation] count] > 0 ) {
-            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi.png"]] autorelease];
-            imageView.center = CGPointMake(19, 24.5);
-            [annotationView addSubview:imageView];
+            annotationView.image = [UIImage imageNamed:ANNO_IMG_MULTI];
             [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:location]];
         }
         else {
-            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
-            imageView.center = CGPointMake(19, 24.5);
-            [annotationView addSubview:imageView];
+            annotationView.image = [UIImage imageNamed:ANNO_IMG_SINGLE];
         }
         return annotationView;
     }
@@ -463,10 +460,11 @@
 }
 
 - (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat {
-    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(-7, 0, 51, 40)];
+    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(-5, 0, 72, 58)];
     lbNumOfFlats.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     [lbNumOfFlats setText:[[NSString alloc] initWithFormat:@"%d", [[_flat flatsAtAnnotation] count] +1]];
     [lbNumOfFlats setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    lbNumOfFlats.font = [UIFont boldSystemFontOfSize:15];
     [lbNumOfFlats setTextAlignment:UITextAlignmentCenter];
     
     return lbNumOfFlats;
@@ -482,18 +480,13 @@
         [v removeFromSuperview];
         v = nil;
     }
-    UIImageView *imageView;
     
     if([[_flat flatsAtAnnotation] count] > 0 ) {
-        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi.png"]] autorelease];
-        imageView.center = CGPointMake(19, 24.5);
-        [annotationView addSubview:imageView];
+        annotationView.image = [UIImage imageNamed:ANNO_IMG_MULTI];
         [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:_flat]];
     }
     else {
-        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
-        imageView.center = CGPointMake(19, 24.5);
-        [annotationView addSubview:imageView];
+        annotationView.image = [UIImage imageNamed:ANNO_IMG_SINGLE];
     }
 }
 
@@ -805,6 +798,22 @@
     
     // see didSelectAnnotation if conditions
     sameFlat = flat; 
+}
+
+// delegate method for annotations dropping animation
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views {
+    MKAnnotationView *aV;
+    for (aV in views) {
+        CGRect endFrame = aV.frame;
+        
+        aV.frame = CGRectMake(aV.frame.origin.x, aV.frame.origin.y - 230.0, aV.frame.size.width, aV.frame.size.height);
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.35];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        [aV setFrame:endFrame];
+        [UIView commitAnimations];
+    }
 }
 
 
