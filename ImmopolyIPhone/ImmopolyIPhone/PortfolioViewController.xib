@@ -47,7 +47,7 @@
 						<string key="NSFrameSize">{320, 420}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="167892229"/>
+						<reference key="NSNextKeyView" ref="832812747"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -96,7 +96,7 @@
 								<string key="NSFrameSize">{320, 370}</string>
 								<reference key="NSSuperview" ref="167892229"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="413100265"/>
+								<reference key="NSNextKeyView" ref="214274244"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<int key="IBUIContentHorizontalAlignment">0</int>
@@ -123,10 +123,10 @@
 							<object class="IBUIImageView" id="214274244">
 								<reference key="NSNextResponder" ref="167892229"/>
 								<int key="NSvFlags">292</int>
-								<string key="NSFrame">{{150, 150}, {40, 51}}</string>
+								<string key="NSFrame">{{56, 33}, {225, 172}}</string>
 								<reference key="NSSuperview" ref="167892229"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="832812747"/>
+								<reference key="NSNextKeyView" ref="413100265"/>
 								<bool key="IBUIUserInteractionEnabled">NO</bool>
 								<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 								<object class="NSCustomResource" key="IBUIImage">
@@ -154,7 +154,7 @@
 								<string key="NSFrame">{{70, 155}, {42, 21}}</string>
 								<reference key="NSSuperview" ref="167892229"/>
 								<reference key="NSWindow"/>
-								<reference key="NSNextKeyView" ref="214274244"/>
+								<reference key="NSNextKeyView" ref="278448641"/>
 								<bool key="IBUIOpaque">NO</bool>
 								<bool key="IBUIClipsSubviews">YES</bool>
 								<int key="IBUIContentMode">7</int>
@@ -179,7 +179,7 @@
 								</object>
 							</object>
 						</array>
-						<string key="NSFrameSize">{320, 370}</string>
+						<string key="NSFrame">{{0, -370}, {320, 370}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="339547074"/>
@@ -317,7 +317,7 @@
 				<string key="NSFrame">{{0, 20}, {320, 411}}</string>
 				<reference key="NSSuperview"/>
 				<reference key="NSWindow"/>
-				<reference key="NSNextKeyView" ref="278448641"/>
+				<reference key="NSNextKeyView" ref="167892229"/>
 				<object class="NSColor" key="IBUIBackgroundColor">
 					<int key="NSColorSpace">3</int>
 					<bytes key="NSWhite">MQA</bytes>
@@ -371,14 +371,6 @@
 						<reference key="destination" ref="1024581122"/>
 					</object>
 					<int key="connectionID">72</int>
-				</object>
-				<object class="IBConnectionRecord">
-					<object class="IBCocoaTouchOutletConnection" key="connection">
-						<string key="label">calloutBubbleImg</string>
-						<reference key="source" ref="372490531"/>
-						<reference key="destination" ref="214274244"/>
-					</object>
-					<int key="connectionID">73</int>
 				</object>
 				<object class="IBConnectionRecord">
 					<object class="IBCocoaTouchOutletConnection" key="connection">

@@ -25,8 +25,6 @@
 @synthesize isCalloutBubbleIn;
 @synthesize showCalloutBubble;
 @synthesize selectedExposeId;
-@synthesize selViewForHouseImage;
-@synthesize selViewForHouseImageInOut;
 @synthesize selectedImmoScoutFlat;
 @synthesize lbFlatDescription;
 @synthesize lbFlatName;
@@ -44,7 +42,6 @@
 @synthesize scrollView;
 @synthesize numOfScrollViewSubviews;
 @synthesize pageControl;
-@synthesize calloutBubbleImg;
 @synthesize lbPageNumber;
 @synthesize imgShadowTop;
 @synthesize imgShadowBottom;
@@ -104,8 +101,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [calloutBubbleImg setHidden:YES];
-    [lbPageNumber setHidden:YES];
     [self setShowCalloutBubble:NO];
     
     // that only the background is transparent and not the whole view
@@ -157,7 +152,7 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
 
 - (void)viewDidAppear:(BOOL)animated {
     // closing calloutBubble when the user returns from another tab
-    [self calloutBubbleOut];
+    // [self calloutBubbleOut];
     
     loginCheck.delegate = self;
     [loginCheck checkUserLogin];
@@ -395,10 +390,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
         [self calloutBubbleOut];
         
         if([view.annotation isKindOfClass:[Flat class]]) {
-            // that the right annotation gets shown, whenn an outIn call is happening
-            [self setSelViewForHouseImageInOut:selViewForHouseImage];
-            [self setSelViewForHouseImage:view];
-            
             Flat *location = (Flat *) view.annotation;
             [self setSelectedImmoScoutFlat:location]; 
             sameFlat = location; 
@@ -406,7 +397,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     }
     else {
         if([view.annotation isKindOfClass:[Flat class]]) {
-            [self setSelViewForHouseImage:view];
             Flat *location = (Flat *) view.annotation;
             [self setSelectedImmoScoutFlat:location]; 
             
@@ -493,16 +483,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
 - (void)calloutBubbleIn {
     // that the flats are clickable through the imageview
     [portfolioMapView addSubview:calloutBubble];
-    
-    // show the image of the stretchable calloutBubble
-    [calloutBubbleImg setHidden:NO];
-    
-    // checks hiding the right annotation
-    if(isOutInCall){
-        [selViewForHouseImageInOut setHidden:YES];   
-    } else {
-        [selViewForHouseImage setHidden:YES];
-    }
 	
     // animation
     [UIView beginAnimations:@"inAnimation" context:NULL];
@@ -510,14 +490,9 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
     
-	CGRect b = calloutBubbleImg.bounds;
-	b.size.height = 172;
-	b.size.width = 225;
-	calloutBubbleImg.bounds =  b;
-    
-    CGPoint pos = calloutBubbleImg.center;
-	pos.y = 115.0f;
-	calloutBubbleImg.center = pos;
+    CGPoint pos = calloutBubble.center;
+	pos.y = 185.0f;
+	calloutBubble.center = pos;
     
     [UIView commitAnimations]; 
     
@@ -529,23 +504,15 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
 
 - (void)calloutBubbleOut {
     
-    // hiding the text and stuff
-    [scrollView setHidden:YES];
-    [lbPageNumber setHidden:YES];
-    
     // animation
     [UIView beginAnimations:@"outAnimation" context:NULL];	
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
-	CGRect b = calloutBubbleImg.bounds;
-	b.size.height = 51;
-	b.size.width = 40;
-	calloutBubbleImg.bounds =  b;
-    
-    CGPoint pos = calloutBubbleImg.center;
-	pos.y = 175.5f;
-	calloutBubbleImg.center = pos;
+	
+    CGPoint pos = calloutBubble.center;
+	pos.y = -185.0f;
+	calloutBubble.center = pos;
     
     [UIView commitAnimations]; 
     [self setIsCalloutBubbleIn:NO];
@@ -561,7 +528,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
         // calloutBubble gets removed, because it was added at calloutBubbleIn
         [calloutBubble removeFromSuperview];
         
-        [calloutBubbleImg setHidden:YES];
         [self setShowCalloutBubble:NO];
         
         // sets the scrollview page to the first
@@ -569,8 +535,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
         
         // checks wether it was called due the calloutBubble was inside the view
         if(isOutInCall){
-            [selViewForHouseImageInOut setHidden:NO];
-            
             CLLocationCoordinate2D zoomLocation = selectedImmoScoutFlat.coordinate;
             MKCoordinateRegion viewRegion = MKCoordinateRegionMake(zoomLocation, portfolioMapView.region.span);
             MKCoordinateRegion adjustedRegion = [portfolioMapView regionThatFits:viewRegion];                
@@ -579,8 +543,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
             // calloutBubbleIn gets called at regionDidChanged, when bool showCalloutBubble is true
             [self setShowCalloutBubble:YES];
             [self setIsOutInCall:NO];
-        } else {
-            [selViewForHouseImage setHidden:NO];
         }
     }
 }
@@ -622,6 +584,8 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
         [lbPageNumber setHidden:NO];
         NSString *pageNum = [NSString stringWithFormat:@"1/%d", numOfScrollViewSubviews];
         [lbPageNumber setText:pageNum];
+    } else {
+        [lbPageNumber setHidden:YES];
     }
     
 }

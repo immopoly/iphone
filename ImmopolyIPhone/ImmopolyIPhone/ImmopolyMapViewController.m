@@ -34,15 +34,12 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 @synthesize isCalloutBubbleIn;
 @synthesize isOutInCall;
 @synthesize showCalloutBubble;
-@synthesize selViewForHouseImage;
-@synthesize selViewForHouseImageInOut;
 @synthesize asyncImageView;
 @synthesize iphoneScaleFactorLatitude;
 @synthesize iphoneScaleFactorLongitude;
 @synthesize scrollView;
 @synthesize numOfScrollViewSubviews;
 @synthesize pageControl;
-@synthesize calloutBubbleImg;
 @synthesize sameFlat;
 @synthesize regionSpan;
 
@@ -108,8 +105,6 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [super initSpinner];
-    [calloutBubbleImg setHidden:YES];
-    [lbPageNumber setHidden:YES];
     [self setShowCalloutBubble:NO];
     
     // that only the background is transparent and not the whole view
@@ -152,7 +147,6 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 
 - (void)viewDidAppear:(BOOL)animated {
     [mapView setZoomEnabled:YES];
-    [self calloutBubbleOut];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -200,9 +194,6 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
         
         if([view.annotation isKindOfClass:[Flat class]]) {
             // that the right annotation gets shown, whenn an outIn call is happening
-            [self setSelViewForHouseImageInOut:selViewForHouseImage];
-            [self setSelViewForHouseImage:view];
-            
             Flat *location = (Flat *) view.annotation;
             [self setSelectedImmoScoutFlat:location]; 
             sameFlat = location;
@@ -210,7 +201,6 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
     }
     else {
         if([view.annotation isKindOfClass:[Flat class]]) {
-            [self setSelViewForHouseImage:view];
             Flat *location = (Flat *) view.annotation;
             [self setSelectedImmoScoutFlat:location]; 
                         
@@ -325,30 +315,15 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
     // that the flats are clickable through the imageview
     [mapView addSubview:calloutBubble];
     
-    // show the image of the stretchable calloutBubble
-    [calloutBubbleImg setHidden:NO];
-    
-    // checks hiding the right annotation
-    if(isOutInCall){
-        [selViewForHouseImageInOut setHidden:YES];   
-    } else {
-        [selViewForHouseImage setHidden:YES];
-    }
-	
     // animation
     [UIView beginAnimations:@"inAnimation" context:NULL];
     [UIView setAnimationDuration:0.5];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
-
-	CGRect b = calloutBubbleImg.bounds;
-	b.size.height = 172;
-	b.size.width = 225;
-	calloutBubbleImg.bounds =  b;
     
-    CGPoint pos = calloutBubbleImg.center;
-	pos.y = 115.0f;
-	calloutBubbleImg.center = pos;
+    CGPoint pos = calloutBubble.center;
+	pos.y = 185.0f;
+	calloutBubble.center = pos;
     
     [UIView commitAnimations]; 
     
@@ -360,23 +335,15 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 
 - (void)calloutBubbleOut {
     
-    // hiding the text and stuff
-    [scrollView setHidden:YES];
-    [lbPageNumber setHidden:YES];
-    
     // animation
     [UIView beginAnimations:@"outAnimation" context:NULL];	
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
-	CGRect b = calloutBubbleImg.bounds;
-	b.size.height = 51;
-	b.size.width = 40;
-	calloutBubbleImg.bounds =  b;
-    
-    CGPoint pos = calloutBubbleImg.center;
-	pos.y = 175.5f;
-	calloutBubbleImg.center = pos;
+	 
+    CGPoint pos = calloutBubble.center;
+	pos.y = -185.0f;
+	calloutBubble.center = pos;
     
     [UIView commitAnimations]; 
     [self setIsCalloutBubbleIn:NO];
@@ -392,7 +359,6 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
         // calloutBubble gets removed, because it was added at calloutBubbleIn
         [calloutBubble removeFromSuperview];
         
-        [calloutBubbleImg setHidden:YES];
         [self setShowCalloutBubble:NO];
         
         // sets the scrollview page to the first
@@ -400,8 +366,6 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
         
         // checks wether it was called due the calloutBubble was inside the view
         if(isOutInCall){
-            [selViewForHouseImageInOut setHidden:NO];
-            
             CLLocationCoordinate2D zoomLocation = selectedImmoScoutFlat.coordinate;
             MKCoordinateRegion viewRegion = MKCoordinateRegionMake(zoomLocation, mapView.region.span);
             MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];                
@@ -410,8 +374,6 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
             // calloutBubbleIn gets called at regionDidChanged, when bool showCalloutBubble is true
             [self setShowCalloutBubble:YES];
             [self setIsOutInCall:NO];
-        } else {
-            [selViewForHouseImage setHidden:NO];
         }
     }
 }
@@ -516,6 +478,8 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
         [lbPageNumber setHidden:NO];
         NSString *pageNum = [NSString stringWithFormat:@"1/%d", numOfScrollViewSubviews];
         [lbPageNumber setText:pageNum];
+    } else {
+        [lbPageNumber setHidden:YES];
     }
     
 }
