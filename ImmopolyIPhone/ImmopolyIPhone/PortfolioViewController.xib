@@ -197,27 +197,27 @@
 					<object class="IBUIImageView" id="907951543">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 391}, {320, 20}}</string>
+						<string key="NSFrame">{{0, 401}, {320, 10}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="539954204"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">buttomshadow_portfolio_list.png</string>
+							<string key="NSResourceName">shadow_bottom.png</string>
 						</object>
 					</object>
 					<object class="IBUIImageView" id="110665738">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 42}, {320, 20}}</string>
+						<string key="NSFrame">{{0, 42}, {320, 10}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSNextKeyView" ref="283178944"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
 							<string key="NSClassName">NSImage</string>
-							<string key="NSResourceName">topshadow_portfolio_list.png</string>
+							<string key="NSResourceName">shadow_top.png</string>
 						</object>
 					</object>
 					<object class="IBUIButton" id="598429382">
@@ -634,11 +634,11 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="bt_actualise.png">{234, 76}</string>
-			<string key="buttomshadow_portfolio_list.png">{640, 40}</string>
 			<string key="calloutBubble.png">{450, 345}</string>
 			<string key="portfolio_list_background.png">{640, 840}</string>
+			<string key="shadow_bottom.png">{640, 20}</string>
+			<string key="shadow_top.png">{640, 20}</string>
 			<string key="topbar_portfolio_list.png">{640, 84}</string>
-			<string key="topshadow_portfolio_list.png">{640, 40}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1929</string>
 	</data>

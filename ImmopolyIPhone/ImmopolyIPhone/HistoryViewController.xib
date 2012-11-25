@@ -57,6 +57,7 @@
 						<string key="NSFrame">{{7, 42}, {320, 369}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView"/>
 						<object class="NSColor" key="IBUIBackgroundColor">
 							<int key="NSColorSpace">3</int>
 							<bytes key="NSWhite">MQA</bytes>
@@ -77,7 +78,7 @@
 						<string key="NSFrameSize">{320, 42}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
-						<reference key="NSNextKeyView" ref="529957560"/>
+						<reference key="NSNextKeyView" ref="661614242"/>
 						<bool key="IBUIUserInteractionEnabled">NO</bool>
 						<string key="targetRuntimeIdentifier">IBCocoaTouchFramework</string>
 						<object class="NSCustomResource" key="IBUIImage">
@@ -88,7 +89,7 @@
 					<object class="IBUIImageView" id="529957560">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 42}, {320, 20}}</string>
+						<string key="NSFrame">{{0, 42}, {320, 10}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="366842058"/>
@@ -102,7 +103,7 @@
 					<object class="IBUIImageView" id="366842058">
 						<reference key="NSNextResponder" ref="191373211"/>
 						<int key="NSvFlags">292</int>
-						<string key="NSFrame">{{0, 390}, {320, 68}}</string>
+						<string key="NSFrame">{{0, 401}, {320, 10}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
 						<reference key="NSNextKeyView" ref="173478334"/>
@@ -119,6 +120,7 @@
 						<string key="NSFrame">{{131, 10}, {72, 21}}</string>
 						<reference key="NSSuperview" ref="191373211"/>
 						<reference key="NSWindow"/>
+						<reference key="NSNextKeyView" ref="529957560"/>
 						<string key="NSReuseIdentifierKey">_NS:328</string>
 						<bool key="IBUIOpaque">NO</bool>
 						<bool key="IBUIClipsSubviews">YES</bool>
@@ -348,8 +350,8 @@
 		<int key="IBDocument.defaultPropertyAccessControl">3</int>
 		<dictionary class="NSMutableDictionary" key="IBDocument.LastKnownImageSizes">
 			<string key="history_background.png">{640, 840}</string>
-			<string key="shadow_bottom.png">{640, 124}</string>
-			<string key="shadow_top.png">{640, 40}</string>
+			<string key="shadow_bottom.png">{640, 20}</string>
+			<string key="shadow_top.png">{640, 20}</string>
 			<string key="top_bar_history.png">{640, 84}</string>
 		</dictionary>
 		<string key="IBCocoaTouchPluginVersion">1929</string>
