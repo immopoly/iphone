@@ -31,7 +31,6 @@
     IBOutlet AsynchronousImageView *asyncImageView;
     IBOutlet UIImageView *topBar;
     IBOutlet UIButton *btRecenterMap;
-    IBOutlet UILabel *lbRecenterMap;
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIPageControl *pageControl;
     IBOutlet UILabel *lbPageNumber;
@@ -85,7 +84,6 @@
 @property(nonatomic, retain) IBOutlet UILabel *lbFlatPrice;
 @property(nonatomic, retain) IBOutlet UILabel *lbNumberOfRooms;
 @property(nonatomic, retain) IBOutlet UILabel *lbLivingSpace;
-@property(nonatomic, retain) IBOutlet UILabel *lbRecenterMap;
 @property(nonatomic, retain) IBOutlet AsynchronousImageView *asyncImageView;
 @property(nonatomic, retain) WebViewController *exposeWebViewController;
 @property(nonatomic, retain) IBOutlet UIButton *btRecenterMap;

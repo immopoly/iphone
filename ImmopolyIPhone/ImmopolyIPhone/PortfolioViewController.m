@@ -49,7 +49,6 @@
 @synthesize regionSpan;
 @synthesize loading;
 @synthesize portfolioHasChanged;
-@synthesize lbRecenterMap;
 
 static NSString *ANNO_IMG_SINGLE = @"Haus_neu_hdpi.png";
 static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
@@ -85,7 +84,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
 - (void)viewWillAppear:(BOOL)animated {  
     [table reloadData];    
     [btRecenterMap setHidden:isBtHidden];
-    [lbRecenterMap setHidden:isBtHidden];
     
     // filter annotations if a flat was added or removed from the portfolio
     if(portfolioHasChanged) {
@@ -147,7 +145,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     self.lbLivingSpace = nil;
     self.topBar = nil;
     self.btRecenterMap = nil;
-    self.lbRecenterMap = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -246,7 +243,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     CGPoint posImgShadowBottom = imgShadowBottom.center;
     
     [btRecenterMap setHidden:YES];
-    [lbRecenterMap setHidden:YES];
     [self setIsBtHidden:YES];
     
     if(_animated) {
@@ -280,16 +276,14 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
 - (void)showMapWithAnimation:(BOOL)_animated {
     
     [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_map.png"]];
-     
+    [self setIsBtHidden:NO];
+    
     CGPoint posMap = portfolioMapView.center;
     CGPoint posTable = table.center;
     CGPoint posImgShadowTop = imgShadowTop.center;
     CGPoint posImgShadowBottom = imgShadowBottom.center;
     
     if(_animated) {
-        [btRecenterMap setHidden:NO];
-        [lbRecenterMap setHidden:NO];
-        [self setIsBtHidden:NO];
         [UIView beginAnimations:nil context:NULL];
         [UIView setAnimationDuration:0.4];
         posMap.x = 160.0f;
@@ -756,6 +750,7 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
 
 - (void)showSelectedFlatOnMap:(Flat *)flat{
     [self showMapWithAnimation:NO];
+    [self calloutBubbleIn];
     
     // moving the view to the center where the selected flat is placed
     CLLocationCoordinate2D zoomLocation = flat.coordinate;
@@ -764,7 +759,7 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     [portfolioMapView setRegion:adjustedRegion animated:NO];   
     
     // see didSelectAnnotation if conditions
-    sameFlat = flat; 
+    sameFlat = flat;
 }
 
 // delegate method for annotations dropping animation
