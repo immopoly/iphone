@@ -63,12 +63,12 @@
     [super initSpinner];
     [super.spinner startAnimating];
     
-    // setting the text of the helperView
-    [super initHelperViewWithMode:INFO_USER];
-    
     self.badgesScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 320-43, 320, 132)];
     [[self view]addSubview:badgesScrollView];
     [[self view]bringSubviewToFront:[self badgesScrollView]];
+    
+    // setting the text of the helperView
+    [super initHelperViewWithMode:INFO_USER];
 }
 
 -(void)viewWillAppear:(BOOL)animated{
