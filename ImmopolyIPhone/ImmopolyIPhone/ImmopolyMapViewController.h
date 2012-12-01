@@ -32,7 +32,6 @@
     IBOutlet AsynchronousImageView *asyncImageView;
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIPageControl *pageControl;
-    IBOutlet UIImageView *calloutBubbleImg;
     
     MKMapView *mapView;
     WebViewController *exposeWebViewController;
@@ -45,8 +44,6 @@
     bool showCalloutBubble;
     int selectedExposeId;
     Flat *selectedImmoScoutFlat;
-    MKAnnotationView *selViewForHouseImage;
-    MKAnnotationView *selViewForHouseImageInOut;
     
     // variables vor clustering
     float iphoneScaleFactorLatitude;
@@ -71,8 +68,6 @@
 @property(nonatomic, assign) bool isCalloutBubbleIn;
 @property(nonatomic, assign) bool isOutInCall;
 @property(nonatomic, assign) bool showCalloutBubble;
-@property(nonatomic, retain) MKAnnotationView *selViewForHouseImage;
-@property(nonatomic, retain) MKAnnotationView *selViewForHouseImageInOut;
 @property(nonatomic, retain) IBOutlet AsynchronousImageView *asyncImageView;
 @property(nonatomic, assign) float iphoneScaleFactorLatitude;
 @property(nonatomic, assign) float iphoneScaleFactorLongitude;

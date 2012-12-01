@@ -14,6 +14,10 @@
 #import "AsynchronousImageView.h"
 #import "Constants.h"
 
+static NSString *ANNO_IMG_SINGLE = @"Haus_neu_hdpi.png";
+static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
+static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
+
 @implementation ImmopolyMapViewController 
 
 @synthesize mapView;
@@ -30,15 +34,12 @@
 @synthesize isCalloutBubbleIn;
 @synthesize isOutInCall;
 @synthesize showCalloutBubble;
-@synthesize selViewForHouseImage;
-@synthesize selViewForHouseImageInOut;
 @synthesize asyncImageView;
 @synthesize iphoneScaleFactorLatitude;
 @synthesize iphoneScaleFactorLongitude;
 @synthesize scrollView;
 @synthesize numOfScrollViewSubviews;
 @synthesize pageControl;
-@synthesize calloutBubbleImg;
 @synthesize sameFlat;
 @synthesize regionSpan;
 
@@ -104,8 +105,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [super initSpinner];
-    [calloutBubbleImg setHidden:YES];
-    [lbPageNumber setHidden:YES];
     [self setShowCalloutBubble:NO];
     
     // that only the background is transparent and not the whole view
@@ -127,6 +126,11 @@
     singleFingerDTap.numberOfTapsRequired = 1;
     [self.scrollView addGestureRecognizer:singleFingerDTap];
     [singleFingerDTap release];
+    
+    UITapGestureRecognizer* tapRec = [[UITapGestureRecognizer alloc]
+                                      initWithTarget:self action:@selector(closeBubble)];
+    [mapView addGestureRecognizer:tapRec];
+    [tapRec release];
 }
 
 - (void)viewDidUnload {
@@ -148,7 +152,6 @@
 
 - (void)viewDidAppear:(BOOL)animated {
     [mapView setZoomEnabled:YES];
-    [self calloutBubbleOut];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
@@ -237,9 +240,6 @@
         
         if([view.annotation isKindOfClass:[Flat class]]) {
             // that the right annotation gets shown, whenn an outIn call is happening
-            [self setSelViewForHouseImageInOut:selViewForHouseImage];
-            [self setSelViewForHouseImage:view];
-            
             Flat *location = (Flat *) view.annotation;
             [self setSelectedImmoScoutFlat:location]; 
             sameFlat = location;
@@ -247,7 +247,6 @@
     }
     else {
         if([view.annotation isKindOfClass:[Flat class]]) {
-            [self setSelViewForHouseImage:view];
             Flat *location = (Flat *) view.annotation;
             [self setSelectedImmoScoutFlat:location]; 
                         
@@ -272,34 +271,31 @@
     }
 }
 
-- (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
+- (MKAnnotationView *)mapView:(MKMapView *)_mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     
     if([annotation isKindOfClass:[Flat class]]) {
         
         static NSString *identifier = @"Flat";
         
-        MKPinAnnotationView *annotationView = [[[MKPinAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
-             
+        MKAnnotationView *annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
+        
         annotationView.enabled = YES;   
         
         // NO, because our own bubble is coming in
         annotationView.canShowCallout = NO;
-        annotationView.animatesDrop = YES;
+        //annotationView.animatesDrop = YES;
         
         // differentiates between single and multi annotation view
-        Flat *location = (Flat *) annotation;
-        UIImageView *imageView;
+        Flat *location = (Flat *) annotation;        
         if([[location flatsAtAnnotation] count] > 0 ) {
-            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi.png"]] autorelease];
-            imageView.center = CGPointMake(19, 24.5);
-            [annotationView addSubview:imageView];
+            annotationView.image = [UIImage imageNamed:ANNO_IMG_MULTI];
             [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:location]];
         }
-        else {
-            imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
-            imageView.center = CGPointMake(19, 24.5);
-            [annotationView addSubview:imageView];
-        }
+        else if ([self checkOfOwnFlat:location]) {
+            annotationView.image = [UIImage imageNamed:ANNO_IMG_OWN];
+        } else {
+            annotationView.image = [UIImage imageNamed:ANNO_IMG_SINGLE];
+        } 
         return annotationView;
     }
      
@@ -307,10 +303,11 @@
 }
 
 - (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat {
-    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(-7, 0, 51, 40)];
+    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(-5, 0, 72, 58)];
     lbNumOfFlats.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     [lbNumOfFlats setText:[[NSString alloc] initWithFormat:@"%d", [[_flat flatsAtAnnotation] count] +1]];
     [lbNumOfFlats setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    lbNumOfFlats.font = [UIFont boldSystemFontOfSize:15];
     [lbNumOfFlats setTextAlignment:UITextAlignmentCenter];
     
     return lbNumOfFlats;
@@ -326,20 +323,17 @@
         [v removeFromSuperview];
         v = nil;
     }
-    UIImageView *imageView;
-    
+
     if([[_flat flatsAtAnnotation] count] > 0 ) {
-        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_multi.png"]] autorelease];
-        imageView.center = CGPointMake(19, 24.5);
-        [annotationView addSubview:imageView];
+        annotationView.image = [UIImage imageNamed:ANNO_IMG_MULTI];
         [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:_flat]];
     }
-    else {
-        imageView = [[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"annotation_single.png"]] autorelease];
-        imageView.center = CGPointMake(19, 24.5);
-        [annotationView addSubview:imageView];
+    else if ([self checkOfOwnFlat:_flat]) {
+        annotationView.image = [UIImage imageNamed:ANNO_IMG_OWN];
+    } else {
+
+        annotationView.image = [UIImage imageNamed:ANNO_IMG_SINGLE];
     }
-     
 }
 
 - (BOOL)checkOfOwnFlat:(Flat *)_flat {    
@@ -365,32 +359,17 @@
 
 - (void)calloutBubbleIn {
     // that the flats are clickable through the imageview
-    [mapView addSubview:calloutBubble];
+    //[mapView addSubview:calloutBubble];
     
-    // show the image of the stretchable calloutBubble
-    [calloutBubbleImg setHidden:NO];
-    
-    // checks hiding the right annotation
-    if(isOutInCall){
-        [selViewForHouseImageInOut setHidden:YES];   
-    } else {
-        [selViewForHouseImage setHidden:YES];
-    }
-	
     // animation
     [UIView beginAnimations:@"inAnimation" context:NULL];
     [UIView setAnimationDuration:0.5];
     [UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
-
-	CGRect b = calloutBubbleImg.bounds;
-	b.size.height = 172;
-	b.size.width = 225;
-	calloutBubbleImg.bounds =  b;
     
-    CGPoint pos = calloutBubbleImg.center;
-	pos.y = 115.0f;
-	calloutBubbleImg.center = pos;
+    CGPoint pos = calloutBubble.center;
+	pos.y = 160.0f;
+	calloutBubble.center = pos;
     
     [UIView commitAnimations]; 
     
@@ -402,23 +381,15 @@
 
 - (void)calloutBubbleOut {
     
-    // hiding the text and stuff
-    [scrollView setHidden:YES];
-    [lbPageNumber setHidden:YES];
-    
     // animation
     [UIView beginAnimations:@"outAnimation" context:NULL];	
 	[UIView setAnimationDuration:0.5];
 	[UIView setAnimationDelegate:self];
     [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
-	CGRect b = calloutBubbleImg.bounds;
-	b.size.height = 51;
-	b.size.width = 40;
-	calloutBubbleImg.bounds =  b;
-    
-    CGPoint pos = calloutBubbleImg.center;
-	pos.y = 175.5f;
-	calloutBubbleImg.center = pos;
+	 
+    CGPoint pos = calloutBubble.center;
+	pos.y = -86.0f;
+	calloutBubble.center = pos;
     
     [UIView commitAnimations]; 
     [self setIsCalloutBubbleIn:NO];
@@ -432,9 +403,8 @@
         [self initScrollView];
     } else if([animationID isEqualToString:@"outAnimation"]) {
         // calloutBubble gets removed, because it was added at calloutBubbleIn
-        [calloutBubble removeFromSuperview];
+        //[calloutBubble removeFromSuperview];
         
-        [calloutBubbleImg setHidden:YES];
         [self setShowCalloutBubble:NO];
         
         // sets the scrollview page to the first
@@ -442,8 +412,6 @@
         
         // checks wether it was called due the calloutBubble was inside the view
         if(isOutInCall){
-            [selViewForHouseImageInOut setHidden:NO];
-            
             CLLocationCoordinate2D zoomLocation = selectedImmoScoutFlat.coordinate;
             MKCoordinateRegion viewRegion = MKCoordinateRegionMake(zoomLocation, mapView.region.span);
             MKCoordinateRegion adjustedRegion = [mapView regionThatFits:viewRegion];                
@@ -452,8 +420,6 @@
             // calloutBubbleIn gets called at regionDidChanged, when bool showCalloutBubble is true
             [self setShowCalloutBubble:YES];
             [self setIsOutInCall:NO];
-        } else {
-            [selViewForHouseImage setHidden:NO];
         }
     }
 }
@@ -558,6 +524,8 @@
         [lbPageNumber setHidden:NO];
         NSString *pageNum = [NSString stringWithFormat:@"1/%d", numOfScrollViewSubviews];
         [lbPageNumber setText:pageNum];
+    } else {
+        [lbPageNumber setHidden:YES];
     }
     
 }
@@ -572,36 +540,39 @@
     UIView *subview = [[UIView alloc] initWithFrame:frame];
     subview.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     
+    UIColor *textColor = [UIColor colorWithRed:63.0/255.0 green:100.0/255.0 blue:148.0/255.0 alpha:1];
+    UIColor *backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
+    
     //labels
     UILabel *lbName = [[UILabel alloc] initWithFrame:CGRectMake(10, -15, 193, 70)];
     [lbName setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
-    [lbName setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
+    [lbName setBackgroundColor:backgroundColor];
     [lbName setNumberOfLines:2];
-    [lbName setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    [lbName setTextColor:[UIColor colorWithRed:40.0/255.0 green:77.0/255.0 blue:125.0/255.0 alpha:1]];
     [lbName setText:[_flat name]];
     [subview addSubview:lbName];
     
     UILabel *lbRooms = [[UILabel alloc] initWithFrame:CGRectMake(90, 35, 100, 35)];
     [lbRooms setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
     NSString *rooms = [NSString stringWithFormat:@"Zimmer: %d",[_flat numberOfRooms]];
-    [lbRooms setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
-    [lbRooms setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    [lbRooms setBackgroundColor:backgroundColor];
+    [lbRooms setTextColor:textColor];
     [lbRooms setText:rooms];
     [subview addSubview:lbRooms];
     
     UILabel *lbSpace = [[UILabel alloc] initWithFrame:CGRectMake(90, 60, 200, 35)];
     NSString *space = [NSString stringWithFormat:@"Fläche: %.2f m²",[_flat livingSpace]];
     [lbSpace setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
-    [lbSpace setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
-    [lbSpace setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    [lbSpace setBackgroundColor:backgroundColor];
+    [lbSpace setTextColor:textColor];
     [lbSpace setText:space];
     [subview addSubview:lbSpace];
     
     UILabel *lbPrice = [[UILabel alloc] initWithFrame:CGRectMake(90, 85, 200, 35)];
     NSString *price = [NSString stringWithFormat:@"Preis: %.2f €",[_flat price]];
     [lbPrice setFont:[UIFont fontWithName:@"Arial Rounded MT Bold" size:(12.0)]];
-    [lbPrice setBackgroundColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0]];
-    [lbPrice setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    [lbPrice setBackgroundColor:backgroundColor];
+    [lbPrice setTextColor:textColor];
     [lbPrice setText:price];
     [subview addSubview:lbPrice];
     
@@ -665,4 +636,26 @@
     exposeWebViewController.modalTransitionStyle = UIModalTransitionStyleFlipHorizontal;
     [self presentModalViewController:exposeWebViewController animated:YES];
 }
+
+// delegate method for annotations dropping animation
+- (void)mapView:(MKMapView *)mapView didAddAnnotationViews:(NSArray *)views { 
+    MKAnnotationView *aV; 
+    for (aV in views) {
+        CGRect endFrame = aV.frame;
+        
+        aV.frame = CGRectMake(aV.frame.origin.x, aV.frame.origin.y - 230.0, aV.frame.size.width, aV.frame.size.height);
+        
+        [UIView beginAnimations:nil context:NULL];
+        [UIView setAnimationDuration:0.35];
+        [UIView setAnimationCurve:UIViewAnimationCurveEaseOut];
+        [aV setFrame:endFrame];
+        [UIView commitAnimations];
+    }
+}
+
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
+    [self setShowCalloutBubble:NO];
+    [self calloutBubbleOut];
+}
+
 @end

@@ -30,10 +30,9 @@
     IBOutlet UILabel *lbLivingSpace;
     IBOutlet AsynchronousImageView *asyncImageView;
     IBOutlet UIImageView *topBar;
-    IBOutlet UIButton *btRecenterMap;    
+    IBOutlet UIButton *btRecenterMap;
     IBOutlet UIScrollView *scrollView;
     IBOutlet UIPageControl *pageControl;
-    IBOutlet UIImageView *calloutBubbleImg;
     IBOutlet UILabel *lbPageNumber;
 
     IBOutlet UIImageView *imgShadowTop;
@@ -56,8 +55,6 @@
     bool showCalloutBubble;
     int selectedExposeId;
     Flat *selectedImmoScoutFlat;
-    MKAnnotationView *selViewForHouseImage;
-    MKAnnotationView *selViewForHouseImageInOut;
     
     // variables vor clustering
     float iphoneScaleFactorLatitude;
@@ -94,8 +91,6 @@
 @property(nonatomic, retain) IBOutlet UIImageView *topBar;
 @property(nonatomic, assign) float iphoneScaleFactorLatitude;
 @property(nonatomic, assign) float iphoneScaleFactorLongitude;
-@property(nonatomic, retain) MKAnnotationView *selViewForHouseImage;
-@property(nonatomic, retain) MKAnnotationView *selViewForHouseImageInOut;
 @property(nonatomic, retain) IBOutlet UIScrollView *scrollView;
 @property(nonatomic, assign) int numOfScrollViewSubviews;
 @property(nonatomic, retain) IBOutlet UIPageControl *pageControl;

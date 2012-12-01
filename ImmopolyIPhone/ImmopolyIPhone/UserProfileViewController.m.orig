@@ -90,10 +90,16 @@
     self.badgesScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 320-43, 320, 132)];
     [[self view]addSubview:badgesScrollView];
     [[self view]bringSubviewToFront:[self badgesScrollView]];
+<<<<<<< HEAD
  
     self.actionsScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 480, 320, 132)];
     [[self view]addSubview:actionsScrollView];
     [[self view]bringSubviewToFront:[self actionsScrollView]];
+=======
+    
+    // setting the text of the helperView
+    [super initHelperViewWithMode:INFO_USER];
+>>>>>>> refs/heads/new-design
 }
 
 -(void)viewWillAppear:(BOOL)animated{

@@ -25,16 +25,21 @@
     IBOutlet UILabel *labelBank;
     IBOutlet UILabel *labelMiete;
     IBOutlet UILabel *labelNumExposes;
-    UIScrollView *badgesScrollView;
+<<<<<<< HEAD
     IBOutlet UIButton *closeProfileButton;
     IBOutlet UIButton *btShowBadges;
     IBOutlet UIButton *btShowItems;
+=======
+    UIScrollView *badgesScrollView;
+    IBOutlet UIButton *closeProfileButton;
     IBOutlet UILabel *closeProfileButtonLabel;
+>>>>>>> refs/heads/new-design
     IBOutlet UITabBar *tabBar;
     IBOutlet UIImageView *topBarImage;
     IBOutlet UIImageView *badgesViewBackground;
     IBOutlet AsynchronousImageView *userImage;
     IBOutlet UIView *itemsView;
+    UIScrollView *badgesScrollView;
     UIScrollView *actionsScrollView;
     LoginCheck *loginCheck;
     BOOL loading;
@@ -60,9 +65,12 @@
 @property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
 @property(nonatomic, retain) IBOutlet AsynchronousImageView *userImage;
 @property(nonatomic, retain) IBOutlet UIButton *closeProfileButton;
+<<<<<<< HEAD
 @property(nonatomic, retain) IBOutlet UIButton *btShowBadges;
 @property(nonatomic, retain) IBOutlet UIButton *btShowItems;
+=======
 @property(nonatomic, retain) IBOutlet UILabel *closeProfileButtonLabel;
+>>>>>>> refs/heads/new-design
 @property(nonatomic, retain) IBOutlet UITabBar *tabBar;
 @property(nonatomic, assign) BOOL loading;
 @property(nonatomic, assign) BOOL userIsNotMyself;
@@ -70,7 +78,10 @@
 @property(nonatomic, assign) int numberOfActions;
 @property(nonatomic, retain) NSString *otherUserName;
 @property(nonatomic, retain) ImmopolyUser *otherUser;
+<<<<<<< HEAD
 @property(nonatomic, retain) UIView *itemsView;
+=======
+>>>>>>> refs/heads/new-design
 
 - (void)setLabelTextsOfUser:(ImmopolyUser *)_user;
 //- (void)displayBadges:(ImmopolyUser *)_user;
