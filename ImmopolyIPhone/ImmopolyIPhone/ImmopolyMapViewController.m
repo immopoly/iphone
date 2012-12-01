@@ -126,6 +126,11 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
     singleFingerDTap.numberOfTapsRequired = 1;
     [self.scrollView addGestureRecognizer:singleFingerDTap];
     [singleFingerDTap release];
+    
+    UITapGestureRecognizer* tapRec = [[UITapGestureRecognizer alloc]
+                                      initWithTarget:self action:@selector(closeBubble)];
+    [mapView addGestureRecognizer:tapRec];
+    [tapRec release];
 }
 
 - (void)viewDidUnload {
@@ -313,7 +318,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 
 - (void)calloutBubbleIn {
     // that the flats are clickable through the imageview
-    [mapView addSubview:calloutBubble];
+    //[mapView addSubview:calloutBubble];
     
     // animation
     [UIView beginAnimations:@"inAnimation" context:NULL];
@@ -322,7 +327,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
     [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
     
     CGPoint pos = calloutBubble.center;
-	pos.y = 185.0f;
+	pos.y = 160.0f;
 	calloutBubble.center = pos;
     
     [UIView commitAnimations]; 
@@ -342,7 +347,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
     [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
 	 
     CGPoint pos = calloutBubble.center;
-	pos.y = -185.0f;
+	pos.y = -86.0f;
 	calloutBubble.center = pos;
     
     [UIView commitAnimations]; 
@@ -357,7 +362,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
         [self initScrollView];
     } else if([animationID isEqualToString:@"outAnimation"]) {
         // calloutBubble gets removed, because it was added at calloutBubbleIn
-        [calloutBubble removeFromSuperview];
+        //[calloutBubble removeFromSuperview];
         
         [self setShowCalloutBubble:NO];
         
@@ -605,6 +610,11 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
         [aV setFrame:endFrame];
         [UIView commitAnimations];
     }
+}
+
+- (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
+    [self setShowCalloutBubble:NO];
+    [self calloutBubbleOut];
 }
 
 @end
