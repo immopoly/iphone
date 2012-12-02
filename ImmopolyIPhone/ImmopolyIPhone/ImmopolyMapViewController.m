@@ -159,6 +159,8 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
+#pragma mark - LocationDelegate
+
 - (void)setAdressLabelText:(NSString *)_locationName {
     [adressLabel setText:_locationName];
 }
@@ -213,7 +215,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 }
 
 - (void)displayFlatsOnMap {
-    [super stopSpinnerAnimation];
+    [self stopSpinnerAnimation];
     
     // removing all existing annotations
     for (id<MKAnnotation> annotation in mapView.annotations) {
@@ -303,9 +305,9 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 }
 
 - (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat {
-    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(-5, 0, 72, 58)];
+    UILabel *lbNumOfFlats = [[[UILabel alloc] initWithFrame:CGRectMake(-5, 0, 72, 58)] autorelease];
     lbNumOfFlats.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-    [lbNumOfFlats setText:[[NSString alloc] initWithFormat:@"%d", [[_flat flatsAtAnnotation] count] +1]];
+    [lbNumOfFlats setText:[NSString stringWithFormat:@"%d", [[_flat flatsAtAnnotation] count] +1]];
     [lbNumOfFlats setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
     lbNumOfFlats.font = [UIFont boldSystemFontOfSize:15];
     [lbNumOfFlats setTextAlignment:UITextAlignmentCenter];
@@ -350,7 +352,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 // action for the compass button
 - (IBAction)refreshLocation {
     [self calloutBubbleOut];
-    AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate startLocationUpdate];
     
     [delegate setIsLocationUpdated:NO];
@@ -512,7 +514,6 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
         }
         
         [scrollView addSubview:subview];
-        [subview release];
     }
     
     // setting the whole size of the scrollView
@@ -537,7 +538,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
     frame.origin.y = 0;
     frame.size = self.scrollView.frame.size;
     
-    UIView *subview = [[UIView alloc] initWithFrame:frame];
+    UIView *subview = [[[UIView alloc] initWithFrame:frame] autorelease];
     subview.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     
     UIColor *textColor = [UIColor colorWithRed:63.0/255.0 green:100.0/255.0 blue:148.0/255.0 alpha:1];

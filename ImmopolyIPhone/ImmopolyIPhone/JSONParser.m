@@ -32,7 +32,9 @@
         NSString *exceptionMessage = [exceptionDic objectForKey:@"message"];
         int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
         
-        *err = [NSError errorWithDomain:@"parseUserData" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:exceptionMessage],@"ErrorMessage",nil]];
+        if (err) {
+            *err = [NSError errorWithDomain:@"parseUserData" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:exceptionMessage,@"ErrorMessage",nil]];
+        }
     } 
     else {
         NSDictionary *user = [results objectForKey:@"org.immopoly.common.User"];
@@ -84,7 +86,9 @@
         NSString *exceptionMessage = [exceptionDic objectForKey:@"message"];
         int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
         
-        *err = [NSError errorWithDomain:@"parseUserData" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:exceptionMessage],@"ErrorMessage",nil]];
+        if (err) {
+            *err = [NSError errorWithDomain:@"parseUserData" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:exceptionMessage,@"ErrorMessage",nil]];
+        }
 
         return nil;
     } 
@@ -217,7 +221,10 @@
         NSString *exceptionMessage = [exceptionDic objectForKey:@"message"];
         int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
         
-        *err = [NSError errorWithDomain:@"parseHistoryEntries" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:exceptionMessage],@"ErrorMessage",nil]];
+        if (err) {
+            *err = [NSError errorWithDomain:@"parseHistoryEntries" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:exceptionMessage,@"ErrorMessage",nil]];            
+        }
+
         
         return nil;
     } 
@@ -251,7 +258,9 @@
         NSString *exceptionMessage = [exceptionDic objectForKey:@"message"];
         int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
         
-        *err = [NSError errorWithDomain:@"parseExposes" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:exceptionMessage],@"ErrorMessage",nil]];
+        if (err) {
+            *err = [NSError errorWithDomain:@"parseExposes" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:exceptionMessage,@"ErrorMessage",nil]];
+        }
         
         return nil;
     } 
@@ -303,7 +312,9 @@
         NSString *exceptionMessage = [exceptionDic objectForKey:@"message"];
         int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
         
-        *err = [NSError errorWithDomain:@"parseFlatData" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:exceptionMessage],@"ErrorMessage",nil]];
+        if (err) {
+            *err = [NSError errorWithDomain:@"parseFlatData" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:exceptionMessage,@"ErrorMessage",nil]];
+        }
         
         return nil;
     } 
@@ -311,7 +322,7 @@
         NSDictionary *resultList = [results objectForKey:@"resultlist.resultlist"];
         
         //TODO: check
-        NSDictionary *resultlistEntries = [resultList objectForKey:@"resultlistEntries"];
+        NSArray *resultlistEntries = [resultList objectForKey:@"resultlistEntries"];
         
         //TODO: check
         NSMutableArray *resultEntry = [[resultlistEntries objectAtIndex:0] objectForKey:@"resultlistEntry"];        
@@ -367,8 +378,10 @@
         NSString *exceptionMessage = [exceptionDic objectForKey:@"message"];
         int errorCode = [[exceptionDic objectForKey:@"errorCode"]intValue];
         
-        *err = [NSError errorWithDomain:@"parseHistory" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:[NSString stringWithFormat:exceptionMessage],@"ErrorMessage",nil]];
-        
+        if (err) {
+            *err = [NSError errorWithDomain:@"parseHistory" code:errorCode userInfo:[NSDictionary dictionaryWithObjectsAndKeys:exceptionMessage,@"ErrorMessage",nil]];            
+        }
+
         return nil;
     } 
     else {

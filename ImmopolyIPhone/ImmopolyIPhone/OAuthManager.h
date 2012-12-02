@@ -13,7 +13,7 @@
 @interface OAuthManager : NSObject {
     
 }
-- (ASIHTTPRequest *)grabURLInBackground:(NSString *)url withFormat:(NSString *)format withDelegate:(id)delegate;
+- (void)grabURLInBackground:(NSString *)url withFormat:(NSString *)format withDelegate:(id)delegate;
 - (NSString *) requestHeaderWithURL:(NSURL *)cURL andMethod:(NSString *)cMethod;
 - (ASIHTTPRequest *) request:(NSURL*) url acceptFormat:(NSString*) format httpMethod:(NSString*) method;
 

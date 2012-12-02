@@ -51,6 +51,7 @@
 
 - (void)dealloc {
     [immoScoutFlats release];
+    [super dealloc];
 }
 
 @end

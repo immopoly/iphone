@@ -60,7 +60,7 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
         // Custom initialization
         self.title = NSLocalizedString(@"Portfolio", @"Second");
         [[self tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_icon_portfolio"] withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_icon_portfolio"]];
-        self.loginCheck = [[LoginCheck alloc] init];
+        self.loginCheck = [[[LoginCheck alloc] init] autorelease];
     }
     return self;
 }
@@ -110,7 +110,7 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     [self setIsBtHidden:YES];
     
     [self.table setBackgroundColor:[UIColor clearColor]];
-    [self.table setSeparatorColor:[[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.0]];
+    [self.table setSeparatorColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.0]];
     
     // calculation for clustering
     CGFloat scrWidth = CGRectGetWidth(self.view.bounds);
@@ -157,10 +157,12 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     [super viewDidAppear:animated];
 }
 
+#pragma mark - UserDataDelegate
+
 - (void)performActionAfterLoginCheck {
     [table reloadData];
    
-    [super stopSpinnerAnimation];
+    [self stopSpinnerAnimation];
     [[self table] setHidden: NO];
     
     // do in background and only filter if no annotations are on the map
@@ -172,6 +174,11 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     if ([[[ImmopolyManager instance]user]portfolio] == nil || [[[[ImmopolyManager instance]user]portfolio]count]<=0) {
         [super helperViewIn];
     }
+}
+
+- (void)stopSpinner
+{
+    [self stopSpinnerAnimation];
 }
 
 
@@ -444,10 +451,10 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
 }
 
 - (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat {
-    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(-5, 0, 72, 58)];
+    UILabel *lbNumOfFlats = [[[UILabel alloc] initWithFrame:CGRectMake(-5, 0, 72, 58)] autorelease];
     lbNumOfFlats.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-    [lbNumOfFlats setText:[[NSString alloc] initWithFormat:@"%d", [[_flat flatsAtAnnotation] count] +1]];
-    [lbNumOfFlats setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    [lbNumOfFlats setText:[NSString stringWithFormat:@"%d", [[_flat flatsAtAnnotation] count] +1]];
+    [lbNumOfFlats setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1.0]];
     lbNumOfFlats.font = [UIFont boldSystemFontOfSize:15];
     [lbNumOfFlats setTextAlignment:UITextAlignmentCenter];
     
@@ -566,7 +573,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
         }
         
         [scrollView addSubview:subview];
-        [subview release];
     }
     
     // setting the whole size of the scrollView
@@ -591,7 +597,7 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     frame.origin.y = 0;
     frame.size = self.scrollView.frame.size;
     
-    UIView *subview = [[UIView alloc] initWithFrame:frame];
+    UIView *subview = [[[UIView alloc] initWithFrame:frame] autorelease];
     subview.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     
     UIColor *textColor = [UIColor colorWithRed:63.0/255.0 green:100.0/255.0 blue:148.0/255.0 alpha:1];
@@ -715,18 +721,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     }
 }
 
--(void)notifyMyDelegateView{
-    loading = NO;
-    [super.spinner stopAnimating];
-    [super.spinner setHidden: YES];
-    
-    [[self table]reloadData];
-    [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]]; 
-    [self recenterMap];
-    
-    //ToDo: actualise
-}
-
 - (void)handleBubbleTap{
     // if pageControl is at a page > 0, then the selected flat is one of the flats in flatsAtAnnotation
     if(pageControl.currentPage > 0) {
@@ -746,7 +740,23 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     [self presentModalViewController:exposeWebViewController animated:YES];
 }
 
+#pragma mark - NotifyViewDelegate
+
+-(void)notifyMyDelegateView{
+    loading = NO;
+    [super.spinner stopAnimating];
+    [super.spinner setHidden: YES];
+    
+    [[self table]reloadData];
+    [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]];
+    [self recenterMap];
+    
+    //ToDo: actualise
+}
+
 - (void)closeMyDelegateView {}
+
+- (void)notifyMyDelegateViewWithUser:(ImmopolyUser *)user {}
 
 - (void)showSelectedFlatOnMap:(Flat *)flat{
     [self showMapWithAnimation:NO];

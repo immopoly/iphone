@@ -26,7 +26,7 @@
     [self setConnection: [NSURLConnection connectionWithRequest:request delegate:self]];
     
     if ([self connection]) {
-        [self setData: [[NSMutableData data] retain]];
+        self.data = [NSMutableData data];
     }
 }
 

@@ -83,7 +83,6 @@
 - (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat;
 - (void)calloutBubbleIn;
 - (void)calloutBubbleOut;
-- (IBAction)showFlatsWebView;
 - (void)filterAnnotations:(NSArray *)_flatsToFilter;
 - (void)initScrollView;
 - (UIView *)createCalloutBubbleContentFromFlat:(Flat *)_flat atPosition:(int)_pos;

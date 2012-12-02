@@ -35,17 +35,16 @@
 }
 
 -(void)dealloc{
+    self.helperView = nil;
+    self.helperBackground = nil;
+    self.helperScroll = nil;
+    self.helperTextImage = nil;
+    self.helperViewBubble = nil;
+    self.btHelperViewIn = nil;
+    self.linkButton = nil;
+    self.spinner = nil;
+    self.selectedActionItem = nil;
     [super dealloc];
-    
-    [self.helperView release];
-    [self.helperBackground release];
-    [self.helperScroll release];
-    [self.helperTextImage release];
-    [self.helperViewBubble release];
-    [self.btHelperViewIn release];
-    [self.linkButton release]; 
-    [self.spinner release];
-    [[self selectedActionItem]release];
 }
 
 - (void)didReceiveMemoryWarning
@@ -85,6 +84,7 @@
     self.btHelperViewIn = nil;
     self.linkButton = nil;
     self.spinner = nil;
+    self.selectedActionItem = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -101,13 +101,13 @@
 }
 
 - (void)initHelperViewWithMode:(int)_infoMode {
-    helperView = [[UIView alloc] initWithFrame:CGRectMake(0, -370, 320, 370)];
+    self.helperView = [[[UIView alloc] initWithFrame:CGRectMake(0, -370, 320, 370)] autorelease];
     
-    helperViewBubble = [[UIView alloc] initWithFrame:CGRectMake(18, 30, 283, 329)];
+    self.helperViewBubble = [[[UIView alloc] initWithFrame:CGRectMake(18, 30, 283, 329)] autorelease];
 
-    helperBackground = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_background"]];
+    self.helperBackground = [[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_background"]] autorelease];
 
-    helperScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 10, 284, 310)];
+    self.helperScroll = [[[UIScrollView alloc]initWithFrame:CGRectMake(0, 10, 284, 310)] autorelease];
     
     helperScroll.scrollEnabled = YES;
 
@@ -249,7 +249,7 @@
     
     if([title isEqualToString:@"Ja"])
     {
-        AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         ActionItem *item = [self selectedActionItem];
         
         if ([item amount] > 0) {

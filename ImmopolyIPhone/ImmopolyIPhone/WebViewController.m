@@ -37,7 +37,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
 		// Initialization code
-        self.loginCheck = [[LoginCheck alloc] init];
+        self.loginCheck = [[[LoginCheck alloc] init] autorelease];
 	}
 	return self;
 }
@@ -162,8 +162,10 @@
     [self.flatActionButton setEnabled:NO];
 }
 
+#pragma mark - UserDataDelegate
+
 - (void)performActionAfterLoginCheck {
-    [super stopSpinnerAnimation];
+    [self stopSpinnerAnimation];
     if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]) {
         
         UIAlertView *removeFlatDialog = [[UIAlertView alloc]initWithTitle:@"Expose abgeben" message:alertExposeGiveAwayWarning delegate:self cancelButtonTitle:@"Nein" otherButtonTitles:@"Ja", nil];
@@ -183,8 +185,13 @@
     }
 }
 
+- (void)stopSpinner
+{
+    [self stopSpinnerAnimation];
+}
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    [super stopSpinnerAnimation];
+    [self stopSpinnerAnimation];
     FlatRemoveTask *flatRemoveTask = [[FlatRemoveTask alloc]init];
     
     switch (buttonIndex) {
@@ -199,10 +206,10 @@
             [[[[ImmopolyManager instance]user]portfolio]removeObject:[self selectedImmoscoutFlat]];
             [[[ImmopolyManager instance]user]setNumExposes:[[[ImmopolyManager instance]user]numExposes]-1];
             
-            AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             
-            if([[[[delegate tabBarController]viewControllers]objectAtIndex:1]isKindOfClass:[PortfolioViewController class]]){
-                PortfolioViewController *tempVC = (PortfolioViewController *)[[[delegate tabBarController]viewControllers]objectAtIndex:1];
+            if([[[[appDelegate tabBarController]viewControllers]objectAtIndex:1]isKindOfClass:[PortfolioViewController class]]){
+                PortfolioViewController *tempVC = (PortfolioViewController *)[[[appDelegate tabBarController]viewControllers]objectAtIndex:1];
                 [tempVC setPortfolioHasChanged:YES];
             }
             
@@ -258,6 +265,7 @@
             }
             
             [self presentModalViewController:tweetView animated:YES];
+            [tweetView release];
             
         }
     }
@@ -339,7 +347,7 @@
 	 <tr>\
 	 <td valign=\"top\"><font color=\"#999\" size=\"2\">"];
 	
-	[html appendString: [[NSString alloc]initWithFormat:@"http://mobil.immobilienscout24.de/expose/%i",[selectedImmoscoutFlat exposeId]]];
+	[html appendString: [NSString stringWithFormat:@"http://mobil.immobilienscout24.de/expose/%i",[selectedImmoscoutFlat exposeId]]];
 
 	[html appendString:  @"</font>\
 	 </td>\
@@ -451,7 +459,7 @@
     //[[FacebookManager getInstance] setFacebookUserPrompt:@"FacebookPrompt"];
     [[FacebookManager getInstance] setFacebookActionLabel:sharingFacebookActionLabel];
     [[FacebookManager getInstance] setFacebookActionText:sharingFacebookActionText];
-    [[FacebookManager getInstance] setFacebookActionLink:[[NSString alloc]initWithFormat:@"%@%i",urlIS24MobileExpose,[selectedImmoscoutFlat exposeId]]];
+    [[FacebookManager getInstance] setFacebookActionLink:[NSString stringWithFormat:@"%@%i",urlIS24MobileExpose,[selectedImmoscoutFlat exposeId]]];
     
     [[FacebookManager getInstance] commitShare];
 }

@@ -12,8 +12,9 @@
 #import "CustomTabBarController.h"
 #import "LoginCheck.h"
 #import "ActionItemManager.h"
+#import "FlatProvider.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate, CoreLocationControllerDelegate, UITabBarControllerDelegate, UserDataDelegate, LoginDelegate, NotifyViewDelegate> {
+@interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate, CoreLocationControllerDelegate, UITabBarControllerDelegate, LoginDelegate, NotifyViewDelegate> {
     
     // for getting phone coordinates
     CoreLocationController *CLController;
@@ -35,6 +36,8 @@
 @property(nonatomic, retain) UIViewController *selectedViewController;
 @property(nonatomic, retain) UIActivityIndicatorView *actualisationSpinner;
 @property(nonatomic, assign) bool isLocationUpdated;
+
+@property(nonatomic, retain) FlatProvider *provider;
 
 @property(nonatomic, retain) ActionItemManager *actionItemManager;
 

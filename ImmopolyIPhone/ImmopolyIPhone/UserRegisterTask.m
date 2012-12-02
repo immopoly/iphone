@@ -29,7 +29,7 @@
     [self setConnection: [NSURLConnection connectionWithRequest:request delegate:self]];
     
     if ([self connection]) {
-        [self setData: [[NSMutableData data] retain]];
+        self.data = [NSMutableData data];
     }
 }
 
@@ -61,7 +61,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"user/register successful" object:nil userInfo:taskInfo];
         [delegate registerWithResult: YES];
         
-        AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [[appDelegate actionItemManager]placeActionItems];
     }
     [jsonString release];

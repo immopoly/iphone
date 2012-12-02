@@ -45,6 +45,7 @@
     [userName release];
     [userToken release];
     [email release];
+    [super dealloc];
 }
 
 @end

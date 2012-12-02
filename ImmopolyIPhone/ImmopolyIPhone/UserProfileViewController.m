@@ -49,6 +49,7 @@
 @synthesize userIsNotMyself;
 @synthesize otherUserName;
 @synthesize closeProfileButton;
+@synthesize closeProfileButtonLabel;
 @synthesize tabBar;
 @synthesize topBarImage;
 @synthesize otherUser;
@@ -87,11 +88,11 @@
     [super initSpinner];
     [super.spinner startAnimating];
     
-    self.badgesScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 320-43, 320, 132)];
+    self.badgesScrollView = [[[UIScrollView alloc]initWithFrame:CGRectMake(0, 320-43, 320, 132)] autorelease];
     [[self view]addSubview:badgesScrollView];
     [[self view]bringSubviewToFront:[self badgesScrollView]];
  
-    self.actionsScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 480, 320, 132)];
+    self.actionsScrollView = [[[UIScrollView alloc]initWithFrame:CGRectMake(0, 480, 320, 132)] autorelease];
     [[self view]addSubview:actionsScrollView];
     [[self view]bringSubviewToFront:[self actionsScrollView]];
 }
@@ -156,6 +157,8 @@
     }
 }
 
+#pragma mark - UserDataDelegate
+
 - (void)performActionAfterLoginCheck {
     ImmopolyUser *myUser = [[ImmopolyManager instance] user];
     
@@ -166,6 +169,11 @@
         [self displayItems:[myUser badges] ofScrollView:badgesScrollView];
         [self displayItems:[myUser actionItems] ofScrollView:actionsScrollView];
     }
+    [self stopSpinnerAnimation];
+}
+
+- (void)stopSpinner
+{
     [self stopSpinnerAnimation];
 }
 
@@ -312,6 +320,7 @@
                 [_scrollView bringSubviewToFront:btItem];
                 [_scrollView addSubview:imgView];
                 [_scrollView addSubview:btItem];
+                [imgView release];
             }
             posX += 4;
         } 

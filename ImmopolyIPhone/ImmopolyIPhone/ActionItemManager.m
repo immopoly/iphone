@@ -48,12 +48,13 @@
         UIAlertView *alert;
         alert = [[UIAlertView alloc]initWithTitle:@"Aktion erfolgreich ausgeführt" message:[currentItem text] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
+        [alert release];
     }
 }
 
 -(void)placeActionItems{
     for (ActionItem *item in [[[ImmopolyManager instance]user]actionItems]) {
-        AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         ImmopolyMapViewController *mapVC = NULL;
         ActionItemButton *button = NULL;
         switch ([item type]) {

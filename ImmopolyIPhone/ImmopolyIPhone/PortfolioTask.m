@@ -19,7 +19,7 @@
 
 - (void)refreshPortolio{
     
-    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?token=%@&start=0&end=30",urlImmopolyExpose,[[[ImmopolyManager instance]user]userToken],0, 30]];
+    NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@?token=%@&start=0&end=30",urlImmopolyExpose,[[[ImmopolyManager instance]user]userToken]]];
     
     NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReturnCacheDataElseLoad timeoutInterval:30.0];
     
@@ -27,7 +27,7 @@
     
     
     if ([self connection]) {
-        [self setData: [[NSMutableData data] retain]];
+        self.data = [NSMutableData data];
     }
 }
 

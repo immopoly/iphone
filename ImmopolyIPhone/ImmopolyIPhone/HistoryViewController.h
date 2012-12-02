@@ -57,7 +57,6 @@
 - (IBAction)facebook:(id)sender;
 - (IBAction)twitter:(id)sender;
 - (IBAction)openUserProfile:(id)sender;
-- (IBAction)update;
 
 -(IBAction)showCellLabels:(id)sender;
 

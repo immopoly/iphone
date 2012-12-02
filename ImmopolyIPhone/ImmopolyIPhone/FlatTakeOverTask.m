@@ -36,7 +36,7 @@
     
     
     if ([self connection]) {
-        [self setData: [[NSMutableData data] retain]];
+        self.data = [NSMutableData data];
     }
 }
 
@@ -80,7 +80,7 @@
                 [[[user portfolio] objectAtIndex:0] setOvertakeDate:[curDate timeIntervalSince1970]*1000];
                 
                 //Notify the Portfolio, that is has changed
-                AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+                AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
                 
                 if([[[[delegate tabBarController]viewControllers]objectAtIndex:1]isKindOfClass:[PortfolioViewController class]]){
                     PortfolioViewController *tempVC = (PortfolioViewController *)[[[delegate tabBarController]viewControllers]objectAtIndex:1];

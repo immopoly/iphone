@@ -41,7 +41,7 @@
         
         
         if ([self connection]) {
-            [self setData: [[NSMutableData data] retain]];
+            self.data = [NSMutableData data];
         }
     }else{
         //ToDo handle login

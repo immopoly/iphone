@@ -119,6 +119,7 @@
 
 - (void)dealloc {
     [spinner release];
+    [super dealloc];
 }
 
 @end

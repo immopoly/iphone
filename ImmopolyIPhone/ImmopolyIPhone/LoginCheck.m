@@ -47,7 +47,7 @@
 
 - (void)showLoginViewController {
     //in tabbar
-    AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
     loginVC.delegate = self;
     
@@ -72,10 +72,10 @@
         //[self notifyMyDelegateView];
     }
     else {
-        [delegate stopSpinnerAnimation];
+        [delegate stopSpinner];
         [self showLoginViewController];
         /*
-        AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
         loginVC.delegate = self;
         [[appDelegate tabBarController] presentModalViewController: loginVC animated: YES];
@@ -84,17 +84,21 @@
     }
 }
 
+#pragma mark - NotifyViewDelegate
+
 - (void)notifyMyDelegateView {
     [delegate performActionAfterLoginCheck];
 }
 
 - (void)closeMyDelegateView {
-    [delegate stopSpinnerAnimation];
-    AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+    [delegate stopSpinner];
+    AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     if(![delegate isKindOfClass: [WebViewController class]]) {
         //show map
         [[appDelegate tabBarController] setSelectedIndex:2];
     }
 }
+
+- (void)notifyMyDelegateViewWithUser:(ImmopolyUser *)user {}
 
 @end

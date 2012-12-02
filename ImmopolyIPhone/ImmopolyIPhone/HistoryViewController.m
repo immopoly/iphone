@@ -97,14 +97,21 @@
     [super viewDidAppear:animated];
 }
 
+#pragma mark - UserDataDelegate
+
 - (void)performActionAfterLoginCheck {
     [table reloadData];
-    [super stopSpinnerAnimation];
+    [self stopSpinnerAnimation];
     [[self table] setHidden: NO];
     
     if ([[[ImmopolyManager instance]user]history] == nil || [[[[ImmopolyManager instance]user]history]count]<=0) {
         [super helperViewIn];
     }
+}
+
+- (void)stopSpinner
+{
+    [self stopSpinnerAnimation];
 }
 
 - (void)viewDidUnload {
@@ -434,6 +441,7 @@
             [tweetView setInitialText:tweetText];
             
             [self presentModalViewController:tweetView animated:NO];
+            [tweetView release];
         }
     }
 }

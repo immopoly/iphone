@@ -21,6 +21,7 @@
 -(void)dealloc{
     [connection release];
     [data release];
+    [super dealloc];
 }
 
 // TODO: releasing url and request (not possible?)
@@ -36,7 +37,7 @@
     
     
     if ([self connection]) {
-        [self setData: [[NSMutableData data] retain]];
+        self.data = [NSMutableData data];
     }
 }
 
@@ -50,7 +51,7 @@
     
     
     if ([self connection]) {
-        [self setData: [[NSMutableData data] retain]];
+        self.data = [NSMutableData data];
     }
 }
 
@@ -85,7 +86,7 @@
         [[ImmopolyManager instance] setLoginSuccessful:YES];
         [delegate loginWithResult: YES];
         
-        AppDelegate *appDelegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+        AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [[appDelegate actionItemManager]placeActionItems];
     }
     

@@ -26,6 +26,7 @@
 }
 
 -(void)dealloc{
-    [item release];  
+    [item release];
+    [super dealloc];
 }
 @end
