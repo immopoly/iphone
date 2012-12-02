@@ -20,7 +20,7 @@
 #define ANNO_WIDTH 40
 #define ANNO_HEIGHT 51
 
-@interface ImmopolyMapViewController : AbstractViewController <LocationDelegate, MKMapViewDelegate, UIPageViewControllerDelegate> {
+@interface ImmopolyMapViewController : AbstractViewController <LocationDelegate, MKMapViewDelegate, UIPageViewControllerDelegate, UIGestureRecognizerDelegate> {
     IBOutlet UILabel *adressLabel;
     IBOutlet UILabel *lbFlatName;
     IBOutlet UILabel *lbFlatDescription;
@@ -87,7 +87,6 @@
 - (void)filterAnnotations:(NSArray *)_flatsToFilter;
 - (void)initScrollView;
 - (UIView *)createCalloutBubbleContentFromFlat:(Flat *)_flat atPosition:(int)_pos;
-- (IBAction)closeBubble;
 - (BOOL)alreadyUsed;
 - (void)handleBubbleTap;
 - (BOOL)checkOfOwnFlat:(Flat *)_flat;

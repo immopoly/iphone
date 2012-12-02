@@ -128,9 +128,22 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
     [singleFingerDTap release];
     
     UITapGestureRecognizer* tapRec = [[UITapGestureRecognizer alloc]
-                                      initWithTarget:self action:@selector(closeBubble)];
+                                      initWithTarget:self action:@selector(handleGesture:)];
+    tapRec.delegate = self;
     [mapView addGestureRecognizer:tapRec];
     [tapRec release];
+}
+
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
+    return YES;
+}
+
+- (void)handleGesture:(UIGestureRecognizer *)gestureRecognizer {
+    if (gestureRecognizer.state != UIGestureRecognizerStateEnded) {
+        return;
+    }
+
+    [self calloutBubbleOut];
 }
 
 - (void)viewDidUnload {
@@ -402,10 +415,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
         [scrollView setHidden:NO]; 
         [self initScrollView];
     } else if([animationID isEqualToString:@"outAnimation"]) {
-        // calloutBubble gets removed, because it was added at calloutBubbleIn
-        //[calloutBubble removeFromSuperview];
-        
-        [self setShowCalloutBubble:NO];
+        //[self setShowCalloutBubble:NO];
         
         // sets the scrollview page to the first
         [scrollView setContentOffset:CGPointMake(0, 0)];
@@ -612,13 +622,6 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
     [lbPageNumber setText:pageNum];
 }
 
-// method for a big invisible button to close the calloutBubble
-- (IBAction)closeBubble {
-    if(!isOutInCall){
-        [self calloutBubbleOut];    
-    }
-}
-
 - (void)handleBubbleTap{
     // if pageControl is at a page > 0, then the selected flat is one of the flats in flatsAtAnnotation
     if(pageControl.currentPage > 0) {
@@ -654,8 +657,8 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 }
 
 - (void)mapView:(MKMapView *)mapView regionWillChangeAnimated:(BOOL)animated {
-    [self setShowCalloutBubble:NO];
     [self calloutBubbleOut];
+    [self setShowCalloutBubble:NO];
 }
 
 @end
