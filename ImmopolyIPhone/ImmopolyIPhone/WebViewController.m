@@ -110,7 +110,7 @@
         [flatActionButton setImage:[UIImage imageNamed:@"webview_takeover.png"] forState:UIControlStateNormal];
         [shareBar setFrame:CGRectMake(220, shareBar.frame.origin.y, 315, shareBar.frame.size.height)];
         [mapButton setHidden:YES];
-        [buttons setCenter:CGPointMake(buttons.center.x - 52, buttons.center.y)];
+        [buttons setCenter:CGPointMake(buttons.center.x - 48, buttons.center.y)];
     }
 }
 
