@@ -262,12 +262,8 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
         if([view.annotation isKindOfClass:[Flat class]]) {
             Flat *location = (Flat *) view.annotation;
             [self setSelectedImmoScoutFlat:location]; 
-                        
-            // moving the view to the center where the selected flat is placed
-            CLLocationCoordinate2D zoomLocation = location.coordinate;
-            MKCoordinateRegion viewRegion = MKCoordinateRegionMake(zoomLocation, mpView.region.span);
-            MKCoordinateRegion adjustedRegion = [mpView regionThatFits:viewRegion];                
-            [mpView setRegion:adjustedRegion animated:YES];   
+            
+            [mapView setCenterCoordinate:location.coordinate animated:YES];
             
             // calloutBubbleIn gets called at regionDidChanged, when bool showCalloutBubble is true
             [self setShowCalloutBubble:YES];

@@ -394,11 +394,7 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
             Flat *location = (Flat *) view.annotation;
             [self setSelectedImmoScoutFlat:location]; 
             
-            // moving the view to the center where the selected flat is placed
-            CLLocationCoordinate2D zoomLocation = location.coordinate;
-            MKCoordinateRegion viewRegion = MKCoordinateRegionMake(zoomLocation, portfolioMapView.region.span);
-            MKCoordinateRegion adjustedRegion = [mpView regionThatFits:viewRegion];                
-            [mpView setRegion:adjustedRegion animated:YES];   
+            [portfolioMapView setCenterCoordinate:location.coordinate animated:YES];
             
             // calloutBubbleIn gets called at regionDidChanged, when bool showCalloutBubble is true
             [self setShowCalloutBubble:YES];
