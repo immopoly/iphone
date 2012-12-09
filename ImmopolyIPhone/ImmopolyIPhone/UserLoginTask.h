@@ -12,12 +12,12 @@
 @interface UserLoginTask : NSObject {
     NSURLConnection *connection;
     NSMutableData *data;
-    id<LoginDelegate>delegate;
+    id<LoginDelegate>__unsafe_unretained delegate;
 }
 
-@property(nonatomic, retain) NSURLConnection *connection;
-@property(nonatomic, retain) NSMutableData *data;
-@property(nonatomic, assign) id<LoginDelegate>delegate;
+@property(nonatomic, strong) NSURLConnection *connection;
+@property(nonatomic, strong) NSMutableData *data;
+@property(nonatomic, unsafe_unretained) id<LoginDelegate>delegate;
 
 - (void)performLogin:(NSString *)_userName password:(NSString *)_password;
 - (void)performLoginWithToken:(NSString *)_userToken;

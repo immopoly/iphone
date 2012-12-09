@@ -65,12 +65,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     return self;
 }
 
-- (void)dealloc {
-    [segmentedControl release];
-    [loginCheck release];
-    [exposeWebViewController release];
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -110,7 +104,7 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     [self setIsBtHidden:YES];
     
     [self.table setBackgroundColor:[UIColor clearColor]];
-    [self.table setSeparatorColor:[[UIColor alloc] initWithRed:0 green:0 blue:0 alpha:0.0]];
+    [self.table setSeparatorColor:[UIColor colorWithRed:0 green:0 blue:0 alpha:0.0]];
     
     // calculation for clustering
     CGFloat scrWidth = CGRectGetWidth(self.view.bounds);
@@ -127,7 +121,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     UITapGestureRecognizer *singleFingerDTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleBubbleTap)];
     singleFingerDTap.numberOfTapsRequired = 1;
     [self.scrollView addGestureRecognizer:singleFingerDTap];
-    [singleFingerDTap release];
     
     [self setPortfolioHasChanged:NO];
 }
@@ -157,10 +150,12 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     [super viewDidAppear:animated];
 }
 
+#pragma mark - UserDataDelegate
+
 - (void)performActionAfterLoginCheck {
     [table reloadData];
    
-    [super stopSpinnerAnimation];
+    [self stopSpinnerAnimation];
     [[self table] setHidden: NO];
     
     // do in background and only filter if no annotations are on the map
@@ -172,6 +167,11 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     if ([[[ImmopolyManager instance]user]portfolio] == nil || [[[[ImmopolyManager instance]user]portfolio]count]<=0) {
         [super helperViewIn];
     }
+}
+
+- (void)stopSpinner
+{
+    [self stopSpinnerAnimation];
 }
 
 
@@ -371,7 +371,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
             [portfolioMapView addAnnotation:actFlat];
         }
     }
-    [flatsToShow release];
 }
 
 - (void)mapView:(MKMapView *)mpView didSelectAnnotationView:(MKAnnotationView *)view{
@@ -417,7 +416,7 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
         
         static NSString *identifier = @"Flat";
         
-        MKAnnotationView *annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
+        MKAnnotationView *annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
         
         annotationView.enabled = YES;   
         
@@ -442,8 +441,8 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
 - (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat {
     UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(-5, 0, 72, 58)];
     lbNumOfFlats.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-    [lbNumOfFlats setText:[[NSString alloc] initWithFormat:@"%d", [[_flat flatsAtAnnotation] count] +1]];
-    [lbNumOfFlats setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
+    [lbNumOfFlats setText:[NSString stringWithFormat:@"%d", [[_flat flatsAtAnnotation] count] +1]];
+    [lbNumOfFlats setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1.0]];
     lbNumOfFlats.font = [UIFont boldSystemFontOfSize:15];
     [lbNumOfFlats setTextAlignment:UITextAlignmentCenter];
     
@@ -562,7 +561,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
         }
         
         [scrollView addSubview:subview];
-        [subview release];
     }
     
     // setting the whole size of the scrollView
@@ -636,11 +634,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     
     [subview addSubview:imgView];
     
-    [lbName release];
-    [lbRooms release];
-    [lbSpace release];
-    [lbPrice release];
-    [imgView release];
     
     return subview;
 }
@@ -711,18 +704,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     }
 }
 
--(void)notifyMyDelegateView{
-    loading = NO;
-    [super.spinner stopAnimating];
-    [super.spinner setHidden: YES];
-    
-    [[self table]reloadData];
-    [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]]; 
-    [self recenterMap];
-    
-    //ToDo: actualise
-}
-
 - (void)handleBubbleTap{
     // if pageControl is at a page > 0, then the selected flat is one of the flats in flatsAtAnnotation
     if(pageControl.currentPage > 0) {
@@ -742,7 +723,23 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     [self presentModalViewController:exposeWebViewController animated:YES];
 }
 
+#pragma mark - NotifyViewDelegate
+
+-(void)notifyMyDelegateView{
+    loading = NO;
+    [super.spinner stopAnimating];
+    [super.spinner setHidden: YES];
+    
+    [[self table]reloadData];
+    [self filterAnnotations: [[[ImmopolyManager instance] user] portfolio]];
+    [self recenterMap];
+    
+    //ToDo: actualise
+}
+
 - (void)closeMyDelegateView {}
+
+- (void)notifyMyDelegateViewWithUser:(ImmopolyUser *)user {}
 
 - (void)showSelectedFlatOnMap:(Flat *)flat{
     [self showMapWithAnimation:NO];

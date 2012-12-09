@@ -94,7 +94,6 @@
 
 	//Create a URL object.
 	NSURL *url = [NSURL URLWithString:urlAddress];
-    [urlAddress release];
 	
 	//URL Requst Object
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
@@ -125,11 +124,7 @@
 }
 
 - (void)dealloc {
-	[webView release];
-    [activityIndicator release];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
-    [loginCheck release];
-	[super dealloc];
 }
 
 - (IBAction)goBack {
@@ -162,15 +157,16 @@
     [self.flatActionButton setEnabled:NO];
 }
 
+#pragma mark - UserDataDelegate
+
 - (void)performActionAfterLoginCheck {
-    [super stopSpinnerAnimation];
+    [self stopSpinnerAnimation];
     if ([[[[ImmopolyManager instance]user]portfolio]containsObject:[self selectedImmoscoutFlat]]) {
         
         UIAlertView *removeFlatDialog = [[UIAlertView alloc]initWithTitle:@"Expose abgeben" message:alertExposeGiveAwayWarning delegate:self cancelButtonTitle:@"Nein" otherButtonTitles:@"Ja", nil];
         
         removeFlatDialog.delegate = self;
         [removeFlatDialog show];
-        [removeFlatDialog release];
         
         [self.flatActionButton setEnabled:YES];
         
@@ -179,40 +175,48 @@
         FlatTakeOverTask *flatTakeOverTask = [[FlatTakeOverTask alloc]init];
         [flatTakeOverTask takeOverFlat:[self selectedImmoscoutFlat]];
         //[self dismissModalViewControllerAnimated:YES];
-        [flatTakeOverTask release];
     }
 }
 
+- (void)stopSpinner
+{
+    [self stopSpinnerAnimation];
+}
+
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex {
-    [super stopSpinnerAnimation];
+    [self stopSpinnerAnimation];
     FlatRemoveTask *flatRemoveTask = [[FlatRemoveTask alloc]init];
     
     switch (buttonIndex) {
         //Nein
         case 0:
+        {
             [self.flatActionButton setEnabled:YES];
             break;
+        }
         //Ja                
         case 1:
+        {
             [flatRemoveTask removeFlat:[self selectedImmoscoutFlat]];
             
             [[[[ImmopolyManager instance]user]portfolio]removeObject:[self selectedImmoscoutFlat]];
             [[[ImmopolyManager instance]user]setNumExposes:[[[ImmopolyManager instance]user]numExposes]-1];
             
-            AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+            AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
             
-            if([[[[delegate tabBarController]viewControllers]objectAtIndex:1]isKindOfClass:[PortfolioViewController class]]){
-                PortfolioViewController *tempVC = (PortfolioViewController *)[[[delegate tabBarController]viewControllers]objectAtIndex:1];
+            if([[[[appDelegate tabBarController]viewControllers]objectAtIndex:1]isKindOfClass:[PortfolioViewController class]]){
+                PortfolioViewController *tempVC = (PortfolioViewController *)[[[appDelegate tabBarController]viewControllers]objectAtIndex:1];
                 [tempVC setPortfolioHasChanged:YES];
             }
             
             break;
-            
+        }
         default:
+        {
             break;
+        }
     }   
     //[self.view removeFromSuperview];
-    [flatRemoveTask release];
 }
 
 -(IBAction)performFacebookPost {
@@ -232,13 +236,11 @@
     if(!twitterClass) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:sharingTwitterAPINotAvailableAlertTitle message:sharingTwitterAPINotAvailableAlertMessage delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil];
         [alert show];
-        [alert release];
     }
     else {
         if(![TWTweetComposeViewController canSendTweet]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:sharingTwitterNoAccountAlertTitle message:sharingTwitterNoAccountAlertMessage delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil];
             [alert show];
-            [alert release]; 
         }
         else {
             TWTweetComposeViewController *tweetView = [[TWTweetComposeViewController alloc] init];
@@ -339,7 +341,7 @@
 	 <tr>\
 	 <td valign=\"top\"><font color=\"#999\" size=\"2\">"];
 	
-	[html appendString: [[NSString alloc]initWithFormat:@"http://mobil.immobilienscout24.de/expose/%i",[selectedImmoscoutFlat exposeId]]];
+	[html appendString: [NSString stringWithFormat:@"http://mobil.immobilienscout24.de/expose/%i",[selectedImmoscoutFlat exposeId]]];
 
 	[html appendString:  @"</font>\
 	 </td>\
@@ -373,8 +375,6 @@
 	[controller setMessageBody:html isHTML:YES];
 	
     if (controller) [self presentModalViewController:controller animated:YES];
-	[controller release];	
-    [html release];
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {
@@ -451,7 +451,7 @@
     //[[FacebookManager getInstance] setFacebookUserPrompt:@"FacebookPrompt"];
     [[FacebookManager getInstance] setFacebookActionLabel:sharingFacebookActionLabel];
     [[FacebookManager getInstance] setFacebookActionText:sharingFacebookActionText];
-    [[FacebookManager getInstance] setFacebookActionLink:[[NSString alloc]initWithFormat:@"%@%i",urlIS24MobileExpose,[selectedImmoscoutFlat exposeId]]];
+    [[FacebookManager getInstance] setFacebookActionLink:[NSString stringWithFormat:@"%@%i",urlIS24MobileExpose,[selectedImmoscoutFlat exposeId]]];
     
     [[FacebookManager getInstance] commitShare];
 }

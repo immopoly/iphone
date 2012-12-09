@@ -52,30 +52,32 @@
     int numOfScrollViewSubviews;    
     Flat *sameFlat;
     MKCoordinateSpan regionSpan;
+    
+    UITapGestureRecognizer* tapRec;
 }
 
-@property(nonatomic, retain) IBOutlet MKMapView *mapView;
-@property(nonatomic, retain) IBOutlet UILabel *adressLabel;
-@property(nonatomic, retain) IBOutlet UILabel *lbFlatName;
-@property(nonatomic, retain) IBOutlet UILabel *lbFlatDescription;
-@property(nonatomic, retain) IBOutlet UILabel *lbFlatPrice;
-@property(nonatomic, retain) IBOutlet UILabel *lbNumberOfRooms;
-@property(nonatomic, retain) IBOutlet UILabel *lbLivingSpace;
-@property(nonatomic, retain) IBOutlet UILabel *lbPageNumber;
-@property(nonatomic, retain) UIView *calloutBubble;
+@property(nonatomic, strong) IBOutlet MKMapView *mapView;
+@property(nonatomic, strong) IBOutlet UILabel *adressLabel;
+@property(nonatomic, strong) IBOutlet UILabel *lbFlatName;
+@property(nonatomic, strong) IBOutlet UILabel *lbFlatDescription;
+@property(nonatomic, strong) IBOutlet UILabel *lbFlatPrice;
+@property(nonatomic, strong) IBOutlet UILabel *lbNumberOfRooms;
+@property(nonatomic, strong) IBOutlet UILabel *lbLivingSpace;
+@property(nonatomic, strong) IBOutlet UILabel *lbPageNumber;
+@property(nonatomic, strong) UIView *calloutBubble;
 @property(nonatomic, assign) int selectedExposeId;
-@property(nonatomic, retain) Flat *selectedImmoScoutFlat;
+@property(nonatomic, strong) Flat *selectedImmoScoutFlat;
 @property(nonatomic, assign) bool isCalloutBubbleIn;
 @property(nonatomic, assign) bool isOutInCall;
 @property(nonatomic, assign) bool showCalloutBubble;
-@property(nonatomic, retain) IBOutlet AsynchronousImageView *asyncImageView;
+@property(nonatomic, strong) IBOutlet AsynchronousImageView *asyncImageView;
 @property(nonatomic, assign) float iphoneScaleFactorLatitude;
 @property(nonatomic, assign) float iphoneScaleFactorLongitude;
-@property(nonatomic, retain) IBOutlet UIScrollView *scrollView;
+@property(nonatomic, strong) IBOutlet UIScrollView *scrollView;
 @property(nonatomic, assign) int numOfScrollViewSubviews;
-@property(nonatomic, retain) IBOutlet UIPageControl *pageControl;
-@property(nonatomic, retain) IBOutlet UIImageView *calloutBubbleImg;
-@property(nonatomic, retain) Flat *sameFlat;
+@property(nonatomic, strong) IBOutlet UIPageControl *pageControl;
+@property(nonatomic, strong) IBOutlet UIImageView *calloutBubbleImg;
+@property(nonatomic, strong) Flat *sameFlat;
 @property(nonatomic, assign) MKCoordinateSpan regionSpan;
  
 - (IBAction)refreshLocation;
@@ -83,7 +85,6 @@
 - (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat;
 - (void)calloutBubbleIn;
 - (void)calloutBubbleOut;
-- (IBAction)showFlatsWebView;
 - (void)filterAnnotations:(NSArray *)_flatsToFilter;
 - (void)initScrollView;
 - (UIView *)createCalloutBubbleContentFromFlat:(Flat *)_flat atPosition:(int)_pos;

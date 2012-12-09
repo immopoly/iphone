@@ -35,29 +35,29 @@
     Flat *selectedImmoscoutFlat;
     LoginCheck *loginCheck;
     
-    id<PortfolioDelegate> delegate;
+    id<PortfolioDelegate> __unsafe_unretained delegate;
     
 }
 
-@property(nonatomic, retain) UIWebView *webView;
-@property(nonatomic, retain) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property(nonatomic, strong) UIWebView *webView;
+@property(nonatomic, strong) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property(nonatomic, assign) int selectedExposeId;
-@property(nonatomic, assign) id<PortfolioDelegate> delegate;
-@property(nonatomic, retain) Flat *selectedImmoscoutFlat;
-@property(nonatomic, retain) LoginCheck *loginCheck;
-@property(nonatomic, retain) IBOutlet UIButton *flatActionButton;
-@property(nonatomic, retain) IBOutlet UIView *shareBar;
+@property(nonatomic, unsafe_unretained) id<PortfolioDelegate> delegate;
+@property(nonatomic, strong) Flat *selectedImmoscoutFlat;
+@property(nonatomic, strong) LoginCheck *loginCheck;
+@property(nonatomic, strong) IBOutlet UIButton *flatActionButton;
+@property(nonatomic, strong) IBOutlet UIView *shareBar;
 
 @property(nonatomic, assign) BOOL animating;
 @property(nonatomic, assign) BOOL buttonsVisible;
-@property(nonatomic, retain) IBOutlet UIButton *exposeActionButton;
-@property(nonatomic, retain) IBOutlet UIButton *shareButton;
-@property(nonatomic, retain) IBOutlet UIButton *twitterButton;
-@property(nonatomic, retain) IBOutlet UIButton *facebookButton;
+@property(nonatomic, strong) IBOutlet UIButton *exposeActionButton;
+@property(nonatomic, strong) IBOutlet UIButton *shareButton;
+@property(nonatomic, strong) IBOutlet UIButton *twitterButton;
+@property(nonatomic, strong) IBOutlet UIButton *facebookButton;
 
-@property(nonatomic, retain) IBOutlet UIButton *mailButton;
-@property(nonatomic, retain) IBOutlet UIButton *mapButton;
-@property(nonatomic, retain) IBOutlet UIView *buttons;
+@property(nonatomic, strong) IBOutlet UIButton *mailButton;
+@property(nonatomic, strong) IBOutlet UIButton *mapButton;
+@property(nonatomic, strong) IBOutlet UIView *buttons;
 
 - (IBAction)goBack;
 - (IBAction)flatAction;

@@ -23,7 +23,7 @@
     int activeScrollView;
 }
 
-@property(nonatomic, retain) UIImageView *tabbarOtherUser;
+@property(nonatomic, strong) UIImageView *tabbarOtherUser;
 @property(nonatomic, assign) int activeScrollView;
 
 - (void)initBackground:(int)_offset ofScrollView:(UIScrollView *)_scrollView;
@@ -49,6 +49,7 @@
 @synthesize userIsNotMyself;
 @synthesize otherUserName;
 @synthesize closeProfileButton;
+@synthesize closeProfileButtonLabel;
 @synthesize tabBar;
 @synthesize topBarImage;
 @synthesize otherUser;
@@ -82,7 +83,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.loginCheck = [[[LoginCheck alloc]init] autorelease];
+    self.loginCheck = [[LoginCheck alloc]init];
     
     [super initSpinner];
     [super.spinner startAnimating];
@@ -156,6 +157,8 @@
     }
 }
 
+#pragma mark - UserDataDelegate
+
 - (void)performActionAfterLoginCheck {
     ImmopolyUser *myUser = [[ImmopolyManager instance] user];
     
@@ -166,6 +169,11 @@
         [self displayItems:[myUser badges] ofScrollView:badgesScrollView];
         [self displayItems:[myUser actionItems] ofScrollView:actionsScrollView];
     }
+    [self stopSpinnerAnimation];
+}
+
+- (void)stopSpinner
+{
     [self stopSpinnerAnimation];
 }
 
@@ -347,7 +355,6 @@
     UIImageView *scrollViewBackground = [[UIImageView alloc]initWithFrame:CGRectMake(320*_offset, 0, 320, 132)];
     [scrollViewBackground setImage:[UIImage imageNamed:@"badgesview"]];
     [_scrollView addSubview:scrollViewBackground];
-    [scrollViewBackground release];
 }
 
 /*
@@ -385,7 +392,6 @@
     NSString *badgeText = [[items objectAtIndex:[sender tag]] text];
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:badgeText delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [alert show];
-    [alert release]; 
 }
 
 - (void)viewDidUnload {
@@ -408,18 +414,6 @@
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
 
--(void) dealloc {
-    [hello release];
-    [bank release];
-    [miete release];
-    [numExposes release];
-    [loginCheck release];
-    [labelBank release];
-    [labelMiete release];
-    [labelNumExposes release];
-    [badgesScrollView release];
-    [super dealloc];
-}
 
 -(void)notifyMyDelegateView{
     loading = NO;
@@ -477,7 +471,6 @@
         [[NSUserDefaults standardUserDefaults] setObject:imageData forKey:@"image"];
     }
     
-    [picker release];
     
 }
 

@@ -95,7 +95,7 @@
         [spinner setHidden:NO];
         [spinner startAnimating];
         
-        UserLoginTask *loader = [[[UserLoginTask alloc] init] autorelease];
+        UserLoginTask *loader = [[UserLoginTask alloc] init];
         [loader setDelegate:self];
         
         [loader performLogin: [userName text] password: [password text]];
@@ -103,7 +103,6 @@
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:alertLoginWrongInput delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
-        [alert release];
         [self setTextFieldsEnabled:YES];
     }
 }
@@ -155,7 +154,7 @@
         [spinner setHidden:NO];
         [spinner startAnimating];
         
-        UserRegisterTask *loader = [[[UserRegisterTask alloc] init] autorelease];
+        UserRegisterTask *loader = [[UserRegisterTask alloc] init];
         [loader setDelegate:self];
     
         [loader performRegistration:[registerUserName text] withPassword:[registerUserPassword text] withEmail:[registerUserEmail text] withTwitter:[registerUserTwitter text]];
@@ -163,7 +162,6 @@
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:alertRegisterWrongInput delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
-        [alert release];
         [self setTextFieldsEnabled:YES];
     }
 }
@@ -200,7 +198,7 @@
         */
         [self closeRegistration];
         [self dismissModalViewControllerAnimated:YES];
-        UserLoginTask *loader = [[[UserLoginTask alloc] init] autorelease];
+        UserLoginTask *loader = [[UserLoginTask alloc] init];
         [loader setDelegate:self];
         [loader performLoginWithToken:[[[ImmopolyManager instance] user] userToken]];
     } else {
@@ -281,7 +279,7 @@
         [spinner setHidden:NO];
         [spinner startAnimating];
         
-        ResetPasswordTask *loader = [[[ResetPasswordTask alloc] init] autorelease];
+        ResetPasswordTask *loader = [[ResetPasswordTask alloc] init];
         [loader setDelegate: self];
         
         [loader performResetPasswordWithUsername:[resetPasswordUserName text] andEmail:[resetPasswordEmail text]];
@@ -289,7 +287,6 @@
     else {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Error" message:alertResetPasswordWrongInput delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [alert show];
-        [alert release];
     }
 }
 

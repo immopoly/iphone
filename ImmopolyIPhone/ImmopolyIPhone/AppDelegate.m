@@ -8,7 +8,6 @@
 
 #import "AppDelegate.h"
 #import "OAuthManager.h"
-#import "FlatProvider.h"
 #import "ImmopolyManager.h"
 #import "ImmopolyMapViewController.h"
 #import "PortfolioViewController.h"
@@ -53,23 +52,14 @@
 @synthesize actualisationSpinner;
 @synthesize isLocationUpdated;
 @synthesize actionItemManager;
+@synthesize provider = _provider;
 
-- (void)dealloc
-{
-    [_window release];
-    [_tabBarController release];
-    [CLController release];
-    [selectedViewController release];
-    [actionItemManager release];
-    [super dealloc];
-}
 
 - (void)handleHistoryResponse:(NSNotification *)_notification {
     HistoryEntry *histEntry= [[_notification userInfo] valueForKey:@"histEntry"];
     
     UIAlertView *infoAlert = [[UIAlertView alloc]initWithTitle:@"Info" message:[histEntry histText] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [infoAlert show];
-    [infoAlert release];
 }
 
 - (void)handleErrorMsg:(NSNotification *)_notification {
@@ -77,7 +67,6 @@
     
     UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:[MessageHandler giveErrorMsg:err] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [errorAlert show];
-    [errorAlert release];
 }
 
 - (void)handleTaskMessage:(NSNotification *) _notification {
@@ -85,14 +74,13 @@
     NSString *taskMessage = [[_notification userInfo] objectForKey:@"message"];
     UIAlertView *infoAlert = [[UIAlertView alloc]initWithTitle:@"Info" message:taskMessage delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
     [infoAlert show];
-    [infoAlert release];
 }
 
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self startLocationUpdate];
     
-    self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     ImmopolyMapViewController *mapVC;
     PortfolioViewController *portfolioVC;
@@ -101,14 +89,14 @@
     HistoryViewController *historyVC;
     FeedbackViewController *feedbackVC;
     
-    mapVC = [[[ImmopolyMapViewController alloc] init] autorelease];
-    portfolioVC = [[[PortfolioViewController alloc] init] autorelease];
+    mapVC = [[ImmopolyMapViewController alloc] init];
+    portfolioVC = [[PortfolioViewController alloc] init];
     //loginVC = [[[LoginViewController alloc]init]autorelease]; 
-    userVC = [[[UserProfileViewController alloc] init] autorelease];
-    historyVC = [[[HistoryViewController alloc] init] autorelease];    
-    feedbackVC = [[[FeedbackViewController alloc]init]autorelease];
+    userVC = [[UserProfileViewController alloc] init];
+    historyVC = [[HistoryViewController alloc] init];    
+    feedbackVC = [[FeedbackViewController alloc]init];
     
-    self.tabBarController = [[[CustomTabBarController alloc] init] autorelease];
+    self.tabBarController = [[CustomTabBarController alloc] init];
     self.tabBarController.delegate = self;
     
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:userVC,portfolioVC,mapVC,historyVC,feedbackVC, nil];
@@ -194,7 +182,7 @@
         //get user token
         NSString *userToken = [[NSUserDefaults standardUserDefaults] objectForKey:@"userToken"];
         //login with token
-        UserLoginTask *loader = [[[UserLoginTask alloc] init] autorelease];
+        UserLoginTask *loader = [[UserLoginTask alloc] init];
         loader.delegate = self;
         [loader performLoginWithToken: userToken];
     }
@@ -206,7 +194,6 @@
 -(void) loginWithResult:(BOOL)_result {
     
     [actualisationSpinner stopAnimating];
-    [actualisationSpinner release];
     
     if(_result) {
         //[[self selectedViewController]viewWillAppear:YES];
@@ -230,11 +217,12 @@
     [[self tabBarController]centerClicked];
 }
 
+- (void)notifyMyDelegateViewWithUser:(ImmopolyUser *)user {}
+
 -(void) showLoginViewController {
     LoginViewController *loginVC = [[LoginViewController alloc] initWithNibName:@"LoginViewController" bundle:[NSBundle mainBundle]];
     loginVC.delegate = self;
     [self.tabBarController presentModalViewController: loginVC animated: YES];
-    [loginVC release];
 }
 
 
@@ -248,45 +236,26 @@
 // method for converting lat and long from location to user friendly address
 - (void)geocodeLocation:(CLLocation *)_location {
     
-    if(SYSTEM_VERSION_GREATER_THAN_OR_EQUAL_TO(@"5.0")){
-        if (!geocoder){    
-            geocoder = [[CLGeocoder alloc] init];
-        }
-        
-        [geocoder reverseGeocodeLocation:_location completionHandler:
-         //block object
-         ^(NSArray* placemarks, NSError* error){
+    if (!geocoder){
+        self.geocoder = [[CLGeocoder alloc] init];
+    }
+    
+    [geocoder reverseGeocodeLocation:_location completionHandler:
+     //block object
+     ^(NSArray* placemarks, NSError* error){
+         
+         // TODO: check for error
+         if ([placemarks count] > 0){
+             CLPlacemark *placemark = [placemarks lastObject];
+             NSLog(@"Your current location is %@",[placemark name]);
              
-             // TODO: check for error
-             
-             if ([placemarks count] > 0){
-                 CLPlacemark *placemark = [placemarks lastObject];
-                 NSLog(@"Your current location is %@",[placemark name]);
-                 
-                 // change label in mapviewcontroller
-                 [[ImmopolyManager instance].delegate setAdressLabelText:[placemark name]];
-             }
-         }];
-    } else {
-        MKReverseGeocoder* theGeocoder = [[MKReverseGeocoder alloc] initWithCoordinate:_location.coordinate];
-        theGeocoder.delegate = self;
-        [theGeocoder start]; 
-        
-    }    
+             // change label in mapviewcontroller
+             [[ImmopolyManager instance].delegate setAdressLabelText:[placemark name]];
+         }
+     }];
 }
 
 
-- (void)reverseGeocoder:(MKReverseGeocoder*)geocoder didFindPlacemark:(MKPlacemark*)placemark {
-    // change label in mapviewcontroller
-    NSString *street = [placemark.addressDictionary valueForKey:@"Street"];
-    NSLog(@"Your current location is %@",street);
-    [[ImmopolyManager instance].delegate setAdressLabelText:street];
-}
-
-- (void)reverseGeocoder:(MKReverseGeocoder*)geocoder didFailWithError:(NSError*)error {
-    NSLog(@"Could not retrieve the specified place information.\n");
-}
- 
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     /*
@@ -387,8 +356,11 @@
     if(!isLocationUpdated) {
         [self geocodeLocation:_location];
     
-        FlatProvider *provider = [[FlatProvider alloc] init];
-        [provider getFlatsFromLocation:[_location coordinate]];
+        if (_provider == nil) {
+            self.provider = [[FlatProvider alloc] init];
+        }
+
+        [_provider getFlatsFromLocation:[_location coordinate]];
     
         [[ImmopolyManager instance]setActLocation:_location];
         //[[ImmopolyManager instance].delegate displayCurrentLocation];

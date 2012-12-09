@@ -34,7 +34,7 @@
 	NSString* facebookActionText;
 	NSString* facebookActionLink;
 	
-	id<FacebookManagerDelegate> delegate;
+	id<FacebookManagerDelegate> __unsafe_unretained delegate;
 	BOOL loadingVisible;
 }
 
@@ -45,27 +45,27 @@
 - (void) getFacebookName;
 - (void) postToWall;
 
-@property (nonatomic,retain) FBSession *_session;
-@property (nonatomic,retain) UIAlertView *facebookAlert;
-@property (nonatomic,retain) FBSession *usersession;
-@property (nonatomic,retain) NSString *username;
+@property (nonatomic,strong) FBSession *_session;
+@property (nonatomic,strong) UIAlertView *facebookAlert;
+@property (nonatomic,strong) FBSession *usersession;
+@property (nonatomic,strong) NSString *username;
 @property (nonatomic,assign) BOOL post;
-@property (nonatomic,retain) FBLoginDialog* login; 
+@property (nonatomic,strong) FBLoginDialog* login; 
 
-@property (nonatomic, retain) NSString* _APP_KEY;
-@property (nonatomic, retain) NSString* _SECRET_KEY;
+@property (nonatomic, strong) NSString* _APP_KEY;
+@property (nonatomic, strong) NSString* _SECRET_KEY;
 
-@property(nonatomic, retain) NSString* facebookText;
-@property(nonatomic, retain) NSString* facebookTitle;
-@property(nonatomic, retain) NSString* facebookCaption;
-@property(nonatomic, retain) NSString* facebookDescription;
-@property(nonatomic, retain) NSString* facebookImage;
-@property(nonatomic, retain) NSString* facebookLink;
-@property(nonatomic, retain) NSString* facebookUserPrompt;
-@property(nonatomic, retain) NSString* facebookActionLabel;
-@property(nonatomic, retain) NSString* facebookActionText;
-@property(nonatomic, retain) NSString* facebookActionLink;
+@property(nonatomic, strong) NSString* facebookText;
+@property(nonatomic, strong) NSString* facebookTitle;
+@property(nonatomic, strong) NSString* facebookCaption;
+@property(nonatomic, strong) NSString* facebookDescription;
+@property(nonatomic, strong) NSString* facebookImage;
+@property(nonatomic, strong) NSString* facebookLink;
+@property(nonatomic, strong) NSString* facebookUserPrompt;
+@property(nonatomic, strong) NSString* facebookActionLabel;
+@property(nonatomic, strong) NSString* facebookActionText;
+@property(nonatomic, strong) NSString* facebookActionLink;
 
-@property (nonatomic, assign) id<FacebookManagerDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<FacebookManagerDelegate> delegate;
 
 @end

@@ -17,11 +17,6 @@
 @synthesize data;
 @synthesize delegate;
 
--(void)dealloc {
-    [connection release];
-    [data release];
-    [super dealloc];
-}
 
 -(void) performResetPasswordWithUsername:(NSString *)userName andEmail:(NSString *)email {
     NSURL *url = [NSURL URLWithString:[NSString stringWithFormat:@"%@sendpasswordmail?username=%@&email=%@", urlImmopolyUser, userName, email]];
@@ -31,7 +26,7 @@
     [self setConnection: [NSURLConnection connectionWithRequest:request delegate:self]];
     
     if ([self connection]) {
-        [self setData: [[NSMutableData data] retain]];
+        self.data = [NSMutableData data];
     }
 }
 
@@ -66,7 +61,6 @@
         [delegate resetPasswordWithResult: YES];
     }
     
-    [jsonString release];
 }
 
 @end

@@ -56,7 +56,7 @@ static FacebookManager* gInstance = nil;
 	BOOL resume = [_session resume];
 	if(!resume) {
 		NSLog(@"teste");
-		self.login = [[[FBLoginDialog alloc] initWithSession: _session] autorelease];
+		self.login = [[FBLoginDialog alloc] initWithSession: _session];
 		self.login.delegate = self;
 		[login show];
 	}
@@ -117,7 +117,7 @@ static FacebookManager* gInstance = nil;
 	NSLog(@"ActionText: %@", [self facebookActionText]);
 	NSLog(@"ActionLink: %@", [self facebookActionLink]);*/
 	
-	FBStreamDialog *dialog = [[[FBStreamDialog alloc] init] autorelease];
+	FBStreamDialog *dialog = [[FBStreamDialog alloc] init];
 	dialog.userMessagePrompt = [self facebookUserPrompt];
 	dialog.attachment = [NSString stringWithFormat:@"{\"name\":\"%@\",\"href\":\"%@\",\"caption\":\"%@\",\"description\":\"%@\",\"media\":[{\"type\":\"image\",\"src\":\"%@\",\"href\":\"%@\"}],\"properties\":{\"%@\":{\"text\":\"%@\",\"href\":\"%@\"}}}", [self facebookTitle], [self facebookLink], [self facebookCaption], [self facebookDescription], [self facebookImage], [self facebookLink], [self facebookActionLabel], [self facebookActionText], [self facebookActionLink]];
 	[dialog show];
@@ -149,21 +149,6 @@ static FacebookManager* gInstance = nil;
 	
 	delegate = nil;
 	
-	[_session release];
-	[login release];
-	[username release];
-	[usersession release];
-	[facebookText release];
-	[facebookTitle release];
-	[facebookCaption release];
-	[facebookDescription release];
-	[facebookImage release];
-	[facebookLink release];
-	[facebookUserPrompt release];
-	[facebookActionLabel release];
-	[facebookActionText release];
-	[facebookActionLink release];
-	[super dealloc];
 }
 
 @end

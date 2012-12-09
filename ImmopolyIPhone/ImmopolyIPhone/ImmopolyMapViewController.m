@@ -49,11 +49,6 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 }
     
 
--(void)dealloc {
-    [super dealloc];
-    [exposeWebViewController release];
-    [loginViewController release];
-}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -61,6 +56,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
         // Custom initialization        
         self.title = NSLocalizedString(@"Map", @"First");
         self.tabBarItem.image = nil;
+        self.mapView.delegate = self;
     }
     return self;
 }
@@ -125,13 +121,9 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
     UITapGestureRecognizer *singleFingerDTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleBubbleTap)];
     singleFingerDTap.numberOfTapsRequired = 1;
     [self.scrollView addGestureRecognizer:singleFingerDTap];
-    [singleFingerDTap release];
     
-    UITapGestureRecognizer* tapRec = [[UITapGestureRecognizer alloc]
-                                      initWithTarget:self action:@selector(handleGesture:)];
-    tapRec.delegate = self;
-    [mapView addGestureRecognizer:tapRec];
-    [tapRec release];
+    tapRec = [[UITapGestureRecognizer alloc]
+              initWithTarget:self action:@selector(handleGesture:)];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
@@ -171,6 +163,8 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
     // Return YES for supported orientations
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
 }
+
+#pragma mark - LocationDelegate
 
 - (void)setAdressLabelText:(NSString *)_locationName {
     [adressLabel setText:_locationName];
@@ -226,7 +220,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 }
 
 - (void)displayFlatsOnMap {
-    [super stopSpinnerAnimation];
+    [self stopSpinnerAnimation];
     
     // removing all existing annotations
     for (id<MKAnnotation> annotation in mapView.annotations) {
@@ -241,7 +235,6 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
     } else {
         UIAlertView *errorAlert = [[UIAlertView alloc]initWithTitle:@"Error" message:alertNoFlatsAvailabe delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil];
         [errorAlert show];
-        [errorAlert release];
     }
 }
 
@@ -286,7 +279,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
         
         static NSString *identifier = @"Flat";
         
-        MKAnnotationView *annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
+        MKAnnotationView *annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
         
         annotationView.enabled = YES;   
         
@@ -314,7 +307,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 - (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat {
     UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(-5, 0, 72, 58)];
     lbNumOfFlats.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
-    [lbNumOfFlats setText:[[NSString alloc] initWithFormat:@"%d", [[_flat flatsAtAnnotation] count] +1]];
+    [lbNumOfFlats setText:[NSString stringWithFormat:@"%d", [[_flat flatsAtAnnotation] count] +1]];
     [lbNumOfFlats setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
     lbNumOfFlats.font = [UIFont boldSystemFontOfSize:15];
     [lbNumOfFlats setTextAlignment:UITextAlignmentCenter];
@@ -359,7 +352,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 // action for the compass button
 - (IBAction)refreshLocation {
     [self calloutBubbleOut];
-    AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
     [delegate startLocationUpdate];
     
     [delegate setIsLocationUpdated:NO];
@@ -369,6 +362,8 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 - (void)calloutBubbleIn {
     // that the flats are clickable through the imageview
     //[mapView addSubview:calloutBubble];
+    
+    [mapView addGestureRecognizer:tapRec];
     
     // animation
     [UIView beginAnimations:@"inAnimation" context:NULL];
@@ -389,6 +384,11 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 }
 
 - (void)calloutBubbleOut {
+    
+    if (tapRec != nil) {
+        [mapView removeGestureRecognizer:tapRec];        
+    }
+
     
     // animation
     [UIView beginAnimations:@"outAnimation" context:NULL];	
@@ -475,7 +475,6 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
             [mapView addAnnotation:actFlat];
         }
     }
-    [flatsToShow release];
 }
 
 - (void)mapView:(MKMapView *)mpView regionDidChangeAnimated:(BOOL)animated {
@@ -518,7 +517,6 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
         }
         
         [scrollView addSubview:subview];
-        [subview release];
     }
     
     // setting the whole size of the scrollView
@@ -596,14 +594,8 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
         UIImageView *bannerImgView = [[UIImageView alloc] initWithFrame:CGRectMake(133, 1, 83, 80)];
         bannerImgView.image = [UIImage imageNamed:@"banner_for_own_flat.png"];
         [subview addSubview:bannerImgView];
-        [bannerImgView release];
     } 
     
-    [lbName release];
-    [lbRooms release];
-    [lbSpace release];
-    [lbPrice release];
-    [imgView release];
     
     return subview;
 }

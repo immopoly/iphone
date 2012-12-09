@@ -34,19 +34,6 @@
     return self;
 }
 
--(void)dealloc{
-    [super dealloc];
-    
-    [self.helperView release];
-    [self.helperBackground release];
-    [self.helperScroll release];
-    [self.helperTextImage release];
-    [self.helperViewBubble release];
-    [self.btHelperViewIn release];
-    [self.linkButton release]; 
-    [self.spinner release];
-    [[self selectedActionItem]release];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -85,6 +72,7 @@
     self.btHelperViewIn = nil;
     self.linkButton = nil;
     self.spinner = nil;
+    self.selectedActionItem = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation
@@ -101,13 +89,13 @@
 }
 
 - (void)initHelperViewWithMode:(int)_infoMode {
-    helperView = [[UIView alloc] initWithFrame:CGRectMake(0, -370, 320, 370)];
+    self.helperView = [[UIView alloc] initWithFrame:CGRectMake(0, -370, 320, 370)];
     
-    helperViewBubble = [[UIView alloc] initWithFrame:CGRectMake(18, 30, 283, 329)];
+    self.helperViewBubble = [[UIView alloc] initWithFrame:CGRectMake(18, 30, 283, 329)];
 
-    helperBackground = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_background"]];
+    self.helperBackground = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_background"]];
 
-    helperScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 10, 284, 310)];
+    self.helperScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 10, 284, 310)];
     
     helperScroll.scrollEnabled = YES;
 
@@ -236,9 +224,7 @@
 
     
     [alert show];
-    [alert release];
     
-    [alertString release];
     
 }
 
@@ -249,7 +235,7 @@
     
     if([title isEqualToString:@"Ja"])
     {
-        AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         ActionItem *item = [self selectedActionItem];
         
         if ([item amount] > 0) {

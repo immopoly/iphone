@@ -24,8 +24,8 @@
     double amount;
 }
 
-@property(nonatomic, retain) NSString *histText;
-@property(nonatomic, retain) NSString *otherUserName;
+@property(nonatomic, strong) NSString *histText;
+@property(nonatomic, strong) NSString *otherUserName;
 @property(nonatomic, assign) long long time;
 @property(nonatomic, assign) int type;
 @property(nonatomic, assign) int type2;

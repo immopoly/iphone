@@ -33,27 +33,27 @@
     IBOutlet UITextField *resetPasswordEmail;
     
     UserProfileViewController *userProfileViewController;
-    id<NotifyViewDelegate> delegate;
+    id<NotifyViewDelegate> __unsafe_unretained delegate;
     
 }
 
-@property(nonatomic, retain) IBOutlet UITextField *userName;
-@property(nonatomic, retain) IBOutlet UITextField *password;
-@property(nonatomic, retain) IBOutlet UIActivityIndicatorView *spinner;
-@property(nonatomic, retain) IBOutlet IBOutlet UILabel *loginLabel;
-@property(nonatomic, retain) IBOutlet UIButton *loginButton;
-@property(nonatomic, assign) id<NotifyViewDelegate> delegate;
+@property(nonatomic, strong) IBOutlet UITextField *userName;
+@property(nonatomic, strong) IBOutlet UITextField *password;
+@property(nonatomic, strong) IBOutlet UIActivityIndicatorView *spinner;
+@property(nonatomic, strong) IBOutlet IBOutlet UILabel *loginLabel;
+@property(nonatomic, strong) IBOutlet UIButton *loginButton;
+@property(nonatomic, unsafe_unretained) id<NotifyViewDelegate> delegate;
 
-@property(nonatomic, retain) IBOutlet UIView *registerView;
-@property(nonatomic, retain) IBOutlet UIView *loginView;
-@property(nonatomic, retain) IBOutlet UITextField *registerUserName;
-@property(nonatomic, retain) IBOutlet UITextField *registerUserPassword;
-@property(nonatomic, retain) IBOutlet UITextField *registerUserEmail;
-@property(nonatomic, retain) IBOutlet UITextField *registerUserTwitter;
+@property(nonatomic, strong) IBOutlet UIView *registerView;
+@property(nonatomic, strong) IBOutlet UIView *loginView;
+@property(nonatomic, strong) IBOutlet UITextField *registerUserName;
+@property(nonatomic, strong) IBOutlet UITextField *registerUserPassword;
+@property(nonatomic, strong) IBOutlet UITextField *registerUserEmail;
+@property(nonatomic, strong) IBOutlet UITextField *registerUserTwitter;
 
-@property(nonatomic, retain) IBOutlet UIView *resetPasswordView;
-@property(nonatomic, retain) IBOutlet UITextField *resetPasswordUserName;
-@property(nonatomic, retain) IBOutlet UITextField *resetPasswordEmail;
+@property(nonatomic, strong) IBOutlet UIView *resetPasswordView;
+@property(nonatomic, strong) IBOutlet UITextField *resetPasswordUserName;
+@property(nonatomic, strong) IBOutlet UITextField *resetPasswordEmail;
 
 
 - (IBAction)performLogin;

@@ -15,7 +15,7 @@
     bool shouldBeSaved;
 }
 
-@property(nonatomic, retain) UIColor *ownBgColor;
+@property(nonatomic, strong) UIColor *ownBgColor;
 @property(nonatomic, assign) bool shouldBeSaved;
 
 - (void)loadImageFromURLString:(NSString *)_urlString forFlat:(Flat *)_flat;

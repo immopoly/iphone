@@ -16,9 +16,6 @@
 @implementation OAuthManager
 
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 - (NSString *) requestHeaderWithURL:(NSURL *)url andMethod:(NSString *)cMethod
 {
@@ -26,19 +23,17 @@
                                                     secret:REST_AUTHENTICATION_SECRET];
     
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url consumer:consumer HTTPMethod:cMethod];
-    [consumer release];
     
     NSString *header = [[NSString alloc] initWithString:[request oauthHeader]];
-    [request release];
     
-    return [header autorelease];
+    return header;
 }
 
-- (ASIHTTPRequest *)grabURLInBackground:(NSString *)url withFormat:(NSString *)format withDelegate:(id)delegate
+- (void)grabURLInBackground:(NSString *)url withFormat:(NSString *)format withDelegate:(id)delegate
 {
     NSURL *url_request = [NSURL URLWithString:url];
     
-    ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:url_request] autorelease];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url_request];
     request.defaultResponseEncoding = NSUTF8StringEncoding;
     request.userAgent = @"UserAgent";   
     request.delegate = delegate;
@@ -47,13 +42,11 @@
     [request addRequestHeader:@"Accept" value:format];
     
     [request startAsynchronous];
-        
-    return request;
 }
 
 - (ASIHTTPRequest*) request:(NSURL*)url acceptFormat:(NSString*) format httpMethod:(NSString*) method{
 
-    ASIHTTPRequest *request = [[[ASIHTTPRequest alloc] initWithURL:url] autorelease];
+    ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:url];
     request.defaultResponseEncoding = NSUTF8StringEncoding;
     request.userAgent = @"UserAgent";   
     

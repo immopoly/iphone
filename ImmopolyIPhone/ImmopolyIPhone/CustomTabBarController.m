@@ -45,8 +45,8 @@
 // Create a view controller and setup it's tab bar item with a title and image
 -(UIViewController*) viewControllerWithTabTitle:(NSString*) title image:(UIImage*)image
 {
-  UIViewController* viewController = [[[UIViewController alloc] init] autorelease];
-  viewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
+  UIViewController* viewController = [[UIViewController alloc] init];
+  viewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:title image:image tag:0];
   return viewController;
 }
 
@@ -83,7 +83,7 @@
 -(void) centerClicked{
     [self setSelectedIndex:2];
     [button setBackgroundImage:[UIImage imageNamed:@"tabbar_center_icon_blue.png"] forState:UIControlStateNormal];
-    AppDelegate *delegate = [(AppDelegate *) [UIApplication sharedApplication]delegate];
+    AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     [delegate setSelectedViewController:[[[delegate tabBarController]viewControllers]objectAtIndex:2]];
 }
 
@@ -112,16 +112,13 @@
     else
     {
         // ios 4 code here
-        
         CGRect frame = CGRectMake(0, 0, 480, 49);
         UIView *tabbg_view = [[UIView alloc] initWithFrame:frame];
         UIImage *tabbag_image = i;
-        UIColor *tabbg_color = [[UIColor alloc] initWithPatternImage:tabbag_image];
+        UIColor *tabbg_color = [UIColor colorWithPatternImage:tabbag_image];
         tabbg_view.backgroundColor = tabbg_color;
         [tabBar insertSubview:tabbg_view atIndex:0];
-        
     }
-    
 }
 
 @end

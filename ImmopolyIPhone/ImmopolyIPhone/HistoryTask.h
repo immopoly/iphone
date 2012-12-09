@@ -12,14 +12,14 @@
 @interface HistoryTask : NSObject {
     NSURLConnection *connection;
     NSMutableData *data;
-    id<HistoryDelegate>delegate;
+    id<HistoryDelegate>__unsafe_unretained delegate;
     int limit;
     BOOL refresh;
 }
 
-@property(nonatomic, retain) NSURLConnection *connection;
-@property(nonatomic, retain) NSMutableData *data;
-@property(nonatomic, assign) id<HistoryDelegate>delegate;
+@property(nonatomic, strong) NSURLConnection *connection;
+@property(nonatomic, strong) NSMutableData *data;
+@property(nonatomic, unsafe_unretained) id<HistoryDelegate>delegate;
 @property(nonatomic, assign) int limit;
 @property(nonatomic, assign) BOOL refresh;
 

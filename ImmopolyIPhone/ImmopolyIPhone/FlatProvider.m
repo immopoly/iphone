@@ -23,8 +23,6 @@
     NSString *url = [[NSString alloc]initWithFormat:@"%@expose/%d",urlIS24API,_exposeId];
     
     [manager grabURLInBackground:url withFormat:@"application/json" withDelegate:self];
-    [manager release];
-    [url release];
 }
 
 
@@ -47,8 +45,6 @@
     
     [manager grabURLInBackground:url withFormat:@"application/json" withDelegate:self];
     
-    [manager release];
-    [url release];
 }
 
 - (void)requestFinished:(ASIHTTPRequest *)request {

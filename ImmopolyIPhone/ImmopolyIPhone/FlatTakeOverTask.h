@@ -15,9 +15,9 @@
     Flat *selectedImmoscoutFlat;
 }
 
-@property(nonatomic, retain) NSURLConnection *connection;
-@property(nonatomic, retain) NSMutableData *data;
-@property(nonatomic, retain) Flat *selectedImmoscoutFlat;
+@property(nonatomic, strong) NSURLConnection *connection;
+@property(nonatomic, strong) NSMutableData *data;
+@property(nonatomic, strong) Flat *selectedImmoscoutFlat;
 
 - (void)takeOverFlat:(Flat *)_selectedImmoscoutFlat;
 

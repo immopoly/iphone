@@ -15,9 +15,9 @@
     Flat *flat;
 }
 
-@property(nonatomic, retain) ASIHTTPRequest *imageRequest;
-@property(nonatomic, retain) UIActivityIndicatorView *spinner;
-@property(nonatomic, retain) Flat *flat;
+@property(nonatomic, strong) ASIHTTPRequest *imageRequest;
+@property(nonatomic, strong) UIActivityIndicatorView *spinner;
+@property(nonatomic, strong) Flat *flat;
     
 @end
 
@@ -43,7 +43,7 @@
 
     [self.imageRequest cancel];
     
-    self.imageRequest = [[[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:_urlString]] autorelease];
+    self.imageRequest = [[ASIHTTPRequest alloc] initWithURL:[NSURL URLWithString:_urlString]];
     self.imageRequest.delegate = self;
     [self.imageRequest startSynchronous];
     
@@ -117,8 +117,5 @@
     self.image = nil;
 }
 
-- (void)dealloc {
-    [spinner release];
-}
 
 @end

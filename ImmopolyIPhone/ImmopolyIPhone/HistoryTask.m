@@ -31,10 +31,8 @@
     
     
     if ([self connection]) {
-        [self setData: [[NSMutableData data] retain]];
+        self.data = [NSMutableData data];
     }
-    
-    
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)d {
@@ -51,12 +49,10 @@
     if ([jsonString isEqualToString:@""]) {
         NSLog(@"jsonString is empty");
     }
-    
-    NSError *err=nil;
 
-    NSArray *resultEntries = [[[NSArray alloc]init] autorelease];
-    
-    resultEntries = [JSONParser parseHistoryEntries:jsonString:&err];
+    NSError *err = nil;
+
+    NSArray *resultEntries = [NSArray arrayWithArray:[JSONParser parseHistoryEntries:jsonString:&err]];
     
     if (err) {
         //Handle Error here
@@ -64,7 +60,7 @@
         [[NSNotificationCenter defaultCenter] postNotificationName:@"user/history entries" object:nil userInfo:errorInfo];
          [delegate hasMoreData: NO];
     }else if(refresh){
-        [[[ImmopolyManager instance]user]setHistory:[[NSMutableArray alloc]initWithArray:resultEntries]];
+        [[[ImmopolyManager instance]user]setHistory:[NSMutableArray arrayWithArray:resultEntries]];
     
     }else if([resultEntries count]< limit){
         [[[[ImmopolyManager instance]user]history]addObjectsFromArray:resultEntries];
@@ -73,8 +69,6 @@
         [[[[ImmopolyManager instance]user]history]addObjectsFromArray:resultEntries];
         [delegate hasMoreData:YES];
     }
-    
-    [jsonString release];
 }
 
 @end

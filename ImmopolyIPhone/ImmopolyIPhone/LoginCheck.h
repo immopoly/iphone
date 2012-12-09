@@ -12,10 +12,10 @@
 #import "NotifyViewDelegate.h"
 
 @interface LoginCheck : NSObject <LoginDelegate, NotifyViewDelegate> {
-    id<UserDataDelegate> delegate;
+    id<UserDataDelegate> __unsafe_unretained delegate;
 }
 
-@property (nonatomic, assign) id<UserDataDelegate> delegate;
+@property (nonatomic, unsafe_unretained) id<UserDataDelegate> delegate;
 
 - (void)checkUserLogin;
 - (void)showLoginViewController;

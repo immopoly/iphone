@@ -18,10 +18,6 @@
 @synthesize data;
 @synthesize connection;
 
--(void)dealloc{
-    [super dealloc];
-    [selectedPortfoliotFlat release];
-}
 
 - (void)removeFlat:(Flat *)_selectedPortfoliotFlat {
 
@@ -41,7 +37,7 @@
         
         
         if ([self connection]) {
-            [self setData: [[NSMutableData data] retain]];
+            self.data = [NSMutableData data];
         }
     }else{
         //ToDo handle login
@@ -84,7 +80,6 @@
             [[NSNotificationCenter defaultCenter] postNotificationName:@"portfolio/remove" object:nil userInfo:userInfo];    
         }
     }
-    [jsonString release];
 }
 
 @end

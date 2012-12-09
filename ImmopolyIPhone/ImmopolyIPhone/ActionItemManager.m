@@ -53,7 +53,7 @@
 
 -(void)placeActionItems{
     for (ActionItem *item in [[[ImmopolyManager instance]user]actionItems]) {
-        AppDelegate *delegate = [(AppDelegate *)[UIApplication sharedApplication] delegate];
+        AppDelegate *delegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         ImmopolyMapViewController *mapVC = NULL;
         ActionItemButton *button = NULL;
         switch ([item type]) {
@@ -67,8 +67,6 @@
                 [button setFrame:CGRectMake(200, 290, 50, 50)];
                 [[mapVC view]addSubview:button];
                 [[mapVC view]bringSubviewToFront:button];
-                
-                [button autorelease];
                 break;
                 
             default:

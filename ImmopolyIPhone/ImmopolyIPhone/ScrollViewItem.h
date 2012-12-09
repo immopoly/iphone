@@ -18,9 +18,9 @@
 }
 
 @property(nonatomic, assign) int amount;
-@property(nonatomic, retain) NSString *text;
+@property(nonatomic, strong) NSString *text;
 @property(nonatomic, assign) long long time;
 @property(nonatomic, assign) int type;
-@property(nonatomic, retain) NSString *url;
+@property(nonatomic, strong) NSString *url;
 
 @end

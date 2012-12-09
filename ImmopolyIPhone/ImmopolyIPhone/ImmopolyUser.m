@@ -37,14 +37,5 @@
     return self;
 }
 
--(void)dealloc {
-    [portfolio release];
-    [history release];
-    [badges release];
-    [actionItems release];
-    [userName release];
-    [userToken release];
-    [email release];
-}
 
 @end

@@ -18,7 +18,7 @@
     
     if(self != nil){
         // Create new instance of locMg
-        self.locationManager = [[[CLLocationManager alloc] init] autorelease];
+        self.locationManager = [[CLLocationManager alloc] init];
         
         // sets the delegate as self
         self.locationManager.delegate = self;
@@ -37,7 +37,6 @@
         [self.delegate locationUpdate:fhain]; // for simulator
     }
     
-    [fhain release];
 }
        
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
@@ -47,9 +46,5 @@
     }
 }
 
-- (void)dealloc {
-    [self.locationManager release];
-    [super dealloc];
-}
 
 @end

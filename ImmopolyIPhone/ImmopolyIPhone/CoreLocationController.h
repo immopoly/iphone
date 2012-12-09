@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <CoreLocation/CoreLocation.h>
 
-@protocol CoreLocationControllerDelegate 
+@protocol CoreLocationControllerDelegate<NSObject>
 @required
 
 // Our location updates are sent here
@@ -20,11 +20,11 @@
 
 @end
 
-@interface CoreLocationController : NSObject <CoreLocationControllerDelegate> {
+@interface CoreLocationController : NSObject <CLLocationManagerDelegate> {
     CLLocationManager *locationManager;
-    id delegate;
+    id<CoreLocationControllerDelegate> __unsafe_unretained delegate;
 }
 
-@property (nonatomic, retain) CLLocationManager *locationManager;
-@property (nonatomic, assign) id delegate;
+@property (nonatomic, strong) CLLocationManager *locationManager;
+@property (nonatomic, unsafe_unretained) id<CoreLocationControllerDelegate> delegate;
 @end

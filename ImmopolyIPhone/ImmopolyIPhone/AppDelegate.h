@@ -12,8 +12,9 @@
 #import "CustomTabBarController.h"
 #import "LoginCheck.h"
 #import "ActionItemManager.h"
+#import "FlatProvider.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate, CoreLocationControllerDelegate, UITabBarControllerDelegate, UserDataDelegate, LoginDelegate, NotifyViewDelegate> {
+@interface AppDelegate : UIResponder <UIApplicationDelegate,UITabBarControllerDelegate, CoreLocationControllerDelegate, UITabBarControllerDelegate, LoginDelegate, NotifyViewDelegate> {
     
     // for getting phone coordinates
     CoreLocationController *CLController;
@@ -25,18 +26,20 @@
     ActionItemManager *actionItemManager;
 }
 
-@property (retain, nonatomic) UIWindow *window;
-@property (retain, nonatomic) CustomTabBarController *tabBarController;
+@property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) CustomTabBarController *tabBarController;
 
-@property(nonatomic, retain) CoreLocationController *CLController;
-@property(nonatomic, retain) CLGeocoder *geocoder;
-@property(nonatomic, retain) IBOutlet UILabel *adressLabel;
+@property(nonatomic, strong) CoreLocationController *CLController;
+@property(nonatomic, strong) CLGeocoder *geocoder;
+@property(nonatomic, strong) IBOutlet UILabel *adressLabel;
 
-@property(nonatomic, retain) UIViewController *selectedViewController;
-@property(nonatomic, retain) UIActivityIndicatorView *actualisationSpinner;
+@property(nonatomic, strong) UIViewController *selectedViewController;
+@property(nonatomic, strong) UIActivityIndicatorView *actualisationSpinner;
 @property(nonatomic, assign) bool isLocationUpdated;
 
-@property(nonatomic, retain) ActionItemManager *actionItemManager;
+@property(nonatomic, strong) FlatProvider *provider;
+
+@property(nonatomic, strong) ActionItemManager *actionItemManager;
 
 - (void)startLocationUpdate;
 - (void)geocodeLocation:(CLLocation *)_location;

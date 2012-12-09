@@ -19,16 +19,16 @@
 @synthesize delegate;
 - (void)executeAction:(NSMutableArray *)_exposes{
     
-    NSMutableString *exposesList = [[NSMutableString alloc]initWithString:@"["];
+    NSMutableString *exposesList = [NSMutableString stringWithString:@"["];
     
-    NSMutableArray *_exposeIds = [[NSMutableArray alloc]init];
+    NSMutableArray *_exposeIds = [NSMutableArray array];
     for (Flat *object in _exposes) {
         [_exposeIds addObject:[NSNumber numberWithInt:[object exposeId]]];
     }
     
     for (int i=0; i<[_exposeIds count]; i++) {
         NSNumber *exposeId = [_exposeIds objectAtIndex:i];
-        [exposesList appendString:[[NSString alloc]initWithFormat:@"%d",[exposeId intValue]]];
+        [exposesList appendString:[NSString stringWithFormat:@"%d",[exposeId intValue]]];
         
         if (i<[_exposeIds count]-1) {
             [exposesList appendString:@","];
@@ -51,11 +51,8 @@
     [self setConnection: [NSURLConnection connectionWithRequest:request delegate:self]];
     
     if ([self connection]) {
-        [self setData: [[NSMutableData data] retain]];
+        self.data = [NSMutableData data];
     }
-    
-    [exposesList release];
-    [_exposeIds release];
 }
 
 - (void)connection:(NSURLConnection *)connection didReceiveData:(NSData *)d {
@@ -75,7 +72,7 @@
     
     
     NSMutableArray *freeExposeIds = [jsonString JSONValue];
-    NSMutableArray *freeExposes = [[NSMutableArray alloc]init];
+    NSMutableArray *freeExposes = [NSMutableArray array];
     
     //Create Array with free flats
     for (Flat *object in [[ImmopolyManager instance]immoScoutFlats]) {
@@ -87,9 +84,6 @@
     
     //Show free flats on Map
     [[ImmopolyManager instance] callFlatsDelegate];
-    
-    [freeExposes autorelease];
-    
 }
 
 

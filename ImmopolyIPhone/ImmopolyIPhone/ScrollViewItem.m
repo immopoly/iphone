@@ -17,10 +17,5 @@
 @synthesize url;
 
 
--(void)dealloc {
-    [text release];
-    [url release];
-    [super dealloc];
-}
 
 @end

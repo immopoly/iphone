@@ -15,6 +15,6 @@
 
 - (id)initWithActionItem:(ActionItem *)_item;
 
-@property(nonatomic,retain)ActionItem *item;
+@property(nonatomic,strong)ActionItem *item;
 
 @end

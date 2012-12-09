@@ -38,7 +38,7 @@
         // Custom initialization
         self.title = NSLocalizedString(@"History", @"Fourth");
         [[self tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_icon_history"] withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_icon_history"]];
-        self.loginCheck = [[[LoginCheck alloc] init] autorelease];
+        self.loginCheck = [[LoginCheck alloc] init];
     }
     return self;
 }
@@ -97,14 +97,21 @@
     [super viewDidAppear:animated];
 }
 
+#pragma mark - UserDataDelegate
+
 - (void)performActionAfterLoginCheck {
     [table reloadData];
-    [super stopSpinnerAnimation];
+    [self stopSpinnerAnimation];
     [[self table] setHidden: NO];
     
     if ([[[ImmopolyManager instance]user]history] == nil || [[[[ImmopolyManager instance]user]history]count]<=0) {
         [super helperViewIn];
     }
+}
+
+- (void)stopSpinner
+{
+    [self stopSpinnerAnimation];
 }
 
 - (void)viewDidUnload {
@@ -228,7 +235,6 @@
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
         
         NSString *formattedDateString = [dateFormatter stringFromDate:date];
-        [dateFormatter release];      
         
         // defining which icon get choosed
         switch ([historyEntry type]) {
@@ -292,7 +298,7 @@
             flagForReload = NO;
             loading = YES;
             
-            HistoryTask *task = [[[HistoryTask alloc] init] autorelease];
+            HistoryTask *task = [[HistoryTask alloc] init];
             task.delegate = self;
             [task loadHistoryEintriesFrom:loadingHistoryEntriesStart To:(loadingHistoryEntriesStart+loadingHistoryEntriesLimit)];
             [super.spinner startAnimating];
@@ -304,7 +310,7 @@
             flagForReload = NO;
             loading = YES;
             
-            HistoryTask *task = [[[HistoryTask alloc] init] autorelease];
+            HistoryTask *task = [[HistoryTask alloc] init];
             task.delegate = self;
             task.refresh = NO;
             [task loadHistoryEintriesFrom:loadingHistoryEntriesStart To:(loadingHistoryEntriesStart+loadingHistoryEntriesLimit)];
@@ -324,17 +330,6 @@
     [super.spinner stopAnimating];
 }
 
-- (void)dealloc {
-    [tvCell release];
-    [table release];
-    [loginCheck release];
-    [lbTime release];
-    [lbText release];
-    [btFacebook release];
-    [btTwitter release];
-    //[btHelperViewIn release];
-    [super dealloc];
-}
 
 -(void) loginWithResult:(BOOL)_result {
     
@@ -408,13 +403,11 @@
     if(!twitterClass) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:sharingTwitterAPINotAvailableAlertTitle message:sharingTwitterAPINotAvailableAlertMessage delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil];
         [alert show];
-        [alert release];
     }
     else {
         if(![TWTweetComposeViewController canSendTweet]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:sharingTwitterNoAccountAlertTitle message:sharingTwitterNoAccountAlertMessage delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil];
             [alert show];
-            [alert release]; 
         }
         else {
             
