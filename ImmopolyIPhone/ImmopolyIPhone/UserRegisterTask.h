@@ -12,12 +12,12 @@
 @interface UserRegisterTask : NSObject {
     NSURLConnection *connection;
     NSMutableData *data;
-    id<RegisterDelegate>delegate;
+    id<RegisterDelegate>__unsafe_unretained delegate;
 }
 
-@property(nonatomic, retain) NSURLConnection *connection;
-@property(nonatomic, retain) NSMutableData *data;
-@property(nonatomic, assign) id<RegisterDelegate>delegate;
+@property(nonatomic, strong) NSURLConnection *connection;
+@property(nonatomic, strong) NSMutableData *data;
+@property(nonatomic, unsafe_unretained) id<RegisterDelegate>delegate;
 
 - (void)performRegistration:(NSString *)_userName withPassword:(NSString *)_password withEmail:(NSString *)_email withTwitter:(NSString *)_twitter;
 

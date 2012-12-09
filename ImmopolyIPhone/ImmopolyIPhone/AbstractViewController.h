@@ -33,16 +33,16 @@
     BOOL viewIsVisible;
 }
 
-@property(nonatomic, retain) UIView *helperView;
-@property(nonatomic, retain) UIView *helperViewBubble;
-@property(nonatomic, retain) UIButton *btHelperViewIn;
-@property(nonatomic, retain) UIImageView *helperBackground;
-@property(nonatomic, retain) UIScrollView *helperScroll;
-@property(nonatomic, retain) UIImageView *helperTextImage;
+@property(nonatomic, strong) UIView *helperView;
+@property(nonatomic, strong) UIView *helperViewBubble;
+@property(nonatomic, strong) UIButton *btHelperViewIn;
+@property(nonatomic, strong) UIImageView *helperBackground;
+@property(nonatomic, strong) UIScrollView *helperScroll;
+@property(nonatomic, strong) UIImageView *helperTextImage;
 @property(nonatomic, assign) BOOL viewIsVisible;
-@property(nonatomic, retain) UIButton *linkButton;
-@property(nonatomic, retain) UIActivityIndicatorView *spinner;
-@property(nonatomic, retain) ActionItem *selectedActionItem;
+@property(nonatomic, strong) UIButton *linkButton;
+@property(nonatomic, strong) UIActivityIndicatorView *spinner;
+@property(nonatomic, strong) ActionItem *selectedActionItem;
 
 - (void)initButton;
 - (void)initHelperViewWithMode:(int)_infoMode;

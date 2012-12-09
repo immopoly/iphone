@@ -36,22 +36,10 @@
     // Configure the view for the selected state
 }
 
-- (void)dealloc {
-    [labelTitel release];
-    [labelRooms release];
-    [labelFlatSpace release];
-    [flatImage release];
-    [flat release];
-    [labelPrice release];
-    [labelOvertakeDate release];
-    [super dealloc];
-}
 
 - (void)setFlat:(Flat *)_flat {
     if(flat != _flat) {
         
-        [_flat retain];
-        [flat release];
         flat = _flat;
         
         [flatImage reset];
@@ -72,7 +60,6 @@
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
         
         NSString *formattedDateString = [dateFormatter stringFromDate:date];
-        [dateFormatter release]; 
         
         NSString *rooms = [NSString stringWithFormat:@"%d Zimmer", [flat numberOfRooms]];
         NSString *overtakes = [NSString stringWithFormat:@"Übernahmeversuche: \t\t\t\t\t %d", [flat overtakeTries]];

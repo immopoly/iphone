@@ -12,10 +12,10 @@
 #import "ImmopolyUser.h"
 
 @interface JSONParser : NSObject {
-    id<LocationDelegate>delegate;
+    id<LocationDelegate>__unsafe_unretained delegate;
 }
 
-@property(nonatomic, assign) id<LocationDelegate>delegate;
+@property(nonatomic, unsafe_unretained) id<LocationDelegate>delegate;
 
 + (ImmopolyUser *)parseUserData:(NSString *)jsonString:(NSError **) err;
 + (NSMutableArray *)parseFlatData:(NSString *)jsonString:(NSError **) err;

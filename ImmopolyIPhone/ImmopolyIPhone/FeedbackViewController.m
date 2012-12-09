@@ -62,7 +62,6 @@
 	[controller setSubject:feedbackMailSubject];
 	
     if (controller) [self presentModalViewController:controller animated:YES];
-	[controller release];	
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {

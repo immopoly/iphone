@@ -57,7 +57,6 @@
         [delegate notifyMyDelegateViewWithUser:otherUser];
     }
     
-    [jsonString release];
 }
 
 

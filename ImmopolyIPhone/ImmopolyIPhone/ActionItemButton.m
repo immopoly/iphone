@@ -20,13 +20,8 @@
     [image loadImageFromURLString:[item url] forFlat:nil];
     
     [self setBackgroundImage:[image image] forState:UIControlStateNormal];
-    [image autorelease];
     
     return self;
 }
 
--(void)dealloc{
-    [item release];
-    [super dealloc];
-}
 @end

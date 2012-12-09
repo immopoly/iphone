@@ -95,7 +95,6 @@
         }
     }
     
-    [jsonString release];
 }
 
 @end

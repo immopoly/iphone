@@ -20,6 +20,6 @@
 -(void)executeSpionAction;
 -(void)placeActionItems;
 
-@property(nonatomic,retain) ActionItem *currentItem;
+@property(nonatomic,strong) ActionItem *currentItem;
 
 @end

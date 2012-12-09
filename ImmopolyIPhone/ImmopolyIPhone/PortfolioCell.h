@@ -10,13 +10,13 @@
 #import "AsynchronousImageView.h"
 
 @interface PortfolioCell : UITableViewCell
-@property (retain, nonatomic) IBOutlet UILabel *labelRooms;
-@property (retain, nonatomic) IBOutlet UILabel *labelFlatSpace;
-@property (retain, nonatomic) IBOutlet AsynchronousImageView *flatImage;
-@property (retain, nonatomic) IBOutlet UILabel *labelTitel;
-@property (retain, nonatomic) Flat *flat;
-@property (retain, nonatomic) IBOutlet UILabel *labelPrice;
-@property (retain, nonatomic) IBOutlet UILabel *labelOvertakeDate;
-@property (retain, nonatomic) IBOutlet UILabel *labelOvertakeTries;
+@property (strong, nonatomic) IBOutlet UILabel *labelRooms;
+@property (strong, nonatomic) IBOutlet UILabel *labelFlatSpace;
+@property (strong, nonatomic) IBOutlet AsynchronousImageView *flatImage;
+@property (strong, nonatomic) IBOutlet UILabel *labelTitel;
+@property (strong, nonatomic) Flat *flat;
+@property (strong, nonatomic) IBOutlet UILabel *labelPrice;
+@property (strong, nonatomic) IBOutlet UILabel *labelOvertakeDate;
+@property (strong, nonatomic) IBOutlet UILabel *labelOvertakeTries;
 
 @end

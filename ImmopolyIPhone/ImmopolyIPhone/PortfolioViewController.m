@@ -60,17 +60,11 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
         // Custom initialization
         self.title = NSLocalizedString(@"Portfolio", @"Second");
         [[self tabBarItem] setFinishedSelectedImage:[UIImage imageNamed:@"tabbar_icon_portfolio"] withFinishedUnselectedImage:[UIImage imageNamed:@"tabbar_icon_portfolio"]];
-        self.loginCheck = [[[LoginCheck alloc] init] autorelease];
+        self.loginCheck = [[LoginCheck alloc] init];
     }
     return self;
 }
 
-- (void)dealloc {
-    [segmentedControl release];
-    [loginCheck release];
-    [exposeWebViewController release];
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning {
     // Releases the view if it doesn't have a superview.
@@ -127,7 +121,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     UITapGestureRecognizer *singleFingerDTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleBubbleTap)];
     singleFingerDTap.numberOfTapsRequired = 1;
     [self.scrollView addGestureRecognizer:singleFingerDTap];
-    [singleFingerDTap release];
     
     [self setPortfolioHasChanged:NO];
 }
@@ -378,7 +371,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
             [portfolioMapView addAnnotation:actFlat];
         }
     }
-    [flatsToShow release];
 }
 
 - (void)mapView:(MKMapView *)mpView didSelectAnnotationView:(MKAnnotationView *)view{
@@ -428,7 +420,7 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
         
         static NSString *identifier = @"Flat";
         
-        MKAnnotationView *annotationView = [[[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier] autorelease];
+        MKAnnotationView *annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
         
         annotationView.enabled = YES;   
         
@@ -451,7 +443,7 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
 }
 
 - (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat {
-    UILabel *lbNumOfFlats = [[[UILabel alloc] initWithFrame:CGRectMake(-5, 0, 72, 58)] autorelease];
+    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(-5, 0, 72, 58)];
     lbNumOfFlats.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     [lbNumOfFlats setText:[NSString stringWithFormat:@"%d", [[_flat flatsAtAnnotation] count] +1]];
     [lbNumOfFlats setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1.0]];
@@ -597,7 +589,7 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     frame.origin.y = 0;
     frame.size = self.scrollView.frame.size;
     
-    UIView *subview = [[[UIView alloc] initWithFrame:frame] autorelease];
+    UIView *subview = [[UIView alloc] initWithFrame:frame];
     subview.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     
     UIColor *textColor = [UIColor colorWithRed:63.0/255.0 green:100.0/255.0 blue:148.0/255.0 alpha:1];
@@ -646,11 +638,6 @@ static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
     
     [subview addSubview:imgView];
     
-    [lbName release];
-    [lbRooms release];
-    [lbSpace release];
-    [lbPrice release];
-    [imgView release];
     
     return subview;
 }

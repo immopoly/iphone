@@ -58,7 +58,6 @@
         [delegate notifyMyDelegateView];
     }
     
-    [jsonString release];
 }
 
 @end

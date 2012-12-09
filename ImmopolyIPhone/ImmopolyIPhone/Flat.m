@@ -54,12 +54,5 @@
 }
 
 
-- (void)dealloc {
-    [name release];
-    name = nil;
-    [description release];
-    description = nil;
-    [super dealloc];
-}
 
 @end

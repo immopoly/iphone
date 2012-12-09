@@ -12,12 +12,12 @@
 @interface PortfolioTask : NSObject{
     NSURLConnection *connection;
     NSMutableData *data;
-    id<NotifyViewDelegate>delegate;
+    id<NotifyViewDelegate>__unsafe_unretained delegate;
 }
 
-@property(nonatomic, retain) NSURLConnection *connection;
-@property(nonatomic, retain) NSMutableData *data;
-@property(nonatomic, assign) id<NotifyViewDelegate>delegate;
+@property(nonatomic, strong) NSURLConnection *connection;
+@property(nonatomic, strong) NSMutableData *data;
+@property(nonatomic, unsafe_unretained) id<NotifyViewDelegate>delegate;
 
 - (void)refreshPortolio;
 

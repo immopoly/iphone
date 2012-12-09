@@ -45,8 +45,8 @@
 // Create a view controller and setup it's tab bar item with a title and image
 -(UIViewController*) viewControllerWithTabTitle:(NSString*) title image:(UIImage*)image
 {
-  UIViewController* viewController = [[[UIViewController alloc] init] autorelease];
-  viewController.tabBarItem = [[[UITabBarItem alloc] initWithTitle:title image:image tag:0] autorelease];
+  UIViewController* viewController = [[UIViewController alloc] init];
+  viewController.tabBarItem = [[UITabBarItem alloc] initWithTitle:title image:image tag:0];
   return viewController;
 }
 
@@ -118,7 +118,6 @@
         UIColor *tabbg_color = [UIColor colorWithPatternImage:tabbag_image];
         tabbg_view.backgroundColor = tabbg_color;
         [tabBar insertSubview:tabbg_view atIndex:0];
-        [tabbg_view release];
     }
 }
 

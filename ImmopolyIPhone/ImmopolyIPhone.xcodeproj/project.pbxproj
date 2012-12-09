@@ -52,26 +52,26 @@
 		6D9949D514928B1A00AD2307 /* bt_show_all.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D9949D414928B1A00AD2307 /* bt_show_all.png */; };
 		6DA36C92152633C700F04939 /* ScrollViewItem.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA36C91152633C700F04939 /* ScrollViewItem.m */; };
 		6DA36C9515286D3700F04939 /* tabbar_other_user.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DA36C9415286D3700F04939 /* tabbar_other_user.png */; };
-		6DA75CB3145C12580079B32C /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C62145C12580079B32C /* ASIAuthenticationDialog.m */; };
-		6DA75CB4145C12580079B32C /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C65145C12580079B32C /* ASIDataCompressor.m */; };
-		6DA75CB5145C12580079B32C /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C67145C12580079B32C /* ASIDataDecompressor.m */; };
-		6DA75CB6145C12580079B32C /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C69145C12580079B32C /* ASIDownloadCache.m */; };
-		6DA75CB7145C12580079B32C /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C6B145C12580079B32C /* ASIFormDataRequest.m */; };
-		6DA75CB8145C12580079B32C /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C6D145C12580079B32C /* ASIHTTPRequest.m */; };
-		6DA75CB9145C12580079B32C /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C71145C12580079B32C /* ASIInputStream.m */; };
-		6DA75CBA145C12580079B32C /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C73145C12580079B32C /* ASINetworkQueue.m */; };
-		6DA75D00145C12EB0079B32C /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CEB145C12EB0079B32C /* NSData+Base64.m */; };
-		6DA75D01145C12EC0079B32C /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CED145C12EB0079B32C /* NSMutableURLRequest+Parameters.m */; };
-		6DA75D02145C12EC0079B32C /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CEF145C12EB0079B32C /* NSString+URLEncoding.m */; };
-		6DA75D03145C12EC0079B32C /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CF1145C12EB0079B32C /* NSURL+Base.m */; };
-		6DA75D04145C12EC0079B32C /* OAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CF3145C12EB0079B32C /* OAConsumer.m */; };
-		6DA75D05145C12EC0079B32C /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CF5145C12EB0079B32C /* OAHMAC_SHA1SignatureProvider.m */; };
-		6DA75D06145C12EC0079B32C /* OAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CF7145C12EB0079B32C /* OAMutableURLRequest.m */; };
-		6DA75D07145C12EC0079B32C /* OAPlaintextSignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CF9145C12EB0079B32C /* OAPlaintextSignatureProvider.m */; };
-		6DA75D08145C12EC0079B32C /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CFB145C12EB0079B32C /* OARequestParameter.m */; };
+		6DA75CB3145C12580079B32C /* ASIAuthenticationDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C62145C12580079B32C /* ASIAuthenticationDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DA75CB4145C12580079B32C /* ASIDataCompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C65145C12580079B32C /* ASIDataCompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DA75CB5145C12580079B32C /* ASIDataDecompressor.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C67145C12580079B32C /* ASIDataDecompressor.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DA75CB6145C12580079B32C /* ASIDownloadCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C69145C12580079B32C /* ASIDownloadCache.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DA75CB7145C12580079B32C /* ASIFormDataRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C6B145C12580079B32C /* ASIFormDataRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DA75CB8145C12580079B32C /* ASIHTTPRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C6D145C12580079B32C /* ASIHTTPRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DA75CB9145C12580079B32C /* ASIInputStream.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C71145C12580079B32C /* ASIInputStream.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DA75CBA145C12580079B32C /* ASINetworkQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75C73145C12580079B32C /* ASINetworkQueue.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DA75D00145C12EB0079B32C /* NSData+Base64.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CEB145C12EB0079B32C /* NSData+Base64.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DA75D01145C12EC0079B32C /* NSMutableURLRequest+Parameters.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CED145C12EB0079B32C /* NSMutableURLRequest+Parameters.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DA75D02145C12EC0079B32C /* NSString+URLEncoding.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CEF145C12EB0079B32C /* NSString+URLEncoding.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DA75D03145C12EC0079B32C /* NSURL+Base.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CF1145C12EB0079B32C /* NSURL+Base.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DA75D04145C12EC0079B32C /* OAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CF3145C12EB0079B32C /* OAConsumer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DA75D05145C12EC0079B32C /* OAHMAC_SHA1SignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CF5145C12EB0079B32C /* OAHMAC_SHA1SignatureProvider.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DA75D06145C12EC0079B32C /* OAMutableURLRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CF7145C12EB0079B32C /* OAMutableURLRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DA75D07145C12EC0079B32C /* OAPlaintextSignatureProvider.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CF9145C12EB0079B32C /* OAPlaintextSignatureProvider.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DA75D08145C12EC0079B32C /* OARequestParameter.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CFB145C12EB0079B32C /* OARequestParameter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6DA75D09145C12EC0079B32C /* OATestServer.rb in Resources */ = {isa = PBXBuildFile; fileRef = 6DA75CFD145C12EB0079B32C /* OATestServer.rb */; };
-		6DA75D0A145C12EC0079B32C /* XOAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CFF145C12EB0079B32C /* XOAConsumer.m */; };
-		6DA75D0E145C14180079B32C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75D0D145C14180079B32C /* Reachability.m */; };
+		6DA75D0A145C12EC0079B32C /* XOAConsumer.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75CFF145C12EB0079B32C /* XOAConsumer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		6DA75D0E145C14180079B32C /* Reachability.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75D0D145C14180079B32C /* Reachability.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		6DA75D29145C15BF0079B32C /* NSObject+SBJson.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75D11145C15BF0079B32C /* NSObject+SBJson.m */; };
 		6DA75D2A145C15BF0079B32C /* SBJsonParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75D14145C15BF0079B32C /* SBJsonParser.m */; };
 		6DA75D2B145C15BF0079B32C /* SBJsonStreamParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DA75D16145C15BF0079B32C /* SBJsonStreamParser.m */; };
@@ -200,15 +200,15 @@
 		D2C67D54145AA596008C3295 /* ImmopolyMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D2C67D52145AA596008C3295 /* ImmopolyMapViewController.m */; };
 		D2C67D55145AA596008C3295 /* ImmopolyMapViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = D2C67D53145AA596008C3295 /* ImmopolyMapViewController.xib */; };
 		D2E53F76148113A20042B205 /* FlatRemoveTask.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F75148113A20042B205 /* FlatRemoveTask.m */; };
-		D2E53F9A148129A20042B205 /* FBConnectGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F88148129A20042B205 /* FBConnectGlobal.m */; };
-		D2E53F9B148129A20042B205 /* FBSession.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F8A148129A20042B205 /* FBSession.m */; };
-		D2E53F9C148129A20042B205 /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F8C148129A20042B205 /* FBRequest.m */; };
-		D2E53F9D148129A20042B205 /* FBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F8E148129A20042B205 /* FBXMLHandler.m */; };
-		D2E53F9E148129A20042B205 /* FBLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F90148129A20042B205 /* FBLoginButton.m */; };
-		D2E53F9F148129A20042B205 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F92148129A20042B205 /* FBDialog.m */; };
-		D2E53FA0148129A20042B205 /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F94148129A20042B205 /* FBLoginDialog.m */; };
-		D2E53FA1148129A20042B205 /* FBPermissionDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F96148129A20042B205 /* FBPermissionDialog.m */; };
-		D2E53FA2148129A20042B205 /* FBStreamDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F98148129A20042B205 /* FBStreamDialog.m */; };
+		D2E53F9A148129A20042B205 /* FBConnectGlobal.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F88148129A20042B205 /* FBConnectGlobal.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D2E53F9B148129A20042B205 /* FBSession.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F8A148129A20042B205 /* FBSession.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D2E53F9C148129A20042B205 /* FBRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F8C148129A20042B205 /* FBRequest.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D2E53F9D148129A20042B205 /* FBXMLHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F8E148129A20042B205 /* FBXMLHandler.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D2E53F9E148129A20042B205 /* FBLoginButton.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F90148129A20042B205 /* FBLoginButton.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D2E53F9F148129A20042B205 /* FBDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F92148129A20042B205 /* FBDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D2E53FA0148129A20042B205 /* FBLoginDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F94148129A20042B205 /* FBLoginDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D2E53FA1148129A20042B205 /* FBPermissionDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F96148129A20042B205 /* FBPermissionDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		D2E53FA2148129A20042B205 /* FBStreamDialog.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53F98148129A20042B205 /* FBStreamDialog.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		D2E53FA3148129A20042B205 /* FBConnect.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D2E53F99148129A20042B205 /* FBConnect.bundle */; };
 		D2E53FA7148129AC0042B205 /* FacebookManager.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53FA5148129AC0042B205 /* FacebookManager.m */; };
 		D2E53FC5148136AB0042B205 /* AsynchronousImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = D2E53FC4148136AB0042B205 /* AsynchronousImageView.m */; };
@@ -830,17 +830,11 @@
 			isa = PBXGroup;
 			children = (
 				D2AD2F2314FF9473001B0027 /* Immopoly_klein.png */,
-				D2B02D1214B8769400985E3C /* QuartzCore.framework */,
-				4C111EB4149203A800875AF3 /* Twitter.framework */,
-				D2E53FCE148148780042B205 /* MessageUI.framework */,
 				D2E53F84148129670042B205 /* Sharing */,
 				D22F594B14793BEB008918A9 /* Settings.bundle */,
 				6DA75CD8145C12EB0079B32C /* include */,
 				6DA75CE8145C12EB0079B32C /* libOAuth */,
 				6DA75C5F145C12360079B32C /* submodules */,
-				D2C67D1E145AA4EA008C3295 /* MapKit.framework */,
-				D2C67D1C145AA4DF008C3295 /* libz.1.2.5.dylib */,
-				D2C67D19145AA4D5008C3295 /* CoreLocation.framework */,
 				D24E7646145834DA003C91A8 /* ImmopolyIPhone */,
 				D24E763F145834DA003C91A8 /* Frameworks */,
 				D24E763D145834DA003C91A8 /* Products */,
@@ -858,6 +852,12 @@
 		D24E763F145834DA003C91A8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D2B02D1214B8769400985E3C /* QuartzCore.framework */,
+				4C111EB4149203A800875AF3 /* Twitter.framework */,
+				D2E53FCE148148780042B205 /* MessageUI.framework */,
+				D2C67D1E145AA4EA008C3295 /* MapKit.framework */,
+				D2C67D1C145AA4DF008C3295 /* libz.1.2.5.dylib */,
+				D2C67D19145AA4D5008C3295 /* CoreLocation.framework */,
 				D24E766E1458362E003C91A8 /* libz.dylib */,
 				D24E7668145835BB003C91A8 /* SystemConfiguration.framework */,
 				D24E766A145835C5003C91A8 /* MobileCoreServices.framework */,
@@ -1521,6 +1521,7 @@
 		D24E765B145834DA003C91A8 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Tobias Heine";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tobias Heine";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1530,7 +1531,7 @@
 					"../libOAuth/include__OFF/**",
 				);
 				INFOPLIST_FILE = "ImmopolyIPhone/ImmopolyIPhone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../libasi-http-request\"",
@@ -1548,6 +1549,7 @@
 		D24E765C145834DA003C91A8 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Tobias Heine";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos5.0]" = "iPhone Distribution: Tobias Heine";
@@ -1558,7 +1560,7 @@
 					"../libOAuth/include__OFF/**",
 				);
 				INFOPLIST_FILE = "ImmopolyIPhone/ImmopolyIPhone-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 4.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"\"$(SRCROOT)/../libasi-http-request\"",

@@ -28,19 +28,19 @@
     NSMutableArray *actionItems;
 }
 
-@property(nonatomic, retain) NSString *userName;
-@property(nonatomic, retain) NSString *userToken;
-@property(nonatomic, retain) NSString *email;
+@property(nonatomic, strong) NSString *userName;
+@property(nonatomic, strong) NSString *userToken;
+@property(nonatomic, strong) NSString *email;
 @property(nonatomic, assign) double balance;
 @property(nonatomic, assign) int lastProvision;
 @property(nonatomic, assign) double lastRent;
 @property(nonatomic, assign) int numExposes;
 @property(nonatomic, assign) int maxExposes;
 
-@property(nonatomic,retain) NSMutableArray *portfolio;
-@property(nonatomic,retain) NSMutableArray *history;
-@property(nonatomic,retain) NSMutableArray *badges;
-@property(nonatomic,retain) NSMutableArray *actionItems;
+@property(nonatomic,strong) NSMutableArray *portfolio;
+@property(nonatomic,strong) NSMutableArray *history;
+@property(nonatomic,strong) NSMutableArray *badges;
+@property(nonatomic,strong) NSMutableArray *actionItems;
 
 
 @end

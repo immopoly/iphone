@@ -48,7 +48,6 @@
         UIAlertView *alert;
         alert = [[UIAlertView alloc]initWithTitle:@"Aktion erfolgreich ausgeführt" message:[currentItem text] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles: nil];
         [alert show];
-        [alert release];
     }
 }
 
@@ -68,8 +67,6 @@
                 [button setFrame:CGRectMake(200, 290, 50, 50)];
                 [[mapVC view]addSubview:button];
                 [[mapVC view]bringSubviewToFront:button];
-                
-                [button autorelease];
                 break;
                 
             default:

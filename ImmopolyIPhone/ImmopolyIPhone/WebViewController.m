@@ -37,7 +37,7 @@
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
 	if (self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil]) {
 		// Initialization code
-        self.loginCheck = [[[LoginCheck alloc] init] autorelease];
+        self.loginCheck = [[LoginCheck alloc] init];
 	}
 	return self;
 }
@@ -94,7 +94,6 @@
 
 	//Create a URL object.
 	NSURL *url = [NSURL URLWithString:urlAddress];
-    [urlAddress release];
 	
 	//URL Requst Object
 	NSURLRequest *requestObj = [NSURLRequest requestWithURL:url];
@@ -125,11 +124,7 @@
 }
 
 - (void)dealloc {
-	[webView release];
-    [activityIndicator release];
     [[NSNotificationCenter defaultCenter]removeObserver:self];
-    [loginCheck release];
-	[super dealloc];
 }
 
 - (IBAction)goBack {
@@ -172,7 +167,6 @@
         
         removeFlatDialog.delegate = self;
         [removeFlatDialog show];
-        [removeFlatDialog release];
         
         [self.flatActionButton setEnabled:YES];
         
@@ -181,7 +175,6 @@
         FlatTakeOverTask *flatTakeOverTask = [[FlatTakeOverTask alloc]init];
         [flatTakeOverTask takeOverFlat:[self selectedImmoscoutFlat]];
         //[self dismissModalViewControllerAnimated:YES];
-        [flatTakeOverTask release];
     }
 }
 
@@ -197,10 +190,13 @@
     switch (buttonIndex) {
         //Nein
         case 0:
+        {
             [self.flatActionButton setEnabled:YES];
             break;
+        }
         //Ja                
         case 1:
+        {
             [flatRemoveTask removeFlat:[self selectedImmoscoutFlat]];
             
             [[[[ImmopolyManager instance]user]portfolio]removeObject:[self selectedImmoscoutFlat]];
@@ -214,12 +210,13 @@
             }
             
             break;
-            
+        }
         default:
+        {
             break;
+        }
     }   
     //[self.view removeFromSuperview];
-    [flatRemoveTask release];
 }
 
 -(IBAction)performFacebookPost {
@@ -239,13 +236,11 @@
     if(!twitterClass) {
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:sharingTwitterAPINotAvailableAlertTitle message:sharingTwitterAPINotAvailableAlertMessage delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil];
         [alert show];
-        [alert release];
     }
     else {
         if(![TWTweetComposeViewController canSendTweet]) {
             UIAlertView *alert = [[UIAlertView alloc] initWithTitle:sharingTwitterNoAccountAlertTitle message:sharingTwitterNoAccountAlertMessage delegate:self cancelButtonTitle:@"Back" otherButtonTitles:nil];
             [alert show];
-            [alert release]; 
         }
         else {
             TWTweetComposeViewController *tweetView = [[TWTweetComposeViewController alloc] init];
@@ -265,7 +260,6 @@
             }
             
             [self presentModalViewController:tweetView animated:YES];
-            [tweetView release];
             
         }
     }
@@ -381,8 +375,6 @@
 	[controller setMessageBody:html isHTML:YES];
 	
     if (controller) [self presentModalViewController:controller animated:YES];
-	[controller release];	
-    [html release];
 }
 
 - (void)mailComposeController:(MFMailComposeViewController*)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError*)error {

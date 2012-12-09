@@ -18,11 +18,6 @@
 @synthesize data;
 @synthesize delegate; 
 
--(void)dealloc{
-    [connection release];
-    [data release];
-    [super dealloc];
-}
 
 // TODO: releasing url and request (not possible?)
 - (void)performLogin:(NSString *)_userName password:(NSString *)_password {
@@ -90,7 +85,6 @@
         [[appDelegate actionItemManager]placeActionItems];
     }
     
-    [jsonString release];
 }
 
 @end

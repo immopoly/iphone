@@ -12,12 +12,12 @@
 @interface SpionAction : NSObject{
     NSURLConnection *connection;
     NSMutableData *data;
-    id<ActionItemDelegate>delegate;
+    id<ActionItemDelegate>__unsafe_unretained delegate;
 }
 
-@property(nonatomic, retain) NSURLConnection *connection;
-@property(nonatomic, retain) NSMutableData *data;
-@property(nonatomic, assign) id<ActionItemDelegate>delegate;
+@property(nonatomic, strong) NSURLConnection *connection;
+@property(nonatomic, strong) NSMutableData *data;
+@property(nonatomic, unsafe_unretained) id<ActionItemDelegate>delegate;
 
 - (void)executeAction:(NSMutableArray *)_exposeIds;
 

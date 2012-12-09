@@ -34,18 +34,6 @@
     return self;
 }
 
--(void)dealloc{
-    self.helperView = nil;
-    self.helperBackground = nil;
-    self.helperScroll = nil;
-    self.helperTextImage = nil;
-    self.helperViewBubble = nil;
-    self.btHelperViewIn = nil;
-    self.linkButton = nil;
-    self.spinner = nil;
-    self.selectedActionItem = nil;
-    [super dealloc];
-}
 
 - (void)didReceiveMemoryWarning
 {
@@ -101,13 +89,13 @@
 }
 
 - (void)initHelperViewWithMode:(int)_infoMode {
-    self.helperView = [[[UIView alloc] initWithFrame:CGRectMake(0, -370, 320, 370)] autorelease];
+    self.helperView = [[UIView alloc] initWithFrame:CGRectMake(0, -370, 320, 370)];
     
-    self.helperViewBubble = [[[UIView alloc] initWithFrame:CGRectMake(18, 30, 283, 329)] autorelease];
+    self.helperViewBubble = [[UIView alloc] initWithFrame:CGRectMake(18, 30, 283, 329)];
 
-    self.helperBackground = [[[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_background"]] autorelease];
+    self.helperBackground = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_background"]];
 
-    self.helperScroll = [[[UIScrollView alloc]initWithFrame:CGRectMake(0, 10, 284, 310)] autorelease];
+    self.helperScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 10, 284, 310)];
     
     helperScroll.scrollEnabled = YES;
 
@@ -236,9 +224,7 @@
 
     
     [alert show];
-    [alert release];
     
-    [alertString release];
     
 }
 

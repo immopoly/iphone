@@ -64,7 +64,6 @@
         AppDelegate *appDelegate = (AppDelegate *)[[UIApplication sharedApplication] delegate];
         [[appDelegate actionItemManager]placeActionItems];
     }
-    [jsonString release];
 }
 
 @end

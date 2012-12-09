@@ -43,20 +43,20 @@
 @property(nonatomic, assign) double livingSpace;
 @property(nonatomic, assign) long long overtakeDate;
 
-@property(nonatomic, retain) NSString *name;
-@property(nonatomic, retain) NSString *description;
-@property(nonatomic, retain) NSString *locationNode;
-@property(nonatomic, retain) NSString *city;
-@property(nonatomic, retain) NSString *postcode;
-@property(nonatomic, retain) NSString *street;
-@property(nonatomic, retain) NSString *quarter;
-@property(nonatomic, retain) NSString *titlePictureSmall;
-@property(nonatomic, retain) NSString *priceIntervaleType;
-@property(nonatomic, retain) NSString *pictureUrl;
+@property(nonatomic, strong) NSString *name;
+@property(nonatomic, strong) NSString *description;
+@property(nonatomic, strong) NSString *locationNode;
+@property(nonatomic, strong) NSString *city;
+@property(nonatomic, strong) NSString *postcode;
+@property(nonatomic, strong) NSString *street;
+@property(nonatomic, strong) NSString *quarter;
+@property(nonatomic, strong) NSString *titlePictureSmall;
+@property(nonatomic, strong) NSString *priceIntervaleType;
+@property(nonatomic, strong) NSString *pictureUrl;
 
 @property(nonatomic, readonly) CLLocationCoordinate2D coordinate;
-@property(nonatomic, retain) NSMutableArray *flatsAtAnnotation;
-@property(nonatomic, retain) UIImage *image;
+@property(nonatomic, strong) NSMutableArray *flatsAtAnnotation;
+@property(nonatomic, strong) UIImage *image;
 
 
 - (id)initWithName:(NSString*)_name description:(NSString*)_description coordinate:(CLLocationCoordinate2D)_oordinate exposeId:(int)_lexposeId;

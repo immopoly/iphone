@@ -16,9 +16,6 @@
 @implementation OAuthManager
 
 
-- (void)dealloc {
-    [super dealloc];
-}
 
 - (NSString *) requestHeaderWithURL:(NSURL *)url andMethod:(NSString *)cMethod
 {
@@ -26,12 +23,10 @@
                                                     secret:REST_AUTHENTICATION_SECRET];
     
     OAMutableURLRequest *request = [[OAMutableURLRequest alloc] initWithURL:url consumer:consumer HTTPMethod:cMethod];
-    [consumer release];
     
     NSString *header = [[NSString alloc] initWithString:[request oauthHeader]];
-    [request release];
     
-    return [header autorelease];
+    return header;
 }
 
 - (void)grabURLInBackground:(NSString *)url withFormat:(NSString *)format withDelegate:(id)delegate

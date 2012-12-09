@@ -49,9 +49,5 @@
     [delegate displayCurrentLocation];
 }
 
-- (void)dealloc {
-    [immoScoutFlats release];
-    [super dealloc];
-}
 
 @end

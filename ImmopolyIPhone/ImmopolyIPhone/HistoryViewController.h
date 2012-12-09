@@ -35,22 +35,22 @@
     UserProfileViewController *userVC;
 }
 
-@property(nonatomic, retain) UITableViewCell *tvCell;
-@property(nonatomic, retain) UITableView *table;
-@property(nonatomic, retain) LoginCheck *loginCheck;
+@property(nonatomic, strong) UITableViewCell *tvCell;
+@property(nonatomic, strong) UITableView *table;
+@property(nonatomic, strong) LoginCheck *loginCheck;
 @property(nonatomic, assign) BOOL loading;
 @property(nonatomic, assign) BOOL flagForReload;
 @property(nonatomic, assign) int loadingHistoryEntriesStart;
 @property(nonatomic, assign) int loadingHistoryEntriesLimit;
 
-@property(nonatomic, retain) UILabel *lbTime;
-@property(nonatomic, retain) UILabel *lbText;
-@property(nonatomic, retain) UIButton *btFacebook;
-@property(nonatomic, retain) UIButton *btTwitter;
-@property(nonatomic, retain) UIButton *btOpenProfile;
-@property(nonatomic, retain) UIImageView *lblImage;
+@property(nonatomic, strong) UILabel *lbTime;
+@property(nonatomic, strong) UILabel *lbText;
+@property(nonatomic, strong) UIButton *btFacebook;
+@property(nonatomic, strong) UIButton *btTwitter;
+@property(nonatomic, strong) UIButton *btOpenProfile;
+@property(nonatomic, strong) UIImageView *lblImage;
 
-@property(nonatomic, retain) UserProfileViewController *userVC;
+@property(nonatomic, strong) UserProfileViewController *userVC;
 
 - (void)viewFadeIn:(UIView *)view;
 - (void)viewFadeOut:(UIView *)view;

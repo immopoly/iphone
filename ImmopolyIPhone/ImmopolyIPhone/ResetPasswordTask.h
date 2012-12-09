@@ -13,12 +13,12 @@
     
     NSURLConnection *connection;
     NSMutableData *data;
-    id<ResetPasswordDelegate>delegate;    
+    id<ResetPasswordDelegate>__unsafe_unretained delegate;    
 }
 
-@property(nonatomic, retain) NSURLConnection *connection;
-@property(nonatomic, retain) NSMutableData *data;
-@property(nonatomic, assign) id<ResetPasswordDelegate>delegate;
+@property(nonatomic, strong) NSURLConnection *connection;
+@property(nonatomic, strong) NSMutableData *data;
+@property(nonatomic, unsafe_unretained) id<ResetPasswordDelegate>delegate;
 
 - (void)performResetPasswordWithUsername:(NSString *) userName andEmail:(NSString *) email;
 
