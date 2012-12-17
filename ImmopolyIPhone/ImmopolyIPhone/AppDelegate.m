@@ -279,7 +279,7 @@
         // removing all annotations from portfolioMapView that they don't get doubled
         UIViewController *vc = [[[self tabBarController]viewControllers]objectAtIndex:1];
         if ([vc isKindOfClass:[PortfolioViewController class]]) {
-            MKMapView *mapView = [[[[self tabBarController]viewControllers]objectAtIndex:1] portfolioMapView];
+            MKMapView *mapView = [[[[self tabBarController]viewControllers]objectAtIndex:1] mapView];
             [mapView removeAnnotations:mapView.annotations];
         }        
         [[NSUserDefaults standardUserDefaults] setObject:nil forKey:@"image"];

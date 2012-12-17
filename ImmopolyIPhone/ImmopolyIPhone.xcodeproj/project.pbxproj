@@ -94,6 +94,7 @@
 		6DAB2637152F0C2700CDE23D /* register_ok_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAB2634152F0C2700CDE23D /* register_ok_button.png */; };
 		6DAB2639152F0D4E00CDE23D /* register_cancel_button.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAB2638152F0D4E00CDE23D /* register_cancel_button.png */; };
 		6DAB263B152F0F8200CDE23D /* register_cell.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAB263A152F0F8200CDE23D /* register_cell.png */; };
+		6DAD6302167F7D20005C3B12 /* AbstractMapViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6DB4B80D167F7C90003D2731 /* AbstractMapViewController.m */; };
 		6DAF10B01531C2A30014C827 /* Haus_neu_hdpi.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAF10AF1531C2A30014C827 /* Haus_neu_hdpi.png */; };
 		6DAF10B21531C6C00014C827 /* Haus_cluster_hpdi.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAF10B11531C6C00014C827 /* Haus_cluster_hpdi.png */; };
 		6DAF10B915357E350014C827 /* button_bereich_btn_on.png in Resources */ = {isa = PBXBuildFile; fileRef = 6DAF10B715357E350014C827 /* button_bereich_btn_on.png */; };
@@ -387,6 +388,8 @@
 		6DB1E07F14AE53EE005E858E /* helperText_historyView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = helperText_historyView.html; sourceTree = "<group>"; };
 		6DB1E08114AE542C005E858E /* helperText_userView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = helperText_userView.html; sourceTree = "<group>"; };
 		6DB1E08314AE54E0005E858E /* helperText_webView.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = helperText_webView.html; sourceTree = "<group>"; };
+		6DB4B80C167F7C90003D2731 /* AbstractMapViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AbstractMapViewController.h; sourceTree = "<group>"; };
+		6DB4B80D167F7C90003D2731 /* AbstractMapViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AbstractMapViewController.m; sourceTree = "<group>"; };
 		6DB4EAD114ADC2AE0057B16E /* AbstractViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AbstractViewController.h; sourceTree = "<group>"; };
 		6DB4EAD214ADC2AE0057B16E /* AbstractViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AbstractViewController.m; sourceTree = "<group>"; };
 		6DBB1DFC14FA63EA00BCA1BB /* btBadge_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = btBadge_selected.png; sourceTree = "<group>"; };
@@ -1058,6 +1061,8 @@
 		D2C67D23145AA524008C3295 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				6DB4B80C167F7C90003D2731 /* AbstractMapViewController.h */,
+				6DB4B80D167F7C90003D2731 /* AbstractMapViewController.m */,
 				6D51AD1D16591623006E1448 /* Secrets.h */,
 				6D51AD1E16591623006E1448 /* Secrets.m */,
 				6DB4EAD114ADC2AE0057B16E /* AbstractViewController.h */,
@@ -1452,6 +1457,7 @@
 				D273BF0D15239A6E0012A347 /* ActionItemButton.m in Sources */,
 				6DA36C92152633C700F04939 /* ScrollViewItem.m in Sources */,
 				6D51AD1F1659175F006E1448 /* Secrets.m in Sources */,
+				6DAD6302167F7D20005C3B12 /* AbstractMapViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

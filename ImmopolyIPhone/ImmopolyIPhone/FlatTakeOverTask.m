@@ -84,7 +84,7 @@
                 
                 if([[[[delegate tabBarController]viewControllers]objectAtIndex:1]isKindOfClass:[PortfolioViewController class]]){
                     PortfolioViewController *tempVC = (PortfolioViewController *)[[[delegate tabBarController]viewControllers]objectAtIndex:1];
-                    [tempVC setPortfolioHasChanged:YES];
+                    [tempVC setHasPortfolioChanged:YES];
                 }
                 
             }
