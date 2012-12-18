@@ -95,7 +95,7 @@
 
     self.helperBackground = [[UIImageView alloc]initWithImage:[UIImage imageNamed:@"infotext_background"]];
 
-    self.helperScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 10, 284, 310)];
+    self.helperScroll = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 5, 284, 318)];
     
     helperScroll.scrollEnabled = YES;
 
@@ -167,7 +167,7 @@
     [button addTarget:self action:@selector(helperViewOut) forControlEvents:UIControlEventTouchUpInside];
     [button setImage:[UIImage imageNamed:@"close_info_button"] forState:UIControlStateNormal];
     
-    button.frame = CGRectMake(228, 5, 50, 52);
+    button.frame = CGRectMake(229, 2, 50, 52);
     
     [helperViewBubble addSubview:button];
     [helperView addSubview:helperViewBubble];
