@@ -20,9 +20,9 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 @interface AbstractMapViewController () {
     UILabel *lbPageNumber;
     UIView *calloutBubble;
-    AsynchronousImageView *asyncImageView;
     UIScrollView *scrollView;
     UIPageControl *pageControl;
+    UIActivityIndicatorView *calloutSpinner;
     
     WebViewController *exposeWebViewController;
     
@@ -75,6 +75,13 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 
 - (void)viewDidUnload {
     [super viewDidUnload];
+    lbPageNumber = nil;
+    calloutSpinner = nil;
+    scrollView = nil;
+    pageControl = nil;
+    calloutSpinner = nil;
+    exposeWebViewController = nil;
+    tapRec = nil;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -110,10 +117,22 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 
 -(void)initScrollView {
     scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(4, 0, 216, 147)];
-    [scrollView setPagingEnabled:YES];
+    scrollView.pagingEnabled = YES;
     scrollView.showsHorizontalScrollIndicator = NO;
-    pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
     scrollView.delegate = self;
+    
+    pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 0, 0, 0)];
+    
+    [self initCalloutSpinner];
+}
+
+- (void)initCalloutSpinner {
+    calloutSpinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:(UIActivityIndicatorViewStyleWhiteLarge)];
+    CGPoint pos = scrollView.center;
+    pos.y += 7;
+    [calloutSpinner setCenter:pos];
+    [calloutSpinner setColor:[UIColor colorWithRed:40.0/255.0 green:77.0/255.0 blue:125.0/255.0 alpha:1]];
+    [calloutBubble addSubview:calloutSpinner];
 }
 
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
@@ -310,8 +329,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 }
 
 - (void)calloutBubbleIn {
-    // that the flats are clickable through the imageview
-    //[mapView addSubview:calloutBubble];
+    [calloutSpinner startAnimating];
     
     [mapView addGestureRecognizer:tapRec];
     
@@ -460,7 +478,6 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
             Flat *tempFlat = [[selectedImmoScoutFlat flatsAtAnnotation] objectAtIndex:i-1];
             subview = [self createCalloutBubbleContentFromFlat:tempFlat atPosition:i];
         }
-        
         [scrollView addSubview:subview];
     }
     
@@ -477,6 +494,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
         [lbPageNumber setHidden:YES];
     }
     [calloutBubble addSubview:scrollView];
+    [calloutSpinner stopAnimating];
 }
 
 - (void)resetScrollView {
@@ -546,7 +564,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
         [imgView setImage:[_flat image]];
     }
     [subview addSubview:imgView];
-    
+
     return subview;
 }
 
