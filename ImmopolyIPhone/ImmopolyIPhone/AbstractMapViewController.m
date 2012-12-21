@@ -13,9 +13,11 @@
 #import "AppDelegate.h"
 #import "ImmopolyMapViewController.h"
 
-static NSString *ANNO_IMG_SINGLE = @"Haus_neu_hdpi.png";
-static NSString *ANNO_IMG_MULTI = @"Haus_cluster_hpdi.png";
-static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
+static NSString *ANNO_IMG_NEW = @"annotation_new";
+static NSString *ANNO_IMG_MIDDLE = @"annotation_middle";
+static NSString *ANNO_IMG_OLD = @"annotation_old";
+static NSString *ANNO_IMG_OWN = @"annotation_own";
+static NSString *ANNO_IMG_MULTI = @"annotation_multi";
 
 @interface AbstractMapViewController () {
     UILabel *lbPageNumber;
@@ -100,7 +102,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 }
 
 -(void)initCalloutBubble {
-    CGRect  viewRect = CGRectMake(54, -172, 225, 172);
+    CGRect  viewRect = CGRectMake(44, -172, 225, 172);
     calloutBubble = [[UIView alloc] initWithFrame:viewRect];
     [self.view addSubview:calloutBubble];
     
@@ -268,11 +270,8 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
         if([[location flatsAtAnnotation] count] > 0 ) {
             annotationView.image = [UIImage imageNamed:ANNO_IMG_MULTI];
             [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:location]];
-        }
-        else if ([self checkOfOwnFlat:location]) {
-            annotationView.image = [UIImage imageNamed:ANNO_IMG_OWN];
         } else {
-            annotationView.image = [UIImage imageNamed:ANNO_IMG_SINGLE];
+            annotationView.image = [UIImage imageNamed:[self getAnnotationImageString:location]];
         }
         return annotationView;
     }
@@ -280,8 +279,25 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
     return nil;
 }
 
+- (NSString *)getAnnotationImageString:(Flat *)flat {
+    long currentDate = (long) [[NSDate date] timeIntervalSince1970];
+    NSString *imageString;
+    if([self checkOfOwnFlat:flat]) {
+        imageString = ANNO_IMG_OWN;
+    } else if(currentDate < EXPOSE_TRESHOLD_NEW) {
+        imageString = ANNO_IMG_NEW;
+    } else {
+        if(currentDate < EXPOSE_TRESHOLD_OLD) {
+            imageString = ANNO_IMG_MIDDLE;
+        } else {
+            imageString = ANNO_IMG_OLD;
+        }
+    }
+    return imageString;
+}
+
 - (UILabel *)setLbNumberOfFlatsAtFlat:(Flat *)_flat {
-    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(-5, 0, 72, 58)];
+    UILabel *lbNumOfFlats = [[UILabel alloc] initWithFrame:CGRectMake(1, 2, 43, 37)];
     lbNumOfFlats.backgroundColor = [UIColor colorWithRed:0 green:0 blue:0 alpha:0];
     [lbNumOfFlats setText:[NSString stringWithFormat:@"%d", [[_flat flatsAtAnnotation] count] +1]];
     [lbNumOfFlats setTextColor:[UIColor colorWithRed:1 green:1 blue:1 alpha:1]];
@@ -308,12 +324,8 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
     if([[_flat flatsAtAnnotation] count] > 0 ) {
         annotationView.image = [UIImage imageNamed:ANNO_IMG_MULTI];
         [annotationView addSubview:[self setLbNumberOfFlatsAtFlat:_flat]];
-    }
-    else if ([self checkOfOwnFlat:_flat]) {
-        annotationView.image = [UIImage imageNamed:ANNO_IMG_OWN];
     } else {
-        
-        annotationView.image = [UIImage imageNamed:ANNO_IMG_SINGLE];
+        annotationView.image = [UIImage imageNamed:[self getAnnotationImageString:_flat]];
     }
 }
 
@@ -340,7 +352,7 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
     [UIView setAnimationDidStopSelector:@selector(animationDidStop:finished:context:)];
     
     CGPoint pos = calloutBubble.center;
-	pos.y = 160.0f;
+	pos.y = 155.0f;
 	calloutBubble.center = pos;
     
     [UIView commitAnimations];
@@ -564,6 +576,11 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
         [imgView setImage:[_flat image]];
     }
     [subview addSubview:imgView];
+    
+    NSString *imageName = [[self getAnnotationImageString:_flat] stringByAppendingString:@"_small.png"];
+    UIImageView *annoThumbnail = [[UIImageView alloc] initWithFrame:CGRectMake(58, 95, 22, 19)];
+    annoThumbnail.image = [UIImage imageNamed:imageName];
+    [subview addSubview:annoThumbnail];
 
     return subview;
 }

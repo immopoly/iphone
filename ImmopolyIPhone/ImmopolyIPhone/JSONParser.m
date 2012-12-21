@@ -350,6 +350,14 @@
                 [myFlat setNumberOfRooms:[[realEstate objectForKey:@"numberOfRooms"] intValue]];
                 [myFlat setLivingSpace:[[realEstate objectForKey:@"livingSpace"] doubleValue]];
                 
+                // date of insertion 
+                NSString *creationDate = [entry objectForKey:@"@creation"];
+                creationDate = [creationDate substringToIndex:10];
+                NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+                [dateFormatter setDateFormat:@"yyyy-MM-dd"];
+                NSDate *dateFromString = [dateFormatter dateFromString:creationDate];
+                [myFlat setCreationDate:[dateFromString timeIntervalSince1970]];
+                
                 // picture
                 NSDictionary *pictureInfo = [realEstate objectForKey:@"titlePicture"];
                 [myFlat setPictureUrl:[pictureInfo objectForKey:@"@xlink.href"]];

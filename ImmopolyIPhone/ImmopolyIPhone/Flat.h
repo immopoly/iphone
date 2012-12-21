@@ -16,6 +16,7 @@
     int numberOfRooms;
     double price;
     double livingSpace;
+    long long creationDate;
     long long overtakeDate;
     int overtakeTries;
     
@@ -41,6 +42,7 @@
 @property(nonatomic, assign) int overtakeTries;
 @property(nonatomic, assign) double price;
 @property(nonatomic, assign) double livingSpace;
+@property(nonatomic, assign) long long creationDate;
 @property(nonatomic, assign) long long overtakeDate;
 
 @property(nonatomic, strong) NSString *name;

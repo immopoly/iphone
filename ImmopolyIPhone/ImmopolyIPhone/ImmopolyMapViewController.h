@@ -17,8 +17,6 @@
 #import "AbstractMapViewController.h"
 
 //#define METERS_PER_MILE 50000.00
-#define ANNO_WIDTH 40
-#define ANNO_HEIGHT 51
 
 @interface ImmopolyMapViewController : AbstractMapViewController <LocationDelegate> {
     IBOutlet UILabel *adressLabel;

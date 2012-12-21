@@ -13,7 +13,8 @@
 @synthesize exposeId;
 @synthesize name;
 @synthesize description;
-@synthesize locationNode; 
+@synthesize locationNode;
+@synthesize creationDate;
 @synthesize overtakeDate;
 @synthesize city;
 @synthesize postcode;
