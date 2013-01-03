@@ -24,6 +24,7 @@
 @synthesize linkButton;
 @synthesize spinner;
 @synthesize selectedActionItem;
+@synthesize backgroundImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -48,7 +49,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view from its nib.
+
     
     [self initButton];
 }
@@ -73,6 +74,7 @@
     self.linkButton = nil;
     self.spinner = nil;
     self.selectedActionItem = nil;
+    self.backgroundImageView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

@@ -12,6 +12,7 @@
 #import "ImmopolyManager.h"
 #import "Constants.h"
 #import "ResetPasswordTask.h"
+#import "UIDevice+Resolutions.h"
 
 @implementation LoginViewController
 
@@ -30,6 +31,7 @@
 @synthesize resetPasswordView;
 @synthesize resetPasswordUserName;
 @synthesize resetPasswordEmail;
+@synthesize backgroundImageView;
 
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
@@ -53,6 +55,17 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    frame.size.height -= 20; // status bar
+    self.view.frame = frame;
+    
+    if ([[UIDevice currentDevice] resolution] == UIDeviceResolution_iPhoneRetina4) {
+        [self.backgroundImageView setImage:[UIImage imageNamed:@"background_login_568h@2x.png"]];
+    } else {
+        [self.backgroundImageView setImage:[UIImage imageNamed:@"background_login.png"]];
+    }
+    [self.backgroundImageView setFrame:frame];
     
     [password setSecureTextEntry:YES];
     [registerUserPassword setSecureTextEntry:YES];
@@ -77,6 +90,7 @@
     self.registerUserPassword = nil;
     self.registerUserEmail = nil;
     self.registerUserTwitter = nil;
+    self.backgroundImageView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

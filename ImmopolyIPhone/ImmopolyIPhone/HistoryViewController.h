@@ -51,6 +51,7 @@
 @property(nonatomic, strong) UIImageView *lblImage;
 
 @property(nonatomic, strong) UserProfileViewController *userVC;
+@property(nonatomic, strong) IBOutlet UIImageView* shadowBottomImageView;
 
 - (void)viewFadeIn:(UIView *)view;
 - (void)viewFadeOut:(UIView *)view;

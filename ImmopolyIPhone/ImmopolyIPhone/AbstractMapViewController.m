@@ -50,6 +50,11 @@ static NSString *ANNO_IMG_MULTI = @"annotation_multi";
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    frame.size.height -= 49; // tabbar
+    frame.size.height -= 20; // status bar
+    self.view.frame = frame;
+    
     [self initMapView];
     [self initCalloutBubble];
     [self initScrollView];
@@ -96,7 +101,7 @@ static NSString *ANNO_IMG_MULTI = @"annotation_multi";
 }
 
 -(void)initMapView {
-    mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 42, 320, 370)];
+    mapView = [[MKMapView alloc] initWithFrame:CGRectMake(0, 42, self.view.frame.size.width, self.view.frame.size.height - 42)];
     mapView.delegate = self;
     [self.view addSubview:mapView];
 }

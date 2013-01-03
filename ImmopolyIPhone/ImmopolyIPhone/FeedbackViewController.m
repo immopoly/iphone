@@ -8,8 +8,11 @@
 
 #import "FeedbackViewController.h"
 #import "Constants.h"
+#import "UIDevice+Resolutions.h"
 
 @implementation FeedbackViewController
+
+@synthesize sendMailButton;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -34,6 +37,25 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    frame.size.height -= 42; // top navigation view
+    frame.size.height -= 20; // status bar
+    frame.size.height -= 49; // tabbar
+    self.view.frame = frame;
+    
+    if ([[UIDevice currentDevice] resolution] == UIDeviceResolution_iPhoneRetina4) {
+        [self.backgroundImageView setImage:[UIImage imageNamed:@"background_envelope_568h@2x.png"]];
+    } else {
+        [self.backgroundImageView setImage:[UIImage imageNamed:@"background_envelope.png"]];
+    }
+    frame.origin.y = 42;
+    [self.backgroundImageView setFrame:frame];
+    
+    CGRect buttonFrame = self.sendMailButton.frame;
+    buttonFrame.origin.y = self.view.frame.size.height - 20;
+    [self.sendMailButton setFrame:buttonFrame];
+    
     [super.spinner setHidden:YES];
     
     // setting the text of the helperView
@@ -43,8 +65,7 @@
 - (void)viewDidUnload
 {
     [super viewDidUnload];
-    // Release any retained subviews of the main view.
-    // e.g. self.myOutlet = nil;
+    self.sendMailButton = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

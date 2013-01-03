@@ -75,6 +75,10 @@ static NSString *ANNO_IMG_OWN = @"Haus_meins_hdpi.png";
 - (void)viewDidLoad {
     [super viewDidLoad];
     [ImmopolyManager instance].delegate = self;
+    
+    CGRect frame = self.actualiseButton.frame;
+    frame.origin.y = self.view.frame.size.height - 61;
+    [self.actualiseButton setFrame:frame];
 }
 
 - (void)viewDidUnload {

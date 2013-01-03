@@ -16,25 +16,8 @@
 #import "ResetPasswordDelegate.h"
 
 @interface LoginViewController : UIViewController <LoginDelegate, RegisterDelegate, ResetPasswordDelegate>{
-    
-    IBOutlet UITextField *userName;
-    IBOutlet UITextField *password;
-    IBOutlet UIActivityIndicatorView *spinner;
-    IBOutlet UILabel *loginLabel;
-    IBOutlet UIButton *loginButton;
-    IBOutlet UIView *registerView;
-    IBOutlet UIView *loginView;
-    IBOutlet UITextField *registerUserName;
-    IBOutlet UITextField *registerUserPassword;
-    IBOutlet UITextField *registerUserEmail;
-    IBOutlet UITextField *registerUserTwitter;
-    IBOutlet UIView *resetPasswordView;
-    IBOutlet UITextField *resetPasswordUserName;
-    IBOutlet UITextField *resetPasswordEmail;
-    
     UserProfileViewController *userProfileViewController;
     id<NotifyViewDelegate> __unsafe_unretained delegate;
-    
 }
 
 @property(nonatomic, strong) IBOutlet UITextField *userName;
@@ -54,6 +37,8 @@
 @property(nonatomic, strong) IBOutlet UIView *resetPasswordView;
 @property(nonatomic, strong) IBOutlet UITextField *resetPasswordUserName;
 @property(nonatomic, strong) IBOutlet UITextField *resetPasswordEmail;
+
+@property(nonatomic, strong) IBOutlet UIImageView *backgroundImageView;
 
 
 - (IBAction)performLogin;

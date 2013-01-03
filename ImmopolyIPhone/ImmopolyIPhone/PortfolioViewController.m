@@ -12,6 +12,8 @@
 #import "UserLoginTask.h"
 #import "PortfolioTask.h"
 #import "PortfolioCell.h"
+#import "UIDevice+Resolutions.h"
+
 
 @interface PortfolioViewController() {
     IBOutlet UITableViewCell *tvCell;
@@ -74,6 +76,32 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    frame.size.height -= 42; // top navigation view
+    frame.size.height -= 20; // status bar
+    frame.size.height -= 49; // tabbar
+    self.view.frame = frame;
+    
+    if ([[UIDevice currentDevice] resolution] == UIDeviceResolution_iPhoneRetina4) {
+        [self.backgroundImageView setImage:[UIImage imageNamed:@"history_background_568h@2x.png"]];
+    } else {
+        [self.backgroundImageView setImage:[UIImage imageNamed:@"history_background.png"]];
+    }
+    frame.origin.y = 42;
+    [self.backgroundImageView setFrame:frame];
+    
+    frame.size.height += 42;
+    [table setFrame:frame];
+
+    // bottom shadow
+    CGRect shadowFrame = imgShadowBottom.frame;
+    shadowFrame.origin.y = table.frame.size.height - 10;
+    [imgShadowBottom setFrame:shadowFrame];
+    
+    CGRect buttonFrame = btRecenterMap.frame;
+    buttonFrame.origin.y = self.view.frame.size.height - 20;
+    [btRecenterMap setFrame:buttonFrame];
     
     [super initHelperViewWithMode:INFO_PORTFOLIO];
     [table setHidden: YES];
@@ -233,7 +261,7 @@
     
     [topBar setImage:[UIImage imageNamed:@"topbar_portfolio_map.png"]];
     [btRecenterMap setHidden:NO];
-    isRecenterButtonHidden = YES;
+    isRecenterButtonHidden = NO;
     
     CGPoint posMap = mapView.center;
     CGPoint posTable = table.center;

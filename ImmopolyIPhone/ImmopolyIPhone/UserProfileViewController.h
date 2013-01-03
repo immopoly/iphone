@@ -71,6 +71,7 @@
 @property(nonatomic, strong) NSString *otherUserName;
 @property(nonatomic, strong) ImmopolyUser *otherUser;
 @property(nonatomic, strong) UIView *itemsView;
+@property(nonatomic, strong) IBOutlet UIImageView* badgesImageView;
 
 - (void)setLabelTextsOfUser:(ImmopolyUser *)_user;
 //- (void)displayBadges:(ImmopolyUser *)_user;

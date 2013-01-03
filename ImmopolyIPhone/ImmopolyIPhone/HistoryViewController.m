@@ -13,7 +13,7 @@
 #import "FacebookManager.h"
 #import "Constants.h"
 #import "Secrets.h"
-
+#import "UIDevice+Resolutions.h"
 
 @implementation HistoryViewController
 
@@ -31,6 +31,7 @@
 @synthesize btOpenProfile;
 @synthesize lblImage;
 @synthesize userVC;
+@synthesize shadowBottomImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -54,6 +55,29 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    frame.size.height -= 42; // top navigation view
+    frame.size.height -= 20; // status bar
+    frame.size.height -= 49; // tabbar
+    self.view.frame = frame;
+    
+    if ([[UIDevice currentDevice] resolution] == UIDeviceResolution_iPhoneRetina4) {
+        [self.backgroundImageView setImage:[UIImage imageNamed:@"history_background_568h@2x.png"]];
+    } else {
+        [self.backgroundImageView setImage:[UIImage imageNamed:@"history_background.png"]];
+    }
+    frame.origin.y = 42;
+    [self.backgroundImageView setFrame:frame];
+    
+    frame.size.height += 42;
+    [self.table setFrame:frame];
+    
+    // bottom shadow
+    CGRect shadowFrame = self.shadowBottomImageView.frame;
+    shadowFrame.origin.y = self.table.frame.size.height - 10;
+    [self.shadowBottomImageView setFrame:shadowFrame];
+    
     [super initSpinner];
     [[self table] setHidden: YES];
     [self.table setBackgroundColor:[UIColor clearColor]];
@@ -125,6 +149,7 @@
     self.btTwitter = nil;
     self.btHelperViewIn = nil;
     self.btOpenProfile = nil;
+    self.backgroundImageView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

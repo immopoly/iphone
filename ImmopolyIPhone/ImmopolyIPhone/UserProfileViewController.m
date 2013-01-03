@@ -14,6 +14,7 @@
 #import "UserTask.h"
 #import "ScrollViewItem.h"
 #import "ActionItem.h"
+#import "UIDevice+Resolutions.h"
 
 #define BADGES_ACTIVE 0
 #define ACTIONS_ACTIVE 1
@@ -21,6 +22,7 @@
 @interface UserProfileViewController () {
     IBOutlet UIImageView *tabbarOtherUser;
     int activeScrollView;
+    CGFloat badgesImageViewHeight;
 }
 
 @property(nonatomic, strong) UIImageView *tabbarOtherUser;
@@ -60,6 +62,7 @@
 @synthesize btShowItems;
 @synthesize tabbarOtherUser;
 @synthesize activeScrollView;
+@synthesize badgesImageView;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
@@ -83,16 +86,39 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    
+    CGRect frame = [[UIScreen mainScreen] bounds];
+    frame.size.height -= 42; // top navigation view
+    frame.size.height -= 20; // status bar
+    frame.size.height -= 49; // tabbar
+    self.view.frame = frame;
+    
+    badgesImageViewHeight = CGFLOAT_MIN;
+    if ([[UIDevice currentDevice] resolution] == UIDeviceResolution_iPhoneRetina4) {
+        [self.backgroundImageView setImage:[UIImage imageNamed:@"user_background_big_568h@2x.png"]];
+        badgesImageViewHeight = 220.0f;
+    } else {
+        [self.backgroundImageView setImage:[UIImage imageNamed:@"user_background_big.png"]];
+        badgesImageViewHeight = 132.0f;
+    }
+    frame.origin.y = 42;
+    [self.backgroundImageView setFrame:frame];
+    
+    CGRect badgesImageViewFrame = self.badgesImageView.frame;
+    badgesImageViewFrame.size.height = badgesImageViewHeight;
+    [self.badgesImageView setFrame:badgesImageViewFrame];
+    
     self.loginCheck = [[LoginCheck alloc]init];
     
     [super initSpinner];
     [super.spinner startAnimating];
     
-    self.badgesScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 320-43, 320, 132)];
+    self.badgesScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 320-43, 320, badgesImageViewHeight)];
     [[self view]addSubview:badgesScrollView];
     [[self view]bringSubviewToFront:[self badgesScrollView]];
  
-    self.actionsScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 480, 320, 132)];
+    self.actionsScrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 480, 320, badgesImageViewHeight)];
     [[self view]addSubview:actionsScrollView];
     [[self view]bringSubviewToFront:[self actionsScrollView]];
 }
@@ -352,7 +378,7 @@
 
 // initializes the empty background of the given scrollview
 - (void)initBackground:(int)_offset ofScrollView:(UIScrollView *)_scrollView {
-    UIImageView *scrollViewBackground = [[UIImageView alloc]initWithFrame:CGRectMake(320*_offset, 0, 320, 132)];
+    UIImageView *scrollViewBackground = [[UIImageView alloc]initWithFrame:CGRectMake(320*_offset, 0, 320, badgesImageViewHeight)];
     [scrollViewBackground setImage:[UIImage imageNamed:@"badgesview"]];
     [_scrollView addSubview:scrollViewBackground];
 }
@@ -388,10 +414,13 @@
     } else {
         items = [[[ImmopolyManager instance] user] actionItems];     
     }
+    NSInteger tag = [sender tag];
     
-    NSString *badgeText = [[items objectAtIndex:[sender tag]] text];
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:badgeText delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
-    [alert show];
+    if (tag < items.count) {
+        NSString *badgeText = [[items objectAtIndex:tag] text];
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Info" message:badgeText delegate:self cancelButtonTitle:@"OK" otherButtonTitles:nil];
+        [alert show];
+    }
 }
 
 - (void)viewDidUnload {
@@ -407,6 +436,7 @@
     self.badgesScrollView = nil;
     self.closeProfileButton = nil;
     self.tabBar = nil;
+    self.badgesImageView = nil;
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {

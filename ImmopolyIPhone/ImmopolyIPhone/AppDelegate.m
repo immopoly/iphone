@@ -102,7 +102,6 @@
     self.tabBarController.viewControllers = [NSArray arrayWithObjects:userVC,portfolioVC,mapVC,historyVC,feedbackVC, nil];
     [self.tabBarController addCenterButtonWithImage:[UIImage imageNamed:@"tabbar_center_icon.png"] highlightImage:[UIImage imageNamed:@"tabbar_center_icon_blue.png"]];
     [self.tabBarController setSelectedIndex:2];
-    
     [self setSelectedViewController:[[self tabBarController]selectedViewController]];
     
     self.window.rootViewController = self.tabBarController;

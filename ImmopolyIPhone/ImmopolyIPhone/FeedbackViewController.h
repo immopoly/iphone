@@ -14,6 +14,8 @@
 @interface FeedbackViewController : AbstractViewController <MFMailComposeViewControllerDelegate> {
 }
 
+@property(nonatomic, strong) IBOutlet UIButton* sendMailButton;
+
 - (IBAction)sendMail;
 
 @end

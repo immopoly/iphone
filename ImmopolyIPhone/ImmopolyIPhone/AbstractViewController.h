@@ -44,6 +44,8 @@
 @property(nonatomic, strong) UIActivityIndicatorView *spinner;
 @property(nonatomic, strong) ActionItem *selectedActionItem;
 
+@property(nonatomic, strong) IBOutlet UIImageView *backgroundImageView;
+
 - (void)initButton;
 - (void)initHelperViewWithMode:(int)_infoMode;
 - (void)initSpinner;
